@@ -18,6 +18,12 @@ One folder per experiment: `experiments/E-nnn-short-name/`.
 | `data/` | Inputs, each with source and licence in `data/SOURCES.md`. Large or non-redistributable data is fetched by script, not committed |
 | `results/` | Outputs: numbers, plots, audio examples. Small, committed, reproducible from the code |
 
+**Check inputs and measures before the full run** (squillo standing
+instruction S15). Run a few unmodified real recordings first: a synthetic
+input's long-term spectrum must lie within theirs, and a spectral or distance
+measure must be restricted to a band where both have energy. The README
+reports the check's numbers.
+
 **A result is a number with its conditions.** State what was measured, on what
 input, with which tool versions, and the uncertainty. "Works well" is not a
 result.

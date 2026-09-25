@@ -51,6 +51,14 @@ wobble of 10 cents RMS. (b) 19 VocalSet singers (9 female, 10 male; every
 singer with the file), straight-tone scales on /a/, 5.5 to 18.3 s, 44.1 kHz
 resampled to 48 kHz (`data/SOURCES.md`, CC BY 4.0).
 
+**Input check** (squillo standing instruction S15). The CheapTrick
+long-term envelope, relative to its maximum, at 4.9 and 6.5 kHz: synthetic
+baritone −43 and −56 dB; VocalSet f1, f2, f3 −56 and −46, −55 and −48, −47
+and −41 dB. Without the higher-pole correction the synthetic voice read −57
+and −81 dB and WORLD's unchanged re-synthesis 9.6 dB from its reference; the
+envelope distance is limited to 80 Hz–8 kHz because above 20 kHz the synthetic
+input has no energy.
+
 **Requests** in cents, applied by each method to its own f0 track, nothing
 else changed: `id` none (analysis and re-synthesis only); `c25`, `c50`,
 `c100`: 25, 50, 100 % of the note-centre offset from the intended note
