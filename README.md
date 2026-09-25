@@ -45,6 +45,9 @@ from here or from cited literature, never from nowhere.
   feeds a WAV file as the microphone.
 - **Rust / WASM**: added when an experiment needs to test the real engine
   path; not installed yet.
+- **GPU**: an Intel Arc A770M, which stands in for the remote tier and not for
+  a singer's device. Read [`COMPUTE.md`](COMPUTE.md) before timing anything on
+  it.
 
 ## Status
 
