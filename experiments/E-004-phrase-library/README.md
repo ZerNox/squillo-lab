@@ -1,6 +1,6 @@
 # E-004 — A publishable phrase library
 
-**Status:** open · **Serves:** VISION §7 (generated tracks), §9 (first slice), §12.4
+**Status:** open · **Serves:** VISION §7 (the guided library), §9 (first slice), §12.5
 
 ## Question
 
