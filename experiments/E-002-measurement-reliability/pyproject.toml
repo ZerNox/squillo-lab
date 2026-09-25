@@ -1,0 +1,14 @@
+[project]
+name = "e002-measurement-reliability"
+version = "0.1.0"
+description = "E-002 round 1: pitch tracker error at squillo's frame axis"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=2.0",
+    "scipy>=1.13",
+    "librosa>=0.11",
+    "soundfile>=0.12",
+]
+
+[tool.uv]
+package = false

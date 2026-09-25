@@ -1,6 +1,6 @@
 # E-002 — Measurement reliability and uncertainty
 
-**Status:** open · **Serves:** VISION §5 (what is measured), §6 (honesty), §12.2
+**Status:** running (round 1, pitch, answered on synthetic input; round 2 open) · **Serves:** VISION §5 (what is measured), §6 (honesty), §12.2
 
 ## Question
 
@@ -43,4 +43,74 @@ Set by review R-03 (squillo iteration 15) as round 1's scope: pitch only.
 
 ## Result
 
-Not yet run.
+### Round 1: pitch, synthetic ground truth (squillo iteration 16, 2026-09-25)
+
+**Run:** `uv sync && uv run python run.py && uv run python timestamp.py &&
+uv run python uncertainty.py && uv run python report.py` (`run.py` took 466 s on
+the development machine; the others take seconds). Full tables: [`results/summary.md`](results/summary.md);
+raw numbers: `results/*.json`.
+
+**Conditions.** 48 kHz, squillo ADR 0007's frame axis: 384-sample frames,
+the pitch of frame *i* from the 1536 samples ending with it, frames 3 onward.
+Tones 1 s, additive synthesis in float64, peak 0.5, random harmonic phases,
+harmonics above 20 kHz dropped; seed 20260925. Timbres: pure sine; harmonic
+at −6 dB/octave (`saw6`) and −12 dB/octave (`saw12`); `weakf0`, −12 dB/octave
+with the fundamental 20 dB under the second harmonic. Vibrato: sinusoidal,
+rate 5.5 and 7 Hz, extent ±50 and ±100 cents. Glides: log-linear, 600 and
+2400 cents/s. Noise: white Gaussian over the full 0–24 kHz band, SNR against
+the tone's RMS. Steady tones: the 41 semitones E2 to C6; other conditions:
+24 tones log-uniform over E2 to C6. Error is in cents against the true f0,
+which for moving pitch is taken at a stated instant (below). *Gross* error:
+more than 50 cents (MIREX raw pitch accuracy). Intervals are 95 %: Wilson for
+shares, bootstrap over tones for percentiles. Maxima are observed maxima over
+the frames stated, not bounds.
+
+**Trackers.** `yin.py`: YIN (de Cheveigné and Kawahara 2002) steps 1–4, CMND
+threshold 0.1, lags 16 to 763 samples (3000 to 63 Hz, so out-of-range tones
+are found and then refused), parabolic interpolation on the raw difference
+function *d*. A frame with no CMND dip under the threshold is unmeasurable. A
+frame is measured when its f0 lies within E2 to C6 widened by a margin *m*
+(3 cents unless stated). Compared: interpolation on the CMND *d′*; librosa
+1.0.0 `pyin` at the same frame length and hop, `center=False`, with 10-cent
+and 1-cent bins. Tools: Python 3.13.14, numpy 2.5.3, scipy 1.18.1.
+
+**Results.**
+
+| # | Question | Result |
+| :--- | :--- | :--- |
+| 1 | squillo's seven `fixtures/signal/` files (SG-001 to SG-006) | YIN passes every scenario: 122 of 122 frames measured for the 220 Hz, overshoot, E2 and C6 sines, max error 0.026 cents (C6); 0 of 122 measured for C2, C7 and silence |
+| 2 | F-013: ±3 cents on pure tones, E2 to C6 | Holds with a wide margin: 5002 frames, 0 gross, max 0.03 cents. Interpolating on *d′* instead of *d*: max 0.40 cents |
+| 3 | Harmonic steady tones | Max 0.98 cents (`saw6`), 0.12 (`saw12`), 0.26 (`weakf0`); no octave errors in 5002 frames each (gross share 0.00 %, Wilson upper bound 0.08 %). Error grows with pitch: `saw6` p95 0.19 cents below A3, 0.93 above C5 |
+| 4 | Noise (`saw12`, threshold 0.1) | 40 dB: max 0.36 cents. 30 dB: p95 0.76 [0.58, 0.87], max 2.57, all within ±3. 20 dB: p95 5.15 [3.81, 7.37], max 19.6, 85.7 % within ±3. 10 dB: p95 41 cents, 1.75 % gross. 5 and 0 dB: **no frame measured**; YIN refuses rather than guesses. Threshold 0.2 changes little at ≥ 20 dB and adds gross errors at 10 dB (31.8 %) |
+| 5 | Vibrato and glides: which instant does a frame's pitch describe? | Against the true f0 at the pitch window's centre, errors are large: p95 11 to 30 cents under vibrato, 4.5 and 17 cents on glides, biased on glides (mean −3.5 cents at 600 cents/s). Against the true f0 at **YIN's lag centre**, *s* + (*W* + τ)/2 with *W* = 773 and τ the period found, the error collapses: vibrato p95 1.3 (5.5 Hz ±50), 2.9 (5.5 Hz ±100), 1.5 (7 Hz ±50), 3.8 (7 Hz ±100) cents; glides 0.5 (600 cents/s), 2.0 (2400 cents/s). That instant lies 17.9 ms (E2) to 23.5 ms (C6) before the frame's end, and depends on the period and on the lag range. Round 1 measured the window centre and the lag centre; the frame's end is worse (p95 up to 48 cents) |
+| 6 | pYIN | librosa's `pyin` is biased at this window: median 5.1 cents on steady tones, p95 25 cents on pure tones below A3, with 10-cent or 1-cent bins alike. Its difference function is computed from a whole-frame autocorrelation over a shrinking overlap, and it interpolates on *d′*, so this is librosa's implementation at 1536 samples, not the pYIN method as such. It measured more frames than YIN at 0 and 5 dB SNR, with p95 errors of 41 to 45 cents. Round 1 gives no reason to prefer it; ADR 0007's reason for rejecting it (Viterbi revises frames after later frames arrive) is unchanged |
+| 7 | F-017: guard band at the range edges | Over 976 frames per offset, YIN's pure-tone error at both edges is at most 0.026 cents. With acceptance widened by *m* cents, every tone more than *m* + 0.03 cents outside is refused, and every tone inside is measured. At *m* = 0, a tone exactly at E2 or C6 is measured in only 50.4 % and 63.0 % of frames; SG-004 and SG-005 then conflict. At *m* = 3, a tone 3 cents outside is measured in 50.3 % (E2) and 76.1 % (C6) of frames, and a tone 3.5 cents outside in none. So a pure-tone guard band of 0.03 cents beyond *m* suffices for this tracker. A band of twice the tolerance (unmeasurable beyond 6 cents, *m* = 3) holds with a margin of 2.97 cents |
+| 8 | Out-of-range tones | Below 63 Hz (600 and 1200 cents under E2) YIN finds no period; C2 and higher tones below E2 are found, then refused. Above C6 up to C7 the period is found (max error 0.08 cents), then refused; none is taken for an octave inside the range |
+| 9 | float32 vs float64 arithmetic in YIN (numpy 2.5.3, not WASM) | 10 004 frames: max difference 0.0082 cents, p99 0.0028; no measured/unmeasurable disagreement. A first bound for squillo's S-004 question on the host, not across WASM targets |
+| 10 | A per-frame uncertainty candidate (protocol step 3) | YIN's CMND value at the chosen dip orders the error. `saw12` in white noise at 40 to 10 dB SNR, 24 tones each: dip < 0.01, 10 111 frames, p95 1.9 cents, max 11.4; 0.01–0.02, p95 8.0; 0.02–0.05, p95 32; 0.05–0.1, p95 49, 4.2 % gross. A candidate for an honest per-frame ± and for refusing a frame; calibrating it needs real voices (round 2) |
+
+**What this says for squillo.**
+
+- ADR 0007's YIN at its frame axis meets SG-005's ±3 cents on pure tones by a
+  factor of 100, and on harmonic tones by a factor of 3 or more, down to 30 dB
+  white-noise SNR. The tolerance is not what limits it; noise is.
+- F-017 has a number: guard band 0.03 cents beyond the acceptance margin for
+  pure tones. The spec change is squillo's to make.
+- For moving pitch, "the pitch of frame *i*" needs an instant, or exact
+  scenarios on vibrato and glides cannot be written. The instant YIN measures
+  depends on the period and on the lag range, which are implementation
+  details. This affects SG-003 and the `metrics` time axis.
+- Honesty (VISION §6): at 10 dB SNR YIN still reports frames up to 50 cents
+  off. A fixed tolerance cannot describe that; a per-frame ± can, and the
+  CMND dip is a candidate for it.
+
+**Limits.** Synthetic tones only: no breathiness, jitter, shimmer, formant
+movement, reverberation, or band-limited noise. No real voice, no browser, no
+WASM. The 10- and 1-cent pYIN rows use librosa's implementation only.
+
+### Round 2 (open)
+
+Openly licensed sung datasets with f0 annotations (licences in
+`data/SOURCES.md`); reverberation; calibration of the CMND-dip estimator
+against observed error; then vibrato rate and extent, stability and tone
+descriptors.
