@@ -1,0 +1,389 @@
+{
+ "total": {
+  "vocalset/world_dio": {
+   "frames": 22000,
+   "gross": 587,
+   "near_octave": 327,
+   "sign_down": 2,
+   "within_3_frames_of_input_jump": 131,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 2
+  },
+  "vocalset/psola": {
+   "frames": 22273,
+   "gross": 18,
+   "near_octave": 12,
+   "sign_down": 15,
+   "within_3_frames_of_input_jump": 14
+  },
+  "synthetic/world_dio": {
+   "frames": 3652,
+   "gross": 309,
+   "near_octave": 309,
+   "sign_down": 0,
+   "within_3_frames_of_input_jump": 2,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 0
+  },
+  "synthetic/psola": {
+   "frames": 3991,
+   "gross": 1,
+   "near_octave": 0,
+   "sign_down": 1,
+   "within_3_frames_of_input_jump": 0
+  }
+ },
+ "per_input": {
+  "f1/world_dio": {
+   "frames": 1275,
+   "gross": 2,
+   "near_octave": 2,
+   "sign_down": 0,
+   "within_3_frames_of_input_jump": 0,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 0
+  },
+  "f1/psola": {
+   "frames": 1273,
+   "gross": 0
+  },
+  "f2/world_dio": {
+   "frames": 1374,
+   "gross": 6,
+   "near_octave": 6,
+   "sign_down": 0,
+   "within_3_frames_of_input_jump": 0,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 0
+  },
+  "f2/psola": {
+   "frames": 1374,
+   "gross": 0
+  },
+  "f3/world_dio": {
+   "frames": 1249,
+   "gross": 0
+  },
+  "f3/psola": {
+   "frames": 1249,
+   "gross": 0
+  },
+  "f5/world_dio": {
+   "frames": 968,
+   "gross": 0
+  },
+  "f5/psola": {
+   "frames": 974,
+   "gross": 1,
+   "near_octave": 0,
+   "sign_down": 1,
+   "within_3_frames_of_input_jump": 0
+  },
+  "f6/world_dio": {
+   "frames": 591,
+   "gross": 0
+  },
+  "f6/psola": {
+   "frames": 590,
+   "gross": 0
+  },
+  "f7/world_dio": {
+   "frames": 1251,
+   "gross": 1,
+   "near_octave": 0,
+   "sign_down": 0,
+   "within_3_frames_of_input_jump": 0,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 0
+  },
+  "f7/psola": {
+   "frames": 1396,
+   "gross": 1,
+   "near_octave": 0,
+   "sign_down": 0,
+   "within_3_frames_of_input_jump": 0
+  },
+  "f8/world_dio": {
+   "frames": 1054,
+   "gross": 1,
+   "near_octave": 0,
+   "sign_down": 1,
+   "within_3_frames_of_input_jump": 0,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 0
+  },
+  "f8/psola": {
+   "frames": 1054,
+   "gross": 0
+  },
+  "f9/world_dio": {
+   "frames": 808,
+   "gross": 39,
+   "near_octave": 39,
+   "sign_down": 0,
+   "within_3_frames_of_input_jump": 26,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 0
+  },
+  "f9/psola": {
+   "frames": 867,
+   "gross": 1,
+   "near_octave": 1,
+   "sign_down": 1,
+   "within_3_frames_of_input_jump": 1
+  },
+  "m10/world_dio": {
+   "frames": 1155,
+   "gross": 47,
+   "near_octave": 39,
+   "sign_down": 0,
+   "within_3_frames_of_input_jump": 19,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 2
+  },
+  "m10/psola": {
+   "frames": 1156,
+   "gross": 2,
+   "near_octave": 1,
+   "sign_down": 2,
+   "within_3_frames_of_input_jump": 2
+  },
+  "m11/world_dio": {
+   "frames": 1069,
+   "gross": 34,
+   "near_octave": 33,
+   "sign_down": 0,
+   "within_3_frames_of_input_jump": 17,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 0
+  },
+  "m11/psola": {
+   "frames": 1084,
+   "gross": 2,
+   "near_octave": 2,
+   "sign_down": 2,
+   "within_3_frames_of_input_jump": 2
+  },
+  "m1/world_dio": {
+   "frames": 1928,
+   "gross": 0
+  },
+  "m1/psola": {
+   "frames": 1926,
+   "gross": 1,
+   "near_octave": 0,
+   "sign_down": 1,
+   "within_3_frames_of_input_jump": 0
+  },
+  "m2/world_dio": {
+   "frames": 1198,
+   "gross": 60,
+   "near_octave": 16,
+   "sign_down": 0,
+   "within_3_frames_of_input_jump": 0,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 0
+  },
+  "m2/psola": {
+   "frames": 1198,
+   "gross": 0
+  },
+  "m3/world_dio": {
+   "frames": 2102,
+   "gross": 145,
+   "near_octave": 145,
+   "sign_down": 0,
+   "within_3_frames_of_input_jump": 37,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 0
+  },
+  "m3/psola": {
+   "frames": 2098,
+   "gross": 3,
+   "near_octave": 3,
+   "sign_down": 3,
+   "within_3_frames_of_input_jump": 3
+  },
+  "m4/world_dio": {
+   "frames": 752,
+   "gross": 36,
+   "near_octave": 14,
+   "sign_down": 0,
+   "within_3_frames_of_input_jump": 12,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 0
+  },
+  "m4/psola": {
+   "frames": 770,
+   "gross": 3,
+   "near_octave": 3,
+   "sign_down": 2,
+   "within_3_frames_of_input_jump": 3
+  },
+  "m5/world_dio": {
+   "frames": 681,
+   "gross": 0
+  },
+  "m5/psola": {
+   "frames": 680,
+   "gross": 0
+  },
+  "m6/world_dio": {
+   "frames": 913,
+   "gross": 1,
+   "near_octave": 0,
+   "sign_down": 1,
+   "within_3_frames_of_input_jump": 0,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 0
+  },
+  "m6/psola": {
+   "frames": 915,
+   "gross": 0
+  },
+  "m7/world_dio": {
+   "frames": 1275,
+   "gross": 46,
+   "near_octave": 0,
+   "sign_down": 0,
+   "within_3_frames_of_input_jump": 0,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 0
+  },
+  "m7/psola": {
+   "frames": 1275,
+   "gross": 0
+  },
+  "m8/world_dio": {
+   "frames": 910,
+   "gross": 42,
+   "near_octave": 17,
+   "sign_down": 0,
+   "within_3_frames_of_input_jump": 0,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 0
+  },
+  "m8/psola": {
+   "frames": 908,
+   "gross": 0
+  },
+  "m9/world_dio": {
+   "frames": 1447,
+   "gross": 127,
+   "near_octave": 16,
+   "sign_down": 0,
+   "within_3_frames_of_input_jump": 20,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 0
+  },
+  "m9/psola": {
+   "frames": 1486,
+   "gross": 4,
+   "near_octave": 2,
+   "sign_down": 3,
+   "within_3_frames_of_input_jump": 3
+  },
+  "soprano_plain_1/world_dio": {
+   "frames": 498,
+   "gross": 41,
+   "near_octave": 41,
+   "sign_down": 0,
+   "within_3_frames_of_input_jump": 0,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 0
+  },
+  "soprano_plain_1/psola": {
+   "frames": 496,
+   "gross": 0
+  },
+  "soprano_plain_2/world_dio": {
+   "frames": 499,
+   "gross": 0
+  },
+  "soprano_plain_2/psola": {
+   "frames": 497,
+   "gross": 0
+  },
+  "soprano_vib_1/world_dio": {
+   "frames": 497,
+   "gross": 32,
+   "near_octave": 32,
+   "sign_down": 0,
+   "within_3_frames_of_input_jump": 0,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 0
+  },
+  "soprano_vib_1/psola": {
+   "frames": 497,
+   "gross": 0
+  },
+  "soprano_vib_2/world_dio": {
+   "frames": 499,
+   "gross": 6,
+   "near_octave": 6,
+   "sign_down": 0,
+   "within_3_frames_of_input_jump": 0,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 0
+  },
+  "soprano_vib_2/psola": {
+   "frames": 497,
+   "gross": 0
+  },
+  "soprano_high_plain_1/world_dio": {
+   "frames": 448,
+   "gross": 77,
+   "near_octave": 77,
+   "sign_down": 0,
+   "within_3_frames_of_input_jump": 1,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 0
+  },
+  "soprano_high_plain_1/psola": {
+   "frames": 502,
+   "gross": 0
+  },
+  "soprano_high_plain_2/world_dio": {
+   "frames": 391,
+   "gross": 42,
+   "near_octave": 42,
+   "sign_down": 0,
+   "within_3_frames_of_input_jump": 1,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 0
+  },
+  "soprano_high_plain_2/psola": {
+   "frames": 502,
+   "gross": 0
+  },
+  "soprano_high_vib_1/world_dio": {
+   "frames": 430,
+   "gross": 65,
+   "near_octave": 65,
+   "sign_down": 0,
+   "within_3_frames_of_input_jump": 0,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 0
+  },
+  "soprano_high_vib_1/psola": {
+   "frames": 499,
+   "gross": 1,
+   "near_octave": 0,
+   "sign_down": 1,
+   "within_3_frames_of_input_jump": 0
+  },
+  "soprano_high_vib_2/world_dio": {
+   "frames": 390,
+   "gross": 46,
+   "near_octave": 46,
+   "sign_down": 0,
+   "within_3_frames_of_input_jump": 0,
+   "world_f0_unvoiced": 0,
+   "world_f0_octave_off": 0
+  },
+  "soprano_high_vib_2/psola": {
+   "frames": 501,
+   "gross": 0
+  }
+ }
+}

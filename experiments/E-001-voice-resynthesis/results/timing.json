@@ -1,0 +1,173 @@
+{
+ "cpu": "12th Gen Intel(R) Core(TM) i7-12700H",
+ "rows": [
+  {
+   "input": "bass_plain_1",
+   "method": "world_harvest",
+   "seconds": 4.05,
+   "analyse_per_s": 0.26661479161523377,
+   "synth_per_s": 0.014552831345088321
+  },
+  {
+   "input": "bass_plain_1",
+   "method": "world_dio",
+   "seconds": 4.05,
+   "analyse_per_s": 0.146995731341986,
+   "synth_per_s": 0.014567831099999172
+  },
+  {
+   "input": "bass_plain_1",
+   "method": "psola",
+   "seconds": 4.05,
+   "analyse_per_s": 0.030741150617415523,
+   "synth_per_s": 0.010504481486148305
+  },
+  {
+   "input": "tenor_plain_1",
+   "method": "world_harvest",
+   "seconds": 4.05,
+   "analyse_per_s": 0.24907561556585595,
+   "synth_per_s": 0.019891445185805177
+  },
+  {
+   "input": "tenor_plain_1",
+   "method": "world_dio",
+   "seconds": 4.05,
+   "analyse_per_s": 0.12458723162036435,
+   "synth_per_s": 0.01987871949641425
+  },
+  {
+   "input": "tenor_plain_1",
+   "method": "psola",
+   "seconds": 4.05,
+   "analyse_per_s": 0.027159907924080337,
+   "synth_per_s": 0.010198807159875646
+  },
+  {
+   "input": "soprano_high_plain_1",
+   "method": "world_harvest",
+   "seconds": 4.05,
+   "analyse_per_s": 0.2522690303589183,
+   "synth_per_s": 0.05438558297392763
+  },
+  {
+   "input": "soprano_high_plain_1",
+   "method": "world_dio",
+   "seconds": 4.05,
+   "analyse_per_s": 0.11656465876939488,
+   "synth_per_s": 0.05439644667929337
+  },
+  {
+   "input": "soprano_high_plain_1",
+   "method": "psola",
+   "seconds": 4.05,
+   "analyse_per_s": 0.024301757530113797,
+   "synth_per_s": 0.010574451348755832
+  },
+  {
+   "input": "f1",
+   "method": "world_harvest",
+   "seconds": 11.432395833333333,
+   "analyse_per_s": 0.25851269445912783,
+   "synth_per_s": 0.03817781865799887
+  },
+  {
+   "input": "f1",
+   "method": "world_dio",
+   "seconds": 11.432395833333333,
+   "analyse_per_s": 0.11993530332947648,
+   "synth_per_s": 0.038053421544201674
+  },
+  {
+   "input": "f1",
+   "method": "psola",
+   "seconds": 11.432395833333333,
+   "analyse_per_s": 0.02254864752847671,
+   "synth_per_s": 0.009279454673115696
+  },
+  {
+   "input": "f5",
+   "method": "world_harvest",
+   "seconds": 9.1195625,
+   "analyse_per_s": 0.2592152572127791,
+   "synth_per_s": 0.03717432299582936
+  },
+  {
+   "input": "f5",
+   "method": "world_dio",
+   "seconds": 9.1195625,
+   "analyse_per_s": 0.10788385779719253,
+   "synth_per_s": 0.038410747453524303
+  },
+  {
+   "input": "f5",
+   "method": "psola",
+   "seconds": 9.1195625,
+   "analyse_per_s": 0.022023789189980027,
+   "synth_per_s": 0.009035494188465073
+  },
+  {
+   "input": "f9",
+   "method": "world_harvest",
+   "seconds": 7.791520833333333,
+   "analyse_per_s": 0.2465265588116181,
+   "synth_per_s": 0.037535466716439224
+  },
+  {
+   "input": "f9",
+   "method": "world_dio",
+   "seconds": 7.791520833333333,
+   "analyse_per_s": 0.11978273945875519,
+   "synth_per_s": 0.03655802802961133
+  },
+  {
+   "input": "f9",
+   "method": "psola",
+   "seconds": 7.791520833333333,
+   "analyse_per_s": 0.0232015669302267,
+   "synth_per_s": 0.00950931654559799
+  },
+  {
+   "input": "m1",
+   "method": "world_harvest",
+   "seconds": 16.766770833333332,
+   "analyse_per_s": 0.283689125011004,
+   "synth_per_s": 0.020001145856064564
+  },
+  {
+   "input": "m1",
+   "method": "world_dio",
+   "seconds": 16.766770833333332,
+   "analyse_per_s": 0.13217215694754594,
+   "synth_per_s": 0.02017207542770699
+  },
+  {
+   "input": "m1",
+   "method": "psola",
+   "seconds": 16.766770833333332,
+   "analyse_per_s": 0.02595046704953822,
+   "synth_per_s": 0.009455293840605719
+  },
+  {
+   "input": "m8",
+   "method": "world_harvest",
+   "seconds": 8.469270833333333,
+   "analyse_per_s": 0.25180887125982776,
+   "synth_per_s": 0.01964220773373925
+  },
+  {
+   "input": "m8",
+   "method": "world_dio",
+   "seconds": 8.469270833333333,
+   "analyse_per_s": 0.12180067059991692,
+   "synth_per_s": 0.019272825633766217
+  },
+  {
+   "input": "m8",
+   "method": "psola",
+   "seconds": 8.469270833333333,
+   "analyse_per_s": 0.024942114631244527,
+   "synth_per_s": 0.009093128035234339
+  }
+ ]
+}
