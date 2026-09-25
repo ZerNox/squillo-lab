@@ -30,6 +30,17 @@ meaningful.
 4. Survey the literature for further measurable aspects; add each as a
    sub-experiment.
 
+## Questions squillo is waiting on
+
+Set by review R-03 (squillo iteration 15) as round 1's scope: pitch only.
+
+- **F-013:** does YIN at squillo's frame axis (384-sample frames, a
+  1536-sample window, 48 kHz; squillo ADR 0007) meet ±3 cents on pure tones
+  from E2 to C6, and what is its error on harmonic, vibrato and gliding tones
+  and with noise? Compare pYIN.
+- **F-017:** how far outside E2 to C6 must a tone be before it is reliably
+  unmeasurable: the guard band at the range edges, in cents.
+
 ## Result
 
 Not yet run.
