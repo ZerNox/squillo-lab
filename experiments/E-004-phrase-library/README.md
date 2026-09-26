@@ -24,8 +24,13 @@ translations are the traps.
    range, and source with licence rationale.
 3. Fill uncovered genres with original phrases written for squillo (licence:
    the project's own).
-4. Output: `results/library.json` plus `results/SOURCES.md`, ready to become a
-   squillo fixture under ADR 0005 as revised.
+4. Output: `results/library.json` plus `results/SOURCES.md`, ready to become
+   squillo phrase items under ADR 0005 as revised in squillo iteration 22
+   (`format_version` 2): one phrase per file with exactly `phrase_id`,
+   `title`, `instructions` and `content` (an SPDX licence expression and a
+   source). Words, melody, genre and range are not yet members; this
+   experiment says which of them a verified phrase must record, and
+   squillo's next revision of ADR 0005 adds them.
 
 A note on copyright: short excerpts are **not** exempt. There is no
 "30-second rule"; lyrics and melodies are protected however short the
