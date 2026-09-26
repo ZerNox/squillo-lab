@@ -68,6 +68,9 @@ they are reported apart. Nothing was corrected after the comparison
 (`CORRECTIONS` is empty). The only change made after it was to two score
 pointers, both to the range figure in an infobox: La donna è mobile's
 article has no melody score, and Habanera's melody is its third block.
+Every comparison uses the block `library.py` names. A first pass took the
+best-matching block, and for In the Bleak Midwinter that was Darke's
+setting, not Holst's; squillo L-027 records it.
 
 **Rights rules** (`run.py`, as at 2026-01-01):
 
