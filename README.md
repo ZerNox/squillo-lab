@@ -27,6 +27,12 @@ range the measure is specified for (for pitch, squillo ADR 0007's E2–C6),
 and any procedure that makes the truth (alignment, segmentation) is run on
 one input of every condition first (squillo L-026).
 
+**Name the reference before comparing** (squillo standing instruction S16).
+A check against an outside source names its reference item in advance: the
+article's score block, the person's entity, the edition. It never takes the
+best match among several, because a different work can match. Caches of
+outside reads are keyed by the whole request (squillo L-027).
+
 **A result is a number with its conditions.** State what was measured, on what
 input, with which tool versions, and the uncertainty. "Works well" is not a
 result.
