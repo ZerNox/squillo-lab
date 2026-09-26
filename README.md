@@ -22,7 +22,10 @@ One folder per experiment: `experiments/E-nnn-short-name/`.
 instruction S15). Run a few unmodified real recordings first: a synthetic
 input's long-term spectrum must lie within theirs, and a spectral or distance
 measure must be restricted to a band where both have energy. The README
-reports the check's numbers.
+reports the check's numbers. Every synthetic input must also lie inside the
+range the measure is specified for (for pitch, squillo ADR 0007's E2–C6),
+and any procedure that makes the truth (alignment, segmentation) is run on
+one input of every condition first (squillo L-026).
 
 **A result is a number with its conditions.** State what was measured, on what
 input, with which tool versions, and the uncertainty. "Works well" is not a
