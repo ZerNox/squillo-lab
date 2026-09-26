@@ -118,6 +118,38 @@ and 1-cent bins. Tools: Python 3.13.14, numpy 2.5.3, scipy 1.18.1.
 movement, reverberation, or band-limited noise. No real voice, no browser, no
 WASM. The 10- and 1-cent pYIN rows use librosa's implementation only.
 
+### Round 1, fold into squillo (squillo iteration 24, 2026-09-26)
+
+**Run:** `uv run python fold.py <dir>` (8 s). It writes squillo's four new
+`fixtures/signal/` files to `<dir>` by the formulas squillo's
+`fixtures/MANIFEST.md` records (pure Python binary64, `math.sin`, rounded to
+`f32`; Python 3.13.14 on glibc 2.43, two runs byte-identical), runs the
+tracker above (threshold 0.1, lags to 763 samples, acceptance E2 to C6
+widened by 3 cents) on all eleven signal fixtures, and re-measures result 5's
+moving-pitch conditions against a closed-form instant. Numbers:
+`results/fold.json`.
+
+**The instant.** YIN's difference function compares samples *s* to
+*s* + *W* − 1 with the samples one period *P* later, *W* = 1536 − 763 = 773,
+so the mean position of the samples compared is *s* + (*W* − 1 + *P*)/2. For
+frame *i* (*s* = 384(*i* − 3)) that is sample position **384 *i* − 766 +
+*P*/2**, with *P* = 48 000 / *f* the reported period in samples: 17.9 ms (E2)
+to 23.5 ms (C6) before the frame's end. Result 5 used *s* + (*W* + *P*)/2,
+half a sample later, and rounded it to a sample.
+
+| # | Question | Result |
+| :--- | :--- | :--- |
+| 11 | squillo's two guard-band fixtures, pure sines 7 cents above C6 and 7 cents below E2 | 0 of 122 frames measured in each |
+| 12 | squillo's glide fixture (sine, 220 Hz rising at 600 cents/s) and vibrato fixture (sine, 220 Hz, 5.5 Hz, +49.6 / −50.9 cents), against the true f0 at the instant | 122 of 122 frames measured in each; max error 0.18 cents (glide), 0.97 (vibrato). Against the window centre: 3.9 and 10.2 cents, so the scenarios tell the two instants apart |
+| 13 | The seven iteration-14 fixtures, reported pitch against the tone | 220 Hz and overshoot max 0.0013 cents; E2 0.0006; C6 −0.026 to +0.011; C2, C7, silence 0 of 122 measured |
+| 14 | Result 5's conditions at the instant, 24 tones each, pure and `saw12` (seed 20260926) | Every measured frame within ±3 cents under vibrato of ±50 cents at 5.5 and 7 Hz (max 2.68, `saw12` at 7 Hz) and glides of 600 cents/s (max 1.00); Wilson 95 % lower bound 99.86 % in each. Beyond that the ±3 cents no longer holds for every frame: ±100 cents vibrato 92.6–98.2 % within ±3, max 5.7; 2400 cents/s glides 99.9–100 %, max 3.5 |
+
+**What this says for squillo.** The instant is exact once the lag range is
+fixed, and at it the ±3 cents holds on moving pitch up to ±50 cents of
+vibrato at 7 Hz and 600 cents/s of glide, on synthetic tones. Deeper or
+faster movement needs a per-frame ± (result 10) rather than the fixed
+tolerance.
+
 ### Round 2 (open)
 
 Openly licensed sung datasets with f0 annotations (licences in

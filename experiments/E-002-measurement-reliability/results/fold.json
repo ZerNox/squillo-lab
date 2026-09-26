@@ -1,0 +1,245 @@
+{
+ "fixtures": {
+  "sine-c6-plus-7c.wav": {
+   "sha256": "c6b9b3cca1d438aed4a44662b080c33c3808a74ee41be172d7ef6c819208ed4f",
+   "bytes": 192058,
+   "frames": 122,
+   "first": 3,
+   "measured": 0
+  },
+  "sine-e2-minus-7c.wav": {
+   "sha256": "3fee62644c1a838438653fbb6fa9d9ed5a2a5e8086968cdb1ff02d1c9dd528ed",
+   "bytes": 192058,
+   "frames": 122,
+   "first": 3,
+   "measured": 0
+  },
+  "glide-220hz-600c.wav": {
+   "sha256": "fa8df2b97dbea1f0c2f0f2b88622e608397cd2b049c798b0a2ac61ccba0bc1f9",
+   "bytes": 192058,
+   "frames": 122,
+   "first": 3,
+   "measured": 122,
+   "max_abs_cents_at_instant": 0.1842278396942328,
+   "max_abs_cents_at_window_centre": 3.8887852213671894,
+   "instant_ms_before_end": [
+    21.693794757343788,
+    22.33881958483941
+   ]
+  },
+  "vibrato-220hz-5p5hz.wav": {
+   "sha256": "c32897aa2f7304b66b3bf4142c0b9c91442e09bcd35ed0b7b0b4a265f3015f66",
+   "bytes": 192058,
+   "frames": 122,
+   "first": 3,
+   "measured": 122,
+   "max_abs_cents_at_instant": 0.9715014741176422,
+   "max_abs_cents_at_window_centre": 10.178711436404143,
+   "instant_ms_before_end": [
+    21.708285474410097,
+    21.729343018004784
+   ]
+  },
+  "silence.wav": {
+   "frames": 122,
+   "first": 3,
+   "measured": 0
+  },
+  "sine-220hz-overshoot.wav": {
+   "frames": 122,
+   "first": 3,
+   "measured": 122,
+   "max_abs_cents": 0.0013164045463168713,
+   "min_max_reported_cents_vs_true": [
+    -0.0011402004544256346,
+    0.0013164045463168713
+   ]
+  },
+  "sine-220hz.wav": {
+   "frames": 122,
+   "first": 3,
+   "measured": 122,
+   "max_abs_cents": 0.0013164045463168713,
+   "min_max_reported_cents_vs_true": [
+    -0.0011402004544256346,
+    0.0013164045463168713
+   ]
+  },
+  "sine-c2.wav": {
+   "frames": 122,
+   "first": 3,
+   "measured": 0
+  },
+  "sine-c6.wav": {
+   "frames": 122,
+   "first": 3,
+   "measured": 122,
+   "max_abs_cents": 0.025744770159302727,
+   "min_max_reported_cents_vs_true": [
+    -0.025744770159302727,
+    0.011145618556028166
+   ]
+  },
+  "sine-c7.wav": {
+   "frames": 122,
+   "first": 3,
+   "measured": 0
+  },
+  "sine-e2.wav": {
+   "frames": 122,
+   "first": 3,
+   "measured": 122,
+   "max_abs_cents": 0.0005513293277894,
+   "min_max_reported_cents_vs_true": [
+    -0.000548163878403923,
+    0.0005513293277894
+   ]
+  }
+ },
+ "instant": {
+  "pure/vibrato/rate=5.5/extent=50": {
+   "tones": 24,
+   "frames": 2928,
+   "measured": 2928,
+   "p95_abs": 0.7809685627886086,
+   "max_abs": 1.2503047547796544,
+   "within_3c": 1.0,
+   "within_3c_wilson95": [
+    0.9986897453579355,
+    1.0
+   ]
+  },
+  "pure/vibrato/rate=5.5/extent=100": {
+   "tones": 24,
+   "frames": 2928,
+   "measured": 2928,
+   "p95_abs": 1.677852441018406,
+   "max_abs": 2.703718410792181,
+   "within_3c": 1.0,
+   "within_3c_wilson95": [
+    0.9986897453579355,
+    1.0
+   ]
+  },
+  "pure/vibrato/rate=7.0/extent=50": {
+   "tones": 24,
+   "frames": 2928,
+   "measured": 2928,
+   "p95_abs": 1.347433811212504,
+   "max_abs": 2.3629410759586036,
+   "within_3c": 1.0,
+   "within_3c_wilson95": [
+    0.9986897453579355,
+    1.0
+   ]
+  },
+  "pure/vibrato/rate=7.0/extent=100": {
+   "tones": 24,
+   "frames": 2928,
+   "measured": 2904,
+   "p95_abs": 3.237429296061618,
+   "max_abs": 4.763580571058639,
+   "within_3c": 0.9259641873278237,
+   "within_3c_wilson95": [
+    0.9158682596946647,
+    0.9349346588907922
+   ]
+  },
+  "pure/glide/speed=600": {
+   "tones": 24,
+   "frames": 2928,
+   "measured": 2887,
+   "p95_abs": 0.2757559816954778,
+   "max_abs": 0.5277454102316758,
+   "within_3c": 1.0,
+   "within_3c_wilson95": [
+    0.9986711623809411,
+    0.9999999999999999
+   ]
+  },
+  "pure/glide/speed=2400": {
+   "tones": 24,
+   "frames": 2928,
+   "measured": 2500,
+   "p95_abs": 1.0103258278971718,
+   "max_abs": 2.2334003923446244,
+   "within_3c": 1.0,
+   "within_3c_wilson95": [
+    0.998465773914051,
+    0.9999999999999998
+   ]
+  },
+  "saw12/vibrato/rate=5.5/extent=50": {
+   "tones": 24,
+   "frames": 2928,
+   "measured": 2904,
+   "p95_abs": 1.161414569622429,
+   "max_abs": 2.350129556589476,
+   "within_3c": 1.0,
+   "within_3c_wilson95": [
+    0.9986789311124361,
+    0.9999999999999999
+   ]
+  },
+  "saw12/vibrato/rate=5.5/extent=100": {
+   "tones": 24,
+   "frames": 2928,
+   "measured": 2838,
+   "p95_abs": 2.3062325178810106,
+   "max_abs": 5.679603923589155,
+   "within_3c": 0.9820295983086681,
+   "within_3c_wilson95": [
+    0.9764505893865691,
+    0.9863054403171563
+   ]
+  },
+  "saw12/vibrato/rate=7.0/extent=50": {
+   "tones": 24,
+   "frames": 2928,
+   "measured": 2875,
+   "p95_abs": 1.3737173209388118,
+   "max_abs": 2.682377963036333,
+   "within_3c": 1.0,
+   "within_3c_wilson95": [
+    0.9986656233293273,
+    0.9999999999999999
+   ]
+  },
+  "saw12/vibrato/rate=7.0/extent=100": {
+   "tones": 24,
+   "frames": 2928,
+   "measured": 2871,
+   "p95_abs": 3.189109071904011,
+   "max_abs": 5.698527583738295,
+   "within_3c": 0.93521421107628,
+   "within_3c_wilson95": [
+    0.9256160847492874,
+    0.9436492419628333
+   ]
+  },
+  "saw12/glide/speed=600": {
+   "tones": 24,
+   "frames": 2928,
+   "measured": 2833,
+   "p95_abs": 0.45443111904638206,
+   "max_abs": 1.0015257164280187,
+   "within_3c": 1.0,
+   "within_3c_wilson95": [
+    0.9986458676182731,
+    0.9999999999999999
+   ]
+  },
+  "saw12/glide/speed=2400": {
+   "tones": 24,
+   "frames": 2928,
+   "measured": 2710,
+   "p95_abs": 1.4137477281583506,
+   "max_abs": 3.520934874001416,
+   "within_3c": 0.9988929889298893,
+   "within_3c_wilson95": [
+    0.9967501593027805,
+    0.9996234465137679
+   ]
+  }
+ }
+}
