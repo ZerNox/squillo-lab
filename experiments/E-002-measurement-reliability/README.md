@@ -41,6 +41,16 @@ Set by review R-03 (squillo iteration 15) as round 1's scope: pitch only.
 - **F-017:** how far outside E2 to C6 must a tone be before it is reliably
   unmeasurable: the guard band at the range edges, in cents.
 
+Migrated from squillo's retired candidate spike S-004 in review R-04
+(squillo iteration 20; finding F-009):
+
+- **S-004:** for each `squillo/fixtures/signal/` fixture, how far apart, in
+  cents, are the pitches the same tracker reports in each target browser's
+  WASM and in a native build, and in `f32` against `f64` arithmetic? The
+  spread is the numeric epsilon squillo ADR 0007 records. Round 1 measured
+  `f32` against `f64` on the host (numpy, not WASM; result row 9); the WASM
+  targets wait for the lab's Rust / WASM toolchain.
+
 ## Result
 
 ### Round 1: pitch, synthetic ground truth (squillo iteration 16, 2026-09-25)
