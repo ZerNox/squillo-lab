@@ -43,6 +43,8 @@ from here or from cited literature, never from nowhere.
 
 - **Python via `uv`**: each experiment has its own `pyproject.toml`; run with
   `uv run`. For offline research on signals, measurement and synthesis.
+- **Scores**: LilyPond from the PyPI `lilypond` wheel, as a `uv`
+  dependency (E-004), compiles score text to MIDI; nothing system-wide.
 - **Browsers**: Node with Playwright, driving the installed Chrome and
   Firefox. Chrome's fake audio capture (`--use-file-for-fake-audio-capture`)
   feeds a WAV file as the microphone.
