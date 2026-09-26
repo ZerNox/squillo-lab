@@ -121,7 +121,7 @@ conds = [("vibrato", dict(rate=r, extent=e)) for r in (5.5, 7.0) for e in (50, 1
         [("glide", dict(speed=s)) for s in (600, 2400)]
 for timbre in ("pure", "saw12"):
     for kind, p in conds:
-        errs, meas, tot = [], 0, 0
+        errs, meas, tot, inr, inr_unmeas = [], 0, 0, 0, 0
         for f0 in np.exp(rng.uniform(np.log(yin.E2), np.log(yin.C6), 24)):
             pp = dict(p, ph=rng.uniform(0, 2 * np.pi)) if kind == "vibrato" else p
             x, ft = run.tone(timbre, f0, kind, **pp)
@@ -129,6 +129,10 @@ for timbre in ("pure", "saw12"):
             f = yin.in_range(f, 3.0)
             ok = ~np.isnan(f)
             tot += len(idx); meas += int(ok.sum())
+            for k, i in enumerate(idx):  # frames whose true f0 stays in E2..C6 over the window
+                w = ft[HOP * (i - 3):HOP * (i - 3) + WIN]
+                if w.min() >= yin.E2 and w.max() <= yin.C6:
+                    inr += 1; inr_unmeas += int(not ok[k])
             pos = instant(idx[ok], f[ok])
             truth = np.interp(pos, np.arange(len(ft)), ft)
             errs.append(cents(f[ok], truth))
@@ -138,6 +142,7 @@ for timbre in ("pure", "saw12"):
         c = (k + z * z / 2) / (n + z * z); h = z * math.sqrt(k * (n - k) / n + z * z / 4) / (n + z * z)
         key = f"{timbre}/{kind}/" + "/".join(f"{a}={b}" for a, b in p.items())
         out["instant"][key] = {"tones": 24, "frames": tot, "measured": meas,
+                               "in_range_frames": inr, "in_range_unmeasured": inr_unmeas,
                                "p95_abs": float(np.percentile(e, 95)), "max_abs": float(e.max()),
                                "within_3c": k / n, "within_3c_wilson95": [c - h, c + h]}
         print(key, {a: round(b, 3) if isinstance(b, float) else b for a, b in out["instant"][key].items()})
