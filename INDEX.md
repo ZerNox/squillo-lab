@@ -1,6 +1,6 @@
 # Experiment index
 
-The questions from `squillo/VISION.md` §12. Status: `open` · `running` · `needs-human` · `answered` · `abandoned`.
+The questions from `squillo/VISION.md` §12. Status: `open` · `running` · `needs-human` · `answered` · `abandoned`. For squillo's lab rule (`PLAN.md` §5, rev 25), a question is closed once its status is `needs-human` (automated evidence in, only a human step left), `answered` or `abandoned`.
 
 | ID | Question | Vision | Status | Result (one line) |
 | :--- | :--- | :--- | :--- | :--- |
