@@ -1,0 +1,824 @@
+{
+ "rights": {
+  "as_at": "2026-01-01",
+  "pd_candidates": 31,
+  "pass_us": 31,
+  "pass_life70": 30,
+  "pass_life100": 28,
+  "publishable": 30,
+  "pdm_eligible": 28,
+  "fail": [
+   "clementine"
+  ],
+  "life70_not_life100": [
+   "in-the-bleak-midwinter",
+   "danny-boy"
+  ],
+  "traps": 9,
+  "traps_rejected": 9,
+  "trap_rules": {
+   "trap-happy-birthday": {
+    "us": false,
+    "life70": true,
+    "life100": false
+   },
+   "trap-scarborough-fair": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "trap-morning-has-broken": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "trap-st-louis-blues": {
+    "us": true,
+    "life70": false,
+    "life100": false
+   },
+   "trap-bella-ciao": {
+    "us": false,
+    "life70": true,
+    "life100": false
+   },
+   "trap-love-me-tender": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "trap-all-things-bright-royal-oak": {
+    "us": true,
+    "life70": false,
+    "life100": false
+   },
+   "trap-o-canada-english": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "trap-advance-australia-fair": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   }
+  },
+  "people": 51,
+  "people_dates": {
+   "agree": 49,
+   "disagree": 1,
+   "no wikidata date": 1
+  },
+  "disagreements": [
+   {
+    "wiki": "William Henry Monk",
+    "recorded": 1889,
+    "wikidata": [
+     1899
+    ]
+   }
+  ],
+  "no_wikidata_date": [
+   "Percy Montrose"
+  ],
+  "pub_conflicts": [
+   {
+    "id": "joy-to-the-world",
+    "ours": [
+     1719,
+     1839
+    ],
+    "wikidata": [
+     1994
+    ],
+    "qid": "Q1192264"
+   }
+  ],
+  "articles_with_wd_pub": 28
+ },
+ "melody": {
+  "candidates_with_score": 20,
+  "checked": 20,
+  "pitch_exact": {
+   "k": 16,
+   "n": 20,
+   "pct": 80.0,
+   "ci95": [
+    58.4,
+    91.9
+   ]
+  },
+  "pitch_exact_unseen": {
+   "k": 13,
+   "n": 17,
+   "pct": 76.5,
+   "ci95": [
+    52.7,
+    90.4
+   ]
+  },
+  "intervals_right": {
+   "k": 134,
+   "n": 149,
+   "pct": 89.9,
+   "ci95": [
+    84.1,
+    93.8
+   ]
+  },
+  "rhythm_exact_given_pitch": {
+   "k": 12,
+   "n": 16,
+   "pct": 75.0,
+   "ci95": [
+    50.5,
+    89.8
+   ]
+  },
+  "mismatched": [
+   {
+    "id": "in-the-bleak-midwinter",
+    "miss": 3,
+    "of": 5,
+    "edit": 2
+   },
+   {
+    "id": "auld-lang-syne",
+    "miss": 2,
+    "of": 7,
+    "edit": 1
+   },
+   {
+    "id": "danny-boy",
+    "miss": 6,
+    "of": 10,
+    "edit": 6
+   },
+   {
+    "id": "habanera",
+    "miss": 4,
+    "of": 8,
+    "edit": 4
+   }
+  ],
+  "rhythm_differs": [
+   {
+    "id": "old-hundredth",
+    "scale": 1.0,
+    "ioi_match": 4,
+    "ioi_total": 7
+   },
+   {
+    "id": "my-bonnie",
+    "scale": 0.9411764705882353,
+    "ioi_match": 0,
+    "ioi_total": 8
+   },
+   {
+    "id": "aura-lea",
+    "scale": 0.5,
+    "ioi_match": 4,
+    "ioi_total": 6
+   },
+   {
+    "id": "brahms-lullaby",
+    "scale": 0.85,
+    "ioi_match": 0,
+    "ioi_total": 5
+   }
+  ],
+  "no_score": [
+   "abide-with-me",
+   "jesus-loves-me",
+   "swing-low",
+   "jingle-bells",
+   "deck-the-halls",
+   "clementine",
+   "yankee-doodle",
+   "god-save-the-king",
+   "star-spangled-banner",
+   "la-marseillaise",
+   "la-donna-e-mobile"
+  ],
+  "revisions": {
+   "amazing-grace": {
+    "lang": "en",
+    "article": "Amazing Grace",
+    "revid": 1373961141,
+    "block": 0
+   },
+   "old-hundredth": {
+    "lang": "en",
+    "article": "Old 100th",
+    "revid": 1366545107,
+    "block": 0
+   },
+   "holy-holy-holy": {
+    "lang": "en",
+    "article": "Holy, Holy, Holy! Lord God Almighty",
+    "revid": 1374765062,
+    "block": 0
+   },
+   "silent-night": {
+    "lang": "en",
+    "article": "Silent Night",
+    "revid": 1368768347,
+    "block": 0
+   },
+   "joy-to-the-world": {
+    "lang": "en",
+    "article": "Joy to the World",
+    "revid": 1343676954,
+    "block": 0
+   },
+   "o-come-all-ye-faithful": {
+    "lang": "en",
+    "article": "O Come, All Ye Faithful",
+    "revid": 1340893460,
+    "block": 0
+   },
+   "hark-the-herald": {
+    "lang": "en",
+    "article": "Hark! The Herald Angels Sing",
+    "revid": 1359078229,
+    "block": 0
+   },
+   "god-rest-ye-merry": {
+    "lang": "en",
+    "article": "God Rest Ye Merry, Gentlemen",
+    "revid": 1358523236,
+    "block": 0
+   },
+   "in-the-bleak-midwinter": {
+    "lang": "en",
+    "article": "In the Bleak Midwinter",
+    "revid": 1372659039,
+    "block": 0
+   },
+   "twinkle": {
+    "lang": "en",
+    "article": "Twinkle, Twinkle, Little Star",
+    "revid": 1374214506,
+    "block": 0
+   },
+   "row-your-boat": {
+    "lang": "en",
+    "article": "Row, Row, Row Your Boat",
+    "revid": 1363214856,
+    "block": 0
+   },
+   "frere-jacques": {
+    "lang": "en",
+    "article": "Frère Jacques",
+    "revid": 1366602658,
+    "block": 0
+   },
+   "auld-lang-syne": {
+    "lang": "en",
+    "article": "Auld Lang Syne",
+    "revid": 1375007488,
+    "block": 0
+   },
+   "my-bonnie": {
+    "lang": "en",
+    "article": "My Bonnie Lies over the Ocean",
+    "revid": 1371358716,
+    "block": 0
+   },
+   "danny-boy": {
+    "lang": "en",
+    "article": "Londonderry Air",
+    "revid": 1375794219,
+    "block": 0
+   },
+   "aura-lea": {
+    "lang": "en",
+    "article": "Aura Lea",
+    "revid": 1368982546,
+    "block": 0
+   },
+   "greensleeves": {
+    "lang": "fr",
+    "article": "Greensleeves",
+    "revid": 239114744,
+    "block": 0
+   },
+   "ode-to-joy": {
+    "lang": "en",
+    "article": "Ode to Joy",
+    "revid": 1375673953,
+    "block": 0
+   },
+   "brahms-lullaby": {
+    "lang": "en",
+    "article": "Wiegenlied (Brahms)",
+    "revid": 1355367951,
+    "block": 0
+   },
+   "habanera": {
+    "lang": "en",
+    "article": "Habanera (aria)",
+    "revid": 1360250324,
+    "block": 2
+   }
+  }
+ },
+ "inference": {
+  "est sigma=0 vibrato=none": {
+   "found": 2004,
+   "notes": 2004,
+   "pct": 100.0,
+   "ci95_phrase_bootstrap": [
+    100.0,
+    100.0
+   ]
+  },
+  "est sigma=0 vibrato=5.5Hz +-50c": {
+   "found": 1956,
+   "notes": 2004,
+   "pct": 97.6,
+   "ci95_phrase_bootstrap": [
+    95.5,
+    99.3
+   ]
+  },
+  "est sigma=20 vibrato=none": {
+   "found": 1939,
+   "notes": 2004,
+   "pct": 96.8,
+   "ci95_phrase_bootstrap": [
+    95.6,
+    97.7
+   ]
+  },
+  "est sigma=20 vibrato=5.5Hz +-50c": {
+   "found": 1865,
+   "notes": 2004,
+   "pct": 93.1,
+   "ci95_phrase_bootstrap": [
+    91.4,
+    94.5
+   ]
+  },
+  "oracle sigma=0 vibrato=none": {
+   "found": 2004,
+   "notes": 2004,
+   "pct": 100.0,
+   "ci95_phrase_bootstrap": null
+  },
+  "oracle sigma=0 vibrato=5.5Hz +-50c": {
+   "found": 2004,
+   "notes": 2004,
+   "pct": 100.0,
+   "ci95_phrase_bootstrap": null
+  },
+  "oracle sigma=20 vibrato=none": {
+   "found": 1950,
+   "notes": 2004,
+   "pct": 97.3,
+   "ci95_phrase_bootstrap": null
+  },
+  "oracle sigma=20 vibrato=5.5Hz +-50c": {
+   "found": 1932,
+   "notes": 2004,
+   "pct": 96.4,
+   "ci95_phrase_bootstrap": null
+  }
+ },
+ "inference_by_note_length": {
+  "sigma=0 vibrato, note 0-0.3 s": {
+   "notes": 330,
+   "found": 330,
+   "pct": 100.0
+  },
+  "sigma=0 vibrato, note 0.3-0.6 s": {
+   "notes": 624,
+   "found": 618,
+   "pct": 99.0
+  },
+  "sigma=0 vibrato, note 0.6-1.0 s": {
+   "notes": 726,
+   "found": 707,
+   "pct": 97.4
+  },
+  "sigma=0 vibrato, note 1.0-9 s": {
+   "notes": 324,
+   "found": 301,
+   "pct": 92.9
+  },
+  "sigma=20 vibrato, note 0-0.3 s": {
+   "notes": 330,
+   "found": 316,
+   "pct": 95.8
+  },
+  "sigma=20 vibrato, note 0.3-0.6 s": {
+   "notes": 624,
+   "found": 586,
+   "pct": 93.9
+  },
+  "sigma=20 vibrato, note 0.6-1.0 s": {
+   "notes": 726,
+   "found": 673,
+   "pct": 92.7
+  },
+  "sigma=20 vibrato, note 1.0-9 s": {
+   "notes": 324,
+   "found": 290,
+   "pct": 89.5
+  }
+ },
+ "inference_worst_vibrato_sigma0": [
+  [
+   69.4,
+   "swing-low"
+  ],
+  [
+   78.3,
+   "abide-with-me"
+  ],
+  [
+   83.3,
+   "in-the-bleak-midwinter"
+  ],
+  [
+   87.9,
+   "danny-boy"
+  ],
+  [
+   90.7,
+   "amazing-grace"
+  ]
+ ],
+ "survive": {
+  "target": 30,
+  "candidates": 38,
+  "status": {
+   "verified-public-domain": 12,
+   "rhythm-differs": 4,
+   "melody-unchecked": 10,
+   "melody-mismatch": 4,
+   "rights-fail": 1,
+   "verified-original": 7
+  },
+  "verified": 19,
+  "verified_public_domain": 12,
+  "verified_original": 7,
+  "verified_genres": {
+   "hymn": 2,
+   "carol": 5,
+   "children": 3,
+   "folk": 1,
+   "classical": 1,
+   "pop": 1,
+   "rock": 1,
+   "jazz": 1,
+   "blues": 1,
+   "soul": 1,
+   "country": 1,
+   "musical theatre": 1
+  },
+  "verified_genre_count": 12,
+  "rights_verified_melody_pending": [
+   "old-hundredth",
+   "abide-with-me",
+   "jesus-loves-me",
+   "swing-low",
+   "jingle-bells",
+   "deck-the-halls",
+   "in-the-bleak-midwinter",
+   "auld-lang-syne",
+   "my-bonnie",
+   "danny-boy",
+   "aura-lea",
+   "yankee-doodle",
+   "god-save-the-king",
+   "star-spangled-banner",
+   "la-marseillaise",
+   "brahms-lullaby",
+   "la-donna-e-mobile",
+   "habanera"
+  ],
+  "per_phrase": {
+   "amazing-grace": "verified-public-domain",
+   "old-hundredth": "rhythm-differs",
+   "holy-holy-holy": "verified-public-domain",
+   "abide-with-me": "melody-unchecked",
+   "jesus-loves-me": "melody-unchecked",
+   "swing-low": "melody-unchecked",
+   "silent-night": "verified-public-domain",
+   "joy-to-the-world": "verified-public-domain",
+   "o-come-all-ye-faithful": "verified-public-domain",
+   "hark-the-herald": "verified-public-domain",
+   "god-rest-ye-merry": "verified-public-domain",
+   "jingle-bells": "melody-unchecked",
+   "deck-the-halls": "melody-unchecked",
+   "in-the-bleak-midwinter": "melody-mismatch",
+   "twinkle": "verified-public-domain",
+   "row-your-boat": "verified-public-domain",
+   "frere-jacques": "verified-public-domain",
+   "auld-lang-syne": "melody-mismatch",
+   "my-bonnie": "rhythm-differs",
+   "danny-boy": "melody-mismatch",
+   "aura-lea": "rhythm-differs",
+   "clementine": "rights-fail",
+   "yankee-doodle": "melody-unchecked",
+   "greensleeves": "verified-public-domain",
+   "god-save-the-king": "melody-unchecked",
+   "star-spangled-banner": "melody-unchecked",
+   "la-marseillaise": "melody-unchecked",
+   "ode-to-joy": "verified-public-domain",
+   "brahms-lullaby": "rhythm-differs",
+   "la-donna-e-mobile": "melody-unchecked",
+   "habanera": "melody-mismatch",
+   "paper-lanterns": "verified-original",
+   "rust-on-the-gate": "verified-original",
+   "blue-umbrella": "verified-original",
+   "kettles-cold": "verified-original",
+   "river-at-dawn": "verified-original",
+   "porch-light": "verified-original",
+   "lamplighter": "verified-original"
+  }
+ },
+ "phrases": {
+  "range_semitones": {
+   "min": 3,
+   "median": 9.0,
+   "max": 16
+  },
+  "seconds": {
+   "min": 1.59,
+   "median": 5.325,
+   "max": 13.33
+  },
+  "octave_or_less": 36,
+  "n": 38
+ },
+ "properties": {
+  "abide-with-me": {
+   "notes": 10,
+   "range_semitones": 9,
+   "seconds": 13.33,
+   "shortest_ms": 833,
+   "longest_ms": 3333
+  },
+  "amazing-grace": {
+   "notes": 9,
+   "range_semitones": 9,
+   "seconds": 8.57,
+   "shortest_ms": 357,
+   "longest_ms": 1429
+  },
+  "auld-lang-syne": {
+   "notes": 8,
+   "range_semitones": 9,
+   "seconds": 6.0,
+   "shortest_ms": 375,
+   "longest_ms": 1125
+  },
+  "aura-lea": {
+   "notes": 7,
+   "range_semitones": 7,
+   "seconds": 6.32,
+   "shortest_ms": 789,
+   "longest_ms": 1579
+  },
+  "blue-umbrella": {
+   "notes": 14,
+   "range_semitones": 12,
+   "seconds": 5.25,
+   "shortest_ms": 250,
+   "longest_ms": 1000
+  },
+  "brahms-lullaby": {
+   "notes": 6,
+   "range_semitones": 3,
+   "seconds": 5.0,
+   "shortest_ms": 417,
+   "longest_ms": 1667
+  },
+  "clementine": {
+   "notes": 8,
+   "range_semitones": 9,
+   "seconds": 3.0,
+   "shortest_ms": 125,
+   "longest_ms": 500
+  },
+  "danny-boy": {
+   "notes": 11,
+   "range_semitones": 10,
+   "seconds": 10.91,
+   "shortest_ms": 455,
+   "longest_ms": 2727
+  },
+  "deck-the-halls": {
+   "notes": 8,
+   "range_semitones": 7,
+   "seconds": 4.29,
+   "shortest_ms": 268,
+   "longest_ms": 804
+  },
+  "frere-jacques": {
+   "notes": 8,
+   "range_semitones": 4,
+   "seconds": 4.8,
+   "shortest_ms": 600,
+   "longest_ms": 600
+  },
+  "god-rest-ye-merry": {
+   "notes": 9,
+   "range_semitones": 9,
+   "seconds": 5.4,
+   "shortest_ms": 600,
+   "longest_ms": 600
+  },
+  "god-save-the-king": {
+   "notes": 6,
+   "range_semitones": 3,
+   "seconds": 4.5,
+   "shortest_ms": 375,
+   "longest_ms": 1125
+  },
+  "greensleeves": {
+   "notes": 13,
+   "range_semitones": 10,
+   "seconds": 7.27,
+   "shortest_ms": 227,
+   "longest_ms": 909
+  },
+  "habanera": {
+   "notes": 9,
+   "range_semitones": 9,
+   "seconds": 5.0,
+   "shortest_ms": 417,
+   "longest_ms": 833
+  },
+  "hark-the-herald": {
+   "notes": 8,
+   "range_semitones": 9,
+   "seconds": 5.0,
+   "shortest_ms": 312,
+   "longest_ms": 938
+  },
+  "holy-holy-holy": {
+   "notes": 11,
+   "range_semitones": 9,
+   "seconds": 10.91,
+   "shortest_ms": 341,
+   "longest_ms": 2727
+  },
+  "in-the-bleak-midwinter": {
+   "notes": 6,
+   "range_semitones": 5,
+   "seconds": 6.32,
+   "shortest_ms": 395,
+   "longest_ms": 1579
+  },
+  "jesus-loves-me": {
+   "notes": 7,
+   "range_semitones": 5,
+   "seconds": 5.0,
+   "shortest_ms": 625,
+   "longest_ms": 1250
+  },
+  "jingle-bells": {
+   "notes": 11,
+   "range_semitones": 7,
+   "seconds": 8.0,
+   "shortest_ms": 250,
+   "longest_ms": 2000
+  },
+  "joy-to-the-world": {
+   "notes": 8,
+   "range_semitones": 12,
+   "seconds": 5.62,
+   "shortest_ms": 188,
+   "longest_ms": 1125
+  },
+  "kettles-cold": {
+   "notes": 8,
+   "range_semitones": 10,
+   "seconds": 4.74,
+   "shortest_ms": 395,
+   "longest_ms": 1579
+  },
+  "la-donna-e-mobile": {
+   "notes": 6,
+   "range_semitones": 6,
+   "seconds": 1.59,
+   "shortest_ms": 227,
+   "longest_ms": 455
+  },
+  "la-marseillaise": {
+   "notes": 9,
+   "range_semitones": 12,
+   "seconds": 4.8,
+   "shortest_ms": 150,
+   "longest_ms": 900
+  },
+  "lamplighter": {
+   "notes": 10,
+   "range_semitones": 14,
+   "seconds": 5.71,
+   "shortest_ms": 357,
+   "longest_ms": 1429
+  },
+  "my-bonnie": {
+   "notes": 9,
+   "range_semitones": 12,
+   "seconds": 5.5,
+   "shortest_ms": 250,
+   "longest_ms": 1500
+  },
+  "o-come-all-ye-faithful": {
+   "notes": 6,
+   "range_semitones": 7,
+   "seconds": 5.87,
+   "shortest_ms": 652,
+   "longest_ms": 1304
+  },
+  "ode-to-joy": {
+   "notes": 8,
+   "range_semitones": 5,
+   "seconds": 4.29,
+   "shortest_ms": 536,
+   "longest_ms": 536
+  },
+  "old-hundredth": {
+   "notes": 8,
+   "range_semitones": 9,
+   "seconds": 8.25,
+   "shortest_ms": 750,
+   "longest_ms": 1500
+  },
+  "paper-lanterns": {
+   "notes": 13,
+   "range_semitones": 9,
+   "seconds": 4.9,
+   "shortest_ms": 288,
+   "longest_ms": 1154
+  },
+  "porch-light": {
+   "notes": 9,
+   "range_semitones": 9,
+   "seconds": 4.24,
+   "shortest_ms": 326,
+   "longest_ms": 1304
+  },
+  "river-at-dawn": {
+   "notes": 10,
+   "range_semitones": 10,
+   "seconds": 6.96,
+   "shortest_ms": 435,
+   "longest_ms": 1739
+  },
+  "row-your-boat": {
+   "notes": 10,
+   "range_semitones": 7,
+   "seconds": 7.2,
+   "shortest_ms": 300,
+   "longest_ms": 1800
+  },
+  "rust-on-the-gate": {
+   "notes": 11,
+   "range_semitones": 7,
+   "seconds": 3.75,
+   "shortest_ms": 268,
+   "longest_ms": 1071
+  },
+  "silent-night": {
+   "notes": 8,
+   "range_semitones": 5,
+   "seconds": 4.74,
+   "shortest_ms": 197,
+   "longest_ms": 1184
+  },
+  "star-spangled-banner": {
+   "notes": 12,
+   "range_semitones": 16,
+   "seconds": 7.5,
+   "shortest_ms": 156,
+   "longest_ms": 1250
+  },
+  "swing-low": {
+   "notes": 6,
+   "range_semitones": 9,
+   "seconds": 9.09,
+   "shortest_ms": 455,
+   "longest_ms": 2727
+  },
+  "twinkle": {
+   "notes": 7,
+   "range_semitones": 9,
+   "seconds": 4.8,
+   "shortest_ms": 600,
+   "longest_ms": 1200
+  },
+  "yankee-doodle": {
+   "notes": 7,
+   "range_semitones": 4,
+   "seconds": 2.0,
+   "shortest_ms": 250,
+   "longest_ms": 500
+  }
+ }
+}

@@ -1,0 +1,759 @@
+[
+ {
+  "id": "amazing-grace",
+  "lang": "en",
+  "article": "Amazing Grace",
+  "revid": 1373961141,
+  "blocks": 1,
+  "seen_before": true,
+  "block": 0,
+  "compile_attempt": 0,
+  "tracks": 2,
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": 0,
+   "interval_miss": 0,
+   "intervals": 8,
+   "pitch_edit": 0,
+   "exact_pitch": true,
+   "rhythm": {
+    "scale": 1.0,
+    "ioi_match": 8,
+    "ioi_total": 8
+   },
+   "context": [
+    62,
+    67,
+    71,
+    67,
+    71,
+    69,
+    67,
+    64,
+    62,
+    62,
+    67
+   ]
+  },
+  "blocks_compiled": 1
+ },
+ {
+  "id": "old-hundredth",
+  "lang": "en",
+  "article": "Old 100th",
+  "revid": 1366545107,
+  "blocks": 2,
+  "seen_before": false,
+  "block": 0,
+  "compile_attempt": 0,
+  "tracks": 1,
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": 0,
+   "interval_miss": 0,
+   "intervals": 7,
+   "pitch_edit": 0,
+   "exact_pitch": true,
+   "rhythm": {
+    "scale": 1.0,
+    "ioi_match": 4,
+    "ioi_total": 7
+   },
+   "context": [
+    67,
+    67,
+    66,
+    64,
+    62,
+    67,
+    69,
+    71,
+    71,
+    71
+   ]
+  },
+  "blocks_compiled": 1
+ },
+ {
+  "id": "holy-holy-holy",
+  "lang": "en",
+  "article": "Holy, Holy, Holy! Lord God Almighty",
+  "revid": 1374765062,
+  "blocks": 1,
+  "seen_before": false,
+  "block": 0,
+  "compile_attempt": 0,
+  "tracks": 4,
+  "result": {
+   "track": 0,
+   "start": 23,
+   "transpose": 0,
+   "interval_miss": 0,
+   "intervals": 10,
+   "pitch_edit": 0,
+   "exact_pitch": true,
+   "rhythm": {
+    "scale": 2.0,
+    "ioi_match": 10,
+    "ioi_total": 10
+   },
+   "context": [
+    69,
+    69,
+    62,
+    62,
+    66,
+    66,
+    69,
+    69,
+    71,
+    71,
+    71,
+    71,
+    69,
+    69,
+    74
+   ]
+  },
+  "blocks_compiled": 1
+ },
+ {
+  "id": "silent-night",
+  "lang": "en",
+  "article": "Silent Night",
+  "revid": 1368768347,
+  "blocks": 3,
+  "seen_before": true,
+  "block": 0,
+  "compile_attempt": 0,
+  "tracks": 2,
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": 2,
+   "interval_miss": 0,
+   "intervals": 7,
+   "pitch_edit": 0,
+   "exact_pitch": true,
+   "rhythm": {
+    "scale": 1.0,
+    "ioi_match": 7,
+    "ioi_total": 7
+   },
+   "context": [
+    69,
+    71,
+    69,
+    66,
+    69,
+    71,
+    69,
+    66,
+    76,
+    75
+   ]
+  },
+  "blocks_compiled": 1
+ },
+ {
+  "id": "joy-to-the-world",
+  "lang": "en",
+  "article": "Joy to the World",
+  "revid": 1343676954,
+  "blocks": 1,
+  "seen_before": true,
+  "block": 0,
+  "compile_attempt": 0,
+  "tracks": 4,
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": 0,
+   "interval_miss": 0,
+   "intervals": 7,
+   "pitch_edit": 0,
+   "exact_pitch": true,
+   "rhythm": {
+    "scale": 1.0,
+    "ioi_match": 7,
+    "ioi_total": 7
+   },
+   "context": [
+    74,
+    73,
+    71,
+    69,
+    67,
+    66,
+    64,
+    62,
+    69,
+    71
+   ]
+  },
+  "blocks_compiled": 1
+ },
+ {
+  "id": "o-come-all-ye-faithful",
+  "lang": "en",
+  "article": "O Come, All Ye Faithful",
+  "revid": 1340893460,
+  "blocks": 1,
+  "seen_before": false,
+  "block": 0,
+  "compile_attempt": 0,
+  "tracks": 4,
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": 0,
+   "interval_miss": 0,
+   "intervals": 5,
+   "pitch_edit": 0,
+   "exact_pitch": true,
+   "rhythm": {
+    "scale": 1.0,
+    "ioi_match": 5,
+    "ioi_total": 5
+   },
+   "context": [
+    67,
+    67,
+    62,
+    67,
+    69,
+    62,
+    71,
+    69
+   ]
+  },
+  "blocks_compiled": 1
+ },
+ {
+  "id": "hark-the-herald",
+  "lang": "en",
+  "article": "Hark! The Herald Angels Sing",
+  "revid": 1359078229,
+  "blocks": 1,
+  "seen_before": false,
+  "block": 0,
+  "compile_attempt": 0,
+  "tracks": 4,
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": -2,
+   "interval_miss": 0,
+   "intervals": 7,
+   "pitch_edit": 0,
+   "exact_pitch": true,
+   "rhythm": {
+    "scale": 1.0,
+    "ioi_match": 7,
+    "ioi_total": 7
+   },
+   "context": [
+    60,
+    65,
+    65,
+    64,
+    65,
+    69,
+    69,
+    67,
+    72,
+    72
+   ]
+  },
+  "blocks_compiled": 1
+ },
+ {
+  "id": "god-rest-ye-merry",
+  "lang": "en",
+  "article": "God Rest Ye Merry, Gentlemen",
+  "revid": 1358523236,
+  "blocks": 1,
+  "seen_before": false,
+  "block": 0,
+  "compile_attempt": 0,
+  "tracks": 4,
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": 0,
+   "interval_miss": 0,
+   "intervals": 8,
+   "pitch_edit": 0,
+   "exact_pitch": true,
+   "rhythm": {
+    "scale": 1.0,
+    "ioi_match": 8,
+    "ioi_total": 8
+   },
+   "context": [
+    64,
+    64,
+    71,
+    71,
+    69,
+    67,
+    66,
+    64,
+    62,
+    64,
+    66
+   ]
+  },
+  "blocks_compiled": 1
+ },
+ {
+  "id": "in-the-bleak-midwinter",
+  "lang": "en",
+  "article": "In the Bleak Midwinter",
+  "revid": 1372659039,
+  "blocks": 2,
+  "seen_before": false,
+  "block": 0,
+  "compile_attempt": 0,
+  "tracks": 1,
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": 0,
+   "interval_miss": 3,
+   "intervals": 5,
+   "pitch_edit": 2,
+   "exact_pitch": false,
+   "rhythm": null,
+   "context": [
+    69,
+    70,
+    72,
+    69,
+    67,
+    65,
+    67,
+    69
+   ]
+  },
+  "blocks_compiled": 1
+ },
+ {
+  "id": "twinkle",
+  "lang": "en",
+  "article": "Twinkle, Twinkle, Little Star",
+  "revid": 1374214506,
+  "blocks": 1,
+  "seen_before": false,
+  "block": 0,
+  "compile_attempt": 0,
+  "tracks": 1,
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": 0,
+   "interval_miss": 0,
+   "intervals": 6,
+   "pitch_edit": 0,
+   "exact_pitch": true,
+   "rhythm": {
+    "scale": 1.0,
+    "ioi_match": 6,
+    "ioi_total": 6
+   },
+   "context": [
+    60,
+    60,
+    67,
+    67,
+    69,
+    69,
+    67,
+    65,
+    65
+   ]
+  },
+  "blocks_compiled": 1
+ },
+ {
+  "id": "row-your-boat",
+  "lang": "en",
+  "article": "Row, Row, Row Your Boat",
+  "revid": 1363214856,
+  "blocks": 1,
+  "seen_before": false,
+  "block": 0,
+  "compile_attempt": 0,
+  "tracks": 1,
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": 0,
+   "interval_miss": 0,
+   "intervals": 9,
+   "pitch_edit": 0,
+   "exact_pitch": true,
+   "rhythm": {
+    "scale": 1.0,
+    "ioi_match": 9,
+    "ioi_total": 9
+   },
+   "context": [
+    60,
+    60,
+    60,
+    62,
+    64,
+    64,
+    62,
+    64,
+    65,
+    67,
+    72,
+    72
+   ]
+  },
+  "blocks_compiled": 1
+ },
+ {
+  "id": "frere-jacques",
+  "lang": "en",
+  "article": "Frère Jacques",
+  "revid": 1366602658,
+  "blocks": 1,
+  "seen_before": false,
+  "block": 0,
+  "compile_attempt": 0,
+  "tracks": 4,
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": 5,
+   "interval_miss": 0,
+   "intervals": 7,
+   "pitch_edit": 0,
+   "exact_pitch": true,
+   "rhythm": {
+    "scale": 1.0,
+    "ioi_match": 7,
+    "ioi_total": 7
+   },
+   "context": [
+    65,
+    67,
+    69,
+    65,
+    65,
+    67,
+    69,
+    65
+   ]
+  },
+  "blocks_compiled": 1
+ },
+ {
+  "id": "auld-lang-syne",
+  "lang": "en",
+  "article": "Auld Lang Syne",
+  "revid": 1375007488,
+  "blocks": 1,
+  "seen_before": false,
+  "block": 0,
+  "compile_attempt": 0,
+  "tracks": 1,
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": 0,
+   "interval_miss": 2,
+   "intervals": 7,
+   "pitch_edit": 1,
+   "exact_pitch": false,
+   "rhythm": null,
+   "context": [
+    60,
+    65,
+    65,
+    65,
+    69,
+    67,
+    65,
+    67,
+    69,
+    65
+   ]
+  },
+  "blocks_compiled": 1
+ },
+ {
+  "id": "my-bonnie",
+  "lang": "en",
+  "article": "My Bonnie Lies over the Ocean",
+  "revid": 1371358716,
+  "blocks": 1,
+  "seen_before": false,
+  "block": 0,
+  "compile_attempt": 0,
+  "tracks": 2,
+  "result": {
+   "track": 1,
+   "start": 0,
+   "transpose": -5,
+   "interval_miss": 0,
+   "intervals": 8,
+   "pitch_edit": 0,
+   "exact_pitch": true,
+   "rhythm": {
+    "scale": 0.9411764705882353,
+    "ioi_match": 0,
+    "ioi_total": 8
+   },
+   "context": [
+    62,
+    71,
+    69,
+    67,
+    69,
+    67,
+    64,
+    62,
+    59,
+    62,
+    71
+   ]
+  },
+  "blocks_compiled": 1
+ },
+ {
+  "id": "danny-boy",
+  "lang": "en",
+  "article": "Londonderry Air",
+  "revid": 1375794219,
+  "blocks": 1,
+  "seen_before": false,
+  "block": 0,
+  "compile_attempt": 0,
+  "tracks": 1,
+  "result": {
+   "track": 0,
+   "start": 37,
+   "transpose": 8,
+   "interval_miss": 6,
+   "intervals": 10,
+   "pitch_edit": 6,
+   "exact_pitch": false,
+   "rhythm": null,
+   "context": [
+    60,
+    62,
+    63,
+    65,
+    67,
+    68,
+    67,
+    65,
+    63,
+    65,
+    63,
+    70,
+    72,
+    74,
+    75
+   ]
+  },
+  "blocks_compiled": 1
+ },
+ {
+  "id": "aura-lea",
+  "lang": "en",
+  "article": "Aura Lea",
+  "revid": 1368982546,
+  "blocks": 1,
+  "seen_before": false,
+  "block": 0,
+  "compile_attempt": 0,
+  "tracks": 1,
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": 0,
+   "interval_miss": 0,
+   "intervals": 6,
+   "pitch_edit": 0,
+   "exact_pitch": true,
+   "rhythm": {
+    "scale": 0.5,
+    "ioi_match": 4,
+    "ioi_total": 6
+   },
+   "context": [
+    62,
+    67,
+    66,
+    67,
+    69,
+    64,
+    69,
+    67,
+    66
+   ]
+  },
+  "blocks_compiled": 1
+ },
+ {
+  "id": "greensleeves",
+  "lang": "fr",
+  "article": "Greensleeves",
+  "revid": 239114744,
+  "blocks": 1,
+  "seen_before": false,
+  "block": 0,
+  "compile_attempt": 0,
+  "tracks": 1,
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": -2,
+   "interval_miss": 0,
+   "intervals": 12,
+   "pitch_edit": 0,
+   "exact_pitch": true,
+   "rhythm": {
+    "scale": 0.5,
+    "ioi_match": 12,
+    "ioi_total": 12
+   },
+   "context": [
+    67,
+    70,
+    72,
+    74,
+    75,
+    74,
+    72,
+    69,
+    65,
+    67,
+    69,
+    70,
+    67,
+    67,
+    66
+   ]
+  },
+  "blocks_compiled": 1
+ },
+ {
+  "id": "ode-to-joy",
+  "lang": "en",
+  "article": "Ode to Joy",
+  "revid": 1375673953,
+  "blocks": 1,
+  "seen_before": false,
+  "block": 0,
+  "compile_attempt": 0,
+  "tracks": 1,
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": 5,
+   "interval_miss": 0,
+   "intervals": 7,
+   "pitch_edit": 0,
+   "exact_pitch": true,
+   "rhythm": {
+    "scale": 1.0,
+    "ioi_match": 7,
+    "ioi_total": 7
+   },
+   "context": [
+    71,
+    71,
+    72,
+    74,
+    74,
+    72,
+    71,
+    69,
+    67,
+    67
+   ]
+  },
+  "blocks_compiled": 1
+ },
+ {
+  "id": "brahms-lullaby",
+  "lang": "en",
+  "article": "Wiegenlied (Brahms)",
+  "revid": 1355367951,
+  "blocks": 1,
+  "seen_before": false,
+  "block": 0,
+  "compile_attempt": 0,
+  "tracks": 1,
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": 3,
+   "interval_miss": 0,
+   "intervals": 5,
+   "pitch_edit": 0,
+   "exact_pitch": true,
+   "rhythm": {
+    "scale": 0.85,
+    "ioi_match": 0,
+    "ioi_total": 5
+   },
+   "context": [
+    67,
+    67,
+    70,
+    67,
+    67,
+    70,
+    67,
+    70
+   ]
+  },
+  "blocks_compiled": 1
+ },
+ {
+  "id": "habanera",
+  "lang": "en",
+  "article": "Habanera (aria)",
+  "revid": 1360250324,
+  "blocks": 3,
+  "seen_before": false,
+  "block": 2,
+  "compile_attempt": 0,
+  "tracks": 2,
+  "result": {
+   "track": 0,
+   "start": 4,
+   "transpose": -2,
+   "interval_miss": 4,
+   "intervals": 8,
+   "pitch_edit": 4,
+   "exact_pitch": false,
+   "rhythm": null,
+   "context": [
+    72,
+    72,
+    72,
+    71,
+    70,
+    69,
+    69,
+    69,
+    68,
+    67,
+    65,
+    67,
+    65
+   ]
+  },
+  "blocks_compiled": 1
+ }
+]

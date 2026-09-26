@@ -1,0 +1,1503 @@
+{
+ "candidates": [
+  {
+   "id": "amazing-grace",
+   "kind": "public-domain",
+   "genre": "hymn",
+   "text_by": [
+    {
+     "wiki": "John Newton",
+     "died": 1807,
+     "role": "words",
+     "qid": "Q357301",
+     "wd_label": "John Newton",
+     "wd_died": [
+      1807
+     ],
+     "agree": true,
+     "died_eff": 1807
+    }
+   ],
+   "tune_by": [],
+   "text_published_by": 1779,
+   "tune_published_by": 1829,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "Amazing Grace",
+   "article_qid": "Q210211",
+   "wd_pub_years": [
+    1772,
+    1779
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "old-hundredth",
+   "kind": "public-domain",
+   "genre": "hymn",
+   "text_by": [
+    {
+     "wiki": "William Kethe",
+     "died": 1594,
+     "role": "words",
+     "qid": "Q8013984",
+     "wd_label": "William Kethe",
+     "wd_died": [
+      1594
+     ],
+     "agree": true,
+     "died_eff": 1594
+    }
+   ],
+   "tune_by": [
+    {
+     "wiki": "Louis Bourgeois (composer)",
+     "died": 1560,
+     "role": "music",
+     "qid": "Q493014",
+     "wd_label": "Louis Bourgeois",
+     "wd_died": [
+      1560
+     ],
+     "agree": true,
+     "died_eff": 1560
+    }
+   ],
+   "text_published_by": 1561,
+   "tune_published_by": 1551,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "Old 100th",
+   "article_qid": "Q17012865",
+   "wd_pub_years": [
+    1551,
+    1551
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "holy-holy-holy",
+   "kind": "public-domain",
+   "genre": "hymn",
+   "text_by": [
+    {
+     "wiki": "Reginald Heber",
+     "died": 1826,
+     "role": "words",
+     "qid": "Q3271284",
+     "wd_label": "Reginald Heber",
+     "wd_died": [
+      1826,
+      1826
+     ],
+     "agree": true,
+     "died_eff": 1826
+    }
+   ],
+   "tune_by": [
+    {
+     "wiki": "John Bacchus Dykes",
+     "died": 1876,
+     "role": "music",
+     "qid": "Q3269824",
+     "wd_label": "John Bacchus Dykes",
+     "wd_died": [
+      1876
+     ],
+     "agree": true,
+     "died_eff": 1876
+    }
+   ],
+   "text_published_by": 1826,
+   "tune_published_by": 1861,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "Holy, Holy, Holy! Lord God Almighty",
+   "article_qid": "Q1185012",
+   "wd_pub_years": [
+    1826
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "abide-with-me",
+   "kind": "public-domain",
+   "genre": "hymn",
+   "text_by": [
+    {
+     "wiki": "Henry Francis Lyte",
+     "died": 1847,
+     "role": "words",
+     "qid": "Q1606761",
+     "wd_label": "Henry Francis Lyte",
+     "wd_died": [
+      1847
+     ],
+     "agree": true,
+     "died_eff": 1847
+    }
+   ],
+   "tune_by": [
+    {
+     "wiki": "William Henry Monk",
+     "died": 1889,
+     "role": "music",
+     "qid": "Q5991718",
+     "wd_label": "William Henry Monk",
+     "wd_died": [
+      1899
+     ],
+     "agree": false,
+     "died_eff": 1899
+    }
+   ],
+   "text_published_by": 1850,
+   "tune_published_by": 1861,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "Abide with Me",
+   "article_qid": "Q2476190",
+   "wd_pub_years": [
+    1847
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "jesus-loves-me",
+   "kind": "public-domain",
+   "genre": "hymn",
+   "text_by": [
+    {
+     "wiki": "Anna Bartlett Warner",
+     "died": 1915,
+     "role": "words",
+     "qid": "Q4766837",
+     "wd_label": "Anna Bartlett Warner",
+     "wd_died": [
+      1915
+     ],
+     "agree": true,
+     "died_eff": 1915
+    }
+   ],
+   "tune_by": [
+    {
+     "wiki": "William Batchelder Bradbury",
+     "died": 1868,
+     "role": "music",
+     "qid": "Q322931",
+     "wd_label": "William Batchelder Bradbury",
+     "wd_died": [
+      1868
+     ],
+     "agree": true,
+     "died_eff": 1868
+    }
+   ],
+   "text_published_by": 1860,
+   "tune_published_by": 1862,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "Jesus Loves Me",
+   "article_qid": "Q3808173",
+   "wd_pub_years": [
+    1859
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "swing-low",
+   "kind": "public-domain",
+   "genre": "spiritual",
+   "text_by": [],
+   "tune_by": [],
+   "text_published_by": 1872,
+   "tune_published_by": 1872,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "Swing Low, Sweet Chariot",
+   "article_qid": "Q1750385",
+   "wd_pub_years": [
+    1872
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "silent-night",
+   "kind": "public-domain",
+   "genre": "carol",
+   "text_by": [
+    {
+     "wiki": "Joseph Mohr",
+     "died": 1848,
+     "role": "words (German)",
+     "qid": "Q698084",
+     "wd_label": "Joseph Mohr",
+     "wd_died": [
+      1848
+     ],
+     "agree": true,
+     "died_eff": 1848
+    },
+    {
+     "wiki": "John Freeman Young",
+     "died": 1885,
+     "role": "English translation",
+     "qid": "Q6232606",
+     "wd_label": "John Freeman Young",
+     "wd_died": [
+      1885
+     ],
+     "agree": true,
+     "died_eff": 1885
+    }
+   ],
+   "tune_by": [
+    {
+     "wiki": "Franz Xaver Gruber",
+     "died": 1863,
+     "role": "music",
+     "qid": "Q513185",
+     "wd_label": "Franz Xaver Gruber",
+     "wd_died": [
+      1863,
+      1863,
+      1863
+     ],
+     "agree": true,
+     "died_eff": 1863
+    }
+   ],
+   "text_published_by": 1863,
+   "tune_published_by": 1833,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "Silent Night",
+   "article_qid": "Q172152",
+   "wd_pub_years": [
+    1815
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "joy-to-the-world",
+   "kind": "public-domain",
+   "genre": "carol",
+   "text_by": [
+    {
+     "wiki": "Isaac Watts",
+     "died": 1748,
+     "role": "words",
+     "qid": "Q537034",
+     "wd_label": "Isaac Watts",
+     "wd_died": [
+      1748
+     ],
+     "agree": true,
+     "died_eff": 1748
+    }
+   ],
+   "tune_by": [
+    {
+     "wiki": "Lowell Mason",
+     "died": 1872,
+     "role": "music",
+     "qid": "Q1349257",
+     "wd_label": "Lowell Mason",
+     "wd_died": [
+      1872
+     ],
+     "agree": true,
+     "died_eff": 1872
+    }
+   ],
+   "text_published_by": 1719,
+   "tune_published_by": 1839,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "Joy to the World",
+   "article_qid": "Q1192264",
+   "wd_pub_years": [
+    1994
+   ],
+   "wd_pub_conflict": true
+  },
+  {
+   "id": "o-come-all-ye-faithful",
+   "kind": "public-domain",
+   "genre": "carol",
+   "text_by": [
+    {
+     "wiki": "John Francis Wade",
+     "died": 1786,
+     "role": "words (Latin)",
+     "qid": "Q1335565",
+     "wd_label": "John Francis Wade",
+     "wd_died": [
+      1786
+     ],
+     "agree": true,
+     "died_eff": 1786
+    },
+    {
+     "wiki": "Frederick Oakeley",
+     "died": 1880,
+     "role": "English translation",
+     "qid": "Q5498483",
+     "wd_label": "Frederick Oakeley",
+     "wd_died": [
+      1880
+     ],
+     "agree": true,
+     "died_eff": 1880
+    }
+   ],
+   "tune_by": [
+    {
+     "wiki": "John Francis Wade",
+     "died": 1786,
+     "role": "music",
+     "qid": "Q1335565",
+     "wd_label": "John Francis Wade",
+     "wd_died": [
+      1786
+     ],
+     "agree": true,
+     "died_eff": 1786
+    }
+   ],
+   "text_published_by": 1852,
+   "tune_published_by": 1782,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "O Come, All Ye Faithful",
+   "article_qid": "Q356486",
+   "wd_pub_years": [],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "hark-the-herald",
+   "kind": "public-domain",
+   "genre": "carol",
+   "text_by": [
+    {
+     "wiki": "Charles Wesley",
+     "died": 1788,
+     "role": "words",
+     "qid": "Q349070",
+     "wd_label": "Charles Wesley",
+     "wd_died": [
+      1788
+     ],
+     "agree": true,
+     "died_eff": 1788
+    },
+    {
+     "wiki": "George Whitefield",
+     "died": 1770,
+     "role": "altered first line",
+     "qid": "Q314399",
+     "wd_label": "George Whitefield",
+     "wd_died": [
+      1770,
+      1770,
+      1770
+     ],
+     "agree": true,
+     "died_eff": 1770
+    }
+   ],
+   "tune_by": [
+    {
+     "wiki": "Felix Mendelssohn",
+     "died": 1847,
+     "role": "music",
+     "qid": "Q46096",
+     "wd_label": "Felix Mendelssohn",
+     "wd_died": [
+      1847,
+      1847
+     ],
+     "agree": true,
+     "died_eff": 1847
+    },
+    {
+     "wiki": "William Hayman Cummings",
+     "died": 1915,
+     "role": "adaptation",
+     "qid": "Q3827349",
+     "wd_label": "William Hayman Cummings",
+     "wd_died": [
+      1915
+     ],
+     "agree": true,
+     "died_eff": 1915
+    }
+   ],
+   "text_published_by": 1753,
+   "tune_published_by": 1856,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "Hark! The Herald Angels Sing",
+   "article_qid": "Q1585437",
+   "wd_pub_years": [
+    1739
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "god-rest-ye-merry",
+   "kind": "public-domain",
+   "genre": "carol",
+   "text_by": [],
+   "tune_by": [],
+   "text_published_by": 1833,
+   "tune_published_by": 1833,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "God Rest You Merry, Gentlemen",
+   "article_qid": "Q1512638",
+   "wd_pub_years": [
+    1760
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "jingle-bells",
+   "kind": "public-domain",
+   "genre": "carol",
+   "text_by": [
+    {
+     "wiki": "James Lord Pierpont",
+     "died": 1893,
+     "role": "words and music",
+     "qid": "Q1344188",
+     "wd_label": "James Pierpont",
+     "wd_died": [
+      1893
+     ],
+     "agree": true,
+     "died_eff": 1893
+    }
+   ],
+   "tune_by": [
+    {
+     "wiki": "James Lord Pierpont",
+     "died": 1893,
+     "role": "music",
+     "qid": "Q1344188",
+     "wd_label": "James Pierpont",
+     "wd_died": [
+      1893
+     ],
+     "agree": true,
+     "died_eff": 1893
+    }
+   ],
+   "text_published_by": 1857,
+   "tune_published_by": 1857,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "Jingle Bells",
+   "article_qid": "Q406845",
+   "wd_pub_years": [
+    1857
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "deck-the-halls",
+   "kind": "public-domain",
+   "genre": "carol",
+   "text_by": [
+    {
+     "wiki": "Thomas Oliphant (lyricist)",
+     "died": 1873,
+     "role": "English words",
+     "qid": "Q16065548",
+     "wd_label": "Thomas Oliphant",
+     "wd_died": [
+      1873
+     ],
+     "agree": true,
+     "died_eff": 1873
+    }
+   ],
+   "tune_by": [],
+   "text_published_by": 1862,
+   "tune_published_by": 1794,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "Deck the Halls",
+   "article_qid": "Q2287842",
+   "wd_pub_years": [
+    1862,
+    1881
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "in-the-bleak-midwinter",
+   "kind": "public-domain",
+   "genre": "carol",
+   "text_by": [
+    {
+     "wiki": "Christina Rossetti",
+     "died": 1894,
+     "role": "words",
+     "qid": "Q236596",
+     "wd_label": "Christina Rossetti",
+     "wd_died": [
+      1894
+     ],
+     "agree": true,
+     "died_eff": 1894
+    }
+   ],
+   "tune_by": [
+    {
+     "wiki": "Gustav Holst",
+     "died": 1934,
+     "role": "music",
+     "qid": "Q200867",
+     "wd_label": "Gustav Holst",
+     "wd_died": [
+      1934
+     ],
+     "agree": true,
+     "died_eff": 1934
+    }
+   ],
+   "text_published_by": 1872,
+   "tune_published_by": 1906,
+   "us": true,
+   "life70": true,
+   "life100": false,
+   "publishable": true,
+   "pdm": false,
+   "article": "In the Bleak Midwinter",
+   "article_qid": "Q3797415",
+   "wd_pub_years": [
+    1872
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "twinkle",
+   "kind": "public-domain",
+   "genre": "children",
+   "text_by": [
+    {
+     "wiki": "Jane Taylor (poet)",
+     "died": 1824,
+     "role": "words",
+     "qid": "Q4259798",
+     "wd_label": "Jane Taylor",
+     "wd_died": [
+      1824
+     ],
+     "agree": true,
+     "died_eff": 1824
+    }
+   ],
+   "tune_by": [],
+   "text_published_by": 1806,
+   "tune_published_by": 1761,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "Twinkle, Twinkle, Little Star",
+   "article_qid": "Q1058356",
+   "wd_pub_years": [
+    1806
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "row-your-boat",
+   "kind": "public-domain",
+   "genre": "children",
+   "text_by": [],
+   "tune_by": [
+    {
+     "wiki": "Eliphalet Oram Lyte",
+     "died": 1913,
+     "role": "music",
+     "qid": "Q5361287",
+     "wd_label": "Eliphalet Oram Lyte",
+     "wd_died": [
+      1913
+     ],
+     "agree": true,
+     "died_eff": 1913
+    }
+   ],
+   "text_published_by": 1852,
+   "tune_published_by": 1881,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "Row, Row, Row Your Boat",
+   "article_qid": "Q6960010",
+   "wd_pub_years": [
+    1851
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "frere-jacques",
+   "kind": "public-domain",
+   "genre": "children",
+   "text_by": [],
+   "tune_by": [],
+   "text_published_by": 1888,
+   "tune_published_by": 1888,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "Frère Jacques",
+   "article_qid": "Q825728",
+   "wd_pub_years": [
+    1800
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "auld-lang-syne",
+   "kind": "public-domain",
+   "genre": "folk",
+   "text_by": [
+    {
+     "wiki": "Robert Burns",
+     "died": 1796,
+     "role": "words",
+     "qid": "Q81960",
+     "wd_label": "Robert Burns",
+     "wd_died": [
+      1796,
+      1796
+     ],
+     "agree": true,
+     "died_eff": 1796
+    }
+   ],
+   "tune_by": [],
+   "text_published_by": 1796,
+   "tune_published_by": 1799,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "Auld Lang Syne",
+   "article_qid": "Q211939",
+   "wd_pub_years": [
+    1788
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "my-bonnie",
+   "kind": "public-domain",
+   "genre": "folk",
+   "text_by": [],
+   "tune_by": [
+    {
+     "wiki": "Charles E. Pratt",
+     "died": 1902,
+     "role": "music, as H. J. Fuller",
+     "qid": "Q5077157",
+     "wd_label": "Charles E. Pratt",
+     "wd_died": [
+      1902
+     ],
+     "agree": true,
+     "died_eff": 1902
+    }
+   ],
+   "text_published_by": 1881,
+   "tune_published_by": 1881,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "My Bonnie Lies over the Ocean",
+   "article_qid": "Q777947",
+   "wd_pub_years": [],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "danny-boy",
+   "kind": "public-domain",
+   "genre": "folk",
+   "text_by": [
+    {
+     "wiki": "Frederic Weatherly",
+     "died": 1929,
+     "role": "words",
+     "qid": "Q5497166",
+     "wd_label": "Frederic Weatherly",
+     "wd_died": [
+      1929
+     ],
+     "agree": true,
+     "died_eff": 1929
+    }
+   ],
+   "tune_by": [],
+   "text_published_by": 1913,
+   "tune_published_by": 1855,
+   "us": true,
+   "life70": true,
+   "life100": false,
+   "publishable": true,
+   "pdm": false,
+   "article": "Danny Boy",
+   "article_qid": "Q1164523",
+   "wd_pub_years": [
+    1913
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "aura-lea",
+   "kind": "public-domain",
+   "genre": "folk",
+   "text_by": [
+    {
+     "wiki": "W. W. Fosdick",
+     "died": 1862,
+     "role": "words",
+     "qid": "Q9374828",
+     "wd_label": "W. W. Fosdick",
+     "wd_died": [
+      1862,
+      1862
+     ],
+     "agree": true,
+     "died_eff": 1862
+    }
+   ],
+   "tune_by": [
+    {
+     "wiki": "George R. Poulton",
+     "died": 1867,
+     "role": "music",
+     "qid": "Q5543660",
+     "wd_label": "George R. Poulton",
+     "wd_died": [
+      1867
+     ],
+     "agree": true,
+     "died_eff": 1867
+    }
+   ],
+   "text_published_by": 1861,
+   "tune_published_by": 1861,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "Aura Lea",
+   "article_qid": "Q11293531",
+   "wd_pub_years": [
+    1861
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "clementine",
+   "kind": "public-domain",
+   "genre": "folk",
+   "text_by": [
+    {
+     "wiki": "Percy Montrose",
+     "died": null,
+     "role": "words and music",
+     "qid": null,
+     "wd_label": null,
+     "wd_died": [],
+     "agree": null,
+     "died_eff": null
+    }
+   ],
+   "tune_by": [
+    {
+     "wiki": "Percy Montrose",
+     "died": null,
+     "role": "music",
+     "qid": null,
+     "wd_label": null,
+     "wd_died": [],
+     "agree": null,
+     "died_eff": null
+    }
+   ],
+   "text_published_by": 1884,
+   "tune_published_by": 1884,
+   "us": true,
+   "life70": false,
+   "life100": false,
+   "publishable": false,
+   "pdm": false,
+   "article": "Oh My Darling, Clementine",
+   "article_qid": "Q1153154",
+   "wd_pub_years": [
+    1850
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "yankee-doodle",
+   "kind": "public-domain",
+   "genre": "folk",
+   "text_by": [],
+   "tune_by": [],
+   "text_published_by": 1782,
+   "tune_published_by": 1782,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "Yankee Doodle",
+   "article_qid": "Q733940",
+   "wd_pub_years": [
+    1755
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "greensleeves",
+   "kind": "public-domain",
+   "genre": "folk",
+   "text_by": [],
+   "tune_by": [],
+   "text_published_by": 1584,
+   "tune_published_by": 1652,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "Greensleeves",
+   "article_qid": "Q674738",
+   "wd_pub_years": [
+    1580
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "god-save-the-king",
+   "kind": "public-domain",
+   "genre": "anthem",
+   "text_by": [],
+   "tune_by": [],
+   "text_published_by": 1745,
+   "tune_published_by": 1744,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "God Save the King",
+   "article_qid": "Q40807",
+   "wd_pub_years": [
+    1744,
+    1745
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "star-spangled-banner",
+   "kind": "public-domain",
+   "genre": "anthem",
+   "text_by": [
+    {
+     "wiki": "Francis Scott Key",
+     "died": 1843,
+     "role": "words",
+     "qid": "Q320633",
+     "wd_label": "Francis Scott Key",
+     "wd_died": [
+      1843
+     ],
+     "agree": true,
+     "died_eff": 1843
+    }
+   ],
+   "tune_by": [
+    {
+     "wiki": "John Stafford Smith",
+     "died": 1836,
+     "role": "music",
+     "qid": "Q563098",
+     "wd_label": "John Stafford Smith",
+     "wd_died": [
+      1836
+     ],
+     "agree": true,
+     "died_eff": 1836
+    }
+   ],
+   "text_published_by": 1814,
+   "tune_published_by": 1778,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "The Star-Spangled Banner",
+   "article_qid": "Q44696",
+   "wd_pub_years": [
+    1814,
+    1814
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "la-marseillaise",
+   "kind": "public-domain",
+   "genre": "anthem",
+   "text_by": [
+    {
+     "wiki": "Claude Joseph Rouget de Lisle",
+     "died": 1836,
+     "role": "words",
+     "qid": "Q207660",
+     "wd_label": "Rouget de Lisle",
+     "wd_died": [
+      1836
+     ],
+     "agree": true,
+     "died_eff": 1836
+    }
+   ],
+   "tune_by": [
+    {
+     "wiki": "Claude Joseph Rouget de Lisle",
+     "died": 1836,
+     "role": "music",
+     "qid": "Q207660",
+     "wd_label": "Rouget de Lisle",
+     "wd_died": [
+      1836
+     ],
+     "agree": true,
+     "died_eff": 1836
+    }
+   ],
+   "text_published_by": 1792,
+   "tune_published_by": 1792,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "La Marseillaise",
+   "article_qid": "Q41180",
+   "wd_pub_years": [
+    1792,
+    1792
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "ode-to-joy",
+   "kind": "public-domain",
+   "genre": "classical",
+   "text_by": [
+    {
+     "wiki": "Friedrich Schiller",
+     "died": 1805,
+     "role": "words",
+     "qid": "Q22670",
+     "wd_label": "Friedrich Schiller",
+     "wd_died": [
+      1805
+     ],
+     "agree": true,
+     "died_eff": 1805
+    }
+   ],
+   "tune_by": [
+    {
+     "wiki": "Ludwig van Beethoven",
+     "died": 1827,
+     "role": "music",
+     "qid": "Q255",
+     "wd_label": "Ludwig van Beethoven",
+     "wd_died": [
+      1827,
+      1827,
+      1827
+     ],
+     "agree": true,
+     "died_eff": 1827
+    }
+   ],
+   "text_published_by": 1786,
+   "tune_published_by": 1826,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "Ode to Joy",
+   "article_qid": "Q41545",
+   "wd_pub_years": [
+    1785,
+    1786
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "brahms-lullaby",
+   "kind": "public-domain",
+   "genre": "classical",
+   "text_by": [],
+   "tune_by": [
+    {
+     "wiki": "Johannes Brahms",
+     "died": 1897,
+     "role": "music",
+     "qid": "Q7294",
+     "wd_label": "Johannes Brahms",
+     "wd_died": [
+      1897
+     ],
+     "agree": true,
+     "died_eff": 1897
+    }
+   ],
+   "text_published_by": 1808,
+   "tune_published_by": 1868,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "Wiegenlied (Brahms)",
+   "article_qid": "Q1557135",
+   "wd_pub_years": [
+    1868
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "la-donna-e-mobile",
+   "kind": "public-domain",
+   "genre": "classical",
+   "text_by": [
+    {
+     "wiki": "Francesco Maria Piave",
+     "died": 1876,
+     "role": "words",
+     "qid": "Q334205",
+     "wd_label": "Francesco Maria Piave",
+     "wd_died": [
+      1876
+     ],
+     "agree": true,
+     "died_eff": 1876
+    }
+   ],
+   "tune_by": [
+    {
+     "wiki": "Giuseppe Verdi",
+     "died": 1901,
+     "role": "music",
+     "qid": "Q7317",
+     "wd_label": "Giuseppe Verdi",
+     "wd_died": [
+      1901
+     ],
+     "agree": true,
+     "died_eff": 1901
+    }
+   ],
+   "text_published_by": 1851,
+   "tune_published_by": 1851,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "La donna è mobile",
+   "article_qid": "Q1469717",
+   "wd_pub_years": [],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "habanera",
+   "kind": "public-domain",
+   "genre": "classical",
+   "text_by": [
+    {
+     "wiki": "Henri Meilhac",
+     "died": 1897,
+     "role": "words",
+     "qid": "Q723648",
+     "wd_label": null,
+     "wd_died": [
+      1897
+     ],
+     "agree": true,
+     "died_eff": 1897
+    },
+    {
+     "wiki": "Ludovic Halévy",
+     "died": 1908,
+     "role": "words",
+     "qid": "Q723585",
+     "wd_label": "Ludovic Halévy",
+     "wd_died": [
+      1908
+     ],
+     "agree": true,
+     "died_eff": 1908
+    }
+   ],
+   "tune_by": [
+    {
+     "wiki": "Georges Bizet",
+     "died": 1875,
+     "role": "music",
+     "qid": "Q56158",
+     "wd_label": "Georges Bizet",
+     "wd_died": [
+      1875
+     ],
+     "agree": true,
+     "died_eff": 1875
+    },
+    {
+     "wiki": "Sebastián Iradier",
+     "died": 1865,
+     "role": "El arreglito, the song Bizet adapted",
+     "qid": "Q954019",
+     "wd_label": "Sebastián Iradier",
+     "wd_died": [
+      1865
+     ],
+     "agree": true,
+     "died_eff": 1865
+    }
+   ],
+   "text_published_by": 1875,
+   "tune_published_by": 1875,
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": true,
+   "article": "Habanera (aria)",
+   "article_qid": "Q692648",
+   "wd_pub_years": [
+    1873
+   ],
+   "wd_pub_conflict": false
+  },
+  {
+   "id": "paper-lanterns",
+   "kind": "original",
+   "genre": "pop",
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": false
+  },
+  {
+   "id": "rust-on-the-gate",
+   "kind": "original",
+   "genre": "rock",
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": false
+  },
+  {
+   "id": "blue-umbrella",
+   "kind": "original",
+   "genre": "jazz",
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": false
+  },
+  {
+   "id": "kettles-cold",
+   "kind": "original",
+   "genre": "blues",
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": false
+  },
+  {
+   "id": "river-at-dawn",
+   "kind": "original",
+   "genre": "soul",
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": false
+  },
+  {
+   "id": "porch-light",
+   "kind": "original",
+   "genre": "country",
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": false
+  },
+  {
+   "id": "lamplighter",
+   "kind": "original",
+   "genre": "musical theatre",
+   "us": true,
+   "life70": true,
+   "life100": true,
+   "publishable": true,
+   "pdm": false
+  }
+ ],
+ "traps": [
+  {
+   "id": "trap-happy-birthday",
+   "title": "Happy Birthday to You",
+   "by": [
+    {
+     "wiki": "Mildred J. Hill",
+     "died": 1916,
+     "role": "music",
+     "qid": "Q4358017",
+     "wd_label": "Mildred J. Hill",
+     "wd_died": [
+      1916
+     ],
+     "agree": true,
+     "died_eff": 1916
+    },
+    {
+     "wiki": "Patty Hill",
+     "died": 1946,
+     "role": "words",
+     "qid": "Q4408628",
+     "wd_label": "Patty Hill",
+     "wd_died": [
+      1946
+     ],
+     "agree": true,
+     "died_eff": 1946
+    }
+   ],
+   "published_by": null,
+   "us": false,
+   "life70": true,
+   "life100": false,
+   "rejected": true
+  },
+  {
+   "id": "trap-scarborough-fair",
+   "title": "Scarborough Fair (the familiar tune)",
+   "by": [
+    {
+     "wiki": "Ewan MacColl",
+     "died": 1989,
+     "role": "collector and publisher",
+     "qid": "Q1192339",
+     "wd_label": "Ewan MacColl",
+     "wd_died": [
+      1989
+     ],
+     "agree": true,
+     "died_eff": 1989
+    }
+   ],
+   "published_by": 1947,
+   "us": false,
+   "life70": false,
+   "life100": false,
+   "rejected": true
+  },
+  {
+   "id": "trap-morning-has-broken",
+   "title": "Morning Has Broken",
+   "by": [
+    {
+     "wiki": "Eleanor Farjeon",
+     "died": 1965,
+     "role": "words",
+     "qid": "Q258669",
+     "wd_label": "Eleanor Farjeon",
+     "wd_died": [
+      1965
+     ],
+     "agree": true,
+     "died_eff": 1965
+    }
+   ],
+   "published_by": 1931,
+   "us": false,
+   "life70": false,
+   "life100": false,
+   "rejected": true
+  },
+  {
+   "id": "trap-st-louis-blues",
+   "title": "St. Louis Blues",
+   "by": [
+    {
+     "wiki": "W. C. Handy",
+     "died": 1958,
+     "role": "words and music",
+     "qid": "Q352967",
+     "wd_label": "W. C. Handy",
+     "wd_died": [
+      1958,
+      1958
+     ],
+     "agree": true,
+     "died_eff": 1958
+    }
+   ],
+   "published_by": 1914,
+   "us": true,
+   "life70": false,
+   "life100": false,
+   "rejected": true
+  },
+  {
+   "id": "trap-bella-ciao",
+   "title": "Bella ciao (partisan text)",
+   "by": [],
+   "published_by": 1953,
+   "us": false,
+   "life70": true,
+   "life100": false,
+   "rejected": true
+  },
+  {
+   "id": "trap-love-me-tender",
+   "title": "Love Me Tender",
+   "by": [
+    {
+     "wiki": "Ken Darby",
+     "died": 1992,
+     "role": "words",
+     "qid": "Q2316737",
+     "wd_label": "Ken Darby",
+     "wd_died": [
+      1992
+     ],
+     "agree": true,
+     "died_eff": 1992
+    }
+   ],
+   "published_by": 1956,
+   "us": false,
+   "life70": false,
+   "life100": false,
+   "rejected": true
+  },
+  {
+   "id": "trap-all-things-bright-royal-oak",
+   "title": "All Things Bright and Beautiful, to ROYAL OAK",
+   "by": [
+    {
+     "wiki": "Martin Shaw (composer)",
+     "died": 1958,
+     "role": "arrangement",
+     "qid": "Q1905056",
+     "wd_label": "Martin Shaw",
+     "wd_died": [
+      1958
+     ],
+     "agree": true,
+     "died_eff": 1958
+    }
+   ],
+   "published_by": 1915,
+   "us": true,
+   "life70": false,
+   "life100": false,
+   "rejected": true
+  },
+  {
+   "id": "trap-o-canada-english",
+   "title": "O Canada (official English words)",
+   "by": [],
+   "published_by": 1980,
+   "us": false,
+   "life70": false,
+   "life100": false,
+   "rejected": true
+  },
+  {
+   "id": "trap-advance-australia-fair",
+   "title": "Advance Australia Fair (official words)",
+   "by": [],
+   "published_by": 1984,
+   "us": false,
+   "life70": false,
+   "life100": false,
+   "rejected": true
+  }
+ ],
+ "as_at": "2026-01-01"
+}
