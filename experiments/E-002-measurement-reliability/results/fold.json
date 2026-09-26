@@ -28,16 +28,16 @@
    ]
   },
   "vibrato-220hz-5p5hz.wav": {
-   "sha256": "c32897aa2f7304b66b3bf4142c0b9c91442e09bcd35ed0b7b0b4a265f3015f66",
+   "sha256": "19f1f266852cdbd7bf4305ba0217f99c1cee61e3d96180ac03966e2327cb1fb3",
    "bytes": 192058,
    "frames": 122,
    "first": 3,
    "measured": 122,
-   "max_abs_cents_at_instant": 0.9715014741176422,
-   "max_abs_cents_at_window_centre": 10.178711436404143,
+   "max_abs_cents_at_instant": 0.9326274755799786,
+   "max_abs_cents_at_window_centre": 9.887047212629358,
    "instant_ms_before_end": [
-    21.708285474410097,
-    21.729343018004784
+    21.7075095360757,
+    21.727810749180662
    ]
   },
   "silence.wav": {

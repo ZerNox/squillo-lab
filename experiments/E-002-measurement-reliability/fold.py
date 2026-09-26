@@ -56,13 +56,13 @@ NEW = {
     # log-linear glide from 220 Hz up at 600 cents/s: f(t) = 220 * 2 ** (t / 2)
     "glide-220hz-600c.wav": lambda n: 0.5 * math.sin(
         2 * pi * 220 * (2 ** (n / 96000) - 1) / (math.log(2) / 2)),
-    # vibrato: f(t) = 220 * (1 + 0.029 * sin(2 pi 5.5 t))
+    # vibrato: f(t) = 220 * (1 + 0.028 * sin(2 pi 5.5 t))
     "vibrato-220hz-5p5hz.wav": lambda n: 0.5 * math.sin(
-        2 * pi * 220 * n / 48000 + 220 * 0.029 / 5.5 * (1 - math.cos(2 * pi * 5.5 * n / 48000))),
+        2 * pi * 220 * n / 48000 + 220 * 0.028 / 5.5 * (1 - math.cos(2 * pi * 5.5 * n / 48000))),
 }
 TRUE = {  # true f0 at time t in seconds
     "glide-220hz-600c.wav": lambda t: 220 * 2 ** (t / 2),
-    "vibrato-220hz-5p5hz.wav": lambda t: 220 * (1 + 0.029 * np.sin(2 * np.pi * 5.5 * t)),
+    "vibrato-220hz-5p5hz.wav": lambda t: 220 * (1 + 0.028 * np.sin(2 * np.pi * 5.5 * t)),
 }
 STEADY = {
     "sine-220hz.wav": 220.0, "sine-220hz-overshoot.wav": 220.0,

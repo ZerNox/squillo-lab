@@ -140,7 +140,7 @@ half a sample later, and rounded it to a sample.
 | # | Question | Result |
 | :--- | :--- | :--- |
 | 11 | squillo's two guard-band fixtures, pure sines 7 cents above C6 and 7 cents below E2 | 0 of 122 frames measured in each |
-| 12 | squillo's glide fixture (sine, 220 Hz rising at 600 cents/s) and vibrato fixture (sine, 220 Hz, 5.5 Hz, +49.6 / −50.9 cents), against the true f0 at the instant | 122 of 122 frames measured in each; max error 0.18 cents (glide), 0.97 (vibrato). Against the window centre: 3.9 and 10.2 cents, so the scenarios tell the two instants apart |
+| 12 | squillo's glide fixture (sine, 220 Hz rising at 600 cents/s) and vibrato fixture (sine, 220 · (1 + 0.028 sin(2π · 5.5 t)) Hz, +47.8 / −49.2 cents), against the true f0 at the instant | 122 of 122 frames measured in each; max error 0.18 cents (glide), 0.93 (vibrato). Against the window centre: 3.9 and 9.9 cents, so the scenarios tell the two instants apart |
 | 13 | The seven iteration-14 fixtures, reported pitch against the tone | 220 Hz and overshoot max 0.0013 cents; E2 0.0006; C6 −0.026 to +0.011; C2, C7, silence 0 of 122 measured |
 | 14 | Result 5's conditions at the instant, 24 tones each, pure and `saw12` (seed 20260926) | Every measured frame within ±3 cents under vibrato of ±50 cents at 5.5 and 7 Hz (max 2.68, `saw12` at 7 Hz) and glides of 600 cents/s (max 1.00); Wilson 95 % lower bound 99.86 % in each. In every condition, every frame whose true f0 stays within E2 to C6 across its window is measured (0 unmeasured of 2462 to 2928 such frames per condition). Beyond that the ±3 cents no longer holds for every frame: ±100 cents vibrato 92.6–98.2 % within ±3, max 5.7; 2400 cents/s glides 99.9–100 %, max 3.5 |
 

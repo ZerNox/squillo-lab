@@ -25,7 +25,10 @@ measure must be restricted to a band where both have energy. The README
 reports the check's numbers. Every synthetic input must also lie inside the
 range the measure is specified for (for pitch, squillo ADR 0007's E2–C6),
 and any procedure that makes the truth (alignment, segmentation) is run on
-one input of every condition first (squillo L-026).
+one input of every condition first (squillo L-026). A fixture written for a
+squillo scenario has its extremes computed from its formula, not its nominal
+parameters, and checked against every condition the scenario's requirement
+states (squillo L-028).
 
 **Name the reference before comparing** (squillo standing instruction S16).
 A check against an outside source names its reference item in advance: the
