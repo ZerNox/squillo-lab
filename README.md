@@ -18,17 +18,19 @@ One folder per experiment: `experiments/E-nnn-short-name/`.
 | `data/` | Inputs, each with source and licence in `data/SOURCES.md`. Large or non-redistributable data is fetched by script, not committed |
 | `results/` | Outputs: numbers, plots, audio examples. Small, committed, reproducible from the code |
 
-**Check inputs and measures before the full run** (squillo standing
-instruction S15). Run a few unmodified real recordings first: a synthetic
-input's long-term spectrum must lie within theirs, and a spectral or distance
-measure must be restricted to a band where both have energy. The README
-reports the check's numbers. Every synthetic input must also lie inside the
-range the measure is specified for (for pitch, squillo ADR 0007's E2–C6),
-and any procedure that makes the truth (alignment, segmentation) is run on
-one input of every condition first (squillo L-026). A fixture written for a
-squillo scenario has its extremes computed from its formula, not its nominal
-parameters, and checked against every condition the scenario's requirement
-states (squillo L-028).
+**Assert every generated input's conditions** (squillo standing
+instruction S15). Before generating an input, for a run or for a squillo
+fixture, write down every condition it must meet: the range the measure is
+specified for (for pitch, squillo ADR 0007's E2–C6), every condition of the
+requirement a fixture serves, and, for a synthetic stand-in for voices, the
+range of a few unmodified real recordings (its long-term spectrum within
+theirs, and each spectral or distance measure restricted to a band where
+both have energy). The generator asserts each condition on what it
+generated, with extremes computed from the output or its exact formula,
+never from nominal parameters, and stops if one fails. Any procedure that
+makes the truth (alignment, segmentation) runs on one input of every
+condition first. The README reports the checks' numbers (squillo L-024,
+L-026, L-028).
 
 **Name the reference before comparing** (squillo standing instruction S16).
 A check against an outside source names its reference item in advance: the
