@@ -78,8 +78,13 @@ from here or from cited literature, never from nowhere.
   sees neither `/tmp` nor hidden directories under home, and the worktrees
   may live under `~/.local`; give it a profile directory under
   `~/snap/firefox/common/` (E-003's `run.mjs`) and remove it afterwards.
-- **Rust / WASM**: added when an experiment needs to test the real engine
-  path; not installed yet.
+- **Rust / WASM**: Rust stable with the `wasm32-unknown-unknown` target and
+  `wasm-bindgen-cli`, in `~/.cargo`. Installed by [`prereqs.sh`](prereqs.sh),
+  which the squillo runner runs before every iteration.
+- **Prerequisites**: [`prereqs.sh`](prereqs.sh) installs everything the lab
+  needs for the current user only, never with sudo, and skips what is present
+  (`--check` only reports). An experiment that needs a new tool adds a step
+  there and commits it with the experiment.
 - **GPU**: an Intel Arc A770M, which stands in for the remote tier and not for
   a singer's device. Read [`COMPUTE.md`](COMPUTE.md) before timing anything on
   it.
