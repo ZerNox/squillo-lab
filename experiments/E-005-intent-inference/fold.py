@@ -155,6 +155,7 @@ def summarize(rows=None):
             k = sum(abs(r["s"] - r["pop"]) <= 2 * r[u] for r in rep)
             by_upper[f"{u} upper in [{lo},{hi})"] = wilson(k, len(rep)) + [len(rep)]
     out_of_range = sum(r["centre_min"] < E2_CENTS or r["centre_max"] > C6_CENTS for r in rows)
+    assert out_of_range == 0, out_of_range  # every input inside E2-C6 (S15; asserted since R-06)
     ok = [r for r in rows if np.isfinite(r["s"]) and r["s"] + 2 * r["uB"] <= UPPER]
     rule = dict(upper=UPPER, reported=len(ok),
                 coverage_pop=wilson(sum(abs(r["s"] - r["pop"]) <= 2 * r["uB"] for r in ok), len(ok)),
@@ -284,10 +285,15 @@ def fixtures(outdir="/tmp/e005-fold"):
         err = o["settle"][keep] - true_c if keep.sum() == 14 else None
         # the frames wholly within each note: every one within +-3 cents (SG-005)
         frame_err = []
-        idx = np.arange(len(cents)) + 3  # yin returns frames 3..n-1
+        # frames matched by the index YIN returns, never by position (S15, L-030;
+        # R-06 found the position form left here)
+        idx = np.asarray(run.yin.yin(x)[0])
+        assert len(idx) == len(cents)
+        first = run.HOP * (idx - 3)  # first sample of frame idx's four-frame window
+        last = run.HOP * (idx + 1) - 1  # last sample of frame idx (ADR 0007)
         for j in range(14):
             a0 = GAP + j * (NOTE + GAP)
-            inside = (384 * (idx - 3) >= a0 + RAMP) & (384 * idx + 383 < a0 + NOTE - RAMP)
+            inside = (first >= a0 + RAMP) & (last < a0 + NOTE - RAMP)
             frame_err.append(float(np.nanmax(np.abs(cents[inside] - true_c[j]))))
         report[name] = dict(
             sha256=hashlib.sha256(blob).hexdigest(), bytes=len(blob),

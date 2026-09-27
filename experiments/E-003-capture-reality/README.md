@@ -130,9 +130,16 @@ fake devices. What a real microphone, driver and room do is the
    every path: nothing adds noise or dither.
 6. **Chrome inserts 10 ms of samples, rarely.** In 2 of the 36 Chrome runs
    into a 48 kHz context, 480 samples (10 ms) were inserted once, 1.85–1.95
-   s after capture began, and never later. In all 3 stream runs from
-   48 kHz into a 44.1 kHz context, 441 samples (10 ms) were inserted once
-   between 2.1 and 9.5 s. No sample was dropped in any Chrome run. For
+   s after capture began, and never later; both brackets (loop time
+   1.73–1.87 and 1.83–1.97 s) are clear of any loop point. In all 3 stream
+   runs from 48 kHz into a 44.1 kHz context, 441 samples (10 ms) were
+   inserted once in a 7.4 s bracket between 2.1 and 9.5 s with no tracked
+   window inside, whose loop time wraps (2.12 → 1.51 s) through the stream
+   source's own loop point (`page/probe.js`, `src.loop = true`). By S17
+   those 3 are the input path's until a run without a loop clears them, so
+   Chrome is shown to insert in **2 of 45** runs, not 5 (corrected at
+   squillo R-06, iteration 30; the first write-up counted all 5). No sample
+   was dropped in any Chrome run. For
    pitch a 10 ms insertion is a discontinuity, not a frequency error; for
    anything timed across it (vibrato rate, note durations) it is 10 ms.
 7. **Not the browser: the fake file's loop.** In all 18 fake-microphone
