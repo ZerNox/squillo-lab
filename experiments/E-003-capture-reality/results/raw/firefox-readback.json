@@ -1,0 +1,133 @@
+{
+ "browser": "firefox",
+ "version": "156.0",
+ "fakeRate": null,
+ "raw": {
+  "supported": {
+   "autoGainControl": true,
+   "browserWindow": true,
+   "channelCount": true,
+   "deviceId": true,
+   "echoCancellation": true,
+   "facingMode": true,
+   "frameRate": true,
+   "groupId": true,
+   "height": true,
+   "mediaSource": true,
+   "noiseSuppression": true,
+   "resizeMode": true,
+   "scrollWithPage": true,
+   "viewportHeight": true,
+   "viewportOffsetX": true,
+   "viewportOffsetY": true,
+   "viewportWidth": true,
+   "width": true
+  },
+  "label": "Default Audio Device",
+  "settings": {
+   "autoGainControl": false,
+   "channelCount": 1,
+   "deviceId": "1nL+ttfRCpJRRp6drbJtSPhMa0MDtn4uarHzoy5OM1M=",
+   "echoCancellation": false,
+   "groupId": "puShHRtKSuu/h228AUc8WW1fTwpOXsKCr7L2KZMqjCg=",
+   "noiseSuppression": false
+  },
+  "constraints": {
+   "autoGainControl": false,
+   "channelCount": 1,
+   "echoCancellation": false,
+   "mediaSource": "microphone",
+   "noiseSuppression": false
+  },
+  "capabilities": {
+   "autoGainControl": [
+    false
+   ],
+   "channelCount": {
+    "max": 1,
+    "min": 1
+   },
+   "deviceId": "1nL+ttfRCpJRRp6drbJtSPhMa0MDtn4uarHzoy5OM1M=",
+   "echoCancellation": [
+    false
+   ],
+   "groupId": "puShHRtKSuu/h228AUc8WW1fTwpOXsKCr7L2KZMqjCg=",
+   "noiseSuppression": [
+    false
+   ]
+  },
+  "afterExactMono": {
+   "autoGainControl": false,
+   "channelCount": 1,
+   "deviceId": "1nL+ttfRCpJRRp6drbJtSPhMa0MDtn4uarHzoy5OM1M=",
+   "echoCancellation": false,
+   "groupId": "puShHRtKSuu/h228AUc8WW1fTwpOXsKCr7L2KZMqjCg=",
+   "noiseSuppression": false
+  },
+  "exactMonoRequest": {
+   "autoGainControl": false,
+   "channelCount": 1,
+   "deviceId": "1nL+ttfRCpJRRp6drbJtSPhMa0MDtn4uarHzoy5OM1M=",
+   "echoCancellation": false,
+   "groupId": "puShHRtKSuu/h228AUc8WW1fTwpOXsKCr7L2KZMqjCg=",
+   "noiseSuppression": false
+  }
+ },
+ "default": {
+  "supported": {
+   "autoGainControl": true,
+   "browserWindow": true,
+   "channelCount": true,
+   "deviceId": true,
+   "echoCancellation": true,
+   "facingMode": true,
+   "frameRate": true,
+   "groupId": true,
+   "height": true,
+   "mediaSource": true,
+   "noiseSuppression": true,
+   "resizeMode": true,
+   "scrollWithPage": true,
+   "viewportHeight": true,
+   "viewportOffsetX": true,
+   "viewportOffsetY": true,
+   "viewportWidth": true,
+   "width": true
+  },
+  "label": "Default Audio Device",
+  "settings": {
+   "autoGainControl": false,
+   "channelCount": 1,
+   "deviceId": "1nL+ttfRCpJRRp6drbJtSPhMa0MDtn4uarHzoy5OM1M=",
+   "echoCancellation": false,
+   "groupId": "puShHRtKSuu/h228AUc8WW1fTwpOXsKCr7L2KZMqjCg=",
+   "noiseSuppression": false
+  },
+  "constraints": {},
+  "capabilities": {
+   "autoGainControl": [
+    false
+   ],
+   "channelCount": {
+    "max": 1,
+    "min": 1
+   },
+   "deviceId": "1nL+ttfRCpJRRp6drbJtSPhMa0MDtn4uarHzoy5OM1M=",
+   "echoCancellation": [
+    false
+   ],
+   "groupId": "puShHRtKSuu/h228AUc8WW1fTwpOXsKCr7L2KZMqjCg=",
+   "noiseSuppression": [
+    false
+   ]
+  },
+  "afterApply": {
+   "autoGainControl": false,
+   "channelCount": 1,
+   "deviceId": "1nL+ttfRCpJRRp6drbJtSPhMa0MDtn4uarHzoy5OM1M=",
+   "echoCancellation": false,
+   "groupId": "puShHRtKSuu/h228AUc8WW1fTwpOXsKCr7L2KZMqjCg=",
+   "noiseSuppression": false
+  }
+ }
+}

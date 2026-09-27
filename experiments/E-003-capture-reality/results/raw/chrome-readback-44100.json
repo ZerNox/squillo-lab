@@ -1,0 +1,215 @@
+{
+ "browser": "chrome",
+ "version": "154.0.8037.57",
+ "fakeRate": 44100,
+ "raw": {
+  "supported": {
+   "aspectRatio": true,
+   "autoGainControl": true,
+   "brightness": true,
+   "channelCount": true,
+   "colorTemperature": true,
+   "contrast": true,
+   "deviceId": true,
+   "displaySurface": true,
+   "echoCancellation": true,
+   "exposureCompensation": true,
+   "exposureMode": true,
+   "exposureTime": true,
+   "facingMode": true,
+   "focusDistance": true,
+   "focusMode": true,
+   "frameRate": true,
+   "groupId": true,
+   "height": true,
+   "iso": true,
+   "latency": true,
+   "noiseSuppression": true,
+   "pan": true,
+   "pointsOfInterest": true,
+   "resizeMode": true,
+   "restrictOwnAudio": true,
+   "sampleRate": true,
+   "sampleSize": true,
+   "saturation": true,
+   "sharpness": true,
+   "suppressLocalAudioPlayback": true,
+   "tilt": true,
+   "torch": true,
+   "voiceIsolation": true,
+   "whiteBalanceMode": true,
+   "width": true,
+   "zoom": true
+  },
+  "label": "Fake Default Audio Input",
+  "settings": {
+   "autoGainControl": false,
+   "channelCount": 2,
+   "deviceId": "default",
+   "echoCancellation": false,
+   "groupId": "24118762d7ca22208089fcc6930e5d453927846122448d39013cdbc550dc3def",
+   "latency": 0.01,
+   "noiseSuppression": false,
+   "sampleRate": 44100,
+   "sampleSize": 16,
+   "voiceIsolation": false
+  },
+  "constraints": {
+   "autoGainControl": false,
+   "channelCount": 1,
+   "echoCancellation": false,
+   "noiseSuppression": false
+  },
+  "capabilities": {
+   "autoGainControl": [
+    true,
+    false
+   ],
+   "channelCount": {
+    "max": 2,
+    "min": 1
+   },
+   "deviceId": "default",
+   "echoCancellation": [
+    true,
+    false,
+    "remote-only"
+   ],
+   "groupId": "24118762d7ca22208089fcc6930e5d453927846122448d39013cdbc550dc3def",
+   "latency": {
+    "max": 0.01,
+    "min": 0.01
+   },
+   "noiseSuppression": [
+    true,
+    false
+   ],
+   "sampleRate": {
+    "max": 48000,
+    "min": 44100
+   },
+   "sampleSize": {
+    "max": 16,
+    "min": 16
+   },
+   "voiceIsolation": [
+    false
+   ]
+  },
+  "exactMonoError": "OverconstrainedError: Cannot satisfy constraints",
+  "exactMonoRequest": {
+   "autoGainControl": false,
+   "channelCount": 2,
+   "deviceId": "default",
+   "echoCancellation": false,
+   "groupId": "24118762d7ca22208089fcc6930e5d453927846122448d39013cdbc550dc3def",
+   "latency": 0.01,
+   "noiseSuppression": false,
+   "sampleRate": 44100,
+   "sampleSize": 16,
+   "voiceIsolation": false
+  }
+ },
+ "default": {
+  "supported": {
+   "aspectRatio": true,
+   "autoGainControl": true,
+   "brightness": true,
+   "channelCount": true,
+   "colorTemperature": true,
+   "contrast": true,
+   "deviceId": true,
+   "displaySurface": true,
+   "echoCancellation": true,
+   "exposureCompensation": true,
+   "exposureMode": true,
+   "exposureTime": true,
+   "facingMode": true,
+   "focusDistance": true,
+   "focusMode": true,
+   "frameRate": true,
+   "groupId": true,
+   "height": true,
+   "iso": true,
+   "latency": true,
+   "noiseSuppression": true,
+   "pan": true,
+   "pointsOfInterest": true,
+   "resizeMode": true,
+   "restrictOwnAudio": true,
+   "sampleRate": true,
+   "sampleSize": true,
+   "saturation": true,
+   "sharpness": true,
+   "suppressLocalAudioPlayback": true,
+   "tilt": true,
+   "torch": true,
+   "voiceIsolation": true,
+   "whiteBalanceMode": true,
+   "width": true,
+   "zoom": true
+  },
+  "label": "Fake Default Audio Input",
+  "settings": {
+   "autoGainControl": true,
+   "channelCount": 1,
+   "deviceId": "default",
+   "echoCancellation": true,
+   "groupId": "24118762d7ca22208089fcc6930e5d453927846122448d39013cdbc550dc3def",
+   "latency": 0.01,
+   "noiseSuppression": true,
+   "sampleRate": 48000,
+   "sampleSize": 16,
+   "voiceIsolation": false
+  },
+  "constraints": {},
+  "capabilities": {
+   "autoGainControl": [
+    true,
+    false
+   ],
+   "channelCount": {
+    "max": 2,
+    "min": 1
+   },
+   "deviceId": "default",
+   "echoCancellation": [
+    true,
+    false,
+    "remote-only"
+   ],
+   "groupId": "24118762d7ca22208089fcc6930e5d453927846122448d39013cdbc550dc3def",
+   "latency": {
+    "max": 0.01,
+    "min": 0.01
+   },
+   "noiseSuppression": [
+    true,
+    false
+   ],
+   "sampleRate": {
+    "max": 48000,
+    "min": 44100
+   },
+   "sampleSize": {
+    "max": 16,
+    "min": 16
+   },
+   "voiceIsolation": [
+    false
+   ]
+  },
+  "afterApply": {
+   "autoGainControl": true,
+   "channelCount": 1,
+   "deviceId": "default",
+   "echoCancellation": true,
+   "groupId": "24118762d7ca22208089fcc6930e5d453927846122448d39013cdbc550dc3def",
+   "latency": 0.01,
+   "noiseSuppression": true,
+   "sampleRate": 48000,
+   "sampleSize": 16,
+   "voiceIsolation": false
+  }
+ }
+}

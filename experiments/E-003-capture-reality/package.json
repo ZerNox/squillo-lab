@@ -1,0 +1,15 @@
+{
+  "name": "e-003-capture-reality",
+  "version": "1.0.0",
+  "description": "**Status:** open · **Serves:** VISION §6 (honesty), §12.3 · Absorbs squillo S-001, S-002 and S-003",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "playwright": "^1.63.0"
+  }
+}

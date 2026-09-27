@@ -1,0 +1,38 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>E-003 real microphone check</title>
+<style>body{font:16px sans-serif;max-width:40em;margin:2em auto}button{font-size:1.2em;padding:.5em 1em}</style>
+<h1>E-003: real microphone check</h1>
+<p>Press the button, allow the microphone, and stay quiet for the first 10 seconds.
+When the page says <b>tone now</b>, play <code>tone440.wav</code> from a phone about
+30 cm from the microphone for 10 seconds. Two files download at the end: a
+<code>.json</code> (settings and timing) and a <code>.f32</code> (the audio, which is
+never committed).</p>
+<button id="go">Start (20 s)</button>
+<p id="msg"></p>
+<script src="/page/probe.js"></script>
+<script>
+const msg = (t) => { document.getElementById('msg').textContent = t; };
+function save(name, data, type) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([data], { type }));
+  a.download = name; a.click();
+}
+document.getElementById('go').onclick = async () => {
+  msg('reading settings...');
+  const rb = { raw: await window.e003.readback('raw'), default: await window.e003.readback('default') };
+  // the rate this browser picks with no request (its output device's):
+  // in Firefox, a 48 kHz context at another rate is bridged (round 1)
+  const probeCtx = new AudioContext(); const defaultCtxRate = probeCtx.sampleRate; await probeCtx.close();
+  msg('quiet please (10 s)');
+  setTimeout(() => msg('tone now (10 s)'), 10000);
+  const out = await window.e003.capture({ path: 'mic', ctxRate: 48000, loadMs: 0, seconds: 20 });
+  msg('done: saving two files');
+  const ua = navigator.userAgent.includes('Firefox') ? 'firefox' : 'chrome';
+  const bytes = Uint8Array.from(atob(out.samples), (c) => c.charCodeAt(0));
+  delete out.samples;
+  out.readback = rb; out.defaultCtxRate = defaultCtxRate;
+  save(`e003-human-${ua}.json`, JSON.stringify(out), 'application/json');
+  save(`e003-human-${ua}.f32`, bytes, 'application/octet-stream');
+};
+</script>

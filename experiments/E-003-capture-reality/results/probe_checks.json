@@ -1,0 +1,72 @@
+{
+ "segments": {
+  "sweep": [
+   0.5,
+   2.5
+  ],
+  "tone110": [
+   3.0,
+   3.5
+  ],
+  "tone220": [
+   3.5,
+   4.0
+  ],
+  "tone440": [
+   4.0,
+   4.5
+  ],
+  "tone880": [
+   4.5,
+   5.0
+  ],
+  "high": [
+   5.25,
+   6.25
+  ],
+  "silence": [
+   0.05,
+   0.45
+  ],
+  "noise": [
+   6.5,
+   7.9
+  ]
+ },
+ "tones": [
+  110.0,
+  220.0,
+  440.0,
+  880.0
+ ],
+ "high": {
+  "48000": 23000.0,
+  "44100": 21000.0
+ },
+ "checks": {
+  "48000": {
+   "peak_outside_noise": 0.25,
+   "tone110_measured_hz": 110.001,
+   "tone220_measured_hz": 220.001,
+   "tone440_measured_hz": 440.002,
+   "tone880_measured_hz": 880.005,
+   "high_measured_hz": 23000.004,
+   "high_alias_at_44100_hz": 21100.0,
+   "noise_rms": 0.04998,
+   "noise_energy_above_20500_db": -83.3,
+   "peak_int16": 8192
+  },
+  "44100": {
+   "peak_outside_noise": 0.25,
+   "tone110_measured_hz": 110.0,
+   "tone220_measured_hz": 220.0,
+   "tone440_measured_hz": 440.001,
+   "tone880_measured_hz": 880.001,
+   "high_measured_hz": 21000.004,
+   "high_image_at_48000_hz": 23100.0,
+   "noise_rms": 0.04998,
+   "noise_energy_above_20500_db": -85.4,
+   "peak_int16": 8192
+  }
+ }
+}
