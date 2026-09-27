@@ -1,6 +1,6 @@
 # E-005 — Intent inference: pitch accuracy without a reference
 
-**Status:** running (round 1 done; round 2 automated; one `needs-human` step) · **Serves:** VISION §3 (every song is your cover), §5 (reference-free), §6, §12.4
+**Status:** running (round 1 done and folded into squillo `metrics`, iteration 27; round 2 automated; one `needs-human` step) · **Serves:** VISION §3 (every song is your cover), §5 (reference-free), §6, §12.4
 
 ## Question
 
@@ -169,6 +169,74 @@ per-note ± whose reference term follows the circular estimate (coverage
 at σ = 20); a heavier-tailed error model for the flag, fitted on VocalSet
 and checked on held-out singers; takes longer than 14 notes; and a
 glide-aware segmentation.
+
+## Fold into squillo `metrics` (squillo iteration 27)
+
+```
+uv run python fold.py coverage            # 2400 phrases, 10.6 min on 18 processes -> results/fold.json
+uv run python fold.py fixtures <dir>      # squillo's four fixtures/metrics/ takes, checked
+```
+
+**Question.** Round 1 found the take's spread σ̂ honest "to about 20
+cents" but gave it no ±. Which standard uncertainty makes σ̂ ± 2u cover the
+singer's intonation spread, and where does it stop holding?
+
+**Measurand.** The singer's intonation spread: the standard deviation of
+their note-centre errors relative to their own tuning, √(σ² + var *D*),
+with σ the generating per-note sd and *D* the drift of their tuning at the
+notes (a global reference counts drift as error). Also checked against the
+take's realised spread (round 1's truth).
+
+**Inputs.** Round 1's design (`synth.py`, unchanged) with four new seed
+sets, 2400 phrases, 120 per cell of σ × drift × vibrato; `est`
+segmentation, `global` reference, `chromatic` target, notes ≥ 0.1 s.
+S15: every note centre lies inside ADR 0007's E2–C6 (−2900 to +1500 cents
+re A4): extremes −2784.7 and +1293.5, 0 of 2400 phrases outside. (The
+first version of this check compared with +300 cents, an error in the
+bound, not the inputs; found by reading the output, corrected before any
+result was used.)
+
+**Candidates**, at coverage factor k = 2:
+A, sampling only, GUM (JCGM 100:2008) E.4.3: *u*² = σ̂² / (2(*n*ₑ − 1)),
+*n*ₑ the duration-weighted effective note count; B, A combined with the
+notes' duration-weighted mean settle variance (`infer.settle`'s *u*, which
+holds 1 cent for the tracker); C, A combined with √3 cents in place of B's
+settle term.
+
+**Results** (`results/fold.json`, `coverage`). Wilson 95 % intervals.
+
+| # | Question | Result |
+| :--- | :--- | :--- |
+| F1 | Which candidate covers? | B, while the true spread is ≤ 20 cents: every cell 97.1–100 % (lower bounds ≥ 90.0), with and without drift or vibrato. A fails at σ = 0 (0.8 %: it ignores reading noise); C fails under vibrato at σ = 0 (5.8 %). At σ ≥ 30 without vibrato every candidate fails (B 44.9–87.9 %), always on the **low** side: σ̂ saturates near 25 cents (median 24.3–25.9 at σ = 30 and 40) |
+| F2 | Where does σ̂ ± 2u_B hold, by the reported value? | σ̂ ≤ 10 cents: 342 of 342 phrases covered (98.9–100 %); without vibrato 100 % (97.9–100, 181), with 100 % (97.7–100, 161). Above 10 cents, without vibrato, it fails: 91.8 % at 10–12.5 (49), 85.3 % at 12.5–15 (34), 82.4 % at 20–25 (222) |
+| F3 | Is the lower end honest everywhere? | Yes. σ̂ − 2u_B exceeds the true spread in 1 of 1775 reported phrases (99.9 % honest, 99.7–100); among σ̂ > 10, 1432 of 1433 (99.6–100) |
+| F4 | What does a singer get? | σ ≤ 10, no drift: mostly *measured*. σ = 0: 238 measured, 236 *at least*, 6 *intent uncertain*; σ = 10: 102, 334, 44; σ = 20: 2, 367, 111; σ = 30: 0, 262, 218; σ = 40: 0, 234, 246 (of 480 each). *u_B* median 3.65 cents without vibrato, 19.2 with (the settle window holds under two vibrato cycles; round 2) |
+
+So squillo can state three things honestly: σ̂ ± 2u_B when σ̂ ≤ 10 cents;
+only "at least σ̂ − 2u_B" when σ̂ > 10; "intent uncertain" when σ̂ is not
+above chance. Synthetic only (round 1's limits apply); real voices'
+heavier tail is untested here.
+
+**Fixtures** (`results/fold.json`, `fixtures`). Four takes for squillo's
+`fixtures/metrics/`, by the formula squillo's MANIFEST records: 14 sines,
+*A* = 0.5, the A-major scale from A3 up to A4 and back, on a tuning 23 cents
+above A4 = 440 Hz, each 0.4 s with 10 ms raised-cosine ramps after 0.1 s of
+silence, 0.1 s of silence at the end; 340 800 `f32` samples. Asserted: every
+note in E2–C6 (217.04 to 447.82 Hz), deviations of mean 0 inside ±50 cents,
+peak ≤ 0.5, every gap exactly zero. Byte-identical on two runs (CPython
+3.13.14, glibc 2.43). E-002's YIN: every frame whose window lies inside a
+note's unramped part within 0.01 cents of the note; every note found, settle
+within 0.003 cents.
+
+| Fixture | Deviations | σ̂ | *u_B* | State | Check |
+| :--- | :--- | ---: | ---: | :--- | :--- |
+| `take-in-tune.wav` | none | 0.001 | 1.000 | measured | ± 2u contains 0 |
+| `take-spread-5c.wav` | sd 5 exactly | 5.223 | 1.432 | measured | contains 5, excludes 0 |
+| `take-drift-60c.wav` | −30 to +30 linear, sd 18.605 | 22.374 | 4.501 | at least | lower end 13.37, in (0, 18.605] |
+| `take-uncertain.wav` | evenly round the circle | — | — | intent uncertain | not above chance |
+
+Improvement, `take-spread-5c` then `take-in-tune`: difference 5.222 cents,
+2√(*u*₁² + *u*₂²) = 3.492, so improved.
 
 **Needs a human (15 minutes).** VocalSet's singers are trained; squillo's
 first singer is not.

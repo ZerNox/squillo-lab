@@ -1,0 +1,1516 @@
+{
+ "coverage": {
+  "phrases": 2400,
+  "split": {
+   "split": 10.0,
+   "measured": 342,
+   "at_least": 1433,
+   "uncertain": 625,
+   "measured_coverage_pop": [
+    100.0,
+    98.9,
+    100.0
+   ],
+   "measured_coverage_realised": [
+    100.0,
+    98.9,
+    100.0
+   ],
+   "measured_coverage_pop_vib0": [
+    100.0,
+    97.9,
+    100.0
+   ],
+   "measured_coverage_pop_vib1": [
+    100.0,
+    97.7,
+    100.0
+   ],
+   "measured_uB_median_vib0": 3.65,
+   "measured_uB_median_vib1": 19.23,
+   "at_least_lower_end_honest": [
+    99.9,
+    99.6,
+    100.0
+   ],
+   "lower_end_honest_all": [
+    99.9,
+    99.7,
+    100.0
+   ],
+   "by_sigma": {
+    "0": {
+     "measured": 238,
+     "at_least": 236,
+     "uncertain": 6
+    },
+    "10": {
+     "measured": 102,
+     "at_least": 334,
+     "uncertain": 44
+    },
+    "20": {
+     "measured": 2,
+     "at_least": 367,
+     "uncertain": 111
+    },
+    "30": {
+     "measured": 0,
+     "at_least": 262,
+     "uncertain": 218
+    },
+    "40": {
+     "measured": 0,
+     "at_least": 234,
+     "uncertain": 246
+    }
+   },
+   "coverage_by_s_bin_uB": {
+    "[0,5) vib=0": [
+     100.0,
+     96.9,
+     100.0,
+     119
+    ],
+    "[0,5) vib=1": [
+     100.0,
+     85.7,
+     100.0,
+     23
+    ],
+    "[5,10) vib=0": [
+     100.0,
+     94.2,
+     100.0,
+     62
+    ],
+    "[5,10) vib=1": [
+     100.0,
+     97.3,
+     100.0,
+     138
+    ],
+    "[10,12.5) vib=0": [
+     91.8,
+     80.8,
+     96.8,
+     49
+    ],
+    "[10,12.5) vib=1": [
+     100.0,
+     92.0,
+     100.0,
+     44
+    ],
+    "[12.5,15) vib=0": [
+     85.3,
+     69.9,
+     93.6,
+     34
+    ],
+    "[12.5,15) vib=1": [
+     100.0,
+     93.6,
+     100.0,
+     56
+    ],
+    "[15,20) vib=0": [
+     88.8,
+     83.4,
+     92.6,
+     179
+    ],
+    "[15,20) vib=1": [
+     100.0,
+     98.0,
+     100.0,
+     184
+    ],
+    "[20,25) vib=0": [
+     82.4,
+     76.9,
+     86.9,
+     222
+    ],
+    "[20,25) vib=1": [
+     100.0,
+     98.4,
+     100.0,
+     236
+    ],
+    "[25,1000000000.0) vib=0": [
+     95.2,
+     91.4,
+     97.4,
+     209
+    ],
+    "[25,1000000000.0) vib=1": [
+     100.0,
+     98.3,
+     100.0,
+     220
+    ]
+   }
+  },
+  "rule": {
+   "upper": 25.0,
+   "reported": 239,
+   "coverage_pop": [
+    97.5,
+    94.6,
+    98.8
+   ],
+   "coverage_realised": [
+    100.0,
+    98.4,
+    100.0
+   ],
+   "misses_low": 6,
+   "misses_high": 0,
+   "max_pop_reported": 43.4,
+   "uB_median": 3.99
+  },
+  "note_centres_outside_E2_C6": 0,
+  "centre_min": -2784.7,
+  "centre_max": 1293.5,
+  "conditions": {
+   "sigma=0,drift=0,vib=0": {
+    "n": 120,
+    "reported": 120,
+    "pop_median": 0.0,
+    "s_median": 2.54,
+    "notes_median": 12.0,
+    "uA_pop": [
+     0.8,
+     0.1,
+     4.6
+    ],
+    "uA_realised": [
+     0.8,
+     0.1,
+     4.6
+    ],
+    "uA_median": 0.61,
+    "uB_pop": [
+     100.0,
+     96.9,
+     100.0
+    ],
+    "uB_realised": [
+     100.0,
+     96.9,
+     100.0
+    ],
+    "uB_median": 3.24,
+    "uC_pop": [
+     94.2,
+     88.4,
+     97.1
+    ],
+    "uC_realised": [
+     94.2,
+     88.4,
+     97.1
+    ],
+    "uC_median": 1.83,
+    "uB_pop_miss_low": 0,
+    "uB_pop_miss_high": 0,
+    "rule_reported": 115,
+    "rule_uB_pop": [
+     100.0,
+     96.8,
+     100.0
+    ],
+    "rule_uB_realised": [
+     100.0,
+     96.8,
+     100.0
+    ],
+    "rule_misses_low": 0
+   },
+   "sigma=0,drift=0,vib=1": {
+    "n": 120,
+    "reported": 120,
+    "pop_median": 0.0,
+    "s_median": 6.27,
+    "notes_median": 12.0,
+    "uA_pop": [
+     0.8,
+     0.1,
+     4.6
+    ],
+    "uA_realised": [
+     0.8,
+     0.1,
+     4.6
+    ],
+    "uA_median": 1.54,
+    "uB_pop": [
+     100.0,
+     96.9,
+     100.0
+    ],
+    "uB_realised": [
+     100.0,
+     96.9,
+     100.0
+    ],
+    "uB_median": 19.42,
+    "uC_pop": [
+     5.8,
+     2.9,
+     11.6
+    ],
+    "uC_realised": [
+     5.8,
+     2.9,
+     11.6
+    ],
+    "uC_median": 2.32,
+    "uB_pop_miss_low": 0,
+    "uB_pop_miss_high": 0,
+    "rule_reported": 0,
+    "rule_uB_pop": [
+     null,
+     null,
+     null
+    ],
+    "rule_uB_realised": [
+     null,
+     null,
+     null
+    ],
+    "rule_misses_low": 0
+   },
+   "sigma=0,drift=60,vib=0": {
+    "n": 120,
+    "reported": 119,
+    "pop_median": 16.81,
+    "s_median": 20.43,
+    "notes_median": 12.0,
+    "uA_pop": [
+     100.0,
+     96.9,
+     100.0
+    ],
+    "uA_realised": [
+     100.0,
+     96.9,
+     100.0
+    ],
+    "uA_median": 4.89,
+    "uB_pop": [
+     100.0,
+     96.9,
+     100.0
+    ],
+    "uB_realised": [
+     100.0,
+     96.9,
+     100.0
+    ],
+    "uB_median": 6.67,
+    "uC_pop": [
+     100.0,
+     96.9,
+     100.0
+    ],
+    "uC_realised": [
+     100.0,
+     96.9,
+     100.0
+    ],
+    "uC_median": 5.18,
+    "uB_pop_miss_low": 0,
+    "uB_pop_miss_high": 0,
+    "rule_reported": 0,
+    "rule_uB_pop": [
+     null,
+     null,
+     null
+    ],
+    "rule_uB_realised": [
+     null,
+     null,
+     null
+    ],
+    "rule_misses_low": 0
+   },
+   "sigma=0,drift=60,vib=1": {
+    "n": 120,
+    "reported": 115,
+    "pop_median": 16.8,
+    "s_median": 20.32,
+    "notes_median": 13.0,
+    "uA_pop": [
+     99.1,
+     95.2,
+     99.8
+    ],
+    "uA_realised": [
+     99.1,
+     95.2,
+     99.8
+    ],
+    "uA_median": 4.89,
+    "uB_pop": [
+     100.0,
+     96.8,
+     100.0
+    ],
+    "uB_realised": [
+     100.0,
+     96.8,
+     100.0
+    ],
+    "uB_median": 20.34,
+    "uC_pop": [
+     99.1,
+     95.2,
+     99.8
+    ],
+    "uC_realised": [
+     99.1,
+     95.2,
+     99.8
+    ],
+    "uC_median": 5.19,
+    "uB_pop_miss_low": 0,
+    "uB_pop_miss_high": 0,
+    "rule_reported": 0,
+    "rule_uB_pop": [
+     null,
+     null,
+     null
+    ],
+    "rule_uB_realised": [
+     null,
+     null,
+     null
+    ],
+    "rule_misses_low": 0
+   },
+   "sigma=10,drift=0,vib=0": {
+    "n": 120,
+    "reported": 120,
+    "pop_median": 10.0,
+    "s_median": 10.03,
+    "notes_median": 12.0,
+    "uA_pop": [
+     95.8,
+     90.6,
+     98.2
+    ],
+    "uA_realised": [
+     100.0,
+     96.9,
+     100.0
+    ],
+    "uA_median": 2.52,
+    "uB_pop": [
+     100.0,
+     96.9,
+     100.0
+    ],
+    "uB_realised": [
+     100.0,
+     96.9,
+     100.0
+    ],
+    "uB_median": 5.01,
+    "uC_pop": [
+     100.0,
+     96.9,
+     100.0
+    ],
+    "uC_realised": [
+     100.0,
+     96.9,
+     100.0
+    ],
+    "uC_median": 3.06,
+    "uB_pop_miss_low": 0,
+    "uB_pop_miss_high": 0,
+    "rule_reported": 103,
+    "rule_uB_pop": [
+     100.0,
+     96.4,
+     100.0
+    ],
+    "rule_uB_realised": [
+     100.0,
+     96.4,
+     100.0
+    ],
+    "rule_misses_low": 0
+   },
+   "sigma=10,drift=0,vib=1": {
+    "n": 120,
+    "reported": 120,
+    "pop_median": 10.0,
+    "s_median": 10.97,
+    "notes_median": 12.0,
+    "uA_pop": [
+     93.3,
+     87.4,
+     96.6
+    ],
+    "uA_realised": [
+     98.3,
+     94.1,
+     99.5
+    ],
+    "uA_median": 2.67,
+    "uB_pop": [
+     100.0,
+     96.9,
+     100.0
+    ],
+    "uB_realised": [
+     100.0,
+     96.9,
+     100.0
+    ],
+    "uB_median": 19.55,
+    "uC_pop": [
+     99.2,
+     95.4,
+     99.9
+    ],
+    "uC_realised": [
+     98.3,
+     94.1,
+     99.5
+    ],
+    "uC_median": 3.19,
+    "uB_pop_miss_low": 0,
+    "uB_pop_miss_high": 0,
+    "rule_reported": 0,
+    "rule_uB_pop": [
+     null,
+     null,
+     null
+    ],
+    "rule_uB_realised": [
+     null,
+     null,
+     null
+    ],
+    "rule_misses_low": 0
+   },
+   "sigma=10,drift=60,vib=0": {
+    "n": 120,
+    "reported": 102,
+    "pop_median": 19.56,
+    "s_median": 22.75,
+    "notes_median": 12.0,
+    "uA_pop": [
+     98.0,
+     93.1,
+     99.5
+    ],
+    "uA_realised": [
+     99.0,
+     94.7,
+     99.8
+    ],
+    "uA_median": 5.36,
+    "uB_pop": [
+     99.0,
+     94.7,
+     99.8
+    ],
+    "uB_realised": [
+     99.0,
+     94.7,
+     99.8
+    ],
+    "uB_median": 6.83,
+    "uC_pop": [
+     98.0,
+     93.1,
+     99.5
+    ],
+    "uC_realised": [
+     99.0,
+     94.7,
+     99.8
+    ],
+    "uC_median": 5.64,
+    "uB_pop_miss_low": 0,
+    "uB_pop_miss_high": 1,
+    "rule_reported": 0,
+    "rule_uB_pop": [
+     null,
+     null,
+     null
+    ],
+    "rule_uB_realised": [
+     null,
+     null,
+     null
+    ],
+    "rule_misses_low": 0
+   },
+   "sigma=10,drift=60,vib=1": {
+    "n": 120,
+    "reported": 94,
+    "pop_median": 19.56,
+    "s_median": 21.38,
+    "notes_median": 13.0,
+    "uA_pop": [
+     98.9,
+     94.2,
+     99.8
+    ],
+    "uA_realised": [
+     98.9,
+     94.2,
+     99.8
+    ],
+    "uA_median": 4.97,
+    "uB_pop": [
+     100.0,
+     96.1,
+     100.0
+    ],
+    "uB_realised": [
+     100.0,
+     96.1,
+     100.0
+    ],
+    "uB_median": 20.63,
+    "uC_pop": [
+     98.9,
+     94.2,
+     99.8
+    ],
+    "uC_realised": [
+     100.0,
+     96.1,
+     100.0
+    ],
+    "uC_median": 5.26,
+    "uB_pop_miss_low": 0,
+    "uB_pop_miss_high": 0,
+    "rule_reported": 0,
+    "rule_uB_pop": [
+     null,
+     null,
+     null
+    ],
+    "rule_uB_realised": [
+     null,
+     null,
+     null
+    ],
+    "rule_misses_low": 0
+   },
+   "sigma=20,drift=0,vib=0": {
+    "n": 120,
+    "reported": 109,
+    "pop_median": 20.0,
+    "s_median": 19.38,
+    "notes_median": 12.0,
+    "uA_pop": [
+     90.8,
+     83.9,
+     94.9
+    ],
+    "uA_realised": [
+     100.0,
+     96.6,
+     100.0
+    ],
+    "uA_median": 4.8,
+    "uB_pop": [
+     97.2,
+     92.2,
+     99.1
+    ],
+    "uB_realised": [
+     100.0,
+     96.6,
+     100.0
+    ],
+    "uB_median": 6.64,
+    "uC_pop": [
+     92.7,
+     86.2,
+     96.2
+    ],
+    "uC_realised": [
+     100.0,
+     96.6,
+     100.0
+    ],
+    "uC_median": 5.1,
+    "uB_pop_miss_low": 3,
+    "uB_pop_miss_high": 0,
+    "rule_reported": 18,
+    "rule_uB_pop": [
+     83.3,
+     60.8,
+     94.2
+    ],
+    "rule_uB_realised": [
+     100.0,
+     82.4,
+     100.0
+    ],
+    "rule_misses_low": 3
+   },
+   "sigma=20,drift=0,vib=1": {
+    "n": 120,
+    "reported": 104,
+    "pop_median": 20.0,
+    "s_median": 19.6,
+    "notes_median": 13.0,
+    "uA_pop": [
+     93.3,
+     86.8,
+     96.7
+    ],
+    "uA_realised": [
+     98.1,
+     93.3,
+     99.5
+    ],
+    "uA_median": 4.69,
+    "uB_pop": [
+     100.0,
+     96.4,
+     100.0
+    ],
+    "uB_realised": [
+     100.0,
+     96.4,
+     100.0
+    ],
+    "uB_median": 20.62,
+    "uC_pop": [
+     95.2,
+     89.2,
+     97.9
+    ],
+    "uC_realised": [
+     98.1,
+     93.3,
+     99.5
+    ],
+    "uC_median": 5.0,
+    "uB_pop_miss_low": 0,
+    "uB_pop_miss_high": 0,
+    "rule_reported": 0,
+    "rule_uB_pop": [
+     null,
+     null,
+     null
+    ],
+    "rule_uB_realised": [
+     null,
+     null,
+     null
+    ],
+    "rule_misses_low": 0
+   },
+   "sigma=20,drift=60,vib=0": {
+    "n": 120,
+    "reported": 69,
+    "pop_median": 26.12,
+    "s_median": 23.02,
+    "notes_median": 13.0,
+    "uA_pop": [
+     88.4,
+     78.8,
+     94.0
+    ],
+    "uA_realised": [
+     92.8,
+     84.1,
+     96.9
+    ],
+    "uA_median": 5.77,
+    "uB_pop": [
+     97.1,
+     90.0,
+     99.2
+    ],
+    "uB_realised": [
+     98.6,
+     92.2,
+     99.7
+    ],
+    "uB_median": 7.2,
+    "uC_pop": [
+     92.8,
+     84.1,
+     96.9
+    ],
+    "uC_realised": [
+     94.2,
+     86.0,
+     97.7
+    ],
+    "uC_median": 6.03,
+    "uB_pop_miss_low": 2,
+    "uB_pop_miss_high": 0,
+    "rule_reported": 2,
+    "rule_uB_pop": [
+     0.0,
+     0.0,
+     65.8
+    ],
+    "rule_uB_realised": [
+     100.0,
+     34.2,
+     100.0
+    ],
+    "rule_misses_low": 2
+   },
+   "sigma=20,drift=60,vib=1": {
+    "n": 120,
+    "reported": 87,
+    "pop_median": 26.12,
+    "s_median": 23.76,
+    "notes_median": 14.0,
+    "uA_pop": [
+     89.7,
+     81.5,
+     94.5
+    ],
+    "uA_realised": [
+     93.1,
+     85.8,
+     96.8
+    ],
+    "uA_median": 5.49,
+    "uB_pop": [
+     100.0,
+     95.8,
+     100.0
+    ],
+    "uB_realised": [
+     100.0,
+     95.8,
+     100.0
+    ],
+    "uB_median": 21.45,
+    "uC_pop": [
+     90.8,
+     82.9,
+     95.3
+    ],
+    "uC_realised": [
+     94.3,
+     87.2,
+     97.5
+    ],
+    "uC_median": 5.76,
+    "uB_pop_miss_low": 0,
+    "uB_pop_miss_high": 0,
+    "rule_reported": 0,
+    "rule_uB_pop": [
+     null,
+     null,
+     null
+    ],
+    "rule_uB_realised": [
+     null,
+     null,
+     null
+    ],
+    "rule_misses_low": 0
+   },
+   "sigma=30,drift=0,vib=0": {
+    "n": 120,
+    "reported": 66,
+    "pop_median": 30.0,
+    "s_median": 24.31,
+    "notes_median": 13.0,
+    "uA_pop": [
+     74.2,
+     62.6,
+     83.3
+    ],
+    "uA_realised": [
+     90.9,
+     81.6,
+     95.8
+    ],
+    "uA_median": 5.66,
+    "uB_pop": [
+     87.9,
+     77.9,
+     93.7
+    ],
+    "uB_realised": [
+     93.9,
+     85.4,
+     97.6
+    ],
+    "uB_median": 7.84,
+    "uC_pop": [
+     74.2,
+     62.6,
+     83.3
+    ],
+    "uC_realised": [
+     90.9,
+     81.6,
+     95.8
+    ],
+    "uC_median": 5.92,
+    "uB_pop_miss_low": 8,
+    "uB_pop_miss_high": 0,
+    "rule_reported": 0,
+    "rule_uB_pop": [
+     null,
+     null,
+     null
+    ],
+    "rule_uB_realised": [
+     null,
+     null,
+     null
+    ],
+    "rule_misses_low": 0
+   },
+   "sigma=30,drift=0,vib=1": {
+    "n": 120,
+    "reported": 65,
+    "pop_median": 30.0,
+    "s_median": 25.06,
+    "notes_median": 14.0,
+    "uA_pop": [
+     76.9,
+     65.4,
+     85.5
+    ],
+    "uA_realised": [
+     90.8,
+     81.3,
+     95.7
+    ],
+    "uA_median": 5.81,
+    "uB_pop": [
+     100.0,
+     94.4,
+     100.0
+    ],
+    "uB_realised": [
+     100.0,
+     94.4,
+     100.0
+    ],
+    "uB_median": 21.27,
+    "uC_pop": [
+     80.0,
+     68.7,
+     87.9
+    ],
+    "uC_realised": [
+     90.8,
+     81.3,
+     95.7
+    ],
+    "uC_median": 6.07,
+    "uB_pop_miss_low": 0,
+    "uB_pop_miss_high": 0,
+    "rule_reported": 0,
+    "rule_uB_pop": [
+     null,
+     null,
+     null
+    ],
+    "rule_uB_realised": [
+     null,
+     null,
+     null
+    ],
+    "rule_misses_low": 0
+   },
+   "sigma=30,drift=60,vib=0": {
+    "n": 120,
+    "reported": 61,
+    "pop_median": 34.39,
+    "s_median": 25.04,
+    "notes_median": 13.0,
+    "uA_pop": [
+     65.6,
+     53.0,
+     76.3
+    ],
+    "uA_realised": [
+     83.6,
+     72.4,
+     90.8
+    ],
+    "uA_median": 6.03,
+    "uB_pop": [
+     82.0,
+     70.5,
+     89.6
+    ],
+    "uB_realised": [
+     88.5,
+     78.2,
+     94.3
+    ],
+    "uB_median": 7.72,
+    "uC_pop": [
+     68.9,
+     56.4,
+     79.1
+    ],
+    "uC_realised": [
+     83.6,
+     72.4,
+     90.8
+    ],
+    "uC_median": 6.27,
+    "uB_pop_miss_low": 11,
+    "uB_pop_miss_high": 0,
+    "rule_reported": 0,
+    "rule_uB_pop": [
+     null,
+     null,
+     null
+    ],
+    "rule_uB_realised": [
+     null,
+     null,
+     null
+    ],
+    "rule_misses_low": 0
+   },
+   "sigma=30,drift=60,vib=1": {
+    "n": 120,
+    "reported": 70,
+    "pop_median": 34.39,
+    "s_median": 24.86,
+    "notes_median": 14.0,
+    "uA_pop": [
+     62.9,
+     51.1,
+     73.2
+    ],
+    "uA_realised": [
+     67.1,
+     55.5,
+     77.0
+    ],
+    "uA_median": 5.75,
+    "uB_pop": [
+     100.0,
+     94.8,
+     100.0
+    ],
+    "uB_realised": [
+     100.0,
+     94.8,
+     100.0
+    ],
+    "uB_median": 21.42,
+    "uC_pop": [
+     64.3,
+     52.6,
+     74.5
+    ],
+    "uC_realised": [
+     71.4,
+     59.9,
+     80.7
+    ],
+    "uC_median": 6.01,
+    "uB_pop_miss_low": 0,
+    "uB_pop_miss_high": 0,
+    "rule_reported": 0,
+    "rule_uB_pop": [
+     null,
+     null,
+     null
+    ],
+    "rule_uB_realised": [
+     null,
+     null,
+     null
+    ],
+    "rule_misses_low": 0
+   },
+   "sigma=40,drift=0,vib=0": {
+    "n": 120,
+    "reported": 59,
+    "pop_median": 40.0,
+    "s_median": 25.93,
+    "notes_median": 13.0,
+    "uA_pop": [
+     39.0,
+     27.6,
+     51.7
+    ],
+    "uA_realised": [
+     57.6,
+     44.9,
+     69.4
+    ],
+    "uA_median": 5.91,
+    "uB_pop": [
+     55.9,
+     43.3,
+     67.8
+    ],
+    "uB_realised": [
+     62.7,
+     50.0,
+     73.9
+    ],
+    "uB_median": 8.02,
+    "uC_pop": [
+     40.7,
+     29.1,
+     53.4
+    ],
+    "uC_realised": [
+     57.6,
+     44.9,
+     69.4
+    ],
+    "uC_median": 6.16,
+    "uB_pop_miss_low": 26,
+    "uB_pop_miss_high": 0,
+    "rule_reported": 0,
+    "rule_uB_pop": [
+     null,
+     null,
+     null
+    ],
+    "rule_uB_realised": [
+     null,
+     null,
+     null
+    ],
+    "rule_misses_low": 0
+   },
+   "sigma=40,drift=0,vib=1": {
+    "n": 120,
+    "reported": 70,
+    "pop_median": 40.0,
+    "s_median": 24.65,
+    "notes_median": 14.0,
+    "uA_pop": [
+     38.6,
+     28.0,
+     50.3
+    ],
+    "uA_realised": [
+     55.7,
+     44.1,
+     66.8
+    ],
+    "uA_median": 5.76,
+    "uB_pop": [
+     100.0,
+     94.8,
+     100.0
+    ],
+    "uB_realised": [
+     100.0,
+     94.8,
+     100.0
+    ],
+    "uB_median": 21.23,
+    "uC_pop": [
+     38.6,
+     28.0,
+     50.3
+    ],
+    "uC_realised": [
+     57.1,
+     45.5,
+     68.1
+    ],
+    "uC_median": 6.01,
+    "uB_pop_miss_low": 0,
+    "uB_pop_miss_high": 0,
+    "rule_reported": 0,
+    "rule_uB_pop": [
+     null,
+     null,
+     null
+    ],
+    "rule_uB_realised": [
+     null,
+     null,
+     null
+    ],
+    "rule_misses_low": 0
+   },
+   "sigma=40,drift=60,vib=0": {
+    "n": 120,
+    "reported": 49,
+    "pop_median": 43.39,
+    "s_median": 25.91,
+    "notes_median": 13.0,
+    "uA_pop": [
+     22.4,
+     13.0,
+     35.9
+    ],
+    "uA_realised": [
+     46.9,
+     33.7,
+     60.6
+    ],
+    "uA_median": 5.97,
+    "uB_pop": [
+     44.9,
+     31.9,
+     58.7
+    ],
+    "uB_realised": [
+     65.3,
+     51.3,
+     77.1
+    ],
+    "uB_median": 8.04,
+    "uC_pop": [
+     24.5,
+     14.6,
+     38.1
+    ],
+    "uC_realised": [
+     51.0,
+     37.5,
+     64.4
+    ],
+    "uC_median": 6.22,
+    "uB_pop_miss_low": 27,
+    "uB_pop_miss_high": 0,
+    "rule_reported": 1,
+    "rule_uB_pop": [
+     0.0,
+     0.0,
+     79.3
+    ],
+    "rule_uB_realised": [
+     100.0,
+     20.7,
+     100.0
+    ],
+    "rule_misses_low": 1
+   },
+   "sigma=40,drift=60,vib=1": {
+    "n": 120,
+    "reported": 56,
+    "pop_median": 43.39,
+    "s_median": 24.31,
+    "notes_median": 15.0,
+    "uA_pop": [
+     19.6,
+     11.3,
+     31.8
+    ],
+    "uA_realised": [
+     37.5,
+     26.0,
+     50.6
+    ],
+    "uA_median": 5.66,
+    "uB_pop": [
+     100.0,
+     93.6,
+     100.0
+    ],
+    "uB_realised": [
+     100.0,
+     93.6,
+     100.0
+    ],
+    "uB_median": 21.58,
+    "uC_pop": [
+     19.6,
+     11.3,
+     31.8
+    ],
+    "uC_realised": [
+     37.5,
+     26.0,
+     50.6
+    ],
+    "uC_median": 5.92,
+    "uB_pop_miss_low": 0,
+    "uB_pop_miss_high": 0,
+    "rule_reported": 0,
+    "rule_uB_pop": [
+     null,
+     null,
+     null
+    ],
+    "rule_uB_realised": [
+     null,
+     null,
+     null
+    ],
+    "rule_misses_low": 0
+   }
+  },
+  "by_upper": {
+   "uA upper in [0,10)": [
+    0.5,
+    0.1,
+    2.7,
+    203
+   ],
+   "uB upper in [0,10)": [
+    100.0,
+    95.2,
+    100.0,
+    77
+   ],
+   "uC upper in [0,10)": [
+    76.6,
+    69.3,
+    82.6,
+    154
+   ],
+   "uA upper in [10,20)": [
+    73.6,
+    67.9,
+    78.7,
+    254
+   ],
+   "uB upper in [10,20)": [
+    97.0,
+    91.5,
+    99.0,
+    100
+   ],
+   "uC upper in [10,20)": [
+    65.9,
+    60.2,
+    71.1,
+    287
+   ],
+   "uA upper in [20,25)": [
+    77.6,
+    70.2,
+    83.5,
+    147
+   ],
+   "uB upper in [20,25)": [
+    95.2,
+    86.7,
+    98.3,
+    62
+   ],
+   "uC upper in [20,25)": [
+    78.7,
+    71.3,
+    84.7,
+    141
+   ],
+   "uA upper in [25,30)": [
+    75.0,
+    69.9,
+    79.5,
+    308
+   ],
+   "uB upper in [25,30)": [
+    81.3,
+    71.1,
+    88.5,
+    75
+   ],
+   "uC upper in [25,30)": [
+    76.0,
+    70.6,
+    80.6,
+    279
+   ],
+   "uA upper in [30,40)": [
+    77.4,
+    73.8,
+    80.7,
+    562
+   ],
+   "uB upper in [30,40)": [
+    85.6,
+    81.5,
+    88.9,
+    340
+   ],
+   "uC upper in [30,40)": [
+    78.3,
+    74.8,
+    81.4,
+    594
+   ],
+   "uA upper in [40,1000000000.0)": [
+    92.0,
+    88.4,
+    94.6,
+    301
+   ],
+   "uB upper in [40,1000000000.0)": [
+    99.2,
+    98.5,
+    99.6,
+    1121
+   ],
+   "uC upper in [40,1000000000.0)": [
+    92.2,
+    88.7,
+    94.7,
+    320
+   ]
+  }
+ },
+ "fixtures": {
+  "fixtures": {
+   "take-in-tune.wav": {
+    "sha256": "2122acc43f43a40a9622207ece3278b9856e8603d52d940a6b3baacbd5c041e2",
+    "bytes": 1363258,
+    "deviations": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "deviation_sd": 0.0,
+    "f_min": 222.9423,
+    "f_max": 445.8845,
+    "notes_found": 14,
+    "settle_max_abs_err": 0.001,
+    "frame_max_abs_err_inside": 0.01,
+    "spread": 0.001,
+    "n_eff": 13.997,
+    "uA": 0.0,
+    "uB": 1.0,
+    "uC": 1.732
+   },
+   "take-spread-5c.wav": {
+    "sha256": "2874a3c5229d6847290f4a8043537674fe13125e2f50d91652529bf6903019a7",
+    "bytes": 1363258,
+    "deviations": [
+     -7.5,
+     2.5,
+     5,
+     -2.5,
+     0,
+     7.5,
+     -5,
+     7.5,
+     -7.5,
+     2.5,
+     -2.5,
+     5,
+     -5,
+     0
+    ],
+    "deviation_sd": 5.0,
+    "f_min": 221.9785,
+    "f_max": 447.8204,
+    "notes_found": 14,
+    "settle_max_abs_err": 0.003,
+    "frame_max_abs_err_inside": 0.009,
+    "spread": 5.223,
+    "n_eff": 13.998,
+    "uA": 1.024,
+    "uB": 1.432,
+    "uC": 2.012
+   },
+   "take-drift-60c.wav": {
+    "sha256": "53b696bb9a74e2f41f315e6bd840fb6821770ced1dfaa058a26afc3fa4a28c50",
+    "bytes": 1363258,
+    "deviations": [
+     -30.0,
+     -25.3846,
+     -20.7692,
+     -16.1538,
+     -11.5385,
+     -6.9231,
+     -2.3077,
+     2.3077,
+     6.9231,
+     11.5385,
+     16.1538,
+     20.7692,
+     25.3846,
+     30.0
+    ],
+    "deviation_sd": 18.6052,
+    "f_min": 219.1123,
+    "f_max": 446.4793,
+    "notes_found": 14,
+    "settle_max_abs_err": 0.001,
+    "frame_max_abs_err_inside": 0.009,
+    "spread": 22.374,
+    "n_eff": 13.998,
+    "uA": 4.388,
+    "uB": 4.501,
+    "uC": 4.718
+   },
+   "take-uncertain.wav": {
+    "sha256": "052bc52b772f784147c477e2cc3d679d2136ac5618d17e461288eda0d618d026",
+    "bytes": 1363258,
+    "deviations": [
+     -46.4286,
+     -10.7143,
+     25.0,
+     -39.2857,
+     -3.5714,
+     32.1429,
+     -32.1429,
+     3.5714,
+     39.2857,
+     -25.0,
+     10.7143,
+     46.4286,
+     -17.8571,
+     17.8571
+    ],
+    "deviation_sd": 28.7938,
+    "f_min": 217.0428,
+    "f_max": 446.8053,
+    "notes_found": 14,
+    "settle_max_abs_err": 0.001,
+    "frame_max_abs_err_inside": 0.008,
+    "spread": null,
+    "n_eff": 13.998,
+    "uA": null,
+    "uB": null,
+    "uC": null
+   }
+  },
+  "checks": {
+   "states": {
+    "take-in-tune.wav": "measured",
+    "take-spread-5c.wav": "measured",
+    "take-drift-60c.wav": "at least",
+    "take-uncertain.wav": "intent uncertain"
+   },
+   "in-tune measured, contains 0": true,
+   "spread-5 measured, contains 5": true,
+   "spread-5 excludes 0": true,
+   "drift at least, lower end": 13.372,
+   "drift lower end in (0, deviation sd]": true,
+   "uncertain not above chance": true,
+   "spread-5 -> in-tune improved": true,
+   "improvement margin (d, U)": [
+    5.222,
+    3.492
+   ]
+  }
+ }
+}
