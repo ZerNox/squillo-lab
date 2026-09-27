@@ -38,6 +38,15 @@ article's score block, the person's entity, the edition. It never takes the
 best match among several, because a different work can match. Caches of
 outside reads are keyed by the whole request (squillo L-027).
 
+**Place every anomaly in the input's own structure** (squillo standing
+instruction S17). When a known input passes through a system the lab does
+not control (a browser's fake device, a looped source, a codec), the
+analysis records where each anomaly falls in the input: its start, a loop
+point, a file boundary. One that falls there is attributed to the input
+path until a run without that structure clears it. A sign or direction
+stated in a result's legend is derived from the measure's definition in the
+code and checked by hand on one case (squillo L-029).
+
 **A result is a number with its conditions.** State what was measured, on what
 input, with which tool versions, and the uncertainty. "Works well" is not a
 result.
@@ -58,7 +67,10 @@ from here or from cited literature, never from nowhere.
   dependency (E-004), compiles score text to MIDI; nothing system-wide.
 - **Browsers**: Node with Playwright, driving the installed Chrome and
   Firefox. Chrome's fake audio capture (`--use-file-for-fake-audio-capture`)
-  feeds a WAV file as the microphone.
+  feeds a WAV file as the microphone. The Firefox here is a snap, which
+  sees neither `/tmp` nor hidden directories under home, and the worktrees
+  may live under `~/.local`; give it a profile directory under
+  `~/snap/firefox/common/` (E-003's `run.mjs`) and remove it afterwards.
 - **Rust / WASM**: added when an experiment needs to test the real engine
   path; not installed yet.
 - **GPU**: an Intel Arc A770M, which stands in for the remote tier and not for
