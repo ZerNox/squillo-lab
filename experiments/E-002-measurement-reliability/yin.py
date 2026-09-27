@@ -61,7 +61,7 @@ def parabola(y, t):
     return t + 0.5 * (a - c) / den
 
 
-def yin(x, threshold=0.1, f_lo=63.0, f_hi=3000.0, interp="d", dtype=np.float64):
+def yin(x, threshold=0.1, f_lo=63.0, f_hi=3000.0, interp="d", dtype=np.float64, octave_check=False):
     """Return (frame indices, f0 in Hz or nan, min CMND) for frames 3..n-1.
 
     The lag search spans periods of f_hi to f_lo (default 3000 Hz to 63 Hz,
@@ -84,6 +84,12 @@ def yin(x, threshold=0.1, f_lo=63.0, f_hi=3000.0, interp="d", dtype=np.float64):
         t = tau_min + below[0]
         while t + 1 < tau_max and row[t + 1] < row[t]:
             t += 1
+        if octave_check:  # E-002 round 2 variant: prefer a deeper dip at twice the lag
+            lo2, hi2 = 2 * t - 3, min(2 * t + 4, tau_max - 1)
+            if lo2 < hi2:
+                t2 = lo2 + int(np.argmin(row[lo2:hi2]))
+                if row[t2] < row[t] and lo2 < t2 < hi2 - 1:
+                    t = t2
         dmin[k] = row[t]
         if t <= tau_min or t >= tau_max - 1:
             continue

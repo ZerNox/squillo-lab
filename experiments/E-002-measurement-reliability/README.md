@@ -1,6 +1,6 @@
 # E-002 — Measurement reliability and uncertainty
 
-**Status:** running (round 1, pitch, answered on synthetic input; round 2 open) · **Serves:** VISION §5 (what is measured), §6 (honesty), §12.2
+**Status:** running (round 1, pitch, answered on synthetic input; round 2, real voices, pitch ± and four aspects, squillo iteration 28; round 3 open) · **Serves:** VISION §5 (what is measured), §6 (honesty), §12.2
 
 ## Question
 
@@ -150,9 +150,128 @@ vibrato at 7 Hz and 600 cents/s of glide, on synthetic tones. Deeper or
 faster movement needs a per-frame ± (result 10) rather than the fixed
 tolerance.
 
-### Round 2 (open)
+### Round 2: real voices, the pitch ±, and four aspects (squillo iteration 28, 2026-09-27)
 
-Openly licensed sung datasets with f0 annotations (licences in
-`data/SOURCES.md`); reverberation; calibration of the CMND-dip estimator
-against observed error; then vibrato rate and extent, stability and tone
-descriptors.
+Set by squillo review R-05: on VocalSet, pitch stability, vibrato rate and
+extent, and one tone or resonance measure, each with its ± and the conditions
+where it fails; S15's assertions first. squillo finding F-028 asks for a
+per-frame pitch *u* for voices.
+
+**Run:** `uv sync && uv run python fetch.py $(cat data/vocalset-files.txt) &&
+uv run python r2_truth.py check && uv run python r2_truth.py &&
+uv run python r2_run.py && uv run python r2_octave.py &&
+uv run python r2_analyse.py` (about 9 minutes on 16 processes; the fetch
+reads 147 MB by range requests). Numbers: `results/r2_truth.json`,
+`results/r2_octave.json`, `results/r2_results.json`. Tools: Python 3.13.14,
+numpy 2.5.3, scipy 1.18.1, pyworld 0.3.5, soundfile 0.14.0.
+
+**Inputs.** 159 VocalSet 1.1 takes by 20 singers (CC BY 4.0; list and
+licence in `data/SOURCES.md`), resampled from 44.1 to 48 kHz: long tones
+straight, forte, pianissimo and *messa di voce* (80), vibrato arpeggios (19),
+"Row, row, row your boat" with vibrato (20), breathy scales (20), straight
+scales (20).
+
+**A real voice with a known f0.** Following the approach of Salamon et al.
+(2017, "An analysis/synthesis framework for automatic f0 annotation of
+multitrack datasets", ISMIR 2017; read from its datasets' Zenodo record
+1481168, the paper itself not read), each take is analysed and re-synthesized,
+and the f0 used for synthesis is the truth of the new signal. Here WORLD
+(Morise, Yokomori and Ozawa 2016, doi:10.1587/transinf.2015EDP7457, pyworld
+0.3.5): Harvest f0 at 1 ms (71 to 1100 Hz, wider than E2..C6), CheapTrick,
+D4C, synthesis at 48 kHz. The truth at a sample is Harvest's f0 interpolated
+linearly there, as WORLD's synthesis advances its phase.
+
+**Checks, written before generating and asserted in code (S15).**
+
+| Check | Result |
+| :--- | :--- |
+| WORLD synthesis of a known contour (envelope and aperiodicity from one real frame), read by the tracker at SG-007's instant; steady 220 Hz must be within SG-005's 3 cents | Steady: 370 of 370 frames measured, max 0.58 cents, p95 0.40. A 5.5 Hz, ±50-cent vibrato: max 2.32, p95 1.74. Frames whose window starts in the first 10 ms (synthesis onset) left out, after the first run found frame 3 unmeasured there |
+| The truth procedure on one take of every set first | Ran (`r2_truth.py check`); truth inside 63.2–902.6 Hz, 98.0–99.8 % of voiced samples inside E2..C6 |
+| Each re-synthesis's long-term spectrum within the range of real recordings, in 1/3-octave bands (100 Hz–8 kHz) where both have energy (≥ −50 dB re the file's total) | The median band difference from its own original is 1.10 dB (p95 2.92, max 4.96); between two long-tone takes of one singer it is 0.99 to 10.05 dB (median 3.90, 120 pairs). Every file inside. The first form of this check, each band inside the extremes of all 159 originals, failed for 54 of 2704 bands by up to 4.64 dB: on a held note a band's level hinges on one harmonic, so pooled extremes are not the range of a take (squillo L-031) |
+| Frames used for pitch | Every truth sample of the 1536-sample window voiced, inside E2..C6 (from `yin.E2`, `yin.C6`), moving at most 200 cents: 184 685 frames per condition |
+| Conditions | White noise 30, 20, 10 dB and pink noise (−10 dB per decade, fitted slopes asserted within 0.5 dB per decade) 20, 10 dB SNR against the take's voiced RMS, 795 SNRs asserted within 0.01 dB of target; two rooms, a direct impulse plus an exponentially decaying Gaussian tail from 2.5 ms: RT60 0.4 s at DRR +6 dB and 0.8 s at DRR 0 dB, Schroeder T20 asserted within 5 % (measured 0.388–0.409 s and 0.786–0.812 s) and DRR within 0.1 dB. The rooms are models, not rooms |
+
+**Definitions.** Tracker as round 1 (threshold 0.1, lags to 763 samples,
+acceptance E2..C6 widened by 3 cents). A frame's error is against the truth at
+SG-007's instant, 384 *i* − 766 + *P*/2; against the truth's mean over the
+samples YIN compares instead, p95s move by at most 0.55 cents. *Gross*: more
+than 50 cents. Held notes: runs of valid frames, split where the truth's
+2 Hz low-pass leaves its first 0.25 s median by more than 60 cents, kept if
+at least 2 s, trimmed 0.5 s at each end, cut into 1 s blocks (125 frames).
+Per block: **steadiness**, the standard deviation of the pitch contour
+low-passed at 2 Hz (cents); **vibrato extent**, √2 × the RMS of the contour
+band-passed at 3–10 Hz (cents, the amplitude of a sinusoid of that RMS);
+**vibrato rate**, the band-passed block's spectral peak in 3–10 Hz, reported
+when the peak's ±0.5 Hz holds at least half the band's power. A measured
+contour fills refused frames linearly when they are at most 25 % of the note
+and no gap exceeds 12 frames, drops frames more than 600 cents from the note's
+median, and otherwise the note is unmeasured. The truth of a block measure is
+the same function on the truth contour. **Ring ratio**, the tone measure: the
+level in 2–4 kHz minus the level in 50 Hz–2 kHz, dB, summed over the
+Hann-windowed spectra of the frames YIN measured in each 1 s block, on the
+original takes (the bands of Omori, Kacker, Carroll, Riley and Blaugrund
+1996, *Singing power ratio*, J. Voice 10(3), 228–235,
+doi:10.1016/s0892-1997(96)80003-8, as an energy ratio rather than their peak
+ratio; the 2–4 kHz band holds the singer's formant cluster). A take's value
+is the mean of its blocks; its *u* is √(SD²/*n* + *ū*²), the blocks'
+sampling (GUM 4.2.3) and the tracking *u* taken as fully correlated across
+blocks. Singers are split in two folds by their number's parity; every rule
+is fitted on one fold and tested on the other, both ways.
+
+**Results.**
+
+| # | Question | Result |
+| :--- | :--- | :--- |
+| 15 | Per-frame pitch error on real voices, clean | Re-synthesis against its truth: 92.0 % of valid frames measured, 4.63 % of them gross, p50 1.22 cents, p95 of the non-gross 6.92. The original takes against Harvest's f0 (two trackers, not a truth): 1.99 % gross, p50 0.83, p95 5.61. Round 1's synthetic harmonic tones: p95 at most 0.93 |
+| 16 | Does MT-003's floor, *u* = √3 cents (± 3.46), cover real voices? | No. It covers 79.8 % of measured frames clean, 78.6 % at 20 dB white noise, 72.7 % at 10 dB, 53.0 % in the 0.4 s room and 30.4 % in the 0.8 s room (re-synthesis); 87.1 % of the original takes' frames against Harvest |
+| 17 | YIN's octave errors on real voices (S17: where do they fall?) | On the original takes, YIN reads 1.59 % of frames an octave above Harvest, 4.27 % in forte and in straight long tones; 93.2 % of those frames are men's, at a median 351 Hz, where /a/ puts the second harmonic far above the first. In 598 of 600 such frames sampled, a partial sits at Harvest's f0 (≥ 10 dB above 1.5 times it), so YIN is wrong: the first harmonic lies a median 19.3 dB under the second (p10 −25.7, p90 −13.9). Round 1's `weakf0` tone, 20 dB under, had none: its other harmonics held the period. The re-synthesis doubles the share (3.23 %): WORLD's output adds its own, as E-001 found, so rows 15, 18 and 19 overstate gross errors in that respect |
+| 18 | Two crude variants against octave errors | Threshold 0.05: gross 1.99 → 0.64 % on the originals (4.63 → 2.17 % re-synthesized) at 91.6 → 86.4 % measured. Taking twice the lag when its dip is deeper: octave-high errors vanish (0.01 %) and octave-low ones rise to 9.03 %. Neither fixes the tracker; the first trades frames for errors |
+| 19 | A per-frame *u* from the CMND dip (F-028), cross-validated across singers | Rule: in dip bins with edges 0, 0.0025, 0.005, 0.01, 0.02, 0.03, 0.05, 0.07, 0.1, *u* = half the 95th percentile of \|error\| (gross errors counting as misses), at least √3, non-decreasing; a bin whose 95th percentile is gross is refused, with all above it. Fitted on clean and noise. The two folds' tables: *u* = 1.73, 1.87, 2.44, 4.25 cents, refused from dip 0.02 (odd singers); 1.73, 1.87, 2.33, 2.93, 4.21, 5.70, refused from 0.05 (even). On the other fold, ± 2*u* covers 92.3 % of accepted frames clean, 94.0 % (white 30 dB), 95.0 % (white 20), 93.5 % (white 10), 94.7 % (pink 20), 93.6 % (pink 10), with 78.7, 66.6, 42.0, 7.5, 42.7, 8.7 % of valid frames accepted. What it misses are mostly octave errors: 2.0 % of accepted frames clean, 5.9 % at 10 dB. In the rooms it covers 76.2 % (0.4 s) and 55.0 % (0.8 s): the dip does not see reverberation (p95 of the non-gross 17.6 and 31.8 cents). On the original takes against Harvest: 97.2 % |
+| 20 | Steadiness | Truth over 190 clean blocks: p5 2.7, median 6.3, p95 14.0 cents. Tracking error per block: p95 0.65 cents clean, 0.35 (white 30), 2.83 (0.4 s room), 2.78 (0.8 s room). A tracking *u* of 0.058 to 0.112 × the frames' RMS *u* (fitted per fold) covers 92.1 % of blocks clean, 95.1 % at 30 dB, 65.6 % and 46.9 % in the rooms. A take's ± 2*u* covers its truth in 48 of 48 takes clean, 93.5 % (0.4 s) and 93.8 % (0.8 s): the sampling term dominates. Held notes measurable: 125 of 178 clean, 61 at 30 dB, 21 at 20 dB, none at 10 dB, 80 and 40 in the rooms |
+| 21 | Vibrato extent | Truth: p5 6.0, median 47.3, p95 110.5 cents. Per block, p95 tracking error 2.44 cents clean, 1.73 at 30 dB; in the rooms biased low, median −2.6 and −4.5 cents, p95 20.3 and 28.9. A take's ± 2*u* covers 48 of 48 clean and 80.6 % and 31.3 % in the rooms |
+| 22 | Vibrato rate | Truth, 136 blocks with a clear peak: p5 4.17, median 4.99, p95 6.20 Hz. Tracking error per block p95 0.016 Hz clean, 0.054 and 0.17 Hz in the rooms; a tracking *u* of 0.11 to 0.13 × RMS *u* / extent covers 92.6 % clean, 57.9 % and 30.8 % in the rooms. The rate barely depends on the tracker |
+| 23 | Do the three pitch measures' ± hold between the halves of one take? | Split-half (first against second half of a take's blocks, at least 4 blocks): the change test 2√(*u*₁² + *u*₂²) is passed by 13 of 15 clean takes for steadiness and extent (false change 13 %); *u* must grow by κ = 1.17 (steadiness) and 2.16 (extent) for a 5 % false-change rate. Vibrato rate: 8 takes, too few for κ. Few takes have 4 blocks of held notes; these κ are rough |
+| 24 | Ring ratio | 158 of 159 takes measured clean: p5 −28.6, median −17.5, p95 −6.2 dB; *u* from its blocks median 1.15 dB (p95 2.37). Between the halves of one take the change test fires for 28.5 % of takes: the ratio moves with the notes sung, and the halves sing different notes (25–45 % in long tones and the round, 10 % in breathy scales). κ = 2.04 clean. It tells forte from pianissimo in 19 of 20 singers at 2*u*, 12 of 20 at 2κ*u* (forte higher in 19; median difference 8.9 dB) |
+| 25 | Ring ratio in noise and rooms | Bias against the clean take: white 30 dB median +0.10 dB (p95 \|3.1\|), 20 dB +0.61 (4.2), 10 dB +1.69 (8.0); pink 20 dB +0.64, 10 dB +1.78. The change test calls the noisy take changed from the clean one in 3.2 % (30 dB), 10.1 % (20 dB) and 38.8 % (10 dB) of takes. Rooms: median −0.05 and −0.38 dB, called changed in 1.3 % and 3.8 % |
+
+**What this says for squillo.**
+
+- **F-028.** On real voices the pitch *u* is not √3 cents: that floor covers
+  about 80 % of frames. The CMND dip gives a per-frame *u* of 1.7 to 5.7
+  cents with a refusal above it, holding 92–95 % on singers it was not fitted
+  on, clean and in noise down to 10 dB. The remaining misses are octave errors,
+  which no ± covers.
+- **ADR 0007's YIN has octave errors on real voices**: 1.6 % of frames on the
+  originals, 4.3 % in forte and straight long tones, 93 % of them men's,
+  where the first harmonic is 14–26 dB under the second. Two crude fixes fail or cost frames. The
+  tracker, or a continuity rule, is squillo's to revisit.
+- **Reverberation is the condition the per-frame ± cannot see.** In the
+  modelled rooms the pitch error's p95 grows 2.5- to 4.6-fold, the dip does
+  not predict it (the ± covers 76 % and 55 %), and the vibrato extent is
+  biased low. VISION §6 needs
+  squillo to say so, so a room or reverberation estimate is needed before
+  pitch-based measures are shown with a ±.
+- **Steadiness, vibrato rate and vibrato extent** are measured on held notes
+  with a tracking error far below their spread across singers (steadiness
+  p95 0.65 cents against a median of 6.3; extent 2.4 against 47; rate
+  0.016 Hz against 4.99 Hz), clean and at 30 dB. Their ± is dominated by the
+  take's own sampling, which the halves of a take say is understated by a
+  factor of 1.2 to 2.2 (15 takes).
+- **The ring ratio** tells forte from pianissimo in 19 of 20 singers, but it
+  moves with the notes sung. Two takes compare only on the same material, and
+  its block *u* needs a κ of about 2. It needs 30 dB SNR: at 20 dB it is
+  called changed in one take in ten. The microphone's own response shifts it
+  and is unknown to squillo (E-003).
+
+**Limits.** Re-synthesized voices carry WORLD's artefacts (more octave errors
+than the originals, row 17). Twenty trained singers on /a/, no amateurs, no
+other vowel. Noise is stationary. The rooms are models. Browsers, microphones
+and WASM are not in the path. Held notes of at least 2 s are few in scales
+and songs, so the measures rest mostly on long tones, and the split-half
+tests on 8 to 15 takes.
+
+### Round 3 (open)
+
+An honest tracker for octave errors (a continuity rule, or another tracker
+against the same truth); a reverberation estimate that predicts the pitch
+error; amateur voices and other vowels; the ring ratio on repeated material.

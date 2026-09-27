@@ -1,0 +1,446 @@
+{
+ "original vs Harvest | yin-0.1 | all": {
+  "valid": 184685,
+  "measured_share": 0.9163548745160679,
+  "gross_share": 0.019948356446876273,
+  "octave_high_share": 0.01594214031210669,
+  "octave_low_share": 0.0006795204358384987,
+  "p95_abs_non_gross": 5.610029809473769
+ },
+ "original vs Harvest | yin-0.1 | LT-forte": {
+  "valid": 20980,
+  "measured_share": 0.9067683508102955,
+  "gross_share": 0.0434188393608074,
+  "octave_high_share": 0.04273549201009252,
+  "octave_low_share": 0.0002628259041211102,
+  "p95_abs_non_gross": 5.071844037681569
+ },
+ "original vs Harvest | yin-0.1 | LT-messa": {
+  "valid": 28648,
+  "measured_share": 0.9369240435632505,
+  "gross_share": 0.026861890391565144,
+  "octave_high_share": 0.023061733914533734,
+  "octave_low_share": 0.0004843336686412578,
+  "p95_abs_non_gross": 4.98202129181628
+ },
+ "original vs Harvest | yin-0.1 | LT-pp": {
+  "valid": 20956,
+  "measured_share": 0.9533785073487306,
+  "gross_share": 0.004254467190550078,
+  "octave_high_share": 0.001051103658841784,
+  "octave_low_share": 0.00020021022073176835,
+  "p95_abs_non_gross": 4.806032458070914
+ },
+ "original vs Harvest | yin-0.1 | LT-straight": {
+  "valid": 19999,
+  "measured_share": 0.9440972048602431,
+  "gross_share": 0.05841851596843387,
+  "octave_high_share": 0.04268841692706954,
+  "octave_low_share": 0.00037074307504899104,
+  "p95_abs_non_gross": 3.202041031593187
+ },
+ "original vs Harvest | yin-0.1 | SC-breathy": {
+  "valid": 21232,
+  "measured_share": 0.968302562170309,
+  "gross_share": 0.0061773432559949415,
+  "octave_high_share": 0.005350454788657036,
+  "octave_low_share": 0.0006809669731018045,
+  "p95_abs_non_gross": 4.255769584783576
+ },
+ "original vs Harvest | yin-0.1 | SC-straight": {
+  "valid": 23778,
+  "measured_share": 0.9679956262091008,
+  "gross_share": 0.014250336707650867,
+  "octave_high_share": 0.011513229352217927,
+  "octave_low_share": 0.0,
+  "p95_abs_non_gross": 2.8053441147644445
+ },
+ "original vs Harvest | yin-0.1 | VIB-arpeggio": {
+  "valid": 18528,
+  "measured_share": 0.8329555267702936,
+  "gross_share": 0.009006674010237803,
+  "octave_high_share": 0.0034989956586535345,
+  "octave_low_share": 0.003952569169960474,
+  "p95_abs_non_gross": 5.93879873412514
+ },
+ "original vs Harvest | yin-0.1 | VIB-row": {
+  "valid": 30564,
+  "measured_share": 0.8344130349430703,
+  "gross_share": 0.0018429204407324627,
+  "octave_high_share": 0.00039211073207073675,
+  "octave_low_share": 0.00043132180527781044,
+  "p95_abs_non_gross": 9.892577612114355
+ },
+ "original vs Harvest | yin-0.05 | all": {
+  "valid": 184685,
+  "measured_share": 0.864439450957035,
+  "gross_share": 0.0064391258322945965,
+  "octave_high_share": 0.0035578049345752244,
+  "octave_low_share": 0.0011775833234157432,
+  "p95_abs_non_gross": 4.681181696817664
+ },
+ "original vs Harvest | yin-0.05 | LT-forte": {
+  "valid": 20980,
+  "measured_share": 0.865395614871306,
+  "gross_share": 0.0149812734082397,
+  "octave_high_share": 0.014430491297642652,
+  "octave_low_share": 0.0002753910552985239,
+  "p95_abs_non_gross": 4.438373354382465
+ },
+ "original vs Harvest | yin-0.05 | LT-messa": {
+  "valid": 28648,
+  "measured_share": 0.9076724378665177,
+  "gross_share": 0.009537361073722262,
+  "octave_high_share": 0.007153020805291697,
+  "octave_low_share": 0.0015767411452524709,
+  "p95_abs_non_gross": 4.38377137498679
+ },
+ "original vs Harvest | yin-0.05 | LT-pp": {
+  "valid": 20956,
+  "measured_share": 0.9323344149646879,
+  "gross_share": 0.001996110144334118,
+  "octave_high_share": 5.118231139318252e-05,
+  "octave_low_share": 0.0018937455215477532,
+  "p95_abs_non_gross": 4.393558575035152
+ },
+ "original vs Harvest | yin-0.05 | LT-straight": {
+  "valid": 19999,
+  "measured_share": 0.9431971598579929,
+  "gross_share": 0.015267984944070402,
+  "octave_high_share": 0.0020145257912315114,
+  "octave_low_share": 0.001219318242061178,
+  "p95_abs_non_gross": 2.8083370215387484
+ },
+ "original vs Harvest | yin-0.05 | SC-breathy": {
+  "valid": 21232,
+  "measured_share": 0.9347211755840241,
+  "gross_share": 0.0043837549128287814,
+  "octave_high_share": 0.0027209513252040712,
+  "octave_low_share": 0.0012596996875944774,
+  "p95_abs_non_gross": 3.7458747603375713
+ },
+ "original vs Harvest | yin-0.05 | SC-straight": {
+  "valid": 23778,
+  "measured_share": 0.9504163512490538,
+  "gross_share": 0.0012832426213549271,
+  "octave_high_share": 0.0007964954201513341,
+  "octave_low_share": 0.00013274923669188903,
+  "p95_abs_non_gross": 2.5383611496360845
+ },
+ "original vs Harvest | yin-0.05 | VIB-arpeggio": {
+  "valid": 18528,
+  "measured_share": 0.6922495682210709,
+  "gross_share": 0.003976298144394199,
+  "octave_high_share": 0.0007016996725401528,
+  "octave_low_share": 0.0032745984718540464,
+  "p95_abs_non_gross": 4.809950271272953
+ },
+ "original vs Harvest | yin-0.05 | VIB-row": {
+  "valid": 30564,
+  "measured_share": 0.7138463551891113,
+  "gross_share": 0.0006416720139334495,
+  "octave_high_share": 0.0,
+  "octave_low_share": 0.000550004583371528,
+  "p95_abs_non_gross": 8.03458547058105
+ },
+ "original vs Harvest | yin-0.1-octave-check | all": {
+  "valid": 184685,
+  "measured_share": 0.9054389907139183,
+  "gross_share": 0.09388174930182214,
+  "octave_high_share": 7.774143199717738e-05,
+  "octave_low_share": 0.09028172298933747,
+  "p95_abs_non_gross": 5.833756387057369
+ },
+ "original vs Harvest | yin-0.1-octave-check | LT-forte": {
+  "valid": 20980,
+  "measured_share": 0.9061487130600572,
+  "gross_share": 0.050076271632212926,
+  "octave_high_share": 0.0004734101309768029,
+  "octave_low_share": 0.04918205249592341,
+  "p95_abs_non_gross": 5.159110334686873
+ },
+ "original vs Harvest | yin-0.1-octave-check | LT-messa": {
+  "valid": 28648,
+  "measured_share": 0.92072745043284,
+  "gross_share": 0.08579444212761117,
+  "octave_high_share": 0.0,
+  "octave_low_share": 0.08242029040451909,
+  "p95_abs_non_gross": 5.14287282378805
+ },
+ "original vs Harvest | yin-0.1-octave-check | LT-pp": {
+  "valid": 20956,
+  "measured_share": 0.94178278297385,
+  "gross_share": 0.07813133360356708,
+  "octave_high_share": 0.0,
+  "octave_low_share": 0.07509120389136603,
+  "p95_abs_non_gross": 4.968364551791187
+ },
+ "original vs Harvest | yin-0.1-octave-check | LT-straight": {
+  "valid": 19999,
+  "measured_share": 0.9317965898294914,
+  "gross_share": 0.20005366246310705,
+  "octave_high_share": 0.00010732492621411322,
+  "octave_low_share": 0.18357928628924067,
+  "p95_abs_non_gross": 3.403261422895617
+ },
+ "original vs Harvest | yin-0.1-octave-check | SC-breathy": {
+  "valid": 21232,
+  "measured_share": 0.9569988696307461,
+  "gross_share": 0.13411093065603621,
+  "octave_high_share": 0.0,
+  "octave_low_share": 0.13396328559476353,
+  "p95_abs_non_gross": 4.459894011192641
+ },
+ "original vs Harvest | yin-0.1-octave-check | SC-straight": {
+  "valid": 23778,
+  "measured_share": 0.9437294978551602,
+  "gross_share": 0.14946524064171124,
+  "octave_high_share": 4.45632798573975e-05,
+  "octave_low_share": 0.14625668449197862,
+  "p95_abs_non_gross": 3.0263565026966215
+ },
+ "original vs Harvest | yin-0.1-octave-check | VIB-arpeggio": {
+  "valid": 18528,
+  "measured_share": 0.8277741796200345,
+  "gross_share": 0.035534980765469126,
+  "octave_high_share": 0.0,
+  "octave_low_share": 0.03383973397665776,
+  "p95_abs_non_gross": 6.01641677564388
+ },
+ "original vs Harvest | yin-0.1-octave-check | VIB-row": {
+  "valid": 30564,
+  "measured_share": 0.829930637351132,
+  "gross_share": 0.023259481195300795,
+  "octave_high_share": 3.942284948356067e-05,
+  "octave_low_share": 0.022155641409761097,
+  "p95_abs_non_gross": 10.001865736227643
+ },
+ "re-synthesis vs truth | yin-0.1 | all": {
+  "valid": 184685,
+  "measured_share": 0.919944770826001,
+  "gross_share": 0.04633313713949382,
+  "octave_high_share": 0.03234844025897587,
+  "octave_low_share": 3.531489111241907e-05,
+  "p95_abs_non_gross": 6.916192287783506
+ },
+ "re-synthesis vs truth | yin-0.1 | LT-forte": {
+  "valid": 20980,
+  "measured_share": 0.9034318398474738,
+  "gross_share": 0.08246280468502691,
+  "octave_high_share": 0.07011712567268123,
+  "octave_low_share": 0.00010551862403714256,
+  "p95_abs_non_gross": 6.458726443875047
+ },
+ "re-synthesis vs truth | yin-0.1 | LT-messa": {
+  "valid": 28648,
+  "measured_share": 0.9403797821837475,
+  "gross_share": 0.06555308092056422,
+  "octave_high_share": 0.04914625092798812,
+  "octave_low_share": 3.7119524870081664e-05,
+  "p95_abs_non_gross": 6.877881081902134
+ },
+ "re-synthesis vs truth | yin-0.1 | LT-pp": {
+  "valid": 20956,
+  "measured_share": 0.9505153655277725,
+  "gross_share": 0.021838445705105677,
+  "octave_high_share": 0.009488428133942467,
+  "octave_low_share": 0.0,
+  "p95_abs_non_gross": 7.133080116774245
+ },
+ "re-synthesis vs truth | yin-0.1 | LT-straight": {
+  "valid": 19999,
+  "measured_share": 0.9472973648682435,
+  "gross_share": 0.11216679862760623,
+  "octave_high_share": 0.0839799419371866,
+  "octave_low_share": 0.0,
+  "p95_abs_non_gross": 3.665885529791038
+ },
+ "re-synthesis vs truth | yin-0.1 | SC-breathy": {
+  "valid": 21232,
+  "measured_share": 0.9701394122079879,
+  "gross_share": 0.012525487911447713,
+  "octave_high_share": 0.010146616176327799,
+  "octave_low_share": 9.709680551509856e-05,
+  "p95_abs_non_gross": 5.420010385653926
+ },
+ "re-synthesis vs truth | yin-0.1 | SC-straight": {
+  "valid": 23778,
+  "measured_share": 0.964084447808899,
+  "gross_share": 0.04008898970511254,
+  "octave_high_share": 0.02556272901762345,
+  "octave_low_share": 0.0,
+  "p95_abs_non_gross": 4.13492976703802
+ },
+ "re-synthesis vs truth | yin-0.1 | VIB-arpeggio": {
+  "valid": 18528,
+  "measured_share": 0.8368955094991365,
+  "gross_share": 0.031149232555139947,
+  "octave_high_share": 0.008899780730039985,
+  "octave_low_share": 6.449116471043467e-05,
+  "p95_abs_non_gross": 7.457040360020884
+ },
+ "re-synthesis vs truth | yin-0.1 | VIB-row": {
+  "valid": 30564,
+  "measured_share": 0.8544038738385028,
+  "gross_share": 0.01236884429807766,
+  "octave_high_share": 0.004978172627709275,
+  "octave_low_share": 0.0,
+  "p95_abs_non_gross": 10.975752953744466
+ },
+ "re-synthesis vs truth | yin-0.05 | all": {
+  "valid": 184685,
+  "measured_share": 0.8736984595392154,
+  "gross_share": 0.021727948239639562,
+  "octave_high_share": 0.016968374865982065,
+  "octave_low_share": 0.00010535513978148105,
+  "p95_abs_non_gross": 6.005310627591155
+ },
+ "re-synthesis vs truth | yin-0.05 | LT-forte": {
+  "valid": 20980,
+  "measured_share": 0.8639656816015253,
+  "gross_share": 0.043749310382875425,
+  "octave_high_share": 0.04259075361359373,
+  "octave_low_share": 0.00011033873993158998,
+  "p95_abs_non_gross": 5.938989603687111
+ },
+ "re-synthesis vs truth | yin-0.05 | LT-messa": {
+  "valid": 28648,
+  "measured_share": 0.9198198827143256,
+  "gross_share": 0.03115631285340215,
+  "octave_high_share": 0.02459109711206406,
+  "octave_low_share": 0.0,
+  "p95_abs_non_gross": 6.285353313405228
+ },
+ "re-synthesis vs truth | yin-0.05 | LT-pp": {
+  "valid": 20956,
+  "measured_share": 0.9410192784882612,
+  "gross_share": 0.009432048681541582,
+  "octave_high_share": 0.00436105476673428,
+  "octave_low_share": 0.0,
+  "p95_abs_non_gross": 6.661190702931158
+ },
+ "re-synthesis vs truth | yin-0.05 | LT-straight": {
+  "valid": 19999,
+  "measured_share": 0.9388469423471174,
+  "gross_share": 0.054697486152535155,
+  "octave_high_share": 0.03914571793779293,
+  "octave_low_share": 0.0,
+  "p95_abs_non_gross": 3.284141068298715
+ },
+ "re-synthesis vs truth | yin-0.05 | SC-breathy": {
+  "valid": 21232,
+  "measured_share": 0.9540316503391107,
+  "gross_share": 0.007207740916271722,
+  "octave_high_share": 0.006911532385466035,
+  "octave_low_share": 4.936808846761453e-05,
+  "p95_abs_non_gross": 5.0067874778535355
+ },
+ "re-synthesis vs truth | yin-0.05 | SC-straight": {
+  "valid": 23778,
+  "measured_share": 0.9560097569181596,
+  "gross_share": 0.015528770015836706,
+  "octave_high_share": 0.011525602674643674,
+  "octave_low_share": 0.00017596339961288053,
+  "p95_abs_non_gross": 3.730820287918601
+ },
+ "re-synthesis vs truth | yin-0.05 | VIB-arpeggio": {
+  "valid": 18528,
+  "measured_share": 0.6997517271157168,
+  "gross_share": 0.011492479753181644,
+  "octave_high_share": 0.006093328191284227,
+  "octave_low_share": 0.0007713073659853452,
+  "p95_abs_non_gross": 5.899180537832876
+ },
+ "re-synthesis vs truth | yin-0.05 | VIB-row": {
+  "valid": 30564,
+  "measured_share": 0.7339680670069363,
+  "gross_share": 0.001381892747291936,
+  "octave_high_share": 0.000713234966344225,
+  "octave_low_share": 0.0,
+  "p95_abs_non_gross": 9.120166286930244
+ },
+ "re-synthesis vs truth | yin-0.1-octave-check | all": {
+  "valid": 184685,
+  "measured_share": 0.9243739339957224,
+  "gross_share": 0.07373563420377464,
+  "octave_high_share": 0.0003690296278072611,
+  "octave_low_share": 0.05858198901111775,
+  "p95_abs_non_gross": 7.086973971388671
+ },
+ "re-synthesis vs truth | yin-0.1-octave-check | LT-forte": {
+  "valid": 20980,
+  "measured_share": 0.928741658722593,
+  "gross_share": 0.042391583269181424,
+  "octave_high_share": 0.0008211444701052091,
+  "octave_low_share": 0.029612522453169105,
+  "p95_abs_non_gross": 6.5905249147762905
+ },
+ "re-synthesis vs truth | yin-0.1-octave-check | LT-messa": {
+  "valid": 28648,
+  "measured_share": 0.9414269757051104,
+  "gross_share": 0.07638116425658138,
+  "octave_high_share": 0.00014831294030404152,
+  "octave_low_share": 0.05913978494623656,
+  "p95_abs_non_gross": 6.9384125315413545
+ },
+ "re-synthesis vs truth | yin-0.1-octave-check | LT-pp": {
+  "valid": 20956,
+  "measured_share": 0.9541897308646689,
+  "gross_share": 0.0623124624924985,
+  "octave_high_share": 0.0,
+  "octave_low_share": 0.04915983196639328,
+  "p95_abs_non_gross": 7.2999971444243625
+ },
+ "re-synthesis vs truth | yin-0.1-octave-check | LT-straight": {
+  "valid": 19999,
+  "measured_share": 0.9509975498774939,
+  "gross_share": 0.15473999684526,
+  "octave_high_share": 0.000420631999579368,
+  "octave_low_share": 0.12529575687470423,
+  "p95_abs_non_gross": 3.890864397206801
+ },
+ "re-synthesis vs truth | yin-0.1-octave-check | SC-breathy": {
+  "valid": 21232,
+  "measured_share": 0.9709400904295403,
+  "gross_share": 0.0794081979141402,
+  "octave_high_share": 0.0,
+  "octave_low_share": 0.07606112054329371,
+  "p95_abs_non_gross": 5.615483687276342
+ },
+ "re-synthesis vs truth | yin-0.1-octave-check | SC-straight": {
+  "valid": 23778,
+  "measured_share": 0.9624863319034401,
+  "gross_share": 0.1158350083020187,
+  "octave_high_share": 0.0012234553875731888,
+  "octave_low_share": 0.09809490518220747,
+  "p95_abs_non_gross": 4.408326528851913
+ },
+ "re-synthesis vs truth | yin-0.1-octave-check | VIB-arpeggio": {
+  "valid": 18528,
+  "measured_share": 0.8461247841105354,
+  "gross_share": 0.04050519869873062,
+  "octave_high_share": 0.00019136314345856987,
+  "octave_low_share": 0.01677616890986796,
+  "p95_abs_non_gross": 7.455456086364359
+ },
+ "re-synthesis vs truth | yin-0.1-octave-check | VIB-row": {
+  "valid": 30564,
+  "measured_share": 0.8529642716921869,
+  "gross_share": 0.02263137706175681,
+  "octave_high_share": 0.00015343306482546988,
+  "octave_low_share": 0.014844649021864212,
+  "p95_abs_non_gross": 11.029886477469416
+ },
+ "attribution": {
+  "octave_high_frames": 2698,
+  "from_men_share": 0.9321719792438844,
+  "truth_hz_median": 351.4888857724568,
+  "sampled": 600,
+  "partial_at_harvest_f0": 598,
+  "h1_minus_h2_dB": {
+   "p10": -25.661764844233794,
+   "median": -19.271682239248918,
+   "p90": -13.87481829906448
+  }
+ }
+}

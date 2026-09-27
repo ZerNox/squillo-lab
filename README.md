@@ -25,7 +25,9 @@ specified for (for pitch, squillo ADR 0007's E2–C6), every condition of the
 requirement a fixture serves, and, for a synthetic stand-in for voices, the
 range of a few unmodified real recordings (its long-term spectrum within
 theirs, and each spectral or distance measure restricted to a band where
-both have energy). The generator asserts each condition on what it
+both have energy; for a re-synthesis of a real recording, its difference
+from its own original within the spread between real recordings of the same
+kind, such as one singer's takes, never pooled extremes band by band). The generator asserts each condition on what it
 generated, with extremes computed from the output or its exact formula,
 never from nominal parameters, and stops if one fails. Any procedure that
 makes the truth (alignment, segmentation) runs on one input of every
@@ -33,7 +35,7 @@ condition first. A check's bounds are computed in code from their
 source's definition (E2 and C6 from their semitone numbers re A4), never
 retyped, and a tool's output arrays are matched to frames by the frame
 index it returns, never by position. The README reports the checks'
-numbers (squillo L-024, L-026, L-028, L-030).
+numbers (squillo L-024, L-026, L-028, L-030, L-031).
 
 **Name the reference before comparing** (squillo standing instruction S16).
 A check against an outside source names its reference item in advance: the
