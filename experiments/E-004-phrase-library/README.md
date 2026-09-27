@@ -30,7 +30,9 @@ translations are the traps.
    `title`, `instructions` and `content` (an SPDX licence expression and a
    source). Words, melody, genre and range are not yet members; this
    experiment says which of them a verified phrase must record, and
-   squillo's next revision of ADR 0005 adds them.
+   squillo's next revision of ADR 0005 adds them. (Done: squillo iteration
+   29 folded this result into ADR 0005, `format_version` 3, and `exercises`
+   EX-010 and EX-011; see *Folded* below.)
 
 A note on copyright: short excerpts are **not** exempt. There is no
 "30-second rule"; lyrics and melodies are protected however short the
@@ -174,6 +176,22 @@ note (E-005's molto-vibrato finding, seen here per phrase).
 pending melodies against an edition scan or a second licensed transcription
 (for example the Mutopia Project's LilyPond sources), and add a verified
 anthem.
+
+## Folded (squillo iteration 29)
+
+squillo's ADR 0005, revised in iteration 29 (Q-017), takes the record
+above: `format_version` 3, a phrase with `genre`, `language`, `words` and
+`melody` (notes as objects with scientific pitch and exact fractional
+durations), and, for a public-domain phrase, `provenance` per part (words,
+tune) and `melody_checked_against`. The squillo build is to re-run the
+rules as at 2026-01-01, and squillo ships a public-domain phrase only when
+it passes `us` and `life100` (which implies `life70`) under `CC-PDM-1.0`.
+Recomputed from `results/verify.json` at this commit: `us` and `life100`
+pass 28 of 31 candidates and reject 9 of 9 traps. So In the Bleak Midwinter
+and Danny Boy, free under `life70` only, stay out, and their
+`LicenseRef-public-domain-us-life70` in `library.json` is not used. A
+throwaway check in `/tmp`, run in squillo iteration 29 and not committed,
+wrote the 19 verified phrases in that format: 19 of 19 load and pass.
 
 ## Needs a human
 
