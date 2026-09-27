@@ -43,6 +43,7 @@ HERE = Path(__file__).parent
 CACHE = HERE / "data" / "cache"
 SR = 48_000
 TRANS_S = 0.1
+E2_CENTS, C6_CENTS = 100 * -29, 100 * 15  # ADR 0007's range: semitones re A4 (E2 = A4 - 29, C6 = A4 + 15)
 SQRT3 = math.sqrt(3)
 
 
@@ -153,7 +154,7 @@ def summarize(rows=None):
             rep = [r for r in rows if np.isfinite(r["s"]) and lo <= r["s"] + 2 * r[u] < hi]
             k = sum(abs(r["s"] - r["pop"]) <= 2 * r[u] for r in rep)
             by_upper[f"{u} upper in [{lo},{hi})"] = wilson(k, len(rep)) + [len(rep)]
-    out_of_range = sum(r["centre_min"] < -2900 or r["centre_max"] > 1500 for r in rows)
+    out_of_range = sum(r["centre_min"] < E2_CENTS or r["centre_max"] > C6_CENTS for r in rows)
     ok = [r for r in rows if np.isfinite(r["s"]) and r["s"] + 2 * r["uB"] <= UPPER]
     rule = dict(upper=UPPER, reported=len(ok),
                 coverage_pop=wilson(sum(abs(r["s"] - r["pop"]) <= 2 * r["uB"] for r in ok), len(ok)),
@@ -254,7 +255,7 @@ def pop_sd(x):
 def fixtures(outdir="/tmp/e005-fold"):
     out = Path(outdir)
     out.mkdir(parents=True, exist_ok=True)
-    E2, C6 = 440 * 2 ** (-29 / 12), 440 * 2 ** (15 / 12)
+    E2, C6 = 440 * 2 ** (E2_CENTS / 1200), 440 * 2 ** (C6_CENTS / 1200)
     report = {}
     for name, devs in DEVS.items():
         # conditions, asserted on the formula's exact values (S15)
