@@ -1,0 +1,2275 @@
+{
+ "old-hundredth": {
+  "id": "old-hundredth",
+  "title": "All People That on Earth Do Dwell",
+  "en_article": "Old 100th",
+  "mutopia": [
+   {
+    "query": "old 100",
+    "id": 90,
+    "heading": "Old 100th, by L. Bourgeois (c.1510–1560)",
+    "instrument(s)": "Voice (SATB)",
+    "style": "Hymn",
+    "source": "A Pilgrimes Solace",
+    "copyright": "Public Domain",
+    "date of composition": "1612",
+    "music id number": "Mutopia-2015/01/17-90",
+    "meter": "88 88",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/BourgeoisL/Old100/Old100-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/BourgeoisL/Old100/Old100-let.pdf",
+     "https://www.mutopiaproject.org/ftp/BourgeoisL/Old100/Old100.log",
+     "https://www.mutopiaproject.org/ftp/BourgeoisL/Old100/Old100.ly",
+     "https://www.mutopiaproject.org/ftp/BourgeoisL/Old100/Old100.mid"
+    ]
+   },
+   {
+    "query": "old 100",
+    "id": 194,
+    "heading": "Old 100th (original version) (Anonymous)",
+    "instrument(s)": "Voice (SATB)",
+    "style": "Hymn",
+    "source": "Geneva Psalter 1551",
+    "copyright": "Public Domain",
+    "date of composition": "1551",
+    "music id number": "Mutopia-2009/04/11-194",
+    "meter": "88 88",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/Anonymous/Old100-orig/Old100-orig-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/Anonymous/Old100-orig/Old100-orig-let.pdf",
+     "https://www.mutopiaproject.org/ftp/Anonymous/Old100-orig/Old100-orig.log",
+     "https://www.mutopiaproject.org/ftp/Anonymous/Old100-orig/Old100-orig.ly",
+     "https://www.mutopiaproject.org/ftp/Anonymous/Old100-orig/Old100-orig.mid"
+    ]
+   }
+  ],
+  "wiki": [
+   {
+    "lang": "de",
+    "article": "Genfer Melodie zum 134. Psalm",
+    "revid": 270677252,
+    "blocks": []
+   },
+   {
+    "lang": "it",
+    "article": "Old 100th",
+    "revid": 146497919,
+    "blocks": [
+     {
+      "attrs": "lang=\"lilypond\"",
+      "heading": "La melodia",
+      "before": "orso degli anni, la melodia fu talvolta modificata ritmicamente. Di seguito è riportato quello impostato da Johann Sebastian Bach nel movimento finale della sua cantata Herr Gott, dich loben alle wir.",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "== Note ==",
+      "abc": false,
+      "chars": 1322,
+      "same_as_en_block": true
+     }
+    ]
+   }
+  ],
+  "en": {
+   "article": "Old 100th",
+   "revid": 1366545107,
+   "blocks": 2
+  }
+ },
+ "abide-with-me": {
+  "id": "abide-with-me",
+  "title": "Abide with Me",
+  "en_article": "Abide with Me",
+  "mutopia": [
+   {
+    "query": "eventide",
+    "id": 1241,
+    "heading": "Eventide (hymntune), by W. H. Monk (1823–1889)",
+    "instrument(s)": "Voice (SATB)",
+    "style": "Hymn",
+    "source": "www.cyberhymnal.org",
+    "copyright": "Public Domain",
+    "date of composition": "1861",
+    "music id number": "Mutopia-2008/01/13-1241",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/MonkWH/eventide/eventide-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/MonkWH/eventide/eventide-let.pdf",
+     "https://www.mutopiaproject.org/ftp/MonkWH/eventide/eventide.log",
+     "https://www.mutopiaproject.org/ftp/MonkWH/eventide/eventide.ly",
+     "https://www.mutopiaproject.org/ftp/MonkWH/eventide/eventide.mid"
+    ]
+   }
+  ],
+  "wiki": [
+   {
+    "lang": "de",
+    "article": "William Henry Monk",
+    "revid": 270685727,
+    "blocks": []
+   },
+   {
+    "lang": "fr",
+    "article": "Abide with Me",
+    "revid": 231289358,
+    "blocks": []
+   },
+   {
+    "lang": "nl",
+    "article": "Abide with Me",
+    "revid": 69293811,
+    "blocks": []
+   },
+   {
+    "lang": "sv",
+    "article": "Bliv kvar hos mig - se dagens slut är när",
+    "revid": 55870671,
+    "blocks": []
+   },
+   {
+    "lang": "pt",
+    "article": "Abide with me",
+    "revid": 70720579,
+    "blocks": []
+   },
+   {
+    "lang": "fi",
+    "article": "Oi Herra, luoksein jää",
+    "revid": 23103257,
+    "blocks": []
+   },
+   {
+    "lang": "ja",
+    "article": "日暮れて四方は暗く",
+    "revid": 111097253,
+    "blocks": []
+   }
+  ],
+  "en": {
+   "article": "Abide with Me",
+   "revid": 1374279198,
+   "blocks": 0
+  }
+ },
+ "jesus-loves-me": {
+  "id": "jesus-loves-me",
+  "title": "Jesus Loves Me",
+  "en_article": "Jesus Loves Me",
+  "mutopia": [],
+  "wiki": [
+   {
+    "lang": "fr",
+    "article": "Jesus Loves Me",
+    "revid": 237896469,
+    "blocks": []
+   },
+   {
+    "lang": "it",
+    "article": "Jesus Loves Me",
+    "revid": 148896924,
+    "blocks": []
+   },
+   {
+    "lang": "ja",
+    "article": "日暮れて四方は暗く",
+    "revid": 111097253,
+    "blocks": []
+   }
+  ],
+  "en": {
+   "article": "Jesus Loves Me",
+   "revid": 1368738387,
+   "blocks": 0
+  }
+ },
+ "swing-low": {
+  "id": "swing-low",
+  "title": "Swing Low, Sweet Chariot",
+  "en_article": "Swing Low, Sweet Chariot",
+  "mutopia": [],
+  "wiki": [
+   {
+    "lang": "fr",
+    "article": "Swing Low, Sweet Chariot",
+    "revid": 233642381,
+    "blocks": []
+   },
+   {
+    "lang": "es",
+    "article": "Swing Low, Sweet Chariot",
+    "revid": 175506164,
+    "blocks": []
+   },
+   {
+    "lang": "it",
+    "article": "Swing Low, Sweet Chariot",
+    "revid": 152111967,
+    "blocks": []
+   },
+   {
+    "lang": "fi",
+    "article": "Swing Low, Sweet Chariot",
+    "revid": 21301501,
+    "blocks": []
+   },
+   {
+    "lang": "zh",
+    "article": "轻摇，可爱的马车",
+    "revid": 94268413,
+    "blocks": []
+   }
+  ],
+  "en": {
+   "article": "Swing Low, Sweet Chariot",
+   "revid": 1376149712,
+   "blocks": 0
+  }
+ },
+ "jingle-bells": {
+  "id": "jingle-bells",
+  "title": "Jingle Bells",
+  "en_article": "Jingle Bells",
+  "mutopia": [],
+  "wiki": [
+   {
+    "lang": "de",
+    "article": "Jingle Bells",
+    "revid": 267133075,
+    "blocks": []
+   },
+   {
+    "lang": "fr",
+    "article": "Jingle Bells",
+    "revid": 231495601,
+    "blocks": []
+   },
+   {
+    "lang": "es",
+    "article": "Jingle Bells",
+    "revid": 167738869,
+    "blocks": []
+   },
+   {
+    "lang": "it",
+    "article": "Jingle Bells",
+    "revid": 151795404,
+    "blocks": []
+   },
+   {
+    "lang": "nl",
+    "article": "Jingle Bells",
+    "revid": 63416997,
+    "blocks": []
+   },
+   {
+    "lang": "sv",
+    "article": "Jingle Bells",
+    "revid": 58598881,
+    "blocks": []
+   },
+   {
+    "lang": "pl",
+    "article": "Jingle Bells",
+    "revid": 78986040,
+    "blocks": []
+   },
+   {
+    "lang": "pt",
+    "article": "Jingle Bells",
+    "revid": 67256335,
+    "blocks": []
+   },
+   {
+    "lang": "ru",
+    "article": "Jingle Bells",
+    "revid": 155230597,
+    "blocks": []
+   },
+   {
+    "lang": "uk",
+    "article": "Jingle Bells",
+    "revid": 48858074,
+    "blocks": []
+   },
+   {
+    "lang": "cs",
+    "article": "Jingle Bells",
+    "revid": 25907602,
+    "blocks": []
+   },
+   {
+    "lang": "fi",
+    "article": "Kulkuset (kappale)",
+    "revid": 22893460,
+    "blocks": []
+   },
+   {
+    "lang": "da",
+    "article": "Jingle Bells",
+    "revid": 11634777,
+    "blocks": []
+   },
+   {
+    "lang": "ja",
+    "article": "日暮れて四方は暗く",
+    "revid": 111097253,
+    "blocks": []
+   },
+   {
+    "lang": "zh",
+    "article": "轻摇，可爱的马车",
+    "revid": 94268413,
+    "blocks": []
+   }
+  ],
+  "en": {
+   "article": "Jingle Bells",
+   "revid": 1376217281,
+   "blocks": 0
+  }
+ },
+ "deck-the-halls": {
+  "id": "deck-the-halls",
+  "title": "Deck the Halls",
+  "en_article": "Deck the Halls",
+  "mutopia": [],
+  "wiki": [
+   {
+    "lang": "de",
+    "article": "Deck the Halls",
+    "revid": 269689417,
+    "blocks": []
+   },
+   {
+    "lang": "fr",
+    "article": "Deck the Halls",
+    "revid": 211091920,
+    "blocks": []
+   },
+   {
+    "lang": "es",
+    "article": "Deck the Halls (villancico)",
+    "revid": 159377362,
+    "blocks": []
+   },
+   {
+    "lang": "it",
+    "article": "Deck the Halls",
+    "revid": 152641441,
+    "blocks": []
+   },
+   {
+    "lang": "sv",
+    "article": "Deck the Halls",
+    "revid": 57011605,
+    "blocks": []
+   },
+   {
+    "lang": "ru",
+    "article": "Deck the Halls",
+    "revid": 146419763,
+    "blocks": []
+   },
+   {
+    "lang": "uk",
+    "article": "Deck the Halls",
+    "revid": 41074601,
+    "blocks": []
+   },
+   {
+    "lang": "fi",
+    "article": "Kuusen kotiin tuoda saamme",
+    "revid": 24157906,
+    "blocks": []
+   },
+   {
+    "lang": "ja",
+    "article": "日暮れて四方は暗く",
+    "revid": 111097253,
+    "blocks": []
+   },
+   {
+    "lang": "zh",
+    "article": "轻摇，可爱的马车",
+    "revid": 94268413,
+    "blocks": []
+   }
+  ],
+  "en": {
+   "article": "Deck the Halls",
+   "revid": 1362302539,
+   "blocks": 0
+  }
+ },
+ "in-the-bleak-midwinter": {
+  "id": "in-the-bleak-midwinter",
+  "title": "In the Bleak Midwinter",
+  "en_article": "In the Bleak Midwinter",
+  "mutopia": [
+   {
+    "query": "cranham",
+    "id": 1233,
+    "heading": "Cranham (hymntune), by G. T. Holst (1874–1934)",
+    "instrument(s)": "Voice (SATB)",
+    "style": "Hymn",
+    "source": "www.cyberhymnal.org",
+    "copyright": "Public Domain",
+    "date of composition": "1906",
+    "music id number": "Mutopia-2008/01/13-1233",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/HolstGT/cranham/cranham-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/HolstGT/cranham/cranham-let.pdf",
+     "https://www.mutopiaproject.org/ftp/HolstGT/cranham/cranham.log",
+     "https://www.mutopiaproject.org/ftp/HolstGT/cranham/cranham.ly",
+     "https://www.mutopiaproject.org/ftp/HolstGT/cranham/cranham.mid"
+    ]
+   }
+  ],
+  "wiki": [
+   {
+    "lang": "de",
+    "article": "In the Bleak Midwinter",
+    "revid": 269460974,
+    "blocks": []
+   },
+   {
+    "lang": "es",
+    "article": "In the Bleak Midwinter",
+    "revid": 173462726,
+    "blocks": []
+   },
+   {
+    "lang": "it",
+    "article": "In the Bleak Midwinter (Christina Rossetti)",
+    "revid": 152500314,
+    "blocks": []
+   },
+   {
+    "lang": "sv",
+    "article": "Mitt i vintern var det",
+    "revid": 58555071,
+    "blocks": []
+   },
+   {
+    "lang": "fi",
+    "article": "In the Bleak Midwinter",
+    "revid": 24047023,
+    "blocks": []
+   }
+  ],
+  "en": {
+   "article": "In the Bleak Midwinter",
+   "revid": 1372659039,
+   "blocks": 2
+  }
+ },
+ "auld-lang-syne": {
+  "id": "auld-lang-syne",
+  "title": "Auld Lang Syne",
+  "en_article": "Auld Lang Syne",
+  "mutopia": [
+   {
+    "query": "auld",
+    "id": 1121,
+    "heading": "Nº. 31. Auld Lang Syne., by F. Horetzky (1796–1870)",
+    "instrument(s)": "Classical Guitar",
+    "style": "Classical",
+    "source": "Boije collection #268",
+    "copyright": "Public Domain",
+    "date of composition": "unk",
+    "music id number": "Mutopia-2007/11/10-1121",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/HoretzkyF/horetzky31/horetzky31-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/HoretzkyF/horetzky31/horetzky31-let.pdf",
+     "https://www.mutopiaproject.org/ftp/HoretzkyF/horetzky31/horetzky31.log",
+     "https://www.mutopiaproject.org/ftp/HoretzkyF/horetzky31/horetzky31.ly",
+     "https://www.mutopiaproject.org/ftp/HoretzkyF/horetzky31/horetzky31.mid"
+    ]
+   }
+  ],
+  "wiki": [
+   {
+    "lang": "de",
+    "article": "Auld Lang Syne",
+    "revid": 269025087,
+    "blocks": [
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Melodie",
+      "before": "ordentlichen Schluck nehmen Der alten Zeiten wegen. == Melodie == mini|Erste Strophe mit Refrain nach digital.nls.uk in der National Library of Scotland (abgerufen am 21. Dezember 2018)",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "== Literatur ==",
+      "abc": false,
+      "chars": 925,
+      "same_as_en_block": false
+     }
+    ]
+   },
+   {
+    "lang": "fr",
+    "article": "Auld Lang Syne",
+    "revid": 239063578,
+    "blocks": [
+     {
+      "attrs": "vorbis=\"1\"",
+      "heading": "Musique",
+      "before": "de quitter ces lieux, O Frères, unis par cette chaîne Ne faisons point d’adieux. Car l'idéal qui nous rassemble Vivra dans l'avenir Car l'idéal qui nous rassemble Saura nous réunir. }}}} == Musique ==",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "",
+      "abc": false,
+      "chars": 886,
+      "same_as_en_block": false
+     }
+    ]
+   },
+   {
+    "lang": "es",
+    "article": "Auld Lang Syne",
+    "revid": 175039309,
+    "blocks": []
+   },
+   {
+    "lang": "it",
+    "article": "Auld Lang Syne",
+    "revid": 148871515,
+    "blocks": []
+   },
+   {
+    "lang": "nl",
+    "article": "Auld Lang Syne",
+    "revid": 71565492,
+    "blocks": []
+   },
+   {
+    "lang": "sv",
+    "article": "Auld Lang Syne",
+    "revid": 59437653,
+    "blocks": []
+   },
+   {
+    "lang": "pl",
+    "article": "Auld Lang Syne",
+    "revid": 80685083,
+    "blocks": []
+   },
+   {
+    "lang": "pt",
+    "article": "Auld Lang Syne",
+    "revid": 71485793,
+    "blocks": []
+   },
+   {
+    "lang": "ru",
+    "article": "Auld Lang Syne",
+    "revid": 151712379,
+    "blocks": []
+   },
+   {
+    "lang": "uk",
+    "article": "Auld Lang Syne",
+    "revid": 33339224,
+    "blocks": []
+   },
+   {
+    "lang": "cs",
+    "article": "Auld Lang Syne",
+    "revid": 25425245,
+    "blocks": []
+   },
+   {
+    "lang": "fi",
+    "article": "Auld Lang Syne",
+    "revid": 24257697,
+    "blocks": []
+   },
+   {
+    "lang": "da",
+    "article": "Auld Lang Syne",
+    "revid": 12323417,
+    "blocks": []
+   },
+   {
+    "lang": "ja",
+    "article": "日暮れて四方は暗く",
+    "revid": 111097253,
+    "blocks": []
+   },
+   {
+    "lang": "zh",
+    "article": "轻摇，可爱的马车",
+    "revid": 94268413,
+    "blocks": []
+   }
+  ],
+  "en": {
+   "article": "Auld Lang Syne",
+   "revid": 1375007488,
+   "blocks": 1
+  }
+ },
+ "my-bonnie": {
+  "id": "my-bonnie",
+  "title": "My Bonnie Lies over the Ocean",
+  "en_article": "My Bonnie Lies over the Ocean",
+  "mutopia": [],
+  "wiki": [
+   {
+    "lang": "de",
+    "article": "My Bonnie",
+    "revid": 266707065,
+    "blocks": []
+   },
+   {
+    "lang": "fr",
+    "article": "My Bonnie Lies over the Ocean",
+    "revid": 239382914,
+    "blocks": []
+   },
+   {
+    "lang": "es",
+    "article": "My Bonnie Lies over the Ocean",
+    "revid": 171247058,
+    "blocks": []
+   },
+   {
+    "lang": "it",
+    "article": "My Bonnie Lies over the Ocean",
+    "revid": 149517547,
+    "blocks": []
+   },
+   {
+    "lang": "nl",
+    "article": "My Bonnie",
+    "revid": 70349766,
+    "blocks": []
+   },
+   {
+    "lang": "sv",
+    "article": "My Bonnie Lies Over the Ocean",
+    "revid": 49510973,
+    "blocks": []
+   },
+   {
+    "lang": "pl",
+    "article": "My Bonnie Lies over the Ocean",
+    "revid": 69271271,
+    "blocks": []
+   },
+   {
+    "lang": "pt",
+    "article": "My Bonnie Lies over the Ocean",
+    "revid": 70789202,
+    "blocks": []
+   },
+   {
+    "lang": "ru",
+    "article": "My Bonnie Lies over the Ocean",
+    "revid": 152786104,
+    "blocks": []
+   },
+   {
+    "lang": "fi",
+    "article": "My Bonnie Lies over the Ocean",
+    "revid": 20908252,
+    "blocks": []
+   },
+   {
+    "lang": "ja",
+    "article": "日暮れて四方は暗く",
+    "revid": 111097253,
+    "blocks": []
+   }
+  ],
+  "en": {
+   "article": "My Bonnie Lies over the Ocean",
+   "revid": 1371358716,
+   "blocks": 1
+  }
+ },
+ "danny-boy": {
+  "id": "danny-boy",
+  "title": "Danny Boy",
+  "en_article": "Danny Boy",
+  "mutopia": [],
+  "wiki": [
+   {
+    "lang": "de",
+    "article": "Danny Boy",
+    "revid": 270177325,
+    "blocks": []
+   },
+   {
+    "lang": "es",
+    "article": "Danny Boy",
+    "revid": 171309567,
+    "blocks": []
+   },
+   {
+    "lang": "it",
+    "article": "Danny Boy",
+    "revid": 150156669,
+    "blocks": []
+   },
+   {
+    "lang": "nl",
+    "article": "Danny Boy",
+    "revid": 71448381,
+    "blocks": []
+   },
+   {
+    "lang": "pl",
+    "article": "Danny Boy",
+    "revid": 63846875,
+    "blocks": []
+   },
+   {
+    "lang": "ru",
+    "article": "Danny Boy",
+    "revid": 151798579,
+    "blocks": []
+   },
+   {
+    "lang": "ja",
+    "article": "日暮れて四方は暗く",
+    "revid": 111097253,
+    "blocks": []
+   },
+   {
+    "lang": "zh",
+    "article": "轻摇，可爱的马车",
+    "revid": 94268413,
+    "blocks": []
+   }
+  ],
+  "en": {
+   "article": "Danny Boy",
+   "revid": 1370305578,
+   "blocks": 0
+  }
+ },
+ "aura-lea": {
+  "id": "aura-lea",
+  "title": "Aura Lea",
+  "en_article": "Aura Lea",
+  "mutopia": [],
+  "wiki": [
+   {
+    "lang": "fr",
+    "article": "Aura Lea",
+    "revid": 238018951,
+    "blocks": [
+     {
+      "attrs": "",
+      "heading": "Histoire",
+      "before": " une jeune fille. Elle est écrite par WW Fosdick (paroles) et George R. Poulton (musique). La mélodie est utilisée dans la chanson à succès d'Elvis Presley, ''Love Me Tender'', en 1956. == Histoire ==",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "Aura Lea est publiée en 1861 par Poulton, un Anglais venu en Amérique avec sa famille lorsqu'il est enfant en 1838, et par Fosdick. C'est une [[ballade]] sentim",
+      "abc": false,
+      "chars": 422,
+      "same_as_en_block": true
+     }
+    ]
+   },
+   {
+    "lang": "it",
+    "article": "Aura Lee",
+    "revid": 151030932,
+    "blocks": []
+   },
+   {
+    "lang": "ja",
+    "article": "日暮れて四方は暗く",
+    "revid": 111097253,
+    "blocks": []
+   }
+  ],
+  "en": {
+   "article": "Aura Lea",
+   "revid": 1368982546,
+   "blocks": 1
+  }
+ },
+ "yankee-doodle": {
+  "id": "yankee-doodle",
+  "title": "Yankee Doodle",
+  "en_article": "Yankee Doodle",
+  "mutopia": [],
+  "wiki": [
+   {
+    "lang": "de",
+    "article": "Yankee Doodle",
+    "revid": 270364231,
+    "blocks": []
+   },
+   {
+    "lang": "fr",
+    "article": "Yankee Doodle",
+    "revid": 236178970,
+    "blocks": []
+   },
+   {
+    "lang": "es",
+    "article": "Yankee Doodle",
+    "revid": 174660360,
+    "blocks": []
+   },
+   {
+    "lang": "it",
+    "article": "Yankee Doodle",
+    "revid": 152147454,
+    "blocks": []
+   },
+   {
+    "lang": "sv",
+    "article": "Yankee Doodle",
+    "revid": 59699557,
+    "blocks": []
+   },
+   {
+    "lang": "pl",
+    "article": "Yankee Doodle",
+    "revid": 79101882,
+    "blocks": []
+   },
+   {
+    "lang": "pt",
+    "article": "Yankee Doodle",
+    "revid": 63870654,
+    "blocks": []
+   },
+   {
+    "lang": "ru",
+    "article": "Янки-дудл",
+    "revid": 153830368,
+    "blocks": []
+   },
+   {
+    "lang": "uk",
+    "article": "Янкі-Дудл",
+    "revid": 44024213,
+    "blocks": []
+   },
+   {
+    "lang": "cs",
+    "article": "Yankee Doodle",
+    "revid": 25713456,
+    "blocks": []
+   },
+   {
+    "lang": "fi",
+    "article": "Yankee Doodle",
+    "revid": 21233222,
+    "blocks": []
+   },
+   {
+    "lang": "da",
+    "article": "Yankee Doodle",
+    "revid": 11836899,
+    "blocks": []
+   },
+   {
+    "lang": "ja",
+    "article": "日暮れて四方は暗く",
+    "revid": 111097253,
+    "blocks": []
+   },
+   {
+    "lang": "zh",
+    "article": "轻摇，可爱的马车",
+    "revid": 94268413,
+    "blocks": []
+   }
+  ],
+  "en": {
+   "article": "Yankee Doodle",
+   "revid": 1375104241,
+   "blocks": 0
+  }
+ },
+ "god-save-the-king": {
+  "id": "god-save-the-king",
+  "title": "God Save the King",
+  "en_article": "God Save the King",
+  "mutopia": [
+   {
+    "query": "king",
+    "id": 429,
+    "heading": "The Three Fishers, by J. Hullah (1812–1884)",
+    "instrument(s)": "Voice and Piano",
+    "style": "Song",
+    "source": "New York: S. T. Gordon",
+    "copyright": "Public Domain",
+    "date of composition": "1856",
+    "music id number": "Mutopia-2014/11/13-429",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/HullahJ/fish/fish-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/HullahJ/fish/fish-let.pdf",
+     "https://www.mutopiaproject.org/ftp/HullahJ/fish/fish.log",
+     "https://www.mutopiaproject.org/ftp/HullahJ/fish/fish.ly",
+     "https://www.mutopiaproject.org/ftp/HullahJ/fish/fish.mid"
+    ]
+   },
+   {
+    "query": "king",
+    "id": 448,
+    "heading": "Masonic Funeral Music KV 477, by W. A. Mozart (1756–1791)",
+    "instrument(s)": "Orchestra: Basset Horn, Clarinet, Oboes, Horns, Violins, Viola, 'Cello",
+    "style": "Classical",
+    "source": "Werner Icking Archive",
+    "copyright": "Public Domain",
+    "date of composition": "1785",
+    "music id number": "Mutopia-2004/10/31-448",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/MozartWA/KV477/k477/k477-a4-pdfs.zip",
+     "https://www.mutopiaproject.org/ftp/MozartWA/KV477/k477/k477-let-pdfs.zip",
+     "https://www.mutopiaproject.org/ftp/MozartWA/KV477/k477/k477-lys.zip",
+     "https://www.mutopiaproject.org/ftp/MozartWA/KV477/k477/k477-mids.zip",
+     "https://www.mutopiaproject.org/ftp/MozartWA/KV477/k477/k477.log"
+    ]
+   },
+   {
+    "query": "king",
+    "id": 522,
+    "heading": "Austria, by F. J. Haydn (1732–1809)",
+    "instrument(s)": "Voice (SATB)",
+    "style": "Hymn",
+    "source": "Book of Common Praise, 1908, number 280",
+    "copyright": "Public Domain",
+    "date of composition": "1797",
+    "music id number": "Mutopia-2005/01/18-522",
+    "meter": "8 7. 8 7. D",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/HaydnFJ/Austria/Austria-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/HaydnFJ/Austria/Austria-let.pdf",
+     "https://www.mutopiaproject.org/ftp/HaydnFJ/Austria/Austria.log",
+     "https://www.mutopiaproject.org/ftp/HaydnFJ/Austria/Austria.ly",
+     "https://www.mutopiaproject.org/ftp/HaydnFJ/Austria/Austria.mid"
+    ]
+   },
+   {
+    "query": "king",
+    "id": 571,
+    "heading": "Sonate for Violin and Piano K 379, by W. A. Mozart (1756–1791)",
+    "instrument(s)": "Violin and Piano",
+    "style": "Classical",
+    "source": "Schirmer, 1906, ed. H. Schradieck",
+    "copyright": "Public Domain",
+    "date of composition": "1781",
+    "music id number": "Mutopia-2005/07/25-571",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/MozartWA/KV379/k379/k379-a4-pdfs.zip",
+     "https://www.mutopiaproject.org/ftp/MozartWA/KV379/k379/k379-let-pdfs.zip",
+     "https://www.mutopiaproject.org/ftp/MozartWA/KV379/k379/k379-lys.zip",
+     "https://www.mutopiaproject.org/ftp/MozartWA/KV379/k379/k379-mids.zip",
+     "https://www.mutopiaproject.org/ftp/MozartWA/KV379/k379/k379.log"
+    ]
+   },
+   {
+    "query": "king",
+    "id": 905,
+    "heading": "Good King Wenceslas (Anonymous)",
+    "instrument(s)": "Voice",
+    "style": "Song",
+    "source": "Sheet Music from Rev. Charles Lewis Hutchins, Carols Old and Carols New (Boston: Parish Choir, 1916), Carol #415",
+    "copyright": "Public Domain",
+    "date of composition": "1853",
+    "music id number": "Mutopia-2007/01/10-905",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/Anonymous/GoodKingWenceslas/GoodKingWenceslas-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/Anonymous/GoodKingWenceslas/GoodKingWenceslas-let.pdf",
+     "https://www.mutopiaproject.org/ftp/Anonymous/GoodKingWenceslas/GoodKingWenceslas.log",
+     "https://www.mutopiaproject.org/ftp/Anonymous/GoodKingWenceslas/GoodKingWenceslas.ly",
+     "https://www.mutopiaproject.org/ftp/Anonymous/GoodKingWenceslas/GoodKingWenceslas.mid"
+    ]
+   },
+   {
+    "query": "king",
+    "id": 1632,
+    "heading": "4. Old Simon the King (Anonymous)",
+    "instrument(s)": "Violin",
+    "style": "Baroque",
+    "source": "Facsimile from 1685 edition of Playford's Division Violin, Bodleian Library",
+    "copyright": "Public Domain",
+    "date of composition": "Not known",
+    "music id number": "Mutopia-2009/02/22-1632",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/Anonymous/division-violin-04/division-violin-04-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/Anonymous/division-violin-04/division-violin-04-let.pdf",
+     "https://www.mutopiaproject.org/ftp/Anonymous/division-violin-04/division-violin-04-mids.zip",
+     "https://www.mutopiaproject.org/ftp/Anonymous/division-violin-04/division-violin-04.log",
+     "https://www.mutopiaproject.org/ftp/Anonymous/division-violin-04/division-violin-04.ly"
+    ]
+   },
+   {
+    "query": "king",
+    "id": 1745,
+    "heading": "Erhalt uns, Herr, bei deinem Wort, by D. Buxtehude (c.1637–1707)",
+    "instrument(s)": "Organ",
+    "style": "Baroque",
+    "source": "icking-music-archive.org",
+    "copyright": "Public Domain",
+    "date of composition": "Not known",
+    "music id number": "Mutopia-2010/04/04-1745",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/BuxtehudeD/Wv185/BuxWv185/BuxWv185-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/BuxtehudeD/Wv185/BuxWv185/BuxWv185-let.pdf",
+     "https://www.mutopiaproject.org/ftp/BuxtehudeD/Wv185/BuxWv185/BuxWv185.log",
+     "https://www.mutopiaproject.org/ftp/BuxtehudeD/Wv185/BuxWv185/BuxWv185.ly",
+     "https://www.mutopiaproject.org/ftp/BuxtehudeD/Wv185/BuxWv185/BuxWv185.mid"
+    ]
+   },
+   {
+    "query": "king",
+    "id": 1888,
+    "heading": "In the Hall of the Mountain King, by E. Grieg (1843–1907)",
+    "instrument(s)": "Piano",
+    "style": "Classical",
+    "source": "The University Society, 1918",
+    "copyright": "Public Domain",
+    "date of composition": "1874",
+    "music id number": "Mutopia-2013/12/07-1888",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/GriegE/O46/Dans_l_antre_du_roi_de_la_montagne/Dans_l_antre_du_roi_de_la_montagne-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/GriegE/O46/Dans_l_antre_du_roi_de_la_montagne/Dans_l_antre_du_roi_de_la_montagne-let.pdf",
+     "https://www.mutopiaproject.org/ftp/GriegE/O46/Dans_l_antre_du_roi_de_la_montagne/Dans_l_antre_du_roi_de_la_montagne.log",
+     "https://www.mutopiaproject.org/ftp/GriegE/O46/Dans_l_antre_du_roi_de_la_montagne/Dans_l_antre_du_roi_de_la_montagne.ly",
+     "https://www.mutopiaproject.org/ftp/GriegE/O46/Dans_l_antre_du_roi_de_la_montagne/Dans_l_antre_du_roi_de_la_montagne.mid"
+    ]
+   },
+   {
+    "query": "king",
+    "id": 2215,
+    "heading": "Suite 5 for Cello Solo, by J. S. Bach (1685–1750)",
+    "instrument(s)": "Cello",
+    "style": "Baroque",
+    "source": "Werner Icking",
+    "copyright": "Public Domain",
+    "date of composition": "Not known",
+    "music id number": "Mutopia-2018/03/31-2215",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/BachJS/BWV1011/bwv1011_transposed/bwv1011_transposed-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/BachJS/BWV1011/bwv1011_transposed/bwv1011_transposed-let.pdf",
+     "https://www.mutopiaproject.org/ftp/BachJS/BWV1011/bwv1011_transposed/bwv1011_transposed-lys.zip",
+     "https://www.mutopiaproject.org/ftp/BachJS/BWV1011/bwv1011_transposed/bwv1011_transposed-mids.zip",
+     "https://www.mutopiaproject.org/ftp/BachJS/BWV1011/bwv1011_transposed/bwv1011_transposed.log"
+    ]
+   },
+   {
+    "query": "king",
+    "id": 2219,
+    "heading": "Suite 5 for Cello Solo, by J. S. Bach (1685–1750)",
+    "instrument(s)": "Cello",
+    "style": "Baroque",
+    "source": "Werner Icking",
+    "copyright": "Public Domain",
+    "date of composition": "Not known",
+    "music id number": "Mutopia-2018/05/15-2219",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/BachJS/BWV1011/bwv1011/bwv1011-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/BachJS/BWV1011/bwv1011/bwv1011-let.pdf",
+     "https://www.mutopiaproject.org/ftp/BachJS/BWV1011/bwv1011/bwv1011-lys.zip",
+     "https://www.mutopiaproject.org/ftp/BachJS/BWV1011/bwv1011/bwv1011-mids.zip",
+     "https://www.mutopiaproject.org/ftp/BachJS/BWV1011/bwv1011/bwv1011.log"
+    ]
+   }
+  ],
+  "wiki": [
+   {
+    "lang": "de",
+    "article": "God Save the King",
+    "revid": 262931393,
+    "blocks": []
+   },
+   {
+    "lang": "fr",
+    "article": "God Save the King",
+    "revid": 237079290,
+    "blocks": []
+   },
+   {
+    "lang": "es",
+    "article": "God Save the King",
+    "revid": 174877224,
+    "blocks": []
+   },
+   {
+    "lang": "it",
+    "article": "God Save the King",
+    "revid": 152608958,
+    "blocks": [
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Pubblicazioni e prima esecuzione",
+      "before": "ta al King's College di Cambridge presenta abrasioni e altri segni d'alterazione.. Il brano è comunque scritto nella tonalità originale di sol maggiore.. a) Thesaurus musicus (Harmonia anglicana) 1744",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "Si tratta musicalmente della stessa versione riportata (con ogni probabilità senza l'autorizzazione dell'editore del ''Thesaurus'' John Simpson) come ''A Song f",
+      "abc": false,
+      "chars": 1203,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Pubblicazioni e prima esecuzione",
+      "before": "bbene questa sia trasportata in mi♭ maggiore.. In seguito alla ricostruzione, l'ipotetico originale dell'inno doveva suonare come segue. b) Ricostruzione di Thesaurus musicus (Harmonia anglicana) 1744",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "Si riporta di seguito la versione arrangiata da Arne, ritrasportata per comodità in sol maggiore, scritta nello stesso [[Metro (musica)|metro]], senza abbellime",
+      "abc": false,
+      "chars": 1226,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Pubblicazioni e prima esecuzione",
+      "before": " e con le sole voci soliste, esclusa la ripetizione delle due frasi da parte del coro. La linea del mezzosoprano è scritta in chiave di violino per uniformità con gli altri esempi. c) Thomas Arne 1745",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "Si può notare che la battuta 1 del canto nelle versioni ''[[#B|b)]]'' e ''[[#C|c)]]'' è identica a quella della versione moderna ([[Sol (nota)|sol]]-sol-la), me",
+      "abc": false,
+      "chars": 1365,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Pubblicazioni e prima esecuzione",
+      "before": "superata dalla versione d) apparsa sul Thesaurus stesso sotto il titolo A Loyal Song. Sung at the Theatres Royal,.. che per semplicità si riporta di nuovo senza abbellimenti. d) Thesaurus musicus 1745",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "Se quindi la forma moderna delle battute 1 e 4 fu raggiunta nel giro di un anno (e quella della battuta 1 era forse presente già nell'originale), diversa sorte",
+      "abc": false,
+      "chars": 1497,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Pubblicazioni e prima esecuzione",
+      "before": "ssò di moda qualche anno dopo, e si preferì quindi raggiungere la tonica sol con note di passaggio per grado congiunto, formando due semplici scale discendenti (la-sol-fa♯ e do-si-la).. e) Battute 5-6",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "''f)'' Battute 13-14",
+      "abc": false,
+      "chars": 322,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Pubblicazioni e prima esecuzione",
+      "before": "core.tempoHideNote = ##t \\key g \\major \\time 3/4 \\tempo 4 = 60 \\hide Staff.TimeSignature a4 g fis g2. \\bar \"||\" } \\addlyrics { \\override LyricText.font-size = #-1 God save the King! } f) Battute 13-14",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "Per scongiurare la banalità di questa soluzione sul finale della strofa, i cantanti presero allora l'abitudine di eseguire una [[Corona (musica)|corona]] sulla",
+      "abc": false,
+      "chars": 319,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Pubblicazioni e prima esecuzione",
+      "before": "do sulla sillaba God. Questo nuovo uso, criticato da Chappell che mostra di preferire la versione più antica,. si è poi stabilizzato dando luogo ad almeno altre due varianti. g) Battute 13-14: terzina",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "''h)'' Battute 13-14: variante ritmica",
+      "abc": false,
+      "chars": 343,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Pubblicazioni e prima esecuzione",
+      "before": "Text.font-size = #-1 God ___ _ save the King. } h) Battute 13-14: variante ritmicaSi trova ad esempio nell'arrangiamento di Elgar per l'incoronazione di Edoardo VII,",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "''i)'' Battute 13-14: variante ritmico-melodica",
+      "abc": false,
+      "chars": 333,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Pubblicazioni e prima esecuzione",
+      "before": "elodicaEmerge in una versione circolata negli anni 1750, dal titolo God Save the King ma in tre strofe completamente diverse. Il brano è affidato al coro e la melodia dell'inno è cantata dal tenore. .",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "Negli arrangiamenti moderni la seconda frase è introdotta alla battuta 6 da una scala di note di passaggio che dalla tonica sale alla [[Dominante (musica)|domin",
+      "abc": false,
+      "chars": 328,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Pubblicazioni e prima esecuzione",
+      "before": " da una scala di note di passaggio che dalla tonica sale alla dominante (sol-la-si-do, in ottavi, che conducono la melodia al re sul tempo forte della battuta 7). j) Battute 5-8: arrangiamento moderno",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "=== Testo ===",
+      "abc": false,
+      "chars": 737,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=1",
+      "heading": "Musica",
+      "before": " adotta, tranne che nelle battute finali delle due frasi, un tipico ritmo di gagliarda. con la sola variante di una scala discendente di ottavi sui tempi deboli della battuta 11. k) Ritmo di gagliarda",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "Il ritmo, unito alla linea melodica iniziale della seconda frase (la [[Progressione (musica)|progressione]] discendente sui versi «Send him victorious, happy an",
+      "abc": false,
+      "chars": 245,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Musica",
+      "before": "versi «Send him victorious, happy and glorious»), ricorre da oltre un secolo nella tradizione inglese, e suggerisce che il brano sia derivato da altre melodie popolari. l) Battute 7-8: tema ricorrente",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "Ciò suggerisce che la melodia non fu composta appositamente ma il testo, a sua volta patrimonio comune della tradizione, fu adattato a una melodia già popolare.",
+      "abc": false,
+      "chars": 377,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Musica",
+      "before": "possiede pertanto un diverso carattere. La si riporta di seguito adeguando l'indicazione metrica a quella dell'inno. m) Melismata 1611",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "La stessa figurazione ritmica di ''God Save the King'' è usata da John Bull, autore di diverse gagliarde di cui almeno una dalla struttura identica a quella del",
+      "abc": false,
+      "chars": 1099,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Musica",
+      "before": "licabili a una melodia.. Anche questa composizione è qui riportata con il metro adeguato, trasportata in sol minore naturale con la sola sensibile fa♯. in chiusura della prima frase. n) John Bull 1619",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "Caratteristiche simili presenta infine una [[Ballata (musica)|ballata]] pubblicata nel 1669 nella raccolta ''Apollo's Banquet for the Treble Violin'' con il tit",
+      "abc": false,
+      "chars": 1180,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Musica",
+      "before": "dia scende di una quinta anziché di una terza minore). In compenso, la battuta 1 è praticamente identica a quella dell'inno nella sua versione corrente.. o) Apollo's Banquet for the Treble Violin 1669",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "Si fonda invece su un'evidente, doppia falsificazione (1834) la pretesa di attribuire l'inno all'opera di [[Jean-Baptiste Lully|Lulli]], che sarebbe stato autor",
+      "abc": false,
+      "chars": 1492,
+      "same_as_en_block": false
+     }
+    ]
+   },
+   {
+    "lang": "nl",
+    "article": "God Save the King",
+    "revid": 69538542,
+    "blocks": []
+   },
+   {
+    "lang": "sv",
+    "article": "God Save the King",
+    "revid": 59469488,
+    "blocks": []
+   },
+   {
+    "lang": "pl",
+    "article": "Hymn Wielkiej Brytanii",
+    "revid": 78493804,
+    "blocks": []
+   },
+   {
+    "lang": "pt",
+    "article": "God Save the King",
+    "revid": 72674107,
+    "blocks": []
+   },
+   {
+    "lang": "ru",
+    "article": "Янки-дудл",
+    "revid": 153830368,
+    "blocks": []
+   },
+   {
+    "lang": "uk",
+    "article": "Янкі-Дудл",
+    "revid": 44024213,
+    "blocks": []
+   },
+   {
+    "lang": "cs",
+    "article": "Hymna Spojeného království",
+    "revid": 24591607,
+    "blocks": []
+   },
+   {
+    "lang": "fi",
+    "article": "God Save the King",
+    "revid": 23428489,
+    "blocks": []
+   },
+   {
+    "lang": "da",
+    "article": "God Save the King",
+    "revid": 11955102,
+    "blocks": []
+   },
+   {
+    "lang": "ja",
+    "article": "日暮れて四方は暗く",
+    "revid": 111097253,
+    "blocks": []
+   },
+   {
+    "lang": "zh",
+    "article": "轻摇，可爱的马车",
+    "revid": 94268413,
+    "blocks": []
+   }
+  ],
+  "en": {
+   "article": "God Save the King",
+   "revid": 1374275448,
+   "blocks": 0
+  }
+ },
+ "star-spangled-banner": {
+  "id": "star-spangled-banner",
+  "title": "The Star-Spangled Banner",
+  "en_article": "The Star-Spangled Banner",
+  "mutopia": [],
+  "wiki": [
+   {
+    "lang": "de",
+    "article": "The Star-Spangled Banner",
+    "revid": 269473026,
+    "blocks": []
+   },
+   {
+    "lang": "fr",
+    "article": "The Star-Spangled Banner",
+    "revid": 237480464,
+    "blocks": []
+   },
+   {
+    "lang": "es",
+    "article": "The Star-Spangled Banner",
+    "revid": 174949659,
+    "blocks": []
+   },
+   {
+    "lang": "it",
+    "article": "The Star-Spangled Banner",
+    "revid": 152112921,
+    "blocks": [
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Origini della musica",
+      "before": "isazione.. La canzone è riportata di seguito con gli abbellimenti realizzati, ad eccezione dei trilli che sono omessi. Nella strofa la voce è raddoppiata da una parte di tastiera. a) Blands 1790 circa",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "=== Vicende istituzionali ===",
+      "abc": false,
+      "chars": 2747,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Musica",
+      "before": "lle versioni standardizzate nel Novecento.. La versione viene riportata di seguito ignorando le ripetizioni e sviluppando gli abbellimenti. La voce è raddoppiata da una parte di tastiera. b) Carr 1814",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "Nel corso del tempo l'inno si è ulteriormente evoluto e, nella confusione delle versioni, emerse un arrangiamento di [[John Philip Sousa|Sousa]] del 1879.",
+      "abc": false,
+      "chars": 3224,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Musica",
+      "before": " modifiche melodiche e ritmiche, in particolare il moderno attacco arpeggiato sulla sillaba O, la scomparsa del ritmo puntato su say can [you] e la sua comparsa invece su by the [dawn's]. c) Carr 1814",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "''d)'' Committee of Twelve 1918",
+      "abc": false,
+      "chars": 749,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Musica",
+      "before": "midiInstrument = \"piano\" \\magnifyStaff #5/7 } \\transpose c as { \\clef bass \\key c \\major \\relative c, { 4-\"La♭\" 2-\"La♭\" 4-\"Mi♭\" 2-\"fa\" 4-\"Do\" 2-\"fa\" 4-\"Si♭7\" 2-\"Mi♭\" } } >> d) Committee of Twelve 1918",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "== Citazioni e interpretazioni ==",
+      "abc": false,
+      "chars": 781,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Citazioni e interpretazioni",
+      "before": "mentre l'originario metro ternario è energico e funzionale alla celebrazione della vittoria, l'aggiunta di un movimento alle battute dell'inno in queste versioni, che trasforma il metro in come segue.",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "{{citazione",
+      "abc": false,
+      "chars": 397,
+      "same_as_en_block": false
+     }
+    ]
+   },
+   {
+    "lang": "nl",
+    "article": "The Star-Spangled Banner",
+    "revid": 67765929,
+    "blocks": []
+   },
+   {
+    "lang": "sv",
+    "article": "The Star-Spangled Banner",
+    "revid": 59441301,
+    "blocks": []
+   },
+   {
+    "lang": "pl",
+    "article": "Hymn Stanów Zjednoczonych Ameryki",
+    "revid": 80673873,
+    "blocks": []
+   },
+   {
+    "lang": "pt",
+    "article": "The Star-Spangled Banner",
+    "revid": 72724457,
+    "blocks": []
+   },
+   {
+    "lang": "ru",
+    "article": "Янки-дудл",
+    "revid": 153830368,
+    "blocks": []
+   },
+   {
+    "lang": "uk",
+    "article": "Янкі-Дудл",
+    "revid": 44024213,
+    "blocks": []
+   },
+   {
+    "lang": "cs",
+    "article": "Hymna Spojených států amerických",
+    "revid": 25713449,
+    "blocks": []
+   },
+   {
+    "lang": "fi",
+    "article": "The Star-Spangled Banner",
+    "revid": 24151082,
+    "blocks": []
+   },
+   {
+    "lang": "da",
+    "article": "The Star-Spangled Banner",
+    "revid": 11987832,
+    "blocks": []
+   },
+   {
+    "lang": "ja",
+    "article": "日暮れて四方は暗く",
+    "revid": 111097253,
+    "blocks": []
+   },
+   {
+    "lang": "zh",
+    "article": "轻摇，可爱的马车",
+    "revid": 94268413,
+    "blocks": []
+   }
+  ],
+  "en": {
+   "article": "The Star-Spangled Banner",
+   "revid": 1377019896,
+   "blocks": 0
+  }
+ },
+ "la-marseillaise": {
+  "id": "la-marseillaise",
+  "title": "La Marseillaise",
+  "en_article": "La Marseillaise",
+  "mutopia": [],
+  "wiki": [
+   {
+    "lang": "de",
+    "article": "Marseillaise",
+    "revid": 269848187,
+    "blocks": []
+   },
+   {
+    "lang": "fr",
+    "article": "La Marseillaise",
+    "revid": 239659681,
+    "blocks": []
+   },
+   {
+    "lang": "es",
+    "article": "La marsellesa",
+    "revid": 174998514,
+    "blocks": []
+   },
+   {
+    "lang": "it",
+    "article": "La Marsigliese",
+    "revid": 151946643,
+    "blocks": [
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Origine e pubblicazione",
+      "before": "ima edizione è riportata di seguito nella tonalità di do maggiore e con il metro della partitura originale. L'appoggiatura alla battuta 8 e il tremolo alla battuta 34 sono realizzati. a) Dannbach 1792",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "=== Affermazione e titolo ===",
+      "abc": false,
+      "chars": 1909,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Evoluzione",
+      "before": "eramente assai (dal Temps de marche animé che corredava l'originale.). Si tratta di una versione, riportata qui di seguito nella sola melodia, molto simile a quella definitiva. b) Rouget de Lisle 1825",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "==== Arrangiamenti e versione ufficiale ====",
+      "abc": false,
+      "chars": 1625,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Arrangiamenti e versione ufficiale",
+      "before": "meno marziale. La scadenza del mandato di Giscard e l'entrata in carica nel 1981 di François Mitterrand, che preferiva la versione di Dupont, chiuse la stagione della nuova Marsigliese. c) Dupont 1938",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "''d)'' Boutry 1974",
+      "abc": false,
+      "chars": 354,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Arrangiamenti e versione ufficiale",
+      "before": "ajor \\time 4/4 \\tempo 4 = 112 \\partial 2 r8 r16 f f8. f16 bes4 bes c c f4. (d8) bes r16 } \\addlyrics { \\override LyricText.font-size = #-2 Al -- lons, en -- fants de la Pa -- tri -- e } d) Boutry 1974",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "=== Vicende istituzionali ===",
+      "abc": false,
+      "chars": 353,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Musica",
+      "before": "econda), ma nella Marsigliese sono particolarmente diffuse e marcate. Si riportano di seguito le più importanti. c) Versi 1-2 {| style=\"width:100%;\" |- | style=\"width:50%;\" | Strofa 1 || Strofa 2 |- |",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "|",
+      "abc": false,
+      "chars": 437,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Musica",
+      "before": "s c c f4. (d8) bes r16 bes d8. bes16 g4 es'2 c8. a16 bes2 } \\addlyrics { \\override LyricText.font-size = #-2 Al -- lons, en -- fants de la Pa -- tri -- e, Le jour de gloi -- re_est ar -- ri -- vé! } |",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "|}",
+      "abc": false,
+      "chars": 448,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Musica",
+      "before": ".font-size = #-2 Que veut cet -- te hor -- de d'es -- cla -- ves, De trai -- tres de rois con -- ju -- rés? } |} d) Versi 3-4 {| style=\"width:100%;\" |- | style=\"width:50%;\" | Strofa 1 || Strofa 3 |- |",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "|",
+      "abc": false,
+      "chars": 452,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Musica",
+      "before": " c16 d4 d d es8. d16 d4 c r c8. d16 es4 es es f8. es16 d2 } \\addlyrics { \\override LyricText.font-size = #-2 Con -- tre nous de la ty -- ran -- ni -- e L'é -- ten -- dard san -- glant est le -- vé } |",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "|}",
+      "abc": false,
+      "chars": 468,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Musica",
+      "before": "= #-2 Quoi! ces pha -- lan -- ges mer -- ce -- nai -- res Ter -- ras -- se -- raient nos fiers guer -- riers! } |} e) Verso 5 {| style=\"width:100%;\" |- | style=\"width:50%;\" | Strofa 1 || Strofa 3 |- |",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "|",
+      "abc": false,
+      "chars": 389,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Musica",
+      "before": "ey bes \\major \\time 4/4 \\tempo 4 = 112 \\partial 2 r8 r16 f16 f8. f16 c'2 es4 c8. a16 bes4 bes } \\addlyrics { \\override LyricText.font-size = #-2 En -- ten -- dez -- vous dans les cam -- pa -- gnes } |",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "|}",
+      "abc": false,
+      "chars": 384,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Musica",
+      "before": "s4 bes8 r } \\addlyrics { \\override LyricText.font-size = #-2 Grand Dieu! par des mains en -- chai -- né -- es } |} f) Verso 7 {| style=\"width:100%;\" |- | style=\"width:50%;\" | Strofa 1 || Strofa 3 |- |",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "|",
+      "abc": false,
+      "chars": 371,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Musica",
+      "before": "f.TimeSignature \\key bes \\major \\time 4/4 \\tempo 4 = 112 \\partial 2 r4 r8 c des4. des8 des des es f c2. } \\addlyrics { \\override LyricText.font-size = #-2 Ils vien -- nent jus -- que dans nos bras } |",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "|}",
+      "abc": false,
+      "chars": 382,
+      "same_as_en_block": false
+     }
+    ]
+   },
+   {
+    "lang": "nl",
+    "article": "Marseillaise",
+    "revid": 70168326,
+    "blocks": []
+   },
+   {
+    "lang": "sv",
+    "article": "Marseljäsen",
+    "revid": 59183979,
+    "blocks": []
+   },
+   {
+    "lang": "pl",
+    "article": "Hymn Francji",
+    "revid": 74872431,
+    "blocks": []
+   },
+   {
+    "lang": "pt",
+    "article": "La Marseillaise",
+    "revid": 72607235,
+    "blocks": []
+   },
+   {
+    "lang": "ru",
+    "article": "Янки-дудл",
+    "revid": 153830368,
+    "blocks": []
+   },
+   {
+    "lang": "uk",
+    "article": "Янкі-Дудл",
+    "revid": 44024213,
+    "blocks": []
+   },
+   {
+    "lang": "cs",
+    "article": "Francouzská hymna",
+    "revid": 26023421,
+    "blocks": []
+   },
+   {
+    "lang": "fi",
+    "article": "Marseljeesi",
+    "revid": 23562880,
+    "blocks": []
+   },
+   {
+    "lang": "da",
+    "article": "Marseillaisen",
+    "revid": 11955438,
+    "blocks": []
+   },
+   {
+    "lang": "ja",
+    "article": "日暮れて四方は暗く",
+    "revid": 111097253,
+    "blocks": []
+   },
+   {
+    "lang": "zh",
+    "article": "轻摇，可爱的马车",
+    "revid": 94268413,
+    "blocks": []
+   }
+  ],
+  "en": {
+   "article": "La Marseillaise",
+   "revid": 1374251828,
+   "blocks": 0
+  }
+ },
+ "brahms-lullaby": {
+  "id": "brahms-lullaby",
+  "title": "Wiegenlied (Brahms' Lullaby)",
+  "en_article": "Wiegenlied (Brahms)",
+  "mutopia": [
+   {
+    "query": "wiegenlied",
+    "id": 632,
+    "heading": "Wiegenlied der Hirten, by M. Bruch (1838–1920)",
+    "instrument(s)": "Choir (SATB)",
+    "style": "Romantic",
+    "source": "Leipzig : C. F. Peters, 1915",
+    "copyright": "Creative Commons Attribution 4.0",
+    "date of composition": "1910s",
+    "music id number": "Mutopia-2014/03/21-632",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/BruchM/Wiegenlied/Wiegenlied-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/BruchM/Wiegenlied/Wiegenlied-let.pdf",
+     "https://www.mutopiaproject.org/ftp/BruchM/Wiegenlied/Wiegenlied.log",
+     "https://www.mutopiaproject.org/ftp/BruchM/Wiegenlied/Wiegenlied.ly",
+     "https://www.mutopiaproject.org/ftp/BruchM/Wiegenlied/Wiegenlied.mid"
+    ]
+   },
+   {
+    "query": "wiegenlied",
+    "id": 887,
+    "heading": "Wiegenlied, by F. Ries (1784–1838)",
+    "instrument(s)": "Voice and Piano",
+    "style": "Romantic",
+    "source": "The University Society, 1904",
+    "copyright": "Public Domain",
+    "date of composition": "19th century",
+    "music id number": "Mutopia-2006/12/21-887",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/RiesF/ries-wiegenlied/ries-wiegenlied-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/RiesF/ries-wiegenlied/ries-wiegenlied-let.pdf",
+     "https://www.mutopiaproject.org/ftp/RiesF/ries-wiegenlied/ries-wiegenlied.log",
+     "https://www.mutopiaproject.org/ftp/RiesF/ries-wiegenlied/ries-wiegenlied.ly",
+     "https://www.mutopiaproject.org/ftp/RiesF/ries-wiegenlied/ries-wiegenlied.mid"
+    ]
+   },
+   {
+    "query": "wiegenlied",
+    "id": 1037,
+    "heading": "Wiegenlied, by J. Brahms (1833–1897)",
+    "instrument(s)": "Voice and Piano",
+    "style": "Romantic",
+    "source": "Indiana University: http://www.dlib.indiana.edu/variations/scores/bgn9130/index1.html",
+    "copyright": "Public Domain",
+    "date of composition": "Not known",
+    "music id number": "Mutopia-2007/11/04-1037",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/BrahmsJ/O49/Wiegenlied/Wiegenlied-a4-pdfs.zip",
+     "https://www.mutopiaproject.org/ftp/BrahmsJ/O49/Wiegenlied/Wiegenlied-let-pdfs.zip",
+     "https://www.mutopiaproject.org/ftp/BrahmsJ/O49/Wiegenlied/Wiegenlied-lys.zip",
+     "https://www.mutopiaproject.org/ftp/BrahmsJ/O49/Wiegenlied/Wiegenlied-mids.zip",
+     "https://www.mutopiaproject.org/ftp/BrahmsJ/O49/Wiegenlied/Wiegenlied.log"
+    ]
+   },
+   {
+    "query": "wiegenlied",
+    "id": 1040,
+    "heading": "Wiegenlied, by F. Schubert (1797–1828)",
+    "instrument(s)": "Voice and Piano",
+    "style": "Romantic",
+    "source": "Indiana Edu. Web",
+    "copyright": "Public Domain",
+    "date of composition": "1816",
+    "music id number": "Mutopia-2007/10/03-1040",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/SchubertF/D498/schubert_wiegen_lied/schubert_wiegen_lied-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/SchubertF/D498/schubert_wiegen_lied/schubert_wiegen_lied-let.pdf",
+     "https://www.mutopiaproject.org/ftp/SchubertF/D498/schubert_wiegen_lied/schubert_wiegen_lied.log",
+     "https://www.mutopiaproject.org/ftp/SchubertF/D498/schubert_wiegen_lied/schubert_wiegen_lied.ly",
+     "https://www.mutopiaproject.org/ftp/SchubertF/D498/schubert_wiegen_lied/schubert_wiegen_lied.mid"
+    ]
+   },
+   {
+    "query": "wiegenlied",
+    "id": 1710,
+    "heading": "Des Kindleins Wiegenlied, by R. Fuchs (1847–1927)",
+    "instrument(s)": "Choir (SATB)",
+    "style": "Romantic",
+    "source": "Leipzig : C. F. Peters, 1915",
+    "copyright": "Creative Commons Attribution 4.0",
+    "date of composition": "1910s",
+    "music id number": "Mutopia-2014/03/23-1710",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/FuchsR/KindleinsWiegenlied/KindleinsWiegenlied-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/FuchsR/KindleinsWiegenlied/KindleinsWiegenlied-let.pdf",
+     "https://www.mutopiaproject.org/ftp/FuchsR/KindleinsWiegenlied/KindleinsWiegenlied.log",
+     "https://www.mutopiaproject.org/ftp/FuchsR/KindleinsWiegenlied/KindleinsWiegenlied.ly",
+     "https://www.mutopiaproject.org/ftp/FuchsR/KindleinsWiegenlied/KindleinsWiegenlied.mid"
+    ]
+   }
+  ],
+  "wiki": [
+   {
+    "lang": "de",
+    "article": "Guten Abend, gut’ Nacht",
+    "revid": 270182546,
+    "blocks": [
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Das ''Wiegenlied'' von Johannes Brahms",
+      "before": "figen Fassung ab: Guten Abend, gute Nacht, Von Englein bewacht! Die zeigen im Traum Dir den Christkindleinsbaum Droben im Paradies – Schlaf’ nun selig und süß! == Das Wiegenlied von Johannes Brahms ==",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "",
+      "abc": false,
+      "chars": 623,
+      "same_as_en_block": false
+     },
+     {
+      "attrs": "sound=\"1\"",
+      "heading": "Die Beziehung zur Volksliedvorlage",
+      "before": "usliche Situation des Wiegenlied-Singens vorstellt: === Die Beziehung zur Volksliedvorlage ===",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "Bei der Melodie handelt es sich vermutlich um eine Volksweise, denn sie wurde 1891 auch von dem Volksliedsammler [[Hans Neckheim]] (1844–1930) mit geringen Ände",
+      "abc": false,
+      "chars": 406,
+      "same_as_en_block": false
+     }
+    ]
+   },
+   {
+    "lang": "fr",
+    "article": "Berceuse de Brahms",
+    "revid": 232408364,
+    "blocks": []
+   },
+   {
+    "lang": "es",
+    "article": "Canción de cuna (Brahms)",
+    "revid": 168846967,
+    "blocks": [
+     {
+      "attrs": "vorbis=\"1\"",
+      "heading": "Música",
+      "before": "n|Bottge|2005}} == Música ==",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "En 1877, Brahms basó el segundo tema del primer [[Movimiento (música)|movimiento]] de su ''[[Sinfonía n.º 2 (Brahms)|Segunda sinfonía]]'' en la melodía de la ''",
+      "abc": false,
+      "chars": 676,
+      "same_as_en_block": true
+     }
+    ]
+   },
+   {
+    "lang": "it",
+    "article": "Ninna nanna (Brahms)",
+    "revid": 148789643,
+    "blocks": []
+   },
+   {
+    "lang": "nl",
+    "article": "Guten Abend, gut’ Nacht",
+    "revid": 68868592,
+    "blocks": []
+   },
+   {
+    "lang": "sv",
+    "article": "Nu i ro slumra in i bädden så fin",
+    "revid": 54584656,
+    "blocks": []
+   },
+   {
+    "lang": "pl",
+    "article": "Kołysanka Johannesa Brahmsa",
+    "revid": 77780059,
+    "blocks": []
+   },
+   {
+    "lang": "pt",
+    "article": "Wiegenlied (Brahms)",
+    "revid": 61968100,
+    "blocks": [
+     {
+      "attrs": "vorbis=\"1\"",
+      "heading": "Melodia",
+      "before": "na por Louise Dustmann (cantora) e Clara Schumann (piano). [http://www.brahms-institut.de/web/bihl_digital/jb_werkekatalog/op_049.html Opus 49, Fünf Lieder für eine Singstimme e Klavier] == Melodia ==",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "{{Referências}}",
+      "abc": false,
+      "chars": 675,
+      "same_as_en_block": true
+     }
+    ]
+   },
+   {
+    "lang": "ru",
+    "article": "Янки-дудл",
+    "revid": 153830368,
+    "blocks": []
+   },
+   {
+    "lang": "uk",
+    "article": "Янкі-Дудл",
+    "revid": 44024213,
+    "blocks": []
+   },
+   {
+    "lang": "fi",
+    "article": "Brahmsin kehtolaulu",
+    "revid": 24284193,
+    "blocks": [
+     {
+      "attrs": "vorbis=\"1\"",
+      "heading": "Melodia",
+      "before": "mala tahtoo, sinä heräät jälleen. Hyvää iltaa, hyvää yötä, enkelien vartioima, jotka näyttävät unessa Kristus-lapsosen puun. Nuku nyt autuaallisesti ja makoisasti, näe unessa paratiisi. |} ==Melodia==",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "==Sovituksia ja muita käyttöyhteyksiä==",
+      "abc": false,
+      "chars": 675,
+      "same_as_en_block": false
+     }
+    ]
+   },
+   {
+    "lang": "ja",
+    "article": "日暮れて四方は暗く",
+    "revid": 111097253,
+    "blocks": []
+   }
+  ],
+  "en": {
+   "article": "Wiegenlied (Brahms)",
+   "revid": 1355367951,
+   "blocks": 1
+  }
+ },
+ "la-donna-e-mobile": {
+  "id": "la-donna-e-mobile",
+  "title": "La donna è mobile",
+  "en_article": "La donna è mobile",
+  "mutopia": [
+   {
+    "query": "donna",
+    "id": 1463,
+    "heading": "Thirty Caprices: No. 1, by E. Cavallini (1807–1874)",
+    "instrument(s)": "Clarinet",
+    "style": "Classical",
+    "source": "Carl Fisher, 1909",
+    "copyright": "Public Domain",
+    "date of composition": "Not known",
+    "music id number": "Mutopia-2008/07/13-1463",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo1/CavalliniNo1-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo1/CavalliniNo1-let.pdf",
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo1/CavalliniNo1.log",
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo1/CavalliniNo1.ly",
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo1/CavalliniNo1.mid"
+    ]
+   },
+   {
+    "query": "donna",
+    "id": 1464,
+    "heading": "Thirty Caprices: No. 3, by E. Cavallini (1807–1874)",
+    "instrument(s)": "Clarinet",
+    "style": "Classical",
+    "source": "Carl Fisher, 1909",
+    "copyright": "Public Domain",
+    "date of composition": "Not known",
+    "music id number": "Mutopia-2008/07/13-1464",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo3/CavalliniNo3-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo3/CavalliniNo3-let.pdf",
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo3/CavalliniNo3.log",
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo3/CavalliniNo3.ly",
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo3/CavalliniNo3.mid"
+    ]
+   },
+   {
+    "query": "donna",
+    "id": 1465,
+    "heading": "Thirty Caprices: No. 8, by E. Cavallini (1807–1874)",
+    "instrument(s)": "Clarinet",
+    "style": "Classical",
+    "source": "Carl Fisher, 1909",
+    "copyright": "Public Domain",
+    "date of composition": "Not known",
+    "music id number": "Mutopia-2008/07/17-1465",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo8/CavalliniNo8-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo8/CavalliniNo8-let.pdf",
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo8/CavalliniNo8.log",
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo8/CavalliniNo8.ly",
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo8/CavalliniNo8.mid"
+    ]
+   },
+   {
+    "query": "donna",
+    "id": 1478,
+    "heading": "Thirty Caprices: No. 4, by E. Cavallini (1807–1874)",
+    "instrument(s)": "Clarinet",
+    "style": "Classical",
+    "source": "Carl Fisher, 1909",
+    "copyright": "Public Domain",
+    "date of composition": "Not known",
+    "music id number": "Mutopia-2008/07/14-1478",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo4/CavalliniNo4-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo4/CavalliniNo4-let.pdf",
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo4/CavalliniNo4.log",
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo4/CavalliniNo4.ly",
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo4/CavalliniNo4.mid"
+    ]
+   },
+   {
+    "query": "donna",
+    "id": 1479,
+    "heading": "Thirty Caprices: No. 7, by E. Cavallini (1807–1874)",
+    "instrument(s)": "Clarinet",
+    "style": "Classical",
+    "source": "Carl Fisher, 1909",
+    "copyright": "Public Domain",
+    "date of composition": "Not known",
+    "music id number": "Mutopia-2008/07/17-1479",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo7/CavalliniNo7-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo7/CavalliniNo7-let.pdf",
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo7/CavalliniNo7.log",
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo7/CavalliniNo7.ly",
+     "https://www.mutopiaproject.org/ftp/CavalliniE/CavalliniNo7/CavalliniNo7.mid"
+    ]
+   },
+   {
+    "query": "donna",
+    "id": 1643,
+    "heading": "The Fairest of the Fair, by J. P. Sousa (1854–1932)",
+    "instrument(s)": "Concert Band: Piccolo, Flute, Oboe, Bassoon, Clarinets, Alto Clarinet, Bass Clarinet, Soprano Saxophone, Alto Saxophone, Tenor Saxophone, Baritone Saxophone",
+    "style": "March",
+    "source": "John Church, 1908",
+    "copyright": "Public Domain",
+    "date of composition": "1908",
+    "music id number": "Mutopia-2009/05/31-1643",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/SousaJP/JPSFotF/JPSFotF-a4-pdfs.zip",
+     "https://www.mutopiaproject.org/ftp/SousaJP/JPSFotF/JPSFotF-let-pdfs.zip",
+     "https://www.mutopiaproject.org/ftp/SousaJP/JPSFotF/JPSFotF-lys.zip",
+     "https://www.mutopiaproject.org/ftp/SousaJP/JPSFotF/JPSFotF-mids.zip",
+     "https://www.mutopiaproject.org/ftp/SousaJP/JPSFotF/JPSFotF.log"
+    ]
+   },
+   {
+    "query": "donna",
+    "id": 1913,
+    "heading": "11. Non vedete voi donna il mio tormento?, by P. de Monte (1521–1603)",
+    "instrument(s)": "Voice",
+    "style": "Renaissance",
+    "source": "http://www.bibliotecamusica.it/cmbm/scripts/gaspari/scheda.asp?id=7630",
+    "copyright": "Creative Commons Attribution 4.0",
+    "date of composition": "1582",
+    "music id number": "Mutopia-2014/01/26-1913",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/MontePd/01-3-11/01-3-11-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/MontePd/01-3-11/01-3-11-let.pdf",
+     "https://www.mutopiaproject.org/ftp/MontePd/01-3-11/01-3-11.log",
+     "https://www.mutopiaproject.org/ftp/MontePd/01-3-11/01-3-11.ly",
+     "https://www.mutopiaproject.org/ftp/MontePd/01-3-11/01-3-11.mid"
+    ]
+   }
+  ],
+  "wiki": [
+   {
+    "lang": "de",
+    "article": "La donna è mobile",
+    "revid": 268009687,
+    "blocks": [
+     {
+      "attrs": "",
+      "heading": "Musik",
+      "before": " Deutscher Verlag für Musik, Leipzig 1979, S.&nbsp;536 == Musik == mini|Gesungen von [[Enrico Caruso(Aufnahme aus dem Jahr 1908)]] mini|[[Javier Camarena, Gran Teatre del Liceu, 2017]] {|align=right |",
+      "ly_title": null,
+      "ly_piece": null,
+      "after": "|}",
+      "abc": false,
+      "chars": 110,
+      "same_as_en_block": false
+     }
+    ]
+   },
+   {
+    "lang": "fr",
+    "article": "La donna è mobile",
+    "revid": 237440416,
+    "blocks": []
+   },
+   {
+    "lang": "es",
+    "article": "La donna è mobile",
+    "revid": 175286444,
+    "blocks": []
+   },
+   {
+    "lang": "it",
+    "article": "La donna è mobile",
+    "revid": 149382705,
+    "blocks": []
+   },
+   {
+    "lang": "sv",
+    "article": "La donna è mobile",
+    "revid": 57491720,
+    "blocks": []
+   },
+   {
+    "lang": "pl",
+    "article": "La donna è mobile",
+    "revid": 74887954,
+    "blocks": []
+   },
+   {
+    "lang": "pt",
+    "article": "La donna è mobile",
+    "revid": 67090613,
+    "blocks": []
+   },
+   {
+    "lang": "ru",
+    "article": "La donna è mobile",
+    "revid": 143139066,
+    "blocks": []
+   },
+   {
+    "lang": "uk",
+    "article": "La donna è mobile",
+    "revid": 40353107,
+    "blocks": []
+   },
+   {
+    "lang": "fi",
+    "article": "La donna è mobile",
+    "revid": 23124565,
+    "blocks": []
+   }
+  ],
+  "en": {
+   "article": "La donna è mobile",
+   "revid": 1361599092,
+   "blocks": 1
+  }
+ },
+ "habanera": {
+  "id": "habanera",
+  "title": "Habanera (Carmen)",
+  "en_article": "Habanera (aria)",
+  "mutopia": [
+   {
+    "query": "carmen",
+    "id": 635,
+    "heading": "Carmen - Prelude, by G. Bizet (1838–1875)",
+    "instrument(s)": "Piano",
+    "style": "Romantic",
+    "source": "Schirmer, 1895",
+    "copyright": "Creative Commons Attribution-ShareAlike 2.5",
+    "date of composition": "1874",
+    "music id number": "Mutopia-2005/11/22-635",
+    "files": [
+     "https://www.mutopiaproject.org/ftp/BizetG/prelude/prelude-a4.pdf",
+     "https://www.mutopiaproject.org/ftp/BizetG/prelude/prelude-let.pdf",
+     "https://www.mutopiaproject.org/ftp/BizetG/prelude/prelude.log",
+     "https://www.mutopiaproject.org/ftp/BizetG/prelude/prelude.ly",
+     "https://www.mutopiaproject.org/ftp/BizetG/prelude/prelude.mid"
+    ]
+   }
+  ],
+  "wiki": [
+   {
+    "lang": "de",
+    "article": "Habanera (Arie)",
+    "revid": 236994167,
+    "blocks": []
+   },
+   {
+    "lang": "fr",
+    "article": "L'amour est un oiseau rebelle",
+    "revid": 237720432,
+    "blocks": []
+   },
+   {
+    "lang": "es",
+    "article": "L'amour est un oiseau rebelle",
+    "revid": 175065444,
+    "blocks": []
+   },
+   {
+    "lang": "it",
+    "article": "L'amour est un oiseau rebelle",
+    "revid": 149209602,
+    "blocks": []
+   },
+   {
+    "lang": "nl",
+    "article": "L'amour est un oiseau rebelle",
+    "revid": 71496257,
+    "blocks": []
+   },
+   {
+    "lang": "pl",
+    "article": "Habanera (aria)",
+    "revid": 73127483,
+    "blocks": []
+   },
+   {
+    "lang": "ru",
+    "article": "Янки-дудл",
+    "revid": 153830368,
+    "blocks": []
+   },
+   {
+    "lang": "uk",
+    "article": "Янкі-Дудл",
+    "revid": 44024213,
+    "blocks": []
+   },
+   {
+    "lang": "ja",
+    "article": "日暮れて四方は暗く",
+    "revid": 111097253,
+    "blocks": []
+   },
+   {
+    "lang": "zh",
+    "article": "轻摇，可爱的马车",
+    "revid": 94268413,
+    "blocks": []
+   }
+  ],
+  "en": {
+   "article": "Habanera (aria)",
+   "revid": 1360250324,
+   "blocks": 3
+  }
+ }
+}

@@ -54,6 +54,45 @@ MUTOPIA_Q = {
 LANGS = ["de", "fr", "es", "it", "nl", "sv", "pl", "pt", "ru", "uk", "cs", "fi", "da", "no", "ja", "zh"]
 MUT = "https://www.mutopiaproject.org/cgibin/"
 
+# Named from results/r2-survey.json's metadata alone, by the README's rule 2,
+# and committed before `check` ran. ("mutopia", piece id, MIDI file[, member
+# of a zip]) or ("wiki", lang, article, block index), with the reason.
+REFS = {
+    "old-hundredth": (("mutopia", 194, "Old100-orig.mid"),
+                      "two Mutopia SATB settings; 194 transcribes the Genevan Psalter 1551, the cited edition "
+                      "(90 is Dowland's 1612 harmonisation)"),
+    "abide-with-me": (("mutopia", 1241, "eventide.mid"), "Mutopia EVENTIDE, Monk, SATB"),
+    "in-the-bleak-midwinter": (("mutopia", 1233, "cranham.mid"), "Mutopia CRANHAM, Holst, SATB"),
+    "auld-lang-syne": (("wiki", "de", "Auld Lang Syne", 0),
+                       "Mutopia's only hit is Horetzky's guitar arrangement (excluded); de block 0 under "
+                       "'Melodie', first verse and refrain after the National Library of Scotland"),
+    "god-save-the-king": (("wiki", "it", "God Save the King", 0),
+                          "no Mutopia setting of the tune (hits are other pieces; AUSTRIA is Haydn's); it "
+                          "block 0, a) Thesaurus musicus 1744, the first block setting the tune"),
+    "star-spangled-banner": (("wiki", "it", "The Star-Spangled Banner", 0),
+                             "no Mutopia hit; it block 0, a) Blands c. 1790, the Anacreontic Song, the "
+                             "first block setting the tune"),
+    "la-marseillaise": (("wiki", "it", "La Marsigliese", 0),
+                        "no Mutopia hit; it block 0, a) Dannbach 1792, the first block setting the tune"),
+    "brahms-lullaby": (("mutopia", 1037, "Wiegenlied-mids.zip"),
+                       "Mutopia 1037, Brahms Op. 49 No. 4, voice and piano (1040 is Schubert's, 887 Ries', "
+                       "632 and 1710 other pieces)"),
+    "la-donna-e-mobile": (("wiki", "de", "La donna è mobile", 0),
+                          "no Mutopia setting (hits are other pieces); de block 0 under 'Musik'"),
+}
+# No reference, and why (the phrase stays pending):
+NO_REF = {
+    "jesus-loves-me": "no Mutopia hit, no score in the 16 editions",
+    "swing-low": "no Mutopia hit, no score in the 16 editions",
+    "jingle-bells": "no Mutopia hit, no score in the 16 editions",
+    "deck-the-halls": "no Mutopia hit, no score in the 16 editions",
+    "my-bonnie": "no Mutopia hit, no score in the 16 editions",
+    "danny-boy": "no Mutopia hit, no score in the 16 editions",
+    "aura-lea": "no Mutopia hit; fr block 0 is the English article's block, a copy (rule 2)",
+    "yankee-doodle": "no Mutopia hit, no score in the 16 editions",
+    "habanera": "Mutopia's only hit is the Carmen prelude for piano (excluded); no score in the 16 editions",
+}
+
 
 def get_text(url, cache_name):
     f = CACHE / cache_name
