@@ -1,0 +1,46 @@
+{
+ "synthetic straight": {
+  "notes": 419,
+  "p5_25_50_75_95": [
+   0.6,
+   1.4,
+   2.5,
+   5.2,
+   11.0
+  ],
+  "share_at_or_above_A_VIB": 0.0
+ },
+ "synthetic vibrato": {
+  "notes": 385,
+  "p5_25_50_75_95": [
+   14.8,
+   30.5,
+   39.8,
+   46.9,
+   49.9
+  ],
+  "share_at_or_above_A_VIB": 0.849
+ },
+ "VocalSet straight": {
+  "notes": 604,
+  "p5_25_50_75_95": [
+   5.0,
+   10.0,
+   14.1,
+   22.8,
+   36.7
+  ],
+  "share_at_or_above_A_VIB": 0.199
+ },
+ "VocalSet vibrato": {
+  "notes": 579,
+  "p5_25_50_75_95": [
+   15.0,
+   41.8,
+   67.2,
+   93.3,
+   126.0
+  ],
+  "share_at_or_above_A_VIB": 0.869
+ }
+}

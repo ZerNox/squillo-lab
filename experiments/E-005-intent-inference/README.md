@@ -1,6 +1,6 @@
 # E-005 — Intent inference: pitch accuracy without a reference
 
-**Status:** running (round 1 done and folded into squillo `metrics`, iteration 27; round 2 automated; one `needs-human` step) · **Serves:** VISION §3 (every song is your cover), §5 (reference-free), §6, §12.4
+**Status:** needs-human (round 1 folded into squillo `metrics`, iteration 27; round 2 done, squillo iteration 31; one `needs-human` step) · **Serves:** VISION §3 (every song is your cover), §5 (reference-free), §6, §12.4
 
 ## Question
 
@@ -164,11 +164,7 @@ takes narrow σ̂'s spread. Tempered 12-tone tunings only; non-Western
 tunings and deliberate glides are not tested. Segmentation is crude and
 untuned; vibrato hurts it most (75 % against 87 % with true boundaries).
 
-**Round 2 (automated).** A settle estimate over whole vibrato cycles; a
-per-note ± whose reference term follows the circular estimate (coverage
-at σ = 20); a heavier-tailed error model for the flag, fitted on VocalSet
-and checked on held-out singers; takes longer than 14 notes; and a
-glide-aware segmentation.
+**Round 2 (planned at round 1).** A settle estimate over whole vibrato cycles; a per-note ± whose reference term follows the circular estimate; a heavier-tailed flag fitted on VocalSet and checked on held-out singers; takes longer than 14 notes; a glide-aware segmentation. Done in squillo iteration 31 (below), except the glide-aware segmentation, which is left for a later round.
 
 ## Fold into squillo `metrics` (squillo iteration 27)
 
@@ -237,6 +233,140 @@ within 0.003 cents.
 
 Improvement, `take-spread-5c` then `take-in-tune`: difference 5.222 cents,
 2√(*u*₁² + *u*₂²) = 3.492, so improved.
+
+## Round 2 (squillo iteration 31)
+
+```
+uv run python round2.py check      # the checks, each checked (S15), 1.5 min -> results/round2_checks.json
+uv run python round2_amp.py        # the vibrato gate, 22 s -> results/round2_amp.json
+uv run python round2.py synth      # 5040 phrases, 66 min on 18 processes -> data/cache/r2_synth.pkl
+uv run python round2.py real       # 77 VocalSet takes and 40 E-002 re-syntheses, 11 s
+uv run python round2.py report     # -> results/round2.json
+```
+
+Timing (S19): one phrase takes 4.3 s at 14 notes and 29.0 s at 56 on one
+process with the machine loaded, so 1680 phrases per length on 18
+processes (28 notes taken as 12 s, between the two) estimate 70 minutes;
+the run took 66.
+
+**Questions** (squillo R-06; F-032, ADR 0015's and ADR 0005's deferrals).
+Q1: does a note centre over whole vibrato cycles shrink the ± under
+vibrato? Q2: can the take's spread σ̂ show a measured value, with an
+honest ± 2*u*, above the fold's 10 cents, with longer takes? Q3: how often
+does an improvement test call a change that is not there, and how often
+does it see one that is? Q4: may a library phrase's known melody inform
+the intent? Q5: are the per-note ± and flag honest yet?
+
+**Inputs.** *Synthetic:* round 1's generator with 14, 28 and 56 notes,
+σ = 0, 10, 15, 20, 25, 30, 40 cents, straight or 5.5 Hz ±50-cent vibrato,
+no drift (the fold covered drift), 120 phrases per cell, 5040 in all
+(`round2.phrase`). The lowest note is kept at least 25 semitones below A4
+so that tuning, error, scoop, vibrato and wobble stay above E2. *Real:*
+round 1's 77 VocalSet takes (trained singers, CC BY 4.0, not committed),
+and 40 of E-002 round 2's WORLD re-syntheses of VocalSet takes (20 straight
+scales, 20 vibrato rounds; `squillo-lab E-002 @ e7d2bf4`), whose f0 is
+known, so their true spread is known. *Truth:* for synthetic phrases, the
+population σ and the realised spread: the sung contour at each frame's
+instant, each note's centre by the same settle rule over the true
+boundaries, the duration-weighted SD about the singer's weighted-mean
+tuning. For the re-syntheses, the same on the known f0 aligned to the score
+by dynamic time warping. Python 3.13.14, numpy 2.5.3, scipy 1.18.1.
+
+**Candidates.** *Settle:* `med`, round 1's median over 30–90 % of the
+note; `cyc`, the mean over the largest whole number of cycles of the
+fitted vibrato rate (3.5–8 Hz, least squares), used where the fitted
+amplitude is at least 25 cents, frames more than 200 cents from the
+window's median dropped as f0 glitches (E-002 result 21: vibrato extent
+p95 110.5 cents), otherwise the median. The 25-cent gate
+(`results/round2_amp.json`): VocalSet straight notes' fitted amplitude p75
+22.8 cents, vibrato notes' p25 41.8, so 19.9 % of straight and 86.9 % of
+vibrato notes (of 604 and 579) take the cycle mean; synthetic 0.0 % and
+84.9 %. *u of σ̂:* B, the fold's (GUM E.4.3 sampling ⊕ the notes' settle
+*u*); D, a delta-method *u* for the circular estimator ⊕ settle; N, a
+Neyman interval by simulation from the take's own weights and settle *u*s.
+*When σ̂ is shown as measured:* S10, squillo MT-007 (σ̂ ≤ 10); U*n*, when
+the upper end σ̂ + 2*u*_B ≤ *n* cents, *n* = 20 to 35; otherwise only the
+lower end σ̂ − 2*u*_B, as MT-007. *Improvement tests* (+1 better, −1 worse):
+B, MT-008 as specified (both measured under S10, difference beyond
+2√(*u*₁² + *u*₂²)); R*rule*, MT-008's form where both are measured under the
+rule, else the better take measured with its upper end below the other's
+lower end; D, N; K, MT-008's form on the known-melody spread. *Known
+melody* (Q4): the take aligned to the phrase's notes by dynamic time
+warping (transposition searched on the take's own circular reference), each
+note's centre by `cyc`, deviations from the written notes about the
+singer's weighted-mean tuning, a linear SD with no 50-cent wrap, *u* = B;
+a note more than 150 cents from its aim (on the weighted-median tuning) is
+counted apart as a wrong note, never folded into the spread. *Per note*
+(Q5): the reference's *u* from the circular estimate (delta method); a flag
+whose posterior mixes a uniform share π of any semitone into round 1's
+wrapped normal, π fitted by maximum likelihood on half the VocalSet
+singers and tested on the other half.
+
+**Checks** (squillo S15; `results/round2_checks.json`), each run on a case
+it must pass and one it must fail:
+
+| Check | Criterion, from its definition | Must pass | Must fail |
+| :--- | :--- | :--- | :--- |
+| Generator: every sounding sample in E2–C6 | ADR 0007's semitones, −2900 to +1500 cents re A4 | 56-note high soprano at σ = 40 with vibrato: −1330.6 to +485.6; all 5040 phrases −2712.6 to +1349.0 | The same shifted +1500 cents raises |
+| Known f0 matched to frames by YIN's index | Half a frame's glide at 1200 cents/s, 4.8 cents | Median 3.2 cents | Shifted one frame: 12.8 |
+| Whole-cycle centre on a known sinusoid, 0.2–0.6 s windows | Half a frame of phase left over at each end, *A* sin(π*f h*)/π = 2.19 cents | Max error 0.59 | Round 1's median: 20.4 |
+| Interval machinery on the model alone (14 and 56 notes, σ 0–30) | N covers ≥ 92 % in every cell | 93.5–98.5 % | N told *u* = 0 when settle noise is 15 cents: 0 % |
+| Truth procedures, one input of every condition | Every note and score state found | Synthetic, 3 lengths × 2: every state and note found, realised spread at σ = 0 is 2.4–5.3 cents (the wobble) | — (E-002 re-synthesis: straight scale 17 of 17 states; vibrato round 15 of 16) |
+
+The first two criteria were typed at first (3 cents and 0.5 cent) and
+failed on their must-pass cases; each was replaced by the bound its
+definition gives before any result was used (squillo L-033).
+
+**Results** (`results/round2.json`; Wilson 95 % intervals; `cyc` unless
+marked).
+
+| # | Question | Result |
+| :--- | :--- | :--- |
+| R1 | Does a centre over whole vibrato cycles shrink the ±? | Yes, about threefold under vibrato, and nothing changes without it. Synthetic, σ = 0 with vibrato: median settle *u* 19.1 → 6.8 cents (14 notes), 18.4 → 7.0 (56); *u*_B 19.2 → 7.0. Straight phrases identical (no note passes the gate). Re-synthesized VocalSet vibrato rounds: *u*_B median 70.5 → 32.9 cents, still covering 15 of 15; straight scales 14.8 → 11.1, 20 of 20. VocalSet originals, *u*_B median: scales straight 15.1 → 10.8, round straight 19.3 → 12.8, scales vibrato 64.8 → 31.8, round vibrato 50.0 → 31.2. Measured share at σ = 10, vibrato, 56 notes: 24 → 50 of 120 |
+| R2 | Is σ̂ ± 2*u*_B honest above 10 cents? | Yes, while the true spread is at most 25 cents; above that σ̂ saturates (median 23.5–31.5 at σ = 40) and only its lower end holds. Against the realised spread, B covers 98.6–100 % in every cell with σ ≤ 25 (all lengths, with and without vibrato); at σ = 30, 87.7–100 %; at σ = 40, 58.2–96.7 %. The lower end σ̂ − 2*u*_B holds in 4441 of 4441 reported phrases (99.9–100); 599 say *intent uncertain*. D equals B within 1 point; N misses at σ = 0 (41.7–81.7 % without vibrato, because its model leaves out the wobble) and is dropped |
+| R3 | Where may σ̂ be shown as measured? | **When its upper end σ̂ + 2*u*_B is at most 25 cents** (U25). Judged per true σ, where no prior over singers enters: the shown statement excludes the truth in at most 1.7 % of phrases in the worst cell (0.5–5.9; 14 notes, straight, σ = 20 and 25), 0 % in most. U30 fails that: 5.0 % (2.3–10.5; the same, σ = 30). Pooled over the design's σ grid, U25's measured values cover σ in 99.3 % of 898 straight (98.5–99.7) and 99.8 % of 523 vibrato phrases (98.9–100); the 308 straight and 58 vibrato phrases measured above 10 cents cover their realised spread in 99.7 % (98.2–99.9) and 100 % (93.8–100). Measured values reach σ̂ = 17.6 cents. S10 (MT-007 today) is also honest, and measures fewer (590 against 898 straight phrases). Drift is not in round 2's inputs |
+| R4 | Do longer takes help? | Less than hoped: the settle term is most of *u*_B. At σ = 20, straight, median *u*_B 6.8 (14 notes), 5.9 (28), 5.8 (56). They do cut *intent uncertain*: at σ = 30, straight, 55, 45 and 19 of 120 |
+| R5 | On real takes? | Trained singers' straight takes are still shown only as a lower end, because the notes' settle *u* makes up a median 92 % of *u*_B². Re-synthesized straight scales: true spread median 18.3 cents; σ̂ − truth p5 to p95 −10.6 to +3.7; \|σ̂ − truth\| / *u*_B p95 0.84, max 1.41, so *u*_B is about twice what coverage needs on these takes. Under U25 no real take is measured (upper ends from 25 cents up); under U30 two straight scales. VocalSet originals: σ̂ median 16.8 (scales straight), 17.3 (round straight), 21.8 and 25.1 with vibrato |
+| R6 | Does an improvement test call changes that are not there? | No. On pairs of phrases from the same cell, every test's false-change rate is 0 to 0.7 % in every length and vibrato condition (420 pairs each); on the two halves of each VocalSet take, 0 of 77 for every test (0–4.8 %) |
+| R7 | Does it see changes that are there? | MT-008 as specified never does: 0 % in every pair of cells, because a σ̂ ≤ 10 carries a *u*_B near 4 to 5 cents. With U25, straight, 20 → 0 cents: 24.2 % (14 notes), 28.3 % (28), 20.8 % (56); 40 → 10: 1.7 %, 10.0 %, 25.0 %; under vibrato 0 to 0.8 %. With the known melody (K), straight, 20 → 0: 55.0, 71.7, 67.5 %; 40 → 10: 44.2, 71.7, 80.0 %; vibrato 40 → 10: 20.0, 34.2, 36.7 %; never *worse* |
+| R8 | May a library phrase's known melody inform intent? | Yes, and it removes the 50-cent wrap. With the notes known, the linear spread covers the realised spread in 99.2–100 % of phrases in every synthetic cell up to σ = 40 (*u*_B median 3.2–13.1 cents), and does not saturate (median 34.5–37.6 at σ = 40, against 23.5–31.5 wrapped). Re-synthesized VocalSet: 20 of 20 in each set, \|σ̂ − truth\| / *u*_B max 0.56 (straight scales) and 0.34 (vibrato rounds); σ̂ − truth p5 to p95 −5.9 to +2.0 and −2.8 to +21.6; every score state found in 17 of 20 and 10 of 20 takes; 12 of about 340 straight-scale notes more than 150 cents from their aim, counted apart as wrong notes. Real *u*_B stays large (median 11.4 cents straight, 54.8 vibrato rounds): the settle term again |
+| R9 | Is the per-note ± honest yet? | No, beyond σ = 0. With the reference's *u* from the circular estimate, coverage at *k* = 2 of rightly attributed notes, straight: 97.7 % (σ = 0), 90.4 (10), 87.1 (20), 80.9 (30); round 1's term 97.7, 90.5, 86.4, 65.7 |
+| R10 | Is a heavier-tailed per-note flag honest? | Not stably. π fitted on one half of the singers is 0.065, on the other 0.12. Tested on the other half, wrong among unflagged notes: 5.4 % (3.5–8.2) and 1.5 % (0.4–5.4), flagging 40.5 % and 77.9 % of notes (round 1's flag: 7.6 % and 4.8 %); straight takes 3.0 % and 1.9 %, vibrato 9.4 % and 0.0 %. The model's own prediction, 3.2 % and 4.3 %, misses the first half |
+
+**What this says for squillo.**
+
+- VISION §12.4 has its automated answer. Against the singer's own tuning,
+  by nearest semitone, the take's spread σ̂ can be shown **measured, ±
+  2*u*_B, whenever its upper end is at most 25 cents**, not only when σ̂ ≤
+  10; above that, only its lower end; *intent uncertain* when not above
+  chance. Checked per true spread up to 40 cents, 14 to 56 notes, straight
+  and vibrato. The improvement test keeps MT-008's form, applied where both
+  takes are measured, plus a one-sided form on honest ends.
+- The **whole-cycle centre** should replace the median where a note has
+  vibrato of at least 25 cents: it cuts *u* about threefold under vibrato
+  and changes nothing without it.
+- A library phrase's **known melody should inform intent**: the spread
+  about the written notes, unwrapped, is honest to 40 cents and sees
+  improvement two to three times as often as the wrapped spread. A note
+  far from its written pitch is a wrong note, shown apart, never averaged
+  in.
+- On **real trained voices** the pitch-spread ± is still too wide to show a
+  typical improvement: the notes' settle *u* (one effective sample per
+  0.1 s, round 1's assumption) is most of it, and on the re-syntheses it is
+  about twice what coverage needs. F-032 stands for pitch; a singer's
+  progress rests first on steadiness and vibrato (E-002 round 2, F-031), as
+  Joakim directed. Calibrating the settle *u* on E-002's re-syntheses is
+  the lever for a later round.
+- Per-note ± and flags stay out of the specs.
+
+**Limits.** Synthetic voices are E-001's (round 1's checks apply); no drift
+in round 2; errors normal per note. The real truth is WORLD re-syntheses of
+trained singers in a studio, whose note centres are defined by the same
+settle rule as the estimate: it tests the tracker, segmentation and
+reference, not whether a centre is where the singer aimed. VocalSet's
+vibrato round lost one score state in the truth alignment. No amateurs,
+rooms or browsers. The 25-cent threshold is the largest tested (20, 25,
+30, 35) that held in every cell; it is evidence, not a perceptual bound.
 
 **Needs a human (15 minutes).** VocalSet's singers are trained; squillo's
 first singer is not.

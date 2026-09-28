@@ -54,6 +54,13 @@ time wraps, or it is longer than the loop (squillo L-032). A sign or direction
 stated in a result's legend is derived from the measure's definition in the
 code and checked by hand on one case (squillo L-029, L-032).
 
+**Time the full run before starting it** (squillo standing instruction
+S19). Before a run longer than a few minutes, time one item of the slowest
+condition on one process, multiply out over the design and the processes,
+and write the estimate in the README's command block. If the run and its
+analysis do not fit well inside the session, cut the design (fewer cells,
+fewer items per cell) before starting, never after (squillo L-033).
+
 **A result is a number with its conditions.** State what was measured, on what
 input, with which tool versions, and the uncertainty. "Works well" is not a
 result.

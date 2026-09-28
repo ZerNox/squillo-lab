@@ -1,0 +1,152 @@
+{
+ "c1_contour": {
+  "pass_case": {
+   "ok": true,
+   "lo": -1330.6,
+   "hi": 485.6
+  },
+  "fail_case_raised": true
+ },
+ "c2_frame_truth": {
+  "criterion_cents": 4.8,
+  "pass_case": 3.215,
+  "passes": true,
+  "fail_case_shifted_one_frame": 12.815,
+  "fails": true
+ },
+ "c3_centre": {
+  "criterion_cents": 2.193,
+  "fit_max_err": 0.5934,
+  "passes": true,
+  "median_max_err": 20.43,
+  "median_fails": true
+ },
+ "c4_interval": {
+  "cells": {
+   "n=14,sigma=0": {
+    "N": 93.5,
+    "D_reported": 100.0,
+    "B_reported": 100.0,
+    "reported": 200
+   },
+   "n=14,sigma=10": {
+    "N": 95.5,
+    "D_reported": 99.5,
+    "B_reported": 99.5,
+    "reported": 200
+   },
+   "n=14,sigma=20": {
+    "N": 98.5,
+    "D_reported": 97.8,
+    "B_reported": 96.7,
+    "reported": 181
+   },
+   "n=14,sigma=30": {
+    "N": 97.5,
+    "D_reported": 88.8,
+    "B_reported": 88.8,
+    "reported": 89
+   },
+   "n=56,sigma=0": {
+    "N": 98.0,
+    "D_reported": 100.0,
+    "B_reported": 100.0,
+    "reported": 200
+   },
+   "n=56,sigma=10": {
+    "N": 93.5,
+    "D_reported": 100.0,
+    "B_reported": 100.0,
+    "reported": 200
+   },
+   "n=56,sigma=20": {
+    "N": 94.5,
+    "D_reported": 100.0,
+    "B_reported": 98.5,
+    "reported": 200
+   },
+   "n=56,sigma=30": {
+    "N": 97.0,
+    "D_reported": 95.6,
+    "B_reported": 89.3,
+    "reported": 159
+   },
+   "fail_case: sigma=0, noise 15, told u=0": {
+    "N": 0.0
+   }
+  },
+  "N_min": 93.5,
+  "passes": true,
+  "fails": true
+ },
+ "c5_truth_procedures": {
+  "synth n=14 vib=0": {
+   "realised_truth_sigma0": 2.51,
+   "states": 13,
+   "found": 13,
+   "dtw_bad": 0.0072,
+   "known_s": 2.69,
+   "notes": 14,
+   "right": 14
+  },
+  "synth n=14 vib=1": {
+   "realised_truth_sigma0": 5.25,
+   "states": 12,
+   "found": 12,
+   "dtw_bad": 0.0013,
+   "known_s": 6.41,
+   "notes": 14,
+   "right": 14
+  },
+  "synth n=28 vib=0": {
+   "realised_truth_sigma0": 2.43,
+   "states": 21,
+   "found": 21,
+   "dtw_bad": 0.0031,
+   "known_s": 2.18,
+   "notes": 28,
+   "right": 28
+  },
+  "synth n=28 vib=1": {
+   "realised_truth_sigma0": 4.72,
+   "states": 21,
+   "found": 21,
+   "dtw_bad": 0.0012,
+   "known_s": 4.9,
+   "notes": 28,
+   "right": 28
+  },
+  "synth n=56 vib=0": {
+   "realised_truth_sigma0": 2.85,
+   "states": 43,
+   "found": 43,
+   "dtw_bad": 0.0014,
+   "known_s": 2.43,
+   "notes": 56,
+   "right": 56
+  },
+  "synth n=56 vib=1": {
+   "realised_truth_sigma0": 3.6,
+   "states": 47,
+   "found": 47,
+   "dtw_bad": 0.002,
+   "known_s": 3.39,
+   "notes": 56,
+   "right": 56
+  },
+  "f1_scales_straight_a": {
+   "states": 17,
+   "found": 17,
+   "dtw_bad": 0.0069,
+   "truth_sd": 14.25,
+   "truth_sd_median_centre": 14.87
+  },
+  "f1_row_vibrato": {
+   "states": 16,
+   "found": 15,
+   "dtw_bad": 0.0677,
+   "truth_sd": 27.38,
+   "truth_sd_median_centre": 25.37
+  }
+ }
+}
