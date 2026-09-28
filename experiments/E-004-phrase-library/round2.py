@@ -97,7 +97,7 @@ NO_REF = {
 def get_text(url, cache_name):
     f = CACHE / cache_name
     if f.exists():
-        return f.read_text()
+        return f.read_bytes().decode("utf-8", "replace")
     import time
     import urllib.request
     for i in range(6):
@@ -201,5 +201,138 @@ def survey():
     json.dump(out, open(RES / "r2-survey.json", "w"), indent=1, ensure_ascii=False)
 
 
+# ---------------------------------------------------------------- check
+
+def ref_tracks(ref, pid):
+    """The named reference as MIDI tracks, plus a record of what was read."""
+    import io
+    import zipfile
+    if ref[0] == "mutopia":
+        _, mid, fname = ref
+        info = mutopia_piece(mid)
+        url = next(u for u in info["files"] if u.endswith("/" + fname))
+        data = get_bytes(url, f"mutopia/{mid}-{fname}")
+        paths = []
+        if fname.endswith(".zip"):
+            z = zipfile.ZipFile(io.BytesIO(data))
+            for n in sorted(z.namelist()):
+                if n.lower().endswith((".mid", ".midi")):
+                    f = CACHE / "mutopia" / f"{mid}-{Path(n).name}"
+                    f.write_bytes(z.read(n))
+                    paths.append(f)
+        else:
+            paths = [CACHE / "mutopia" / f"{mid}-{fname}"]
+        tracks = [t for f in paths for t in R.midi_tracks(f)]
+        return tracks, dict(source="mutopia", piece=mid, url=url, members=[p.name for p in paths],
+                            mutopia_id=info.get("music id number"), edition=info.get("source"),
+                            licence=info.get("copyright"))
+    _, lang, title, bi = ref
+    real, revid, w = R.wikitext(lang, title)
+    blocks = re.findall(r"<score([^>]*)>(.*?)</score>", w, re.S)
+    attrs, src = blocks[bi]
+    mid, how = R.to_midi(src, attrs, f"r2-{pid}-{lang}-b{bi}")
+    tracks = R.midi_tracks(mid) if mid else []
+    return tracks, dict(source="wiki", lang=lang, article=real, revid=revid, block=bi,
+                        compile_attempt=how, compiled=mid is not None)
+
+
+def self_check(tracks):
+    """S15: the reference's own first eight notes must pass; one pitch moved
+    a semitone must fail on pitch; one duration doubled must fail on rhythm."""
+    tr = max(tracks, key=lambda t: len(t["pitches"]))
+    n = min(8, len(tr["pitches"]) - 1)
+    on = np.array(tr["onsets"][:n + 1], float) / tr["tpq"]
+    mine = [(tr["pitches"][i], float(on[i + 1] - on[i])) for i in range(n)]
+    ok = R.compare(mine, tracks)
+    bad_p = [(p + (1 if i == 3 else 0), b) for i, (p, b) in enumerate(mine)]
+    bad_r = [(p, b * (2 if i == 2 else 1)) for i, (p, b) in enumerate(mine)]
+    rp, rr = R.compare(bad_p, tracks), R.compare(bad_r, tracks)
+
+    def rhythm_ok(r):
+        return bool(r and r["exact_pitch"] and r["rhythm"] and r["rhythm"]["ioi_match"] == r["rhythm"]["ioi_total"])
+    return dict(notes=n, must_pass=rhythm_ok(ok), must_fail_pitch=not (rp and rp["exact_pitch"]),
+                must_fail_rhythm=not rhythm_ok(rr))
+
+
+def check():
+    by_id = {c["id"]: c for c in L.CANDIDATES}
+    r1 = json.load(open(RES / "summary.json"))["survive"]["per_phrase"]
+    out = []
+    for pid in PENDING:
+        rec = dict(id=pid, round1=r1[pid])
+        if pid in NO_REF:
+            rec.update(reference=None, reason=NO_REF[pid], verdict="pending-no-reference")
+            out.append(rec)
+            print(f"{pid:24s} no reference")
+            continue
+        ref, why = REFS[pid]
+        tracks, info = ref_tracks(ref, pid)
+        rec.update(reference=info, why=why, tracks=len(tracks))
+        if not tracks:
+            rec["verdict"] = "pending-reference-unreadable"
+            out.append(rec)
+            print(f"{pid:24s} unreadable")
+            continue
+        rec["self_check"] = sc = self_check(tracks)
+        if not (sc["must_pass"] and sc["must_fail_pitch"] and sc["must_fail_rhythm"]):
+            # S15: a check that fails its own cases is no check; the phrase stays pending
+            rec["verdict"] = "pending-check-failed"
+            out.append(rec)
+            print(f"{pid:24s} check failed its own cases: {sc}")
+            continue
+        r = R.compare(R.parse(by_id[pid]["melody"]), tracks)
+        rec["result"] = r
+        pitch = bool(r and r["exact_pitch"])
+        rhythm = bool(pitch and r["rhythm"] and r["rhythm"]["ioi_match"] == r["rhythm"]["ioi_total"])
+        if pitch and rhythm:
+            rec["verdict"] = "verified-2" if r1[pid] == "melody-unchecked" else "verified-variant"
+        else:
+            rec["verdict"] = "pending-pitch-differs" if not pitch else "pending-rhythm-differs"
+        out.append(rec)
+        print(f"{pid:24s} {rec['verdict']:24s} miss={r and r['interval_miss']}/{r and r['intervals']} "
+              f"edit={r and r['pitch_edit']} rhythm={r and r['rhythm']} self={rec['self_check']}")
+    json.dump(out, open(RES / "r2-check.json", "w"), indent=1, ensure_ascii=False)
+
+
+# ---------------------------------------------------------------- report
+
+def report():
+    chk = json.load(open(RES / "r2-check.json"))
+    ver = {c["id"]: c for c in json.load(open(RES / "verify.json"))["candidates"]}
+    r1 = json.load(open(RES / "summary.json"))["survive"]
+    by_id = {c["id"]: c for c in L.CANDIDATES + L.ORIGINALS}
+    now = dict(r1["per_phrase"])
+    for c in chk:
+        now[c["id"]] = c["verdict"]
+    verified = [k for k, v in now.items() if v.startswith("verified")]
+    pd = [k for k in verified if ver[k]["kind"] == "public-domain"]
+    ship = [k for k in verified if ver[k]["kind"] != "public-domain" or (ver[k]["us"] and ver[k]["life100"])]
+    from collections import Counter
+    out = dict(
+        pending=len(chk),
+        references_named=sum(1 for c in chk if c["reference"]),
+        no_reference=[c["id"] for c in chk if not c["reference"]],
+        check_failed=[c["id"] for c in chk if c["verdict"] == "pending-check-failed"],
+        checks_self=dict(run=sum(1 for c in chk if "self_check" in c),
+                         all_three_hold=sum(1 for c in chk if "self_check" in c and all(
+                             c["self_check"][k] for k in ("must_pass", "must_fail_pitch", "must_fail_rhythm")))),
+        verdicts=dict(Counter(c["verdict"] for c in chk)),
+        per_phrase={c["id"]: dict(round1=c["round1"], round2=c["verdict"],
+                                  reference=c["reference"] and {k: c["reference"].get(k) for k in (
+                                      "source", "piece", "edition", "licence", "lang", "article", "revid", "block")},
+                                  result=c.get("result") and {k: c["result"][k] for k in (
+                                      "interval_miss", "intervals", "pitch_edit", "exact_pitch", "rhythm")})
+                    for c in chk},
+        verified=len(verified), verified_public_domain=len(pd), verified_original=len(verified) - len(pd),
+        verified_variant=[k for k, v in now.items() if v == "verified-variant"],
+        verified_shippable_us_life100=len(ship),
+        verified_genres=dict(Counter(by_id[k]["genre"] for k in verified)),
+        verified_genre_count=len({by_id[k]["genre"] for k in verified}),
+        target=30,
+    )
+    json.dump(out, open(RES / "r2-summary.json", "w"), indent=1, ensure_ascii=False)
+    print(json.dumps({k: v for k, v in out.items() if k != "per_phrase"}, indent=1, ensure_ascii=False))
+
+
 if __name__ == "__main__":
-    {"survey": survey}[sys.argv[1]]()
+    {"survey": survey, "check": check, "report": report}[sys.argv[1]]()

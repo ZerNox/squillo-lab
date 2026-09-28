@@ -1,0 +1,301 @@
+{
+ "pending": 18,
+ "references_named": 9,
+ "no_reference": [
+  "jesus-loves-me",
+  "swing-low",
+  "jingle-bells",
+  "deck-the-halls",
+  "my-bonnie",
+  "danny-boy",
+  "aura-lea",
+  "yankee-doodle",
+  "habanera"
+ ],
+ "check_failed": [
+  "la-donna-e-mobile"
+ ],
+ "checks_self": {
+  "run": 9,
+  "all_three_hold": 8
+ },
+ "verdicts": {
+  "pending-rhythm-differs": 2,
+  "verified-2": 1,
+  "pending-no-reference": 9,
+  "pending-pitch-differs": 5,
+  "pending-check-failed": 1
+ },
+ "per_phrase": {
+  "old-hundredth": {
+   "round1": "rhythm-differs",
+   "round2": "pending-rhythm-differs",
+   "reference": {
+    "source": "mutopia",
+    "piece": 194,
+    "edition": "Geneva Psalter 1551",
+    "licence": "Public Domain",
+    "lang": null,
+    "article": null,
+    "revid": null,
+    "block": null
+   },
+   "result": {
+    "interval_miss": 0,
+    "intervals": 7,
+    "pitch_edit": 0,
+    "exact_pitch": true,
+    "rhythm": {
+     "scale": 2.0,
+     "ioi_match": 4,
+     "ioi_total": 7
+    }
+   }
+  },
+  "abide-with-me": {
+   "round1": "melody-unchecked",
+   "round2": "verified-2",
+   "reference": {
+    "source": "mutopia",
+    "piece": 1241,
+    "edition": "www.cyberhymnal.org",
+    "licence": "Public Domain",
+    "lang": null,
+    "article": null,
+    "revid": null,
+    "block": null
+   },
+   "result": {
+    "interval_miss": 0,
+    "intervals": 9,
+    "pitch_edit": 0,
+    "exact_pitch": true,
+    "rhythm": {
+     "scale": 1.0,
+     "ioi_match": 9,
+     "ioi_total": 9
+    }
+   }
+  },
+  "jesus-loves-me": {
+   "round1": "melody-unchecked",
+   "round2": "pending-no-reference",
+   "reference": null,
+   "result": null
+  },
+  "swing-low": {
+   "round1": "melody-unchecked",
+   "round2": "pending-no-reference",
+   "reference": null,
+   "result": null
+  },
+  "jingle-bells": {
+   "round1": "melody-unchecked",
+   "round2": "pending-no-reference",
+   "reference": null,
+   "result": null
+  },
+  "deck-the-halls": {
+   "round1": "melody-unchecked",
+   "round2": "pending-no-reference",
+   "reference": null,
+   "result": null
+  },
+  "in-the-bleak-midwinter": {
+   "round1": "melody-mismatch",
+   "round2": "pending-pitch-differs",
+   "reference": {
+    "source": "mutopia",
+    "piece": 1233,
+    "edition": "www.cyberhymnal.org",
+    "licence": "Public Domain",
+    "lang": null,
+    "article": null,
+    "revid": null,
+    "block": null
+   },
+   "result": {
+    "interval_miss": 2,
+    "intervals": 5,
+    "pitch_edit": 1,
+    "exact_pitch": false,
+    "rhythm": null
+   }
+  },
+  "auld-lang-syne": {
+   "round1": "melody-mismatch",
+   "round2": "pending-pitch-differs",
+   "reference": {
+    "source": "wiki",
+    "piece": null,
+    "edition": null,
+    "licence": null,
+    "lang": "de",
+    "article": "Auld Lang Syne",
+    "revid": 269025087,
+    "block": 0
+   },
+   "result": {
+    "interval_miss": 2,
+    "intervals": 7,
+    "pitch_edit": 1,
+    "exact_pitch": false,
+    "rhythm": null
+   }
+  },
+  "my-bonnie": {
+   "round1": "rhythm-differs",
+   "round2": "pending-no-reference",
+   "reference": null,
+   "result": null
+  },
+  "danny-boy": {
+   "round1": "melody-mismatch",
+   "round2": "pending-no-reference",
+   "reference": null,
+   "result": null
+  },
+  "aura-lea": {
+   "round1": "rhythm-differs",
+   "round2": "pending-no-reference",
+   "reference": null,
+   "result": null
+  },
+  "yankee-doodle": {
+   "round1": "melody-unchecked",
+   "round2": "pending-no-reference",
+   "reference": null,
+   "result": null
+  },
+  "god-save-the-king": {
+   "round1": "melody-unchecked",
+   "round2": "pending-pitch-differs",
+   "reference": {
+    "source": "wiki",
+    "piece": null,
+    "edition": null,
+    "licence": null,
+    "lang": "it",
+    "article": "God Save the King",
+    "revid": 152608958,
+    "block": 0
+   },
+   "result": {
+    "interval_miss": 2,
+    "intervals": 5,
+    "pitch_edit": 1,
+    "exact_pitch": false,
+    "rhythm": null
+   }
+  },
+  "star-spangled-banner": {
+   "round1": "melody-unchecked",
+   "round2": "pending-pitch-differs",
+   "reference": {
+    "source": "wiki",
+    "piece": null,
+    "edition": null,
+    "licence": null,
+    "lang": "it",
+    "article": "The Star-Spangled Banner",
+    "revid": 152112921,
+    "block": 0
+   },
+   "result": {
+    "interval_miss": 4,
+    "intervals": 11,
+    "pitch_edit": 11,
+    "exact_pitch": false,
+    "rhythm": null
+   }
+  },
+  "la-marseillaise": {
+   "round1": "melody-unchecked",
+   "round2": "pending-pitch-differs",
+   "reference": {
+    "source": "wiki",
+    "piece": null,
+    "edition": null,
+    "licence": null,
+    "lang": "it",
+    "article": "La Marsigliese",
+    "revid": 151946643,
+    "block": 0
+   },
+   "result": {
+    "interval_miss": 3,
+    "intervals": 8,
+    "pitch_edit": 2,
+    "exact_pitch": false,
+    "rhythm": null
+   }
+  },
+  "brahms-lullaby": {
+   "round1": "rhythm-differs",
+   "round2": "pending-rhythm-differs",
+   "reference": {
+    "source": "mutopia",
+    "piece": 1037,
+    "edition": "Indiana University: http://www.dlib.indiana.edu/variations/scores/bgn9130/index1.html",
+    "licence": "Public Domain",
+    "lang": null,
+    "article": null,
+    "revid": null,
+    "block": null
+   },
+   "result": {
+    "interval_miss": 0,
+    "intervals": 5,
+    "pitch_edit": 0,
+    "exact_pitch": true,
+    "rhythm": {
+     "scale": 0.85,
+     "ioi_match": 0,
+     "ioi_total": 5
+    }
+   }
+  },
+  "la-donna-e-mobile": {
+   "round1": "melody-unchecked",
+   "round2": "pending-check-failed",
+   "reference": {
+    "source": "wiki",
+    "piece": null,
+    "edition": null,
+    "licence": null,
+    "lang": "de",
+    "article": "La donna è mobile",
+    "revid": 268009687,
+    "block": 0
+   },
+   "result": null
+  },
+  "habanera": {
+   "round1": "melody-mismatch",
+   "round2": "pending-no-reference",
+   "reference": null,
+   "result": null
+  }
+ },
+ "verified": 20,
+ "verified_public_domain": 13,
+ "verified_original": 7,
+ "verified_variant": [],
+ "verified_shippable_us_life100": 20,
+ "verified_genres": {
+  "hymn": 3,
+  "carol": 5,
+  "children": 3,
+  "folk": 1,
+  "classical": 1,
+  "pop": 1,
+  "rock": 1,
+  "jazz": 1,
+  "blues": 1,
+  "soul": 1,
+  "country": 1,
+  "musical theatre": 1
+ },
+ "verified_genre_count": 12,
+ "target": 30
+}

@@ -1,0 +1,463 @@
+[
+ {
+  "id": "old-hundredth",
+  "round1": "rhythm-differs",
+  "reference": {
+   "source": "mutopia",
+   "piece": 194,
+   "url": "https://www.mutopiaproject.org/ftp/Anonymous/Old100-orig/Old100-orig.mid",
+   "members": [
+    "194-Old100-orig.mid"
+   ],
+   "mutopia_id": "Mutopia-2009/04/11-194",
+   "edition": "Geneva Psalter 1551",
+   "licence": "Public Domain"
+  },
+  "why": "two Mutopia SATB settings; 194 transcribes the Genevan Psalter 1551, the cited edition (90 is Dowland's 1612 harmonisation)",
+  "tracks": 2,
+  "self_check": {
+   "notes": 8,
+   "must_pass": true,
+   "must_fail_pitch": true,
+   "must_fail_rhythm": true
+  },
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": 0,
+   "interval_miss": 0,
+   "intervals": 7,
+   "pitch_edit": 0,
+   "exact_pitch": true,
+   "rhythm": {
+    "scale": 2.0,
+    "ioi_match": 4,
+    "ioi_total": 7
+   },
+   "context": [
+    67,
+    67,
+    66,
+    64,
+    62,
+    67,
+    69,
+    71,
+    71,
+    71
+   ]
+  },
+  "verdict": "pending-rhythm-differs"
+ },
+ {
+  "id": "abide-with-me",
+  "round1": "melody-unchecked",
+  "reference": {
+   "source": "mutopia",
+   "piece": 1241,
+   "url": "https://www.mutopiaproject.org/ftp/MonkWH/eventide/eventide.mid",
+   "members": [
+    "1241-eventide.mid"
+   ],
+   "mutopia_id": "Mutopia-2008/01/13-1241",
+   "edition": "www.cyberhymnal.org",
+   "licence": "Public Domain"
+  },
+  "why": "Mutopia EVENTIDE, Monk, SATB",
+  "tracks": 2,
+  "self_check": {
+   "notes": 8,
+   "must_pass": true,
+   "must_fail_pitch": true,
+   "must_fail_rhythm": true
+  },
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": 2,
+   "interval_miss": 0,
+   "intervals": 9,
+   "pitch_edit": 0,
+   "exact_pitch": true,
+   "rhythm": {
+    "scale": 1.0,
+    "ioi_match": 9,
+    "ioi_total": 9
+   },
+   "context": [
+    66,
+    66,
+    64,
+    62,
+    69,
+    71,
+    69,
+    69,
+    67,
+    66,
+    66,
+    67
+   ]
+  },
+  "verdict": "verified-2"
+ },
+ {
+  "id": "jesus-loves-me",
+  "round1": "melody-unchecked",
+  "reference": null,
+  "reason": "no Mutopia hit, no score in the 16 editions",
+  "verdict": "pending-no-reference"
+ },
+ {
+  "id": "swing-low",
+  "round1": "melody-unchecked",
+  "reference": null,
+  "reason": "no Mutopia hit, no score in the 16 editions",
+  "verdict": "pending-no-reference"
+ },
+ {
+  "id": "jingle-bells",
+  "round1": "melody-unchecked",
+  "reference": null,
+  "reason": "no Mutopia hit, no score in the 16 editions",
+  "verdict": "pending-no-reference"
+ },
+ {
+  "id": "deck-the-halls",
+  "round1": "melody-unchecked",
+  "reference": null,
+  "reason": "no Mutopia hit, no score in the 16 editions",
+  "verdict": "pending-no-reference"
+ },
+ {
+  "id": "in-the-bleak-midwinter",
+  "round1": "melody-mismatch",
+  "reference": {
+   "source": "mutopia",
+   "piece": 1233,
+   "url": "https://www.mutopiaproject.org/ftp/HolstGT/cranham/cranham.mid",
+   "members": [
+    "1233-cranham.mid"
+   ],
+   "mutopia_id": "Mutopia-2008/01/13-1233",
+   "edition": "www.cyberhymnal.org",
+   "licence": "Public Domain"
+  },
+  "why": "Mutopia CRANHAM, Holst, SATB",
+  "tracks": 2,
+  "self_check": {
+   "notes": 8,
+   "must_pass": true,
+   "must_fail_pitch": true,
+   "must_fail_rhythm": true
+  },
+  "result": {
+   "track": 0,
+   "start": 16,
+   "transpose": -2,
+   "interval_miss": 2,
+   "intervals": 5,
+   "pitch_edit": 1,
+   "exact_pitch": false,
+   "rhythm": null,
+   "context": [
+    72,
+    69,
+    67,
+    65,
+    67,
+    69,
+    67,
+    65,
+    65,
+    70
+   ]
+  },
+  "verdict": "pending-pitch-differs"
+ },
+ {
+  "id": "auld-lang-syne",
+  "round1": "melody-mismatch",
+  "reference": {
+   "source": "wiki",
+   "lang": "de",
+   "article": "Auld Lang Syne",
+   "revid": 269025087,
+   "block": 0,
+   "compile_attempt": 0,
+   "compiled": true
+  },
+  "why": "Mutopia's only hit is Horetzky's guitar arrangement (excluded); de block 0 under 'Melodie', first verse and refrain after the National Library of Scotland",
+  "tracks": 1,
+  "self_check": {
+   "notes": 8,
+   "must_pass": true,
+   "must_fail_pitch": true,
+   "must_fail_rhythm": true
+  },
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": 0,
+   "interval_miss": 2,
+   "intervals": 7,
+   "pitch_edit": 1,
+   "exact_pitch": false,
+   "rhythm": null,
+   "context": [
+    60,
+    65,
+    65,
+    65,
+    69,
+    67,
+    65,
+    67,
+    69,
+    65
+   ]
+  },
+  "verdict": "pending-pitch-differs"
+ },
+ {
+  "id": "my-bonnie",
+  "round1": "rhythm-differs",
+  "reference": null,
+  "reason": "no Mutopia hit, no score in the 16 editions",
+  "verdict": "pending-no-reference"
+ },
+ {
+  "id": "danny-boy",
+  "round1": "melody-mismatch",
+  "reference": null,
+  "reason": "no Mutopia hit, no score in the 16 editions",
+  "verdict": "pending-no-reference"
+ },
+ {
+  "id": "aura-lea",
+  "round1": "rhythm-differs",
+  "reference": null,
+  "reason": "no Mutopia hit; fr block 0 is the English article's block, a copy (rule 2)",
+  "verdict": "pending-no-reference"
+ },
+ {
+  "id": "yankee-doodle",
+  "round1": "melody-unchecked",
+  "reference": null,
+  "reason": "no Mutopia hit, no score in the 16 editions",
+  "verdict": "pending-no-reference"
+ },
+ {
+  "id": "god-save-the-king",
+  "round1": "melody-unchecked",
+  "reference": {
+   "source": "wiki",
+   "lang": "it",
+   "article": "God Save the King",
+   "revid": 152608958,
+   "block": 0,
+   "compile_attempt": 0,
+   "compiled": true
+  },
+  "why": "no Mutopia setting of the tune (hits are other pieces; AUSTRIA is Haydn's); it block 0, a) Thesaurus musicus 1744, the first block setting the tune",
+  "tracks": 2,
+  "self_check": {
+   "notes": 8,
+   "must_pass": true,
+   "must_fail_pitch": true,
+   "must_fail_rhythm": true
+  },
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": 0,
+   "interval_miss": 2,
+   "intervals": 5,
+   "pitch_edit": 1,
+   "exact_pitch": false,
+   "rhythm": null,
+   "context": [
+    67,
+    67,
+    67,
+    66,
+    67,
+    69,
+    71,
+    71
+   ]
+  },
+  "verdict": "pending-pitch-differs"
+ },
+ {
+  "id": "star-spangled-banner",
+  "round1": "melody-unchecked",
+  "reference": {
+   "source": "wiki",
+   "lang": "it",
+   "article": "The Star-Spangled Banner",
+   "revid": 152112921,
+   "block": 0,
+   "compile_attempt": 0,
+   "compiled": true
+  },
+  "why": "no Mutopia hit; it block 0, a) Blands c. 1790, the Anacreontic Song, the first block setting the tune",
+  "tracks": 4,
+  "self_check": {
+   "notes": 8,
+   "must_pass": true,
+   "must_fail_pitch": true,
+   "must_fail_rhythm": true
+  },
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": -7,
+   "interval_miss": 4,
+   "intervals": 11,
+   "pitch_edit": 11,
+   "exact_pitch": false,
+   "rhythm": null,
+   "context": [
+    60,
+    60,
+    60,
+    64,
+    67,
+    72,
+    76,
+    74,
+    72,
+    64,
+    65,
+    67,
+    67,
+    76
+   ]
+  },
+  "verdict": "pending-pitch-differs"
+ },
+ {
+  "id": "la-marseillaise",
+  "round1": "melody-unchecked",
+  "reference": {
+   "source": "wiki",
+   "lang": "it",
+   "article": "La Marsigliese",
+   "revid": 151946643,
+   "block": 0,
+   "compile_attempt": 0,
+   "compiled": true
+  },
+  "why": "no Mutopia hit; it block 0, a) Dannbach 1792, the first block setting the tune",
+  "tracks": 2,
+  "self_check": {
+   "notes": 8,
+   "must_pass": true,
+   "must_fail_pitch": true,
+   "must_fail_rhythm": true
+  },
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": 5,
+   "interval_miss": 3,
+   "intervals": 8,
+   "pitch_edit": 2,
+   "exact_pitch": false,
+   "rhythm": null,
+   "context": [
+    67,
+    64,
+    67,
+    72,
+    72,
+    74,
+    74,
+    79,
+    77,
+    76,
+    72
+   ]
+  },
+  "verdict": "pending-pitch-differs"
+ },
+ {
+  "id": "brahms-lullaby",
+  "round1": "rhythm-differs",
+  "reference": {
+   "source": "mutopia",
+   "piece": 1037,
+   "url": "https://www.mutopiaproject.org/ftp/BrahmsJ/O49/Wiegenlied/Wiegenlied-mids.zip",
+   "members": [
+    "1037-Wiegenlied.mid",
+    "1037-Wiegenlied_piano_SATB.mid"
+   ],
+   "mutopia_id": "Mutopia-2007/11/04-1037",
+   "edition": "Indiana University: http://www.dlib.indiana.edu/variations/scores/bgn9130/index1.html",
+   "licence": "Public Domain"
+  },
+  "why": "Mutopia 1037, Brahms Op. 49 No. 4, voice and piano (1040 is Schubert's, 887 Ries', 632 and 1710 other pieces)",
+  "tracks": 9,
+  "self_check": {
+   "notes": 8,
+   "must_pass": true,
+   "must_fail_pitch": true,
+   "must_fail_rhythm": true
+  },
+  "result": {
+   "track": 0,
+   "start": 0,
+   "transpose": 3,
+   "interval_miss": 0,
+   "intervals": 5,
+   "pitch_edit": 0,
+   "exact_pitch": true,
+   "rhythm": {
+    "scale": 0.85,
+    "ioi_match": 0,
+    "ioi_total": 5
+   },
+   "context": [
+    67,
+    67,
+    70,
+    67,
+    67,
+    70,
+    67,
+    70
+   ]
+  },
+  "verdict": "pending-rhythm-differs"
+ },
+ {
+  "id": "la-donna-e-mobile",
+  "round1": "melody-unchecked",
+  "reference": {
+   "source": "wiki",
+   "lang": "de",
+   "article": "La donna è mobile",
+   "revid": 268009687,
+   "block": 0,
+   "compile_attempt": 0,
+   "compiled": true
+  },
+  "why": "no Mutopia setting (hits are other pieces); de block 0 under 'Musik'",
+  "tracks": 1,
+  "self_check": {
+   "notes": 1,
+   "must_pass": false,
+   "must_fail_pitch": true,
+   "must_fail_rhythm": true
+  },
+  "verdict": "pending-check-failed"
+ },
+ {
+  "id": "habanera",
+  "round1": "melody-mismatch",
+  "reference": null,
+  "reason": "Mutopia's only hit is the Carmen prelude for piano (excluded); no score in the 16 editions",
+  "verdict": "pending-no-reference"
+ }
+]

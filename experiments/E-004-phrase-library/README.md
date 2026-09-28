@@ -1,6 +1,6 @@
 # E-004 — A publishable phrase library
 
-**Status:** needs-human (round 1 automated evidence in; a listening check remains) · **Serves:** VISION §7 (the guided library), §9 (first slice), §12.5
+**Status:** needs-human (rounds 1 and 2 automated evidence in; a listening check remains) · **Serves:** VISION §7 (the guided library), §9 (first slice), §12.5
 
 ## Question
 
@@ -231,21 +231,95 @@ verified count towards `VISION.md` §9's 30 without a listener.
    verified, since round 1's bar is a match with an independent
    transcription; the variants are reported apart so squillo can hold them
    out. Anything else stays pending, with its reason.
-5. *Checking the check* (S15). On every reference: its own first eight
-   notes of the voice matched must pass; the same with one pitch moved a
+5. *Checking the check* (S15). On every reference: the first eight notes
+   of its longest voice must pass (first written as "of the voice
+   matched", which is not known before comparing); the same with one pitch moved a
    semitone must fail on pitch; with one duration doubled must fail on
    rhythm.
 6. *What counts towards 30.* squillo ships a public-domain phrase only when
    it passes `us` and `life100` (ADR 0005, iteration 29). The count is
    reported under that rule, and under round 1's `us` and `life70`.
 
+The rules and `round2.py survey` were committed first (`squillo-lab`
+e59ea63), then the survey's output and `REFS`, named from it
+(b16e9e5), and only then was `check` written and run.
+
+```
+uv run python round2.py survey   # 5.5 min: 235 requests (28 Mutopia searches, 28 piece pages, 179 Wikipedia reads), 1 s apart, each cached -> results/r2-survey.json
+uv run python round2.py check    # 10 s -> results/r2-check.json
+uv run python round2.py report   # -> results/r2-summary.json
+```
+
+The survey was not timed before it ran, as S19 asks; it is a count of
+requests times their spacing, and it caches each request, so it resumes
+(squillo L-039). Wikipedia revisions used are in `r2-survey.json` and
+`r2-check.json`; Mutopia files were read on 2026-09-28. Tools as round 1.
+
+**References named** (`REFS`, with the reason for each). 9 of the 18
+have one: 4 from Mutopia (Old 100th from its Genevan Psalter 1551 edition,
+EVENTIDE, CRANHAM, all SATB, and Brahms Op. 49 No. 4 for voice and piano,
+all Public Domain) and 5 from other Wikipedias (Auld Lang Syne and La
+donna è mobile, de block 0; God Save the King, The Star-Spangled Banner
+and La Marseillaise, it block 0). 9 have none: 7 have no Mutopia hit and
+no score in the 16 editions, Habanera's only Mutopia hit is the Carmen
+prelude for piano, and Aura Lea's only other score (fr) is a copy of the
+English block. Mutopia's other hits were other pieces or instrumental
+arrangements.
+
+**Checking the check** (rule 5). On 8 of 9 references all three cases
+behave: the reference's own first eight notes pass, one pitch moved a
+semitone fails, one duration doubled fails. On the ninth, La donna è
+mobile's de block 0, the must-pass case fails: the block is the aria's
+range figure (two notes), not its melody, which its heading and table did
+not show. A reference that fails its own must-pass case is no check, so
+that phrase stays pending (`pending-check-failed`); this consequence of
+rule 5 was written into `check` after its first run showed the failure,
+and it changes no other verdict.
+
+## Round 2 result
+
+| # | Question | Result (conditions; uncertainty) |
+| ---: | :--- | :--- |
+| 1 | How many pending phrases have a second, independent reference? | **9 of 18** named from metadata; **8** usable (La donna è mobile's is a range figure). 9 have none in Mutopia or 16 Wikipedias |
+| 2 | How many match it in pitch and rhythm? | **1 of 8**: Abide with Me against Mutopia's EVENTIDE, 9 of 9 intervals and 9 of 9 inter-onset intervals at scale 1.0. Its round 1 status was *melody unchecked*, so it is `verified-2`; no `verified-variant` |
+| 3 | Where round 1 found a mismatch, does the second reference side with the phrase? | **0 of 4.** In the Bleak Midwinter (Mutopia CRANHAM: 2 of 5 intervals wrong) and Auld Lang Syne (de: 2 of 7) differ in pitch again; Old 100th (Mutopia, Genevan 1551: pitch exact, 4 of 7 inter-onset intervals at scale 2.0) and Brahms' Lullaby (Mutopia: pitch exact, 0 of 5 at scale 0.85, as against the English block) differ in rhythm again. Two independent transcriptions against the phrase each time: these are the agent's errors, or a variant neither source prints |
+| 4 | The anthems? | **0 of 3 verified.** God Save the King (2 of 5 intervals wrong), The Star-Spangled Banner (4 of 11) and La Marseillaise (3 of 8) differ from the it article's first block. In each, that block is the earliest printed form, and it is the edition `library.py` cites or its near neighbour: Thesaurus Musicus 1744 (cited), Dannbach, the Strasbourg printer, 1792 (cited: Strasbourg 1792), and Blands' c. 1790 Anacreontic Song (cited: Smith's, by 1778). The article says the modern form differs from these (the anthem's first bar; the Star-Spangled Banner's arpeggiated opening). So each phrase writes a later form than the edition its provenance cites: a provenance error the build's rights check would not see, whatever the phrase's accuracy against the modern form |
+| 5 | The library now | **20 verified**: 13 public-domain and 7 originals, across the same **12 genres** (hymn now 3). All 20 pass squillo's shipping rule (`us` and `life100`) as well as round 1's. 10 short of `VISION.md` §9's 30. Still pending: 17 (9 without a reference, 1 with an unusable one, 7 that differ) |
+
+**Answer.** A second transcription named in advance moves one phrase,
+not the eighteen F-026 hoped for. Half the pending phrases have no
+second machine-readable score in Mutopia or 16 Wikipedias, and where
+there is one it confirms round 1's four mismatches rather than
+overturning them. So the from-memory route is spent: checking cannot
+reach 30. Two routes remain, both outside this round. (a) Take a
+phrase's notes **from** a public-domain edition instead of checking
+memory against it: Mutopia's Genevan Psalter 1551 (Old 100th) and
+Brahms (Op. 49 No. 4) are marked Public Domain, and the melody is then
+the cited edition by construction. (b) Write more originals, whose only
+open check is a listener's (below). For the anthems, the cited edition and
+the melody written must agree: either the phrase cites the later edition
+whose form it writes (for the Star-Spangled Banner, perhaps the 1918
+standard the it article prints, if its rights pass) and is checked
+against that, in a new round counted apart as a second attempt, or its
+notes are taken from the early edition it cites, by route (a).
+
+**Limits.** Mutopia's EVENTIDE and CRANHAM give cyberhymnal.org as their
+source, not a printed edition. A match confirms the version the reference
+prints, not the edition `library.py` cites. Rule 2 took the first block,
+which in the Italian anthem articles is the oldest edition; that is the
+cited edition for two of the three, so the rule's choice and the
+provenance agree there. The two
+references of the four round 1 mismatches were not compared with each
+other.
+
 ## Needs a human
 
 15 minutes, headphones, no microphone.
 
 1. `cd experiments/E-004-phrase-library && uv run python listen.py`. This
-   writes 25 WAVs to `data/listen/`: the 18 phrases whose melody is not yet
-   confirmed, and the 7 originals. Each opens with four clicks at its tempo.
+   writes 25 WAVs to `data/listen/`: the 18 phrases whose melody round 1
+   did not confirm (round 2 has since confirmed Abide with Me; a verdict on
+   it still checks the check), and the 7 originals. Each opens with four clicks at its tempo.
 2. Play each once or twice. In `results/listen.csv`, set `verdict`:
    - For a public-domain phrase: `right`, `wrong` (with `first_wrong_note`,
      counting from 1) or `unknown`, if you do not know the tune.
