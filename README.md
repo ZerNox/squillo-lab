@@ -43,11 +43,14 @@ case differs from the must-pass case in the input the check reads**: never
 the check applied to identical arguments, never a value that cannot fail
 by construction, and never an expectation taken from the claim under test
 (a finding being re-derived is not its own must-fail case). A condition a
-check records but does not assert is not a check. Rules and bars written
+check records but does not assert is not a check: before the results
+commit, search the code for an assert of every results key that names a
+check (`check`, `must`, `pass`), and assert it, or say in its README row
+"recorded, not asserted" and why (squillo L-046). Rules and bars written
 before a run are committed before it runs, in their own commit, so that
 "before" can be read from git. The
 README reports the checks' numbers (squillo L-024, L-026, L-028, L-030,
-L-031, L-032, L-034, L-036, L-041).
+L-031, L-032, L-034, L-036, L-041, L-046).
 
 **Name the reference before comparing** (squillo standing instruction S16).
 A check against an outside source names its reference item in advance: the
@@ -64,7 +67,11 @@ path until a run without that structure clears it. A bracket counts as
 falling there when it holds the point: its position in the input's own
 time wraps, or it is longer than the loop (squillo L-032). A sign or direction
 stated in a result's legend is derived from the measure's definition in the
-code and checked by hand on one case (squillo L-029, L-032).
+code and checked by hand on one case (squillo L-029, L-032). An item left
+out as an anomaly is first tested against every other cause the
+experiment's own rules name (such as a steady tone's period ambiguity),
+with the test's numbers in the README, before it is called unattributed
+(squillo L-046).
 
 **Time the full run before starting it** (squillo standing instruction
 S19). Before a run longer than a few minutes, time a sample of its items
