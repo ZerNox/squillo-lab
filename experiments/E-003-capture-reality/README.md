@@ -200,6 +200,11 @@ counts from 3 to 36 runs; their rates are not estimated beyond that.
 
 ## For squillo
 
+Folded in squillo iteration 32 (F-027): ADR 0002 revised through Q-018,
+ADR 0006 keeps one message per block, and the new `capture` spec
+(CA-001 to CA-008) tests on the fixtures below. What browser processing
+does to a measure is unmeasured (squillo F-034, a candidate round 2).
+
 - ADR 0002: request raw at `getUserMedia`, never by `applyConstraints`
   later (item 1). The channel-count readback rule marks every Chrome take
   not raw (item 2); a rule that checks the channels' content (identical
