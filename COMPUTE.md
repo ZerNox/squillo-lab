@@ -10,7 +10,7 @@ nothing about squillo yet.
 
 | Device | Where | Role for squillo |
 | :--- | :--- | :--- |
-| Intel Core i7-12700H, 20 threads | CPU | Every timing measured so far (E-001 row 7, native code) |
+| Intel Core i7-12700H, 20 threads | CPU | E-001 round 1 (row 7, native code) and round 2 (WASM in Chrome and Firefox, one thread) |
 | Intel Iris Xe (Alder Lake-P GT2) | PCI `0000:00:02.0`, `renderD128` | Integrated. A plausible proxy for a typical singer's laptop GPU |
 | Intel Arc A770M, 16 GiB | PCI `0000:03:00.0`, `renderD129` | Discrete. About 13.5 TFLOPS FP32 peak. A proxy for the remote tier, not for a singer's device |
 
