@@ -38,9 +38,16 @@ returns, never by position; and it is run once on a case it must pass and
 once on a case it must fail, each known independently of the check. A
 pass bar or a selection rule written before a run is a check too: it is
 applied first to the reference condition that must pass it (such as clean
-input on the fitting fold) and to one that must fail it. The
+input on the fitting fold) and to one that must fail it. **A must-fail
+case differs from the must-pass case in the input the check reads**: never
+the check applied to identical arguments, never a value that cannot fail
+by construction, and never an expectation taken from the claim under test
+(a finding being re-derived is not its own must-fail case). A condition a
+check records but does not assert is not a check. Rules and bars written
+before a run are committed before it runs, in their own commit, so that
+"before" can be read from git. The
 README reports the checks' numbers (squillo L-024, L-026, L-028, L-030,
-L-031, L-032, L-034, L-036).
+L-031, L-032, L-034, L-036, L-041).
 
 **Name the reference before comparing** (squillo standing instruction S16).
 A check against an outside source names its reference item in advance: the
