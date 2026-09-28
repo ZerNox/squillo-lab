@@ -1,6 +1,6 @@
 # E-002 — Measurement reliability and uncertainty
 
-**Status:** answered (round 1, pitch, answered on synthetic input; round 2, real voices, pitch ± and four aspects, squillo iteration 28; round 3, octave errors and reverberation, squillo iteration 36; a real room is E-003's `needs-human` step, an amateur's voice E-005's) · **Serves:** VISION §5 (what is measured), §6 (honesty), §12.2
+**Status:** answered (round 1, pitch, answered on synthetic input; round 2, real voices, pitch ± and four aspects, squillo iteration 28; round 3, octave errors and reverberation, squillo iteration 36; fold 3, the steadying ladder, squillo iteration 42; a real room is E-003's `needs-human` step, an amateur's voice E-005's) · **Serves:** VISION §5 (what is measured), §6 (honesty), §12.2
 
 ## Question
 
@@ -456,6 +456,61 @@ crude; trained singers on /a/; WORLD re-syntheses for the truth. The octave
 checks' must-fail tones are built, not recorded. Nothing here measures an
 amateur, another vowel or a real room. F-036 (the ring ratio on repeated
 material) was not run.
+
+### Fold 3: the steadying ladder (squillo iteration 42, 2026-09-28)
+
+**Run:** `uv run python fold3_ladder.py <squillo>` (12 s on one process;
+a sample of 10 takes timed first at 0.006 s each for a take with no
+measured steadiness; needs round 2's `data/cache/r2_frames.npz` and
+`results/fold2.json`). Writes `results/fold3_ladder.json`. Written for
+squillo's first `coach` spec (Q-023): what next step and far vision can
+`coach` ask of `synthesis`, whose rungs change pitch only (squillo SY-002)?
+
+**Rules, written in the docstring before the run.** A take's steadiness
+is fold 2's spec rules, with the *u* table, *c* and κ read from
+`fold2.json` `measures.spec`. The *full steadying* gives each accepted
+frame of each held note the note's mean 2 Hz contour minus its 2 Hz
+contour there (the slow wander removed, vibrato kept) and every other
+frame 0. It is scaled by α_max = min(1, 50 / its largest change), so no
+change exceeds squillo SY-002's 50 cents, and tried at 64 strengths, *k* ×
+α_max / 64. A rung's pitch is the take's measured pitch plus the change,
+with the take's *u* (squillo SY-004), measured by the same rules, and
+compared with the take by MT-008. **Rule A:** the next step is the least
+*k* whose rung is improved, the far vision the greatest. **Rule B:** as A,
+offered only when the next step's steadiness is not below the take's
+steadiest block.
+
+**Checks (S15),** each asserted in `main()`: strength 0 reproduces the
+take's steadiness and *u* exactly, on every measured take and fixture;
+MT-008 calls `held-wobble.wav` then `held-steady.wav` improved (must pass)
+and `held-wobble.wav` against itself not (must fail); the full steadying
+of `held-wobble.wav` is improved (must pass) and strength 0 is not (must
+fail). Every fixture is read from squillo's `fixtures/` and its SHA-256
+asserted to be in its `MANIFEST.md`.
+
+| # | Question | Result |
+| :--- | :--- | :--- |
+| L1 | How often is a step offered on real voices (rule A)? | Original takes, 20 trained singers: steadiness is measured on 47 of 159 takes (all long tones: messa di voce 16, pianissimo 12, straight 12, forte 7). A next step exists on **28 of 47** (Wilson 95 % 45–72 %), 28 of 159 takes overall (12.5–24.3 %). On the WORLD re-syntheses: 19 of 43 (30–59 %) |
+| L2 | Rule B, never steadier than the singer's own steadiest block | **4 of 47** original takes (3.4–19.9 %); 1 of 43 re-syntheses. The least improvement MT-008 can show lies beyond the steadiest block on 24 of the 28 takes where A offers a step |
+| L3 | How small is the next step? | The least improved strength is a median 0.63 of the steadying SY-002 allows on the original takes (0.11 to 0.98), 0.55 on the re-syntheses: on real voices the smallest step that can be shown is most of the way. Its largest change per frame is 7.7 to 48.4 cents. Median steadiness 7.16 cents, median take *u* 2.02 cents; 2 blocks on 17 of the 47 takes |
+| L4 | Does SY-002's 50 cents bind? | The full steadying exceeds 50 cents on some frame of 34 of 47 original takes (29 of 43 re-syntheses), so α_max < 1 there. Where a step exists, the far vision's steadiness is a median 2.09 cents |
+| L5 | Is the outcome monotone in strength? | On 46 of 47 original takes and 43 of 43 re-syntheses. On the other (file 82) the strongest steadying is not improved; the greatest improved strength is 63 of 64. Far vision at the full strength on 27 of the 28 |
+| L6 | squillo's fixtures | `held-wobble.wav` and `synthesis/voice-220hz-wobble.wav`: a step, at 3 of 64 (largest change 1.10 cents), far vision at 64 of 64 (steadiness 14.63 → 0.056, largest change 23.40 cents); rule B offers none (its three blocks equal within 0.002 cents). `held-steady.wav` and `held-vibrato.wav`: steadiness measured, no strength improved, so no step (the vibrato's 0.467 cents is 2 Hz leakage the steadying cannot remove: 0.459 at full strength). `signal/sine-220hz.wav`: steadiness unmeasurable, no held note |
+
+**What this says for squillo.** Rule A offers a step on most real takes
+where steadiness is measured; rule B on few, because a take's ± for
+steadiness is wide against the spread of its blocks. "Reachable" can then
+mean what `synthesis` delivers and `metrics` can show, not what the singer
+has already sung. The next step is the *least* step that can be shown,
+which on real voices is not small: the ladder from a take to its far
+vision has one or two measurable rungs, not many. Steadiness is
+unmeasured on 112 of 159 takes (scales and arpeggios have no 2 s held
+note), so an exercise that gives held notes is a precondition of any step.
+
+**Limits.** Trained singers, long tones only; no amateur. The rung is
+evaluated from its description, as squillo SY-004 states it, never from
+synthesized audio. The grid of 64 strengths was chosen before the run; a
+finer grid could move a next step by at most one strength.
 
 ### Beyond round 3
 
