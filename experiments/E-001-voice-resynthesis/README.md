@@ -312,7 +312,7 @@ steadying request; +50 output against zero).
 | 1 | Is the change delivered by the rule? | Yes, for all three requests: 621 of 622 frames (99.8 %) pass; the rung's frame is unmeasured on one frame, and no frame is off by an octave. Per-frame error median 0.05–0.08 cents, p95 0.15–0.20, max 1.65–1.90, against a bound of 4.90 (every *u* √3) |
 | 2 | Output | 240 000 samples, all finite, for every request; peak 0.718–0.719 from the take's 0.5 (WORLD re-synthesizes with its own phase) |
 | 3 | Same samples everywhere? | Chrome and Firefox, two passes each: one hash per input and request, as `f64` and as `f32`, for all five pairs (three requests on the voice take, the 30 s and 60 s takes). Native x86-64 differs by at most 3.5 × 10⁻¹² (5 s) and 4.9 × 10⁻¹⁰ (30 and 60 s), and its `f32` rounding is not identical to the browsers' |
-| 4 | Time, the faster of two passes, s per s of audio | First rung (analysis plus one synthesis): 0.14–0.16 on the 5 s, 30 s and 60 s takes in both browsers; each further rung 0.029–0.033. A 30 s take: 4.3 s (Firefox) to 4.9 s (Chrome) for the first rung, 0.88–1.00 s for each further; a 60 s take 8.6–9.8 s. A first full run, overwritten by this one after `r2_build.sh` was made to build the f1 binary, gave the same hashes and rule results, and first-rung times within 6.1 % |
+| 4 | Time, the faster of two passes, s per s of audio | First rung (analysis plus one synthesis): 0.14–0.16 on the 5 s, 30 s and 60 s takes in both browsers; each further rung 0.029–0.033. A 30 s take: 4.3 s (Firefox) to 4.9 s (Chrome) for the first rung, 0.88–1.00 s for each further; a 60 s take 8.6–9.8 s. A first full run, overwritten by this one after `r2_build.sh` was made to build the f1 binary, gave the same hashes and rule results; its times were not kept, so its "within 6.1 %" is withdrawn (fold 2 repeats the run: 0.4–6.3 %) |
 | 5 | Memory | The analysis holds 3.67 MB per second (18.4 MB for 5 s, 110.0 MB for 30 s, 220.0 MB for 60 s). The WASM linear memory, which never shrinks, peaked at 60.6 MB, 414.7 MB and 887.1 MB, the same in both browsers: 3.3 to 4.0 times the analysis |
 
 **What this says for squillo.** A rung can be tested on a fixture by the
@@ -330,6 +330,42 @@ misread an octave high on up to 2.8 % of frames (round 1, result 4), is not
 measured here. One machine, headless, Linux; no Safari. Peak memory is the
 crate's, with its f64 analysis and Rust's allocator; memory held as `f32`
 is round 3's.
+
+### Fold 2: the rung compared sample by sample (squillo iteration 43, 2026-09-28)
+
+Squillo F-043 (k, m): fold 1 called the rung the same in both browsers
+from equal 32-bit FNV-1a hashes, an inference; and its "first-rung times
+within 6.1 %" of an earlier run were in no results file.
+
+**What runs.** Fold 1's crate, inputs and requests unchanged
+(`data/cache/f1`, `wasm/pkg`). `f2_page/worker.js` runs WORLD twice per
+input in a dedicated module worker, as fold 1's did, and sends each rung's
+samples, as `f64` and as the `f32` that crosses squillo's boundary, to the
+local server (`f2_run.mjs`), which writes them to `data/cache/f2`.
+`f2_compare.py` compares every pair of the four copies of each rung (two
+browsers, two passes) byte for byte. Chrome 154.0.8037.57 and Firefox
+156.0, headless through Playwright; same laptop. 40 s and 30 s of browser
+time.
+
+**Checks** (S15, written before the run in `f2_compare.py`'s docstring).
+The comparison passes a copy with itself; it fails a copy with one
+sample's lowest mantissa bit flipped (a change of 1.4 × 10⁻¹⁷) and the
+native output (at most 3.5 × 10⁻¹² away on the 5 s take). Each copy's
+FNV-1a hash, reimplemented, equals fold 1's for its input and request, so
+this is fold 1's computation. All pass.
+
+**Result** (`results/f2/compare.json`).
+
+| # | Question | Result |
+| :--- | :--- | :--- |
+| 1 | The same samples in both browsers? | Yes: for all five rungs (three requests on the 5 s voice take, the steadying on the 30 s and 60 s takes), all six pairs of the four copies are equal sample by sample, as `f64` and as `f32`: 5 040 000 samples per pair. Each browser's `f32` is its `f64` rounded, identical to numpy's rounding |
+| 2 | Against native x86-64 | Differs, by at most 4.9 × 10⁻¹⁰ (30 and 60 s) and 3.5 × 10⁻¹² (5 s), as fold 1 |
+| 3 | Time, first rung, against fold 1 | The same measure as fold 1 (the faster pass's analysis plus the slowest request's faster synthesis, per second of audio): 0.4 % to 6.3 % slower than fold 1 in each of the six browser–input pairs (Chrome 5 s 1.0 %, 30 s 0.4 %, 60 s 6.0 %; Firefox 5 s 3.5 %, 30 s 6.3 %, 60 s 1.7 %). Fold 2's worker sends each rung between syntheses, which fold 1's did not |
+
+**What this says for squillo.** SY-005's "the same rung bit for bit in
+every target browser" now rests on a sample-by-sample comparison, not on
+equal hashes. The first-rung times repeat within 6.3 % run to run on this
+laptop. **Limits.** Fold 1's: one machine, headless, Linux, no Safari.
 
 ### Round 3 (open)
 

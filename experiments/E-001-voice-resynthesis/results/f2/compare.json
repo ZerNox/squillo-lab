@@ -1,0 +1,220 @@
+{
+ "versions": {
+  "chrome": "154.0.8037.57",
+  "firefox": "156.0"
+ },
+ "check_of_check": {
+  "with_itself": true,
+  "one_ulp_flipped": false,
+  "one_ulp_abs_diff": 1.3877787807814457e-17,
+  "native": false,
+  "native_max_abs_diff": 3.4916514124461173e-12,
+  "fnv_changes_on_flip": true
+ },
+ "rungs": {
+  "voice zero": {
+   "f64": {
+    "samples": 240000,
+    "pairs": {
+     "chrome p0 = chrome p1": true,
+     "chrome p0 = firefox p0": true,
+     "chrome p0 = firefox p1": true,
+     "chrome p1 = firefox p0": true,
+     "chrome p1 = firefox p1": true,
+     "firefox p0 = firefox p1": true
+    },
+    "all_same": true
+   },
+   "f32_is_f64_rounded": true,
+   "fnv_f64": [
+    "95e4c3f"
+   ],
+   "matches_fold1_hash": true,
+   "native_max_abs_diff": 3.4916514124461173e-12,
+   "f32": {
+    "samples": 240000,
+    "pairs": {
+     "chrome p0 = chrome p1": true,
+     "chrome p0 = firefox p0": true,
+     "chrome p0 = firefox p1": true,
+     "chrome p1 = firefox p0": true,
+     "chrome p1 = firefox p1": true,
+     "firefox p0 = firefox p1": true
+    },
+    "all_same": true
+   }
+  },
+  "voice up-50c": {
+   "f64": {
+    "samples": 240000,
+    "pairs": {
+     "chrome p0 = chrome p1": true,
+     "chrome p0 = firefox p0": true,
+     "chrome p0 = firefox p1": true,
+     "chrome p1 = firefox p0": true,
+     "chrome p1 = firefox p1": true,
+     "firefox p0 = firefox p1": true
+    },
+    "all_same": true
+   },
+   "f32_is_f64_rounded": true,
+   "fnv_f64": [
+    "762ea92c"
+   ],
+   "matches_fold1_hash": true,
+   "native_max_abs_diff": 1.1877165917439925e-12,
+   "f32": {
+    "samples": 240000,
+    "pairs": {
+     "chrome p0 = chrome p1": true,
+     "chrome p0 = firefox p0": true,
+     "chrome p0 = firefox p1": true,
+     "chrome p1 = firefox p0": true,
+     "chrome p1 = firefox p1": true,
+     "firefox p0 = firefox p1": true
+    },
+    "all_same": true
+   }
+  },
+  "voice steady": {
+   "f64": {
+    "samples": 240000,
+    "pairs": {
+     "chrome p0 = chrome p1": true,
+     "chrome p0 = firefox p0": true,
+     "chrome p0 = firefox p1": true,
+     "chrome p1 = firefox p0": true,
+     "chrome p1 = firefox p1": true,
+     "firefox p0 = firefox p1": true
+    },
+    "all_same": true
+   },
+   "f32_is_f64_rounded": true,
+   "fnv_f64": [
+    "67182f73"
+   ],
+   "matches_fold1_hash": true,
+   "native_max_abs_diff": 1.7336687641034132e-12,
+   "f32": {
+    "samples": 240000,
+    "pairs": {
+     "chrome p0 = chrome p1": true,
+     "chrome p0 = firefox p0": true,
+     "chrome p0 = firefox p1": true,
+     "chrome p1 = firefox p0": true,
+     "chrome p1 = firefox p1": true,
+     "firefox p0 = firefox p1": true
+    },
+    "all_same": true
+   }
+  },
+  "long30 steady": {
+   "f64": {
+    "samples": 1440000,
+    "pairs": {
+     "chrome p0 = chrome p1": true,
+     "chrome p0 = firefox p0": true,
+     "chrome p0 = firefox p1": true,
+     "chrome p1 = firefox p0": true,
+     "chrome p1 = firefox p1": true,
+     "firefox p0 = firefox p1": true
+    },
+    "all_same": true
+   },
+   "f32_is_f64_rounded": true,
+   "fnv_f64": [
+    "9ecb67fc"
+   ],
+   "matches_fold1_hash": true,
+   "native_max_abs_diff": 4.87764897916243e-10,
+   "f32": {
+    "samples": 1440000,
+    "pairs": {
+     "chrome p0 = chrome p1": true,
+     "chrome p0 = firefox p0": true,
+     "chrome p0 = firefox p1": true,
+     "chrome p1 = firefox p0": true,
+     "chrome p1 = firefox p1": true,
+     "firefox p0 = firefox p1": true
+    },
+    "all_same": true
+   }
+  },
+  "long60 steady": {
+   "f64": {
+    "samples": 2880000,
+    "pairs": {
+     "chrome p0 = chrome p1": true,
+     "chrome p0 = firefox p0": true,
+     "chrome p0 = firefox p1": true,
+     "chrome p1 = firefox p0": true,
+     "chrome p1 = firefox p1": true,
+     "firefox p0 = firefox p1": true
+    },
+    "all_same": true
+   },
+   "f32_is_f64_rounded": true,
+   "fnv_f64": [
+    "7eb982f"
+   ],
+   "matches_fold1_hash": true,
+   "native_max_abs_diff": 3.3328265147680725e-10,
+   "f32": {
+    "samples": 2880000,
+    "pairs": {
+     "chrome p0 = chrome p1": true,
+     "chrome p0 = firefox p0": true,
+     "chrome p0 = firefox p1": true,
+     "chrome p1 = firefox p0": true,
+     "chrome p1 = firefox p1": true,
+     "firefox p0 = firefox p1": true
+    },
+    "all_same": true
+   }
+  }
+ },
+ "time": {
+  "chrome voice": {
+   "fold1_first_rung_s_per_s": 0.15748599998950957,
+   "fold2_first_rung_s_per_s": 0.15901499998569488,
+   "relative_diff": 0.00970879948876188
+  },
+  "chrome long30": {
+   "fold1_first_rung_s_per_s": 0.16305700000127157,
+   "fold2_first_rung_s_per_s": 0.16370600000222524,
+   "relative_diff": 0.003980203247628764
+  },
+  "chrome long60": {
+   "fold1_first_rung_s_per_s": 0.16279175000190735,
+   "fold2_first_rung_s_per_s": 0.1725353333334128,
+   "relative_diff": 0.059853053557021786
+  },
+  "firefox voice": {
+   "fold1_first_rung_s_per_s": 0.136244,
+   "fold2_first_rung_s_per_s": 0.14107600000000006,
+   "relative_diff": 0.03546578197939035
+  },
+  "firefox long30": {
+   "fold1_first_rung_s_per_s": 0.14204133333333327,
+   "fold2_first_rung_s_per_s": 0.151,
+   "relative_diff": 0.063070843228732
+  },
+  "firefox long60": {
+   "fold1_first_rung_s_per_s": 0.14373700000000003,
+   "fold2_first_rung_s_per_s": 0.146201,
+   "relative_diff": 0.01714241983622843
+  }
+ },
+ "summary": {
+  "all_same_f64": true,
+  "all_same_f32": true,
+  "f32_is_f64_rounded": true,
+  "all_match_fold1_hash": true,
+  "native_max_abs_diff": 4.87764897916243e-10,
+  "samples_compared_per_pair": 5040000,
+  "time_relative_diff_range": [
+   0.003980203247628764,
+   0.063070843228732
+  ]
+ }
+}

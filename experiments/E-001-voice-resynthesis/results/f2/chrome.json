@@ -1,0 +1,98 @@
+{
+ "rows": [
+  {
+   "input": "voice",
+   "request": "zero",
+   "pass": 0,
+   "seconds": 5,
+   "analysis_s": 0.7068400000333785,
+   "synth_s": 0.1871749999523163,
+   "samples": 240000
+  },
+  {
+   "input": "voice",
+   "request": "up-50c",
+   "pass": 0,
+   "seconds": 5,
+   "analysis_s": 0.7068400000333785,
+   "synth_s": 0.17178999996185304,
+   "samples": 240000
+  },
+  {
+   "input": "voice",
+   "request": "steady",
+   "pass": 0,
+   "seconds": 5,
+   "analysis_s": 0.7068400000333785,
+   "synth_s": 0.16937000000476837,
+   "samples": 240000
+  },
+  {
+   "input": "voice",
+   "request": "zero",
+   "pass": 1,
+   "seconds": 5,
+   "analysis_s": 0.6232849999666213,
+   "synth_s": 0.15636500000953674,
+   "samples": 240000
+  },
+  {
+   "input": "voice",
+   "request": "up-50c",
+   "pass": 1,
+   "seconds": 5,
+   "analysis_s": 0.6232849999666213,
+   "synth_s": 0.17501999998092652,
+   "samples": 240000
+  },
+  {
+   "input": "voice",
+   "request": "steady",
+   "pass": 1,
+   "seconds": 5,
+   "analysis_s": 0.6232849999666213,
+   "synth_s": 0.17174500000476836,
+   "samples": 240000
+  },
+  {
+   "input": "long30",
+   "request": "steady",
+   "pass": 0,
+   "seconds": 30,
+   "analysis_s": 3.943830000042915,
+   "synth_s": 0.9673500000238419,
+   "samples": 1440000
+  },
+  {
+   "input": "long30",
+   "request": "steady",
+   "pass": 1,
+   "seconds": 30,
+   "analysis_s": 4.164570000052452,
+   "synth_s": 1.0292000000476837,
+   "samples": 1440000
+  },
+  {
+   "input": "long60",
+   "request": "steady",
+   "pass": 0,
+   "seconds": 60,
+   "analysis_s": 8.397539999961854,
+   "synth_s": 2.1059950000047682,
+   "samples": 2880000
+  },
+  {
+   "input": "long60",
+   "request": "steady",
+   "pass": 1,
+   "seconds": 60,
+   "analysis_s": 8.304019999980927,
+   "synth_s": 2.048100000023842,
+   "samples": 2880000
+  }
+ ],
+ "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+ "browser": "chrome",
+ "version": "154.0.8037.57",
+ "wall_s": 40.012
+}

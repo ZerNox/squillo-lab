@@ -484,12 +484,15 @@ change, drift → in-tune improved (one-sided), in-tune → drift worse, drift
 → drift no change (two lower ends).
 
 A first form of `take-vibrato-in-tune.wav`, at ±50 cents (VocalSet's
-median extent is 47.3, E-002 result 21), gave 98 segments for 14 notes and
-*u*_B 36.6, *at least*: round 1's provisional tuning, the circular mean of
-all frames, turns half a semitone when a vibrato wider than 38.3 cents
-runs through every frame (the mean of e^(iπ*A* sin θ / 50) over a cycle is
-J₀(π*A*/50), negative from there), and the notes then sit on the semitone
-boundary. Round 2's phrases start each note straight and fade the vibrato
+median extent is 47.3, E-002 result 21), split its 14 notes into 98
+segments, *at least*: round 1's provisional tuning, the circular mean of
+all frames, turns when a vibrato wider than 38.3 cents runs through every
+frame (the mean of e^(iπ*A* sin θ / 50) over a cycle is J₀(π*A*/50),
+negative from there), and the notes then sit near the semitone boundary.
+Iteration 38 wrote *u*_B 36.6 from a run no results file kept; the
+re-derivation below (squillo iteration 43, `results/f040_wide_vibrato.json`)
+gives 98 segments and *u*_B 37.466 at +50 / −51.5 cents, 38.094 at ±50
+exactly, and does not reproduce 36.6. Round 2's phrases start each note straight and fade the vibrato
 in, so they did not meet it. Honest (the lower end is below 0), but a wide
 vibrato from the onset may never be measured: squillo F-040.
 
@@ -502,3 +505,42 @@ with or without it (F-032 stands for pitch).
 
 **Limits.** Half of round 2's phrases (the cut above); round 2's limits
 otherwise (synthetic voices, no drift, trained singers).
+
+## F-040's numbers re-derived (squillo iteration 43)
+
+Squillo F-043 (m): F-040's "98 segments, *u* 36.6 cents" was in no results
+file. `f040_wide_vibrato.py` rebuilds `take-vibrato-in-tune.wav` with
+`fold_refusal.py`'s own generator, changing only the vibrato's width, and
+measures each take with the same pipeline (MT-003's refusal, the centre
+over whole cycles, U25). Conditions and checks are in its docstring,
+written before the run. Four seconds on one process.
+
+**Checks.** Must pass: at the fixture's β = 0.0204 the take is
+byte-identical to the committed fixture (its sha256 in
+`results/fold_refusal_fixtures.json`), gives 14 segments and the same state
+and *s* (measured, 0.059). Must fail: the split test (segments above 14) is
+false on the fixture and true on at least one take above 38.3 cents. All
+pass.
+
+**Result** (`results/f040_wide_vibrato.json`). 14 in-tune notes of 800 ms,
+vibrato 5.5 Hz from every note's first sample, f = f_j (1 + β sin), named
+by the upward extent in cents:
+
+| Upward extent, cents | 30 | 35.0 (fixture) | 36 | 37 | 38 | 39 | 40 | 41 | 42 | 43 | 44 | 45 | 50 |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Provisional tuning, cents (truth 23) | 26.3 | 32.1 | 36.0 | 42.6 | −48.2 | −40.9 | −36.7 | −34.2 | −32.7 | −31.7 | −31.0 | −30.4 | −28.9 |
+| Segments (14 notes) | 14 | 14 | 14 | 14 | 14 | 14 | 14 | 40 | 70 | 90 | 96 | 98 | 98 |
+| State | measured | measured | measured | measured | measured | measured | measured | at least | at least | at least | at least | at least | at least |
+| *u*_B, cents | 1.003 | 1.005 | 1.005 | 1.006 | 1.006 | 1.007 | 1.007 | 11.593 | 21.803 | 26.987 | 28.812 | 31.098 | 37.466 |
+
+Symmetric in cents (f = f_j 2^(*A* sin / 1200)): ±45 gives 98 segments,
+*u*_B 30.579; ±50 gives 98, *u*_B 38.094.
+
+**What this says for squillo.** F-040 holds in kind and its 98 segments
+reproduce; its *u* 36.6 does not (37.466 or 38.094, by the vibrato's
+form). The provisional tuning moves away from the truth as the vibrato
+widens and has turned by 38 cents, as J₀ predicts, but on this take the
+notes split only from 41 cents; 38.3 cents is where the tuning turns, not
+where measurement fails. **Limits.** One synthetic take, one rate, one
+tuning (23 cents); where the split begins depends on them and is not
+measured more widely.

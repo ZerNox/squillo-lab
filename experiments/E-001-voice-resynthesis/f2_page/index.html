@@ -1,0 +1,15 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>E-001 fold 2</title>
+<script type="module">
+// Runs WORLD in a dedicated module worker, as squillo's engine would run.
+window.e001 = {
+  run: (cfg) => new Promise((resolve, reject) => {
+    const w = new Worker('/f2_page/worker.js', { type: 'module' });
+    w.onmessage = (e) => { if (e.data.log) console.log(e.data.log); else { resolve(e.data); w.terminate(); } };
+    w.onerror = (e) => reject(new Error(e.message));
+    w.postMessage(cfg);
+  }),
+};
+window.e001ready = true;
+</script>
