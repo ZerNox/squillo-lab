@@ -214,6 +214,33 @@ counts from 3 to 36 runs; their rates are not estimated beyond that.
 - `signal`, `metrics`: a take may contain one 10 ms insertion (item 6),
   and in Firefox up to 0.94 cents of pitch error from the bridge (item 8).
 
+## Fixtures for squillo `capture` (squillo iteration 32)
+
+`fixtures.py` writes the twelve capture traces squillo's first `capture`
+spec names (`squillo/fixtures/capture/`, F-027's fold): `uv run python
+fixtures.py ../../../squillo/fixtures/capture`, under a second. Five
+readbacks are round 1's own records with `deviceId` and `groupId` removed
+(Chrome raw at a 44.1 kHz track into a 48 kHz context; Firefox raw, no
+track rate; a Firefox stream track that reports no flag at all; Chrome's
+readback with no processing constraints, context rate written as 48 000;
+Chrome into a 44.1 kHz context). Seven are constructed block and event
+traces on the Chrome raw readback: two channels that differ, with samples
+beyond [−1, 1]; the singer's stop; the track ended; the track muted; the
+context suspended; one render quantum skipped; the engine worker failing.
+The trace format is described in `squillo/fixtures/MANIFEST.md`.
+
+Checks (S15), in `results/fixtures.json`: 8 checks of the checks, each on
+a case it must pass and one it must fail (the tier rule on Chrome's
+recorded raw and default readbacks, one flag missing, voice isolation on;
+the gap rule on consecutive and skipped quanta; f32 exactness on 0.75 and
+0.1); 100 conditions asserted on the fixtures as written (no device
+identifier, each derived readback equal to its record, 128 samples per
+channel, every sample exact in `f32`, the channels differ, one quantum
+skipped where intended and none elsewhere); and a toy model of the spec's
+requirements on every fixture, against outcomes written from the
+scenarios before it ran: 12 of 12 agree. The model is a check, not a
+design: crude and never built on.
+
 ## Needs a human (15 minutes)
 
 Real microphones, drivers and rooms, which fake devices cannot show.
