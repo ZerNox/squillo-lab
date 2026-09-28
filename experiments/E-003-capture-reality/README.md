@@ -457,6 +457,32 @@ at 4–7 s into the input (never at a loop point; the nearest file end
 2.8 s away), which is not a block multiple and is not attributed. Raw
 captures had none.
 
+*Re-checked in squillo's review R-10 (iteration 50; S15, S17).* Those five
+are a steady tone's period ambiguity, the artefact rule 3a meant to
+exclude, not attributed then: every shifted window moves by a whole number
+of the input's own pitch period *P* there (48 000 over the median known f0
+over the window), 0.95 to 1.01 *P*, 2.00 *P* and 3.01 *P*, some changing
+sign between windows, which an inserted or lost block never does.
+`r10_anomalies.py`, its rule committed before it ran (`44ec68b`): an
+anomaly is period ambiguity when every shifted window is within 5 % of *P*
+or 2*P* **and** the shifted windows form one stretch with usable windows at
+the whole lag on both sides. Its checks (`results/r10/r10_anomalies.json`
+`checks`, asserted): the report re-run from round 2's own cache reproduces
+every *w* and interval (C1); rule 7's 480-sample insertion is not called
+period ambiguity (C2, must fail); a constructed one-period stretch is, and
+1.5 *P* or a stretch running to the end is not (C3). Result: the rule keeps
+**1** of the 5 (`m9`, noise suppression alone, clean), since the other four
+have no usable window before their stretch (the take's start is its pad or
+onset), and the 478–480-sample `ec` capture stays out. With `m9` in, noise
+suppression alone clean is *w* 1.42 [1.01, 140.82] against raw (was 1.45
+[1.03, 140.89]); nothing else moves. **Post hoc, labelled**
+(`r10_anomalies.py posthoc`, `results/r10/posthoc/`): part (b) dropped,
+whole multiples 1 to 3 of *P* within 5 %, all five kept: default processing
+clean stays *w* 1.07 [1.03, 1.10] against raw (80 inputs, take measures
+moved on 0 of 37, 37, 23) and [1.04, 1.11] against the input; at 20 dB 1.98
+[1.41, 140.84]. So squillo's 1.11 (MT-004) stands either way. Blind spot
+stated: rule 3a cannot flag the last usable window, which needs a next one.
+
 **The reference bar** (rule 6) **fails narrowly**: raw against direct keeps
 coverage within 1 point (clean 93.20 → 93.17 %, 20 dB 96.06 → 95.75 %) and
 moves no take measure beyond direct's ±2*u* (0 of 43, 43, 31 clean; 0 of

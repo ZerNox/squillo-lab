@@ -1,0 +1,1286 @@
+{
+ "checks": {
+  "C2_insertion_not_period": {
+   "anomalies": 2,
+   "classified_period": false,
+   "detail": {
+    "ratios": [
+     2.615,
+     2.599,
+     2.651
+    ],
+    "one_stretch": true,
+    "both_sides": false,
+    "rest_whole": true
+   },
+   "must": true
+  },
+  "C3_classifier": {
+   "P": 181.03796555123978,
+   "one_period": true,
+   "one_and_half": false,
+   "to_the_end": false,
+   "must": true
+  },
+  "C1_reproduces_round2": {
+   "must": true
+  }
+ },
+ "posthoc": "post hoc (R-10): R2 (a) alone, every shifted window within 5 % of P, 2P or 3P; (b) dropped",
+ "left_out": [
+  {
+   "capture": "f1_long_straight_a.clean.ec",
+   "shifts": [
+    [
+     2.0,
+     -480
+    ],
+    [
+     3.0,
+     -480
+    ],
+    [
+     5.0,
+     -478
+    ],
+    [
+     6.0,
+     -478
+    ],
+    [
+     7.0,
+     -479
+    ],
+    [
+     8.0,
+     -413
+    ],
+    [
+     10.0,
+     1
+    ],
+    [
+     11.0,
+     0
+    ]
+   ],
+   "periods": {
+    "2.0": 183.6,
+    "3.0": 184.7,
+    "5.0": 89.6,
+    "6.0": 90.9,
+    "7.0": 92.0,
+    "8.0": 67.8
+   },
+   "period_ambiguity": false,
+   "detail": {
+    "ratios": [
+     2.615,
+     2.599,
+     5.335,
+     5.258,
+     5.204,
+     6.09
+    ],
+    "one_stretch": true,
+    "both_sides": false,
+    "rest_whole": true
+   }
+  },
+  {
+   "capture": "f5_long_straight_a.clean.default",
+   "shifts": [
+    [
+     5.0,
+     90
+    ],
+    [
+     6.0,
+     -91
+    ],
+    [
+     7.0,
+     -91
+    ],
+    [
+     8.0,
+     -182
+    ],
+    [
+     10.0,
+     0
+    ],
+    [
+     11.0,
+     0
+    ],
+    [
+     12.0,
+     0
+    ]
+   ],
+   "periods": {
+    "6.0": 90.5,
+    "5.0": 90.6,
+    "7.0": 90.7,
+    "8.0": 90.8
+   },
+   "period_ambiguity": true,
+   "detail": {
+    "ratios": [
+     0.993,
+     1.005,
+     1.003,
+     2.004
+    ],
+    "one_stretch": true,
+    "both_sides": false,
+    "rest_whole": true
+   }
+  },
+  {
+   "capture": "f5_long_straight_a.white-20.default",
+   "shifts": [
+    [
+     5.0,
+     90
+    ],
+    [
+     6.0,
+     -91
+    ],
+    [
+     7.0,
+     -91
+    ],
+    [
+     8.0,
+     -273
+    ],
+    [
+     10.0,
+     0
+    ],
+    [
+     11.0,
+     0
+    ],
+    [
+     12.0,
+     0
+    ]
+   ],
+   "periods": {
+    "6.0": 90.5,
+    "5.0": 90.6,
+    "7.0": 90.7,
+    "8.0": 90.8
+   },
+   "period_ambiguity": true,
+   "detail": {
+    "ratios": [
+     0.993,
+     1.005,
+     1.003,
+     3.007
+    ],
+    "one_stretch": true,
+    "both_sides": false,
+    "rest_whole": true
+   }
+  },
+  {
+   "capture": "f8_long_straight_a.clean.default",
+   "shifts": [
+    [
+     6.0,
+     87
+    ],
+    [
+     7.0,
+     87
+    ],
+    [
+     8.0,
+     -3
+    ],
+    [
+     9.0,
+     86
+    ],
+    [
+     10.0,
+     -5
+    ],
+    [
+     11.0,
+     0
+    ],
+    [
+     12.0,
+     0
+    ],
+    [
+     13.0,
+     0
+    ],
+    [
+     14.0,
+     0
+    ],
+    [
+     15.0,
+     -1
+    ]
+   ],
+   "periods": {
+    "6.0": 91.0,
+    "7.0": 90.7,
+    "9.0": 90.4
+   },
+   "period_ambiguity": true,
+   "detail": {
+    "ratios": [
+     0.957,
+     0.959,
+     0.951
+    ],
+    "one_stretch": false,
+    "both_sides": false,
+    "rest_whole": true
+   }
+  },
+  {
+   "capture": "m3_long_pp_a.white-20.default",
+   "shifts": [
+    [
+     3.0,
+     0
+    ],
+    [
+     4.0,
+     -1
+    ],
+    [
+     5.0,
+     -2
+    ],
+    [
+     6.0,
+     2
+    ],
+    [
+     7.0,
+     -137
+    ],
+    [
+     8.0,
+     -137
+    ]
+   ],
+   "periods": {
+    "7.0": 137.7,
+    "8.0": 137.8
+   },
+   "period_ambiguity": true,
+   "detail": {
+    "ratios": [
+     0.995,
+     0.994
+    ],
+    "one_stretch": true,
+    "both_sides": false,
+    "rest_whole": true
+   }
+  },
+  {
+   "capture": "m9_long_straight_a.clean.ns",
+   "shifts": [
+    [
+     1.0,
+     0
+    ],
+    [
+     2.0,
+     0
+    ],
+    [
+     3.0,
+     0
+    ],
+    [
+     4.0,
+     93
+    ],
+    [
+     5.0,
+     93
+    ],
+    [
+     6.0,
+     0
+    ],
+    [
+     7.0,
+     0
+    ],
+    [
+     8.0,
+     0
+    ]
+   ],
+   "periods": {
+    "4.0": 92.6,
+    "5.0": 92.5
+   },
+   "period_ambiguity": true,
+   "detail": {
+    "ratios": [
+     1.005,
+     1.006
+    ],
+    "one_stretch": true,
+    "both_sides": true,
+    "rest_whole": true
+   }
+  }
+ ],
+ "round2_vs_with_kept": {
+  "vs_raw agc clean": {
+   "inputs": [
+    20,
+    20
+   ],
+   "w": [
+    1.0,
+    1.0
+   ],
+   "w_ci95": [
+    [
+     1.0,
+     1.01
+    ],
+    [
+     1.0,
+     1.01
+    ]
+   ],
+   "takes_moved": {
+    "steadiness": [
+     [
+      0,
+      12
+     ],
+     [
+      0,
+      12
+     ]
+    ],
+    "vibrato_extent": [
+     [
+      0,
+      12
+     ],
+     [
+      0,
+      12
+     ]
+    ],
+    "vibrato_rate": [
+     [
+      0,
+      5
+     ],
+     [
+      0,
+      5
+     ]
+    ]
+   }
+  },
+  "vs_raw agc white-20": {
+   "inputs": [
+    20,
+    20
+   ],
+   "w": [
+    1.0,
+    1.0
+   ],
+   "w_ci95": [
+    [
+     1.0,
+     1.01
+    ],
+    [
+     1.0,
+     1.01
+    ]
+   ],
+   "takes_moved": {
+    "steadiness": [
+     [
+      0,
+      5
+     ],
+     [
+      0,
+      5
+     ]
+    ],
+    "vibrato_extent": [
+     [
+      0,
+      5
+     ],
+     [
+      0,
+      5
+     ]
+    ],
+    "vibrato_rate": [
+     [
+      0,
+      0
+     ],
+     [
+      0,
+      0
+     ]
+    ]
+   }
+  },
+  "vs_raw default clean": {
+   "inputs": [
+    78,
+    80
+   ],
+   "w": [
+    1.07,
+    1.07
+   ],
+   "w_ci95": [
+    [
+     1.03,
+     1.1
+    ],
+    [
+     1.03,
+     1.1
+    ]
+   ],
+   "takes_moved": {
+    "steadiness": [
+     [
+      0,
+      35
+     ],
+     [
+      0,
+      37
+     ]
+    ],
+    "vibrato_extent": [
+     [
+      0,
+      35
+     ],
+     [
+      0,
+      37
+     ]
+    ],
+    "vibrato_rate": [
+     [
+      0,
+      23
+     ],
+     [
+      0,
+      23
+     ]
+    ]
+   }
+  },
+  "vs_raw default white-20": {
+   "inputs": [
+    78,
+    80
+   ],
+   "w": [
+    1.97,
+    1.98
+   ],
+   "w_ci95": [
+    [
+     1.4,
+     140.84
+    ],
+    [
+     1.41,
+     140.84025
+    ]
+   ],
+   "takes_moved": {
+    "steadiness": [
+     [
+      2,
+      11
+     ],
+     [
+      2,
+      12
+     ]
+    ],
+    "vibrato_extent": [
+     [
+      0,
+      11
+     ],
+     [
+      0,
+      12
+     ]
+    ],
+    "vibrato_rate": [
+     [
+      0,
+      6
+     ],
+     [
+      0,
+      6
+     ]
+    ]
+   }
+  },
+  "vs_raw ec clean": {
+   "inputs": [
+    19,
+    19
+   ],
+   "w": [
+    1.02,
+    1.02
+   ],
+   "w_ci95": [
+    [
+     1.0,
+     1.06
+    ],
+    [
+     1.0,
+     1.06
+    ]
+   ],
+   "takes_moved": {
+    "steadiness": [
+     [
+      0,
+      11
+     ],
+     [
+      0,
+      11
+     ]
+    ],
+    "vibrato_extent": [
+     [
+      0,
+      11
+     ],
+     [
+      0,
+      11
+     ]
+    ],
+    "vibrato_rate": [
+     [
+      0,
+      4
+     ],
+     [
+      0,
+      4
+     ]
+    ]
+   }
+  },
+  "vs_raw ec white-20": {
+   "inputs": [
+    20,
+    20
+   ],
+   "w": [
+    1.18,
+    1.18
+   ],
+   "w_ci95": [
+    [
+     1.04,
+     140.88
+    ],
+    [
+     1.04,
+     140.88
+    ]
+   ],
+   "takes_moved": {
+    "steadiness": [
+     [
+      0,
+      5
+     ],
+     [
+      0,
+      5
+     ]
+    ],
+    "vibrato_extent": [
+     [
+      0,
+      5
+     ],
+     [
+      0,
+      5
+     ]
+    ],
+    "vibrato_rate": [
+     [
+      0,
+      0
+     ],
+     [
+      0,
+      0
+     ]
+    ]
+   }
+  },
+  "vs_raw ns clean": {
+   "inputs": [
+    19,
+    20
+   ],
+   "w": [
+    1.45,
+    1.42
+   ],
+   "w_ci95": [
+    [
+     1.03,
+     140.89024999999998
+    ],
+    [
+     1.01,
+     140.82
+    ]
+   ],
+   "takes_moved": {
+    "steadiness": [
+     [
+      0,
+      12
+     ],
+     [
+      0,
+      12
+     ]
+    ],
+    "vibrato_extent": [
+     [
+      0,
+      12
+     ],
+     [
+      0,
+      12
+     ]
+    ],
+    "vibrato_rate": [
+     [
+      0,
+      2
+     ],
+     [
+      0,
+      2
+     ]
+    ]
+   }
+  },
+  "vs_raw ns white-20": {
+   "inputs": [
+    20,
+    20
+   ],
+   "w": [
+    140.84,
+    140.84
+   ],
+   "w_ci95": [
+    [
+     1.0,
+     246.06
+    ],
+    [
+     1.0,
+     246.08025
+    ]
+   ],
+   "takes_moved": {
+    "steadiness": [
+     [
+      0,
+      4
+     ],
+     [
+      0,
+      4
+     ]
+    ],
+    "vibrato_extent": [
+     [
+      0,
+      4
+     ],
+     [
+      0,
+      4
+     ]
+    ],
+    "vibrato_rate": [
+     [
+      0,
+      0
+     ],
+     [
+      0,
+      0
+     ]
+    ]
+   }
+  },
+  "groups agc clean": {
+   "inputs": [
+    20,
+    20
+   ],
+   "w": [
+    1.01,
+    1.01
+   ],
+   "w_ci95": [
+    [
+     1.0,
+     1.01
+    ],
+    [
+     1.0,
+     1.01
+    ]
+   ],
+   "takes_moved": {
+    "steadiness": [
+     [
+      0,
+      12
+     ],
+     [
+      0,
+      12
+     ]
+    ],
+    "vibrato_extent": [
+     [
+      0,
+      12
+     ],
+     [
+      0,
+      12
+     ]
+    ],
+    "vibrato_rate": [
+     [
+      0,
+      5
+     ],
+     [
+      0,
+      5
+     ]
+    ]
+   }
+  },
+  "groups agc white-20": {
+   "inputs": [
+    20,
+    20
+   ],
+   "w": [
+    1.0,
+    1.0
+   ],
+   "w_ci95": [
+    [
+     1.0,
+     1.0
+    ],
+    [
+     1.0,
+     1.0
+    ]
+   ],
+   "takes_moved": {
+    "steadiness": [
+     [
+      0,
+      5
+     ],
+     [
+      0,
+      5
+     ]
+    ],
+    "vibrato_extent": [
+     [
+      0,
+      5
+     ],
+     [
+      0,
+      5
+     ]
+    ],
+    "vibrato_rate": [
+     [
+      0,
+      0
+     ],
+     [
+      0,
+      0
+     ]
+    ]
+   }
+  },
+  "groups default clean": {
+   "inputs": [
+    80,
+    80
+   ],
+   "w": [
+    1.07,
+    1.07
+   ],
+   "w_ci95": [
+    [
+     1.03975,
+     1.11
+    ],
+    [
+     1.04,
+     1.11
+    ]
+   ],
+   "takes_moved": {
+    "steadiness": [
+     [
+      0,
+      35
+     ],
+     [
+      0,
+      37
+     ]
+    ],
+    "vibrato_extent": [
+     [
+      0,
+      35
+     ],
+     [
+      0,
+      37
+     ]
+    ],
+    "vibrato_rate": [
+     [
+      0,
+      23
+     ],
+     [
+      0,
+      23
+     ]
+    ]
+   }
+  },
+  "groups default white-20": {
+   "inputs": [
+    80,
+    80
+   ],
+   "w": [
+    2.17,
+    2.18
+   ],
+   "w_ci95": [
+    [
+     1.46,
+     140.89024999999998
+    ],
+    [
+     1.46,
+     140.89024999999998
+    ]
+   ],
+   "takes_moved": {
+    "steadiness": [
+     [
+      1,
+      11
+     ],
+     [
+      1,
+      12
+     ]
+    ],
+    "vibrato_extent": [
+     [
+      0,
+      11
+     ],
+     [
+      0,
+      12
+     ]
+    ],
+    "vibrato_rate": [
+     [
+      0,
+      6
+     ],
+     [
+      0,
+      6
+     ]
+    ]
+   }
+  },
+  "groups ec clean": {
+   "inputs": [
+    20,
+    20
+   ],
+   "w": [
+    1.02,
+    1.02
+   ],
+   "w_ci95": [
+    [
+     1.0,
+     1.06
+    ],
+    [
+     1.0,
+     1.06
+    ]
+   ],
+   "takes_moved": {
+    "steadiness": [
+     [
+      0,
+      11
+     ],
+     [
+      0,
+      11
+     ]
+    ],
+    "vibrato_extent": [
+     [
+      0,
+      11
+     ],
+     [
+      0,
+      11
+     ]
+    ],
+    "vibrato_rate": [
+     [
+      0,
+      4
+     ],
+     [
+      0,
+      4
+     ]
+    ]
+   }
+  },
+  "groups ec white-20": {
+   "inputs": [
+    20,
+    20
+   ],
+   "w": [
+    140.81,
+    140.81
+   ],
+   "w_ci95": [
+    [
+     1.02,
+     222.89
+    ],
+    [
+     1.02,
+     222.89
+    ]
+   ],
+   "takes_moved": {
+    "steadiness": [
+     [
+      0,
+      5
+     ],
+     [
+      0,
+      5
+     ]
+    ],
+    "vibrato_extent": [
+     [
+      0,
+      5
+     ],
+     [
+      0,
+      5
+     ]
+    ],
+    "vibrato_rate": [
+     [
+      0,
+      0
+     ],
+     [
+      0,
+      0
+     ]
+    ]
+   }
+  },
+  "groups ns clean": {
+   "inputs": [
+    20,
+    20
+   ],
+   "w": [
+    1.47,
+    1.43
+   ],
+   "w_ci95": [
+    [
+     1.03,
+     140.89024999999998
+    ],
+    [
+     1.02,
+     140.86
+    ]
+   ],
+   "takes_moved": {
+    "steadiness": [
+     [
+      0,
+      12
+     ],
+     [
+      0,
+      12
+     ]
+    ],
+    "vibrato_extent": [
+     [
+      0,
+      12
+     ],
+     [
+      0,
+      12
+     ]
+    ],
+    "vibrato_rate": [
+     [
+      0,
+      2
+     ],
+     [
+      0,
+      2
+     ]
+    ]
+   }
+  },
+  "groups ns white-20": {
+   "inputs": [
+    20,
+    20
+   ],
+   "w": [
+    140.87,
+    140.87
+   ],
+   "w_ci95": [
+    [
+     1.0,
+     246.08025
+    ],
+    [
+     1.0,
+     246.08025
+    ]
+   ],
+   "takes_moved": {
+    "steadiness": [
+     [
+      0,
+      4
+     ],
+     [
+      0,
+      4
+     ]
+    ],
+    "vibrato_extent": [
+     [
+      0,
+      4
+     ],
+     [
+      0,
+      4
+     ]
+    ],
+    "vibrato_rate": [
+     [
+      0,
+      0
+     ],
+     [
+      0,
+      0
+     ]
+    ]
+   }
+  },
+  "groups raw clean": {
+   "inputs": [
+    80,
+    80
+   ],
+   "w": [
+    1.01,
+    1.01
+   ],
+   "w_ci95": [
+    [
+     1.01,
+     1.01
+    ],
+    [
+     1.01,
+     1.01
+    ]
+   ],
+   "takes_moved": {
+    "steadiness": [
+     [
+      0,
+      43
+     ],
+     [
+      0,
+      43
+     ]
+    ],
+    "vibrato_extent": [
+     [
+      0,
+      43
+     ],
+     [
+      0,
+      43
+     ]
+    ],
+    "vibrato_rate": [
+     [
+      0,
+      31
+     ],
+     [
+      0,
+      31
+     ]
+    ]
+   }
+  },
+  "groups raw white-20": {
+   "inputs": [
+    80,
+    80
+   ],
+   "w": [
+    1.04,
+    1.04
+   ],
+   "w_ci95": [
+    [
+     1.02,
+     1.07
+    ],
+    [
+     1.02,
+     1.06025
+    ]
+   ],
+   "takes_moved": {
+    "steadiness": [
+     [
+      0,
+      15
+     ],
+     [
+      0,
+      15
+     ]
+    ],
+    "vibrato_extent": [
+     [
+      0,
+      15
+     ],
+     [
+      0,
+      15
+     ]
+    ],
+    "vibrato_rate": [
+     [
+      0,
+      8
+     ],
+     [
+      0,
+      8
+     ]
+    ]
+   }
+  }
+ }
+}

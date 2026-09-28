@@ -26,6 +26,7 @@ Checks of the checks, run first and asserted:
       end, is not.
 
     uv run --project ../E-002-measurement-reliability python r10_anomalies.py
+    uv run --project ../E-002-measurement-reliability python r10_anomalies.py posthoc   # added after the run, labelled
 """
 import json
 import pickle
@@ -38,7 +39,9 @@ import numpy as np
 import r2_measures as X
 
 HERE = Path(__file__).parent
-OUT = HERE / "results/r10"
+POSHOC_DOC = "post hoc (R-10): R2 (a) alone, every shifted window within 5 % of P, 2P or 3P; (b) dropped"
+POSTHOC = sys.argv[1:] == ["posthoc"]
+OUT = HERE / ("results/r10/posthoc" if POSTHOC else "results/r10")
 TMP = HERE / "data/cache/r10"
 
 
@@ -103,7 +106,7 @@ def checks():
 
 
 def main():
-    R = dict(checks=checks())
+    R = dict(checks=checks(), posthoc=POSHOC_DOC if POSTHOC else None)
     assert all(v["must"] for v in R["checks"].values()), R["checks"]
     import r2_report
     cache = X.CAP.parent / "measures.pkl"
@@ -143,6 +146,8 @@ def main():
         per = {a["input_sample"]: period_at(stem, a["input_sample"]) for a in anom}
         per.update({w["w0"]: period_at(stem, w["w0"]) for w in use if abs(w["shift"]) >= X.SHIFT})
         ok, d = classify(use, per)
+        if POSTHOC:  # post hoc, labelled: (a) alone, whole multiples 1 to 3 of P within 5 %
+            ok = all(min(abs(r - m) / m for m in (1, 2, 3)) <= 0.05 for r in d["ratios"])
         rows.append(dict(capture=".".join(key), shifts=[(w["w0"] / X.SR, w["shift"]) for w in use],
                          periods={str(k / X.SR): round(v, 1) for k, v in per.items()}, period_ambiguity=ok, detail=d))
         if ok:

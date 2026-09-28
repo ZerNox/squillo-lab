@@ -606,7 +606,9 @@ takes its RMS from 4.78 to 4.64 dB.
   Even on the same notes and the same vowel, two renditions differ by about
   2.6–3.8 dB as a whole (τ) and 3.2–4.0 dB note by note (σ_w). A comparison
   calls a change only beyond about 6 to 11 dB (2*u*: 8.1–8.3 dB at *k* = 7
-  and 10.3–11.1 dB at *k* = 1 on the fit over all sets; 5.9–6.0 and
+  and 10.3–11.1 dB at *k* = 1 on the fit over all sets, 8.0–11.1 dB over
+  the *k* 1 to 9 the takes have and 9.1–9.5 dB at the no-change pairs'
+  median *k* = 2, held in `results/r10_two_u.json` since R-10; 5.9–6.0 and
   8.4–8.8 dB on the post-hoc refit with the same vowel), about the size of the difference
   between forte and pianissimo (median 7.75 dB). It sees that difference in
   6–9 of 17 singers and a 6 dB rise in 27–43 % of cases. As a measure of
@@ -618,10 +620,15 @@ takes its RMS from 4.78 to 4.64 dB.
 - **Words matter.** Halves on other vowels differ by +6 dB on average (the
   round), so an own-song comparison is honest only on the same line. The
   vowel is not measured here.
-- **The noise gate works and costs little.** Counting a note only where its
-  2–4 kHz power exceeds the take's own noise estimate keeps false change at
-  or under 4.6 % down to 10 dB SNR. Below about 20 dB it leaves most takes
-  with nothing comparable.
+- **The noise gate passes its bar, checked on one fold only.** Counting a
+  note only where its 2–4 kHz power exceeds the take's own noise estimate
+  keeps false change at or under 4.6 % down to 10 dB SNR. But its
+  must-fail case (no gate at white 10 dB) failed the bar only with the odd
+  singers as the fit (11.8 %), and passed it with the even ones (2.4 %),
+  so on that fold the bar could not tell a gate from none (R-10: the gate
+  is shown on one fold of two; `B1_check_*` and `B3_check` are recorded in
+  `r4_ring.json` but not asserted, S15). Below about 20 dB it leaves most
+  takes with nothing comparable.
 - For the fold: squillo can specify tone as the ring ratio compared note by
   note with *u* = √(τ² + σ_w²/*k*), from τ and σ_w above, and say what size
   of change it can show. Or it can leave tone out of the first slice, with
