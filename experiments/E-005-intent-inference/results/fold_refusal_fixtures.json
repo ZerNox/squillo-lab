@@ -1,0 +1,136 @@
+{
+ "fixtures": {
+  "take-spread-15c.wav": {
+   "sha256": "a5c6ea1f9d03cd74fa09d7877872061dd9369afcea7eaf60f05dc316836f6960",
+   "bytes": 1363258,
+   "samples": 340800,
+   "deviation_sd": 15.0,
+   "f_min": 220.064,
+   "f_max": 451.717,
+   "refused": 30,
+   "state": "measured",
+   "s": 16.897,
+   "uB": 3.461,
+   "upper": 23.82,
+   "lower": 9.974,
+   "state_under_S10": "at least",
+   "median_centre": {
+    "state": "measured",
+    "s": 16.897,
+    "uB": 3.461
+   }
+  },
+  "take-vibrato-in-tune.wav": {
+   "sha256": "cd0faba0f7c06932b82d375fb32930fe8b491007b0382cc66eb67609d38a08b4",
+   "bytes": 2438458,
+   "samples": 609600,
+   "deviation_sd": 0.0,
+   "f_min": 218.394,
+   "f_max": 454.981,
+   "refused": 31,
+   "state": "measured",
+   "s": 0.059,
+   "uB": 1.005,
+   "upper": 2.069,
+   "lower": -1.95,
+   "state_under_S10": "measured",
+   "median_centre": {
+    "state": "at least",
+    "s": 0.368,
+    "uB": 14.3
+   }
+  },
+  "tone-weak-odd.wav": {
+   "sha256": "6c8f553c8ba734d91b54e1dcb5ddaeb84c9b56cef98ec3793c1dec9694f1262e",
+   "bytes": 192058,
+   "samples": 48000,
+   "harmonics": 57,
+   "h1_under_h2_db": 26,
+   "odd_under_db": 10,
+   "scale": 1.0284490845182808,
+   "frames": 122,
+   "measured_by_yin": 122,
+   "octave_high": 122,
+   "within_50_of_350": 0,
+   "dmin_min_measured": 0.0469,
+   "refused_by_mt003": 122,
+   "accepted": 0
+  },
+  "take-drift-60c.wav": {
+   "refused": 28,
+   "state": "at least",
+   "s": 22.484,
+   "uB": 4.522,
+   "upper": 31.527,
+   "lower": 13.441,
+   "state_under_S10": "at least",
+   "median_centre": {
+    "state": "at least",
+    "s": 22.484,
+    "uB": 4.522
+   }
+  },
+  "take-in-tune.wav": {
+   "refused": 31,
+   "state": "measured",
+   "s": 0.001,
+   "uB": 1.0,
+   "upper": 2.001,
+   "lower": -1.999,
+   "state_under_S10": "measured",
+   "median_centre": {
+    "state": "measured",
+    "s": 0.001,
+    "uB": 1.0
+   }
+  },
+  "take-spread-5c.wav": {
+   "refused": 30,
+   "state": "measured",
+   "s": 5.226,
+   "uB": 1.432,
+   "upper": 8.09,
+   "lower": 2.362,
+   "state_under_S10": "measured",
+   "median_centre": {
+    "state": "measured",
+    "s": 5.226,
+    "uB": 1.432
+   }
+  },
+  "take-uncertain.wav": {
+   "refused": 27,
+   "state": "uncertain",
+   "s": null,
+   "uB": null,
+   "upper": null,
+   "lower": null,
+   "state_under_S10": "uncertain",
+   "median_centre": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null
+   }
+  }
+ },
+ "checks": {
+  "in-tune measured, contains 0": true,
+  "spread-5 measured, contains 5, excludes 0": true,
+  "spread-15 measured, contains 15, excludes 5": true,
+  "spread-15 above 10 (at least under S10)": true,
+  "vibrato in tune measured, contains 0": true,
+  "drift at least, lower end in (0, 18.6052]": true,
+  "uncertain": true,
+  "15 -> 5 improved": true,
+  "5 -> in-tune improved": true,
+  "5 -> 5 no change": true,
+  "drift -> in-tune improved (one-sided)": true,
+  "in-tune -> drift worse (one-sided)": true,
+  "drift -> drift no change (two lower ends)": true,
+  "weak-odd: every frame YIN measures is octave high and refused": true
+ },
+ "must_fail": {
+  "spread-15 under S10 is not measured": true,
+  "vibrato in tune with round 1's median centre is not measured": true
+ }
+}

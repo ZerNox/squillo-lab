@@ -391,3 +391,114 @@ first singer is not.
 3. Listen to each take once and write in `results/own.md` whether σ̂ and
    the flagged notes match what you hear (5 minutes).
 4. Commit `results/own.json` and `results/own.md`, never the audio.
+
+## Fold with MT-003's refusal (squillo iteration 38)
+
+```
+uv run python fold_refusal.py check           # the checks, each checked (S15), 30 s -> results/fold_refusal_checks.json
+uv run python fold_refusal.py time_pool 72 18 # S19 under the pool itself
+uv run python fold_refusal.py synth 60 8      # 2520 of round 2's phrases, 31 min on 8 processes -> data/cache/fr_synth.pkl
+uv run python fold_refusal.py real            # 77 VocalSet originals, 40 E-002 re-syntheses, 6 s
+uv run python fold_refusal.py report          # -> results/fold_refusal.json
+uv run python fold_refusal.py fixtures <dir>  # squillo's fixtures/metrics/ takes -> results/fold_refusal_fixtures.json
+```
+
+**Question** (squillo F-033 (e), R-07). Squillo's `metrics` MT-003 makes a
+frame unmeasurable when its aperiodicity (YIN's *d*′ at the chosen lag,
+squillo SG-008) is 0.02 or more. Round 2 measured with every frame YIN
+gave. Does round 2's rule hold with the refusal: σ̂ shown measured, ±
+2*u*_B, when its upper end is at most 25 cents (U25), its lower end
+otherwise, with the note centre over whole vibrato cycles (`cyc`)? Does the
+improvement test (MT-008's form where both are measured, the one-sided
+form on honest ends otherwise) still call no change that is not there?
+
+**Bar, written before the run** (S15, L-036): in every cell of round 2's
+design (length × vibrato × σ), the shown statement excludes the singer's
+spread (the population σ, round 2's R3 truth) in at most 5 % of phrases,
+the share a *k* = 2 interval claims (GUM 6.3.3).
+
+**Inputs.** Round 2's generator and seeds, unchanged (`round2.phrase`,
+`round2.jobs_synth`); the first 60 of each cell's 120 phrases, 2520 in all
+(the design cut before the run, S19, below). Each phrase tracked once;
+`off` measures with every frame YIN gives (round 2), `on` with the refusal.
+Real: round 2's 77 VocalSet originals and 40 E-002 re-syntheses, their
+truth read from round 2's cache (`r2_real.pkl`), unchanged by the refusal.
+Python 3.13.14, numpy 2.5.3, scipy 1.18.1.
+
+**Timing (S19).** One 56-note vibrato phrase took 4.0–5.1 s on one idle
+process, and the estimate from it, 12 minutes for 5040 phrases on 18
+processes, was wrong by more than four times: the first run was stopped
+by its own 50-minute time limit with nothing saved (squillo L-037). Timed
+under the pool itself (`time_pool`), the machine gives 0.77 s (6
+processes), 0.86 (12) and 0.87 (18) of wall time per phrase, whatever the
+count: `voice.render` is bound by memory, not cores. 5040 phrases would
+take 65 minutes, so the design was cut to 60 per cell, estimated at 33
+minutes; it took 31, saving every 100 phrases.
+
+**Checks** (`results/fold_refusal_checks.json`), each run on a case it
+must pass and one it must fail:
+
+| Check | Must pass | Must fail |
+| :--- | :--- | :--- |
+| The pipeline without the refusal reproduces round 2's cached `cyc` σ̂ and *u*_B, within 10⁻⁹ | One phrase per cell at 14 and 56 notes: 28 of 28; the whole run: 2520 of 2520 | The next cell's phrase: matched 0 of 28 |
+| The refusal drops exactly the frames at *d*′ ≥ 0.02 | squillo's `tone-aperiodic.wav`: 13 refused, 109 measured (E-002 fold F5: 13 refused), every refused frame at *d*′ ≥ 0.02 and none kept; `sine-220hz.wav`: none refused | The threshold mistyped as 0.2: none refused on `tone-aperiodic.wav` |
+| The bar | Round 2's cached values, U25: worst cell 1.7 % (0.5–5.9, 120; 14 notes, straight, σ = 20) | Round 2's cached values, U35: worst cell 10.0 % (5.8–16.7) |
+
+**Results** (`results/fold_refusal.json`; Wilson 95 % intervals).
+
+| # | Question | Result |
+| :--- | :--- | :--- |
+| FR1 | How many frames does the refusal take? | Synthetic: 4.6 % of the 5 272 599 frames YIN measured (3.6 % straight, 5.6 % with vibrato). Real: 10.4 % (VocalSet scales, straight) and 16.2 % (round, straight); 36.5 % and 39.2 % with vibrato; re-syntheses 11.5 % (scales) and 40.9 % (vibrato round) |
+| FR2 | Does U25 still pass the bar? | Yes. With the refusal the worst cell excludes the spread in 3.3 % (2 of 60; 0.9–11.4; 14 notes, straight, σ = 20 and σ = 25), the same as without it on the same phrases; every other cell 0 of 60. Measured: 689 of 2520 phrases (726 without), covering σ in 99.4 % (98.5–99.8); 192 measured above 10 cents, the largest 17.64 |
+| FR3 | Does the lower end hold? | Yes: 2192 of 2192 phrases that give one (99.8–100); without the refusal 2220 of 2220 |
+| FR4 | False changes | None: 0 of 210 pairs of phrases from the same cell in each of the six length × vibrato conditions, with and without the refusal (0–1.8 % each); 0 of 77 halves of VocalSet originals |
+| FR5 | Power, straight, 20 → 0 cents | 23.3 % (14 notes), 40.0 % (28), 18.3 % (56) with the refusal; 21.7, 35.0, 15.0 without. 40 → 10: 0, 11.7, 23.3 %. Under vibrato 0 in every case |
+| FR6 | Real takes | Still no real take measured. *u*_B median with the refusal: 10.72 (scales, straight), 11.73 (round, straight), 25.9 and 25.6 with vibrato (31.8 and 31.2 without: the refusal removes the noisiest vibrato frames); *intent uncertain* rises under vibrato (scales 5 → 7 of 20, round 3 → 9 of 19). Re-syntheses whose truth found every score state (20 of 20 straight scales, 15 of 20 vibrato rounds, R-07's caveat): the shown statement excludes the true spread in 0 of 20 and 0 of 15, the lower end holds in 20 of 20 and 15 of 15 |
+
+**Fixtures for squillo** (`results/fold_refusal_fixtures.json`; two runs
+byte-identical, CPython 3.13.14, `math`, `struct.pack('<f')`, GNU C
+Library 2.43). The fold's layout (`fold.py`): `take-spread-15c.wav`, the
+fold's 5-cent deviations times three (population sd exactly 15), 340 800
+samples; `take-vibrato-in-tune.wav`, fourteen notes on the tuning, each
+0.8 s (38 400 samples) with the fold's gaps and ramps and phase
+2π*f*·*m*/48000 + *f*·0.0204/5.5·(1 − cos(2π·5.5·*m*/48000)), a 5.5 Hz
+vibrato from 35.68 cents below to 34.96 cents above, 609 600 samples;
+`tone-weak-odd.wav`, E-002 round 3's must-fail tone (350 Hz, harmonic *k*
+at 1/*k*² to 20 kHz, the first 26 dB under the second, every other odd
+harmonic 10 dB under its 1/*k*² level), sine phase 0, scaled by 0.5 over
+the sum of the amplitudes, 48 000 samples. With the refusal and the `cyc`
+centre:
+
+| Fixture | σ̂ | *u*_B | State (U25) | Check |
+| :--- | ---: | ---: | :--- | :--- |
+| `take-in-tune.wav` | 0.001 | 1.000 | measured | contains 0 |
+| `take-spread-5c.wav` | 5.226 | 1.432 | measured | contains 5, excludes 0 |
+| `take-spread-15c.wav` | 16.897 | 3.461 | measured, upper end 23.82 | contains 15, excludes 5; *at least* under MT-007's old rule (must fail) |
+| `take-vibrato-in-tune.wav` | 0.059 | 1.005 | measured | contains 0; round 1's median centre: *u*_B 14.3, *at least* (must fail) |
+| `take-drift-60c.wav` | 22.484 | 4.522 | at least, lower end 13.441 | in (0, 18.6052] |
+| `take-uncertain.wav` | — | — | intent uncertain | |
+| `tone-weak-odd.wav` | | | | YIN reads all 122 frames an octave high (*d*′ at least 0.0469); MT-003 refuses all 122 |
+
+Comparisons: 15c → 5c improved, 5c → in-tune improved, 5c → 5c no
+change, drift → in-tune improved (one-sided), in-tune → drift worse, drift
+→ drift no change (two lower ends).
+
+A first form of `take-vibrato-in-tune.wav`, at ±50 cents (VocalSet's
+median extent is 47.3, E-002 result 21), gave 98 segments for 14 notes and
+*u*_B 36.6, *at least*: round 1's provisional tuning, the circular mean of
+all frames, turns half a semitone when a vibrato wider than 38.3 cents
+runs through every frame (the mean of e^(iπ*A* sin θ / 50) over a cycle is
+J₀(π*A*/50), negative from there), and the notes then sit on the semitone
+boundary. Round 2's phrases start each note straight and fade the vibrato
+in, so they did not meet it. Honest (the lower end is below 0), but a wide
+vibrato from the onset may never be measured: squillo F-040.
+
+**What this says for squillo.** Round 2's rule, centre and comparison hold
+with MT-003's refusal: fold them into `metrics` (MT-006 to MT-008) and ADR
+0015. Nothing in the synthetic evidence moved beyond sampling. The refusal
+takes a large share of real vibrato frames (36–41 %), which lowers *u*
+there and raises *intent uncertain*. No real straight take is measured,
+with or without it (F-032 stands for pitch).
+
+**Limits.** Half of round 2's phrases (the cut above); round 2's limits
+otherwise (synthetic voices, no drift, trained singers).

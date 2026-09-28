@@ -1,0 +1,38 @@
+{
+ "reproduces_round2": {
+  "phrases": 28,
+  "same": 28,
+  "matches_another_phrase": 0
+ },
+ "refusal": {
+  "tone_aperiodic_refused": 13,
+  "tone_aperiodic_measured": 109,
+  "dmin_range": [
+   2.045547833594219e-05,
+   0.02593172183131082
+  ],
+  "ok": true,
+  "sine_refused": 0,
+  "mistyped_0_2_refused": 0
+ },
+ "bar_on_round2_U25": {
+  "worst": [
+   1.7,
+   0.5,
+   5.9,
+   120,
+   "L=14 vib=0 sigma=20"
+  ],
+  "passes": true
+ },
+ "bar_on_round2_U35": {
+  "worst": [
+   10.0,
+   5.8,
+   16.7,
+   120,
+   "L=14 vib=0 sigma=40"
+  ],
+  "passes": false
+ }
+}
