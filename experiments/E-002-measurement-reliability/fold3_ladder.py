@@ -106,6 +106,8 @@ def ladder(p, u):
     out = dict(measured=True, blocks=len(bl), S=tk[0], u=tk[1], S_min_block=smin, F=Fm, alpha_max=amax,
                next_k=nk, far_k=fk, full_S=None if rungs[-1] is None else rungs[-1][0],
                full_u=None if rungs[-1] is None else rungs[-1][1], full_improved=imp[-1], monotone=monotone)
+    # the margin of MT-008's decision at each strength: S - S' - 2 hypot(u, u'), positive when improved
+    out["margins"] = [None if r is None else tk[0] - r[0] - 2 * np.hypot(tk[1], r[1]) for r in rungs]
     if nk is not None:
         out["next_S"], out["next_u"] = rungs[nk - 1][0], rungs[nk - 1][1]
         out["next_strength"] = nk * amax / K
