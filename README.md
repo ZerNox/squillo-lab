@@ -68,7 +68,9 @@ in the README's command block. If the run and its analysis do not fit well
 inside the session, cut the design (fewer cells, fewer items per cell)
 before starting, never after (squillo L-033). A run longer than a few
 minutes saves its results as it goes and resumes from them, and no time
-limit around it is shorter than the estimate allows (squillo L-037).
+limit around it is shorter than the estimate allows (squillo L-037). A
+survey or download from an outside source is a run too: before it,
+count its requests and multiply by their spacing (squillo L-039).
 
 **Every claim about the code is matched to the code** (squillo standing
 instruction S18). Before committing a README's check table, a docstring or
