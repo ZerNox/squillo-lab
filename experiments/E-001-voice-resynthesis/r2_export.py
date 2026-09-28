@@ -9,18 +9,25 @@ requests are round 1's (run.load, run.request), unchanged:
 24 synthetic phrases and 19 VocalSet singers.
 
 Conditions asserted on what is written (squillo standing instruction S15):
-every sample finite and |x| <= 1; sample rate 48 kHz; duration within round
-1's stated span (synthetic 4.05 s, VocalSet 5.5 to 18.3 s); every request
+every sample finite and |x| <= 1; sample rate 48 kHz (`run.py:33`, `SR`);
+a synthetic phrase's duration, NOTE_S * len(DEGREES) = 4.05 s, computed from
+`voice.py:37-38` and `:85`; a VocalSet take's duration within 5.5 to 18.3 s,
+the span of the files as round 1 measured and reported it (README, *Inputs*):
+a property of the data, checked for consistency, not a condition of round
+1's code; every request
 finite; |request| <= 50 cents except synthetic s100, whose wobble round 1
 scales to 10 cents RMS over the whole phrase and does not clip (its RMS is
 asserted instead, on the phrase's own samples); `id` identically zero; c100
 and s100 not identically zero on any input. Each bound is read from round
 1's code, not its README (squillo L-034): note offsets uniform in +-50 cents,
-`voice.py` `rng.uniform(-50, 50, ...)`; synthetic wobble scaled to 10 cents
-RMS, `voice.py` `wobble = 10.0 * w / np.sqrt(np.mean(w ** 2))`, never
+`voice.py:93` `rng.uniform(-50, 50, ...)`; synthetic wobble scaled to 10 cents
+RMS, `voice.py:99` `wobble = 10.0 * w / np.sqrt(np.mean(w ** 2))`, never
 clipped (up to 61.4 cents); VocalSet offsets folded to the nearest note and
-wobble clipped, `run.py` `offset = centre - 100 * np.round(centre / 100)`
-and `np.clip(..., -50, 50)`.
+wobble clipped, `run.py:89` `offset = centre - 100 * np.round(centre / 100)`
+and `run.py:91` `np.clip(..., -50, 50)`. Line numbers as at squillo-lab
+65e6f0e; R-07 (squillo iteration 35) added them and the sample-rate and
+synthetic-duration checks, which the first version described but did not
+make.
 """
 
 import json
@@ -29,6 +36,7 @@ import sys
 import numpy as np
 
 import run
+import voice
 
 MODS = ("id", "c100", "s100")
 OUT = run.CACHE / "r2"
@@ -43,13 +51,15 @@ def check(ok, what):
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
+    check(run.SR == 48_000 and voice.SR == 48_000, "sample rate 48 kHz")
+    syn_dur = voice.NOTE_S * len(voice.DEGREES)
     manifest = []
     for inp in run.synthetic_inputs() + run.real_inputs():
         x, grid = run.load(inp)
         x = np.ascontiguousarray(x, dtype="<f8")
         dur = len(x) / run.SR
         check(np.isfinite(x).all() and np.abs(x).max() <= 1.0, f"{inp['name']}: samples finite, |x| <= 1")
-        lo, hi = (4.05, 4.05) if inp["kind"] == "synthetic" else (5.5, 18.3)
+        lo, hi = (syn_dur, syn_dur) if inp["kind"] == "synthetic" else (5.5, 18.3)
         check(lo - 0.01 <= dur <= hi + 0.05, f"{inp['name']}: duration {dur:.3f} s outside {lo}-{hi}")
         x.tofile(OUT / f"{inp['name']}.x.f64")
         t = np.arange(len(x) // 240 + 1) * FRAME

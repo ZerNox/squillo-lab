@@ -313,6 +313,16 @@ it must pass and one it must fail:
 | Interval machinery on the model alone (14 and 56 notes, σ 0–30) | N covers ≥ 92 % in every cell | 93.5–98.5 % | N told *u* = 0 when settle noise is 15 cents: 0 % |
 | Truth procedures, one input of every condition | Every note and score state found | Synthetic, 3 lengths × 2: every state and note found, realised spread at σ = 0 is 2.4–5.3 cents (the wobble) | — (E-002 re-synthesis: straight scale 17 of 17 states; vibrato round 15 of 16) |
 
+**R-07 (squillo iteration 35) on the last row.** One of the five checks
+falls short of the heading: the truth procedures have no must-fail case. On
+one input of every condition, their own criterion fails once: the E-002
+re-synthesis of the vibrato round finds 15 of its 16 score states (DTW off
+on 6.8 % of frames, against 0.7 % on the straight scale;
+`round2_checks.json`, `c5_truth_procedures`). The vibrato round's results
+(R5, real vibrato *u*_B 70.5 → 32.9) therefore rest on a truth that
+misses one state in the input checked. The loss has not been measured,
+and squillo's fold of this round (F-033) re-checks it before use.
+
 The first two criteria were typed at first (3 cents and 0.5 cent) and
 failed on their must-pass cases; each was replaced by the bound its
 definition gives before any result was used (squillo L-033).
