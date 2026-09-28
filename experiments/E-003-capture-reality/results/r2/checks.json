@@ -4,12 +4,16 @@
   "anomalies": 0,
   "must": true
  },
+ "align_allpass": {
+  "lag": 3,
+  "anomalies": 0,
+  "must": true
+ },
  "align_insert": {
   "lag": 480,
   "anomalies": [
    2.0,
-   3.0,
-   4.0
+   3.0
   ],
   "must": true
  },

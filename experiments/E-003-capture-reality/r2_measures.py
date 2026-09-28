@@ -2,8 +2,8 @@
 squillo's measures. Crude experiment code. Rules in the README, *Round 2*,
 rules 3 to 7.
 
-    uv run --project ../E-002-measurement-reliability python r2_analyse.py checks   # rule 7, before any capture
-    uv run --project ../E-002-measurement-reliability python r2_analyse.py          # results/r2/analysis.json
+    uv run --project ../E-002-measurement-reliability python r2_measures.py checks   # rule 7, before any capture
+    uv run --project ../E-002-measurement-reliability python r2_measures.py          # results/r2/analysis.json
 """
 import json
 import sys
@@ -28,6 +28,7 @@ SPEC = json.loads((E002 / "results/fold2.json").read_text())["measures"]["spec"]
 TABLE = np.array([np.inf if v is None else v for v in SPEC["table"]])
 C, KAPPA = SPEC["c"], SPEC["kappa"]
 SR, WIN = 48_000, 48_000
+SHIFT = 64  # samples: half a 128-sample render quantum (rule 3a)
 KEYS = {"S": "steadiness", "E": "vibrato_extent", "R": "vibrato_rate"}
 
 
@@ -42,15 +43,18 @@ def xlag(a, b):
 
 def align(cap, ref):
     """The capture as samples of the input's time (nan where not covered), the whole lag, and the
-    per-window lags: a window of 1 s whose lag differs from the whole's by more than one sample is
-    an anomaly, recorded by its position in the input."""
+    per-window lags (rule 3 as revised before the full run, README *Round 2*, rule 3a): a 1 s window
+    is usable when the capture correlates with it at 0.8 or more at its own lag; an anomaly is a
+    usable window shifted from the whole's lag by 64 samples or more (half a render quantum) whose
+    next usable window is shifted by the same amount within 2 samples, as an inserted or lost block
+    shifts every later window; recorded by its position in the input."""
     L = xlag(cap, ref)
     a = np.full(len(ref), np.nan)
     n = np.arange(len(ref))
     j = n + L
     ok = (j >= 0) & (j < len(cap))
     a[ok] = cap[j[ok]]
-    anomalies, windows = [], []
+    windows = []
     for w0 in range(0, len(ref) - WIN + 1, WIN):
         seg = ref[w0:w0 + WIN]
         if np.sqrt(np.mean(seg ** 2)) < 1e-3:  # a window of the pads or a pause: no lag to measure
@@ -59,11 +63,17 @@ def align(cap, ref):
         if lo < 0 or hi > len(cap):
             continue
         cc = np.correlate(cap[lo:hi], seg, "valid")
-        lw = int(np.argmax(np.abs(cc))) + lo - w0
-        windows.append((w0, lw))
-        if abs(lw - L) > 1:
-            anomalies.append(dict(input_sample=w0, input_s=w0 / SR, lag=lw, whole=L,
-                                  from_start_s=w0 / SR, to_end_s=(len(ref) - w0) / SR))
+        k = int(np.argmax(np.abs(cc)))
+        lw = k + lo - w0
+        c = cap[w0 + lw:w0 + lw + WIN]
+        r = float(np.dot(seg, c) / np.sqrt(np.dot(seg, seg) * np.dot(c, c))) if np.dot(c, c) > 0 else 0.0
+        windows.append(dict(w0=w0, lag=lw, shift=lw - L, corr=r, usable=r >= 0.8))
+    use = [w for w in windows if w["usable"]]
+    anomalies = []
+    for w, nx in zip(use, use[1:] + [None]):
+        if abs(w["shift"]) >= SHIFT and nx is not None and abs(nx["shift"] - w["shift"]) <= 2:
+            anomalies.append(dict(input_sample=w["w0"], input_s=w["w0"] / SR, lag=w["lag"], whole=L,
+                                  shift=w["shift"], corr=w["corr"], to_end_s=(len(ref) - w["w0"]) / SR))
     return a, L, anomalies, windows
 
 
@@ -148,18 +158,20 @@ def captured(key):
     meta = json.loads((CAP / f"{stem}.{cond}.{req}.json").read_text())
     cap = np.fromfile(CAP / f"{stem}.{cond}.{req}.f32", "<f4").astype(np.float64)
     a, L, anom, win = align(cap, x)
-    if anom:  # rule 3: only the windows at the whole's lag keep their frames
-        for an in anom:
-            a[an["input_sample"]:an["input_sample"] + WIN] = np.nan
+    if anom:  # rule 3a: a capture with an anomaly is left out of both analyses, and counted
+        return key, None, None, dict(lag=L, anomalies=anom, windows=len(win),
+                                     shifts=[w["shift"] for w in win if w["usable"]],
+                                     settings=meta.get("settings"), worker=meta.get("worker"))
     fr = frames(a, ft)
     ok = ~np.isnan(a)
     g = float(np.dot(a[ok], x[ok]) / np.dot(x[ok], x[ok])) if ok.any() else float("nan")
     res = a[ok] - g * x[ok]
-    info = dict(lag=L, anomalies=anom, windows=len(win), covered_s=float(ok.sum() / SR),
+    info = dict(lag=L, anomalies=anom, windows=len(win), windows_usable=sum(w["usable"] for w in win),
+                shifts=[w["shift"] for w in win if w["usable"]], covered_s=float(ok.sum() / SR),
                 gain=g, residual_db=float(10 * np.log10(np.sum(res ** 2) / np.sum(a[ok] ** 2))),
                 peak=float(np.nanmax(np.abs(a))), settings=meta.get("settings"), worker=meta.get("worker"),
                 version=meta.get("version"))
-    tm = None if anom else take_measures(fr, ft)
+    tm = take_measures(fr, ft)
     return key, frame_stats(fr), tm, info
 
 
@@ -179,6 +191,9 @@ def checks():
     a, L, anom, _ = align(x, x)
     ins = np.concatenate([x[:5 * SR], np.zeros(480), x[5 * SR:]])
     b, L2, anom2, _ = align(ins, x)
+    from scipy.signal import lfilter
+    ap = lfilter([-0.5, 1.0], [1.0, -0.5], x)  # first-order allpass: 3 samples' group delay at low frequencies
+    _, L3, anom3, _ = align(ap, x)
     fr = frames(x, ft)
     st = frame_stats(fr)
     cov = coverage(st["err"], st["u"])
@@ -189,8 +204,9 @@ def checks():
     m_self, m_vib = moved(tm, tm), moved(tm_vib, tm)
     R = dict(
         align_self=dict(lag=L, anomalies=len(anom), must=L == 0 and not anom),
+        align_allpass=dict(lag=L3, anomalies=len(anom3), must=not anom3),
         align_insert=dict(lag=L2, anomalies=[an["input_s"] for an in anom2],
-                          must=any(4.0 <= an["input_s"] <= 5.0 for an in anom2)),
+                          must=bool(anom2) and all(an["input_s"] < 5.0 for an in anom2)),
         widening_self=dict(w=w_self, coverage=cov, must=w_self == 1.0),
         widening_tripled=dict(w=w_tripled, must=w_tripled > 1.0),
         take_self=dict(moved=m_self, must=not any(v for v in m_self.values() if v is not None)),

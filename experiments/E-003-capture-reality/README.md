@@ -296,7 +296,7 @@ without a microphone. Serves `VISION.md` §6 (never fake precision), §12.2,
 §12.3.
 
 **Rules, written and committed before the run** (S15; `r2_gen.py`,
-`r2_run.mjs`, `r2_analyse.py` hold them in code).
+`r2_run.mjs`, `r2_measures.py` hold them in code).
 
 1. *Inputs* (`r2_gen.py`). The 80 long-tone takes of E-002 round 2 (sets
    LT-straight, LT-forte, LT-pp, LT-messa, 20 VocalSet singers; WORLD
@@ -321,7 +321,7 @@ without a microphone. Serves `VISION.md` §6 (never fake precision), §12.2,
    off) on the 20 LT-straight takes under both conditions. The readback
    (`getSettings()`) is kept per capture. Firefox is not run: its fake
    device is a 1 kHz tone, not a file.
-3. *Alignment* (`r2_analyse.py`). The capture's first channel is aligned to
+3. *Alignment* (`r2_measures.py`). The capture's first channel is aligned to
    its input WAV by the lag of the cross-correlation's peak over the whole
    overlap, then the lag is re-measured in each 1 s window with enough
    energy; a window whose lag differs from the whole's by more than one
@@ -331,6 +331,28 @@ without a microphone. Serves `VISION.md` §6 (never fake precision), §12.2,
    and left out of the take measures. Samples the capture does not cover
    (the start the fake device played before the worklet connected) have no
    frames.
+
+   *3a, revised after the timing sample (S19: 16 captures, 4 takes, raw and
+   default, clean and white-20) and before the full run.* As first written,
+   the per-window test cannot tell processing from a timing fault: in the
+   sample every usable raw window sat at the whole lag (0 of 89 shifted), but
+   processed windows shifted by 1 to 4 samples (the processing's phase),
+   and single windows of steady tones jumped by whole pitch periods (173
+   and 362 samples), where a steady tone's cross-correlation has a peak
+   every period. An inserted or lost block shifts every later window. So
+   now: a window is *usable* when the capture correlates with it at 0.8 or
+   more at its own lag; an *anomaly* is a usable window shifted from the
+   whole lag by 64 samples or more (half a 128-sample render quantum, the
+   least a block fault moves) whose next usable window has the same shift
+   within 2 samples. A capture with an anomaly is left out of both
+   analyses and counted with the anomaly's position. A shift under 64
+   samples moves the truth by under 1.4 ms; the truth moves a median 0.47
+   cents per 0.5 ms (p95 3.0) at Harvest's 1 ms steps over the 80 takes.
+   Checks: the input against itself, no anomaly; the input through a
+   first-order allpass (a 3-sample group delay, as processing's phase), no
+   anomaly; 480 zero samples inserted at 5 s, anomalies found, all in the
+   stretch before 5 s that sits at the other lag (the whole lag is the
+   longer part's).
 4. *Measures*, on the aligned capture and, as the reference, on the input
    WAV itself (*direct*), with squillo's pipeline as E-002 fold 2 has it:
    YIN at squillo's frame axis (`E-002 yin.py`), MT-003's *u* table
@@ -381,8 +403,21 @@ without a microphone. Serves `VISION.md` §6 (never fake precision), §12.2,
    At 60 cents the expected extent is √(32.1² + 60²) ≈ 68, a move of about
    36 cents.)
 
-**Time** (S19): to be measured on the pool before the run, and written
-here.
+**Time** (S19, measured on the pool before the full run). 440 captures:
+raw and default on 160 inputs, and ec, ns, agc on the 40 LT-straight
+inputs; 5815 s of capture in all (each WAV's length plus 0.5 s). The
+sample, 16 captures of the full run's own jobs (231.9 s of capture), took
+60 s of wall time at 4 parallel browsers, 0.26 s of wall per second of
+capture, so the full run is about 25 min, run in steps of 150 jobs, each
+resuming from the captures already written. The analysis, one process per
+capture on a pool of 16, is timed on the sample below.
+
+```
+uv run --project ../E-002-measurement-reliability python r2_gen.py            # 7 s: 160 WAVs and truths -> data/cache/r2/in, results/r2/inputs.json
+uv run --project ../E-002-measurement-reliability python r2_measures.py checks  # 5 s: rule 7 -> results/r2/checks.json
+node r2_run.mjs --jobs 4 --only 150    # then --only 300, then without --only: about 25 min in all -> data/cache/r2/cap
+uv run --project ../E-002-measurement-reliability python r2_measures.py         # -> results/r2/analysis.json
+```
 
 ## Needs a human (15 minutes)
 
