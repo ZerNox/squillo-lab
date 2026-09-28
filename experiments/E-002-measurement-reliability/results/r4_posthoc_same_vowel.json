@@ -1,0 +1,70 @@
+{
+ "sets": [
+  "SC-straight",
+  "SC-breathy",
+  "VIB-arpeggio"
+ ],
+ "pairs": 50,
+ "k_median": 5.0,
+ "fit": {
+  "even": {
+   "sigma_w_dB": 3.2136231336020877,
+   "tau_dB": 2.7221273669969657
+  },
+  "odd": {
+   "sigma_w_dB": 3.4951428243384988,
+   "tau_dB": 2.6363397063165492
+  }
+ },
+ "false_change_test": {
+  "called": 1,
+  "of": 50,
+  "share": 0.02,
+  "wilson95": [
+   0.003539259232504602,
+   0.10495443693896496
+  ]
+ },
+ "false_change_fit": {
+  "called": 1,
+  "of": 50,
+  "share": 0.02,
+  "wilson95": [
+   0.003539259232504602,
+   0.10495443693896496
+  ]
+ },
+ "boost_6dB_called_test": {
+  "called": 20,
+  "of": 47,
+  "share": 0.425531914893617,
+  "wilson95": [
+   0.29513628252530144,
+   0.5671808076206852
+  ]
+ },
+ "two_u_dB_at_k_1_3_7": {
+  "even": [
+   8.423146929022748,
+   6.588606919148033,
+   5.961649602004913
+  ],
+  "odd": [
+   8.755868982488519,
+   6.639968323602012,
+   5.897604002219086
+  ]
+ },
+ "sensitivity": {
+  "forte_vs_pp": {
+   "comparable": 17,
+   "called_changed": 9,
+   "b_higher": 15
+  },
+  "breathy_vs_straight": {
+   "comparable": 20,
+   "called_changed": 11,
+   "b_higher": 18
+  }
+ }
+}

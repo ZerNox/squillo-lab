@@ -604,3 +604,88 @@ if __name__ == "__main__":
         print(json.dumps({k: v for k, v in r.items() if k not in ("sensitivity", "B3")}, indent=1))
         print(json.dumps({k: {kk: vv for kk, vv in v.items() if kk != "rows"} for k, v in r["sensitivity"].items()}, indent=1))
         print(json.dumps(r["B3"], indent=1))
+
+
+# ------------------------------------------------------------ post hoc
+def posthoc():
+    """Written after r4_ring.json was seen (squillo iteration 49), so nothing here is a
+    tested rule: on the clean no-change pairs, the mean D by set (a direction B minus A,
+    so for a scale the descent minus the ascent), and how d_n goes with the change in the
+    note's 50 Hz-2 kHz level per frame (dB, B minus A), the singer's level on that note."""
+    D = pickle.loads(OCC.read_bytes())
+    rows = []
+    for s in sorted(D):
+        a, sp = D[s]["clean"], D[s]["split"]
+        A, B = side(a, 0, sp), side(a, 1, sp)
+        for n in sorted(set(A["notes"]) & set(B["notes"])):
+            la, lb = A["notes"][n], B["notes"][n]
+            rows.append(dict(set=T.set_of(s), stem=s,
+                             d=10 * np.log10(lb[1] / lb[0]) - 10 * np.log10(la[1] / la[0]),
+                             dl=10 * np.log10(lb[0] / lb[2]) - 10 * np.log10(la[0] / la[2])))
+    out = {}
+    for t in sorted({r["set"] for r in rows}):
+        pr = {}
+        for r in rows:
+            if r["set"] == t:
+                pr.setdefault(r["stem"], []).append(r["d"])
+        Ds = [float(np.mean(v)) for v in pr.values()]
+        out[t] = dict(pairs=len(Ds), D_mean=float(np.mean(Ds)), D_sd=float(np.std(Ds, ddof=1)) if len(Ds) > 1 else None,
+                      B_higher=int(np.sum(np.array(Ds) > 0)))
+    d = np.array([r["d"] for r in rows]); dl = np.array([r["dl"] for r in rows])
+    slope, icpt = np.polyfit(dl, d, 1)
+    res = d - (slope * dl + icpt)
+    out["level"] = dict(notes=len(d), r=float(np.corrcoef(d, dl)[0, 1]), slope_dB_per_dB=float(slope),
+                        rms_d=float(np.sqrt(np.mean(d ** 2))), rms_d_after_level=float(np.sqrt(np.mean(res ** 2))),
+                        dl_rms=float(np.sqrt(np.mean(dl ** 2))))
+    (OUT / "r4_posthoc.json").write_text(json.dumps(out, indent=1))
+    print(json.dumps(out, indent=1))
+
+
+def posthoc_same_vowel():
+    """Post hoc, after r4_ring.json and the per-set means were seen: the ± refitted on the sets
+    whose halves sing the same vowel on the same notes with no designed change (the scales, straight
+    and breathy, and the vibrato arpeggios; not the round, whose halves sing other words, nor
+    messa di voce, whose loudness changes by design, nor the long tones, whose halves share
+    almost no notes). Tested on the other fold as B1, with the boost and the sensitivity pairs."""
+    D = pickle.loads(OCC.read_bytes())
+    keep = ("SC-straight", "SC-breathy", "VIB-arpeggio")
+    stems = [s for s in sorted(D) if T.set_of(s) in keep]
+    nc = {}
+    for s in stems:
+        a, sp = D[s]["clean"], D[s]["split"]
+        p = compare(side(a, 0, sp), side(a, 1, sp))
+        if p:
+            nc[s] = p
+    m = {f: fit([p for s, p in nc.items() if fold_of(s) == f]) for f in (0, 1)}
+    out = dict(sets=keep, pairs=len(nc), k_median=float(np.median([p["k"] for p in nc.values()])),
+               fit={("odd" if f else "even"): dict(sigma_w_dB=v[0], tau_dB=v[1]) for f, v in m.items()})
+    out["false_change_test"] = share([called(p, m[1 - fold_of(s)]) for s, p in nc.items()])
+    out["false_change_fit"] = share([called(p, m[fold_of(s)]) for s, p in nc.items()])
+    bo = []
+    for s in stems:
+        a, sp = D[s]["clean"], D[s]["split"]
+        p = compare(side(a, 0, sp), side(D[s]["boost"], 1, sp))
+        if p:
+            bo.append(called(p, m[1 - fold_of(s)]))
+    out["boost_6dB_called_test"] = share(bo)
+    u = {f: [float(np.sqrt(v[1] ** 2 + v[0] ** 2 / k)) for k in (1, 3, 7)] for f, v in m.items()}
+    out["two_u_dB_at_k_1_3_7"] = {("odd" if f else "even"): [2 * x for x in v] for f, v in u.items()}
+    sens = {}
+    for name, (ta, tb) in (("forte_vs_pp", ("LT-pp", "LT-forte")), ("breathy_vs_straight", ("SC-breathy", "SC-straight"))):
+        rows = []
+        for sg in sorted({T.singer_of(s) for s in D}):
+            a = [s for s in D if T.singer_of(s) == sg and T.set_of(s) == ta]
+            b = [s for s in D if T.singer_of(s) == sg and T.set_of(s) == tb]
+            if a and b:
+                p = compare(side(D[a[0]]["clean"]), side(D[b[0]]["clean"]))
+                if p:
+                    rows.append(dict(D=p["D"], k=p["k"], called=bool(called(p, m[1 - fold_of(a[0])]))))
+        sens[name] = dict(comparable=len(rows), called_changed=sum(r["called"] for r in rows), b_higher=sum(r["D"] > 0 for r in rows))
+    out["sensitivity"] = sens
+    (OUT / "r4_posthoc_same_vowel.json").write_text(json.dumps(out, indent=1))
+    print(json.dumps(out, indent=1))
+
+
+if __name__ == "__main__" and sys.argv[1] == "posthoc":
+    posthoc()
+    posthoc_same_vowel()
