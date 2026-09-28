@@ -282,6 +282,108 @@ the notice one block late fails the first of them (run by hand, not kept).
 127 conditions; 14 of 14 outcomes as the scenarios state. The thirteen
 earlier files regenerate byte for byte.
 
+## Round 2: what browser processing does to the measures (squillo iteration 47)
+
+**Question** (squillo F-034 (a), R-09's focus for iteration 47). When a take
+is captured *not raw*, with the browser's echo cancellation, noise
+suppression and automatic gain control on, how far are squillo's measures
+moved, and by how much would their ± have to widen to stay honest? Round 1
+found that Chrome's fake microphone reports all three flags on for a plain
+request; a pilot in this iteration (one E-002 re-synthesis, 8 s) found it
+also applies them: the plain request's capture was 8.7 times the raw one's
+level and reached full scale. So the question can be asked of Chrome
+without a microphone. Serves `VISION.md` §6 (never fake precision), §12.2,
+§12.3.
+
+**Rules, written and committed before the run** (S15; `r2_gen.py`,
+`r2_run.mjs`, `r2_analyse.py` hold them in code).
+
+1. *Inputs* (`r2_gen.py`). The 80 long-tone takes of E-002 round 2 (sets
+   LT-straight, LT-forte, LT-pp, LT-messa, 20 VocalSet singers; WORLD
+   re-syntheses with a known f0, `E-002 r2_truth.py`), because held notes,
+   which the take measures need, are found in them. Each under two input
+   conditions, read from E-002's code (`r2_run.py` `condition()`, lines
+   97–119, its seed per file and condition): *clean*, and *white-20*,
+   white noise at 20 dB SNR over the voiced samples. Each is scaled so that
+   the clean voice's RMS over its voiced samples (truth f0 > 0) is −26 dBFS,
+   the nominal active speech level of ITU-T P.56 test signals, and padded
+   with 1.0 s of digital silence before and after; 48 kHz, 16-bit PCM, as
+   round 1's probe. Asserted on each written file, read back: peak below
+   full scale; the voiced RMS within 0.05 dB of −26 dBFS; the SNR within
+   0.05 dB of 20 (the 16-bit rounding moves it); the pads exactly zero; the
+   read-back samples within one 16-bit step of the float signal.
+2. *Captures* (`r2_run.mjs`, `page/r2.js`). Chrome 154, headless, the WAV
+   as `--use-file-for-fake-audio-capture`, round 1's capture path (the
+   `tap.js` worklet, one message per block, `engine.js` at load 0), a
+   48 kHz context, captured for the WAV's length plus 0.5 s. Requests: *raw*
+   (the three flags off, as ADR 0002) and *default* (a plain `audio: true`,
+   all three on) on every input; *ec*, *ns* and *agc* (one flag on, two
+   off) on the 20 LT-straight takes under both conditions. The readback
+   (`getSettings()`) is kept per capture. Firefox is not run: its fake
+   device is a 1 kHz tone, not a file.
+3. *Alignment* (`r2_analyse.py`). The capture's first channel is aligned to
+   its input WAV by the lag of the cross-correlation's peak over the whole
+   overlap, then the lag is re-measured in each 1 s window with enough
+   energy; a window whose lag differs from the whole's by more than one
+   sample is an anomaly, recorded with its position in the input (S17: the
+   file's start and end are its loop points). A capture with an anomaly is
+   kept for the per-frame measures only in its windows at the whole's lag,
+   and left out of the take measures. Samples the capture does not cover
+   (the start the fake device played before the worklet connected) have no
+   frames.
+4. *Measures*, on the aligned capture and, as the reference, on the input
+   WAV itself (*direct*), with squillo's pipeline as E-002 fold 2 has it:
+   YIN at squillo's frame axis (`E-002 yin.py`), MT-003's *u* table
+   (`E-002 results/fold2.json` `measures.spec.table`), the held notes found
+   from the measured contour (`fold2.py` `held_notes`), and the take
+   measures steadiness, vibrato extent and vibrato rate with their take ±
+   (`blocks`, `take`, with `measures.spec` *c* and κ). Per frame: a frame is
+   valid by E-002's rule (`r2_run.py` `frame_truth`: every truth sample of
+   its window voiced, inside E2..C6, moving at most 200 cents), its truth at
+   SG-007's instant; reported per request and input: the share of valid
+   frames accepted (a pitch and a finite *u*), the p95 of |error| over
+   accepted valid frames, and the coverage of ±2*u*. Per take: each
+   measure's value and ± on the capture and on the direct input, and on
+   the truth contour over the same frames where every frame is valid.
+5. *What processing does.* Per request and input, against direct on the
+   same input and frames: (a) the change in accepted share and in coverage;
+   (b) the **per-frame widening factor** *w*: the least *w* (on a 0.01 grid
+   from 1) for which the capture's coverage of ±2*w u* reaches direct's
+   coverage of ±2*u* on the same input; (c) per take measure, the share of
+   takes whose capture value differs from direct's by more than direct's
+   ±2*u*, and the least factor *w*_take by which the capture's ± must be
+   multiplied so that it covers the truth on as many takes as direct's
+   does; (d) the share of takes measured on direct that the capture leaves
+   unmeasured, and the reverse. Uncertainty: 95 % percentile intervals from
+   1000 bootstrap resamples of the 20 singers.
+6. *Bars, written before the run.* The **reference condition that must
+   pass**: raw against direct, per frame, a coverage within 1 point of
+   direct's and *w* = 1.00; per take, no take measure moved beyond direct's
+   ±2*u* on more than 5 % of takes. If raw fails, the capture path itself
+   moves the measures; that is reported, and processing is then compared
+   with raw instead. **Processing widens** a measure when the lower end of
+   *w*'s interval (or *w*_take's) is above 1.00. A factor is reported for
+   squillo only with its interval, and only from the requests the readback
+   can name (ADR 0002: the readback says which flags were on).
+7. *Checks of the checks* (run before the captures, on inputs that differ
+   from the must-pass ones). Alignment: the input WAV aligned to itself
+   must give lag 0 and no anomaly; the same WAV with 480 samples (10 ms, as
+   round 1's insertion) of zeros inserted 5 s in must give an anomaly
+   there. The widening factor: direct against itself must give *w* = 1.00;
+   direct's errors multiplied by three against direct's own *u* must give
+   *w* above 1. The take comparison: direct against itself must move no
+   take; direct against the same input with a 60-cent 5 Hz sine added to
+   its measured contour must move vibrato extent on at least one take.
+   (First written with 20 cents, and run before this rule was committed:
+   on `f1_long_straight_a` it moved extent from 32.1 to 37.4 cents, inside
+   direct's ±7.4, as it must, since extents add in quadrature,
+   √(32.1² + 20²) ≈ 37.8; so 20 cents was not a case the check must fail.
+   At 60 cents the expected extent is √(32.1² + 60²) ≈ 68, a move of about
+   36 cents.)
+
+**Time** (S19): to be measured on the pool before the run, and written
+here.
+
 ## Needs a human (15 minutes)
 
 Real microphones, drivers and rooms, which fake devices cannot show.

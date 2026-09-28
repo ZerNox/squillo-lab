@@ -1,0 +1,55 @@
+{
+ "align_self": {
+  "lag": 0,
+  "anomalies": 0,
+  "must": true
+ },
+ "align_insert": {
+  "lag": 480,
+  "anomalies": [
+   2.0,
+   3.0,
+   4.0
+  ],
+  "must": true
+ },
+ "widening_self": {
+  "w": 1.0,
+  "coverage": 0.9778714436248683,
+  "must": true
+ },
+ "widening_tripled": {
+  "w": 2.92,
+  "must": true
+ },
+ "take_self": {
+  "moved": {
+   "S": false,
+   "E": false,
+   "R": false
+  },
+  "must": true
+ },
+ "take_vibrato_60": {
+  "moved": {
+   "S": false,
+   "E": true,
+   "R": true
+  },
+  "extent": [
+   {
+    "value": 32.142373789140095,
+    "u": 3.713270621401714,
+    "blocks": 3,
+    "truth": 33.17371560998048
+   },
+   {
+    "value": 67.11588314605427,
+    "u": 1.7897453089821338,
+    "blocks": 3,
+    "truth": 32.94430745252741
+   }
+  ],
+  "must": true
+ }
+}
