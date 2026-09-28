@@ -34,13 +34,27 @@ Rules, written before the run (S15: a rule written before a run is a check):
    re-syntheses; a take enters when its steadiness is measured.
 
 Checks of the checks (S15), each asserted:
-- k = 0 reproduces the take's own S and u exactly (the rung machinery adds
-  nothing).
+- k = 0 reproduces the take's own S and u exactly (a sanity assertion, not
+  a check: it cannot fail unless measure() is not deterministic).
 - MT-008 on held-wobble.wav then held-steady.wav is improved (must pass, as
   squillo analyzers AN-006's scenario), and held-wobble.wav against itself
   is not (must fail).
 - On held-wobble.wav the full steadying is improved (must pass) and
   strength 0 is not (must fail).
+Revised by squillo R-09 (iteration 45, L-041): the two must-fail cases
+above call improved() on identical arguments, so they could not pass; they
+are kept as recorded, and two must-fail cases whose input differs are added:
+- MT-008 on held-steady.wav then held-wobble.wav is not improved (must fail:
+  the wobble is built onto the steady tone, squillo fixtures/MANIFEST.md).
+- On held-wobble.wav the steadying reversed (-1 times the full change, so
+  the slow wander doubled) is not improved (must fail).
+- Every rung's change is asserted on the output: at most 50 cents on every
+  frame, and 0 on every frame outside a held note's accepted frames. The
+  50-cent assertion's must-fail case: the unscaled change exceeds 50 cents
+  on the capped takes (counted as `capped`), where it would stop the run.
+- Rule B is reported, not chosen; it has no must-pass or must-fail case.
+- The Wilson 95 % intervals quoted for the step counts are computed here
+  (`wilson`), not by hand.
 """
 import hashlib
 import json
@@ -85,6 +99,22 @@ def improved(t1, t2):
     return t1 is not None and t2 is not None and t1[0] - t2[0] > 2 * np.hypot(t1[1], t2[1])
 
 
+def wilson(k, n, z=1.959963984540054):
+    """Wilson score interval for k of n, in per cent, to one decimal."""
+    ph = k / n
+    d = 1 + z * z / n
+    c = (ph + z * z / (2 * n)) / d
+    h = z * np.sqrt(ph * (1 - ph) / n + z * z / (4 * n * n)) / d
+    return [round(100 * (c - h), 1), round(100 * (c + h), 1)]
+
+
+def held_mask(n, notes):
+    m = np.zeros(n, bool)
+    for fr, con, acc in notes:
+        m[fr[acc]] = True
+    return m
+
+
 def ladder(p, u):
     notes, bl, tk = measure(p, u)
     if tk is None:
@@ -94,9 +124,13 @@ def ladder(p, u):
     amax = min(1.0, LIMIT / Fm) if Fm > 0 else 1.0
     same = measure(p + 0 * ch, u)[2]
     assert same == tk, (same, tk)  # check: strength 0 reproduces the take
+    hm = held_mask(len(p), notes)
+    assert np.all(ch[~hm] == 0), "a change outside a held note"
     rungs = []
     for k in range(1, K + 1):
-        r = measure(p + ch * (k * amax / K), u)[2]
+        step = ch * (k * amax / K)
+        assert np.max(np.abs(step)) <= LIMIT * (1 + 1e-12), "a change beyond SY-002's 50 cents"
+        r = measure(p + step, u)[2]
         rungs.append(r)
     imp = [improved(tk, r) for r in rungs]
     nk = next((k for k in range(1, K + 1) if imp[k - 1]), None)
@@ -185,6 +219,14 @@ def main():
            "strength 0 of held-wobble improved (must fail)": improved(tw, measure(pw, uw)[2])}
     assert chk["MT-008 wobble -> steady improved (must pass)"] and not chk["MT-008 wobble -> wobble improved (must fail)"]
     assert chk["full steadying of held-wobble improved (must pass)"] and not chk["strength 0 of held-wobble improved (must fail)"]
+    # R-09 (L-041): must-fail cases whose input differs from the must-pass case's
+    nw = measure(pw, uw)[0]
+    chw = full_change(pw, nw)
+    aw = min(1.0, LIMIT / float(np.max(np.abs(chw))))
+    chk["MT-008 steady -> wobble improved (must fail)"] = improved(ts, tw)
+    chk["reversed steadying of held-wobble improved (must fail)"] = improved(tw, measure(pw - chw * aw, uw)[2])
+    assert not chk["MT-008 steady -> wobble improved (must fail)"]
+    assert not chk["reversed steadying of held-wobble improved (must fail)"]
     R["checks"] = chk
     for k, v in fx.items():
         print(k, {a: b for a, b in v.items() if a != "sha256"})
@@ -193,6 +235,9 @@ def main():
         rows = take_rows(cond)
         R[cond] = dict(summary=summary(rows), rows=rows, seconds=round(time.time() - t0, 1))
         s = R[cond]["summary"]
+        s["wilson95_step_A_of_measured"] = wilson(s["step_A"], s["measured"])
+        s["wilson95_step_A_of_takes"] = wilson(s["step_A"], s["takes"])
+        s["wilson95_step_B_of_measured"] = wilson(s["step_B"], s["measured"])
         print(cond, {a: b for a, b in s.items() if not isinstance(b, list)}, R[cond]["seconds"], "s")
         print("  next strength", s["next_strength"])
         print("  next max change", s["next_max_change"])

@@ -377,7 +377,9 @@
   "MT-008 wobble -> steady improved (must pass)": true,
   "MT-008 wobble -> wobble improved (must fail)": false,
   "full steadying of held-wobble improved (must pass)": true,
-  "strength 0 of held-wobble improved (must fail)": false
+  "strength 0 of held-wobble improved (must fail)": false,
+  "MT-008 steady -> wobble improved (must fail)": false,
+  "reversed steadying of held-wobble improved (must fail)": false
  },
  "original": {
   "summary": {
@@ -656,6 +658,18 @@
     "LT-messa",
     "LT-pp",
     "LT-straight"
+   ],
+   "wilson95_step_A_of_measured": [
+    45.3,
+    72.4
+   ],
+   "wilson95_step_A_of_takes": [
+    12.5,
+    24.3
+   ],
+   "wilson95_step_B_of_measured": [
+    3.4,
+    19.9
    ]
   },
   "rows": [
@@ -5588,7 +5602,7 @@
     "singer": "male9"
    }
   ],
-  "seconds": 5.3
+  "seconds": 5.2
  },
  "clean": {
   "summary": {
@@ -5833,6 +5847,18 @@
     "LT-messa",
     "LT-pp",
     "LT-straight"
+   ],
+   "wilson95_step_A_of_measured": [
+    30.4,
+    58.9
+   ],
+   "wilson95_step_A_of_takes": [
+    7.8,
+    17.9
+   ],
+   "wilson95_step_B_of_measured": [
+    0.4,
+    12.1
    ]
   },
   "rows": [

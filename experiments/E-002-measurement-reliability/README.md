@@ -459,7 +459,7 @@ material) was not run.
 
 ### Fold 3: the steadying ladder (squillo iteration 42, 2026-09-28)
 
-**Run:** `uv run python fold3_ladder.py <squillo>` (12 s on one process;
+**Run:** `uv run python fold3_ladder.py <squillo>` (about 11 s on one process, 5.3 s and 4.8 s for the two conditions in `seconds`;
 a sample of 10 takes timed first at 0.006 s each for a take with no
 measured steadiness; needs round 2's `data/cache/r2_frames.npz` and
 `results/fold2.json`). Writes `results/fold3_ladder.json`. Written for
@@ -486,7 +486,19 @@ MT-008 calls `held-wobble.wav` then `held-steady.wav` improved (must pass)
 and `held-wobble.wav` against itself not (must fail); the full steadying
 of `held-wobble.wav` is improved (must pass) and strength 0 is not (must
 fail). Every fixture is read from squillo's `fixtures/` and its SHA-256
-asserted to be in its `MANIFEST.md`.
+asserted to be in its `MANIFEST.md`. **R-09 (squillo iteration 45,
+L-041):** both must-fail cases above call MT-008 on identical arguments,
+so they could not have passed; "strength 0 reproduces" is a sanity
+assertion, not a check. Added and re-run, every other value unchanged:
+MT-008 calls `held-steady.wav` then `held-wobble.wav` not improved (must
+fail, false as it should be); the steadying reversed on `held-wobble.wav`,
+the wander doubled, is not improved (must fail, false); every rung's
+change is asserted at most 50 cents and 0 outside a held note's accepted
+frames (the 50-cent assertion would stop the run on the unscaled change of
+the 34 capped takes; the zero assertion has no must-fail case). Rule B is
+reported and not chosen; it has no must-pass or must-fail case. The Wilson
+intervals below are computed in `wilson()` and held in `summary`'s
+`wilson95_*` keys.
 
 | # | Question | Result |
 | :--- | :--- | :--- |
@@ -495,7 +507,7 @@ asserted to be in its `MANIFEST.md`.
 | L3 | How small is the next step? | The least improved strength is a median 0.63 of the steadying SY-002 allows on the original takes (0.11 to 0.98), 0.55 on the re-syntheses: on real voices the smallest step that can be shown is most of the way. Its largest change per frame is 7.7 to 48.4 cents. Median steadiness 7.16 cents, median take *u* 2.02 cents; 2 blocks on 17 of the 47 takes |
 | L4 | Does SY-002's 50 cents bind? | The full steadying exceeds 50 cents on some frame of 34 of 47 original takes (29 of 43 re-syntheses), so α_max < 1 there. Where a step exists, the far vision's steadiness is a median 2.09 cents |
 | L5 | Is the outcome monotone in strength? | On 46 of 47 original takes and 43 of 43 re-syntheses. On the other (file 82) the strongest steadying is not improved; the greatest improved strength is 63 of 64. Far vision at the full strength on 27 of the 28 |
-| L6 | squillo's fixtures | `held-wobble.wav` and `synthesis/voice-220hz-wobble.wav`: a step, at 3 of 64 (largest change 1.10 cents), far vision at 64 of 64 (steadiness 14.63 → 0.056, largest change 23.40 cents); rule B offers none (its three blocks equal within 0.002 cents). `held-steady.wav` and `held-vibrato.wav`: steadiness measured, no strength improved, so no step (the vibrato's 0.467 cents is 2 Hz leakage the steadying cannot remove: 0.459 at full strength). `signal/sine-220hz.wav`: steadiness unmeasurable, no held note. MT-008's margin, *S* − *S*′ − 2√(*u*² + *u*′²) (`margins` per strength): on `held-wobble.wav` −0.053 cents at strength 2 and +0.175 at 3, the next step; on `held-steady.wav` −0.508 and on `held-vibrato.wav` at most −0.499 at every strength |
+| L6 | squillo's fixtures | `held-wobble.wav` and `synthesis/voice-220hz-wobble.wav`: a step, at 3 of 64 (largest change 1.10 cents), far vision at 64 of 64 (steadiness 14.63 → 0.056, largest change 23.40 cents); rule B offers none (its three blocks' `steadiness` 14.6307 to 14.6343 cents, `fold2.json`, the take's 0.0018 above its steadiest). `held-steady.wav` and `held-vibrato.wav`: steadiness measured, no strength improved, so no step (the vibrato's 0.467 cents is 2 Hz leakage the steadying cannot remove: 0.459 at full strength). `signal/sine-220hz.wav`: steadiness unmeasurable, no held note. MT-008's margin, *S* − *S*′ − 2√(*u*² + *u*′²) (`margins` per strength): on `held-wobble.wav` −0.053 cents at strength 2 and +0.175 at 3, the next step; on `held-steady.wav` −0.508 and on `held-vibrato.wav` at most −0.499 at every strength |
 
 **What this says for squillo.** Rule A offers a step on most real takes
 where steadiness is measured; rule B on few, because a take's ± for
