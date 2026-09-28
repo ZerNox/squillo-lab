@@ -79,10 +79,12 @@ condition asserted, a case run), match each clause to the line of the
 diff or the result that makes it true. Remove or make true a clause with
 none. A check with no must-fail case says so in its own row (squillo
 L-032, L-035). Likewise every number a README's result row, `INDEX.md` or a
-squillo spec, ADR or ledger row takes from a run is matched to the results
+squillo spec, ADR, question, finding, review or ledger row takes from a run,
+a proposed correction included, is matched to the results
 entry that holds it, for the same takes and the same definition (a gross
 error is not an octave error; a re-synthesis is not an original); a number
-no results file holds is written to one or not stated (squillo L-038).
+no results file holds is written to one or not stated (squillo L-038,
+L-040).
 
 **A result is a number with its conditions.** State what was measured, on what
 input, with which tool versions, and the uncertainty. "Works well" is not a
