@@ -63,6 +63,14 @@ and write the estimate in the README's command block. If the run and its
 analysis do not fit well inside the session, cut the design (fewer cells,
 fewer items per cell) before starting, never after (squillo L-033).
 
+**Every claim about the code is matched to the code** (squillo standing
+instruction S18). Before committing a README's check table, a docstring or
+a commit message that says what the code does (a bound read from a line, a
+condition asserted, a case run), match each clause to the line of the
+diff or the result that makes it true. Remove or make true a clause with
+none. A check with no must-fail case says so in its own row (squillo
+L-032, L-035).
+
 **A result is a number with its conditions.** State what was measured, on what
 input, with which tool versions, and the uncertainty. "Works well" is not a
 result.
