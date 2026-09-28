@@ -214,8 +214,18 @@ def conditions(fx):
     sal, stop = fx["events-start-after-load.json"]["events"], fx["events-singer-stop.json"]["events"]
     check("events-start-after-load.json", [e["type"] for e in sal[:2]] == ["page-loaded", "singer-start"]
           and sal[2:] == stop, "page-loaded, singer-start, then events-singer-stop.json's events unchanged")
+    # iteration 46 (F-049): the processed start trace is events-start-after-load.json's events
+    # under readback-chrome-processed.json's settings and context rate
+    sp = fx["events-start-processed.json"]
+    check("events-start-processed.json", sp["events"] == sal
+          and sp["settings"] == fx["readback-chrome-processed.json"]["settings"]
+          and sp["context_sample_rate"] == fx["readback-chrome-processed.json"]["context_sample_rate"],
+          "events-start-after-load.json's events under readback-chrome-processed.json's readback")
+    check("events-start-processed.json", tier(sp["settings"]) == "not-raw"
+          and all(sp["settings"][k] is True for k in FLAGS), "all three flags on")
     for name in ("events-singer-stop.json", "events-track-ended.json", "events-track-muted.json",
-                 "events-context-suspended.json", "blocks-two-channels.json", "events-start-after-load.json"):
+                 "events-context-suspended.json", "blocks-two-channels.json", "events-start-after-load.json",
+                 "events-start-processed.json"):
         fr = [e["frame"] for e in fx[name]["events"] if e["type"] == "block"]
         check(name, all(b - a == Q for a, b in zip(fr, fr[1:])), "every quantum consecutive")
     return rows
@@ -236,7 +246,17 @@ EXPECTED = {  # written from the spec's scenarios before the model ran
     "events-engine-failed.json": {"started": False, "why": "engine"},
     # iteration 43, CA-010's scenarios, written before the model ran
     "events-start-after-load.json": {"started": True, "ended": None, "n": 5, "opened_on": "singer-start",
-                                     "opened_before_start": None, "released": True},
+                                     "opened_before_start": None, "released": True,
+                                     "notices": [["capture-condition", "page-loaded"]]},
+    # iteration 46 (F-049), CA-005's and CA-009's scenarios, written and committed before the model ran:
+    # the capture condition told at the page's load, with nothing opened; the processing
+    # notice told in the singer's start, after the readback and before the first block
+    "events-start-processed.json": {"started": True, "tier": "not-raw", "ended": None, "n": 5,
+                                    "opened_on": "singer-start", "opened_before_start": None,
+                                    "released": True,
+                                    "notices": [["capture-condition", "page-loaded"], ["processing", 0]]},
+    "readback-chrome-raw.json#notices": [["capture-condition", "trace-start"]],
+    "readback-chrome-processed.json#notices": [["capture-condition", "trace-start"], ["processing", 0]],
 }
 
 
