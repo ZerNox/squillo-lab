@@ -60,11 +60,15 @@ stated in a result's legend is derived from the measure's definition in the
 code and checked by hand on one case (squillo L-029, L-032).
 
 **Time the full run before starting it** (squillo standing instruction
-S19). Before a run longer than a few minutes, time one item of the slowest
-condition on one process, multiply out over the design and the processes,
-and write the estimate in the README's command block. If the run and its
-analysis do not fit well inside the session, cut the design (fewer cells,
-fewer items per cell) before starting, never after (squillo L-033).
+S19). Before a run longer than a few minutes, time a sample of its items
+spread over its conditions **on the pool itself, at the process count the
+run will use**, since a single idle process can be several times faster
+than the same work under a full pool; multiply out, and write the estimate
+in the README's command block. If the run and its analysis do not fit well
+inside the session, cut the design (fewer cells, fewer items per cell)
+before starting, never after (squillo L-033). A run longer than a few
+minutes saves its results as it goes and resumes from them, and no time
+limit around it is shorter than the estimate allows (squillo L-037).
 
 **Every claim about the code is matched to the code** (squillo standing
 instruction S18). Before committing a README's check table, a docstring or
