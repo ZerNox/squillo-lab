@@ -93,7 +93,7 @@ Wilson for shares.
 | 1 | Is the requested pitch change delivered? | Yes, by all three methods, for every correction and steadying request. Achieved/requested (least squares, non-gross frames): WORLD 0.989–0.999 synthetic and 0.978–1.002 VocalSet; PSOLA 0.997–1.003 and 0.981–1.046 |
 | 2 | Per-frame error of the change (non-gross frames) | Median 0.5–0.9 cents WORLD, 1.0–1.2 PSOLA. p95: WORLD 3.0–3.8 synthetic and 4.0–4.6 VocalSet; PSOLA 4.7–5.2 and 4.2–5.0. These include YIN's own error twice (input and output); YIN on the ideal render errs p95 2.5–2.7 cents against the true contour |
 | 3 | Error of the output against the requested contour (synthetic, non-gross) | p95: `world_dio` 3.8–4.0 cents, `world_harvest` 5.0–5.3, PSOLA 7.1–7.4; the ideal render 2.5–2.7 |
-| 4 | Gross frames | WORLD: 2.5–2.8 % of frames on VocalSet (14 of 19 singers), whatever the request, `id` included; on synthetic input only the two soprano types (f0 from 294 Hz), 0.25–2.8 % of all synthetic frames. PSOLA: 0.01 % synthetic, 0.08–0.18 % VocalSet. Follow-up (`gross.json`, `id`, DIO): of 587 gross VocalSet frames, 585 are upward and 327 within 100 cents of an octave up; WORLD's own f0 there was voiced in all 587 and an octave off the input's in only 2. So squillo's tracker reads WORLD's **output** an octave high where WORLD's analysis was right. WORLD lowers H1 relative to H2 by a median 0.5 (tenor) to 3.3 dB (high soprano) (`h1.json`), a weaker fundamental, which is consistent with this but not shown to cause it |
+| 4 | Gross frames | WORLD: 2.5–2.7 % of frames on VocalSet (`summary.json` `gross`, 0.0253–0.0268; "2.8" until squillo iteration 43) (14 of 19 singers), whatever the request, `id` included; on synthetic input only the two soprano types (f0 from 294 Hz), 0.25–2.8 % of all synthetic frames. PSOLA: 0.01 % synthetic, 0.08–0.18 % VocalSet. Follow-up (`gross.json`, `id`, DIO): of 587 gross VocalSet frames, 585 are upward and 327 within 100 cents of an octave up; WORLD's own f0 there was voiced in all 587 and an octave off the input's in only 2. So squillo's tracker reads WORLD's **output** an octave high where WORLD's analysis was right. WORLD lowers H1 relative to H2 by a median 0.5 (tenor) to 3.3 dB (high soprano) (`h1.json`), a weaker fundamental, which is consistent with this but not shown to cause it |
 | 5 | Does the envelope (a proxy for timbre and identity) survive? | Long-term envelope distance, median over inputs: WORLD 0.66–0.71 dB (max 1.65), PSOLA 0.03–0.47 dB (max 0.79), growing with the correction's size. **Scale**, on the unmodified VocalSet inputs: one singer's first half of the scale against the second, median 3.03 dB (max 4.67); two singers of the same sex, median 7.60 dB, minimum 4.07 (83 pairs). Every output lies well inside one singer's own variation. Per-frame distance 0.4–1.8 dB |
 | 6 | Artefacts, by harmonicity | WORLD raises HNR by 0.1–3.9 dB (more periodic than the input, most for steadying and on synthetic input); PSOLA lowers it by 1.4–2.7 dB (rougher) |
 | 7 | Time per second of audio, one process, native code on a 12th Gen Intel Core i7-12700H, best of three, 8 inputs | `world_harvest` 0.29 s/s (analysis 0.26, re-synthesis 0.03); `world_dio` 0.15 (0.12, 0.03); PSOLA 0.034 (0.025, 0.009). Max over inputs 0.31, 0.17, 0.041. A 10 s take: 1.5 s with WORLD-DIO, 0.3 s with PSOLA. **Not WASM, not a browser** |
@@ -108,8 +108,9 @@ Wilson for shares.
   this takes well under real time. Whether it sounds like the singer, and
   natural, is **not** answered: that needs a listener (below).
 - Honesty (VISION §6): re-tracking the synthesized audio is not a sound way
-  to state how far the next step is. The tracker misreads WORLD's output an
-  octave high on up to 2.8 % of frames; the synthesized contour is known by
+  to state how far the next step is. The tracker misreads WORLD's output by
+  more than 50 cents on up to 2.7 % of VocalSet frames, 56 % of them near
+  an octave where broken down (result 4); the synthesized contour is known by
   construction and is what a step's distance should be computed from.
 - F-016: synthesis needs the take's samples kept in the engine for the run
   (the parameters are eight times larger than the samples), and a path that
@@ -326,7 +327,7 @@ for a singer's device, not a measurement of one.
 
 **Limits.** One synthetic take with every frame at MT-003's first bin: the
 rule's margin on real voices, where *u* is larger and WORLD's output is
-misread an octave high on up to 2.8 % of frames (round 1, result 4), is not
+misread by more than 50 cents on up to 2.7 % of frames (round 1, result 4), is not
 measured here. One machine, headless, Linux; no Safari. Peak memory is the
 crate's, with its f64 analysis and Rust's allocator; memory held as `f32`
 is round 3's.
