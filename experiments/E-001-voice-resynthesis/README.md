@@ -1,6 +1,6 @@
 # E-001 — Voice re-synthesis: the synthesized you
 
-**Status:** needs-human (rounds 1 and 2 answered on automated evidence: the change delivered, round 1; the time in WASM in a browser, round 2; the listening check `needs-human`) · **Serves:** VISION §3 (core idea), §8 (on-device), §12.1
+**Status:** needs-human (rounds 1 and 2 answered on automated evidence: the change delivered, round 1; the time in WASM in a browser, round 2; the listening check `needs-human`; fold 1, squillo iteration 37: squillo's `synthesis` fixtures, a delivered-change rule, the same samples in both browsers, a 30 s and a 60 s take) · **Serves:** VISION §3 (core idea), §8 (on-device), §12.1
 
 ## Question
 
@@ -241,6 +241,95 @@ one costs. world-rs is one person's port, checked here against pyworld on
 
 **Needs a human** is unchanged: round 1's listening check (15 minutes) is
 the one step left for VISION §12.1.
+
+### Fold 1: squillo's `synthesis` fixtures and scenarios (squillo iteration 37, 2026-09-28)
+
+**Question.** What does squillo's first `synthesis` spec need from rounds 1
+and 2 that no result yet gives? (a) Fixtures, and a delivered-change rule
+checked on them; (b) whether the same take and request give the same
+samples in both browsers, every time; (c) the time and memory of the longest
+take squillo might accept (squillo Q-020, F-035).
+
+**Run** (S19: WORLD-DIO's native analysis runs at 0.07 s per second of
+audio, so the native step for 95 s of audio takes about 10 s, and each
+browser about 30 s):
+
+```
+uv run python f1_fold.py gen <squillo>/fixtures     # squillo's fixtures, data/cache/f1 (6 s)
+./r2_build.sh                                        # builds the native bench and f1 binaries (1 min)
+./wasm/target/release/f1 data/cache/f1 > results/f1/native.jsonl   # 10 s
+npm ci && node f1_run.mjs                            # Chrome and Firefox, 65 s
+uv run python f1_fold.py check <squillo>/fixtures   # results/f1/fold.json
+```
+
+Numbers: [`results/f1/fold.json`](results/f1/fold.json) (`rule`, `ideal`,
+`must_fail`, `same_everywhere`, `summary`), `gen.json`, `native.jsonl`,
+`chrome.json`, `firefox.json`.
+
+**Fixtures** (written to squillo's `fixtures/synthesis/`; conditions in
+`f1_fold.py`'s docstring, each asserted by `check()` on what was written).
+`voice-220hz-wobble.wav`: 240 000 `f32` samples, the frequency 220 (1 +
+0.012 sin(2π · 0.5 *t*)) Hz of squillo's `held-wobble.wav`, 89 harmonics
+(the last below 20 kHz at the wobble's top) with amplitudes of round 1's
+male /a/ envelope over *k* (`voice.py`), peak 0.5, H1 1.1 dB above H2; a
+test input for synthesis, not a stand-in for voices. `metrics` measures
+every frame from 3 to 624, each at *u* = √3 cents (MT-003's first bin).
+Requests, one entry per frame, a number of cents where the take is
+measured and `null` elsewhere: `request-zero`, `request-up-50c`,
+`request-steady` (the wobble's negative at each frame's SG-007 instant
+with *P* = 48 000 / 220, to 4 decimals, at most 20.90 cents), and three
+that break one rule each: `request-over-50c` (frame 312 at 50.5),
+`request-short` (624 entries), `request-on-unmeasured` (a number on frame
+0). `silence-30s-plus.wav`: 1 440 384 zero samples, one frame more than
+30 s, with `request-silence-30s-plus.json`, 3751 `null`s.
+
+**What runs.** Round 2's crate unchanged (world-rs 0.1.0, WORLD with DIO
+plus StoneMask, CheapTrick, D4C; `wasm/src/lib.rs`), plus `wasm/src/bin/f1.rs`
+for the native outputs. A request's change is placed at each measured
+frame's SG-007 instant (384 *i* − 766 + *P*/2, *P* the frame's measured
+period), linear between, held at the ends, and sampled at WORLD's 5 ms
+frames (`world_request`). The rung is rounded to `f32`, as it crosses
+squillo's boundary (ADR 0006), and measured with E-002's YIN (`yin.py`)
+and MT-003's table read from `E-002 results/fold2.json` and
+`r2_analyse.py` (`mt003()`). Browsers: `f1_page/worker.js`, plain WASM in
+a dedicated module worker, two passes per input, Chrome 154.0.8037.57 and
+Firefox 156.0 headless through Playwright; Intel Core i7-12700H, one thread.
+
+**Checks** (S15). *The rule* (squillo SY-003, written before the run): on
+at least 95 % of the frames the take has measured, the rung's frame is
+measured and differs from the take's by the change within 2√(*u*²take +
+*u*²rung) (`delivered()`). *The check of the check:* on the ideal render
+of each request, the fixture's own formula along the requested contour
+(`ideal()`, must pass), 622 of 622 frames pass for all three requests
+(error at most 0.10 cents); on outputs made for another request (must
+fail), 0 %, 14.6 % and 0 % pass (zero output against the +50 and the
+steadying request; +50 output against zero).
+
+**Results.**
+
+| # | Question | Result |
+| :--- | :--- | :--- |
+| 1 | Is the change delivered by the rule? | Yes, for all three requests: 621 of 622 frames (99.8 %) pass; the rung's frame is unmeasured on one frame, and no frame is off by an octave. Per-frame error median 0.05–0.08 cents, p95 0.15–0.20, max 1.65–1.90, against a bound of 4.90 (every *u* √3) |
+| 2 | Output | 240 000 samples, all finite, for every request; peak 0.718–0.719 from the take's 0.5 (WORLD re-synthesizes with its own phase) |
+| 3 | Same samples everywhere? | Chrome and Firefox, two passes each: one hash per input and request, as `f64` and as `f32`, for all five pairs (three requests on the voice take, the 30 s and 60 s takes). Native x86-64 differs by at most 3.5 × 10⁻¹² (5 s) and 4.9 × 10⁻¹⁰ (30 and 60 s), and its `f32` rounding is not identical to the browsers' |
+| 4 | Time, the faster of two passes, s per s of audio | First rung (analysis plus one synthesis): 0.14–0.16 on the 5 s, 30 s and 60 s takes in both browsers; each further rung 0.029–0.033. A 30 s take: 4.3 s (Firefox) to 4.9 s (Chrome) for the first rung, 0.88–1.00 s for each further; a 60 s take 8.6–9.8 s. A first full run, overwritten by this one after `r2_build.sh` was made to build the f1 binary, gave the same hashes and rule results, and first-rung times within 6.1 % |
+| 5 | Memory | The analysis holds 3.67 MB per second (18.4 MB for 5 s, 110.0 MB for 30 s, 220.0 MB for 60 s). The WASM linear memory, which never shrinks, peaked at 60.6 MB, 414.7 MB and 887.1 MB, the same in both browsers: 3.3 to 4.0 times the analysis |
+
+**What this says for squillo.** A rung can be tested on a fixture by the
+delivered-change rule: WORLD passes it with a wide margin, and the rule
+tells a rung made for another request apart. Tests can compare browsers bit
+for bit; a native build is not bit-identical and is evidence only. Time
+grows linearly with the take; memory at peak is 12 to 15 MB per second of
+audio, so a 30 s take asks about 415 MB of one tab and a 60 s take about
+890 MB; a 30 s take's first rung takes 4.3–4.9 s on this laptop, a proxy
+for a singer's device, not a measurement of one.
+
+**Limits.** One synthetic take with every frame at MT-003's first bin: the
+rule's margin on real voices, where *u* is larger and WORLD's output is
+misread an octave high on up to 2.8 % of frames (round 1, result 4), is not
+measured here. One machine, headless, Linux; no Safari. Peak memory is the
+crate's, with its f64 analysis and Rust's allocator; memory held as `f32`
+is round 3's.
 
 ### Round 3 (open)
 

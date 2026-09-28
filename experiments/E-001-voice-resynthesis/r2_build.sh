@@ -5,7 +5,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/wasm"
 export PATH="$HOME/.cargo/bin:$PATH"
-cargo build --release --bin bench
+cargo build --release --bins
 cargo build --release --lib --target wasm32-unknown-unknown
 wasm-bindgen --target web --out-dir pkg target/wasm32-unknown-unknown/release/e001.wasm
 RUSTFLAGS="-C target-feature=+simd128" cargo build --release --lib --target wasm32-unknown-unknown --target-dir target-simd

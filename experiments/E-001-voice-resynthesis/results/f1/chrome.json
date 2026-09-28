@@ -1,0 +1,154 @@
+{
+ "rows": [
+  {
+   "input": "voice",
+   "request": "zero",
+   "seconds": 5,
+   "analysis_s": [
+    0.7081899999380111,
+    0.6229799998998642
+   ],
+   "analysis_bytes": 18352416,
+   "wasm_memory_bytes": 60620800,
+   "f64_hashes": [
+    "95e4c3f",
+    "95e4c3f"
+   ],
+   "f32_hashes": [
+    "ffdab263",
+    "ffdab263"
+   ],
+   "synth_s": [
+    0.1809099999666214,
+    0.15890000009536742
+   ],
+   "vs_native": {
+    "length_equal": true,
+    "bit_identical": false,
+    "f32_identical": false,
+    "max_abs_diff": 3.4916514124461173e-12
+   }
+  },
+  {
+   "input": "voice",
+   "request": "up-50c",
+   "seconds": 5,
+   "analysis_s": [
+    0.7081899999380111,
+    0.6229799998998642
+   ],
+   "analysis_bytes": 18352416,
+   "wasm_memory_bytes": 60620800,
+   "f64_hashes": [
+    "762ea92c",
+    "762ea92c"
+   ],
+   "f32_hashes": [
+    "8d586f33",
+    "8d586f33"
+   ],
+   "synth_s": [
+    0.16458500003814697,
+    0.1644500000476837
+   ],
+   "vs_native": {
+    "length_equal": true,
+    "bit_identical": false,
+    "f32_identical": false,
+    "max_abs_diff": 1.1877165917439925e-12
+   }
+  },
+  {
+   "input": "voice",
+   "request": "steady",
+   "seconds": 5,
+   "analysis_s": [
+    0.7081899999380111,
+    0.6229799998998642
+   ],
+   "analysis_bytes": 18352416,
+   "wasm_memory_bytes": 60620800,
+   "f64_hashes": [
+    "67182f73",
+    "67182f73"
+   ],
+   "f32_hashes": [
+    "89f07f3f",
+    "89f07f3f"
+   ],
+   "synth_s": [
+    0.15814999997615814,
+    0.1619249999523163
+   ],
+   "vs_native": {
+    "length_equal": true,
+    "bit_identical": false,
+    "f32_identical": false,
+    "max_abs_diff": 1.7336687641034132e-12
+   }
+  },
+  {
+   "input": "long30",
+   "request": "steady",
+   "seconds": 30,
+   "analysis_s": [
+    3.946740000009537,
+    3.893784999966621
+   ],
+   "analysis_bytes": 110032416,
+   "wasm_memory_bytes": 414711808,
+   "f64_hashes": [
+    "9ecb67fc",
+    "9ecb67fc"
+   ],
+   "f32_hashes": [
+    "fdd0bd5",
+    "fdd0bd5"
+   ],
+   "synth_s": [
+    1.0230149999856948,
+    0.9979250000715256
+   ],
+   "vs_native": {
+    "length_equal": true,
+    "bit_identical": false,
+    "f32_identical": false,
+    "max_abs_diff": 4.87764897916243e-10
+   }
+  },
+  {
+   "input": "long60",
+   "request": "steady",
+   "seconds": 60,
+   "analysis_s": [
+    8.081915000081063,
+    7.801760000109673
+   ],
+   "analysis_bytes": 220048416,
+   "wasm_memory_bytes": 887095296,
+   "f64_hashes": [
+    "7eb982f",
+    "7eb982f"
+   ],
+   "f32_hashes": [
+    "1c5f105f",
+    "1c5f105f"
+   ],
+   "synth_s": [
+    2.051924999952316,
+    1.9657450000047683
+   ],
+   "vs_native": {
+    "length_equal": true,
+    "bit_identical": false,
+    "f32_identical": false,
+    "max_abs_diff": 3.3328265147680725e-10
+   }
+  }
+ ],
+ "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+ "browser": "chrome",
+ "version": "154.0.8037.57",
+ "pkg": "pkg",
+ "wall_s": 32.501
+}
