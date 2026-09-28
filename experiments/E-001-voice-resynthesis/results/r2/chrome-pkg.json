@@ -1,0 +1,588 @@
+{
+ "rows": [
+  {
+   "input": "bass_plain_1",
+   "method": "harvest",
+   "seconds": 4.05,
+   "stages_s": [
+    0.7966200000047684,
+    0.08329999995231628,
+    0.4014099999666214,
+    0.08020500004291535
+   ],
+   "reps_total_s": [
+    1.5864250000715256,
+    1.3670600000619888,
+    1.3616800000667573
+   ],
+   "analysis_bytes": 14868576,
+   "wasm_memory_bytes": 77135872,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 3.0388191962771316e-12,
+    "native_peak": 0.5299695540255326
+   },
+   "c100_hash": "80a76fde"
+  },
+  {
+   "input": "bass_plain_1",
+   "method": "dio",
+   "seconds": 4.05,
+   "stages_s": [
+    0.08852999997138977,
+    0.08335000002384185,
+    0.4017849999666214,
+    0.08043500006198884
+   ],
+   "reps_total_s": [
+    0.6790349999666214,
+    0.6877699999809265,
+    0.6557849999666214
+   ],
+   "analysis_bytes": 14868576,
+   "wasm_memory_bytes": 77135872,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 3.1623870189179115e-12,
+    "native_peak": 0.5289173500673915
+   },
+   "c100_hash": "c17f0123"
+  },
+  {
+   "input": "bass_plain_1",
+   "method": "psola",
+   "seconds": 4.05,
+   "stages_s": [
+    0.02847500002384186,
+    0.00021500003337860107,
+    0,
+    0.003115000009536743
+   ],
+   "reps_total_s": [
+    0.0384300000667572,
+    0.032,
+    0.031805000066757204
+   ],
+   "analysis_bytes": 0,
+   "wasm_memory_bytes": 77135872,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 1.1102230246251565e-16,
+    "native_peak": 0.5
+   },
+   "c100_hash": "5dfe8c9d"
+  },
+  {
+   "input": "tenor_plain_1",
+   "method": "harvest",
+   "seconds": 4.05,
+   "stages_s": [
+    0.8909249999523163,
+    0.07775,
+    0.3631799999475479,
+    0.11515499997138977
+   ],
+   "reps_total_s": [
+    1.4514199999570847,
+    1.447274999976158,
+    1.448814999938011
+   ],
+   "analysis_bytes": 14868576,
+   "wasm_memory_bytes": 83558400,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 4.347910920188269e-12,
+    "native_peak": 0.5989554522396695
+   },
+   "c100_hash": "5719bab7"
+  },
+  {
+   "input": "tenor_plain_1",
+   "method": "dio",
+   "seconds": 4.05,
+   "stages_s": [
+    0.07423500001430511,
+    0.07801499998569489,
+    0.3621749999523163,
+    0.11554999995231628
+   ],
+   "reps_total_s": [
+    0.6309850000143051,
+    0.6301299999952317,
+    0.630164999961853
+   ],
+   "analysis_bytes": 14868576,
+   "wasm_memory_bytes": 83558400,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 4.479194792850194e-13,
+    "native_peak": 0.6013037616896236
+   },
+   "c100_hash": "51e01445"
+  },
+  {
+   "input": "tenor_plain_1",
+   "method": "psola",
+   "seconds": 4.05,
+   "stages_s": [
+    0.03053500008583069,
+    0.00022499990463256835,
+    0,
+    0.003125
+   ],
+   "reps_total_s": [
+    0.03512999999523163,
+    0.03388499999046326,
+    0.034440000057220456
+   ],
+   "analysis_bytes": 0,
+   "wasm_memory_bytes": 83558400,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 1.1102230246251565e-16,
+    "native_peak": 0.49989833723879185
+   },
+   "c100_hash": "e746626e"
+  },
+  {
+   "input": "soprano_high_plain_1",
+   "method": "harvest",
+   "seconds": 4.05,
+   "stages_s": [
+    0.9148600000143051,
+    0.0721599999666214,
+    0.3259800000190735,
+    0.30094999992847443
+   ],
+   "reps_total_s": [
+    1.6272149999141694,
+    1.6171699999570845,
+    1.6145849999189377
+   ],
+   "analysis_bytes": 14868576,
+   "wasm_memory_bytes": 86310912,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 2.515820884951836e-12,
+    "native_peak": 0.7307789055659608
+   },
+   "c100_hash": "70a56b09"
+  },
+  {
+   "input": "soprano_high_plain_1",
+   "method": "dio",
+   "seconds": 4.05,
+   "stages_s": [
+    0.060605000019073485,
+    0.07188499999046326,
+    0.3158899999856949,
+    0.2938600000143051
+   ],
+   "reps_total_s": [
+    0.7717099999189376,
+    0.7517150000333787,
+    0.7424300000667572
+   ],
+   "analysis_bytes": 14868576,
+   "wasm_memory_bytes": 86310912,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 2.4941021470326064e-12,
+    "native_peak": 0.7318345024094605
+   },
+   "c100_hash": "450aea9d"
+  },
+  {
+   "input": "soprano_high_plain_1",
+   "method": "psola",
+   "seconds": 4.05,
+   "stages_s": [
+    0.028580000042915343,
+    0.00025999999046325684,
+    0,
+    0.0033149999380111695
+   ],
+   "reps_total_s": [
+    0.03407000005245209,
+    0.0321949999332428,
+    0.032305000066757204
+   ],
+   "analysis_bytes": 0,
+   "wasm_memory_bytes": 86310912,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 1.1102230246251565e-16,
+    "native_peak": 0.4902625414398136
+   },
+   "c100_hash": "35a5f2a8"
+  },
+  {
+   "input": "f1",
+   "method": "harvest",
+   "seconds": 11.432395833333333,
+   "stages_s": [
+    2.8940249999761583,
+    0.20637000000476838,
+    0.8584850000143052,
+    0.5998399999141694
+   ],
+   "reps_total_s": [
+    4.570634999990463,
+    4.646539999961853,
+    4.653735000014305
+   ],
+   "analysis_bytes": 41933432,
+   "wasm_memory_bytes": 164691968,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 9.364153549795695e-12,
+    "native_peak": 0.48218841731067635
+   },
+   "c100_hash": "5aae7636"
+  },
+  {
+   "input": "f1",
+   "method": "dio",
+   "seconds": 11.432395833333333,
+   "stages_s": [
+    0.2761200000047684,
+    0.2049800000190735,
+    0.8293050000667572,
+    0.5858249999284745
+   ],
+   "reps_total_s": [
+    1.9252400000095367,
+    1.9431150000095367,
+    1.8970800000429153
+   ],
+   "analysis_bytes": 41933432,
+   "wasm_memory_bytes": 198311936,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 2.7733232377258332e-12,
+    "native_peak": 0.47197539485114176
+   },
+   "c100_hash": "7d8a27a3"
+  },
+  {
+   "input": "f1",
+   "method": "psola",
+   "seconds": 11.432395833333333,
+   "stages_s": [
+    0.07111999988555909,
+    0.0006100000143051148,
+    0,
+    0.009169999957084656
+   ],
+   "reps_total_s": [
+    0.08273999989032746,
+    0.0809799998998642,
+    0.08095999991893768
+   ],
+   "analysis_bytes": 0,
+   "wasm_memory_bytes": 198311936,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 5.551115123125783e-17,
+    "native_peak": 0.5001927409398192
+   },
+   "c100_hash": "ee29dde4"
+  },
+  {
+   "input": "f5",
+   "method": "harvest",
+   "seconds": 9.1195625,
+   "stages_s": [
+    2.3247799999713896,
+    0.16627999997138976,
+    0.6970249999761582,
+    0.4556299999952316
+   ],
+   "reps_total_s": [
+    3.6494950000047686,
+    3.6439599999189376,
+    3.8185599999427797
+   ],
+   "analysis_bytes": 33444696,
+   "wasm_memory_bytes": 198311936,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 1.1427192525559349e-11,
+    "native_peak": 0.7079225432516277
+   },
+   "c100_hash": "5443c602"
+  },
+  {
+   "input": "f5",
+   "method": "dio",
+   "seconds": 9.1195625,
+   "stages_s": [
+    0.16341999995708464,
+    0.1674449999332428,
+    0.6797899999618531,
+    0.4820500000715256
+   ],
+   "reps_total_s": [
+    1.550460000038147,
+    1.5417999999523162,
+    1.494180000066757
+   ],
+   "analysis_bytes": 33444696,
+   "wasm_memory_bytes": 198311936,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 1.831812479480277e-12,
+    "native_peak": 0.7098980971516708
+   },
+   "c100_hash": "f0cd7376"
+  },
+  {
+   "input": "f5",
+   "method": "psola",
+   "seconds": 9.1195625,
+   "stages_s": [
+    0.05541999995708466,
+    0.0004950000047683716,
+    0,
+    0.007549999952316284
+   ],
+   "reps_total_s": [
+    0.06769999992847443,
+    0.06347499990463257,
+    0.06364500010013581
+   ],
+   "analysis_bytes": 0,
+   "wasm_memory_bytes": 198311936,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 1.1102230246251565e-16,
+    "native_peak": 0.5035610742596794
+   },
+   "c100_hash": "2c76a93b"
+  },
+  {
+   "input": "f9",
+   "method": "harvest",
+   "seconds": 7.791520833333333,
+   "stages_s": [
+    1.8606800000667572,
+    0.14070500004291533,
+    0.5965699999332428,
+    0.3965750000476837
+   ],
+   "reps_total_s": [
+    3.105840000033379,
+    3.0533299999237062,
+    2.994655000090599
+   ],
+   "analysis_bytes": 28584488,
+   "wasm_memory_bytes": 198311936,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 5.278444348277844e-12,
+    "native_peak": 0.6628169637342717
+   },
+   "c100_hash": "c1cb581c"
+  },
+  {
+   "input": "f9",
+   "method": "dio",
+   "seconds": 7.791520833333333,
+   "stages_s": [
+    0.14491999995708466,
+    0.14116999995708465,
+    0.6127300000190735,
+    0.3811749999523163
+   ],
+   "reps_total_s": [
+    1.2867999999523163,
+    1.2810199999809264,
+    1.2817300000190734
+   ],
+   "analysis_bytes": 28584488,
+   "wasm_memory_bytes": 198311936,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 2.5188393038000356e-12,
+    "native_peak": 0.6665270307579839
+   },
+   "c100_hash": "985783f8"
+  },
+  {
+   "input": "f9",
+   "method": "psola",
+   "seconds": 7.791520833333333,
+   "stages_s": [
+    0.052044999957084656,
+    0.00042499995231628417,
+    0,
+    0.006160000085830689
+   ],
+   "reps_total_s": [
+    0.05955499994754791,
+    0.05890500009059906,
+    0.05862999999523163
+   ],
+   "analysis_bytes": 0,
+   "wasm_memory_bytes": 198311936,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 1.1102230246251565e-16,
+    "native_peak": 0.4997493144693543
+   },
+   "c100_hash": "b0d81494"
+  },
+  {
+   "input": "m1",
+   "method": "harvest",
+   "seconds": 16.766770833333332,
+   "stages_s": [
+    4.085150000095368,
+    0.32775999999046324,
+    1.4955249999761582,
+    0.4489800000190735
+   ],
+   "reps_total_s": [
+    6.500245000004768,
+    6.358105000019074,
+    6.364215000033378
+   ],
+   "analysis_bytes": 61497704,
+   "wasm_memory_bytes": 231931904,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 2.6567942290611768e-11,
+    "native_peak": 0.6259108419195165
+   },
+   "c100_hash": "e8ecedda"
+  },
+  {
+   "input": "m1",
+   "method": "dio",
+   "seconds": 16.766770833333332,
+   "stages_s": [
+    0.37655499994754793,
+    0.32529500007629397,
+    1.4655349999666214,
+    0.46549500000476834
+   ],
+   "reps_total_s": [
+    2.6350350000858307,
+    2.6355049999952316,
+    2.651850000023842
+   ],
+   "analysis_bytes": 61497704,
+   "wasm_memory_bytes": 231931904,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 5.330957897342614e-12,
+    "native_peak": 0.6262274259736482
+   },
+   "c100_hash": "d0a6e5c8"
+  },
+  {
+   "input": "m1",
+   "method": "psola",
+   "seconds": 16.766770833333332,
+   "stages_s": [
+    0.10808500003814697,
+    0.0008499999046325683,
+    0,
+    0.01322000002861023
+   ],
+   "reps_total_s": [
+    0.12884500002861024,
+    0.1224099999666214,
+    0.12233000004291535
+   ],
+   "analysis_bytes": 0,
+   "wasm_memory_bytes": 231931904,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 5.551115123125783e-17,
+    "native_peak": 0.5
+   },
+   "c100_hash": "90bda82d"
+  },
+  {
+   "input": "m8",
+   "method": "harvest",
+   "seconds": 8.469270833333333,
+   "stages_s": [
+    2.0416649999618532,
+    0.16358000004291534,
+    0.6979349999427795,
+    0.23824500000476836
+   ],
+   "reps_total_s": [
+    3.1812650001049043,
+    3.1434399999380114,
+    3.148509999990463
+   ],
+   "analysis_bytes": 31060904,
+   "wasm_memory_bytes": 231931904,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 1.0570322395153653e-11,
+    "native_peak": 0.7331020182991175
+   },
+   "c100_hash": "39c6c85e"
+  },
+  {
+   "input": "m8",
+   "method": "dio",
+   "seconds": 8.469270833333333,
+   "stages_s": [
+    0.17276500010490417,
+    0.16417999994754792,
+    0.7127949999570846,
+    0.23914999997615813
+   ],
+   "reps_total_s": [
+    1.2923300000429154,
+    1.2895299999713898,
+    1.2909500000476837
+   ],
+   "analysis_bytes": 31060904,
+   "wasm_memory_bytes": 231931904,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 5.846680778409663e-12,
+    "native_peak": 0.727472046723121
+   },
+   "c100_hash": "b4e1e628"
+  },
+  {
+   "input": "m8",
+   "method": "psola",
+   "seconds": 8.469270833333333,
+   "stages_s": [
+    0.05332999992370605,
+    0.00041499996185302734,
+    0,
+    0.007049999952316284
+   ],
+   "reps_total_s": [
+    0.06107999992370605,
+    0.06092500007152558,
+    0.06079499983787537
+   ],
+   "analysis_bytes": 0,
+   "wasm_memory_bytes": 231931904,
+   "vs_native": {
+    "bit_identical": false,
+    "max_abs_diff": 5.551115123125783e-17,
+    "native_peak": 0.5019803296908364
+   },
+   "c100_hash": "f6cf74e3"
+  }
+ ],
+ "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+ "crossOriginIsolated": true,
+ "hardwareConcurrency": 20,
+ "browser": "chrome",
+ "version": "154.0.8037.57",
+ "pkg": "pkg",
+ "reps": 3,
+ "wall_s": 110.695
+}

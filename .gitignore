@@ -4,3 +4,5 @@ node_modules/
 *.pyc
 experiments/*/data/cache/
 experiments/*/data/listen/
+experiments/*/wasm/target*/
+experiments/*/wasm/pkg*/

@@ -1,0 +1,8 @@
+{
+  "name": "e-001-voice-resynthesis",
+  "private": true,
+  "description": "E-001 round 2: WORLD and a crude PSOLA in WASM, timed in Chrome and Firefox",
+  "dependencies": {
+    "playwright": "1.63.0"
+  }
+}

@@ -1,0 +1,20 @@
+# E-001 round 2: WORLD (world-rs, a pure-Rust port) and a crude TD-PSOLA,
+# built natively and for wasm32-unknown-unknown. Crude experiment code.
+[package]
+name = "e001"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+world-rs = "=0.1.0"
+realfft = "3.5"
+wasm-bindgen = "=0.2.129"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
