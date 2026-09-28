@@ -544,3 +544,17 @@ notes split only from 41 cents; 38.3 cents is where the tuning turns, not
 where measurement fails. **Limits.** One synthetic take, one rate, one
 tuning (23 cents); where the split begins depends on them and is not
 measured more widely.
+
+**Checks made able to fail (squillo iteration 47, F-050 a).** R-09 found
+two faults: the split test's must-fail case took its expectation from
+F-040's own claim (J₀ turns negative above 38.3 cents), and the takes' ±*A*
+extremes and 14 × 800 ms structure were stated, not asserted. Now:
+
+| Check | Must pass | Must fail | Result |
+| :--- | :--- | :--- | :--- |
+| Split test (segments > 14) | 14 plain notes (the fixture's melody, no vibrato): 14 segments, false | the same 14 and a fifteenth, the last a whole tone higher: 15 segments, true | both as they must; still false on the fixture |
+| Each take is what it is called (`assert_take`): the samples equal the generator's exact phase formula on the sample grid within 10⁻⁹ (0 found), the instantaneous frequency's extremes on the grid equal the take's +*A* and lower extreme within 0.01 cents and lie inside E2..C6, and the output holds 14 runs of 38 398 to 38 400 non-zero samples each after a gap of at least 4 800 | every take in the table and both cents-model takes | the 36-cent take's samples called the fixture; the 15-note take called 14 notes: both refused | as they must |
+
+F-040's claim is kept as a reported result, not a check
+(`f040_claim_result`): the first splitting take is at +41 cents, the last
+whole one at +40. Every row of the table above is unchanged.

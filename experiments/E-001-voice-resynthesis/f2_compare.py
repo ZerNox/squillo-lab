@@ -20,6 +20,13 @@ Rules, written before the run:
 - The FNV-1a hash of each copy (f1_page/worker.js:11-16, reimplemented) must
   equal fold 1's recorded hash for the same input and request, so this run
   is the same computation as fold 1's.
+- Each browser's f32 output must be its f64 output rounded to f32.
+- Added in squillo iteration 47 (F-050 c): the last two were recorded and
+  not asserted. Both are now asserted on every rung, and each is checked
+  first (S15): it must pass the first rung's Chrome copy as read, and must
+  fail the same copy with one sample's lowest mantissa bit flipped (the f32
+  file for the rounding check, the f64 bytes for the hash check), an input
+  that differs from the must-pass case by one ulp.
 - Time: first rung (the faster pass's analysis plus the slowest request's
   faster synthesis, as f1_fold.py's summary) compared with fold 1's, the
   relative difference reported per browser and input.
@@ -81,6 +88,24 @@ def main():
     check(not c["one_ulp_flipped"] and c["one_ulp_abs_diff"] > 0, "comparison fails a one-ulp change")
     check(not c["native"], "comparison fails the native output")
 
+    # F-050 (c): the rounding and fold 1 hash checks, each checked on a case it
+    # must pass and one it must fail, which differs from it by one ulp
+    f1h0 = {h for b in BROWSERS for row in f1[b]["rows"]
+            if row["input"] == n0 and row["request"] == r0 for h in row["f64_hashes"]}
+    a32 = np.fromfile(CACHE / f"f2/chrome/p0/{n0}.{r0}.f32", "<f4")
+    flip32 = a32.copy()
+    flip32.view("<u4")[len(a32) // 2] ^= 1
+    c.update(
+        rounding_passes_as_read=same(a32, a.astype("<f4")),
+        rounding_fails_one_ulp_f32=not same(flip32, a.astype("<f4")),
+        f32_flip_differs_in_input=not same(flip32, a32),
+        fold1_hash_passes_as_read={fnv1a(a.tobytes())} <= f1h0,
+        fold1_hash_fails_one_ulp={fnv1a(flip.tobytes())}.isdisjoint(f1h0),
+        f64_flip_differs_in_input=not same(flip, a))
+    for k in ("rounding_passes_as_read", "rounding_fails_one_ulp_f32", "f32_flip_differs_in_input",
+              "fold1_hash_passes_as_read", "fold1_hash_fails_one_ulp", "f64_flip_differs_in_input"):
+        check(c[k], k)
+
     for name, req in rungs:
         e = {}
         for kind, dt in (("f64", "<f8"), ("f32", "<f4")):
@@ -100,6 +125,8 @@ def main():
                        if row["input"] == name and row["request"] == req for h in row["f64_hashes"]}
                 e["fnv_f64"] = sorted(hashes)
                 e["matches_fold1_hash"] = hashes == f1h
+                check(e["f32_is_f64_rounded"], f"{name} {req} f32 is f64 rounded")
+                check(e["matches_fold1_hash"], f"{name} {req} matches fold 1's hash")
                 nat = np.fromfile(CACHE / f"f1/out/{name}.{req}.native.f64", "<f8")
                 e["native_max_abs_diff"] = float(abs(nat - copies["chrome p0"]).max())
         R["rungs"][f"{name} {req}"] = e

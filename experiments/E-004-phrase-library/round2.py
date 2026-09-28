@@ -2,7 +2,7 @@
 second, independent transcription named in advance (squillo F-026, S16).
 
     uv run python round2.py survey   # which sources exist, metadata only -> results/r2-survey.json
-    uv run python round2.py check    # each phrase against the reference named in REFS -> results/r2-check.json
+    uv run python round2.py check    # each phrase against the reference named in REFS -> results/r2-check.json, r2-rule2.json
     uv run python round2.py report   # -> results/r2-summary.json
 
 Crude experiment code. `survey` never compiles or compares a note: it lists,
@@ -238,24 +238,103 @@ def ref_tracks(ref, pid):
 
 def self_check(tracks):
     """S15: the reference's own first eight notes must pass; one pitch moved
-    a semitone must fail on pitch; one duration doubled must fail on rhythm."""
+    a semitone must fail on pitch; one duration doubled must fail on rhythm.
+    Revised in squillo iteration 47 (F-050 b): the moved note and the doubled
+    duration are taken at indices that exist (3 and 2, or the last note of a
+    shorter voice), each must-fail input is asserted to differ from the
+    must-pass one, and a voice of fewer than two notes is too short to check
+    (its must-pass case fails, so its phrase stays pending as before)."""
     tr = max(tracks, key=lambda t: len(t["pitches"]))
     n = min(8, len(tr["pitches"]) - 1)
     on = np.array(tr["onsets"][:n + 1], float) / tr["tpq"]
     mine = [(tr["pitches"][i], float(on[i + 1] - on[i])) for i in range(n)]
     ok = R.compare(mine, tracks)
-    bad_p = [(p + (1 if i == 3 else 0), b) for i, (p, b) in enumerate(mine)]
-    bad_r = [(p, b * (2 if i == 2 else 1)) for i, (p, b) in enumerate(mine)]
+    ip, ir = min(3, n - 1), min(2, n - 1)
+    bad_p = [(p + (1 if i == ip else 0), b) for i, (p, b) in enumerate(mine)]
+    bad_r = [(p, b * (2 if i == ir else 1)) for i, (p, b) in enumerate(mine)]
+    differs = n >= 1 and bad_p != mine and bad_r != mine
     rp, rr = R.compare(bad_p, tracks), R.compare(bad_r, tracks)
 
     def rhythm_ok(r):
         return bool(r and r["exact_pitch"] and r["rhythm"] and r["rhythm"]["ioi_match"] == r["rhythm"]["ioi_total"])
-    return dict(notes=n, must_pass=rhythm_ok(ok), must_fail_pitch=not (rp and rp["exact_pitch"]),
-                must_fail_rhythm=not rhythm_ok(rr))
+    return dict(notes=n, too_short=n < 2, must_fail_inputs_differ=differs, moved_index=ip, doubled_index=ir,
+                must_pass=rhythm_ok(ok) and n >= 2,
+                must_fail_pitch=differs and not (rp and rp["exact_pitch"]),
+                must_fail_rhythm=differs and not rhythm_ok(rr))
+
+
+def rule2_check(pid, ref, survey):
+    """Rule 2's mechanical part, checked on the survey's metadata (squillo
+    iteration 47, F-050 b). A Mutopia reference must be a piece the phrase's
+    own queries found, and its named file one of that piece's files; a
+    Wikipedia reference must be a block the survey lists for that phrase and
+    language, and not a copy of an English block. Which block sets the tune is
+    read from headings by the agent, so it is not checked here; the earlier
+    languages' non-copy blocks that rule 2 passed over are reported."""
+    rec = survey[pid]
+    if ref[0] == "mutopia":
+        _, mid, fname = ref
+        piece = next((m for m in rec["mutopia"] if m["id"] == mid), None)
+        ok = piece is not None and any(u.endswith("/" + fname) for u in piece["files"])
+        return dict(ok=ok, found_by_own_query=piece is not None)
+    _, lang, title, bi = ref
+    ed = next((w for w in rec["wiki"] if w["lang"] == lang), None)
+    blocks = ed["blocks"] if ed else []
+    ok = ed is not None and 0 <= bi < len(blocks) and not blocks[bi]["same_as_en_block"]
+    earlier = [dict(lang=w["lang"], block=i, heading=b["heading"])
+               for w in rec["wiki"] if LANGS.index(w["lang"]) < LANGS.index(lang)
+               for i, b in enumerate(w["blocks"]) if not b["same_as_en_block"]]
+    return dict(ok=ok, block_listed=ed is not None and 0 <= bi < len(blocks),
+                copy=bool(ed and 0 <= bi < len(blocks) and blocks[bi]["same_as_en_block"]),
+                earlier_non_copy_blocks=earlier)
+
+
+def rule2_no_ref_check(pid, survey):
+    """A phrase left without a reference: "no score in the 16 editions" must
+    mean the survey lists no block; "a copy" must mean every block is one."""
+    rec, why = survey[pid], NO_REF[pid]
+    blocks = [b for w in rec["wiki"] for b in w["blocks"]]
+    if "no score in the 16 editions" in why:
+        return dict(ok=not blocks, blocks=len(blocks))
+    if "copy" in why:
+        return dict(ok=bool(blocks) and all(b["same_as_en_block"] for b in blocks), blocks=len(blocks))
+    return dict(ok=True, blocks=len(blocks), note="reason names no block claim")
+
+
+def rule2_all():
+    """Rule 2 checked on every named reference and every phrase without one,
+    after the check itself passes the references as named and fails three
+    references that break it (each differs in the reference read)."""
+    survey = json.load(open(RES / "r2-survey.json"))
+    must_fail = {
+        "copied block (aura-lea fr 0)": ("aura-lea", ("wiki", "fr", "Aura Lea", 0)),
+        "piece not found by the phrase's queries (abide-with-me, Mutopia 194)":
+            ("abide-with-me", ("mutopia", 194, "Old100-orig.mid")),
+        "block not listed (la-donna-e-mobile de 1)": ("la-donna-e-mobile", ("wiki", "de", "La donna è mobile", 1)),
+    }
+    fail_res = {k: rule2_check(pid, ref, survey)["ok"] for k, (pid, ref) in must_fail.items()}
+    named = {pid: rule2_check(pid, REFS[pid][0], survey) for pid in REFS}
+    none = {pid: rule2_no_ref_check(pid, survey) for pid in NO_REF}
+    # the no-reference check's own must-fail: a phrase with a non-copy block called "no score"
+    NO_REF["_probe"] = "no score in the 16 editions"
+    survey["_probe"] = survey["la-donna-e-mobile"]
+    probe = rule2_no_ref_check("_probe", survey)["ok"]
+    del NO_REF["_probe"]
+    out = dict(must_fail=fail_res, must_fail_no_ref_la_donna_called_no_score=probe,
+               named=named, no_reference=none,
+               all_named_pass=all(v["ok"] for v in named.values()),
+               all_no_ref_pass=all(v["ok"] for v in none.values()),
+               check_fails_when_it_must=not any(fail_res.values()) and not probe)
+    assert out["check_fails_when_it_must"], out
+    return out
 
 
 def check():
     by_id = {c["id"]: c for c in L.CANDIDATES}
+    r2 = rule2_all()
+    json.dump(r2, open(RES / "r2-rule2.json", "w"), indent=1, ensure_ascii=False)
+    print("rule 2:", {k: r2[k] for k in ("must_fail", "must_fail_no_ref_la_donna_called_no_score",
+                                          "all_named_pass", "all_no_ref_pass")})
     r1 = json.load(open(RES / "summary.json"))["survive"]["per_phrase"]
     out = []
     for pid in PENDING:

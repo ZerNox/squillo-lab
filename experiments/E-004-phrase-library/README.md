@@ -276,6 +276,29 @@ that phrase stays pending (`pending-check-failed`); this consequence of
 rule 5 was written into `check` after its first run showed the failure,
 and it changes no other verdict.
 
+**Checks made able to fail (squillo iteration 47, F-050 b).** R-09
+found that rule 5's must-fail cases moved the pitch at index 3 and doubled
+the duration at index 2 of La donna's one-note list, which changed
+nothing, and that rule 2 had no case at all. Now: the moved and doubled
+notes are taken at an index that exists (3 and 2, or the last note), each
+must-fail input is asserted to differ from the must-pass one, and a voice
+of fewer than two notes is too short to check (its must-pass case fails).
+Rule 2's mechanical part is checked (`rule2_check`, `results/r2-rule2.json`):
+a Mutopia reference must be a piece its phrase's own queries found, with
+the named file among the piece's files; a Wikipedia reference must be a
+block the survey lists for that phrase and language, and not a copy of an
+English block; a phrase left with no reference for "no score in the 16
+editions" must have no block, and one left for "a copy" only copies. The
+check refuses three references that break it (Aura Lea's copied fr block,
+Mutopia 194 named for Abide with Me, a de block 1 La donna's article does
+not have) and a phrase with a block called "no score", and passes all 9
+named references and all 9 phrases without one. Which block sets the tune
+is read from its heading and is not checked by code; for every named
+Wikipedia reference, no earlier language in `LANGS` has a block that is
+not a copy, so the first-language order of rule 2 is not in question.
+Every verdict, `r2-check.json` outside `self_check`, and `r2-summary.json`
+are unchanged.
+
 ## Round 2 result
 
 | # | Question | Result (conditions; uncertainty) |

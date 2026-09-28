@@ -1,0 +1,97 @@
+{
+ "must_fail": {
+  "copied block (aura-lea fr 0)": false,
+  "piece not found by the phrase's queries (abide-with-me, Mutopia 194)": false,
+  "block not listed (la-donna-e-mobile de 1)": false
+ },
+ "must_fail_no_ref_la_donna_called_no_score": false,
+ "named": {
+  "old-hundredth": {
+   "ok": true,
+   "found_by_own_query": true
+  },
+  "abide-with-me": {
+   "ok": true,
+   "found_by_own_query": true
+  },
+  "in-the-bleak-midwinter": {
+   "ok": true,
+   "found_by_own_query": true
+  },
+  "auld-lang-syne": {
+   "ok": true,
+   "block_listed": true,
+   "copy": false,
+   "earlier_non_copy_blocks": []
+  },
+  "god-save-the-king": {
+   "ok": true,
+   "block_listed": true,
+   "copy": false,
+   "earlier_non_copy_blocks": []
+  },
+  "star-spangled-banner": {
+   "ok": true,
+   "block_listed": true,
+   "copy": false,
+   "earlier_non_copy_blocks": []
+  },
+  "la-marseillaise": {
+   "ok": true,
+   "block_listed": true,
+   "copy": false,
+   "earlier_non_copy_blocks": []
+  },
+  "brahms-lullaby": {
+   "ok": true,
+   "found_by_own_query": true
+  },
+  "la-donna-e-mobile": {
+   "ok": true,
+   "block_listed": true,
+   "copy": false,
+   "earlier_non_copy_blocks": []
+  }
+ },
+ "no_reference": {
+  "jesus-loves-me": {
+   "ok": true,
+   "blocks": 0
+  },
+  "swing-low": {
+   "ok": true,
+   "blocks": 0
+  },
+  "jingle-bells": {
+   "ok": true,
+   "blocks": 0
+  },
+  "deck-the-halls": {
+   "ok": true,
+   "blocks": 0
+  },
+  "my-bonnie": {
+   "ok": true,
+   "blocks": 0
+  },
+  "danny-boy": {
+   "ok": true,
+   "blocks": 0
+  },
+  "aura-lea": {
+   "ok": true,
+   "blocks": 1
+  },
+  "yankee-doodle": {
+   "ok": true,
+   "blocks": 0
+  },
+  "habanera": {
+   "ok": true,
+   "blocks": 0
+  }
+ },
+ "all_named_pass": true,
+ "all_no_ref_pass": true,
+ "check_fails_when_it_must": true
+}

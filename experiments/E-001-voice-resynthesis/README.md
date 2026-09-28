@@ -368,6 +368,17 @@ every target browser" now rests on a sample-by-sample comparison, not on
 equal hashes. The first-rung times repeat within 6.3 % run to run on this
 laptop. **Limits.** Fold 1's: one machine, headless, Linux, no Safari.
 
+**Checks made able to fail (squillo iteration 47, F-050 c).** R-09 found
+that `f2_compare.py` recorded two conditions it did not assert: each
+copy's hash equal to fold 1's, and each browser's `f32` its `f64` rounded.
+Both are now asserted on every rung, and each is first run on a case it
+must pass (the first rung's Chrome copy as read) and one it must fail, the
+same copy with one sample's lowest mantissa bit flipped (in the `f32` file
+for the rounding check, in the `f64` bytes for the hash check), an input
+that differs by one ulp. Both pass their own cases and every rung;
+`compare.json`'s `rungs`, `time` and `summary` are unchanged from
+iteration 43's, and `check_of_check` gains the six cases.
+
 ### Round 3 (open)
 
 The listening ratings; vibrato regularisation; amateur voices; why the

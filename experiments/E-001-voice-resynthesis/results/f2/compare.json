@@ -9,7 +9,13 @@
   "one_ulp_abs_diff": 1.3877787807814457e-17,
   "native": false,
   "native_max_abs_diff": 3.4916514124461173e-12,
-  "fnv_changes_on_flip": true
+  "fnv_changes_on_flip": true,
+  "rounding_passes_as_read": true,
+  "rounding_fails_one_ulp_f32": true,
+  "f32_flip_differs_in_input": true,
+  "fold1_hash_passes_as_read": true,
+  "fold1_hash_fails_one_ulp": true,
+  "f64_flip_differs_in_input": true
  },
  "rungs": {
   "voice zero": {
