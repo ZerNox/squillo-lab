@@ -193,6 +193,52 @@ and Danny Boy, free under `life70` only, stay out, and their
 throwaway check in `/tmp`, run in squillo iteration 29 and not committed,
 wrote the 19 verified phrases in that format: 19 of 19 load and pass.
 
+## Round 2 (squillo iteration 41): a second transcription
+
+**Question.** Of the 18 phrases that pass the rights rules with their
+melody unconfirmed, how many match a second, independent transcription,
+named in advance (squillo F-026, standing instruction S16)? This moves the
+verified count towards `VISION.md` §9's 30 without a listener.
+
+**Rules, written before the survey ran.**
+
+1. *Survey, metadata only* (`round2.py survey`). For each pending phrase:
+   the Mutopia Project pieces found by fixed title queries (`MUTOPIA_Q`),
+   with instrument, source and licence; and, in 16 Wikipedia language
+   editions in a fixed order (`LANGS`: de, fr, es, it, nl, sv, pl, pt, ru,
+   uk, cs, fi, da, no, ja, zh) linked from the English article, each
+   `<score>` block's heading, the text around it and any LilyPond title.
+   Nothing is compiled or compared.
+2. *Naming the reference* (`REFS` in `round2.py`), from that metadata
+   alone, and committed before `check` runs. In order of preference:
+   a Mutopia piece that sets this tune for voice (an instrumental
+   arrangement is excluded), since it transcribes a named printed edition;
+   else the first language in `LANGS` whose article has a block that, by
+   its heading, caption or title, sets this tune's melody, and in it the
+   first such block. A block whose source equals, whitespace removed, a
+   block of the English article is a copy and is skipped. A phrase with no
+   such source has no reference and stays pending.
+3. *Comparison* (`round2.py check`): round 1's `compare`, unchanged. Pitch
+   exact (every interval, transposition removed) and rhythm exact (every
+   inter-onset interval within 2 % after one overall scale) against the
+   named reference, in any voice of it. Mutopia's own MIDI file is used
+   where it has one; a Wikipedia block is compiled with LilyPond as in
+   round 1.
+4. *Verdict.* `verified-2`: exact in pitch and rhythm against the second
+   reference, and round 1 had no reference. `verified-variant`: the same,
+   where round 1's reference disagreed; the phrase then matches one
+   independent version and not another, both recorded. Both count as
+   verified, since round 1's bar is a match with an independent
+   transcription; the variants are reported apart so squillo can hold them
+   out. Anything else stays pending, with its reason.
+5. *Checking the check* (S15). On every reference: its own first eight
+   notes of the voice matched must pass; the same with one pitch moved a
+   semitone must fail on pitch; with one duration doubled must fail on
+   rhythm.
+6. *What counts towards 30.* squillo ships a public-domain phrase only when
+   it passes `us` and `life100` (ADR 0005, iteration 29). The count is
+   reported under that rule, and under round 1's `us` and `life70`.
+
 ## Needs a human
 
 15 minutes, headphones, no microphone.
