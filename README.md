@@ -25,7 +25,9 @@ range the measure is specified for (for pitch, squillo ADR 0007's E2–C6),
 every condition of the requirement a fixture serves, and, for a synthetic
 or re-synthesized stand-in for voices, the range real recordings of the
 same kind span (such as one singer's takes; never pooled extremes band by
-band), compared only where both have energy. The generator asserts each
+band), compared only where both have energy. A condition carried over from
+an earlier round or experiment is read from its code, citing the line,
+never from its README's prose. The generator asserts each
 condition on what it generated, with extremes computed from the output or
 its exact formula, never from nominal parameters, and stops if one fails.
 Any procedure that makes the truth (alignment, segmentation) runs on one
@@ -35,7 +37,7 @@ never retyped; a tool's arrays are matched to frames by the index it
 returns, never by position; and it is run once on a case it must pass and
 once on a case it must fail, each known independently of the check. The
 README reports the checks' numbers (squillo L-024, L-026, L-028, L-030,
-L-031, L-032).
+L-031, L-032, L-034).
 
 **Name the reference before comparing** (squillo standing instruction S16).
 A check against an outside source names its reference item in advance: the

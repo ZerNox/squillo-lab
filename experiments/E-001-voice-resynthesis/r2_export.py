@@ -14,7 +14,13 @@ every sample finite and |x| <= 1; sample rate 48 kHz; duration within round
 finite; |request| <= 50 cents except synthetic s100, whose wobble round 1
 scales to 10 cents RMS over the whole phrase and does not clip (its RMS is
 asserted instead, on the phrase's own samples); `id` identically zero; c100
-and s100 not identically zero on any input.
+and s100 not identically zero on any input. Each bound is read from round
+1's code, not its README (squillo L-034): note offsets uniform in +-50 cents,
+`voice.py` `rng.uniform(-50, 50, ...)`; synthetic wobble scaled to 10 cents
+RMS, `voice.py` `wobble = 10.0 * w / np.sqrt(np.mean(w ** 2))`, never
+clipped (up to 61.4 cents); VocalSet offsets folded to the nearest note and
+wobble clipped, `run.py` `offset = centre - 100 * np.round(centre / 100)`
+and `np.clip(..., -50, 50)`.
 """
 
 import json
