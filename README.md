@@ -77,7 +77,10 @@ before starting, never after (squillo L-033). A run longer than a few
 minutes saves its results as it goes and resumes from them, and no time
 limit around it is shorter than the estimate allows (squillo L-037). A
 survey or download from an outside source is a run too: before it,
-count its requests and multiply by their spacing (squillo L-039).
+count its requests and multiply by their spacing (squillo L-039). So is
+the analysis of a run: before it runs on everything, time it on the
+sample's own outputs at the pool it will use, and write that estimate
+beside the run's (squillo L-044).
 
 **Every claim about the code is matched to the code** (squillo standing
 instruction S18). Before committing a README's check table, a docstring or

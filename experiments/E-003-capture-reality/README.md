@@ -410,7 +410,10 @@ sample, 16 captures of the full run's own jobs (231.9 s of capture), took
 60 s of wall time at 4 parallel browsers, 0.26 s of wall per second of
 capture, so the full run is about 25 min, run in steps of 150 jobs, each
 resuming from the captures already written. The analysis, one process per
-capture on a pool of 16, is timed on the sample below.
+capture on a pool of 16, was not timed before it ran (see *Deviations*
+below); timed afterwards on 16 of the sample's captures at that pool:
+2.3 s, so all 440 captures about 65 s, and the full analysis with its
+bootstrap took 71 s.
 
 ```
 uv run --project ../E-002-measurement-reliability python r2_gen.py            # 7 s: 160 WAVs and truths -> data/cache/r2/in, results/r2/inputs.json
