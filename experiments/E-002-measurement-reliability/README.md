@@ -524,6 +524,42 @@ evaluated from its description, as squillo SY-004 states it, never from
 synthesized audio. The grid of 64 strengths was chosen before the run; a
 finer grid could move a next step by at most one strength.
 
+### Round 4: the ring ratio on repeated material, with a noise gate (squillo iteration 49, 2026-09-28)
+
+Set by squillo review R-09 for iteration 49 (finding F-036): round 2's ring
+ratio (results 24, 25) tells forte from pianissimo but moves with the notes
+sung, so the halves of one take were called changed in 28.5 % of takes, and
+noise biases it (called changed in 10.1 % of takes at 20 dB SNR). Squillo
+compares a measure only between runs of the same exercise and subject
+(`coach` CO-002), which is repeated material. Round 4 asks whether comparing
+two renditions **note by note, on the notes both sing**, with a ± from
+repeated material, makes the ring ratio comparable, and whether a gate read
+from the take's own quiet frames keeps noise from calling a change.
+
+**Rules, written in `r4_ring.py`'s docstring and committed before any real
+take was read** (S15, L-041): the note of a frame (a 25-frame running median
+of its pitch, against the take's own tuning), occurrences (runs of at least
+37 frames, trimmed 6 at each end), a side's ring ratio per note, the
+comparison of two sides on their shared notes (D, the mean difference over
+*k* shared notes), a random-effects ± fitted on no-change pairs of one fold
+of singers (*u*² = τ² + σ_w²/*k*, called changed beyond 2*u*), the noise
+estimate (median band power over the take's quietest 10 % of frames) and
+three variants: no gate (V0), a gate on each note's 2–4 kHz SNR (V1), and
+the gate with the noise subtracted (V2). Bars: **B1**, the matched
+comparison's false change on the halves of a take, tested on the other fold,
+at most 5 %; **B3**, with the gate chosen on one fold, false change at most
+5 % in every noise condition on the other, comparing a noisy half with the
+other half clean. Sensitivity (forte against pp, breathy against straight
+scales, same singer) is reported with no bar.
+
+**Checks of the checks.**
+
+| Check | Result |
+| :--- | :--- |
+| Synthetic pipeline check (`r4_ring.py check`, `results/r4_check.json`), before any real take: a harmonic take whose envelope makes the ring ratio depend on the note, half A on five notes, half B on five with two shared; every harmonic at least 3 bins from 50 Hz, 2 kHz and 4 kHz (asserted; 8 such notes between C4 and C6). Bound per note from the Hann window's own leakage 3 bins out, ε = 1.14 × 10⁻⁴ (computed from the window) | Must pass, S0 (same envelope): every note's ring within its bound of the value from the harmonic amplitudes; matched D = 0.000 dB (*k* = 2, bound 0.0044); the unmatched D 0.6707 dB against 0.6707 expected, so the note dependence is in the input. Must fail for "no change", S1 (B's 2–4 kHz harmonics doubled): matched D 6.0206 dB against 20 log10 2 = 6.0206 (bound 0.0047) |
+| B1's own check | Applied to the fitting fold's clean pairs (must pass) and to the halves with half B's 2–4 kHz band raised 6.02 dB by an FFT gain, on the test fold (must fail): results below |
+| B3's own check | V0 at white 10 dB on the fitting fold must fail (round 2's result 25 called 38.8 % changed there); the chosen gate on clean input on the fitting fold must pass: results below |
+
 ### Beyond round 3
 
 Amateur voices and other vowels (E-005's `needs-human` step); a real room
