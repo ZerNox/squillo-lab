@@ -10,8 +10,13 @@ import sys
 from multiprocessing import Pool
 from pathlib import Path
 
-import numpy as np
-import soundfile as sf
+import os
+
+os.environ.setdefault("OMP_NUM_THREADS", "1")
+os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
+import numpy as np  # noqa: E402
+import soundfile as sf  # noqa: E402
+from scipy.signal import correlate  # noqa: E402
 
 HERE = Path(__file__).parent
 E002 = HERE.parent / "E-002-measurement-reliability"
@@ -62,7 +67,7 @@ def align(cap, ref):
         lo, hi = w0 + L - 2400, w0 + L + WIN + 2400  # 50 ms either side
         if lo < 0 or hi > len(cap):
             continue
-        cc = np.correlate(cap[lo:hi], seg, "valid")
+        cc = correlate(cap[lo:hi], seg, "valid", method="fft")
         k = int(np.argmax(np.abs(cc)))
         lw = k + lo - w0
         c = cap[w0 + lw:w0 + lw + WIN]

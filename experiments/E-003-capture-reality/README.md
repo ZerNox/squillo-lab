@@ -1,6 +1,6 @@
 # E-003 — Capture reality in browsers
 
-**Status:** needs-human (round 1 automated, fake devices; the real-microphone step is left) · **Serves:** VISION §6 (honesty), §12.3 · Absorbs squillo S-001, S-002 and S-003
+**Status:** needs-human (rounds 1 and 2 automated, fake devices; the real-microphone step is left) · **Serves:** VISION §6 (honesty), §12.3 · Absorbs squillo S-001, S-002 and S-003
 
 ## Question
 
@@ -418,6 +418,110 @@ uv run --project ../E-002-measurement-reliability python r2_measures.py checks  
 node r2_run.mjs --jobs 4 --only 150    # then --only 300, then without --only: about 25 min in all -> data/cache/r2/cap
 uv run --project ../E-002-measurement-reliability python r2_measures.py         # -> results/r2/analysis.json
 ```
+
+### Round 2 as run and result (squillo iteration 47, 2026-09-28)
+
+**Conditions.** Chrome 154.0.8037.57, headless through Playwright, Linux,
+i7-12700H; 440 captures, 0 blocks lost (`results/r2/analysis.json`
+`groups.*.lost_blocks`). The readback named what each request got: raw
+reported the three flags off at 44 100 Hz and 2 channels (so Chrome's fake
+device ran at 44.1 kHz and the 48 kHz context resampled, as round 1's rate
+path); every other request reported its flags as asked, at 48 000 Hz and
+1 channel. Inputs as rule 1 (`results/r2/inputs.json`: 160 files, 2079 s,
+peak at most 0.45, SNR on the written files within 0.0002 dB of 20).
+
+**Checks of the checks** (`results/r2/checks.json`, run before the full
+run): alignment against itself (lag 0, no anomaly) and through a
+first-order allpass (lag 3, no anomaly) pass, and a 480-sample insertion at
+5 s is found (anomalies at 2 and 3 s, the stretch at the other lag); the
+widening factor is 1.00 for direct against itself and 2.92 for its errors
+tripled; the take comparison moves nothing for direct against itself and
+moves vibrato extent from 32.1 to 67.1 cents with a 60-cent sine added.
+`r2_report.py` checks its sorted-quantile form of *w* against rule 5's
+grid search on three cases before use.
+
+**Deviations, stated.** (1) Rule 3a, above, replaced rule 3 after the
+timing sample and before the full run. (2) The analysis was not timed
+before it ran (S19): its per-window correlation was direct, O(*N·M*), and
+did not finish 16 captures in 590 s; with FFT correlation (same peak) and
+one BLAS thread per process, 16 captures took 2.3 s on the pool of 16 and
+all 440 with the bootstrap 71 s (squillo L-044).
+
+**Anomalies** (rule 3a). 6 of 440 captures, all processed, left out: one
+(`ec clean`, `f1_long_straight_a`) is shifted 478–480 samples over four
+windows, round 1's 10 ms; five shift 87 to 137 samples across two windows
+at 4–7 s into the input (never at a loop point; the nearest file end
+2.8 s away), which is not a block multiple and is not attributed. Raw
+captures had none.
+
+**The reference bar** (rule 6) **fails narrowly**: raw against direct keeps
+coverage within 1 point (clean 93.20 → 93.17 %, 20 dB 96.06 → 95.75 %) and
+moves no take measure beyond direct's ±2*u* (0 of 43, 43, 31 clean; 0 of
+15, 15, 8 at 20 dB), but *w* is 1.01 [1.01, 1.01] clean and 1.04 [1.02,
+1.07] at 20 dB, not 1.00: raw is resampled from 44.1 kHz. So, as rule 6
+says, processing is compared with **raw** on the same input (inputs where
+neither capture has an anomaly). Bracketed ranges are 95 % intervals from
+1000 resamples of the 20 singers.
+
+| Request, input | Inputs | Accepted share of valid frames, raw → processed | Coverage of ±2*u*, raw → processed | Gross (> 50 cents) share of accepted | *w* per frame | Take measures moved beyond raw's ±2*u* (steadiness, extent, rate) | *w*_take |
+| :--- | ---: | :--- | :--- | :--- | :--- | :--- | :--- |
+| default (all three), clean | 78 | 76.4 → 69.5 % | 93.00 → 92.11 % | 0.9 → 1.5 % | **1.07 [1.03, 1.10]** | 0 of 35, 0 of 35, 0 of 23 | 1.00 each |
+| default, 20 dB | 78 | 31.6 → 44.4 % | 95.58 → 90.06 % | 1.4 → 3.5 % | **1.97 [1.40, 140.84]** | 2 of 11, 0 of 11, 0 of 6 | extent 1.27 [1.00, 1.27]; others 1.00 |
+| ns alone, clean | 19 | 83.2 → 77.1 % | 98.21 → 96.94 % | 0.05 → 1.2 % | 1.45 [1.03, 140.89] | 0 of 12, 0 of 12, 0 of 2 | 1.00 |
+| ns alone, 20 dB | 20 | 34.5 → 49.3 % | 97.25 → 93.45 % | 2.4 → 4.6 % | 140.84 [1.00, 246.06] | 0 of 4, 0 of 4, — | 1.00 |
+| ec alone, clean | 19 | 81.1 → 81.4 % | 96.43 → 96.34 % | 1.9 → 1.9 % | 1.02 [1.00, 1.06] | 0 of 11, 0 of 11, 0 of 4 | 1.00 |
+| ec alone, 20 dB | 20 | 34.5 → 39.7 % | 97.25 → 96.93 % | 2.4 → 2.6 % | 1.18 [1.04, 140.88] | 0 of 5, 0 of 5, — | 1.00 |
+| agc alone, clean | 20 | 81.5 → 81.4 % | 96.50 → 96.51 % | 1.8 → 1.8 % | 1.00 [1.00, 1.01] | 0 of 12, 0 of 12, 0 of 5 | 1.00 |
+| agc alone, 20 dB | 20 | 34.5 → 32.4 % | 97.25 → 97.52 % | 2.4 → 2.1 % | 1.00 [1.00, 1.01] | 0 of 5, 0 of 5, — | 1.00 |
+
+A *w* near 141 is an octave: an error of 1200 cents against the table's
+largest *u*, 4.26, needs *w* = 1200 / 8.52 ≈ 141. Where an interval
+reaches it, the coverage raw had cannot be restored by any factor short of
+covering octave errors. Levels: the default request multiplied the level
+by a median 3.6 (clean; 1.6 to 7.3) and 3.8 (20 dB; 0.7 to 6.5) and drove 63 % and
+78 % of captures to full scale; AGC alone by 2.6 clean and 1.0 at 20 dB
+(`groups.*.gain_median`, `full_scale_share`).
+
+**Answer** (F-034 (a)). On Chrome's fake device, with a voice at −26 dBFS:
+
+1. **Automatic gain control alone changes nothing measured**, clipping
+   included (*w* 1.00 [1.00, 1.01] both inputs, no take moved). Echo
+   cancellation alone, with no far-end signal, changes nothing in clean
+   input (1.02 [1.00, 1.06]).
+2. **Noise suppression is what moves the pitch.** It drops frames in clean
+   input and adds gross errors (0.05 → 1.2 % of accepted frames), and in
+   noise it passes more frames (34.5 → 49.3 %) with more of them wrong.
+3. **All three together, clean**: the per-frame ± must widen by **1.07
+   [1.03, 1.10]** to keep raw's coverage; 7 points fewer frames accepted.
+   The take measures do not move beyond their ± on any take measured both
+   ways, and each take ± covers the truth on as many takes as raw's
+   (31 of 31, 31 of 31, 17 of 17), so on this evidence they need no
+   widening; but 6, 6 and 7 takes measured raw are not measured processed,
+   and 3 the other way.
+4. **All three together, at 20 dB SNR**: *w* 1.97 [1.40, 140.84]. No
+   factor short of an octave's can be relied on, because processing adds
+   gross errors (1.4 → 3.5 %) that the aperiodicity does not flag: frames
+   noise suppression cleans enough to pass the *u* table are sometimes an
+   octave off. Steadiness moved beyond raw's ± on 2 of 11 takes, and the
+   extent's take ± needed 1.27 [1.00, 1.27] on 11.
+
+**What this says for squillo.** A not-raw take's per-frame ± widened by a
+factor is honest only in a quiet, close condition (the stated capture
+condition, `metrics` MT-012): there, 1.10 (the upper end) restores raw's
+coverage. In noise, no factor is honest; a not-raw take in noise either
+refuses per-frame pitch or says its ± may be too small, as UI-004 already
+says. The take measures moved by no more than their ± on every take
+measured both ways in clean input (35 for steadiness and extent, 23 for
+rate), and by more on 2 of 11 steadiness takes in noise. Firefox (F-034
+(b), its rate bridge) was not measured: its fake device is a tone.
+
+**Limits.** Chrome's fake device, which may not run the same processing as
+a real microphone's path (its echo canceller had no far-end signal; with a
+rung playing through the loudspeaker it would); one voice level
+(−26 dBFS); white noise only; WORLD re-syntheses of trained singers' long
+tones, not amateurs'; take-level counts are small (11 to 35 per cell), so
+"no take moved" bounds the share only to its interval; single flags only
+on LT-straight. The real microphone stays the `needs-human` step below.
 
 ## Needs a human (15 minutes)
 
