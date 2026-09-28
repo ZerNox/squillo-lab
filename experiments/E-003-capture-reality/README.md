@@ -246,6 +246,17 @@ requirements on every fixture, against outcomes written from the
 scenarios before it ran: 12 of 12 agree. The model is a check, not a
 design: crude and never built on.
 
+**Iteration 43** (squillo F-039, `capture` CA-010). A thirteenth trace,
+`events-start-after-load.json`: the singer's-stop trace preceded by
+`page-loaded` and `singer-start`. The model now opens nothing before a
+`singer-start` where a trace has one (the twelve earlier traces have none
+and start at once, as before) and records the release at the singer's
+stop or an end of input. Four more checks of the checks (a block before
+the start caught, none after it; released at the stop, not while the run
+goes on), 12 in all; 113 conditions; 13 of 13 outcomes as the scenarios
+state, `events-track-ended.json` now also expected released. The twelve
+earlier files regenerate byte for byte.
+
 ## Needs a human (15 minutes)
 
 Real microphones, drivers and rooms, which fake devices cannot show.

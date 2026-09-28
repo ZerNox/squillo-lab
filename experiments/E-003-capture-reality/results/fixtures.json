@@ -25,6 +25,22 @@
       "ok": true
     },
     {
+      "check": "nothing opened before the start when blocks follow it",
+      "ok": true
+    },
+    {
+      "check": "a block before the start is caught",
+      "ok": true
+    },
+    {
+      "check": "released at the singer's stop",
+      "ok": true
+    },
+    {
+      "check": "not released while the run goes on",
+      "ok": true
+    },
+    {
       "check": "f32_exact(0.75)",
       "ok": true
     },
@@ -435,6 +451,61 @@
       "ok": true
     },
     {
+      "fixture": "events-start-after-load.json",
+      "check": "no device identifier",
+      "ok": true
+    },
+    {
+      "fixture": "events-start-after-load.json",
+      "check": "every channel 128 samples",
+      "ok": true
+    },
+    {
+      "fixture": "events-start-after-load.json",
+      "check": "every sample exact in f32",
+      "ok": true
+    },
+    {
+      "fixture": "events-start-after-load.json",
+      "check": "every channel 128 samples",
+      "ok": true
+    },
+    {
+      "fixture": "events-start-after-load.json",
+      "check": "every sample exact in f32",
+      "ok": true
+    },
+    {
+      "fixture": "events-start-after-load.json",
+      "check": "every channel 128 samples",
+      "ok": true
+    },
+    {
+      "fixture": "events-start-after-load.json",
+      "check": "every sample exact in f32",
+      "ok": true
+    },
+    {
+      "fixture": "events-start-after-load.json",
+      "check": "every channel 128 samples",
+      "ok": true
+    },
+    {
+      "fixture": "events-start-after-load.json",
+      "check": "every sample exact in f32",
+      "ok": true
+    },
+    {
+      "fixture": "events-start-after-load.json",
+      "check": "every channel 128 samples",
+      "ok": true
+    },
+    {
+      "fixture": "events-start-after-load.json",
+      "check": "every sample exact in f32",
+      "ok": true
+    },
+    {
       "fixture": "readback-chrome-raw.json",
       "check": "settings as recorded",
       "ok": true
@@ -510,6 +581,11 @@
       "ok": true
     },
     {
+      "fixture": "events-start-after-load.json",
+      "check": "page-loaded, singer-start, then events-singer-stop.json's events unchanged",
+      "ok": true
+    },
+    {
       "fixture": "events-singer-stop.json",
       "check": "every quantum consecutive",
       "ok": true
@@ -533,6 +609,11 @@
       "fixture": "blocks-two-channels.json",
       "check": "every quantum consecutive",
       "ok": true
+    },
+    {
+      "fixture": "events-start-after-load.json",
+      "check": "every quantum consecutive",
+      "ok": true
     }
   ],
   "outcomes": [
@@ -548,6 +629,8 @@
         "tier": "raw",
         "track_rate": 44100,
         "ended": null,
+        "released": false,
+        "opened_on": "trace-start",
         "blocks_delivered": 0
       },
       "ok": true
@@ -564,6 +647,8 @@
         "tier": "raw",
         "track_rate": "not reported",
         "ended": null,
+        "released": false,
+        "opened_on": "trace-start",
         "blocks_delivered": 0
       },
       "ok": true
@@ -579,6 +664,8 @@
         "tier": "not-raw",
         "track_rate": "not reported",
         "ended": null,
+        "released": false,
+        "opened_on": "trace-start",
         "blocks_delivered": 0
       },
       "ok": true
@@ -594,6 +681,8 @@
         "tier": "not-raw",
         "track_rate": 48000,
         "ended": null,
+        "released": false,
+        "opened_on": "trace-start",
         "blocks_delivered": 0
       },
       "ok": true
@@ -624,6 +713,8 @@
         "tier": "raw",
         "track_rate": 44100,
         "ended": null,
+        "released": true,
+        "opened_on": "trace-start",
         "blocks_delivered": 3
       },
       "ok": true
@@ -640,6 +731,8 @@
         "tier": "raw",
         "track_rate": 44100,
         "ended": null,
+        "released": true,
+        "opened_on": "trace-start",
         "blocks_delivered": 5
       },
       "ok": true
@@ -652,7 +745,8 @@
           "track-ended",
           5
         ],
-        "n": 5
+        "n": 5,
+        "released": true
       },
       "model": {
         "started": true,
@@ -662,6 +756,8 @@
           "track-ended",
           5
         ],
+        "released": true,
+        "opened_on": "trace-start",
         "blocks_delivered": 5
       },
       "ok": true
@@ -684,6 +780,8 @@
           "track-muted",
           5
         ],
+        "released": true,
+        "opened_on": "trace-start",
         "blocks_delivered": 5
       },
       "ok": true
@@ -706,6 +804,8 @@
           "context-state",
           5
         ],
+        "released": true,
+        "opened_on": "trace-start",
         "blocks_delivered": 5
       },
       "ok": true
@@ -728,6 +828,8 @@
           "quantum-skipped",
           3
         ],
+        "released": true,
+        "opened_on": "trace-start",
         "blocks_delivered": 3
       },
       "ok": true
@@ -744,6 +846,27 @@
         "blocks_delivered": 0
       },
       "ok": true
+    },
+    {
+      "fixture": "events-start-after-load.json",
+      "expected": {
+        "started": true,
+        "ended": null,
+        "n": 5,
+        "opened_on": "singer-start",
+        "opened_before_start": null,
+        "released": true
+      },
+      "model": {
+        "started": true,
+        "tier": "raw",
+        "track_rate": 44100,
+        "ended": null,
+        "released": true,
+        "opened_on": "singer-start",
+        "blocks_delivered": 5
+      },
+      "ok": true
     }
   ],
   "sha256": {
@@ -758,6 +881,7 @@
     "events-track-muted.json": "eee0cea2d8ddfc0ab359e720458222f80f65646a93c5802723dbf23905b54ee6",
     "events-context-suspended.json": "abd3ac0aa16f727106dd0d02c5a30da68e7debf75ff47cf8b285fc17a0d246d1",
     "events-quantum-skipped.json": "ec3269ddcf4b16bce5fd468461b51fb911de0473917f031a05b5c3a512d0d1cb",
-    "events-engine-failed.json": "84588a03920bf96f03b060d97dc91ecd5f4deb160d4284aa72745ee8ed120d20"
+    "events-engine-failed.json": "84588a03920bf96f03b060d97dc91ecd5f4deb160d4284aa72745ee8ed120d20",
+    "events-start-after-load.json": "9253796ab2325ca32a7d8352e56c73ec25e15560b00071ebf25fc5fe509b74e4"
   }
 }

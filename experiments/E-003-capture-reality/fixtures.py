@@ -1,4 +1,6 @@
-"""Capture-trace fixtures for squillo's `capture` spec (squillo iteration 32, F-027).
+"""Capture-trace fixtures for squillo's `capture` spec (squillo iteration 32, F-027;
+iteration 43, F-039: events-start-after-load.json, and the model opening only at
+the singer's start and releasing at the run's end, CA-010).
 
 Crude and disposable, like everything here. Writes JSON capture traces:
 readbacks taken from round 1's recorded runs (identifiers removed) and small
@@ -104,6 +106,12 @@ def make():
     eng["source"] = "constructed; readback as readback-chrome-raw.json"
     eng["events"] = [{"type": "engine-failed"}]
     fx["events-engine-failed.json"] = eng
+    # iteration 43 (CA-010): the singer-stop trace, preceded by the page's load and the singer's start
+    sal = events([{"type": "singer-stop"}])
+    sal["source"] = ("constructed; readback as readback-chrome-raw.json; as events-singer-stop.json, "
+                     "preceded by page-loaded and singer-start")
+    sal["events"] = [{"type": "page-loaded"}, {"type": "singer-start"}] + sal["events"]
+    fx["events-start-after-load.json"] = sal
     return fx
 
 
@@ -127,9 +135,22 @@ def model(t):
         return {"started": False, "why": "rate"}
     out = {"started": True, "tier": tier(t["settings"]),
            "track_rate": t["settings"].get("sampleRate", "not reported"),
-           "delivered": [], "ended": None}
+           "delivered": [], "ended": None, "released": False}
+    # CA-010: a trace with the singer's start opens nothing before it; one without
+    # starts at the singer's start implicitly, as every iteration-32 trace
+    gated = any(e["type"] == "singer-start" for e in t["events"])
+    out["opened_on"] = "singer-start" if gated else "trace-start"
+    opened = not gated
     last = None
     for e in t["events"]:
+        if e["type"] == "page-loaded":
+            continue
+        if e["type"] == "singer-start":
+            opened = True
+            continue
+        if not opened:
+            out["opened_before_start"] = e["type"]
+            break
         if e["type"] == "block":
             if last is not None and e["frame"] != last + Q:
                 out["ended"] = ("quantum-skipped", len(out["delivered"]))
@@ -137,10 +158,14 @@ def model(t):
             out["delivered"].append(list(e["channels"][0]))
             last = e["frame"]
         elif e["type"] == "singer-stop":
+            out["released"] = True
             break
         else:  # track-ended, track-muted, a context state other than running
             out["ended"] = (e["type"], len(out["delivered"]))
+            out["released"] = True
             break
+    if out["ended"] and out["ended"][0] == "quantum-skipped":
+        out["released"] = True
     return out
 
 
@@ -186,8 +211,11 @@ def conditions(fx):
     steps = [b - a for a, b in zip(frames, frames[1:])]
     check("events-quantum-skipped.json", steps.count(Q) == len(steps) - 1 and steps.count(2 * Q) == 1,
           "exactly one quantum skipped")
+    sal, stop = fx["events-start-after-load.json"]["events"], fx["events-singer-stop.json"]["events"]
+    check("events-start-after-load.json", [e["type"] for e in sal[:2]] == ["page-loaded", "singer-start"]
+          and sal[2:] == stop, "page-loaded, singer-start, then events-singer-stop.json's events unchanged")
     for name in ("events-singer-stop.json", "events-track-ended.json", "events-track-muted.json",
-                 "events-context-suspended.json", "blocks-two-channels.json"):
+                 "events-context-suspended.json", "blocks-two-channels.json", "events-start-after-load.json"):
         fr = [e["frame"] for e in fx[name]["events"] if e["type"] == "block"]
         check(name, all(b - a == Q for a, b in zip(fr, fr[1:])), "every quantum consecutive")
     return rows
@@ -201,11 +229,14 @@ EXPECTED = {  # written from the spec's scenarios before the model ran
     "context-rate-44100.json": {"started": False, "why": "rate"},
     "blocks-two-channels.json": {"started": True, "tier": "raw", "ended": None, "n": 3},
     "events-singer-stop.json": {"started": True, "ended": None, "n": 5},
-    "events-track-ended.json": {"started": True, "ended": ("track-ended", 5), "n": 5},
+    "events-track-ended.json": {"started": True, "ended": ("track-ended", 5), "n": 5, "released": True},
     "events-track-muted.json": {"started": True, "ended": ("track-muted", 5), "n": 5},
     "events-context-suspended.json": {"started": True, "ended": ("context-state", 5), "n": 5},
     "events-quantum-skipped.json": {"started": True, "ended": ("quantum-skipped", 3), "n": 3},
     "events-engine-failed.json": {"started": False, "why": "engine"},
+    # iteration 43, CA-010's scenarios, written before the model ran
+    "events-start-after-load.json": {"started": True, "ended": None, "n": 5, "opened_on": "singer-start",
+                                     "opened_before_start": None, "released": True},
 }
 
 
@@ -244,6 +275,13 @@ def check_the_checks():
     bad = dict(base, events=[block(f, [[0.0] * Q]) for f in (0, 128, 384)])
     rows.append(("no gap reported on consecutive quanta", model(ok)["ended"] is None))
     rows.append(("gap reported on a skipped quantum", model(bad)["ended"] == ("quantum-skipped", 2)))
+    # CA-010: a block before the singer's start must be caught; one after must not
+    st = [{"type": "page-loaded"}, {"type": "singer-start"}] + [block(i * Q, [[0.0] * Q]) for i in range(2)]
+    early = [{"type": "page-loaded"}, block(0, [[0.0] * Q]), {"type": "singer-start"}, block(Q, [[0.0] * Q])]
+    rows.append(("nothing opened before the start when blocks follow it", model(dict(base, events=st)).get("opened_before_start") is None))
+    rows.append(("a block before the start is caught", model(dict(base, events=early)).get("opened_before_start") == "block"))
+    rows.append(("released at the singer's stop", model(dict(base, events=st + [{"type": "singer-stop"}]))["released"]))
+    rows.append(("not released while the run goes on", not model(dict(base, events=st))["released"]))
     # f32 exactness: 0.75 is exact, 0.1 is not
     rows.append(("f32_exact(0.75)", f32_exact(0.75)))
     rows.append(("not f32_exact(0.1)", not f32_exact(0.1)))
