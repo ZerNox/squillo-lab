@@ -257,6 +257,31 @@ goes on), 12 in all; 113 conditions; 13 of 13 outcomes as the scenarios
 state, `events-track-ended.json` now also expected released. The twelve
 earlier files regenerate byte for byte.
 
+**Iteration 46** (squillo F-049, `capture` CA-005, CA-009). When can the
+processing notice be given, now that the microphone opens only in the
+singer's start (CA-010)? Round 1's `page/probe.js` reads the track's
+settings (line 60) before it creates the audio context (line 62) and
+connects the tap (line 80), so in all 72 runs of `results/runs.json` the
+readback existed before any block could be rendered; 63 of them hold a
+non-empty readback and a tap record, the 9 Firefox stream tracks an empty
+one. A fourteenth trace, `events-start-processed.json`:
+`events-start-after-load.json`'s events under
+`readback-chrome-processed.json`'s readback (asserted equal to both, and
+not raw). The model now records its notices: the capture condition at
+`page-loaded`, before anything opens (at the trace's start where a trace
+has no load), and, for a take that is not raw, the processing notice in
+the singer's start, with the number of blocks delivered at that moment.
+The expected outcomes were committed before the model ran (`33b22cb`,
+L-041): the processed start trace gives the condition at the load and the
+processing notice before its first block; the raw one the condition only.
+Four more checks of the checks, 16 in all: the processing notice before
+the first block on Chrome's recorded default readback; none on its raw
+readback, the must-fail case differing in its input; the condition at the
+load, and at the trace's start where there is no load. A mutant that gives
+the notice one block late fails the first of them (run by hand, not kept).
+127 conditions; 14 of 14 outcomes as the scenarios state. The thirteen
+earlier files regenerate byte for byte.
+
 ## Needs a human (15 minutes)
 
 Real microphones, drivers and rooms, which fake devices cannot show.

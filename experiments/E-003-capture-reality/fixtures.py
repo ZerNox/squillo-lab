@@ -1,6 +1,7 @@
 """Capture-trace fixtures for squillo's `capture` spec (squillo iteration 32, F-027;
 iteration 43, F-039: events-start-after-load.json, and the model opening only at
-the singer's start and releasing at the run's end, CA-010).
+the singer's start and releasing at the run's end, CA-010; iteration 46, F-049:
+events-start-processed.json, and the model's notices, CA-005 and CA-009).
 
 Crude and disposable, like everything here. Writes JSON capture traces:
 readbacks taken from round 1's recorded runs (identifiers removed) and small
@@ -112,6 +113,13 @@ def make():
                      "preceded by page-loaded and singer-start")
     sal["events"] = [{"type": "page-loaded"}, {"type": "singer-start"}] + sal["events"]
     fx["events-start-after-load.json"] = sal
+    # iteration 46 (F-049): the same start trace under the processed readback
+    sp = copy.deepcopy(sal)
+    pr = fx["readback-chrome-processed.json"]
+    sp["source"] = ("constructed; readback as readback-chrome-processed.json; events as "
+                    "events-start-after-load.json")
+    sp["settings"], sp["context_sample_rate"] = copy.deepcopy(pr["settings"]), pr["context_sample_rate"]
+    fx["events-start-processed.json"] = sp
     return fx
 
 
@@ -141,12 +149,28 @@ def model(t):
     gated = any(e["type"] == "singer-start" for e in t["events"])
     out["opened_on"] = "singer-start" if gated else "trace-start"
     opened = not gated
+    # F-049: the capture condition needs no readback, so it is told at the page's load,
+    # nothing opened; the processing notice needs the readback, so it is told in the
+    # singer's start, once the microphone is open and before any block is delivered.
+    # [notice, when]: when is page-loaded, trace-start, or the blocks delivered so far
+    out["notices"] = []
+
+    def opening():
+        if not out["notices"]:
+            out["notices"].append(["capture-condition", "trace-start"])
+        if out["tier"] == "not-raw":
+            out["notices"].append(["processing", len(out["delivered"])])
+
+    if not gated:
+        opening()
     last = None
     for e in t["events"]:
         if e["type"] == "page-loaded":
+            out["notices"].append(["capture-condition", "page-loaded"])
             continue
         if e["type"] == "singer-start":
             opened = True
+            opening()
             continue
         if not opened:
             out["opened_before_start"] = e["type"]
@@ -266,6 +290,9 @@ def outcomes(fx):
         got = model(t)
         exp = EXPECTED[name]
         ok = all((len(got["delivered"]) if k == "n" else got.get(k)) == v for k, v in exp.items())
+        if name + "#notices" in EXPECTED:
+            exp = exp | {"notices": EXPECTED[name + "#notices"]}
+            ok = ok and got.get("notices") == exp["notices"]
         if name == "blocks-two-channels.json":
             first = [e["channels"][0] for e in t["events"] if e["type"] == "block"]
             ok = ok and got["delivered"] == first
@@ -302,6 +329,19 @@ def check_the_checks():
     rows.append(("a block before the start is caught", model(dict(base, events=early)).get("opened_before_start") == "block"))
     rows.append(("released at the singer's stop", model(dict(base, events=st + [{"type": "singer-stop"}]))["released"]))
     rows.append(("not released while the run goes on", not model(dict(base, events=st))["released"]))
+    # F-049: the processing notice before the first block, on a processed readback;
+    # none on a raw one (a must-fail case differing in its input, L-041); and a notice
+    # told only after a block is caught as such
+    proc = {"context_sample_rate": RATE, "settings": d["default"]["settings"], "events": st}
+    raw = {"context_sample_rate": RATE, "settings": d["raw"]["settings"], "events": st}
+    rows.append(("processing notice before the first block on a processed readback",
+                 ["processing", 0] in model(proc)["notices"]))
+    rows.append(("no processing notice on a raw readback",
+                 not any(n[0] == "processing" for n in model(raw)["notices"])))
+    rows.append(("capture condition at the page's load, before the start",
+                 model(proc)["notices"][0] == ["capture-condition", "page-loaded"]))
+    rows.append(("capture condition not at the load on a trace with no load",
+                 model(dict(proc, events=st[1:]))["notices"][0] == ["capture-condition", "trace-start"]))
     # f32 exactness: 0.75 is exact, 0.1 is not
     rows.append(("f32_exact(0.75)", f32_exact(0.75)))
     rows.append(("not f32_exact(0.1)", not f32_exact(0.1)))

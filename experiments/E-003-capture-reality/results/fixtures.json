@@ -41,6 +41,22 @@
       "ok": true
     },
     {
+      "check": "processing notice before the first block on a processed readback",
+      "ok": true
+    },
+    {
+      "check": "no processing notice on a raw readback",
+      "ok": true
+    },
+    {
+      "check": "capture condition at the page's load, before the start",
+      "ok": true
+    },
+    {
+      "check": "capture condition not at the load on a trace with no load",
+      "ok": true
+    },
+    {
       "check": "f32_exact(0.75)",
       "ok": true
     },
@@ -506,6 +522,61 @@
       "ok": true
     },
     {
+      "fixture": "events-start-processed.json",
+      "check": "no device identifier",
+      "ok": true
+    },
+    {
+      "fixture": "events-start-processed.json",
+      "check": "every channel 128 samples",
+      "ok": true
+    },
+    {
+      "fixture": "events-start-processed.json",
+      "check": "every sample exact in f32",
+      "ok": true
+    },
+    {
+      "fixture": "events-start-processed.json",
+      "check": "every channel 128 samples",
+      "ok": true
+    },
+    {
+      "fixture": "events-start-processed.json",
+      "check": "every sample exact in f32",
+      "ok": true
+    },
+    {
+      "fixture": "events-start-processed.json",
+      "check": "every channel 128 samples",
+      "ok": true
+    },
+    {
+      "fixture": "events-start-processed.json",
+      "check": "every sample exact in f32",
+      "ok": true
+    },
+    {
+      "fixture": "events-start-processed.json",
+      "check": "every channel 128 samples",
+      "ok": true
+    },
+    {
+      "fixture": "events-start-processed.json",
+      "check": "every sample exact in f32",
+      "ok": true
+    },
+    {
+      "fixture": "events-start-processed.json",
+      "check": "every channel 128 samples",
+      "ok": true
+    },
+    {
+      "fixture": "events-start-processed.json",
+      "check": "every sample exact in f32",
+      "ok": true
+    },
+    {
       "fixture": "readback-chrome-raw.json",
       "check": "settings as recorded",
       "ok": true
@@ -586,6 +657,16 @@
       "ok": true
     },
     {
+      "fixture": "events-start-processed.json",
+      "check": "events-start-after-load.json's events under readback-chrome-processed.json's readback",
+      "ok": true
+    },
+    {
+      "fixture": "events-start-processed.json",
+      "check": "all three flags on",
+      "ok": true
+    },
+    {
       "fixture": "events-singer-stop.json",
       "check": "every quantum consecutive",
       "ok": true
@@ -614,6 +695,11 @@
       "fixture": "events-start-after-load.json",
       "check": "every quantum consecutive",
       "ok": true
+    },
+    {
+      "fixture": "events-start-processed.json",
+      "check": "every quantum consecutive",
+      "ok": true
     }
   ],
   "outcomes": [
@@ -622,7 +708,13 @@
       "expected": {
         "started": true,
         "tier": "raw",
-        "track_rate": 44100
+        "track_rate": 44100,
+        "notices": [
+          [
+            "capture-condition",
+            "trace-start"
+          ]
+        ]
       },
       "model": {
         "started": true,
@@ -631,6 +723,12 @@
         "ended": null,
         "released": false,
         "opened_on": "trace-start",
+        "notices": [
+          [
+            "capture-condition",
+            "trace-start"
+          ]
+        ],
         "blocks_delivered": 0
       },
       "ok": true
@@ -649,6 +747,12 @@
         "ended": null,
         "released": false,
         "opened_on": "trace-start",
+        "notices": [
+          [
+            "capture-condition",
+            "trace-start"
+          ]
+        ],
         "blocks_delivered": 0
       },
       "ok": true
@@ -666,6 +770,16 @@
         "ended": null,
         "released": false,
         "opened_on": "trace-start",
+        "notices": [
+          [
+            "capture-condition",
+            "trace-start"
+          ],
+          [
+            "processing",
+            0
+          ]
+        ],
         "blocks_delivered": 0
       },
       "ok": true
@@ -674,7 +788,17 @@
       "fixture": "readback-chrome-processed.json",
       "expected": {
         "started": true,
-        "tier": "not-raw"
+        "tier": "not-raw",
+        "notices": [
+          [
+            "capture-condition",
+            "trace-start"
+          ],
+          [
+            "processing",
+            0
+          ]
+        ]
       },
       "model": {
         "started": true,
@@ -683,6 +807,16 @@
         "ended": null,
         "released": false,
         "opened_on": "trace-start",
+        "notices": [
+          [
+            "capture-condition",
+            "trace-start"
+          ],
+          [
+            "processing",
+            0
+          ]
+        ],
         "blocks_delivered": 0
       },
       "ok": true
@@ -715,6 +849,12 @@
         "ended": null,
         "released": true,
         "opened_on": "trace-start",
+        "notices": [
+          [
+            "capture-condition",
+            "trace-start"
+          ]
+        ],
         "blocks_delivered": 3
       },
       "ok": true
@@ -733,6 +873,12 @@
         "ended": null,
         "released": true,
         "opened_on": "trace-start",
+        "notices": [
+          [
+            "capture-condition",
+            "trace-start"
+          ]
+        ],
         "blocks_delivered": 5
       },
       "ok": true
@@ -758,6 +904,12 @@
         ],
         "released": true,
         "opened_on": "trace-start",
+        "notices": [
+          [
+            "capture-condition",
+            "trace-start"
+          ]
+        ],
         "blocks_delivered": 5
       },
       "ok": true
@@ -782,6 +934,12 @@
         ],
         "released": true,
         "opened_on": "trace-start",
+        "notices": [
+          [
+            "capture-condition",
+            "trace-start"
+          ]
+        ],
         "blocks_delivered": 5
       },
       "ok": true
@@ -806,6 +964,12 @@
         ],
         "released": true,
         "opened_on": "trace-start",
+        "notices": [
+          [
+            "capture-condition",
+            "trace-start"
+          ]
+        ],
         "blocks_delivered": 5
       },
       "ok": true
@@ -830,6 +994,12 @@
         ],
         "released": true,
         "opened_on": "trace-start",
+        "notices": [
+          [
+            "capture-condition",
+            "trace-start"
+          ]
+        ],
         "blocks_delivered": 3
       },
       "ok": true
@@ -855,7 +1025,13 @@
         "n": 5,
         "opened_on": "singer-start",
         "opened_before_start": null,
-        "released": true
+        "released": true,
+        "notices": [
+          [
+            "capture-condition",
+            "page-loaded"
+          ]
+        ]
       },
       "model": {
         "started": true,
@@ -864,6 +1040,54 @@
         "ended": null,
         "released": true,
         "opened_on": "singer-start",
+        "notices": [
+          [
+            "capture-condition",
+            "page-loaded"
+          ]
+        ],
+        "blocks_delivered": 5
+      },
+      "ok": true
+    },
+    {
+      "fixture": "events-start-processed.json",
+      "expected": {
+        "started": true,
+        "tier": "not-raw",
+        "ended": null,
+        "n": 5,
+        "opened_on": "singer-start",
+        "opened_before_start": null,
+        "released": true,
+        "notices": [
+          [
+            "capture-condition",
+            "page-loaded"
+          ],
+          [
+            "processing",
+            0
+          ]
+        ]
+      },
+      "model": {
+        "started": true,
+        "tier": "not-raw",
+        "track_rate": 48000,
+        "ended": null,
+        "released": true,
+        "opened_on": "singer-start",
+        "notices": [
+          [
+            "capture-condition",
+            "page-loaded"
+          ],
+          [
+            "processing",
+            0
+          ]
+        ],
         "blocks_delivered": 5
       },
       "ok": true
@@ -882,6 +1106,7 @@
     "events-context-suspended.json": "abd3ac0aa16f727106dd0d02c5a30da68e7debf75ff47cf8b285fc17a0d246d1",
     "events-quantum-skipped.json": "ec3269ddcf4b16bce5fd468461b51fb911de0473917f031a05b5c3a512d0d1cb",
     "events-engine-failed.json": "84588a03920bf96f03b060d97dc91ecd5f4deb160d4284aa72745ee8ed120d20",
-    "events-start-after-load.json": "9253796ab2325ca32a7d8352e56c73ec25e15560b00071ebf25fc5fe509b74e4"
+    "events-start-after-load.json": "9253796ab2325ca32a7d8352e56c73ec25e15560b00071ebf25fc5fe509b74e4",
+    "events-start-processed.json": "516fbfb50e8bb9422d7957015eb262482f17f1b8dffe34570bf484ab93915603"
   }
 }
