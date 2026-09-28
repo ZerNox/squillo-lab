@@ -1,0 +1,4452 @@
+{
+ "coverage_all_takes": {
+  "clean": {
+   "odd": {
+    "coverage_k2": 0.938822259376769,
+    "accepted_frames": 75959
+   },
+   "even": {
+    "coverage_k2": 0.9524940617577197,
+    "accepted_frames": 56414
+   },
+   "all": {
+    "coverage_k2": 0.9446488332212762,
+    "accepted_frames": 132373
+   },
+   "features_median_all": {
+    "abs6": 24.514552295947233,
+    "abs12": 35.53625187141469,
+    "abs25": 45.127790724992906,
+    "rel12": 1.0467553151878144,
+    "rel25": 1.1442762801082191,
+    "rough50": 1.2065154093337185,
+    "rough90": 3.1857346992218427
+   }
+  },
+  "white-30": {
+   "odd": {
+    "coverage_k2": 0.9578799343757324,
+    "accepted_frames": 59734
+   },
+   "even": {
+    "coverage_k2": 0.9659195235003023,
+    "accepted_frames": 44659
+   },
+   "all": {
+    "coverage_k2": 0.9613192455432835,
+    "accepted_frames": 104393
+   },
+   "features_median_all": {
+    "abs6": 16.6553336758992,
+    "abs12": 24.467279958332615,
+    "abs25": 28.301259332142834,
+    "rel12": 0.9965972642021574,
+    "rel25": 1.0079394750541586,
+    "rough50": 1.1645558168646915,
+    "rough90": 3.0087929186863516
+   }
+  },
+  "white-20": {
+   "odd": {
+    "coverage_k2": 0.9697671384775944,
+    "accepted_frames": 30662
+   },
+   "even": {
+    "coverage_k2": 0.9818470215015862,
+    "accepted_frames": 22696
+   },
+   "all": {
+    "coverage_k2": 0.9749053562727239,
+    "accepted_frames": 53358
+   },
+   "features_median_all": {
+    "abs6": 9.432633595853012,
+    "abs12": 13.620112862172533,
+    "abs25": 19.291684219337025,
+    "rel12": 0.5525213088912315,
+    "rel25": 0.9228286642210379,
+    "rough50": 1.087031195843693,
+    "rough90": 2.783369358580069
+   }
+  },
+  "white-10": {
+   "odd": {
+    "coverage_k2": 0.9848714069591528,
+    "accepted_frames": 1322
+   },
+   "even": {
+    "coverage_k2": 0.9975757575757576,
+    "accepted_frames": 825
+   },
+   "all": {
+    "coverage_k2": 0.9897531439217513,
+    "accepted_frames": 2147
+   },
+   "features_median_all": {
+    "abs6": 5.989642817014605,
+    "abs12": 9.01762351357138,
+    "abs25": 8.074672951288013,
+    "rel12": 0.4357985529210374,
+    "rel25": 0.4006852198300893,
+    "rough50": 0.9837083273562826,
+    "rough90": 2.650787025952741
+   }
+  },
+  "pink-20": {
+   "odd": {
+    "coverage_k2": 0.9666919479206169,
+    "accepted_frames": 31644
+   },
+   "even": {
+    "coverage_k2": 0.978946471189908,
+    "accepted_frames": 23464
+   },
+   "all": {
+    "coverage_k2": 0.9719097045800973,
+    "accepted_frames": 55108
+   },
+   "features_median_all": {
+    "abs6": 9.278258924325117,
+    "abs12": 13.50770234707603,
+    "abs25": 19.928101045212408,
+    "rel12": 0.5460550792493555,
+    "rel25": 0.9216731904632258,
+    "rough50": 1.134331505415048,
+    "rough90": 2.847407004988213
+   }
+  },
+  "pink-10": {
+   "odd": {
+    "coverage_k2": 0.9736585365853658,
+    "accepted_frames": 2050
+   },
+   "even": {
+    "coverage_k2": 0.9961832061068703,
+    "accepted_frames": 1310
+   },
+   "all": {
+    "coverage_k2": 0.9824404761904761,
+    "accepted_frames": 3360
+   },
+   "features_median_all": {
+    "abs6": 5.717238689064683,
+    "abs12": 7.0214643349386865,
+    "abs25": 7.959022941312895,
+    "rel12": 0.34571054581368804,
+    "rel25": 0.39161055984814536,
+    "rough50": 1.0647684946321192,
+    "rough90": 3.2111561439353653
+   }
+  },
+  "original": {
+   "odd": {
+    "coverage_k2": 0.9838079141238856,
+    "accepted_frames": 77507
+   },
+   "even": {
+    "coverage_k2": 0.9811607685977028,
+    "accepted_frames": 55894
+   },
+   "all": {
+    "coverage_k2": 0.9826987803689627,
+    "accepted_frames": 133401
+   },
+   "features_median_all": {
+    "abs6": 23.284922087393458,
+    "abs12": 32.91282848528414,
+    "abs25": 39.437718480919386,
+    "rel12": 1.0485967582957505,
+    "rel25": 1.1341928831600319,
+    "rough50": 1.1855905707269585,
+    "rough90": 3.245335116768514
+   }
+  },
+  "room-0.3+12": {
+   "odd": {
+    "coverage_k2": 0.8888971077742437,
+    "accepted_frames": 67595
+   },
+   "even": {
+    "coverage_k2": 0.9113232727646032,
+    "accepted_frames": 48705
+   },
+   "all": {
+    "coverage_k2": 0.8982889079965606,
+    "accepted_frames": 116300
+   },
+   "features_median_all": {
+    "abs6": 16.46733101073351,
+    "abs12": 26.70264636161219,
+    "abs25": 40.39872928073516,
+    "rel12": 0.9052933753689829,
+    "rel25": 1.1252097162163057,
+    "rough50": 1.1421439819014267,
+    "rough90": 3.2228294073797796
+   }
+  },
+  "room-0.3+6": {
+   "odd": {
+    "coverage_k2": 0.789837790602414,
+    "accepted_frames": 54929
+   },
+   "even": {
+    "coverage_k2": 0.8449373588005751,
+    "accepted_frames": 38952
+   },
+   "all": {
+    "coverage_k2": 0.8126990551868856,
+    "accepted_frames": 93881
+   },
+   "features_median_all": {
+    "abs6": 13.740970964086836,
+    "abs12": 22.178735534873816,
+    "abs25": 36.61450096210188,
+    "rel12": 0.8656540753109203,
+    "rel25": 1.1188813330649983,
+    "rough50": 1.039499404895622,
+    "rough90": 2.9509081866678892
+   }
+  },
+  "room-0.3+0": {
+   "odd": {
+    "coverage_k2": 0.6169336709340022,
+    "accepted_frames": 42259
+   },
+   "even": {
+    "coverage_k2": 0.6998103666245259,
+    "accepted_frames": 31640
+   },
+   "all": {
+    "coverage_k2": 0.6524174887346242,
+    "accepted_frames": 73899
+   },
+   "features_median_all": {
+    "abs6": 12.696781796306595,
+    "abs12": 20.74294520165677,
+    "abs25": 34.97045543471113,
+    "rel12": 0.8308200058015772,
+    "rel25": 1.0865309304042876,
+    "rough50": 0.8406928979966182,
+    "rough90": 2.751210196143294
+   }
+  },
+  "room-0.6+12": {
+   "odd": {
+    "coverage_k2": 0.8725748977167744,
+    "accepted_frames": 60616
+   },
+   "even": {
+    "coverage_k2": 0.9039175915586043,
+    "accepted_frames": 43879
+   },
+   "all": {
+    "coverage_k2": 0.8857361596248624,
+    "accepted_frames": 104495
+   },
+   "features_median_all": {
+    "abs6": 13.62900022522188,
+    "abs12": 19.377292009032708,
+    "abs25": 29.237740687548495,
+    "rel12": 0.6726790156922491,
+    "rel25": 1.0060980691237613,
+    "rough50": 1.184247866461419,
+    "rough90": 3.25650160936414
+   }
+  },
+  "room-0.6+6": {
+   "odd": {
+    "coverage_k2": 0.768234643054787,
+    "accepted_frames": 45175
+   },
+   "even": {
+    "coverage_k2": 0.8101642868109934,
+    "accepted_frames": 32565
+   },
+   "all": {
+    "coverage_k2": 0.7857988165680473,
+    "accepted_frames": 77740
+   },
+   "features_median_all": {
+    "abs6": 10.683001656210003,
+    "abs12": 15.53408879024893,
+    "abs25": 25.306392222316443,
+    "rel12": 0.5676915440660044,
+    "rel25": 0.9287129690726235,
+    "rough50": 1.061199541674739,
+    "rough90": 3.176634427096813
+   }
+  },
+  "room-0.6+0": {
+   "odd": {
+    "coverage_k2": 0.5877046947362049,
+    "accepted_frames": 33037
+   },
+   "even": {
+    "coverage_k2": 0.6625213362594489,
+    "accepted_frames": 24606
+   },
+   "all": {
+    "coverage_k2": 0.6196415870096976,
+    "accepted_frames": 57643
+   },
+   "features_median_all": {
+    "abs6": 9.780212536478153,
+    "abs12": 13.078294470184371,
+    "abs25": 22.043371842857447,
+    "rel12": 0.5355777905094099,
+    "rel25": 0.8995567281560053,
+    "rough50": 0.8694722975391045,
+    "rough90": 2.7393854760586933
+   }
+  },
+  "room-1.0+12": {
+   "odd": {
+    "coverage_k2": 0.8704228382885629,
+    "accepted_frames": 55766
+   },
+   "even": {
+    "coverage_k2": 0.897840017814286,
+    "accepted_frames": 40417
+   },
+   "all": {
+    "coverage_k2": 0.8819437946414647,
+    "accepted_frames": 96183
+   },
+   "features_median_all": {
+    "abs6": 12.682888196337586,
+    "abs12": 16.99408275854985,
+    "abs25": 23.396377674730473,
+    "rel12": 0.5973140995464308,
+    "rel25": 0.8366573614608,
+    "rough50": 1.1995336281481457,
+    "rough90": 3.3311301325586613
+   }
+  },
+  "room-1.0+6": {
+   "odd": {
+    "coverage_k2": 0.7595940864369237,
+    "accepted_frames": 38826
+   },
+   "even": {
+    "coverage_k2": 0.8041770796144234,
+    "accepted_frames": 28010
+   },
+   "all": {
+    "coverage_k2": 0.7782781734394638,
+    "accepted_frames": 66836
+   },
+   "features_median_all": {
+    "abs6": 9.230587870360491,
+    "abs12": 12.004793558025915,
+    "abs25": 18.23444162438711,
+    "rel12": 0.465310386492298,
+    "rel25": 0.7263764682685075,
+    "rough50": 1.1451192930213665,
+    "rough90": 3.3473414507838735
+   }
+  },
+  "room-1.0+0": {
+   "odd": {
+    "coverage_k2": 0.5599802596613773,
+    "accepted_frames": 26342
+   },
+   "even": {
+    "coverage_k2": 0.6404315616765276,
+    "accepted_frames": 20113
+   },
+   "all": {
+    "coverage_k2": 0.5948121838338176,
+    "accepted_frames": 46455
+   },
+   "features_median_all": {
+    "abs6": 8.915672389141298,
+    "abs12": 10.958488444462079,
+    "abs25": 15.568392509973478,
+    "rel12": 0.4317571123713115,
+    "rel25": 0.649986434512185,
+    "rough50": 1.0230338844346534,
+    "rough90": 3.231679391691742
+   }
+  },
+  "room-0.4": {
+   "odd": {
+    "coverage_k2": 0.7816238380541014,
+    "accepted_frames": 50239
+   },
+   "even": {
+    "coverage_k2": 0.8191816137348472,
+    "accepted_frames": 36462
+   },
+   "all": {
+    "coverage_k2": 0.7974187148937152,
+    "accepted_frames": 86701
+   },
+   "features_median_all": {
+    "abs6": 12.576009237356159,
+    "abs12": 18.68127642479668,
+    "abs25": 32.486806190029824,
+    "rel12": 0.7222047327914751,
+    "rel25": 1.0398533852913152,
+    "rough50": 1.0541375323253988,
+    "rough90": 3.1302732345262707
+   }
+  },
+  "room-0.8": {
+   "odd": {
+    "coverage_k2": 0.5764638035144853,
+    "accepted_frames": 29478
+   },
+   "even": {
+    "coverage_k2": 0.6493057178923746,
+    "accepted_frames": 21389
+   },
+   "all": {
+    "coverage_k2": 0.607093007254212,
+    "accepted_frames": 50867
+   },
+   "features_median_all": {
+    "abs6": 9.385477026650868,
+    "abs12": 11.662464140084259,
+    "abs25": 18.53866875292193,
+    "rel12": 0.4599459178732558,
+    "rel25": 0.7702710466338434,
+    "rough50": 0.940562450667926,
+    "rough90": 2.973773574393522
+   }
+  }
+ },
+ "fit": {
+  "fit on odd, test on even": {
+   "abs6": {
+    "threshold": 25.52168665451199,
+    "fitting": {
+     "clean": {
+      "marked_share": 0.6136363636363636,
+      "unmarked_coverage_k2": 0.9405316259216143,
+      "unmarked_accepted_frames": 30924
+     },
+     "white-30": {
+      "marked_share": 0.8068181818181818,
+      "unmarked_coverage_k2": 0.950767097165641,
+      "unmarked_accepted_frames": 11537
+     },
+     "white-20": {
+      "marked_share": 0.9659090909090909,
+      "unmarked_coverage_k2": 0.9473684210526315,
+      "unmarked_accepted_frames": 1140
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 0.9772727272727273,
+      "unmarked_coverage_k2": 0.9988938053097345,
+      "unmarked_accepted_frames": 904
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.625,
+      "unmarked_coverage_k2": 0.9779440342013214,
+      "unmarked_accepted_frames": 30876
+     },
+     "room-0.3+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    },
+    "held_out": {
+     "clean": {
+      "marked_share": 0.5492957746478874,
+      "unmarked_coverage_k2": 0.9375132536933626,
+      "unmarked_accepted_frames": 28294
+     },
+     "white-30": {
+      "marked_share": 0.8591549295774648,
+      "unmarked_coverage_k2": 0.9516607354685647,
+      "unmarked_accepted_frames": 6744
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.6197183098591549,
+      "unmarked_coverage_k2": 0.9685878962536023,
+      "unmarked_accepted_frames": 24290
+     },
+     "room-0.3+12": {
+      "marked_share": 0.9859154929577465,
+      "unmarked_coverage_k2": 0.9690522243713733,
+      "unmarked_accepted_frames": 1551
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "abs12": {
+    "threshold": 32.86246048041997,
+    "fitting": {
+     "clean": {
+      "marked_share": 0.5454545454545454,
+      "unmarked_coverage_k2": 0.9370232149717359,
+      "unmarked_accepted_frames": 36442
+     },
+     "white-30": {
+      "marked_share": 0.8977272727272727,
+      "unmarked_coverage_k2": 0.9557684180870545,
+      "unmarked_accepted_frames": 7099
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.5909090909090909,
+      "unmarked_coverage_k2": 0.9792944546501853,
+      "unmarked_accepted_frames": 32117
+     },
+     "room-0.3+12": {
+      "marked_share": 0.9886363636363636,
+      "unmarked_coverage_k2": 0.9952290076335878,
+      "unmarked_accepted_frames": 1048
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    },
+    "held_out": {
+     "clean": {
+      "marked_share": 0.4647887323943662,
+      "unmarked_coverage_k2": 0.9447279171377067,
+      "unmarked_accepted_frames": 32729
+     },
+     "white-30": {
+      "marked_share": 0.8591549295774648,
+      "unmarked_coverage_k2": 0.9469401041666666,
+      "unmarked_accepted_frames": 6144
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.5492957746478874,
+      "unmarked_coverage_k2": 0.9724817518248176,
+      "unmarked_accepted_frames": 27400
+     },
+     "room-0.3+12": {
+      "marked_share": 0.971830985915493,
+      "unmarked_coverage_k2": 0.966789667896679,
+      "unmarked_accepted_frames": 1626
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "abs25": {
+    "threshold": 50.49106283852379,
+    "fitting": {
+     "clean": {
+      "marked_share": 0.7386363636363636,
+      "unmarked_coverage_k2": 0.9360423302167883,
+      "unmarked_accepted_frames": 19466
+     },
+     "white-30": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.8295454545454546,
+      "unmarked_coverage_k2": 0.9795488252283194,
+      "unmarked_accepted_frames": 12811
+     },
+     "room-0.3+12": {
+      "marked_share": 0.9659090909090909,
+      "unmarked_coverage_k2": 0.958041958041958,
+      "unmarked_accepted_frames": 3003
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    },
+    "held_out": {
+     "clean": {
+      "marked_share": 0.7464788732394366,
+      "unmarked_coverage_k2": 0.9440352492437196,
+      "unmarked_accepted_frames": 15206
+     },
+     "white-30": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.8591549295774648,
+      "unmarked_coverage_k2": 0.955243580513559,
+      "unmarked_accepted_frames": 8334
+     },
+     "room-0.3+12": {
+      "marked_share": 0.9577464788732394,
+      "unmarked_coverage_k2": 0.9565982404692082,
+      "unmarked_accepted_frames": 1705
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "rel12": {
+    "threshold": 1.2660897914299993,
+    "fitting": {
+     "clean": {
+      "marked_share": 0.8522727272727273,
+      "unmarked_coverage_k2": 0.9548142672334134,
+      "unmarked_accepted_frames": 10822
+     },
+     "white-30": {
+      "marked_share": 0.9431818181818182,
+      "unmarked_coverage_k2": 0.9615576635047429,
+      "unmarked_accepted_frames": 4006
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.8863636363636364,
+      "unmarked_coverage_k2": 0.9677144076233821,
+      "unmarked_accepted_frames": 7031
+     },
+     "room-0.3+12": {
+      "marked_share": 0.9431818181818182,
+      "unmarked_coverage_k2": 0.9672407970280311,
+      "unmarked_accepted_frames": 2961
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    },
+    "held_out": {
+     "clean": {
+      "marked_share": 0.8450704225352113,
+      "unmarked_coverage_k2": 0.9314698899201381,
+      "unmarked_accepted_frames": 9266
+     },
+     "white-30": {
+      "marked_share": 0.9577464788732394,
+      "unmarked_coverage_k2": 0.9290214195716086,
+      "unmarked_accepted_frames": 2381
+     },
+     "white-20": {
+      "marked_share": 0.9859154929577465,
+      "unmarked_coverage_k2": 0.8442211055276382,
+      "unmarked_accepted_frames": 398
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 0.9859154929577465,
+      "unmarked_coverage_k2": 0.8271028037383178,
+      "unmarked_accepted_frames": 428
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.8450704225352113,
+      "unmarked_coverage_k2": 0.967725143154607,
+      "unmarked_accepted_frames": 9605
+     },
+     "room-0.3+12": {
+      "marked_share": 0.9295774647887324,
+      "unmarked_coverage_k2": 0.839855508729681,
+      "unmarked_accepted_frames": 3322
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "rel25": {
+    "threshold": 2.244888761951836,
+    "fitting": {
+     "clean": {
+      "marked_share": 0.9659090909090909,
+      "unmarked_coverage_k2": 0.9743744347301778,
+      "unmarked_accepted_frames": 3317
+     },
+     "white-30": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.9772727272727273,
+      "unmarked_coverage_k2": 0.9656735751295337,
+      "unmarked_accepted_frames": 1544
+     },
+     "room-0.3+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    },
+    "held_out": {
+     "clean": {
+      "marked_share": 0.9577464788732394,
+      "unmarked_coverage_k2": 0.8972853998532648,
+      "unmarked_accepted_frames": 2726
+     },
+     "white-30": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+12": {
+      "marked_share": 0.971830985915493,
+      "unmarked_coverage_k2": 0.846932321315623,
+      "unmarked_accepted_frames": 1581
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "rough50": {
+    "threshold": 0.35687266145180274,
+    "fitting": {
+     "clean": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-30": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-20": {
+      "marked_share": 0.9886363636363636,
+      "unmarked_coverage_k2": 1.0,
+      "unmarked_accepted_frames": 304
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 0.9886363636363636,
+      "unmarked_coverage_k2": 0.96,
+      "unmarked_accepted_frames": 75
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    },
+    "held_out": {
+     "clean": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-30": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "rough90": {
+    "threshold": null,
+    "fitting": null,
+    "held_out": null
+   },
+   "chosen": {
+    "feature": "abs6",
+    "dry_marked_fitting": {
+     "abs6": 0.8939393939393939,
+     "abs12": 0.9071969696969697,
+     "abs25": 0.9564393939393939,
+     "rel12": 0.9659090909090908,
+     "rel25": 0.9943181818181818,
+     "rough50": 0.9981060606060606
+    }
+   }
+  },
+  "fit on even, test on odd": {
+   "abs6": {
+    "threshold": 23.75711807570348,
+    "fitting": {
+     "clean": {
+      "marked_share": 0.4788732394366197,
+      "unmarked_coverage_k2": 0.940822278671559,
+      "unmarked_accepted_frames": 31887
+     },
+     "white-30": {
+      "marked_share": 0.7323943661971831,
+      "unmarked_coverage_k2": 0.9471149922467967,
+      "unmarked_accepted_frames": 12253
+     },
+     "white-20": {
+      "marked_share": 0.9859154929577465,
+      "unmarked_coverage_k2": 0.8991935483870968,
+      "unmarked_accepted_frames": 248
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 0.9577464788732394,
+      "unmarked_coverage_k2": 0.9506462984723855,
+      "unmarked_accepted_frames": 851
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.5633802816901409,
+      "unmarked_coverage_k2": 0.9704148850109788,
+      "unmarked_accepted_frames": 25959
+     },
+     "room-0.3+12": {
+      "marked_share": 0.9859154929577465,
+      "unmarked_coverage_k2": 0.9690522243713733,
+      "unmarked_accepted_frames": 1551
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    },
+    "held_out": {
+     "clean": {
+      "marked_share": 0.5909090909090909,
+      "unmarked_coverage_k2": 0.9316807738814994,
+      "unmarked_accepted_frames": 33080
+     },
+     "white-30": {
+      "marked_share": 0.7272727272727273,
+      "unmarked_coverage_k2": 0.9518929864392219,
+      "unmarked_accepted_frames": 16297
+     },
+     "white-20": {
+      "marked_share": 0.9431818181818182,
+      "unmarked_coverage_k2": 0.9646569646569647,
+      "unmarked_accepted_frames": 1924
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 0.9431818181818182,
+      "unmarked_coverage_k2": 0.9558531746031746,
+      "unmarked_accepted_frames": 2016
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.6136363636363636,
+      "unmarked_coverage_k2": 0.9782967905942167,
+      "unmarked_accepted_frames": 31470
+     },
+     "room-0.3+12": {
+      "marked_share": 0.9659090909090909,
+      "unmarked_coverage_k2": 0.8127474267616785,
+      "unmarked_accepted_frames": 2526
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "abs12": {
+    "threshold": 30.977812834424093,
+    "fitting": {
+     "clean": {
+      "marked_share": 0.43661971830985913,
+      "unmarked_coverage_k2": 0.944302006895942,
+      "unmarked_accepted_frames": 33933
+     },
+     "white-30": {
+      "marked_share": 0.8028169014084507,
+      "unmarked_coverage_k2": 0.9447036067812038,
+      "unmarked_accepted_frames": 8789
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.49295774647887325,
+      "unmarked_coverage_k2": 0.9724612736660929,
+      "unmarked_accepted_frames": 30212
+     },
+     "room-0.3+12": {
+      "marked_share": 0.9295774647887324,
+      "unmarked_coverage_k2": 0.9505674653215637,
+      "unmarked_accepted_frames": 3965
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    },
+    "held_out": {
+     "clean": {
+      "marked_share": 0.5340909090909091,
+      "unmarked_coverage_k2": 0.936999163586326,
+      "unmarked_accepted_frames": 37063
+     },
+     "white-30": {
+      "marked_share": 0.8295454545454546,
+      "unmarked_coverage_k2": 0.953526729407199,
+      "unmarked_accepted_frames": 10307
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.5795454545454546,
+      "unmarked_coverage_k2": 0.9794990010757646,
+      "unmarked_accepted_frames": 32535
+     },
+     "room-0.3+12": {
+      "marked_share": 0.8977272727272727,
+      "unmarked_coverage_k2": 0.8749051353402479,
+      "unmarked_accepted_frames": 7906
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 0.9772727272727273,
+      "unmarked_coverage_k2": 0.6351744186046512,
+      "unmarked_accepted_frames": 688
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "abs25": {
+    "threshold": 50.3415666433534,
+    "fitting": {
+     "clean": {
+      "marked_share": 0.7323943661971831,
+      "unmarked_coverage_k2": 0.9460573022312373,
+      "unmarked_accepted_frames": 15776
+     },
+     "white-30": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.8591549295774648,
+      "unmarked_coverage_k2": 0.955243580513559,
+      "unmarked_accepted_frames": 8334
+     },
+     "room-0.3+12": {
+      "marked_share": 0.9577464788732394,
+      "unmarked_coverage_k2": 0.9565982404692082,
+      "unmarked_accepted_frames": 1705
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    },
+    "held_out": {
+     "clean": {
+      "marked_share": 0.7272727272727273,
+      "unmarked_coverage_k2": 0.9377347301838308,
+      "unmarked_accepted_frames": 20236
+     },
+     "white-30": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.8295454545454546,
+      "unmarked_coverage_k2": 0.9795488252283194,
+      "unmarked_accepted_frames": 12811
+     },
+     "room-0.3+12": {
+      "marked_share": 0.9545454545454546,
+      "unmarked_coverage_k2": 0.9342435218723879,
+      "unmarked_accepted_frames": 3589
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "rel12": {
+    "threshold": 1.5422647677585923,
+    "fitting": {
+     "clean": {
+      "marked_share": 0.9014084507042254,
+      "unmarked_coverage_k2": 0.9279765576804442,
+      "unmarked_accepted_frames": 6484
+     },
+     "white-30": {
+      "marked_share": 0.9859154929577465,
+      "unmarked_coverage_k2": 0.8805031446540881,
+      "unmarked_accepted_frames": 954
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.971830985915493,
+      "unmarked_coverage_k2": 0.9610162067455102,
+      "unmarked_accepted_frames": 2283
+     },
+     "room-0.3+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    },
+    "held_out": {
+     "clean": {
+      "marked_share": 0.8977272727272727,
+      "unmarked_coverage_k2": 0.9514587525150905,
+      "unmarked_accepted_frames": 7952
+     },
+     "white-30": {
+      "marked_share": 0.9886363636363636,
+      "unmarked_coverage_k2": 1.0,
+      "unmarked_accepted_frames": 1790
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.9545454545454546,
+      "unmarked_coverage_k2": 0.981992337164751,
+      "unmarked_accepted_frames": 2610
+     },
+     "room-0.3+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "rel25": {
+    "threshold": 2.2669392756026334,
+    "fitting": {
+     "clean": {
+      "marked_share": 0.971830985915493,
+      "unmarked_coverage_k2": 0.8912373403786878,
+      "unmarked_accepted_frames": 2271
+     },
+     "white-30": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    },
+    "held_out": {
+     "clean": {
+      "marked_share": 0.9772727272727273,
+      "unmarked_coverage_k2": 0.9450847457627118,
+      "unmarked_accepted_frames": 1475
+     },
+     "white-30": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.9886363636363636,
+      "unmarked_coverage_k2": 0.9208955223880597,
+      "unmarked_accepted_frames": 670
+     },
+     "room-0.3+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "rough50": {
+    "threshold": 0.4001543223951103,
+    "fitting": {
+     "clean": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-30": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-20": {
+      "marked_share": 0.9859154929577465,
+      "unmarked_coverage_k2": 1.0,
+      "unmarked_accepted_frames": 289
+     },
+     "white-10": {
+      "marked_share": 0.9859154929577465,
+      "unmarked_coverage_k2": 1.0,
+      "unmarked_accepted_frames": 125
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    },
+    "held_out": {
+     "clean": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-30": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-20": {
+      "marked_share": 0.9886363636363636,
+      "unmarked_coverage_k2": 1.0,
+      "unmarked_accepted_frames": 304
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 0.9886363636363636,
+      "unmarked_coverage_k2": 1.0,
+      "unmarked_accepted_frames": 322
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 0.9659090909090909,
+      "unmarked_coverage_k2": 0.7808049535603715,
+      "unmarked_accepted_frames": 1615
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 0.9772727272727273,
+      "unmarked_coverage_k2": 0.6600790513833992,
+      "unmarked_accepted_frames": 506
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "rough90": {
+    "threshold": 1.21802223724286,
+    "fitting": {
+     "clean": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-30": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-20": {
+      "marked_share": 0.9859154929577465,
+      "unmarked_coverage_k2": 1.0,
+      "unmarked_accepted_frames": 151
+     },
+     "white-10": {
+      "marked_share": 0.9859154929577465,
+      "unmarked_coverage_k2": 1.0,
+      "unmarked_accepted_frames": 125
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 0.9859154929577465,
+      "unmarked_coverage_k2": 1.0,
+      "unmarked_accepted_frames": 137
+     },
+     "original": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    },
+    "held_out": {
+     "clean": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-30": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 0.9886363636363636,
+      "unmarked_coverage_k2": 1.0,
+      "unmarked_accepted_frames": 74
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 0.9886363636363636,
+      "unmarked_coverage_k2": 1.0,
+      "unmarked_accepted_frames": 111
+     },
+     "original": {
+      "marked_share": 0.9886363636363636,
+      "unmarked_coverage_k2": 0.9936,
+      "unmarked_accepted_frames": 625
+     },
+     "room-0.3+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 0.9659090909090909,
+      "unmarked_coverage_k2": 0.8875,
+      "unmarked_accepted_frames": 2000
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 0.9772727272727273,
+      "unmarked_coverage_k2": 0.8205787781350482,
+      "unmarked_accepted_frames": 1555
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "chosen": {
+    "feature": "abs6",
+    "dry_marked_fitting": {
+     "abs6": 0.8591549295774646,
+     "abs12": 0.8732394366197184,
+     "abs25": 0.9553990610328639,
+     "rel12": 0.9812206572769954,
+     "rel25": 0.9953051643192489,
+     "rough50": 0.9953051643192489,
+     "rough90": 0.9929577464788734
+    }
+   }
+  }
+ },
+ "sweep": {
+  "room-0.3+18": {
+   "odd": {
+    "coverage_k2": 0.9262691048034934,
+    "accepted_frames": 73280
+   },
+   "even": {
+    "coverage_k2": 0.9411318660995006,
+    "accepted_frames": 54070
+   },
+   "all": {
+    "coverage_k2": 0.9325795053003534,
+    "accepted_frames": 127350
+   },
+   "rt60_measured_range": [
+    0.29135648221543803,
+    0.30720265673588437
+   ]
+  },
+  "room-0.3+24": {
+   "odd": {
+    "coverage_k2": 0.9344425559037552,
+    "accepted_frames": 75308
+   },
+   "even": {
+    "coverage_k2": 0.9499973087894935,
+    "accepted_frames": 55737
+   },
+   "all": {
+    "coverage_k2": 0.9410584150482658,
+    "accepted_frames": 131045
+   },
+   "rt60_measured_range": [
+    0.2909882163001742,
+    0.30916417488368847
+   ]
+  },
+  "room-0.6+18": {
+   "odd": {
+    "coverage_k2": 0.9197365451878596,
+    "accepted_frames": 70904
+   },
+   "even": {
+    "coverage_k2": 0.9374784110535406,
+    "accepted_frames": 52110
+   },
+   "all": {
+    "coverage_k2": 0.9272521826783944,
+    "accepted_frames": 123014
+   },
+   "rt60_measured_range": [
+    0.586381423217636,
+    0.6109828145814689
+   ]
+  },
+  "room-0.6+24": {
+   "odd": {
+    "coverage_k2": 0.9356875834445928,
+    "accepted_frames": 74900
+   },
+   "even": {
+    "coverage_k2": 0.9493246913133215,
+    "accepted_frames": 55234
+   },
+   "all": {
+    "coverage_k2": 0.9414757096531268,
+    "accepted_frames": 130134
+   },
+   "rt60_measured_range": [
+    0.5881683456691298,
+    0.6098048985953867
+   ]
+  },
+  "room-1.0+18": {
+   "odd": {
+    "coverage_k2": 0.9205660213560205,
+    "accepted_frames": 69114
+   },
+   "even": {
+    "coverage_k2": 0.938066584854123,
+    "accepted_frames": 50522
+   },
+   "all": {
+    "coverage_k2": 0.9279564679527901,
+    "accepted_frames": 119636
+   },
+   "rt60_measured_range": [
+    0.9827137712225799,
+    1.0162973566727524
+   ]
+  },
+  "room-1.0+24": {
+   "odd": {
+    "coverage_k2": 0.9335570108065864,
+    "accepted_frames": 74214
+   },
+   "even": {
+    "coverage_k2": 0.9479581037188424,
+    "accepted_frames": 54802
+   },
+   "all": {
+    "coverage_k2": 0.9396741489427668,
+    "accepted_frames": 129016
+   },
+   "rt60_measured_range": [
+    0.9862105738317324,
+    1.0146725528703986
+   ]
+  },
+  "room-0.3+12": {
+   "odd": {
+    "coverage_k2": 0.8888971077742437,
+    "accepted_frames": 67595
+   },
+   "even": {
+    "coverage_k2": 0.9113232727646032,
+    "accepted_frames": 48705
+   },
+   "all": {
+    "coverage_k2": 0.8982889079965606,
+    "accepted_frames": 116300
+   },
+   "features_median_all": {
+    "abs6": 16.46733101073351,
+    "abs12": 26.70264636161219,
+    "abs25": 40.39872928073516,
+    "rel12": 0.9052933753689829,
+    "rel25": 1.1252097162163057,
+    "rough50": 1.1421439819014267,
+    "rough90": 3.2228294073797796
+   }
+  },
+  "room-0.3+6": {
+   "odd": {
+    "coverage_k2": 0.789837790602414,
+    "accepted_frames": 54929
+   },
+   "even": {
+    "coverage_k2": 0.8449373588005751,
+    "accepted_frames": 38952
+   },
+   "all": {
+    "coverage_k2": 0.8126990551868856,
+    "accepted_frames": 93881
+   },
+   "features_median_all": {
+    "abs6": 13.740970964086836,
+    "abs12": 22.178735534873816,
+    "abs25": 36.61450096210188,
+    "rel12": 0.8656540753109203,
+    "rel25": 1.1188813330649983,
+    "rough50": 1.039499404895622,
+    "rough90": 2.9509081866678892
+   }
+  },
+  "room-0.3+0": {
+   "odd": {
+    "coverage_k2": 0.6169336709340022,
+    "accepted_frames": 42259
+   },
+   "even": {
+    "coverage_k2": 0.6998103666245259,
+    "accepted_frames": 31640
+   },
+   "all": {
+    "coverage_k2": 0.6524174887346242,
+    "accepted_frames": 73899
+   },
+   "features_median_all": {
+    "abs6": 12.696781796306595,
+    "abs12": 20.74294520165677,
+    "abs25": 34.97045543471113,
+    "rel12": 0.8308200058015772,
+    "rel25": 1.0865309304042876,
+    "rough50": 0.8406928979966182,
+    "rough90": 2.751210196143294
+   }
+  },
+  "room-0.6+12": {
+   "odd": {
+    "coverage_k2": 0.8725748977167744,
+    "accepted_frames": 60616
+   },
+   "even": {
+    "coverage_k2": 0.9039175915586043,
+    "accepted_frames": 43879
+   },
+   "all": {
+    "coverage_k2": 0.8857361596248624,
+    "accepted_frames": 104495
+   },
+   "features_median_all": {
+    "abs6": 13.62900022522188,
+    "abs12": 19.377292009032708,
+    "abs25": 29.237740687548495,
+    "rel12": 0.6726790156922491,
+    "rel25": 1.0060980691237613,
+    "rough50": 1.184247866461419,
+    "rough90": 3.25650160936414
+   }
+  },
+  "room-0.6+6": {
+   "odd": {
+    "coverage_k2": 0.768234643054787,
+    "accepted_frames": 45175
+   },
+   "even": {
+    "coverage_k2": 0.8101642868109934,
+    "accepted_frames": 32565
+   },
+   "all": {
+    "coverage_k2": 0.7857988165680473,
+    "accepted_frames": 77740
+   },
+   "features_median_all": {
+    "abs6": 10.683001656210003,
+    "abs12": 15.53408879024893,
+    "abs25": 25.306392222316443,
+    "rel12": 0.5676915440660044,
+    "rel25": 0.9287129690726235,
+    "rough50": 1.061199541674739,
+    "rough90": 3.176634427096813
+   }
+  },
+  "room-0.6+0": {
+   "odd": {
+    "coverage_k2": 0.5877046947362049,
+    "accepted_frames": 33037
+   },
+   "even": {
+    "coverage_k2": 0.6625213362594489,
+    "accepted_frames": 24606
+   },
+   "all": {
+    "coverage_k2": 0.6196415870096976,
+    "accepted_frames": 57643
+   },
+   "features_median_all": {
+    "abs6": 9.780212536478153,
+    "abs12": 13.078294470184371,
+    "abs25": 22.043371842857447,
+    "rel12": 0.5355777905094099,
+    "rel25": 0.8995567281560053,
+    "rough50": 0.8694722975391045,
+    "rough90": 2.7393854760586933
+   }
+  },
+  "room-1.0+12": {
+   "odd": {
+    "coverage_k2": 0.8704228382885629,
+    "accepted_frames": 55766
+   },
+   "even": {
+    "coverage_k2": 0.897840017814286,
+    "accepted_frames": 40417
+   },
+   "all": {
+    "coverage_k2": 0.8819437946414647,
+    "accepted_frames": 96183
+   },
+   "features_median_all": {
+    "abs6": 12.682888196337586,
+    "abs12": 16.99408275854985,
+    "abs25": 23.396377674730473,
+    "rel12": 0.5973140995464308,
+    "rel25": 0.8366573614608,
+    "rough50": 1.1995336281481457,
+    "rough90": 3.3311301325586613
+   }
+  },
+  "room-1.0+6": {
+   "odd": {
+    "coverage_k2": 0.7595940864369237,
+    "accepted_frames": 38826
+   },
+   "even": {
+    "coverage_k2": 0.8041770796144234,
+    "accepted_frames": 28010
+   },
+   "all": {
+    "coverage_k2": 0.7782781734394638,
+    "accepted_frames": 66836
+   },
+   "features_median_all": {
+    "abs6": 9.230587870360491,
+    "abs12": 12.004793558025915,
+    "abs25": 18.23444162438711,
+    "rel12": 0.465310386492298,
+    "rel25": 0.7263764682685075,
+    "rough50": 1.1451192930213665,
+    "rough90": 3.3473414507838735
+   }
+  },
+  "room-1.0+0": {
+   "odd": {
+    "coverage_k2": 0.5599802596613773,
+    "accepted_frames": 26342
+   },
+   "even": {
+    "coverage_k2": 0.6404315616765276,
+    "accepted_frames": 20113
+   },
+   "all": {
+    "coverage_k2": 0.5948121838338176,
+    "accepted_frames": 46455
+   },
+   "features_median_all": {
+    "abs6": 8.915672389141298,
+    "abs12": 10.958488444462079,
+    "abs25": 15.568392509973478,
+    "rel12": 0.4317571123713115,
+    "rel25": 0.649986434512185,
+    "rough50": 1.0230338844346534,
+    "rough90": 3.231679391691742
+   }
+  }
+ },
+ "fit_post_hoc_bar_clean": {
+  "fit on odd, test on even": {
+   "bar": 0.938822259376769,
+   "abs6": {
+    "threshold": 25.52168665451199,
+    "held_out": {
+     "clean": {
+      "marked_share": 0.5492957746478874,
+      "unmarked_coverage_k2": 0.9375132536933626,
+      "unmarked_accepted_frames": 28294
+     },
+     "white-30": {
+      "marked_share": 0.8591549295774648,
+      "unmarked_coverage_k2": 0.9516607354685647,
+      "unmarked_accepted_frames": 6744
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.6197183098591549,
+      "unmarked_coverage_k2": 0.9685878962536023,
+      "unmarked_accepted_frames": 24290
+     },
+     "room-0.3+12": {
+      "marked_share": 0.9859154929577465,
+      "unmarked_coverage_k2": 0.9690522243713733,
+      "unmarked_accepted_frames": 1551
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "abs12": {
+    "threshold": 32.86246048041997,
+    "held_out": {
+     "clean": {
+      "marked_share": 0.4647887323943662,
+      "unmarked_coverage_k2": 0.9447279171377067,
+      "unmarked_accepted_frames": 32729
+     },
+     "white-30": {
+      "marked_share": 0.8591549295774648,
+      "unmarked_coverage_k2": 0.9469401041666666,
+      "unmarked_accepted_frames": 6144
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.5492957746478874,
+      "unmarked_coverage_k2": 0.9724817518248176,
+      "unmarked_accepted_frames": 27400
+     },
+     "room-0.3+12": {
+      "marked_share": 0.971830985915493,
+      "unmarked_coverage_k2": 0.966789667896679,
+      "unmarked_accepted_frames": 1626
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "abs25": {
+    "threshold": 50.49106283852379,
+    "held_out": {
+     "clean": {
+      "marked_share": 0.7464788732394366,
+      "unmarked_coverage_k2": 0.9440352492437196,
+      "unmarked_accepted_frames": 15206
+     },
+     "white-30": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.8591549295774648,
+      "unmarked_coverage_k2": 0.955243580513559,
+      "unmarked_accepted_frames": 8334
+     },
+     "room-0.3+12": {
+      "marked_share": 0.9577464788732394,
+      "unmarked_coverage_k2": 0.9565982404692082,
+      "unmarked_accepted_frames": 1705
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "rel12": {
+    "threshold": 1.2660897914299993,
+    "held_out": {
+     "clean": {
+      "marked_share": 0.8450704225352113,
+      "unmarked_coverage_k2": 0.9314698899201381,
+      "unmarked_accepted_frames": 9266
+     },
+     "white-30": {
+      "marked_share": 0.9577464788732394,
+      "unmarked_coverage_k2": 0.9290214195716086,
+      "unmarked_accepted_frames": 2381
+     },
+     "white-20": {
+      "marked_share": 0.9859154929577465,
+      "unmarked_coverage_k2": 0.8442211055276382,
+      "unmarked_accepted_frames": 398
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 0.9859154929577465,
+      "unmarked_coverage_k2": 0.8271028037383178,
+      "unmarked_accepted_frames": 428
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.8450704225352113,
+      "unmarked_coverage_k2": 0.967725143154607,
+      "unmarked_accepted_frames": 9605
+     },
+     "room-0.3+12": {
+      "marked_share": 0.9295774647887324,
+      "unmarked_coverage_k2": 0.839855508729681,
+      "unmarked_accepted_frames": 3322
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "rel25": {
+    "threshold": 2.244888761951836,
+    "held_out": {
+     "clean": {
+      "marked_share": 0.9577464788732394,
+      "unmarked_coverage_k2": 0.8972853998532648,
+      "unmarked_accepted_frames": 2726
+     },
+     "white-30": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+12": {
+      "marked_share": 0.971830985915493,
+      "unmarked_coverage_k2": 0.846932321315623,
+      "unmarked_accepted_frames": 1581
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "rough50": {
+    "threshold": 0.35687266145180274,
+    "held_out": {
+     "clean": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-30": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "rough90": {
+    "threshold": null,
+    "held_out": null
+   }
+  },
+  "fit on even, test on odd": {
+   "bar": 0.9524940617577197,
+   "abs6": {
+    "threshold": 23.75711807570348,
+    "held_out": {
+     "clean": {
+      "marked_share": 0.5909090909090909,
+      "unmarked_coverage_k2": 0.9316807738814994,
+      "unmarked_accepted_frames": 33080
+     },
+     "white-30": {
+      "marked_share": 0.7272727272727273,
+      "unmarked_coverage_k2": 0.9518929864392219,
+      "unmarked_accepted_frames": 16297
+     },
+     "white-20": {
+      "marked_share": 0.9431818181818182,
+      "unmarked_coverage_k2": 0.9646569646569647,
+      "unmarked_accepted_frames": 1924
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 0.9431818181818182,
+      "unmarked_coverage_k2": 0.9558531746031746,
+      "unmarked_accepted_frames": 2016
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.6136363636363636,
+      "unmarked_coverage_k2": 0.9782967905942167,
+      "unmarked_accepted_frames": 31470
+     },
+     "room-0.3+12": {
+      "marked_share": 0.9659090909090909,
+      "unmarked_coverage_k2": 0.8127474267616785,
+      "unmarked_accepted_frames": 2526
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "abs12": {
+    "threshold": 31.315323927760065,
+    "held_out": {
+     "clean": {
+      "marked_share": 0.5340909090909091,
+      "unmarked_coverage_k2": 0.936999163586326,
+      "unmarked_accepted_frames": 37063
+     },
+     "white-30": {
+      "marked_share": 0.8409090909090909,
+      "unmarked_coverage_k2": 0.9504560530679934,
+      "unmarked_accepted_frames": 9648
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.5795454545454546,
+      "unmarked_coverage_k2": 0.9794990010757646,
+      "unmarked_accepted_frames": 32535
+     },
+     "room-0.3+12": {
+      "marked_share": 0.9318181818181818,
+      "unmarked_coverage_k2": 0.8488616797398125,
+      "unmarked_accepted_frames": 5227
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 0.9772727272727273,
+      "unmarked_coverage_k2": 0.6351744186046512,
+      "unmarked_accepted_frames": 688
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "abs25": {
+    "threshold": 50.3415666433534,
+    "held_out": {
+     "clean": {
+      "marked_share": 0.7272727272727273,
+      "unmarked_coverage_k2": 0.9377347301838308,
+      "unmarked_accepted_frames": 20236
+     },
+     "white-30": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.8295454545454546,
+      "unmarked_coverage_k2": 0.9795488252283194,
+      "unmarked_accepted_frames": 12811
+     },
+     "room-0.3+12": {
+      "marked_share": 0.9545454545454546,
+      "unmarked_coverage_k2": 0.9342435218723879,
+      "unmarked_accepted_frames": 3589
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "rel12": {
+    "threshold": 1.5422647677585923,
+    "held_out": {
+     "clean": {
+      "marked_share": 0.8977272727272727,
+      "unmarked_coverage_k2": 0.9514587525150905,
+      "unmarked_accepted_frames": 7952
+     },
+     "white-30": {
+      "marked_share": 0.9886363636363636,
+      "unmarked_coverage_k2": 1.0,
+      "unmarked_accepted_frames": 1790
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.9545454545454546,
+      "unmarked_coverage_k2": 0.981992337164751,
+      "unmarked_accepted_frames": 2610
+     },
+     "room-0.3+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "rel25": {
+    "threshold": 2.2669392756026334,
+    "held_out": {
+     "clean": {
+      "marked_share": 0.9772727272727273,
+      "unmarked_coverage_k2": 0.9450847457627118,
+      "unmarked_accepted_frames": 1475
+     },
+     "white-30": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 0.9886363636363636,
+      "unmarked_coverage_k2": 0.9208955223880597,
+      "unmarked_accepted_frames": 670
+     },
+     "room-0.3+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "rough50": {
+    "threshold": 0.4001543223951103,
+    "held_out": {
+     "clean": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-30": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-20": {
+      "marked_share": 0.9886363636363636,
+      "unmarked_coverage_k2": 1.0,
+      "unmarked_accepted_frames": 304
+     },
+     "white-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-20": {
+      "marked_share": 0.9886363636363636,
+      "unmarked_coverage_k2": 1.0,
+      "unmarked_accepted_frames": 322
+     },
+     "pink-10": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "original": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 0.9659090909090909,
+      "unmarked_coverage_k2": 0.7808049535603715,
+      "unmarked_accepted_frames": 1615
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 0.9772727272727273,
+      "unmarked_coverage_k2": 0.6600790513833992,
+      "unmarked_accepted_frames": 506
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   },
+   "rough90": {
+    "threshold": 1.21802223724286,
+    "held_out": {
+     "clean": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-30": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "white-10": {
+      "marked_share": 0.9886363636363636,
+      "unmarked_coverage_k2": 1.0,
+      "unmarked_accepted_frames": 74
+     },
+     "pink-20": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "pink-10": {
+      "marked_share": 0.9886363636363636,
+      "unmarked_coverage_k2": 1.0,
+      "unmarked_accepted_frames": 111
+     },
+     "original": {
+      "marked_share": 0.9886363636363636,
+      "unmarked_coverage_k2": 0.9936,
+      "unmarked_accepted_frames": 625
+     },
+     "room-0.3+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.3+0": {
+      "marked_share": 0.9659090909090909,
+      "unmarked_coverage_k2": 0.8875,
+      "unmarked_accepted_frames": 2000
+     },
+     "room-0.6+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.6+0": {
+      "marked_share": 0.9772727272727273,
+      "unmarked_coverage_k2": 0.8205787781350482,
+      "unmarked_accepted_frames": 1555
+     },
+     "room-1.0+12": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+6": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-1.0+0": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.4": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     },
+     "room-0.8": {
+      "marked_share": 1.0,
+      "unmarked_coverage_k2": null,
+      "unmarked_accepted_frames": 0
+     }
+    }
+   }
+  }
+ },
+ "drr_holds": {
+  "+12 dB": false,
+  "+18 dB": false,
+  "+24 dB": false
+ }
+}

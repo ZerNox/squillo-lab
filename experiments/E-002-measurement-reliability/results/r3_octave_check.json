@@ -1,0 +1,568 @@
+{
+ "fixtures": {
+  "glide-220hz-600c.wav": {},
+  "silence.wav": {},
+  "sine-220hz-overshoot.wav": {},
+  "sine-220hz.wav": {},
+  "sine-c2.wav": {},
+  "sine-c6-plus-7c.wav": {},
+  "sine-c6.wav": {},
+  "sine-c7.wav": {},
+  "sine-e2-minus-7c.wav": {},
+  "sine-e2.wav": {},
+  "vibrato-220hz-5p5hz.wav": {}
+ },
+ "harmonic": {
+  "saw6": {
+   "frames": 5490,
+   "gross_by_variant": {
+    "sub(0.05,0.005)": 122,
+    "sub(0.1,0.005)": 244,
+    "sub(0.2,0.005)": 244,
+    "sub(0.5,0.005)": 366,
+    "cont+sub(0.05,0.005)": 122,
+    "cont+sub(0.1,0.005)": 244,
+    "cont+sub(0.2,0.005)": 244,
+    "cont+sub(0.5,0.005)": 366
+   }
+  },
+  "saw12": {
+   "frames": 5490,
+   "gross_by_variant": {}
+  },
+  "weakf0": {
+   "frames": 5490,
+   "gross_by_variant": {}
+  }
+ },
+ "weak_h1": {
+  "odd -10 dB | base-0.1": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 247,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | base-0.05": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 247,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | cont": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 247,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | sub(0.05,0.005)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | sub(0.05,0.01)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | sub(0.05,0.02)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | sub(0.1,0.005)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | sub(0.1,0.01)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | sub(0.1,0.02)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | sub(0.2,0.005)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | sub(0.2,0.01)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | sub(0.2,0.02)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | sub(0.5,0.005)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | sub(0.5,0.01)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | sub(0.5,0.02)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | spec(-30)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | spec(-25)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | spec(-20)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | spec(-15)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 247,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | spec(-10)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 247,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | cont+sub(0.05,0.005)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | cont+sub(0.05,0.01)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | cont+sub(0.05,0.02)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | cont+sub(0.1,0.005)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | cont+sub(0.1,0.01)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | cont+sub(0.1,0.02)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | cont+sub(0.2,0.005)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | cont+sub(0.2,0.01)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | cont+sub(0.2,0.02)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | cont+sub(0.5,0.005)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | cont+sub(0.5,0.01)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | cont+sub(0.5,0.02)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | cont+spec(-30)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | cont+spec(-25)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | cont+spec(-20)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | cont+spec(-15)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 247,
+   "octave_high_accepted": 0
+  },
+  "odd -10 dB | cont+spec(-10)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 247,
+   "octave_high_accepted": 0
+  },
+  "odd -20 dB | base-0.1": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | base-0.05": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | cont": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | sub(0.05,0.005)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -20 dB | sub(0.05,0.01)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | sub(0.05,0.02)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | sub(0.1,0.005)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -20 dB | sub(0.1,0.01)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | sub(0.1,0.02)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | sub(0.2,0.005)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -20 dB | sub(0.2,0.01)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | sub(0.2,0.02)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | sub(0.5,0.005)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -20 dB | sub(0.5,0.01)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | sub(0.5,0.02)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | spec(-30)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -20 dB | spec(-25)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -20 dB | spec(-20)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | spec(-15)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | spec(-10)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | cont+sub(0.05,0.005)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -20 dB | cont+sub(0.05,0.01)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | cont+sub(0.05,0.02)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | cont+sub(0.1,0.005)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -20 dB | cont+sub(0.1,0.01)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | cont+sub(0.1,0.02)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | cont+sub(0.2,0.005)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -20 dB | cont+sub(0.2,0.01)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | cont+sub(0.2,0.02)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | cont+sub(0.5,0.005)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -20 dB | cont+sub(0.5,0.01)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | cont+sub(0.5,0.02)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | cont+spec(-30)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -20 dB | cont+spec(-25)": {
+   "measured": 247,
+   "octave_high": 0,
+   "correct": 247,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 0
+  },
+  "odd -20 dB | cont+spec(-20)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | cont+spec(-15)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  },
+  "odd -20 dB | cont+spec(-10)": {
+   "measured": 247,
+   "octave_high": 247,
+   "correct": 0,
+   "refused_by_mt003": 0,
+   "octave_high_accepted": 247
+  }
+ },
+ "fails_must_pass": [
+  "cont+sub(0.05,0.005)",
+  "cont+sub(0.1,0.005)",
+  "cont+sub(0.2,0.005)",
+  "cont+sub(0.5,0.005)",
+  "sub(0.05,0.005)",
+  "sub(0.1,0.005)",
+  "sub(0.2,0.005)",
+  "sub(0.5,0.005)"
+ ]
+}

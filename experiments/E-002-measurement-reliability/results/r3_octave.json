@@ -1,0 +1,4435 @@
+{
+ "check": {
+  "fixtures": {
+   "glide-220hz-600c.wav": {},
+   "silence.wav": {},
+   "sine-220hz-overshoot.wav": {},
+   "sine-220hz.wav": {},
+   "sine-c2.wav": {},
+   "sine-c6-plus-7c.wav": {},
+   "sine-c6.wav": {},
+   "sine-c7.wav": {},
+   "sine-e2-minus-7c.wav": {},
+   "sine-e2.wav": {},
+   "vibrato-220hz-5p5hz.wav": {}
+  },
+  "harmonic": {
+   "saw6": {
+    "frames": 5490,
+    "gross_by_variant": {
+     "sub(0.05,0.005)": 122,
+     "sub(0.1,0.005)": 244,
+     "sub(0.2,0.005)": 244,
+     "sub(0.5,0.005)": 366,
+     "cont+sub(0.05,0.005)": 122,
+     "cont+sub(0.1,0.005)": 244,
+     "cont+sub(0.2,0.005)": 244,
+     "cont+sub(0.5,0.005)": 366
+    }
+   },
+   "saw12": {
+    "frames": 5490,
+    "gross_by_variant": {}
+   },
+   "weakf0": {
+    "frames": 5490,
+    "gross_by_variant": {}
+   }
+  },
+  "weak_h1": {
+   "odd -10 dB | base-0.1": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 247,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | base-0.05": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 247,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | cont": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 247,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | sub(0.05,0.005)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | sub(0.05,0.01)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | sub(0.05,0.02)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | sub(0.1,0.005)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | sub(0.1,0.01)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | sub(0.1,0.02)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | sub(0.2,0.005)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | sub(0.2,0.01)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | sub(0.2,0.02)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | sub(0.5,0.005)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | sub(0.5,0.01)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | sub(0.5,0.02)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | spec(-30)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | spec(-25)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | spec(-20)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | spec(-15)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 247,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | spec(-10)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 247,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | cont+sub(0.05,0.005)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | cont+sub(0.05,0.01)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | cont+sub(0.05,0.02)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | cont+sub(0.1,0.005)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | cont+sub(0.1,0.01)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | cont+sub(0.1,0.02)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | cont+sub(0.2,0.005)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | cont+sub(0.2,0.01)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | cont+sub(0.2,0.02)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | cont+sub(0.5,0.005)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | cont+sub(0.5,0.01)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | cont+sub(0.5,0.02)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | cont+spec(-30)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | cont+spec(-25)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | cont+spec(-20)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | cont+spec(-15)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 247,
+    "octave_high_accepted": 0
+   },
+   "odd -10 dB | cont+spec(-10)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 247,
+    "octave_high_accepted": 0
+   },
+   "odd -20 dB | base-0.1": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | base-0.05": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | cont": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | sub(0.05,0.005)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -20 dB | sub(0.05,0.01)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | sub(0.05,0.02)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | sub(0.1,0.005)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -20 dB | sub(0.1,0.01)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | sub(0.1,0.02)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | sub(0.2,0.005)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -20 dB | sub(0.2,0.01)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | sub(0.2,0.02)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | sub(0.5,0.005)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -20 dB | sub(0.5,0.01)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | sub(0.5,0.02)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | spec(-30)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -20 dB | spec(-25)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -20 dB | spec(-20)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | spec(-15)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | spec(-10)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | cont+sub(0.05,0.005)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -20 dB | cont+sub(0.05,0.01)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | cont+sub(0.05,0.02)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | cont+sub(0.1,0.005)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -20 dB | cont+sub(0.1,0.01)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | cont+sub(0.1,0.02)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | cont+sub(0.2,0.005)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -20 dB | cont+sub(0.2,0.01)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | cont+sub(0.2,0.02)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | cont+sub(0.5,0.005)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -20 dB | cont+sub(0.5,0.01)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | cont+sub(0.5,0.02)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | cont+spec(-30)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -20 dB | cont+spec(-25)": {
+    "measured": 247,
+    "octave_high": 0,
+    "correct": 247,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 0
+   },
+   "odd -20 dB | cont+spec(-20)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | cont+spec(-15)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   },
+   "odd -20 dB | cont+spec(-10)": {
+    "measured": 247,
+    "octave_high": 247,
+    "correct": 0,
+    "refused_by_mt003": 0,
+    "octave_high_accepted": 247
+   }
+  },
+  "fails_must_pass": [
+   "cont+sub(0.05,0.005)",
+   "cont+sub(0.1,0.005)",
+   "cont+sub(0.2,0.005)",
+   "cont+sub(0.5,0.005)",
+   "sub(0.05,0.005)",
+   "sub(0.1,0.005)",
+   "sub(0.2,0.005)",
+   "sub(0.5,0.005)"
+  ]
+ },
+ "table": [
+  1.7320508075688772,
+  1.88,
+  2.44,
+  4.26,
+  null,
+  null,
+  null,
+  null
+ ],
+ "fit": {
+  "fit on odd, test on even": {
+   "base-0.1": "base-0.1",
+   "base-0.05": null,
+   "cont": "cont",
+   "sub": "sub(0.5,0.01)",
+   "spec": "spec(-20)",
+   "cont+sub": "cont+sub(0.1,0.01)",
+   "cont+spec": "cont+spec(-15)"
+  },
+  "fit on even, test on odd": {
+   "base-0.1": "base-0.1",
+   "base-0.05": null,
+   "cont": "cont",
+   "sub": "sub(0.5,0.02)",
+   "spec": "spec(-15)",
+   "cont+sub": "cont+sub(0.2,0.02)",
+   "cont+spec": "cont+spec(-15)"
+  }
+ },
+ "held_out": {
+  "fit on odd, test on even": {
+   "base-0.1": {
+    "clean": {
+     "valid": 80344,
+     "measured_share": 0.9133351588170865,
+     "gross_share": 0.03239258118586555,
+     "octave_high_share": 0.025197258145841568,
+     "octave_low_share": 2.7255011515242365e-05,
+     "p95_abs_non_gross": 6.850685024602815,
+     "accepted_share": 0.7021557303594543,
+     "coverage_k2": 0.9524940617577197,
+     "gross_share_accepted": 0.0008154004325167511
+    },
+    "original": {
+     "valid": 80344,
+     "measured_share": 0.9037015831922732,
+     "gross_share": 0.01024694588676023,
+     "octave_high_share": 0.00935171539934166,
+     "octave_low_share": 0.00037186497169694384,
+     "p95_abs_non_gross": 5.636617628453627,
+     "accepted_share": 0.6956835606890371,
+     "coverage_k2": 0.9811607685977028,
+     "gross_share_accepted": 0.00023258310373206427
+    },
+    "white-20": {
+     "valid": 80344,
+     "measured_share": 0.6991934680872249,
+     "gross_share": 0.037026488180005694,
+     "octave_high_share": 0.030351039589860438,
+     "octave_low_share": 0.0008366562232982056,
+     "p95_abs_non_gross": 6.738557895371103,
+     "accepted_share": 0.2824853131534402,
+     "coverage_k2": 0.9818470215015862,
+     "gross_share_accepted": 0.0008371519210433557
+    },
+    "white-10": {
+     "valid": 80344,
+     "measured_share": 0.30101812207507717,
+     "gross_share": 0.05387636965060988,
+     "octave_high_share": 0.04176142236923713,
+     "octave_low_share": 0.005085796981600166,
+     "p95_abs_non_gross": 7.587307645084363,
+     "accepted_share": 0.010268346111719605,
+     "coverage_k2": 0.9975757575757576,
+     "gross_share_accepted": 0.0
+    },
+    "pink-10": {
+     "valid": 80344,
+     "measured_share": 0.31535646719107835,
+     "gross_share": 0.07159490073805107,
+     "octave_high_share": 0.04345423688676639,
+     "octave_low_share": 0.013340174448435094,
+     "p95_abs_non_gross": 6.289652202921015,
+     "accepted_share": 0.01630488897739719,
+     "coverage_k2": 0.9961832061068703,
+     "gross_share_accepted": 0.0007633587786259542
+    }
+   },
+   "base-0.05": null,
+   "cont": {
+    "clean": {
+     "valid": 80344,
+     "measured_share": 0.9151772378771283,
+     "gross_share": 0.021202518734104912,
+     "octave_high_share": 0.006568836785485999,
+     "octave_low_share": 0.007480041888234574,
+     "p95_abs_non_gross": 6.848802063968231,
+     "accepted_share": 0.7177511699691327,
+     "coverage_k2": 0.9470060866700193,
+     "gross_share_accepted": 0.00652019352489292
+    },
+    "original": {
+     "valid": 80344,
+     "measured_share": 0.9042865677586378,
+     "gross_share": 0.010295372587882292,
+     "octave_high_share": 0.003358383571448234,
+     "octave_low_share": 0.006413962066782283,
+     "p95_abs_non_gross": 5.637990624527264,
+     "accepted_share": 0.6992432540077667,
+     "coverage_k2": 0.9769490922036311,
+     "gross_share_accepted": 0.004556781772872908
+    },
+    "white-20": {
+     "valid": 80344,
+     "measured_share": 0.7008488499452354,
+     "gross_share": 0.019694897796089433,
+     "octave_high_share": 0.00653536734802607,
+     "octave_low_share": 0.007334529116127085,
+     "p95_abs_non_gross": 6.731204983840968,
+     "accepted_share": 0.29722194563377474,
+     "coverage_k2": 0.9750837520938024,
+     "gross_share_accepted": 0.00711892797319933
+    },
+    "white-10": {
+     "valid": 80344,
+     "measured_share": 0.3010928009558897,
+     "gross_share": 0.022363688975238726,
+     "octave_high_share": 0.010251746517299822,
+     "octave_low_share": 0.005084535571080154,
+     "p95_abs_non_gross": 7.516500886275885,
+     "accepted_share": 0.012608284377178133,
+     "coverage_k2": 0.9960513326752222,
+     "gross_share_accepted": 0.0
+    },
+    "pink-10": {
+     "valid": 80344,
+     "measured_share": 0.3158916658369013,
+     "gross_share": 0.03904649330181245,
+     "octave_high_share": 0.01095350669818755,
+     "octave_low_share": 0.013317572892040977,
+     "p95_abs_non_gross": 6.249989372022108,
+     "accepted_share": 0.019043114607189087,
+     "coverage_k2": 0.9954248366013072,
+     "gross_share_accepted": 0.00065359477124183
+    }
+   },
+   "sub": {
+    "clean": {
+     "valid": 80344,
+     "measured_share": 0.9177536592651598,
+     "gross_share": 0.008055766518389932,
+     "octave_high_share": 0.0007730281002495389,
+     "octave_low_share": 0.0001491808614516654,
+     "p95_abs_non_gross": 6.822807741351398,
+     "accepted_share": 0.7283680175246441,
+     "coverage_k2": 0.9524094326725906,
+     "gross_share_accepted": 0.0002563226247436774
+    },
+    "original": {
+     "valid": 80344,
+     "measured_share": 0.9006770885193667,
+     "gross_share": 0.004684649825880272,
+     "octave_high_share": 0.00023492344259576584,
+     "octave_low_share": 0.0039246033939527945,
+     "p95_abs_non_gross": 5.635000987711739,
+     "accepted_share": 0.7051304391118192,
+     "coverage_k2": 0.9768414735318518,
+     "gross_share_accepted": 0.004659947399078601
+    },
+    "white-20": {
+     "valid": 80344,
+     "measured_share": 0.7036742009359753,
+     "gross_share": 0.008047969435403991,
+     "octave_high_share": 0.0014150275930380643,
+     "octave_low_share": 0.0008313287109098628,
+     "p95_abs_non_gross": 6.697483336769167,
+     "accepted_share": 0.30534949716220255,
+     "coverage_k2": 0.981575836628215,
+     "gross_share_accepted": 4.076142338890474e-05
+    },
+    "white-10": {
+     "valid": 80344,
+     "measured_share": 0.3027232898536294,
+     "gross_share": 0.02590247512540087,
+     "octave_high_share": 0.013855768440095386,
+     "octave_low_share": 0.0050571499054354084,
+     "p95_abs_non_gross": 7.507087655125846,
+     "accepted_share": 0.013865378870855321,
+     "coverage_k2": 0.9964093357271095,
+     "gross_share_accepted": 0.0
+    },
+    "pink-10": {
+     "valid": 80344,
+     "measured_share": 0.3172856716120681,
+     "gross_share": 0.04287619645378942,
+     "octave_high_share": 0.014867409383335948,
+     "octave_low_share": 0.01329828965950102,
+     "p95_abs_non_gross": 6.247580137306751,
+     "accepted_share": 0.020412227422085035,
+     "coverage_k2": 0.9963414634146341,
+     "gross_share_accepted": 0.0
+    }
+   },
+   "spec": {
+    "clean": {
+     "valid": 80344,
+     "measured_share": 0.918774270636264,
+     "gross_share": 0.01885718930342193,
+     "octave_high_share": 0.002262320843154786,
+     "octave_low_share": 0.010498794332005745,
+     "p95_abs_non_gross": 6.718523577302834,
+     "accepted_share": 0.728069302001394,
+     "coverage_k2": 0.9522018599562363,
+     "gross_share_accepted": 0.0006325218818380744
+    },
+    "original": {
+     "valid": 80344,
+     "measured_share": 0.9045852832818879,
+     "gross_share": 0.013759321940614766,
+     "octave_high_share": 0.0001238338974655329,
+     "octave_low_share": 0.013153911775227716,
+     "p95_abs_non_gross": 5.47994809577586,
+     "accepted_share": 0.7052922433535797,
+     "coverage_k2": 0.9799350580595065,
+     "gross_share_accepted": 0.001588253979458582
+    },
+    "white-20": {
+     "valid": 80344,
+     "measured_share": 0.7037737727770587,
+     "gross_share": 0.018958687040181096,
+     "octave_high_share": 0.002369835880022637,
+     "octave_low_share": 0.011743067345783814,
+     "p95_abs_non_gross": 6.64124599357052,
+     "accepted_share": 0.30492631683759835,
+     "coverage_k2": 0.9810196334544267,
+     "gross_share_accepted": 0.0007347238662802564
+    },
+    "white-10": {
+     "valid": 80344,
+     "measured_share": 0.30309668425769193,
+     "gross_share": 0.022092641261498028,
+     "octave_high_share": 0.0022996057818659658,
+     "octave_low_share": 0.012729960578186596,
+     "p95_abs_non_gross": 7.488094353232951,
+     "accepted_share": 0.013778253509907398,
+     "coverage_k2": 0.996386630532972,
+     "gross_share_accepted": 0.0
+    },
+    "pink-10": {
+     "valid": 80344,
+     "measured_share": 0.3178208702578911,
+     "gross_share": 0.29246132758958293,
+     "octave_high_share": 0.002467201879772861,
+     "octave_low_share": 0.2738985705893871,
+     "p95_abs_non_gross": 6.077226317644833,
+     "accepted_share": 0.020349995021407948,
+     "coverage_k2": 0.9951070336391438,
+     "gross_share_accepted": 0.0012232415902140672
+    }
+   },
+   "cont+sub": {
+    "clean": {
+     "valid": 80344,
+     "measured_share": 0.9180150353480035,
+     "gross_share": 0.01586290114836558,
+     "octave_high_share": 0.0012744553059370635,
+     "octave_low_share": 0.007456919343248776,
+     "p95_abs_non_gross": 6.837111979555014,
+     "accepted_share": 0.7248332171661854,
+     "coverage_k2": 0.9471117521807817,
+     "gross_share_accepted": 0.0058383130709526755
+    },
+    "original": {
+     "valid": 80344,
+     "measured_share": 0.9044234790401274,
+     "gross_share": 0.010844285419390353,
+     "octave_high_share": 0.0002752356705429024,
+     "octave_low_share": 0.010046101974815936,
+     "p95_abs_non_gross": 5.63731794341471,
+     "accepted_share": 0.7028776262073085,
+     "coverage_k2": 0.9723756906077348,
+     "gross_share_accepted": 0.00917268734948293
+    },
+    "white-20": {
+     "valid": 80344,
+     "measured_share": 0.7019068007567459,
+     "gross_share": 0.016845763733730538,
+     "octave_high_share": 0.0037060680214207184,
+     "octave_low_share": 0.007323474128453382,
+     "p95_abs_non_gross": 6.725051156838285,
+     "accepted_share": 0.30005974310465,
+     "coverage_k2": 0.9753193960511034,
+     "gross_share_accepted": 0.006553841048614568
+    },
+    "white-10": {
+     "valid": 80344,
+     "measured_share": 0.3010928009558897,
+     "gross_share": 0.022363688975238726,
+     "octave_high_share": 0.010251746517299822,
+     "octave_low_share": 0.005084535571080154,
+     "p95_abs_non_gross": 7.516500886275885,
+     "accepted_share": 0.012608284377178133,
+     "coverage_k2": 0.9960513326752222,
+     "gross_share_accepted": 0.0
+    },
+    "pink-10": {
+     "valid": 80344,
+     "measured_share": 0.31590411231703674,
+     "gross_share": 0.039044954887514284,
+     "octave_high_share": 0.010953075134943462,
+     "octave_low_share": 0.013317048185650684,
+     "p95_abs_non_gross": 6.249945985704335,
+     "accepted_share": 0.019055561087324504,
+     "coverage_k2": 0.9954278249510125,
+     "gross_share_accepted": 0.0006531678641410843
+    }
+   },
+   "cont+spec": {
+    "clean": {
+     "valid": 80344,
+     "measured_share": 0.917131335258389,
+     "gross_share": 0.018918111988708845,
+     "octave_high_share": 0.0031077816681594874,
+     "octave_low_share": 0.00875335884699943,
+     "p95_abs_non_gross": 6.833732225038996,
+     "accepted_share": 0.722406153539779,
+     "coverage_k2": 0.9470374390517048,
+     "gross_share_accepted": 0.0062025120173670335
+    },
+    "original": {
+     "valid": 80344,
+     "measured_share": 0.9045852832818879,
+     "gross_share": 0.01241090839043452,
+     "octave_high_share": 0.0008943559261399599,
+     "octave_low_share": 0.011021216874432428,
+     "p95_abs_non_gross": 5.608592640544671,
+     "accepted_share": 0.7021681768395898,
+     "coverage_k2": 0.9728795533102899,
+     "gross_share_accepted": 0.00870335903571745
+    },
+    "white-20": {
+     "valid": 80344,
+     "measured_share": 0.7021059444389127,
+     "gross_share": 0.01950008863676653,
+     "octave_high_share": 0.0044318383265378476,
+     "octave_low_share": 0.009271405779117177,
+     "p95_abs_non_gross": 6.707550522310424,
+     "accepted_share": 0.2991262570944937,
+     "coverage_k2": 0.9744101859942579,
+     "gross_share_accepted": 0.007780967835892314
+    },
+    "white-10": {
+     "valid": 80344,
+     "measured_share": 0.30195160808523347,
+     "gross_share": 0.016859027205276173,
+     "octave_high_share": 0.004163231657048639,
+     "octave_low_share": 0.005688375927452597,
+     "p95_abs_non_gross": 7.516442344220431,
+     "accepted_share": 0.013218161903813601,
+     "coverage_k2": 0.9962335216572504,
+     "gross_share_accepted": 0.0
+    },
+    "pink-10": {
+     "valid": 80344,
+     "measured_share": 0.3165264363238076,
+     "gross_share": 0.038535645472061654,
+     "octave_high_share": 0.007038653611733711,
+     "octave_low_share": 0.016672564979749126,
+     "p95_abs_non_gross": 6.244025040575185,
+     "accepted_share": 0.019491187892064124,
+     "coverage_k2": 0.9955300127713921,
+     "gross_share_accepted": 0.0006385696040868455
+    }
+   },
+   "base-0.05 (unconstrained)": {
+    "clean": {
+     "valid": 80344,
+     "measured_share": 0.8558324205914567,
+     "gross_share": 0.009278515437529996,
+     "octave_high_share": 0.008405927778828115,
+     "octave_low_share": 8.725876587018804e-05,
+     "p95_abs_non_gross": 5.972701141541784,
+     "accepted_share": 0.7242482325998207,
+     "coverage_k2": 0.9523621302995412,
+     "gross_share_accepted": 0.0007905274192716836
+    },
+    "original": {
+     "valid": 80344,
+     "measured_share": 0.8412326993926118,
+     "gross_share": 0.0034917440965851927,
+     "octave_high_share": 0.0021897378232822395,
+     "octave_low_share": 0.0009469136533112387,
+     "p95_abs_non_gross": 4.734272995019541,
+     "accepted_share": 0.7032634670915066,
+     "coverage_k2": 0.9807797816045166,
+     "gross_share_accepted": 0.000654832486770614
+    },
+    "white-20": {
+     "valid": 80344,
+     "measured_share": 0.5335557104450861,
+     "gross_share": 0.014812914061771019,
+     "octave_high_share": 0.011500419893626948,
+     "octave_low_share": 0.0017495567789493328,
+     "p95_abs_non_gross": 5.577940805576399,
+     "accepted_share": 0.30115503335656674,
+     "coverage_k2": 0.9815672011902794,
+     "gross_share_accepted": 0.0007852537609522235
+    },
+    "white-10": {
+     "valid": 80344,
+     "measured_share": 0.13730956885392812,
+     "gross_share": 0.029641044234952865,
+     "octave_high_share": 0.013959390862944163,
+     "octave_low_share": 0.0109680928208847,
+     "p95_abs_non_gross": 5.620477465472449,
+     "accepted_share": 0.012969232301105247,
+     "coverage_k2": 0.9942418426103646,
+     "gross_share_accepted": 0.0
+    },
+    "pink-10": {
+     "valid": 80344,
+     "measured_share": 0.15576769889475256,
+     "gross_share": 0.05465441470235717,
+     "octave_high_share": 0.016140631242508988,
+     "octave_low_share": 0.022133439872153417,
+     "p95_abs_non_gross": 5.413551956641257,
+     "accepted_share": 0.019229811809220353,
+     "coverage_k2": 0.9948220064724919,
+     "gross_share_accepted": 0.0006472491909385113
+    }
+   }
+  },
+  "fit on even, test on odd": {
+   "base-0.1": {
+    "clean": {
+     "valid": 104341,
+     "measured_share": 0.9250342626580156,
+     "gross_share": 0.0569317958122235,
+     "octave_high_share": 0.0377853065199598,
+     "octave_low_share": 4.144261751572229e-05,
+     "p95_abs_non_gross": 6.969053251052214,
+     "accepted_share": 0.7279880392175655,
+     "coverage_k2": 0.938822259376769,
+     "gross_share_accepted": 0.009176002843639331
+    },
+    "original": {
+     "valid": 104341,
+     "measured_share": 0.9260980822495471,
+     "gross_share": 0.027237917830901376,
+     "octave_high_share": 0.020894132257063023,
+     "octave_low_share": 0.0009106902618234503,
+     "p95_abs_non_gross": 5.59322262769447,
+     "accepted_share": 0.7428240097373037,
+     "coverage_k2": 0.9838079141238856,
+     "gross_share_accepted": 0.0002322370882629956
+    },
+    "white-20": {
+     "valid": 104341,
+     "measured_share": 0.7004149854803001,
+     "gross_share": 0.06297036205905696,
+     "octave_high_share": 0.0452368572288662,
+     "octave_low_share": 0.0009304616731890205,
+     "p95_abs_non_gross": 6.55695970298604,
+     "accepted_share": 0.2938633902301109,
+     "coverage_k2": 0.9697671384775944,
+     "gross_share_accepted": 0.013208531733089819
+    },
+    "white-10": {
+     "valid": 104341,
+     "measured_share": 0.29754363097919323,
+     "gross_share": 0.08748308960896733,
+     "octave_high_share": 0.07044385750177157,
+     "octave_low_share": 0.005636797010887071,
+     "p95_abs_non_gross": 7.590530300752142,
+     "accepted_share": 0.012669995495538667,
+     "coverage_k2": 0.9848714069591528,
+     "gross_share_accepted": 0.012102874432677761
+    },
+    "pink-10": {
+     "valid": 104341,
+     "measured_share": 0.31470850384796006,
+     "gross_share": 0.1068611627127935,
+     "octave_high_share": 0.07080427566464659,
+     "octave_low_share": 0.014952644882297408,
+     "p95_abs_non_gross": 6.076343151631333,
+     "accepted_share": 0.019647118582340594,
+     "coverage_k2": 0.9736585365853658,
+     "gross_share_accepted": 0.020975609756097562
+    }
+   },
+   "base-0.05": null,
+   "cont": {
+    "clean": {
+     "valid": 104341,
+     "measured_share": 0.9356820425336158,
+     "gross_share": 0.029591314145242242,
+     "octave_high_share": 0.00948478951142067,
+     "octave_low_share": 4.097101300829663e-05,
+     "p95_abs_non_gross": 6.869504154821684,
+     "accepted_share": 0.760899358833057,
+     "coverage_k2": 0.9430302419608781,
+     "gross_share_accepted": 0.005995490786341365
+    },
+    "original": {
+     "valid": 104341,
+     "measured_share": 0.9305737917022072,
+     "gross_share": 0.008373070228740332,
+     "octave_high_share": 0.0016993315962388128,
+     "octave_low_share": 0.0009887020196298548,
+     "p95_abs_non_gross": 5.541157455691376,
+     "accepted_share": 0.7645508477012871,
+     "coverage_k2": 0.9840549552485772,
+     "gross_share_accepted": 0.0002632436633489608
+    },
+    "white-20": {
+     "valid": 104341,
+     "measured_share": 0.7076412915344878,
+     "gross_share": 0.031353269407876916,
+     "octave_high_share": 0.01163389132672409,
+     "octave_low_share": 0.0021127905086949453,
+     "p95_abs_non_gross": 6.477936466806663,
+     "accepted_share": 0.31910754161834753,
+     "coverage_k2": 0.9765737626141279,
+     "gross_share_accepted": 0.007057904853435848
+    },
+    "white-10": {
+     "valid": 104341,
+     "measured_share": 0.30021755589844834,
+     "gross_share": 0.03926576217079011,
+     "octave_high_share": 0.022250598563447726,
+     "octave_low_share": 0.00558659217877095,
+     "p95_abs_non_gross": 7.369013259997198,
+     "accepted_share": 0.016982777623369527,
+     "coverage_k2": 0.9960496613995485,
+     "gross_share_accepted": 0.001693002257336343
+    },
+    "pink-10": {
+     "valid": 104341,
+     "measured_share": 0.3189062784523821,
+     "gross_share": 0.06353117956423741,
+     "octave_high_share": 0.027768595041322314,
+     "octave_low_share": 0.014755822689706988,
+     "p95_abs_non_gross": 5.972816157875765,
+     "accepted_share": 0.024189915756989103,
+     "coverage_k2": 0.9893026941362916,
+     "gross_share_accepted": 0.006339144215530904
+    }
+   },
+   "sub": {
+    "clean": {
+     "valid": 104341,
+     "measured_share": 0.9382409599294621,
+     "gross_share": 0.024392984463262407,
+     "octave_high_share": 0.00533213479473324,
+     "octave_low_share": 0.00022472598751749288,
+     "p95_abs_non_gross": 6.876154651727768,
+     "accepted_share": 0.7707420860447954,
+     "coverage_k2": 0.9393683163392191,
+     "gross_share_accepted": 0.00885351902511813
+    },
+    "original": {
+     "valid": 104341,
+     "measured_share": 0.9307175511064683,
+     "gross_share": 0.007898097042589999,
+     "octave_high_share": 6.178433149353324e-05,
+     "octave_low_share": 0.0024301837054123074,
+     "p95_abs_non_gross": 5.531033219649285,
+     "accepted_share": 0.7681352488475288,
+     "coverage_k2": 0.9825073613814443,
+     "gross_share_accepted": 0.0018465838199331237
+    },
+    "white-20": {
+     "valid": 104341,
+     "measured_share": 0.7115994671318082,
+     "gross_share": 0.02366361836523051,
+     "octave_high_share": 0.006168433244892187,
+     "octave_low_share": 0.0009562418349068674,
+     "p95_abs_non_gross": 6.461165911429874,
+     "accepted_share": 0.32774268983429333,
+     "coverage_k2": 0.9708161534637542,
+     "gross_share_accepted": 0.011930871129046408
+    },
+    "white-10": {
+     "valid": 104341,
+     "measured_share": 0.30037089926299343,
+     "gross_share": 0.04980696212628825,
+     "octave_high_share": 0.03292811333397148,
+     "octave_low_share": 0.005583740148687023,
+     "p95_abs_non_gross": 7.389935056477971,
+     "accepted_share": 0.019091248885864616,
+     "coverage_k2": 0.9899598393574297,
+     "gross_share_accepted": 0.008032128514056224
+    },
+    "pink-10": {
+     "valid": 104341,
+     "measured_share": 0.31794788242397526,
+     "gross_share": 0.06914845516201959,
+     "octave_high_share": 0.033428786737000754,
+     "octave_low_share": 0.014830444611906557,
+     "p95_abs_non_gross": 5.996481449909295,
+     "accepted_share": 0.026950096318800854,
+     "coverage_k2": 0.980796586059744,
+     "gross_share_accepted": 0.015291607396870554
+    }
+   },
+   "spec": {
+    "clean": {
+     "valid": 104341,
+     "measured_share": 0.9302000172511286,
+     "gross_share": 0.04720888540872468,
+     "octave_high_share": 0.027529930556986545,
+     "octave_low_share": 0.0007418244760864637,
+     "p95_abs_non_gross": 6.944948571148581,
+     "accepted_share": 0.7419518693514534,
+     "coverage_k2": 0.9390048568771313,
+     "gross_share_accepted": 0.009003306809961765
+    },
+    "original": {
+     "valid": 104341,
+     "measured_share": 0.9303054408142533,
+     "gross_share": 0.015380811587633538,
+     "octave_high_share": 0.008138540625740452,
+     "octave_low_share": 0.0018337471283313932,
+     "p95_abs_non_gross": 5.5387092579588035,
+     "accepted_share": 0.7587429677691415,
+     "coverage_k2": 0.9838065885206144,
+     "gross_share_accepted": 0.00044209781729991917
+    },
+    "white-20": {
+     "valid": 104341,
+     "measured_share": 0.7043348252364843,
+     "gross_share": 0.05348954293723041,
+     "octave_high_share": 0.03537848171884993,
+     "octave_low_share": 0.0014423534854608048,
+     "p95_abs_non_gross": 6.540721156892134,
+     "accepted_share": 0.3026710497311699,
+     "coverage_k2": 0.9702036034324436,
+     "gross_share_accepted": 0.012824166429182103
+    },
+    "white-10": {
+     "valid": 104341,
+     "measured_share": 0.2983678515636231,
+     "gross_share": 0.08306565591674162,
+     "octave_high_share": 0.0659450083515354,
+     "octave_low_share": 0.005749710908390081,
+     "p95_abs_non_gross": 7.570468139398898,
+     "accepted_share": 0.013043769946617342,
+     "coverage_k2": 0.9853049228508449,
+     "gross_share_accepted": 0.011756061719324026
+    },
+    "pink-10": {
+     "valid": 104341,
+     "measured_share": 0.31607901016858186,
+     "gross_share": 0.10097028502122499,
+     "octave_high_share": 0.06282595512431777,
+     "octave_low_share": 0.017010309278350514,
+     "p95_abs_non_gross": 6.056479357967549,
+     "accepted_share": 0.020260492040520984,
+     "coverage_k2": 0.9744560075685903,
+     "gross_share_accepted": 0.02034058656575213
+    }
+   },
+   "cont+sub": {
+    "clean": {
+     "valid": 104341,
+     "measured_share": 0.9393814512032662,
+     "gross_share": 0.02082313091740124,
+     "octave_high_share": 0.0007651811949069539,
+     "octave_low_share": 7.141691152464904e-05,
+     "p95_abs_non_gross": 6.847246328460391,
+     "accepted_share": 0.7712021161384307,
+     "coverage_k2": 0.9441144305811006,
+     "gross_share_accepted": 0.004175572898543521
+    },
+    "original": {
+     "valid": 104341,
+     "measured_share": 0.9313500924852167,
+     "gross_share": 0.007707505814073144,
+     "octave_high_share": 0.00020580789890716007,
+     "octave_low_share": 0.0018213999053283665,
+     "p95_abs_non_gross": 5.537644094618256,
+     "accepted_share": 0.7672918603425307,
+     "coverage_k2": 0.9831001748688484,
+     "gross_share_accepted": 0.001236572570572071
+    },
+    "white-20": {
+     "valid": 104341,
+     "measured_share": 0.7098072665586874,
+     "gross_share": 0.023547838297642516,
+     "octave_high_share": 0.0038886338473171126,
+     "octave_low_share": 0.002106343333963436,
+     "p95_abs_non_gross": 6.4514163217483205,
+     "accepted_share": 0.3261900882682742,
+     "coverage_k2": 0.9774349933891582,
+     "gross_share_accepted": 0.005523725576612311
+    },
+    "white-10": {
+     "valid": 104341,
+     "measured_share": 0.3004092351041297,
+     "gross_share": 0.03924070824692934,
+     "octave_high_share": 0.022236401339926624,
+     "octave_low_share": 0.005583027596107832,
+     "p95_abs_non_gross": 7.367218452593825,
+     "accepted_share": 0.017174456829050902,
+     "coverage_k2": 0.99609375,
+     "gross_share_accepted": 0.0016741071428571428
+    },
+    "pink-10": {
+     "valid": 104341,
+     "measured_share": 0.3189446142935184,
+     "gross_share": 0.06280236785961117,
+     "octave_high_share": 0.027044081853421078,
+     "octave_low_share": 0.014754049100033055,
+     "p95_abs_non_gross": 5.97104657925348,
+     "accepted_share": 0.02433367516125013,
+     "coverage_k2": 0.9893658920834975,
+     "gross_share_accepted": 0.006301693580149665
+    }
+   },
+   "cont+spec": {
+    "clean": {
+     "valid": 104341,
+     "measured_share": 0.9373592355833278,
+     "gross_share": 0.024293236542099073,
+     "octave_high_share": 0.003568324727774654,
+     "octave_low_share": 0.0007566075354020756,
+     "p95_abs_non_gross": 6.844010477376509,
+     "accepted_share": 0.766908501931168,
+     "coverage_k2": 0.9435766058485379,
+     "gross_share_accepted": 0.004798800299925019
+    },
+    "original": {
+     "valid": 104341,
+     "measured_share": 0.9313309245646486,
+     "gross_share": 0.00868527208364205,
+     "octave_high_share": 0.0005865645838478636,
+     "octave_low_share": 0.002418292582530666,
+     "p95_abs_non_gross": 5.521572081262372,
+     "accepted_share": 0.7664676397581008,
+     "coverage_k2": 0.9834196113736965,
+     "gross_share_accepted": 0.000962812914197114
+    },
+    "white-20": {
+     "valid": 104341,
+     "measured_share": 0.7093664043856203,
+     "gross_share": 0.029277453523562473,
+     "octave_high_share": 0.009133160397751838,
+     "octave_low_share": 0.0026210549070471247,
+     "p95_abs_non_gross": 6.466884563721238,
+     "accepted_share": 0.3213406043645355,
+     "coverage_k2": 0.9770049807629216,
+     "gross_share_accepted": 0.006591309016075636
+    },
+    "white-10": {
+     "valid": 104341,
+     "measured_share": 0.3004859067864023,
+     "gross_share": 0.03744458265556725,
+     "octave_high_share": 0.02031703505246707,
+     "octave_low_share": 0.005709182534366727,
+     "p95_abs_non_gross": 7.368864997258312,
+     "accepted_share": 0.017155288908482762,
+     "coverage_k2": 0.9960893854748604,
+     "gross_share_accepted": 0.0016759776536312849
+    },
+    "pink-10": {
+     "valid": 104341,
+     "measured_share": 0.31908837369777937,
+     "gross_share": 0.06355499489397488,
+     "octave_high_share": 0.025590196431789513,
+     "octave_low_share": 0.016849882861776896,
+     "p95_abs_non_gross": 5.957279670370676,
+     "accepted_share": 0.024247419518693514,
+     "coverage_k2": 0.9893280632411067,
+     "gross_share_accepted": 0.006324110671936759
+    }
+   },
+   "base-0.05 (unconstrained)": {
+    "clean": {
+     "valid": 104341,
+     "measured_share": 0.8874555543841827,
+     "gross_share": 0.03097259120067388,
+     "octave_high_share": 0.023326637724356898,
+     "octave_low_share": 0.00011879306248515087,
+     "p95_abs_non_gross": 6.022996021183639,
+     "accepted_share": 0.7620877699082815,
+     "coverage_k2": 0.9394594866506534,
+     "gross_share_accepted": 0.008765421230680233
+    },
+    "original": {
+     "valid": 104341,
+     "measured_share": 0.8823089677116378,
+     "gross_share": 0.008602991494769773,
+     "octave_high_share": 0.0045621924593476065,
+     "octave_low_share": 0.0013469330118073886,
+     "p95_abs_non_gross": 4.642527822860938,
+     "accepted_share": 0.7658350983793523,
+     "coverage_k2": 0.9835560895029284,
+     "gross_share_accepted": 0.0007758922761175351
+    },
+    "white-20": {
+     "valid": 104341,
+     "measured_share": 0.5601728946435246,
+     "gross_share": 0.04085613098598778,
+     "octave_high_share": 0.030984276890964772,
+     "octave_low_share": 0.0014713682013379186,
+     "p95_abs_non_gross": 5.328340315627613,
+     "accepted_share": 0.3182066493516451,
+     "coverage_k2": 0.9709354858141076,
+     "gross_share_accepted": 0.01219806035780977
+    },
+    "white-10": {
+     "valid": 104341,
+     "measured_share": 0.14361564485676773,
+     "gross_share": 0.07133800467133801,
+     "octave_high_share": 0.054120787454120786,
+     "octave_low_share": 0.01121121121121121,
+     "p95_abs_non_gross": 5.342797690662617,
+     "accepted_share": 0.01535350437507787,
+     "coverage_k2": 0.9868913857677902,
+     "gross_share_accepted": 0.009987515605493134
+    },
+    "pink-10": {
+     "valid": 104341,
+     "measured_share": 0.16344485868450562,
+     "gross_share": 0.08836636566201478,
+     "octave_high_share": 0.05318400375278527,
+     "octave_low_share": 0.020112583558109534,
+     "p95_abs_non_gross": 4.913513777394222,
+     "accepted_share": 0.02313568012574156,
+     "coverage_k2": 0.9772162386081193,
+     "gross_share_accepted": 0.017812758906379452
+    }
+   }
+  }
+ },
+ "all_singers": {
+  "base-0.1": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.919944770826001,
+    "gross_share": 0.04633313713949382,
+    "octave_high_share": 0.03234844025897587,
+    "octave_low_share": 3.531489111241907e-05,
+    "p95_abs_non_gross": 6.916192287783506,
+    "accepted_share": 0.7167501421339036,
+    "coverage_k2": 0.9446488332212762,
+    "gross_share_accepted": 0.005612927107491709
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9163548745160679,
+    "gross_share": 0.019948356446876273,
+    "octave_high_share": 0.01594214031210669,
+    "octave_low_share": 0.0006795204358384987,
+    "p95_abs_non_gross": 5.610029809473769,
+    "accepted_share": 0.7223163765330157,
+    "coverage_k2": 0.9826987803689627,
+    "gross_share_accepted": 0.00023238206610145352
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.6998835855646101,
+    "gross_share": 0.05169505949341627,
+    "octave_high_share": 0.038767426387535005,
+    "octave_low_share": 0.0008896934812545452,
+    "p95_abs_non_gross": 6.642755203735714,
+    "accepted_share": 0.28891355551344183,
+    "coverage_k2": 0.9749053562727239,
+    "gross_share_accepted": 0.007946324824768545
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.29905514795462546,
+    "gross_share": 0.0727671054299216,
+    "octave_high_share": 0.057884159258387496,
+    "octave_low_share": 0.005395520631529395,
+    "p95_abs_non_gross": 7.587943757577939,
+    "accepted_share": 0.011625199664293257,
+    "coverage_k2": 0.9897531439217513,
+    "gross_share_accepted": 0.007452258965999069
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3149903890407992,
+    "gross_share": 0.09150135799498058,
+    "octave_high_share": 0.05889228865128752,
+    "octave_low_share": 0.014250352391102554,
+    "p95_abs_non_gross": 6.1851449993443985,
+    "accepted_share": 0.018193139670249343,
+    "coverage_k2": 0.9824404761904761,
+    "gross_share_accepted": 0.013095238095238096
+   }
+  },
+  "base-0.05": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.8736984595392154,
+    "gross_share": 0.021727948239639562,
+    "octave_high_share": 0.016968374865982065,
+    "octave_low_share": 0.00010535513978148105,
+    "p95_abs_non_gross": 6.005310627591155,
+    "accepted_share": 0.7456263367355227,
+    "coverage_k2": 0.9449116233134359,
+    "gross_share_accepted": 0.005395552844465746
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.864439450957035,
+    "gross_share": 0.0064391258322945965,
+    "octave_high_share": 0.0035578049345752244,
+    "octave_low_share": 0.0011775833234157432,
+    "p95_abs_non_gross": 4.681181696817664,
+    "accepted_share": 0.738614397487614,
+    "coverage_k2": 0.9824061109441321,
+    "gross_share_accepted": 0.0007257479235545521
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.5485935511817419,
+    "gross_share": 0.029837046102825785,
+    "octave_high_share": 0.022740507516014093,
+    "octave_low_share": 0.0015890719227770265,
+    "p95_abs_non_gross": 5.438682807699267,
+    "accepted_share": 0.3107886401169559,
+    "coverage_k2": 0.9754172619255026,
+    "gross_share_accepted": 0.007387016969232377
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.14087229607168963,
+    "gross_share": 0.05365722412268901,
+    "octave_high_share": 0.03709113272091325,
+    "octave_low_share": 0.011108121612791635,
+    "p95_abs_non_gross": 5.458639291959047,
+    "accepted_share": 0.014316268240517639,
+    "coverage_k2": 0.9897881996974282,
+    "gross_share_accepted": 0.006051437216338881
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.16010504372309609,
+    "gross_share": 0.07409787277216003,
+    "octave_high_share": 0.03750549562041327,
+    "octave_low_share": 0.0209679055767865,
+    "p95_abs_non_gross": 5.147992695066002,
+    "accepted_share": 0.021436499986463436,
+    "coverage_k2": 0.9840868906289467,
+    "gross_share_accepted": 0.011113917655973731
+   }
+  },
+  "cont": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9267617835774427,
+    "gross_share": 0.025987532060832326,
+    "octave_high_share": 0.008232111662255563,
+    "octave_low_share": 0.0032367564662097816,
+    "p95_abs_non_gross": 6.857419596277209,
+    "accepted_share": 0.7421284890489211,
+    "coverage_k2": 0.9447030497592296,
+    "gross_share_accepted": 0.0062162556544579015
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9191379917156239,
+    "gross_share": 0.009195822115922734,
+    "octave_high_share": 0.002409411432038692,
+    "octave_low_share": 0.003310731600992041,
+    "p95_abs_non_gross": 5.577265350943592,
+    "accepted_share": 0.736139913907464,
+    "coverage_k2": 0.9811186136487341,
+    "gross_share_accepted": 0.00203745384468276
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7046863578525597,
+    "gross_share": 0.026309116754389336,
+    "octave_high_share": 0.009427945752814169,
+    "octave_low_share": 0.004372046563448462,
+    "p95_abs_non_gross": 6.578650516742135,
+    "accepted_share": 0.309586593388743,
+    "coverage_k2": 0.9759514481600672,
+    "gross_share_accepted": 0.007083391632852945
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.30059831605165555,
+    "gross_share": 0.03190071330787521,
+    "octave_high_share": 0.017022119749261475,
+    "octave_low_share": 0.0053678218891851,
+    "p95_abs_non_gross": 7.451793296949235,
+    "accepted_share": 0.015079730351679888,
+    "coverage_k2": 0.9960502692998204,
+    "gross_share_accepted": 0.0010771992818671453
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3175948236185938,
+    "gross_share": 0.05293666354104509,
+    "octave_high_share": 0.020492711618787827,
+    "octave_low_share": 0.014133492455886115,
+    "p95_abs_non_gross": 6.092613891002669,
+    "accepted_share": 0.02195088935214013,
+    "coverage_k2": 0.9916132215096202,
+    "gross_share_accepted": 0.004193389245189936
+   }
+  },
+  "sub(0.05,0.005)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9255380783496223,
+    "gross_share": 0.02403865842172079,
+    "octave_high_share": 0.010138475309039214,
+    "octave_low_share": 3.510147250677166e-05,
+    "p95_abs_non_gross": 6.822017193594378,
+    "accepted_share": 0.7413704415626607,
+    "coverage_k2": 0.9475314052001168,
+    "gross_share_accepted": 0.003607946245983056
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9186398462246528,
+    "gross_share": 0.007827465681160446,
+    "octave_high_share": 0.0036013415144495724,
+    "octave_low_share": 0.0009077030985683046,
+    "p95_abs_non_gross": 5.56477849418205,
+    "accepted_share": 0.7360803530335436,
+    "coverage_k2": 0.9827133430923255,
+    "gross_share_accepted": 0.0005149216951222203
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7006253891761648,
+    "gross_share": 0.04677151358244136,
+    "octave_high_share": 0.03385756791220681,
+    "octave_low_share": 0.0008887514973530662,
+    "p95_abs_non_gross": 6.627128914782349,
+    "accepted_share": 0.29303949968865906,
+    "coverage_k2": 0.9753141167775314,
+    "gross_share_accepted": 0.007742054693274205
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.29905514795462546,
+    "gross_share": 0.0727671054299216,
+    "octave_high_share": 0.057884159258387496,
+    "octave_low_share": 0.005395520631529395,
+    "p95_abs_non_gross": 7.587943757577939,
+    "accepted_share": 0.011625199664293257,
+    "coverage_k2": 0.9897531439217513,
+    "gross_share_accepted": 0.007452258965999069
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3149903890407992,
+    "gross_share": 0.09150135799498058,
+    "octave_high_share": 0.05889228865128752,
+    "octave_low_share": 0.014250352391102554,
+    "p95_abs_non_gross": 6.1851449993443985,
+    "accepted_share": 0.018193139670249343,
+    "coverage_k2": 0.9824404761904761,
+    "gross_share_accepted": 0.013095238095238096
+   }
+  },
+  "sub(0.05,0.01)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9255380783496223,
+    "gross_share": 0.02403865842172079,
+    "octave_high_share": 0.010138475309039214,
+    "octave_low_share": 3.510147250677166e-05,
+    "p95_abs_non_gross": 6.822017193594378,
+    "accepted_share": 0.7413704415626607,
+    "coverage_k2": 0.9475314052001168,
+    "gross_share_accepted": 0.003607946245983056
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9186398462246528,
+    "gross_share": 0.007827465681160446,
+    "octave_high_share": 0.0036013415144495724,
+    "octave_low_share": 0.0009077030985683046,
+    "p95_abs_non_gross": 5.56477849418205,
+    "accepted_share": 0.7360803530335436,
+    "coverage_k2": 0.9827133430923255,
+    "gross_share_accepted": 0.0005149216951222203
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7006253891761648,
+    "gross_share": 0.04677151358244136,
+    "octave_high_share": 0.03385756791220681,
+    "octave_low_share": 0.0008887514973530662,
+    "p95_abs_non_gross": 6.627128914782349,
+    "accepted_share": 0.29303949968865906,
+    "coverage_k2": 0.9753141167775314,
+    "gross_share_accepted": 0.007742054693274205
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.29905514795462546,
+    "gross_share": 0.0727671054299216,
+    "octave_high_share": 0.057884159258387496,
+    "octave_low_share": 0.005395520631529395,
+    "p95_abs_non_gross": 7.587943757577939,
+    "accepted_share": 0.011625199664293257,
+    "coverage_k2": 0.9897531439217513,
+    "gross_share_accepted": 0.007452258965999069
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3149903890407992,
+    "gross_share": 0.09150135799498058,
+    "octave_high_share": 0.05889228865128752,
+    "octave_low_share": 0.014250352391102554,
+    "p95_abs_non_gross": 6.1851449993443985,
+    "accepted_share": 0.018193139670249343,
+    "coverage_k2": 0.9824404761904761,
+    "gross_share_accepted": 0.013095238095238096
+   }
+  },
+  "sub(0.05,0.02)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9255164198500149,
+    "gross_share": 0.02573583183661052,
+    "octave_high_share": 0.011835323438386698,
+    "octave_low_share": 3.510229393490864e-05,
+    "p95_abs_non_gross": 6.826694667194058,
+    "accepted_share": 0.741126783442077,
+    "coverage_k2": 0.9457534246575342,
+    "gross_share_accepted": 0.005428310502283105
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9186398462246528,
+    "gross_share": 0.007780312273442612,
+    "octave_high_share": 0.0036013415144495724,
+    "octave_low_share": 0.0008605496908504706,
+    "p95_abs_non_gross": 5.564678061038296,
+    "accepted_share": 0.7360803530335436,
+    "coverage_k2": 0.9827721912860538,
+    "gross_share_accepted": 0.0004560735013939666
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7006253891761648,
+    "gross_share": 0.04681788322578152,
+    "octave_high_share": 0.03390393755554697,
+    "octave_low_share": 0.0008887514973530662,
+    "p95_abs_non_gross": 6.627395138315879,
+    "accepted_share": 0.2930340850637572,
+    "coverage_k2": 0.975221271642122,
+    "gross_share_accepted": 0.007834586744027051
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.29905514795462546,
+    "gross_share": 0.0727671054299216,
+    "octave_high_share": 0.057884159258387496,
+    "octave_low_share": 0.005395520631529395,
+    "p95_abs_non_gross": 7.587943757577939,
+    "accepted_share": 0.011625199664293257,
+    "coverage_k2": 0.9897531439217513,
+    "gross_share_accepted": 0.007452258965999069
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3149903890407992,
+    "gross_share": 0.09150135799498058,
+    "octave_high_share": 0.05889228865128752,
+    "octave_low_share": 0.014250352391102554,
+    "p95_abs_non_gross": 6.1851449993443985,
+    "accepted_share": 0.018193139670249343,
+    "coverage_k2": 0.9824404761904761,
+    "gross_share_accepted": 0.013095238095238096
+   }
+  },
+  "sub(0.1,0.005)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.927563148062918,
+    "gross_share": 0.020040045065292136,
+    "octave_high_share": 0.006170209039910803,
+    "octave_low_share": 3.502483844793266e-05,
+    "p95_abs_non_gross": 6.811406588663781,
+    "accepted_share": 0.7466497008419741,
+    "coverage_k2": 0.9476775807679756,
+    "gross_share_accepted": 0.0030312919250154104
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.919056772342096,
+    "gross_share": 0.006409954281943724,
+    "octave_high_share": 0.0018970636753546685,
+    "octave_low_share": 0.0011959749257670735,
+    "p95_abs_non_gross": 5.5608868960255275,
+    "accepted_share": 0.738267861493895,
+    "coverage_k2": 0.9823538471693547,
+    "gross_share_accepted": 0.0008727731449903555
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7024501177680916,
+    "gross_share": 0.03495667992476798,
+    "octave_high_share": 0.022076280331760862,
+    "octave_low_share": 0.0008864428205839731,
+    "p95_abs_non_gross": 6.577122661286232,
+    "accepted_share": 0.3026991905135772,
+    "coverage_k2": 0.9765133085289067,
+    "gross_share_accepted": 0.006242844876931883
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.29908222107913474,
+    "gross_share": 0.0727243102324571,
+    "octave_high_share": 0.05784271127525527,
+    "octave_low_share": 0.005395032225360272,
+    "p95_abs_non_gross": 7.587543541766459,
+    "accepted_share": 0.011663102038606276,
+    "coverage_k2": 0.989786443825441,
+    "gross_share_accepted": 0.007428040854224698
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3150174621653085,
+    "gross_share": 0.09144192921844652,
+    "octave_high_share": 0.05883566235239519,
+    "octave_low_share": 0.014249127692122587,
+    "p95_abs_non_gross": 6.184609235915614,
+    "accepted_share": 0.018236456669464222,
+    "coverage_k2": 0.9824821852731591,
+    "gross_share_accepted": 0.013064133016627079
+   }
+  },
+  "sub(0.1,0.01)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.927563148062918,
+    "gross_share": 0.020045882538366793,
+    "octave_high_share": 0.006176046512985459,
+    "octave_low_share": 3.502483844793266e-05,
+    "p95_abs_non_gross": 6.81145534825445,
+    "accepted_share": 0.7466497008419741,
+    "coverage_k2": 0.9476703288734182,
+    "gross_share_accepted": 0.0030385438195728635
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.919056772342096,
+    "gross_share": 0.006374605269359476,
+    "octave_high_share": 0.0018970636753546685,
+    "octave_low_share": 0.0011606259131828251,
+    "p95_abs_non_gross": 5.560830952026865,
+    "accepted_share": 0.738267861493895,
+    "coverage_k2": 0.9823978525380096,
+    "gross_share_accepted": 0.0008287677763353796
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7024501177680916,
+    "gross_share": 0.03495667992476798,
+    "octave_high_share": 0.022076280331760862,
+    "octave_low_share": 0.0008864428205839731,
+    "p95_abs_non_gross": 6.577122661286232,
+    "accepted_share": 0.3026991905135772,
+    "coverage_k2": 0.9765133085289067,
+    "gross_share_accepted": 0.006242844876931883
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.29908222107913474,
+    "gross_share": 0.0727243102324571,
+    "octave_high_share": 0.05784271127525527,
+    "octave_low_share": 0.005395032225360272,
+    "p95_abs_non_gross": 7.587543541766459,
+    "accepted_share": 0.011663102038606276,
+    "coverage_k2": 0.989786443825441,
+    "gross_share_accepted": 0.007428040854224698
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3150174621653085,
+    "gross_share": 0.09144192921844652,
+    "octave_high_share": 0.05883566235239519,
+    "octave_low_share": 0.014249127692122587,
+    "p95_abs_non_gross": 6.184609235915614,
+    "accepted_share": 0.018236456669464222,
+    "coverage_k2": 0.9824821852731591,
+    "gross_share_accepted": 0.013064133016627079
+   }
+  },
+  "sub(0.1,0.02)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9275306603135067,
+    "gross_share": 0.022224038388567492,
+    "octave_high_share": 0.008353716557404802,
+    "octave_low_share": 3.5026065230208814e-05,
+    "p95_abs_non_gross": 6.8185710901302174,
+    "accepted_share": 0.7463518964723719,
+    "coverage_k2": 0.9453786999419617,
+    "gross_share_accepted": 0.005390307603017992
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.919056772342096,
+    "gross_share": 0.0062391007211198566,
+    "octave_high_share": 0.0018970636753546685,
+    "octave_low_share": 0.001025121364943206,
+    "p95_abs_non_gross": 5.560600994679634,
+    "accepted_share": 0.7382624468689931,
+    "coverage_k2": 0.9825664119226086,
+    "gross_share_accepted": 0.0006600853710413213
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7024392885182879,
+    "gross_share": 0.03572034224928698,
+    "octave_high_share": 0.022839744083866492,
+    "octave_low_share": 0.0008864564865489863,
+    "p95_abs_non_gross": 6.578861464217934,
+    "accepted_share": 0.30255841026612884,
+    "coverage_k2": 0.9752496510254482,
+    "gross_share_accepted": 0.0075879594831597405
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.29908222107913474,
+    "gross_share": 0.0727243102324571,
+    "octave_high_share": 0.05784271127525527,
+    "octave_low_share": 0.005395032225360272,
+    "p95_abs_non_gross": 7.587543541766459,
+    "accepted_share": 0.011663102038606276,
+    "coverage_k2": 0.989786443825441,
+    "gross_share_accepted": 0.007428040854224698
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3150174621653085,
+    "gross_share": 0.09144192921844652,
+    "octave_high_share": 0.05883566235239519,
+    "octave_low_share": 0.014249127692122587,
+    "p95_abs_non_gross": 6.184609235915614,
+    "accepted_share": 0.018236456669464222,
+    "coverage_k2": 0.9824821852731591,
+    "gross_share_accepted": 0.013064133016627079
+   }
+  },
+  "sub(0.2,0.005)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.928916804288383,
+    "gross_share": 0.016699988924963716,
+    "octave_high_share": 0.0028037328701247984,
+    "octave_low_share": 8.16055305233829e-05,
+    "p95_abs_non_gross": 6.815824067207544,
+    "accepted_share": 0.7508622790156212,
+    "coverage_k2": 0.9475672986089577,
+    "gross_share_accepted": 0.002675358577372668
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9190513577171942,
+    "gross_share": 0.005926886028220462,
+    "octave_high_share": 0.0006893098064630159,
+    "octave_low_share": 0.0019206409992046426,
+    "p95_abs_non_gross": 5.563533257633156,
+    "accepted_share": 0.7399409805885697,
+    "coverage_k2": 0.981413183467978,
+    "gross_share_accepted": 0.0017635522772509074
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.704908357473536,
+    "gross_share": 0.02199929331879004,
+    "octave_high_share": 0.009163811776995991,
+    "octave_low_share": 0.0008833515124514157,
+    "p95_abs_non_gross": 6.545505778149422,
+    "accepted_share": 0.31349595256788587,
+    "coverage_k2": 0.9787039275968081,
+    "gross_share_accepted": 0.0037825140764793258
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.29928256220050353,
+    "gross_share": 0.06987136576628734,
+    "octave_high_share": 0.0549997286197601,
+    "octave_low_share": 0.005391420766015957,
+    "p95_abs_non_gross": 7.570942896154506,
+    "accepted_share": 0.012702710019763381,
+    "coverage_k2": 0.9906223358908781,
+    "gross_share_accepted": 0.0068201193520886615
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3154073151582424,
+    "gross_share": 0.088049990558102,
+    "octave_high_share": 0.055484026025304285,
+    "octave_low_share": 0.014231515338792466,
+    "p95_abs_non_gross": 6.170914000760278,
+    "accepted_share": 0.019638844519045944,
+    "coverage_k2": 0.9837331127653708,
+    "gross_share_accepted": 0.011855527984560243
+   }
+  },
+  "sub(0.2,0.01)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.928916804288383,
+    "gross_share": 0.01667667305909989,
+    "octave_high_share": 0.002821219769522666,
+    "octave_low_share": 4.080276526169145e-05,
+    "p95_abs_non_gross": 6.815736654698966,
+    "accepted_share": 0.7508622790156212,
+    "coverage_k2": 0.9475961434453715,
+    "gross_share_accepted": 0.0026465137409589466
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9190676015918997,
+    "gross_share": 0.005714689698240818,
+    "octave_high_share": 0.0006892976233960575,
+    "octave_low_share": 0.0017085154767936467,
+    "p95_abs_non_gross": 5.562845633348148,
+    "accepted_share": 0.7399572244632753,
+    "coverage_k2": 0.9816770209060508,
+    "gross_share_accepted": 0.0015000841510621327
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.704908357473536,
+    "gross_share": 0.022006974636289617,
+    "octave_high_share": 0.009171493094495569,
+    "octave_low_share": 0.0008833515124514157,
+    "p95_abs_non_gross": 6.545512026014154,
+    "accepted_share": 0.31349595256788587,
+    "coverage_k2": 0.9786866558430343,
+    "gross_share_accepted": 0.003799785830253204
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.29928256220050353,
+    "gross_share": 0.06987136576628734,
+    "octave_high_share": 0.0549997286197601,
+    "octave_low_share": 0.005391420766015957,
+    "p95_abs_non_gross": 7.570942896154506,
+    "accepted_share": 0.012702710019763381,
+    "coverage_k2": 0.9906223358908781,
+    "gross_share_accepted": 0.0068201193520886615
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3154073151582424,
+    "gross_share": 0.088049990558102,
+    "octave_high_share": 0.055484026025304285,
+    "octave_low_share": 0.014231515338792466,
+    "p95_abs_non_gross": 6.170914000760278,
+    "accepted_share": 0.019638844519045944,
+    "coverage_k2": 0.9837331127653708,
+    "gross_share_accepted": 0.011855527984560243
+   }
+  },
+  "sub(0.2,0.02)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9288789019140699,
+    "gross_share": 0.019201399009035267,
+    "octave_high_share": 0.005345380355581463,
+    "octave_low_share": 4.0804430195278344e-05,
+    "p95_abs_non_gross": 6.821057281619709,
+    "accepted_share": 0.750521157646804,
+    "coverage_k2": 0.9449606810475435,
+    "gross_share_accepted": 0.005367578096818411
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.919132577090722,
+    "gross_share": 0.005390279823269514,
+    "octave_high_share": 0.0006951399116347569,
+    "octave_low_share": 0.0013784977908689248,
+    "p95_abs_non_gross": 5.562000731767614,
+    "accepted_share": 0.7400005414624902,
+    "coverage_k2": 0.9820805315108988,
+    "gross_share_accepted": 0.001097558298638296
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7048921135988304,
+    "gross_share": 0.023858721952943165,
+    "octave_high_share": 0.011022944624106065,
+    "octave_low_share": 0.0008833718688307997,
+    "p95_abs_non_gross": 6.550943364835588,
+    "accepted_share": 0.31327936757181146,
+    "coverage_k2": 0.9752497493864288,
+    "gross_share_accepted": 0.007328286494521069
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.29928256220050353,
+    "gross_share": 0.06987136576628734,
+    "octave_high_share": 0.0549997286197601,
+    "octave_low_share": 0.005391420766015957,
+    "p95_abs_non_gross": 7.570942896154506,
+    "accepted_share": 0.012702710019763381,
+    "coverage_k2": 0.9906223358908781,
+    "gross_share_accepted": 0.0068201193520886615
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3154073151582424,
+    "gross_share": 0.08806715764536231,
+    "octave_high_share": 0.055501193112564594,
+    "octave_low_share": 0.014231515338792466,
+    "p95_abs_non_gross": 6.171089157256323,
+    "accepted_share": 0.019638844519045944,
+    "coverage_k2": 0.9834574028122415,
+    "gross_share_accepted": 0.01213123793768955
+   }
+  },
+  "sub(0.5,0.005)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9292741695319057,
+    "gross_share": 0.015073737203055534,
+    "octave_high_share": 0.0007574742313093233,
+    "octave_low_share": 0.000506925062491624,
+    "p95_abs_non_gross": 6.844496554297979,
+    "accepted_share": 0.7525462273600997,
+    "coverage_k2": 0.9472097507626778,
+    "gross_share_accepted": 0.0027772981062568355
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9170912635027209,
+    "gross_share": 0.00857869908426963,
+    "octave_high_share": 0.00011808257514479876,
+    "octave_low_share": 0.005136592018798746,
+    "p95_abs_non_gross": 5.577908308044097,
+    "accepted_share": 0.7401792240842515,
+    "coverage_k2": 0.9776079005120702,
+    "gross_share_accepted": 0.0055523043160204824
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7081733762893575,
+    "gross_share": 0.014466048367982017,
+    "octave_high_share": 0.0016668068415539533,
+    "octave_low_share": 0.000902216547263149,
+    "p95_abs_non_gross": 6.551442496734807,
+    "accepted_share": 0.3182716517313263,
+    "coverage_k2": 0.979874106839061,
+    "gross_share_accepted": 0.0022966995576726777
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.30139426591222895,
+    "gross_share": 0.039092395307475346,
+    "octave_high_share": 0.024324955535993387,
+    "octave_low_share": 0.005353646048542119,
+    "p95_abs_non_gross": 7.459616983415999,
+    "accepted_share": 0.016844898069686223,
+    "coverage_k2": 0.9954998392799743,
+    "gross_share_accepted": 0.0019286403085824494
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.31765979911741615,
+    "gross_share": 0.057204220430565736,
+    "octave_high_share": 0.024835086164283156,
+    "octave_low_share": 0.014164692246066785,
+    "p95_abs_non_gross": 6.098207552093288,
+    "accepted_share": 0.02415464168719712,
+    "coverage_k2": 0.9914817305536875,
+    "gross_share_accepted": 0.004707464694014795
+   }
+  },
+  "sub(0.5,0.01)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9293824620299429,
+    "gross_share": 0.014850591052358674,
+    "octave_high_share": 0.0007806901533997891,
+    "octave_low_share": 0.0002621720664402277,
+    "p95_abs_non_gross": 6.844190388357656,
+    "accepted_share": 0.7526545198581368,
+    "coverage_k2": 0.9474907196915197,
+    "gross_share_accepted": 0.0025035250784150097
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.917470287245851,
+    "gross_share": 0.006999403929344971,
+    "octave_high_share": 0.00011803379307495736,
+    "octave_low_share": 0.0035587188612099642,
+    "p95_abs_non_gross": 5.572689296320377,
+    "accepted_share": 0.7405582478273818,
+    "coverage_k2": 0.9795715434671346,
+    "gross_share_accepted": 0.003597280105286247
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7081733762893575,
+    "gross_share": 0.014473694270924925,
+    "octave_high_share": 0.0016744527444968614,
+    "octave_low_share": 0.000902216547263149,
+    "p95_abs_non_gross": 6.551486318723001,
+    "accepted_share": 0.3182716517313263,
+    "coverage_k2": 0.9798570942497448,
+    "gross_share_accepted": 0.0023137121469887717
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.30139426591222895,
+    "gross_share": 0.039092395307475346,
+    "octave_high_share": 0.024324955535993387,
+    "octave_low_share": 0.005353646048542119,
+    "p95_abs_non_gross": 7.459616983415999,
+    "accepted_share": 0.016844898069686223,
+    "coverage_k2": 0.9954998392799743,
+    "gross_share_accepted": 0.0019286403085824494
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.31765979911741615,
+    "gross_share": 0.057204220430565736,
+    "octave_high_share": 0.024835086164283156,
+    "octave_low_share": 0.014164692246066785,
+    "p95_abs_non_gross": 6.098207552093288,
+    "accepted_share": 0.02415464168719712,
+    "coverage_k2": 0.9914817305536875,
+    "gross_share_accepted": 0.004707464694014795
+   }
+  },
+  "sub(0.5,0.02)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.929414949779354,
+    "gross_share": 0.017588217816590833,
+    "octave_high_share": 0.003635325577195323,
+    "octave_low_share": 0.00014564605677865877,
+    "p95_abs_non_gross": 6.850125023501152,
+    "accepted_share": 0.7523675447383382,
+    "coverage_k2": 0.9446639462832221,
+    "gross_share_accepted": 0.005462357233845024
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9181633592332891,
+    "gross_share": 0.005785187325662996,
+    "octave_high_share": 0.00013563640009199687,
+    "octave_low_share": 0.002329407740710381,
+    "p95_abs_non_gross": 5.568776890560596,
+    "accepted_share": 0.7411646858163901,
+    "coverage_k2": 0.9810858988033488,
+    "gross_share_accepted": 0.002096696424657734
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7081354739150445,
+    "gross_share": 0.01705127616950345,
+    "octave_high_share": 0.004251349574100411,
+    "octave_low_share": 0.0009022648376687924,
+    "p95_abs_non_gross": 6.558265169835581,
+    "accepted_share": 0.31798467661152774,
+    "coverage_k2": 0.9750540637185622,
+    "gross_share_accepted": 0.007270931598753555
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.30139426591222895,
+    "gross_share": 0.039361874135422095,
+    "octave_high_share": 0.02459443436394014,
+    "octave_low_share": 0.005353646048542119,
+    "p95_abs_non_gross": 7.46225225203868,
+    "accepted_share": 0.01681782494517692,
+    "coverage_k2": 0.9922730199613651,
+    "gross_share_accepted": 0.0051513200257566
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.31765979911741615,
+    "gross_share": 0.057749671876864334,
+    "octave_high_share": 0.025380537610581757,
+    "octave_low_share": 0.014164692246066785,
+    "p95_abs_non_gross": 6.101072741758252,
+    "accepted_share": 0.02410591006308038,
+    "coverage_k2": 0.9862982929020665,
+    "gross_share_accepted": 0.009883198562443846
+   }
+  },
+  "spec(-30)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9309797763759916,
+    "gross_share": 0.1231839383963987,
+    "octave_high_share": 0.0037804324814758807,
+    "octave_low_share": 0.10838209121892775,
+    "p95_abs_non_gross": 6.426410609895477,
+    "accepted_share": 0.7268213444513631,
+    "coverage_k2": 0.9158552665886928,
+    "gross_share_accepted": 0.03456676078162598
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9197119419552211,
+    "gross_share": 0.14015318768140259,
+    "octave_high_share": 6.476035724167977e-05,
+    "octave_low_share": 0.13671500144238977,
+    "p95_abs_non_gross": 5.142381307879804,
+    "accepted_share": 0.712640441833392,
+    "coverage_k2": 0.9158600148920327,
+    "gross_share_accepted": 0.06828300940629416
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7095053740152151,
+    "gross_share": 0.3295836990117144,
+    "octave_high_share": 0.0024573587209524173,
+    "octave_low_share": 0.31630480405998396,
+    "p95_abs_non_gross": 6.130486870079811,
+    "accepted_share": 0.3055797709613666,
+    "coverage_k2": 0.9304344744489333,
+    "gross_share_accepted": 0.05166914735275356
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.3029969948831795,
+    "gross_share": 0.6343930377597884,
+    "octave_high_share": 0.0008399006415411284,
+    "octave_low_share": 0.6225629478725495,
+    "p95_abs_non_gross": 7.653751148508223,
+    "accepted_share": 0.016747434821452745,
+    "coverage_k2": 0.9809246686065308,
+    "gross_share_accepted": 0.016812156482379565
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.32007472182364566,
+    "gross_share": 0.7562126774144435,
+    "octave_high_share": 0.001234922944191633,
+    "octave_low_share": 0.7333073943125877,
+    "p95_abs_non_gross": 6.158779606298868,
+    "accepted_share": 0.017272653436933155,
+    "coverage_k2": 0.5949843260188088,
+    "gross_share_accepted": 0.4025078369905956
+   }
+  },
+  "spec(-25)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9304870455099223,
+    "gross_share": 0.04939859293441259,
+    "octave_high_share": 0.0038173491536075696,
+    "octave_low_share": 0.03501952318050359,
+    "p95_abs_non_gross": 6.553768321372595,
+    "accepted_share": 0.7499634512819124,
+    "coverage_k2": 0.945937750438606,
+    "gross_share_accepted": 0.004100875768011725
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9196144787069875,
+    "gross_share": 0.04855775175313091,
+    "octave_high_share": 9.420686650298224e-05,
+    "octave_low_share": 0.04518985627564929,
+    "p95_abs_non_gross": 5.237609942762961,
+    "accepted_share": 0.7362915234047162,
+    "coverage_k2": 0.9745260402112044,
+    "gross_share_accepted": 0.008876174787839567
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7089963992744402,
+    "gross_share": 0.10935459481751324,
+    "octave_high_share": 0.002451485783673563,
+    "octave_low_share": 0.09676113669515278,
+    "p95_abs_non_gross": 6.248641551963896,
+    "accepted_share": 0.318244578606817,
+    "coverage_k2": 0.9790216928966398,
+    "gross_share_accepted": 0.0031646108039132285
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.3028291415112218,
+    "gross_share": 0.22466385352596194,
+    "octave_high_share": 0.0008761264482906594,
+    "octave_low_share": 0.2133636103561722,
+    "p95_abs_non_gross": 7.196352253708701,
+    "accepted_share": 0.017348458185559197,
+    "coverage_k2": 0.9971910112359551,
+    "gross_share_accepted": 0.00031210986267166043
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3195549178330671,
+    "gross_share": 0.6319873934629006,
+    "octave_high_share": 0.0013047088127149805,
+    "octave_low_share": 0.6106037243506108,
+    "p95_abs_non_gross": 6.023706149704139,
+    "accepted_share": 0.02404093456425806,
+    "coverage_k2": 0.963963963963964,
+    "gross_share_accepted": 0.032432432432432434
+   }
+  },
+  "spec(-20)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9301026071418902,
+    "gross_share": 0.026581128912071535,
+    "octave_high_share": 0.005524636736214605,
+    "octave_low_share": 0.00911652384500745,
+    "p95_abs_non_gross": 6.737745995008176,
+    "accepted_share": 0.7518693992473672,
+    "coverage_k2": 0.9450305705787886,
+    "gross_share_accepted": 0.005170712737381084
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9195928202073801,
+    "gross_share": 0.015538611004798775,
+    "octave_high_share": 0.0001472016957635352,
+    "octave_low_share": 0.012111755527423676,
+    "p95_abs_non_gross": 5.411580409048343,
+    "accepted_share": 0.7403524920811111,
+    "coverage_k2": 0.9818403884972062,
+    "gross_share_accepted": 0.001404206769446801
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7086769364052306,
+    "gross_share": 0.026504790574716157,
+    "octave_high_share": 0.005661588300912272,
+    "octave_low_share": 0.010031937164774378,
+    "p95_abs_non_gross": 6.489995807519305,
+    "accepted_share": 0.3171670682513469,
+    "coverage_k2": 0.9751775471182736,
+    "gross_share_accepted": 0.007153100245834472
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.3026125565151474,
+    "gross_share": 0.028825508159175495,
+    "octave_high_share": 0.009375894646435729,
+    "octave_low_share": 0.01036000572573719,
+    "p95_abs_non_gross": 7.396806270517411,
+    "accepted_share": 0.015897338711860737,
+    "coverage_k2": 0.9918256130790191,
+    "gross_share_accepted": 0.005449591280653951
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3191704794650351,
+    "gross_share": 0.2779493095375428,
+    "octave_high_share": 0.00895735079564347,
+    "octave_low_share": 0.24958436535133852,
+    "p95_abs_non_gross": 5.927970627624448,
+    "accepted_share": 0.02353737444838509,
+    "coverage_k2": 0.9857372900851161,
+    "gross_share_accepted": 0.010351966873706004
+   }
+  },
+  "spec(-15)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9241248612502369,
+    "gross_share": 0.035535998875035155,
+    "octave_high_share": 0.020729820943095528,
+    "octave_low_share": 0.0009902034311427767,
+    "p95_abs_non_gross": 6.889423202318273,
+    "accepted_share": 0.7309581178763841,
+    "coverage_k2": 0.944769143017993,
+    "gross_share_accepted": 0.005503826010948391
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9190676015918997,
+    "gross_share": 0.01184177968398355,
+    "octave_high_share": 0.006669101792173821,
+    "octave_low_share": 0.0018675841591158139,
+    "p95_abs_non_gross": 5.563536388085506,
+    "accepted_share": 0.7334434307063378,
+    "coverage_k2": 0.982636428065202,
+    "gross_share_accepted": 0.0004577132057642334
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7029969948831795,
+    "gross_share": 0.040159281538591884,
+    "octave_high_share": 0.026534086095214623,
+    "octave_low_share": 0.0016713778469264362,
+    "p95_abs_non_gross": 6.620835630115552,
+    "accepted_share": 0.2988981238324715,
+    "coverage_k2": 0.9751458280497084,
+    "gross_share_accepted": 0.00768088112749538
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.29975363456696535,
+    "gross_share": 0.06427023121387283,
+    "octave_high_share": 0.04907875722543353,
+    "octave_low_share": 0.005726156069364162,
+    "p95_abs_non_gross": 7.567951429951801,
+    "accepted_share": 0.012529442022903863,
+    "coverage_k2": 0.989628349178911,
+    "gross_share_accepted": 0.006914433880726016
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.31607872864607306,
+    "gross_share": 0.08217558886509636,
+    "octave_high_share": 0.04690364025695931,
+    "octave_low_share": 0.016873661670235546,
+    "p95_abs_non_gross": 6.1534205214293936,
+    "accepted_share": 0.019243576901210167,
+    "coverage_k2": 0.9833989870568374,
+    "gross_share_accepted": 0.012380416432189083
+   }
+  },
+  "spec(-10)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9200043316999215,
+    "gross_share": 0.046312481240178685,
+    "octave_high_share": 0.03231103342338047,
+    "octave_low_share": 5.2968907251443404e-05,
+    "p95_abs_non_gross": 6.917576414524451,
+    "accepted_share": 0.7167988737580204,
+    "coverage_k2": 0.944622380686196,
+    "gross_share_accepted": 0.0056125455122297595
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.916387362265479,
+    "gross_share": 0.019977192557446986,
+    "octave_high_share": 0.01592384913999397,
+    "octave_low_share": 0.0007267656564820997,
+    "p95_abs_non_gross": 5.610015252431765,
+    "accepted_share": 0.7223380350326231,
+    "coverage_k2": 0.9826843071848881,
+    "gross_share_accepted": 0.00023237509838461827
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.6999106586891193,
+    "gross_share": 0.05168532371985796,
+    "octave_high_share": 0.03874271833393933,
+    "octave_low_share": 0.0009051313987761386,
+    "p95_abs_non_gross": 6.643738391527811,
+    "accepted_share": 0.2889297993881474,
+    "coverage_k2": 0.9748880268360788,
+    "gross_share_accepted": 0.007945878075748206
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.2990605625795273,
+    "gross_share": 0.07276578794901506,
+    "octave_high_share": 0.057865005793742756,
+    "octave_low_share": 0.005413528389339514,
+    "p95_abs_non_gross": 7.587886583890581,
+    "accepted_share": 0.011625199664293257,
+    "coverage_k2": 0.9897531439217513,
+    "gross_share_accepted": 0.007452258965999069
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.31499580366570107,
+    "gross_share": 0.09149978513107004,
+    "octave_high_share": 0.0588740868070477,
+    "octave_low_share": 0.014267296948861195,
+    "p95_abs_non_gross": 6.185078028915797,
+    "accepted_share": 0.018193139670249343,
+    "coverage_k2": 0.9824404761904761,
+    "gross_share_accepted": 0.013095238095238096
+   }
+  },
+  "cont+sub(0.05,0.005)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9291983647832797,
+    "gross_share": 0.019690109493091853,
+    "octave_high_share": 0.001969593669329697,
+    "octave_low_share": 0.0032399233140453006,
+    "p95_abs_non_gross": 6.841379059834782,
+    "accepted_share": 0.7493082816687874,
+    "coverage_k2": 0.9454858150390936,
+    "gross_share_accepted": 0.004971601173529114
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9195386739583615,
+    "gross_share": 0.008614750478433682,
+    "octave_high_share": 0.0004239658471956426,
+    "octave_low_share": 0.004716620050051524,
+    "p95_abs_non_gross": 5.573798273946413,
+    "accepted_share": 0.738576495113301,
+    "coverage_k2": 0.9794067622650362,
+    "gross_share_accepted": 0.0037902114307498316
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7050004060968676,
+    "gross_share": 0.026059307389230662,
+    "octave_high_share": 0.009185656244479774,
+    "octave_low_share": 0.00437009899925501,
+    "p95_abs_non_gross": 6.577248316221649,
+    "accepted_share": 0.3100576657552048,
+    "coverage_k2": 0.9759355954106491,
+    "gross_share_accepted": 0.007072629795854216
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.30059831605165555,
+    "gross_share": 0.03190071330787521,
+    "octave_high_share": 0.017022119749261475,
+    "octave_low_share": 0.0053678218891851,
+    "p95_abs_non_gross": 7.451793296949235,
+    "accepted_share": 0.015079730351679888,
+    "coverage_k2": 0.9960502692998204,
+    "gross_share_accepted": 0.0010771992818671453
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3175948236185938,
+    "gross_share": 0.05293666354104509,
+    "octave_high_share": 0.020492711618787827,
+    "octave_low_share": 0.014133492455886115,
+    "p95_abs_non_gross": 6.092613891002669,
+    "accepted_share": 0.02195088935214013,
+    "coverage_k2": 0.9916132215096202,
+    "gross_share_accepted": 0.004193389245189936
+   }
+  },
+  "cont+sub(0.05,0.01)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9291983647832797,
+    "gross_share": 0.019690109493091853,
+    "octave_high_share": 0.001969593669329697,
+    "octave_low_share": 0.0032399233140453006,
+    "p95_abs_non_gross": 6.841379059834782,
+    "accepted_share": 0.7493082816687874,
+    "coverage_k2": 0.9454858150390936,
+    "gross_share_accepted": 0.004971601173529114
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9195386739583615,
+    "gross_share": 0.008614750478433682,
+    "octave_high_share": 0.0004239658471956426,
+    "octave_low_share": 0.004716620050051524,
+    "p95_abs_non_gross": 5.573798273946413,
+    "accepted_share": 0.738576495113301,
+    "coverage_k2": 0.9794067622650362,
+    "gross_share_accepted": 0.0037902114307498316
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7050004060968676,
+    "gross_share": 0.026059307389230662,
+    "octave_high_share": 0.009185656244479774,
+    "octave_low_share": 0.00437009899925501,
+    "p95_abs_non_gross": 6.577248316221649,
+    "accepted_share": 0.3100576657552048,
+    "coverage_k2": 0.9759355954106491,
+    "gross_share_accepted": 0.007072629795854216
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.30059831605165555,
+    "gross_share": 0.03190071330787521,
+    "octave_high_share": 0.017022119749261475,
+    "octave_low_share": 0.0053678218891851,
+    "p95_abs_non_gross": 7.451793296949235,
+    "accepted_share": 0.015079730351679888,
+    "coverage_k2": 0.9960502692998204,
+    "gross_share_accepted": 0.0010771992818671453
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3175948236185938,
+    "gross_share": 0.05293666354104509,
+    "octave_high_share": 0.020492711618787827,
+    "octave_low_share": 0.014133492455886115,
+    "p95_abs_non_gross": 6.092613891002669,
+    "accepted_share": 0.02195088935214013,
+    "coverage_k2": 0.9916132215096202,
+    "gross_share_accepted": 0.004193389245189936
+   }
+  },
+  "cont+sub(0.05,0.02)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9291388039093592,
+    "gross_share": 0.019726337136796467,
+    "octave_high_share": 0.0020046853692933485,
+    "octave_low_share": 0.003240131003857854,
+    "p95_abs_non_gross": 6.841803273066333,
+    "accepted_share": 0.7492487207948669,
+    "coverage_k2": 0.9454598012646793,
+    "gross_share_accepted": 0.005015356820234869
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9195386739583615,
+    "gross_share": 0.00859708523480053,
+    "octave_high_share": 0.0004239658471956426,
+    "octave_low_share": 0.004698954806418372,
+    "p95_abs_non_gross": 5.5737226727291045,
+    "accepted_share": 0.738576495113301,
+    "coverage_k2": 0.9794287557549632,
+    "gross_share_accepted": 0.0037682179408228497
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7050004060968676,
+    "gross_share": 0.026059307389230662,
+    "octave_high_share": 0.009185656244479774,
+    "octave_low_share": 0.00437009899925501,
+    "p95_abs_non_gross": 6.577248316221649,
+    "accepted_share": 0.3100576657552048,
+    "coverage_k2": 0.9759355954106491,
+    "gross_share_accepted": 0.007072629795854216
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.30059831605165555,
+    "gross_share": 0.03190071330787521,
+    "octave_high_share": 0.017022119749261475,
+    "octave_low_share": 0.0053678218891851,
+    "p95_abs_non_gross": 7.451793296949235,
+    "accepted_share": 0.015079730351679888,
+    "coverage_k2": 0.9960502692998204,
+    "gross_share_accepted": 0.0010771992818671453
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3175948236185938,
+    "gross_share": 0.05293666354104509,
+    "octave_high_share": 0.020492711618787827,
+    "octave_low_share": 0.014133492455886115,
+    "p95_abs_non_gross": 6.092613891002669,
+    "accepted_share": 0.02195088935214013,
+    "coverage_k2": 0.9916132215096202,
+    "gross_share_accepted": 0.004193389245189936
+   }
+  },
+  "cont+sub(0.1,0.005)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9299509976446382,
+    "gross_share": 0.018847381046649743,
+    "octave_high_share": 0.0011412068845052053,
+    "octave_low_share": 0.0032373011621678275,
+    "p95_abs_non_gross": 6.841358008760617,
+    "accepted_share": 0.7506998402685654,
+    "coverage_k2": 0.9455147392944468,
+    "gross_share_accepted": 0.004796491708921474
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9196036494571839,
+    "gross_share": 0.008731901764633149,
+    "octave_high_share": 0.00032383991709698123,
+    "octave_low_share": 0.00493414273685946,
+    "p95_abs_non_gross": 5.574027086270904,
+    "accepted_share": 0.738890543357609,
+    "coverage_k2": 0.9791370491418857,
+    "gross_share_accepted": 0.004059738242147997
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.705839672956656,
+    "gross_share": 0.02198560886174995,
+    "octave_high_share": 0.005132021049724604,
+    "octave_low_share": 0.004364902806118535,
+    "p95_abs_non_gross": 6.568215236016636,
+    "accepted_share": 0.313452635568671,
+    "coverage_k2": 0.9764898946277423,
+    "gross_share_accepted": 0.006184142338918639
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.30059831605165555,
+    "gross_share": 0.03190071330787521,
+    "octave_high_share": 0.017022119749261475,
+    "octave_low_share": 0.0053678218891851,
+    "p95_abs_non_gross": 7.451793296949235,
+    "accepted_share": 0.015079730351679888,
+    "coverage_k2": 0.9960502692998204,
+    "gross_share_accepted": 0.0010771992818671453
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3176002382434957,
+    "gross_share": 0.05293576104746318,
+    "octave_high_share": 0.020492362247681396,
+    "octave_low_share": 0.014133251500272778,
+    "p95_abs_non_gross": 6.092581439493472,
+    "accepted_share": 0.02195630397704199,
+    "coverage_k2": 0.9916152897657213,
+    "gross_share_accepted": 0.004192355117139334
+   }
+  },
+  "cont+sub(0.1,0.01)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9299509976446382,
+    "gross_share": 0.018847381046649743,
+    "octave_high_share": 0.0011412068845052053,
+    "octave_low_share": 0.0032373011621678275,
+    "p95_abs_non_gross": 6.841358008760617,
+    "accepted_share": 0.7506998402685654,
+    "coverage_k2": 0.9455147392944468,
+    "gross_share_accepted": 0.004796491708921474
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9196036494571839,
+    "gross_share": 0.008708349770662458,
+    "octave_high_share": 0.00032383991709698123,
+    "octave_low_share": 0.00491059074288877,
+    "p95_abs_non_gross": 5.573910736603064,
+    "accepted_share": 0.738890543357609,
+    "coverage_k2": 0.9791663613313596,
+    "gross_share_accepted": 0.004030426052674004
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.705839672956656,
+    "gross_share": 0.02198560886174995,
+    "octave_high_share": 0.005132021049724604,
+    "octave_low_share": 0.004364902806118535,
+    "p95_abs_non_gross": 6.568215236016636,
+    "accepted_share": 0.313452635568671,
+    "coverage_k2": 0.9764898946277423,
+    "gross_share_accepted": 0.006184142338918639
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.30059831605165555,
+    "gross_share": 0.03190071330787521,
+    "octave_high_share": 0.017022119749261475,
+    "octave_low_share": 0.0053678218891851,
+    "p95_abs_non_gross": 7.451793296949235,
+    "accepted_share": 0.015079730351679888,
+    "coverage_k2": 0.9960502692998204,
+    "gross_share_accepted": 0.0010771992818671453
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3176002382434957,
+    "gross_share": 0.05293576104746318,
+    "octave_high_share": 0.020492362247681396,
+    "octave_low_share": 0.014133251500272778,
+    "p95_abs_non_gross": 6.092581439493472,
+    "accepted_share": 0.02195630397704199,
+    "coverage_k2": 0.9916152897657213,
+    "gross_share_accepted": 0.004192355117139334
+   }
+  },
+  "cont+sub(0.1,0.02)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9299347537699326,
+    "gross_share": 0.018917581297854376,
+    "octave_high_share": 0.001211097848554543,
+    "octave_low_share": 0.003237357710559259,
+    "p95_abs_non_gross": 6.841715240479831,
+    "accepted_share": 0.7506835963938598,
+    "coverage_k2": 0.9454558568955569,
+    "gross_share_accepted": 0.004883150605885747
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9196036494571839,
+    "gross_share": 0.008602365797794356,
+    "octave_high_share": 0.00032383991709698123,
+    "octave_low_share": 0.0048046067700206665,
+    "p95_abs_non_gross": 5.573445468265636,
+    "accepted_share": 0.7388851287327071,
+    "coverage_k2": 0.9792981144795949,
+    "gross_share_accepted": 0.003898549768798411
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.705839672956656,
+    "gross_share": 0.022146703692907225,
+    "octave_high_share": 0.005293115880881879,
+    "octave_low_share": 0.004364902806118535,
+    "p95_abs_non_gross": 6.568363073754959,
+    "accepted_share": 0.3134255624441617,
+    "coverage_k2": 0.9762978319080936,
+    "gross_share_accepted": 0.0064610866372980915
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.30059831605165555,
+    "gross_share": 0.03190071330787521,
+    "octave_high_share": 0.017022119749261475,
+    "octave_low_share": 0.0053678218891851,
+    "p95_abs_non_gross": 7.451793296949235,
+    "accepted_share": 0.015079730351679888,
+    "coverage_k2": 0.9960502692998204,
+    "gross_share_accepted": 0.0010771992818671453
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3176002382434957,
+    "gross_share": 0.05293576104746318,
+    "octave_high_share": 0.020492362247681396,
+    "octave_low_share": 0.014133251500272778,
+    "p95_abs_non_gross": 6.092581439493472,
+    "accepted_share": 0.02195630397704199,
+    "coverage_k2": 0.9916152897657213,
+    "gross_share_accepted": 0.004192355117139334
+   }
+  },
+  "cont+sub(0.2,0.005)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9303083628881609,
+    "gross_share": 0.018426903511937327,
+    "octave_high_share": 0.0006809689547999581,
+    "octave_low_share": 0.0032826195769844134,
+    "p95_abs_non_gross": 6.844358436440926,
+    "accepted_share": 0.7515012047540407,
+    "coverage_k2": 0.9453494823151357,
+    "gross_share_accepted": 0.00482740235317852
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9193437474618946,
+    "gross_share": 0.009476467851274229,
+    "octave_high_share": 0.0002002485437808103,
+    "octave_low_share": 0.005801318106591122,
+    "p95_abs_non_gross": 5.576266351666387,
+    "accepted_share": 0.7393616157240707,
+    "coverage_k2": 0.9781250686566727,
+    "gross_share_accepted": 0.0050604544888648035
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7067493299401684,
+    "gross_share": 0.01932182093988937,
+    "octave_high_share": 0.002489925378851723,
+    "octave_low_share": 0.004359284740205017,
+    "p95_abs_non_gross": 6.564253318496952,
+    "accepted_share": 0.31585672902509676,
+    "coverage_k2": 0.9771488325847705,
+    "gross_share_accepted": 0.005177083690472109
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.3007390962991039,
+    "gross_share": 0.031777753771920346,
+    "octave_high_share": 0.016906125094523064,
+    "octave_low_share": 0.005365309135429045,
+    "p95_abs_non_gross": 7.448178749369535,
+    "accepted_share": 0.015252998348539404,
+    "coverage_k2": 0.9960951366702165,
+    "gross_share_accepted": 0.0010649627263045794
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.31769770149172916,
+    "gross_share": 0.052374135051300404,
+    "octave_high_share": 0.019940689232027815,
+    "octave_low_share": 0.014128915703718853,
+    "p95_abs_non_gross": 6.091365586023301,
+    "accepted_share": 0.022156645098410806,
+    "coverage_k2": 0.9916911045943304,
+    "gross_share_accepted": 0.004154447702834799
+   }
+  },
+  "cont+sub(0.2,0.01)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9303083628881609,
+    "gross_share": 0.01838616177959887,
+    "octave_high_share": 0.0006809689547999581,
+    "octave_low_share": 0.0032418778446459545,
+    "p95_abs_non_gross": 6.844439714904928,
+    "accepted_share": 0.7515012047540407,
+    "coverage_k2": 0.9453927127839702,
+    "gross_share_accepted": 0.004784171884344086
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9193599913366002,
+    "gross_share": 0.009317282321899736,
+    "octave_high_share": 0.00020024500565397663,
+    "octave_low_share": 0.005642197512250283,
+    "p95_abs_non_gross": 5.575635118204825,
+    "accepted_share": 0.7393778595987763,
+    "coverage_k2": 0.9783232761145937,
+    "gross_share_accepted": 0.004862616439158709
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7067493299401684,
+    "gross_share": 0.01932182093988937,
+    "octave_high_share": 0.002489925378851723,
+    "octave_low_share": 0.004359284740205017,
+    "p95_abs_non_gross": 6.564253318496952,
+    "accepted_share": 0.31585672902509676,
+    "coverage_k2": 0.9771488325847705,
+    "gross_share_accepted": 0.005177083690472109
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.3007390962991039,
+    "gross_share": 0.031777753771920346,
+    "octave_high_share": 0.016906125094523064,
+    "octave_low_share": 0.005365309135429045,
+    "p95_abs_non_gross": 7.448178749369535,
+    "accepted_share": 0.015252998348539404,
+    "coverage_k2": 0.9960951366702165,
+    "gross_share_accepted": 0.0010649627263045794
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.31769770149172916,
+    "gross_share": 0.052374135051300404,
+    "octave_high_share": 0.019940689232027815,
+    "octave_low_share": 0.014128915703718853,
+    "p95_abs_non_gross": 6.091365586023301,
+    "accepted_share": 0.022156645098410806,
+    "coverage_k2": 0.9916911045943304,
+    "gross_share_accepted": 0.004154447702834799
+   }
+  },
+  "cont+sub(0.2,0.02)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9302867043885534,
+    "gross_share": 0.018491356731272918,
+    "octave_high_share": 0.000785751702462022,
+    "octave_low_share": 0.0032419533205284906,
+    "p95_abs_non_gross": 6.84412659334457,
+    "accepted_share": 0.7514741316295314,
+    "coverage_k2": 0.9453331027625265,
+    "gross_share_accepted": 0.004899629645641492
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9194249668354225,
+    "gross_share": 0.009039834161739417,
+    "octave_high_share": 0.00020611999717321146,
+    "octave_low_share": 0.005359119926503498,
+    "p95_abs_non_gross": 5.575270635975246,
+    "accepted_share": 0.7394049327232856,
+    "coverage_k2": 0.9786462795755618,
+    "gross_share_accepted": 0.00454022862247999
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7067439153152665,
+    "gross_share": 0.020080444359318137,
+    "octave_high_share": 0.003248419842941965,
+    "octave_low_share": 0.004359318138287684,
+    "p95_abs_non_gross": 6.565404767629736,
+    "accepted_share": 0.3155968270298075,
+    "coverage_k2": 0.9764094293655423,
+    "gross_share_accepted": 0.006004872525134681
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.3007390962991039,
+    "gross_share": 0.031777753771920346,
+    "octave_high_share": 0.016906125094523064,
+    "octave_low_share": 0.005365309135429045,
+    "p95_abs_non_gross": 7.448178749369535,
+    "accepted_share": 0.015252998348539404,
+    "coverage_k2": 0.9960951366702165,
+    "gross_share_accepted": 0.0010649627263045794
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.31769770149172916,
+    "gross_share": 0.052374135051300404,
+    "octave_high_share": 0.019940689232027815,
+    "octave_low_share": 0.014128915703718853,
+    "p95_abs_non_gross": 6.091365586023301,
+    "accepted_share": 0.022156645098410806,
+    "coverage_k2": 0.9916911045943304,
+    "gross_share_accepted": 0.004154447702834799
+   }
+  },
+  "cont+sub(0.5,0.005)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9299564122695401,
+    "gross_share": 0.018579438599351378,
+    "octave_high_share": 0.0002503653587502693,
+    "octave_low_share": 0.003860284484916943,
+    "p95_abs_non_gross": 6.85576448598068,
+    "accepted_share": 0.7516744727509002,
+    "coverage_k2": 0.9446633482924299,
+    "gross_share_accepted": 0.005409766393176923
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9172374583750711,
+    "gross_share": 0.014315230224321133,
+    "octave_high_share": 7.674144037780401e-05,
+    "octave_low_share": 0.010755608028335301,
+    "p95_abs_non_gross": 5.594625846914458,
+    "accepted_share": 0.7391721038525056,
+    "coverage_k2": 0.9723471585331908,
+    "gross_share_accepted": 0.01084870416221047
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7087635704036603,
+    "gross_share": 0.017303549328484776,
+    "octave_high_share": 0.0004965698482788125,
+    "octave_low_share": 0.00436981466485355,
+    "p95_abs_non_gross": 6.567244142968815,
+    "accepted_share": 0.317394482497225,
+    "coverage_k2": 0.9771571872121192,
+    "gross_share_accepted": 0.00496434542290764
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.3022010450226061,
+    "gross_share": 0.020085286318354476,
+    "octave_high_share": 0.005285601662724862,
+    "octave_low_share": 0.005339353544040708,
+    "p95_abs_non_gross": 7.395771920236698,
+    "accepted_share": 0.017272653436933155,
+    "coverage_k2": 0.996551724137931,
+    "gross_share_accepted": 0.0009404388714733542
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.31864526084955463,
+    "gross_share": 0.03767268772621455,
+    "octave_high_share": 0.005301704362011249,
+    "octave_low_share": 0.014120885656510731,
+    "p95_abs_non_gross": 6.075291991605398,
+    "accepted_share": 0.02475025042640171,
+    "coverage_k2": 0.9945307372566178,
+    "gross_share_accepted": 0.0017501640778823015
+   }
+  },
+  "cont+sub(0.5,0.01)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9300647047675772,
+    "gross_share": 0.01834440440358854,
+    "octave_high_share": 0.0002619797518760661,
+    "octave_low_share": 0.003615320575889712,
+    "p95_abs_non_gross": 6.85555907209492,
+    "accepted_share": 0.7517827652489374,
+    "coverage_k2": 0.9449594145905807,
+    "gross_share_accepted": 0.0051208919426978675
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9176164821182012,
+    "gross_share": 0.011282232843571133,
+    "octave_high_share": 7.670974213725143e-05,
+    "octave_low_share": 0.007724080958281702,
+    "p95_abs_non_gross": 5.582548596283457,
+    "accepted_share": 0.739583615345047,
+    "coverage_k2": 0.9760524196500476,
+    "gross_share_accepted": 0.00714547185006223
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7087635704036603,
+    "gross_share": 0.017303549328484776,
+    "octave_high_share": 0.0004965698482788125,
+    "octave_low_share": 0.00436981466485355,
+    "p95_abs_non_gross": 6.567244142968815,
+    "accepted_share": 0.317394482497225,
+    "coverage_k2": 0.9771571872121192,
+    "gross_share_accepted": 0.00496434542290764
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.3022010450226061,
+    "gross_share": 0.020085286318354476,
+    "octave_high_share": 0.005285601662724862,
+    "octave_low_share": 0.005339353544040708,
+    "p95_abs_non_gross": 7.395771920236698,
+    "accepted_share": 0.017272653436933155,
+    "coverage_k2": 0.996551724137931,
+    "gross_share_accepted": 0.0009404388714733542
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.31864526084955463,
+    "gross_share": 0.03767268772621455,
+    "octave_high_share": 0.005301704362011249,
+    "octave_low_share": 0.014120885656510731,
+    "p95_abs_non_gross": 6.075291991605398,
+    "accepted_share": 0.02475025042640171,
+    "coverage_k2": 0.9945307372566178,
+    "gross_share_accepted": 0.0017501640778823015
+   }
+  },
+  "cont+sub(0.5,0.02)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9301621680158108,
+    "gross_share": 0.01823188017719618,
+    "octave_high_share": 0.0004249448444876504,
+    "octave_low_share": 0.0033413471333686483,
+    "p95_abs_non_gross": 6.852431896841225,
+    "accepted_share": 0.7518802284971708,
+    "coverage_k2": 0.945182592664607,
+    "gross_share_accepted": 0.004997803558954638
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9183095541056393,
+    "gross_share": 0.010265451243528815,
+    "octave_high_share": 9.434073515017866e-05,
+    "octave_low_share": 0.006692295899715798,
+    "p95_abs_non_gross": 5.574915309490971,
+    "accepted_share": 0.740200882583859,
+    "coverage_k2": 0.9773232677902621,
+    "gross_share_accepted": 0.005888635299625468
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7087527411538566,
+    "gross_share": 0.01740312920180907,
+    "octave_high_share": 0.0005958929226255959,
+    "octave_low_share": 0.0043698814325877034,
+    "p95_abs_non_gross": 6.566073706710609,
+    "accepted_share": 0.3173836532474213,
+    "coverage_k2": 0.9770369864883308,
+    "gross_share_accepted": 0.0051862972567217145
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.3022010450226061,
+    "gross_share": 0.020085286318354476,
+    "octave_high_share": 0.005285601662724862,
+    "octave_low_share": 0.005339353544040708,
+    "p95_abs_non_gross": 7.395771920236698,
+    "accepted_share": 0.017272653436933155,
+    "coverage_k2": 0.996551724137931,
+    "gross_share_accepted": 0.0009404388714733542
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.31864526084955463,
+    "gross_share": 0.03768968036840048,
+    "octave_high_share": 0.005318697004197182,
+    "octave_low_share": 0.014120885656510731,
+    "p95_abs_non_gross": 6.075367451057881,
+    "accepted_share": 0.02475025042640171,
+    "coverage_k2": 0.9943119667468825,
+    "gross_share_accepted": 0.001968934587617589
+   }
+  },
+  "cont+spec(-30)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9314454341175515,
+    "gross_share": 0.19580407385016044,
+    "octave_high_share": 0.003778542528949449,
+    "octave_low_share": 0.1805096963214435,
+    "p95_abs_non_gross": 6.564640456814626,
+    "accepted_share": 0.7116982971004684,
+    "coverage_k2": 0.8486077297626293,
+    "gross_share_accepted": 0.105203895313451
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9198094052034546,
+    "gross_share": 0.2406122148638705,
+    "octave_high_share": 6.475349521707138e-05,
+    "octave_low_share": 0.23706843267108169,
+    "p95_abs_non_gross": 5.383880236076497,
+    "accepted_share": 0.6946855456588245,
+    "coverage_k2": 0.8125535861821697,
+    "gross_share_accepted": 0.1725202263480335
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7097327882610932,
+    "gross_share": 0.49045980606818895,
+    "octave_high_share": 0.0024565713283032113,
+    "octave_low_share": 0.47686474362397674,
+    "p95_abs_non_gross": 6.650091131000812,
+    "accepted_share": 0.28644990118309555,
+    "coverage_k2": 0.6557662136362777,
+    "gross_share_accepted": 0.3289794529610797
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.3029969948831795,
+    "gross_share": 0.7348237102164085,
+    "octave_high_share": 0.0008399006415411284,
+    "octave_low_share": 0.7229936203291696,
+    "p95_abs_non_gross": 8.852648376482087,
+    "accepted_share": 0.014522023986788314,
+    "coverage_k2": 0.6133482475764355,
+    "gross_share_accepted": 0.3855331841909023
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3201667704469773,
+    "gross_share": 0.773904955183494,
+    "octave_high_share": 0.0012345679012345679,
+    "octave_low_share": 0.7507187552849653,
+    "p95_abs_non_gross": 6.318214368937345,
+    "accepted_share": 0.016520020575574626,
+    "coverage_k2": 0.46607669616519176,
+    "gross_share_accepted": 0.5332677810553916
+   }
+  },
+  "cont+spec(-25)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.930920215502071,
+    "gross_share": 0.05880984371273855,
+    "octave_high_share": 0.003827205732665608,
+    "octave_low_share": 0.043972150971051664,
+    "p95_abs_non_gross": 6.566342775740016,
+    "accepted_share": 0.7474835530768607,
+    "coverage_k2": 0.9395287180638758,
+    "gross_share_accepted": 0.010699099595071315
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9197498443295341,
+    "gross_share": 0.08968939857768568,
+    "octave_high_share": 9.419300145999152e-05,
+    "octave_low_share": 0.08617482221070974,
+    "p95_abs_non_gross": 5.305974145415648,
+    "accepted_share": 0.7281533421772207,
+    "coverage_k2": 0.937603640717138,
+    "gross_share_accepted": 0.046356680225165266
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7093916668922761,
+    "gross_share": 0.20639015677713832,
+    "octave_high_share": 0.0024501198345215016,
+    "octave_low_share": 0.19324652327232203,
+    "p95_abs_non_gross": 6.415152811769929,
+    "accepted_share": 0.3113030294826326,
+    "coverage_k2": 0.9015358391456352,
+    "gross_share_accepted": 0.08074026403214304
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.30285080001082926,
+    "gross_share": 0.36665951512550954,
+    "octave_high_share": 0.0008760637917471215,
+    "octave_low_share": 0.35530644353858254,
+    "p95_abs_non_gross": 7.690958575629597,
+    "accepted_share": 0.016698703197336004,
+    "coverage_k2": 0.9283398184176395,
+    "gross_share_accepted": 0.06906614785992218
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.319560332457969,
+    "gross_share": 0.7384865634213291,
+    "octave_high_share": 0.0012707987393676505,
+    "octave_low_share": 0.717120200616761,
+    "p95_abs_non_gross": 6.402589913624514,
+    "accepted_share": 0.018972845656117173,
+    "coverage_k2": 0.6478310502283106,
+    "gross_share_accepted": 0.3496004566210046
+   }
+  },
+  "cont+spec(-20)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9306386550071744,
+    "gross_share": 0.027211636363636365,
+    "octave_high_share": 0.002821818181818182,
+    "octave_low_share": 0.012352,
+    "p95_abs_non_gross": 6.733175489681679,
+    "accepted_share": 0.7516582288761946,
+    "coverage_k2": 0.9453392882869903,
+    "gross_share_accepted": 0.004891226048119868
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9197390150797303,
+    "gross_share": 0.021711742473301855,
+    "octave_high_share": 0.00012362977004862772,
+    "octave_low_share": 0.018150027669519963,
+    "p95_abs_non_gross": 5.426065036970557,
+    "accepted_share": 0.7394049327232856,
+    "coverage_k2": 0.976537270150926,
+    "gross_share_accepted": 0.006737113439809018
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7091480087716924,
+    "gross_share": 0.026960578457497577,
+    "octave_high_share": 0.001748505371500126,
+    "octave_low_share": 0.013896418236376547,
+    "p95_abs_non_gross": 6.47794743854517,
+    "accepted_share": 0.31718331212605244,
+    "coverage_k2": 0.9768517728196111,
+    "gross_share_accepted": 0.005462708479147817
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.30271543438828274,
+    "gross_share": 0.021285348882966355,
+    "octave_high_share": 0.0017707979322803943,
+    "octave_low_share": 0.010356484876670185,
+    "p95_abs_non_gross": 7.373460443392068,
+    "accepted_share": 0.017223921812816418,
+    "coverage_k2": 0.9965419679346118,
+    "gross_share_accepted": 0.0009430996541967935
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3192679427132685,
+    "gross_share": 0.4164914184926396,
+    "octave_high_share": 0.0019842615833389867,
+    "octave_low_share": 0.3950546095922936,
+    "p95_abs_non_gross": 6.23887040287663,
+    "accepted_share": 0.02339659420093673,
+    "coverage_k2": 0.9266373524647072,
+    "gross_share_accepted": 0.06942837306179125
+   }
+  },
+  "cont+spec(-15)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9285594390448602,
+    "gross_share": 0.021983660950137325,
+    "octave_high_share": 0.003370439265034317,
+    "octave_low_share": 0.004192639846989055,
+    "p95_abs_non_gross": 6.837153137230903,
+    "accepted_share": 0.7475485285756829,
+    "coverage_k2": 0.94503154402764,
+    "gross_share_accepted": 0.005388922287974157
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9196956980805154,
+    "gross_share": 0.010279416440001413,
+    "octave_high_share": 0.000718263920779022,
+    "octave_low_share": 0.006099355917434973,
+    "p95_abs_non_gross": 5.556291781561865,
+    "accepted_share": 0.7384952757397731,
+    "coverage_k2": 0.9790598948595561,
+    "gross_share_accepted": 0.004164558725410407
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7062078674499824,
+    "gross_share": 0.025048686611565178,
+    "octave_high_share": 0.0070998113873000784,
+    "octave_low_share": 0.005497370156257188,
+    "p95_abs_non_gross": 6.564650657932983,
+    "accepted_share": 0.3116766386008609,
+    "coverage_k2": 0.9759216149543102,
+    "gross_share_accepted": 0.0070880094506792675
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.30112353466713593,
+    "gross_share": 0.028464567637063277,
+    "octave_high_share": 0.013270278531997914,
+    "octave_low_share": 0.005700106090302627,
+    "p95_abs_non_gross": 7.45164678721669,
+    "accepted_share": 0.015442510220104502,
+    "coverage_k2": 0.9961430575035063,
+    "gross_share_accepted": 0.0010518934081346423
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.317973847361724,
+    "gross_share": 0.05272030651340996,
+    "octave_high_share": 0.017556406981694337,
+    "octave_low_share": 0.016773094934014476,
+    "p95_abs_non_gross": 6.0802510062549,
+    "accepted_share": 0.022178303598018246,
+    "coverage_k2": 0.99169921875,
+    "gross_share_accepted": 0.004150390625
+   }
+  },
+  "cont+spec(-10)": {
+   "clean": {
+    "valid": 184685,
+    "measured_share": 0.9267726128272464,
+    "gross_share": 0.026004755756276254,
+    "octave_high_share": 0.008232015470814029,
+    "octave_low_share": 0.003254246002301926,
+    "p95_abs_non_gross": 6.85611967122554,
+    "accepted_share": 0.742133903673823,
+    "coverage_k2": 0.9446961571854867,
+    "gross_share_accepted": 0.006216210300523124
+   },
+   "original": {
+    "valid": 184685,
+    "measured_share": 0.9191379917156239,
+    "gross_share": 0.00924294996789415,
+    "octave_high_share": 0.002409411432038692,
+    "octave_low_share": 0.0033578594529634583,
+    "p95_abs_non_gross": 5.575142895802243,
+    "accepted_share": 0.736139913907464,
+    "coverage_k2": 0.9811186136487341,
+    "gross_share_accepted": 0.00203745384468276
+   },
+   "white-20": {
+    "valid": 184685,
+    "measured_share": 0.7046917724774616,
+    "gross_share": 0.026324281960260015,
+    "octave_high_share": 0.009427873311511686,
+    "octave_low_share": 0.0043873803267100026,
+    "p95_abs_non_gross": 6.578692706237285,
+    "accepted_share": 0.30959200801364484,
+    "coverage_k2": 0.9759518687584169,
+    "gross_share_accepted": 0.007083267747520857
+   },
+   "white-10": {
+    "valid": 184685,
+    "measured_share": 0.30059831605165555,
+    "gross_share": 0.0319187261330067,
+    "octave_high_share": 0.017022119749261475,
+    "octave_low_share": 0.005385834714316594,
+    "p95_abs_non_gross": 7.450734643973423,
+    "accepted_share": 0.015079730351679888,
+    "coverage_k2": 0.9960502692998204,
+    "gross_share_accepted": 0.0010771992818671453
+   },
+   "pink-10": {
+    "valid": 184685,
+    "measured_share": 0.3176002382434957,
+    "gross_share": 0.052952809601745775,
+    "octave_high_share": 0.020492362247681396,
+    "octave_low_share": 0.014150300054555373,
+    "p95_abs_non_gross": 6.092613891002669,
+    "accepted_share": 0.02195088935214013,
+    "coverage_k2": 0.9916132215096202,
+    "gross_share_accepted": 0.004193389245189936
+   }
+  }
+ },
+ "by_group": {
+  "base-0.1 | LT-forte": {
+   "clean": {
+    "valid": 20980,
+    "measured_share": 0.9034318398474738,
+    "gross_share": 0.08246280468502691,
+    "octave_high_share": 0.07011712567268123,
+    "octave_low_share": 0.00010551862403714256,
+    "p95_abs_non_gross": 6.458726443875047,
+    "accepted_share": 0.6475691134413727,
+    "coverage_k2": 0.9402325923745032,
+    "gross_share_accepted": 0.009715883998233475
+   },
+   "original": {
+    "valid": 20980,
+    "measured_share": 0.9067683508102955,
+    "gross_share": 0.0434188393608074,
+    "octave_high_share": 0.04273549201009252,
+    "octave_low_share": 0.0002628259041211102,
+    "p95_abs_non_gross": 5.071844037681569,
+    "accepted_share": 0.6826501429933269,
+    "coverage_k2": 0.983312386538193,
+    "gross_share_accepted": 0.0006284038542103058
+   }
+  },
+  "base-0.1 | LT-straight": {
+   "clean": {
+    "valid": 19999,
+    "measured_share": 0.9472973648682435,
+    "gross_share": 0.11216679862760623,
+    "octave_high_share": 0.0839799419371866,
+    "octave_low_share": 0.0,
+    "p95_abs_non_gross": 3.665885529791038,
+    "accepted_share": 0.8144407220361018,
+    "coverage_k2": 0.9651277013752456,
+    "gross_share_accepted": 0.01798870333988212
+   },
+   "original": {
+    "valid": 19999,
+    "measured_share": 0.9440972048602431,
+    "gross_share": 0.05841851596843387,
+    "octave_high_share": 0.04268841692706954,
+    "octave_low_share": 0.00037074307504899104,
+    "p95_abs_non_gross": 3.202041031593187,
+    "accepted_share": 0.8416420821041052,
+    "coverage_k2": 0.980097433460076,
+    "gross_share_accepted": 0.0003564638783269962
+   }
+  },
+  "base-0.1 | men": {
+   "clean": {
+    "valid": 104820,
+    "measured_share": 0.9056477771417668,
+    "gross_share": 0.07690930159064574,
+    "octave_high_share": 0.05339724007163173,
+    "octave_low_share": 3.16022332244812e-05,
+    "p95_abs_non_gross": 6.949842530745557,
+    "accepted_share": 0.6391909940850983,
+    "coverage_k2": 0.9498955223880597,
+    "gross_share_accepted": 0.010611940298507462
+   },
+   "original": {
+    "valid": 104820,
+    "measured_share": 0.8923392482350696,
+    "gross_share": 0.033420644678462605,
+    "octave_high_share": 0.026888330571443846,
+    "octave_low_share": 0.0008766771796653659,
+    "p95_abs_non_gross": 5.67761271377956,
+    "accepted_share": 0.6395916809769128,
+    "coverage_k2": 0.9911846305301154,
+    "gross_share_accepted": 0.00037290056979207063
+   }
+  },
+  "base-0.1 | women": {
+   "clean": {
+    "valid": 79865,
+    "measured_share": 0.9387090715582546,
+    "gross_share": 0.007616379885287448,
+    "octave_high_share": 0.005695611577964519,
+    "octave_low_share": 4.001600640256102e-05,
+    "p95_abs_non_gross": 6.8555606896013375,
+    "accepted_share": 0.818543792650097,
+    "coverage_k2": 0.9392715647132608,
+    "gross_share_accepted": 0.0004894987227142704
+   },
+   "original": {
+    "valid": 79865,
+    "measured_share": 0.9478745382833531,
+    "gross_share": 0.003302422657261367,
+    "octave_high_share": 0.0024173733851153207,
+    "octave_low_share": 0.00043591979075850045,
+    "p95_abs_non_gross": 5.508846401679211,
+    "accepted_share": 0.8308896262442872,
+    "coverage_k2": 0.9741255895959855,
+    "gross_share_accepted": 9.041727572748233e-05
+   }
+  },
+  "cont | LT-forte": {
+   "clean": {
+    "valid": 20980,
+    "measured_share": 0.9205433746425167,
+    "gross_share": 0.06896908817894683,
+    "octave_high_share": 0.03816082431522808,
+    "octave_low_share": 0.01874385129187594,
+    "p95_abs_non_gross": 6.512231715767931,
+    "accepted_share": 0.6824118207816968,
+    "coverage_k2": 0.9277781658168611,
+    "gross_share_accepted": 0.02235105119787665
+   },
+   "original": {
+    "valid": 20980,
+    "measured_share": 0.9163489037178265,
+    "gross_share": 0.031833550065019506,
+    "octave_high_share": 0.011911573472041612,
+    "octave_low_share": 0.01950585175552666,
+    "p95_abs_non_gross": 5.10457284943891,
+    "accepted_share": 0.7121544327931363,
+    "coverage_k2": 0.9691453048658055,
+    "gross_share_accepted": 0.015126162907435915
+   }
+  },
+  "cont | LT-straight": {
+   "clean": {
+    "valid": 19999,
+    "measured_share": 0.9610980549027451,
+    "gross_share": 0.04073669424067426,
+    "octave_high_share": 0.01061339160293429,
+    "octave_low_share": 5.202642942614848e-05,
+    "p95_abs_non_gross": 3.5593674575619025,
+    "accepted_share": 0.8942947147357367,
+    "coverage_k2": 0.9678501537601342,
+    "gross_share_accepted": 0.015879228403690243
+   },
+   "original": {
+    "valid": 19999,
+    "measured_share": 0.9547477373868694,
+    "gross_share": 0.02079187179218603,
+    "octave_high_share": 0.0035613281659159944,
+    "octave_low_share": 0.0006284696763381167,
+    "p95_abs_non_gross": 3.1311216275507077,
+    "accepted_share": 0.887344367218361,
+    "coverage_k2": 0.9807844021187874,
+    "gross_share_accepted": 0.00045080581539501857
+   }
+  },
+  "cont | men": {
+   "clean": {
+    "valid": 104820,
+    "measured_share": 0.9080232780003816,
+    "gross_share": 0.04250937706847099,
+    "octave_high_share": 0.01287048613664779,
+    "octave_low_share": 0.005011609703821221,
+    "p95_abs_non_gross": 6.853369788676724,
+    "accepted_share": 0.6728486929975196,
+    "coverage_k2": 0.9500907441016334,
+    "gross_share_accepted": 0.011257940108892922
+   },
+   "original": {
+    "valid": 104820,
+    "measured_share": 0.8928448769318832,
+    "gross_share": 0.01457451810061119,
+    "octave_high_share": 0.003942813181177074,
+    "octave_low_share": 0.004690772321237766,
+    "p95_abs_non_gross": 5.6389797493814084,
+    "accepted_share": 0.6587578706353749,
+    "coverage_k2": 0.9882116117072888,
+    "gross_share_accepted": 0.0034032816324166197
+   }
+  },
+  "cont | women": {
+   "clean": {
+    "valid": 79865,
+    "measured_share": 0.9513554122581857,
+    "gross_share": 0.005290866017372993,
+    "octave_high_share": 0.002421689918399579,
+    "octave_low_share": 0.001013424585417215,
+    "p95_abs_non_gross": 6.870712749395105,
+    "accepted_share": 0.8330557816315032,
+    "coverage_k2": 0.9389917633619912,
+    "gross_share_accepted": 0.0008717609571334095
+   },
+   "original": {
+    "valid": 79865,
+    "measured_share": 0.9536467789394604,
+    "gross_share": 0.0025865577773984743,
+    "octave_high_share": 0.0005251893964260862,
+    "octave_low_share": 0.0016149573940102148,
+    "p95_abs_non_gross": 5.495650513409942,
+    "accepted_share": 0.8377011206410818,
+    "coverage_k2": 0.9737978864923845,
+    "gross_share_accepted": 0.0006277745392583292
+   }
+  },
+  "cont+spec(-15) | LT-forte": {
+   "clean": {
+    "valid": 20980,
+    "measured_share": 0.9281220209723546,
+    "gross_share": 0.04247124075595727,
+    "octave_high_share": 0.01011709120788825,
+    "octave_low_share": 0.020182826622843056,
+    "p95_abs_non_gross": 6.495414494530322,
+    "accepted_share": 0.7095328884652049,
+    "coverage_k2": 0.9297326346903131,
+    "gross_share_accepted": 0.01578664516995835
+   },
+   "original": {
+    "valid": 20980,
+    "measured_share": 0.9197330791229743,
+    "gross_share": 0.025186567164179104,
+    "octave_high_share": 0.003783167495854063,
+    "octave_low_share": 0.020988805970149255,
+    "p95_abs_non_gross": 5.0503001043288265,
+    "accepted_share": 0.7228789323164919,
+    "coverage_k2": 0.969668996439404,
+    "gross_share_accepted": 0.014769879994725043
+   }
+  },
+  "cont+spec(-15) | LT-straight": {
+   "clean": {
+    "valid": 19999,
+    "measured_share": 0.9616480824041203,
+    "gross_share": 0.03520174708818636,
+    "octave_high_share": 0.004679700499168053,
+    "octave_low_share": 0.0005199667221297837,
+    "p95_abs_non_gross": 3.5629155896098097,
+    "accepted_share": 0.8999449972498625,
+    "coverage_k2": 0.9681631292365819,
+    "gross_share_accepted": 0.015335037226358485
+   },
+   "original": {
+    "valid": 19999,
+    "measured_share": 0.9547477373868694,
+    "gross_share": 0.03142348381690584,
+    "octave_high_share": 0.0013616842987325861,
+    "octave_low_share": 0.013459725568241333,
+    "p95_abs_non_gross": 3.14014030579517,
+    "accepted_share": 0.8908445422271114,
+    "coverage_k2": 0.9678378985181859,
+    "gross_share_accepted": 0.01347103726986978
+   }
+  },
+  "cont+spec(-15) | men": {
+   "clean": {
+    "valid": 104820,
+    "measured_share": 0.9083190230871971,
+    "gross_share": 0.03524839827749186,
+    "octave_high_share": 0.0049469593530091375,
+    "octave_low_share": 0.005776704127717676,
+    "p95_abs_non_gross": 6.836536319966406,
+    "accepted_share": 0.6790402594924633,
+    "coverage_k2": 0.9507706141028703,
+    "gross_share_accepted": 0.009637944841732582
+   },
+   "original": {
+    "valid": 104820,
+    "measured_share": 0.8928830375882465,
+    "gross_share": 0.015033336182579708,
+    "octave_high_share": 0.0010364133686639884,
+    "octave_low_share": 0.008077613471236858,
+    "p95_abs_non_gross": 5.626536593628103,
+    "accepted_share": 0.6617344018317115,
+    "coverage_k2": 0.9847757449937287,
+    "gross_share_accepted": 0.006891282095641768
+   }
+  },
+  "cont+spec(-15) | women": {
+   "clean": {
+    "valid": 79865,
+    "measured_share": 0.9551242722093533,
+    "gross_share": 0.005427301687182915,
+    "octave_high_share": 0.0014027084070738455,
+    "octave_low_share": 0.002215492717714765,
+    "p95_abs_non_gross": 6.839081006659714,
+    "accepted_share": 0.8374632191823702,
+    "coverage_k2": 0.9389241074098439,
+    "gross_share_accepted": 0.0008671730159679445
+   },
+   "original": {
+    "valid": 79865,
+    "measured_share": 0.9548863707506418,
+    "gross_share": 0.004445202066560017,
+    "octave_high_share": 0.00032781726154572393,
+    "octave_low_share": 0.003671553329312108,
+    "p95_abs_non_gross": 5.4545506207597185,
+    "accepted_share": 0.8392412195580041,
+    "coverage_k2": 0.9731447497985857,
+    "gross_share_accepted": 0.001342762510070719
+   }
+  },
+  "cont+sub(0.1,0.01) | LT-forte": {
+   "clean": {
+    "valid": 20980,
+    "measured_share": 0.9315061963775024,
+    "gross_share": 0.03453922120452336,
+    "octave_high_share": 0.003991198894744922,
+    "octave_low_share": 0.018625594842142965,
+    "p95_abs_non_gross": 6.476506166436299,
+    "accepted_share": 0.7183984747378456,
+    "coverage_k2": 0.9304007430997877,
+    "gross_share_accepted": 0.014264861995753716
+   },
+   "original": {
+    "valid": 20980,
+    "measured_share": 0.9193994280266921,
+    "gross_share": 0.02146301000570273,
+    "octave_high_share": 0.0018145056768106174,
+    "octave_low_share": 0.019233760174192545,
+    "p95_abs_non_gross": 5.07137109349332,
+    "accepted_share": 0.7244518589132507,
+    "coverage_k2": 0.9697348509770379,
+    "gross_share_accepted": 0.014803605500361866
+   }
+  },
+  "cont+sub(0.1,0.01) | LT-straight": {
+   "clean": {
+    "valid": 19999,
+    "measured_share": 0.9614980749037452,
+    "gross_share": 0.03203494721514379,
+    "octave_high_share": 0.0019241770242862343,
+    "octave_low_share": 5.2004784440168494e-05,
+    "p95_abs_non_gross": 3.579641895201116,
+    "accepted_share": 0.9025451272563628,
+    "coverage_k2": 0.9679224376731302,
+    "gross_share_accepted": 0.015290858725761773
+   },
+   "original": {
+    "valid": 19999,
+    "measured_share": 0.9545977298864943,
+    "gross_share": 0.03132366036352208,
+    "octave_high_share": 0.0008904719501335708,
+    "octave_low_share": 0.013828505578544864,
+    "p95_abs_non_gross": 3.1465470324781286,
+    "accepted_share": 0.8919945997299865,
+    "coverage_k2": 0.9667582263579797,
+    "gross_share_accepted": 0.014462694097202758
+   }
+  },
+  "cont+sub(0.1,0.01) | men": {
+   "clean": {
+    "valid": 104820,
+    "measured_share": 0.9090345353940088,
+    "gross_share": 0.031295586923440206,
+    "octave_high_share": 0.0016896678385894947,
+    "octave_low_share": 0.005006034527994962,
+    "p95_abs_non_gross": 6.834772870109791,
+    "accepted_share": 0.6823029956115245,
+    "coverage_k2": 0.9513555838308702,
+    "gross_share_accepted": 0.008780883401613556
+   },
+   "original": {
+    "valid": 104820,
+    "measured_share": 0.8927590154550659,
+    "gross_share": 0.014030925741886534,
+    "octave_high_share": 0.00045950480342811956,
+    "octave_low_share": 0.007629916968550636,
+    "p95_abs_non_gross": 5.635729487754025,
+    "accepted_share": 0.6624117534821599,
+    "coverage_k2": 0.9843160411325863,
+    "gross_share_accepted": 0.007316300371575885
+   }
+  },
+  "cont+sub(0.1,0.01) | women": {
+   "clean": {
+    "valid": 79865,
+    "measured_share": 0.9574031177612221,
+    "gross_share": 0.0033349463139034567,
+    "octave_high_share": 0.00045773772935929795,
+    "octave_low_share": 0.0010331794462681296,
+    "p95_abs_non_gross": 6.84963792721285,
+    "accepted_share": 0.8404682902397796,
+    "coverage_k2": 0.9392914605804183,
+    "gross_share_accepted": 0.000551218640128717
+   },
+   "original": {
+    "valid": 79865,
+    "measured_share": 0.9548362862330182,
+    "gross_share": 0.0021768207925725825,
+    "octave_high_share": 0.0001573605392221144,
+    "octave_low_share": 0.001573605392221144,
+    "p95_abs_non_gross": 5.492168903888737,
+    "accepted_share": 0.8392662618168159,
+    "coverage_k2": 0.9738318314734141,
+    "gross_share_accepted": 0.0006266038073640866
+   }
+  },
+  "cont+sub(0.2,0.02) | LT-forte": {
+   "clean": {
+    "valid": 20980,
+    "measured_share": 0.9334127740705433,
+    "gross_share": 0.0338048307205229,
+    "octave_high_share": 0.0033192054332839708,
+    "octave_low_share": 0.018587550426390237,
+    "p95_abs_non_gross": 6.492031930792235,
+    "accepted_share": 0.721163012392755,
+    "coverage_k2": 0.9300066093853272,
+    "gross_share_accepted": 0.014606741573033709
+   },
+   "original": {
+    "valid": 20980,
+    "measured_share": 0.9194470924690181,
+    "gross_share": 0.020787973043027475,
+    "octave_high_share": 0.001088646967340591,
+    "octave_low_share": 0.019284603421461897,
+    "p95_abs_non_gross": 5.080102048492445,
+    "accepted_share": 0.7256434699714014,
+    "coverage_k2": 0.969587493431424,
+    "gross_share_accepted": 0.014844981607987388
+   }
+  },
+  "cont+sub(0.2,0.02) | LT-straight": {
+   "clean": {
+    "valid": 19999,
+    "measured_share": 0.9615980799039952,
+    "gross_share": 0.0314076231085227,
+    "octave_high_share": 0.0012999844001871977,
+    "octave_low_share": 5.199937600748791e-05,
+    "p95_abs_non_gross": 3.5829150915535286,
+    "accepted_share": 0.9032451622581129,
+    "coverage_k2": 0.9678919397697077,
+    "gross_share_accepted": 0.015279007971656332
+   },
+   "original": {
+    "valid": 19999,
+    "measured_share": 0.9544977248862443,
+    "gross_share": 0.030645921735030647,
+    "octave_high_share": 0.0006286342920006286,
+    "octave_low_share": 0.01341086489601341,
+    "p95_abs_non_gross": 3.148453930455716,
+    "accepted_share": 0.8923946197309865,
+    "coverage_k2": 0.9672213817448311,
+    "gross_share_accepted": 0.014007956519302964
+   }
+  },
+  "cont+sub(0.2,0.02) | men": {
+   "clean": {
+    "valid": 104820,
+    "measured_share": 0.9089582140812822,
+    "gross_share": 0.03078392476673279,
+    "octave_high_share": 0.001165024087660191,
+    "octave_low_share": 0.005016950575689831,
+    "p95_abs_non_gross": 6.834318721098295,
+    "accepted_share": 0.6828849456210647,
+    "coverage_k2": 0.95120145291981,
+    "gross_share_accepted": 0.008941044984632579
+   },
+   "original": {
+    "valid": 104820,
+    "measured_share": 0.8923487883991604,
+    "gross_share": 0.014486400957919945,
+    "octave_high_share": 0.0002886589120766336,
+    "octave_low_share": 0.00825350667122819,
+    "p95_abs_non_gross": 5.637874768972175,
+    "accepted_share": 0.6630032436557909,
+    "coverage_k2": 0.9835673995625648,
+    "gross_share_accepted": 0.008058017727639
+   }
+  },
+  "cont+sub(0.2,0.02) | women": {
+   "clean": {
+    "valid": 79865,
+    "measured_share": 0.9582795968196332,
+    "gross_share": 0.003188167195850156,
+    "octave_high_share": 0.00031359021598526124,
+    "octave_low_share": 0.001032234460951485,
+    "p95_abs_non_gross": 6.8584741780146885,
+    "accepted_share": 0.8414950228510611,
+    "coverage_k2": 0.9390828199863107,
+    "gross_share_accepted": 0.0005951849537243699
+   },
+   "original": {
+    "valid": 79865,
+    "measured_share": 0.9549614975270769,
+    "gross_share": 0.0023600985996748308,
+    "octave_high_share": 0.00010489327109665915,
+    "octave_low_share": 0.0018094089264173703,
+    "p95_abs_non_gross": 5.49240933366379,
+    "accepted_share": 0.8396794590872096,
+    "coverage_k2": 0.9735464726144853,
+    "gross_share_accepted": 0.0008947078033432249
+   }
+  },
+  "spec(-15) | LT-forte": {
+   "clean": {
+    "valid": 20980,
+    "measured_share": 0.9146806482364156,
+    "gross_share": 0.06492965085982283,
+    "octave_high_share": 0.05101615424700365,
+    "octave_low_share": 0.0016154247003647734,
+    "p95_abs_non_gross": 6.547392118338855,
+    "accepted_share": 0.6727836034318398,
+    "coverage_k2": 0.9391427559334041,
+    "gross_share_accepted": 0.009351753453772583
+   },
+   "original": {
+    "valid": 20980,
+    "measured_share": 0.9171591992373689,
+    "gross_share": 0.028115580500987423,
+    "octave_high_share": 0.025621037314208502,
+    "octave_low_share": 0.0020787859889824342,
+    "p95_abs_non_gross": 5.049087768605198,
+    "accepted_share": 0.7074356530028598,
+    "coverage_k2": 0.9834927907290123,
+    "gross_share_accepted": 0.0006063872793424066
+   }
+  },
+  "spec(-15) | LT-straight": {
+   "clean": {
+    "valid": 19999,
+    "measured_share": 0.9490474523726187,
+    "gross_share": 0.08045310853530031,
+    "octave_high_share": 0.051896733403582716,
+    "octave_low_share": 0.0004741833508956797,
+    "p95_abs_non_gross": 3.6241910234336125,
+    "accepted_share": 0.8461923096154808,
+    "coverage_k2": 0.9659043904745022,
+    "gross_share_accepted": 0.01731371506234119
+   },
+   "original": {
+    "valid": 19999,
+    "measured_share": 0.952847642382119,
+    "gross_share": 0.02419185558354324,
+    "octave_high_share": 0.007451721242653232,
+    "octave_low_share": 0.0015218303946263644,
+    "p95_abs_non_gross": 3.1108777985651246,
+    "accepted_share": 0.8836441822091105,
+    "coverage_k2": 0.9803078315980082,
+    "gross_share_accepted": 0.000961973743775464
+   }
+  },
+  "spec(-15) | men": {
+   "clean": {
+    "valid": 104820,
+    "measured_share": 0.9064586910894867,
+    "gross_share": 0.05894858706520023,
+    "octave_high_share": 0.03478398147660896,
+    "octave_low_share": 0.000799873704151976,
+    "p95_abs_non_gross": 6.901045296251971,
+    "accepted_share": 0.6563251287922153,
+    "coverage_k2": 0.950302343159486,
+    "gross_share_accepted": 0.010334903192046049
+   },
+   "original": {
+    "valid": 104820,
+    "measured_share": 0.8925968326655218,
+    "gross_share": 0.018597293773113015,
+    "octave_high_share": 0.011083559564780573,
+    "octave_low_share": 0.0018811055770505119,
+    "p95_abs_non_gross": 5.632280952282741,
+    "accepted_share": 0.6539114672772371,
+    "coverage_k2": 0.9909399938724597,
+    "gross_share_accepted": 0.0006857009468508819
+   }
+  },
+  "spec(-15) | women": {
+   "clean": {
+    "valid": 79865,
+    "measured_share": 0.9473110874600889,
+    "gross_share": 0.006132942093923894,
+    "octave_high_share": 0.003079688594578162,
+    "octave_low_share": 0.0012292319283080217,
+    "p95_abs_non_gross": 6.872936410046238,
+    "accepted_share": 0.8289112877981594,
+    "coverage_k2": 0.9390190480506336,
+    "gross_share_accepted": 0.0004833763840425371
+   },
+   "original": {
+    "valid": 79865,
+    "measured_share": 0.9538095536217367,
+    "gross_share": 0.003544423440453686,
+    "octave_high_share": 0.0012471119512707414,
+    "octave_low_share": 0.0018509766855702584,
+    "p95_abs_non_gross": 5.462229256834699,
+    "accepted_share": 0.8378263319351406,
+    "coverage_k2": 0.9741305874792641,
+    "gross_share_accepted": 0.00022417168562162808
+   }
+  },
+  "spec(-20) | LT-forte": {
+   "clean": {
+    "valid": 20980,
+    "measured_share": 0.9348903717826501,
+    "gross_share": 0.03777913735087183,
+    "octave_high_share": 0.011828285918221678,
+    "octave_low_share": 0.016365861119608444,
+    "p95_abs_non_gross": 6.314927819152112,
+    "accepted_share": 0.7276930409914204,
+    "coverage_k2": 0.9378397851575293,
+    "gross_share_accepted": 0.007598087378004847
+   },
+   "original": {
+    "valid": 20980,
+    "measured_share": 0.9200190657769304,
+    "gross_share": 0.015956895658480987,
+    "octave_high_share": 0.0010361620557455186,
+    "octave_low_share": 0.014713501191586363,
+    "p95_abs_non_gross": 4.883229181382243,
+    "accepted_share": 0.7325071496663489,
+    "coverage_k2": 0.9836673607496096,
+    "gross_share_accepted": 0.0008459135866736075
+   }
+  },
+  "spec(-20) | LT-straight": {
+   "clean": {
+    "valid": 19999,
+    "measured_share": 0.9598479923996199,
+    "gross_share": 0.03344446759741613,
+    "octave_high_share": 0.0062513023546572205,
+    "octave_low_share": 0.0023442383829964577,
+    "p95_abs_non_gross": 3.528182829582455,
+    "accepted_share": 0.9020951047552378,
+    "coverage_k2": 0.9669087079430186,
+    "gross_share_accepted": 0.016129926279031096
+   },
+   "original": {
+    "valid": 19999,
+    "measured_share": 0.9533976698834942,
+    "gross_share": 0.020821314312686842,
+    "octave_high_share": 0.0,
+    "octave_low_share": 0.005611790003671265,
+    "p95_abs_non_gross": 3.058464231914942,
+    "accepted_share": 0.8924446222311115,
+    "coverage_k2": 0.9782608695652174,
+    "gross_share_accepted": 0.002969520394441954
+   }
+  },
+  "spec(-20) | men": {
+   "clean": {
+    "valid": 104820,
+    "measured_share": 0.908433505056287,
+    "gross_share": 0.035800550292999514,
+    "octave_high_share": 0.009430593770347188,
+    "octave_low_share": 0.006301064879964714,
+    "p95_abs_non_gross": 6.792243063475123,
+    "accepted_share": 0.6833047128410609,
+    "coverage_k2": 0.9505612643806546,
+    "gross_share_accepted": 0.009577795152462862
+   },
+   "original": {
+    "valid": 104820,
+    "measured_share": 0.8926254531577943,
+    "gross_share": 0.014749104900336664,
+    "octave_high_share": 0.00017100411478651205,
+    "octave_low_share": 0.009009779297814354,
+    "p95_abs_non_gross": 5.5463661528960975,
+    "accepted_share": 0.6642816256439611,
+    "coverage_k2": 0.9896452678443199,
+    "gross_share_accepted": 0.002024989228780698
+   }
+  },
+  "spec(-20) | women": {
+   "clean": {
+    "valid": 79865,
+    "measured_share": 0.9585425405371565,
+    "gross_share": 0.015113514643258354,
+    "octave_high_share": 0.0006661964103769888,
+    "octave_low_share": 0.012618543773022965,
+    "p95_abs_non_gross": 6.6645349478231735,
+    "accepted_share": 0.8418581356038315,
+    "coverage_k2": 0.9391388413772589,
+    "gross_share_accepted": 0.0004759425894251506
+   },
+   "original": {
+    "valid": 79865,
+    "measured_share": 0.9549865397858887,
+    "gross_share": 0.016507145666710372,
+    "octave_high_share": 0.00011800183558410909,
+    "octave_low_share": 0.015917136488789826,
+    "p95_abs_non_gross": 5.255057977786615,
+    "accepted_share": 0.8401928253928505,
+    "coverage_k2": 0.9737414682125719,
+    "gross_share_accepted": 0.0007600369586599505
+   }
+  },
+  "sub(0.5,0.01) | LT-forte": {
+   "clean": {
+    "valid": 20980,
+    "measured_share": 0.9337464251668256,
+    "gross_share": 0.015773353751914243,
+    "octave_high_share": 0.0038284839203675345,
+    "octave_low_share": 0.00010209290454313425,
+    "p95_abs_non_gross": 6.466746496704672,
+    "accepted_share": 0.7301715919923737,
+    "coverage_k2": 0.9426855538873294,
+    "gross_share_accepted": 0.001436125073438214
+   },
+   "original": {
+    "valid": 20980,
+    "measured_share": 0.9170162059103909,
+    "gross_share": 0.0021830656479026977,
+    "octave_high_share": 0.0005197775352149281,
+    "octave_low_share": 0.0012474660845158273,
+    "p95_abs_non_gross": 5.048570374065426,
+    "accepted_share": 0.732554814108675,
+    "coverage_k2": 0.9829526969874423,
+    "gross_share_accepted": 0.0015615850087839158
+   }
+  },
+  "sub(0.5,0.01) | LT-straight": {
+   "clean": {
+    "valid": 19999,
+    "measured_share": 0.9592479623981199,
+    "gross_share": 0.029243119266055047,
+    "octave_high_share": 0.0013552960800667223,
+    "octave_low_share": 5.212677231025855e-05,
+    "p95_abs_non_gross": 3.57001037784136,
+    "accepted_share": 0.9024451222561128,
+    "coverage_k2": 0.9689162234042553,
+    "gross_share_accepted": 0.014239804964539008
+   },
+   "original": {
+    "valid": 19999,
+    "measured_share": 0.9498974948747437,
+    "gross_share": 0.02074011686055693,
+    "octave_high_share": 0.00047375901458124965,
+    "octave_low_share": 0.005000789598357635,
+    "p95_abs_non_gross": 3.127184111810345,
+    "accepted_share": 0.8908445422271114,
+    "coverage_k2": 0.9759205208801077,
+    "gross_share_accepted": 0.0052761562640323304
+   }
+  },
+  "sub(0.5,0.01) | men": {
+   "clean": {
+    "valid": 104820,
+    "measured_share": 0.9071169624117534,
+    "gross_share": 0.024883261116486474,
+    "octave_high_share": 0.0010937697194059988,
+    "octave_low_share": 0.00034706154558074965,
+    "p95_abs_non_gross": 6.821143077945864,
+    "accepted_share": 0.6842396489219614,
+    "coverage_k2": 0.9552299155070968,
+    "gross_share_accepted": 0.00465686957976632
+   },
+   "original": {
+    "valid": 104820,
+    "measured_share": 0.8888857088341919,
+    "gross_share": 0.010378543140180095,
+    "octave_high_share": 0.00013952539898897748,
+    "octave_low_share": 0.004561407274639649,
+    "p95_abs_non_gross": 5.632081087215582,
+    "accepted_share": 0.664233924823507,
+    "coverage_k2": 0.9865709156193896,
+    "gross_share_accepted": 0.005070017953321364
+   }
+  },
+  "sub(0.5,0.01) | women": {
+   "clean": {
+    "valid": 79865,
+    "measured_share": 0.9586051461841858,
+    "gross_share": 0.0023903133531002234,
+    "octave_high_share": 0.00039185464804921696,
+    "octave_low_share": 0.00015674185921968678,
+    "p95_abs_non_gross": 6.881530046742894,
+    "accepted_share": 0.8424466286859075,
+    "coverage_k2": 0.9392408073481764,
+    "gross_share_accepted": 0.00020807942688980707
+   },
+   "original": {
+    "valid": 79865,
+    "measured_share": 0.9549865397858887,
+    "gross_share": 0.002871377999213321,
+    "octave_high_share": 9.177920545430707e-05,
+    "octave_low_share": 0.00233381408155238,
+    "p95_abs_non_gross": 5.497724775219146,
+    "accepted_share": 0.840731233957303,
+    "coverage_k2": 0.9723136495643756,
+    "gross_share_accepted": 0.002070146697445826
+   }
+  },
+  "sub(0.5,0.02) | LT-forte": {
+   "clean": {
+    "valid": 20980,
+    "measured_share": 0.9337464251668256,
+    "gross_share": 0.02184788157223073,
+    "octave_high_share": 0.009903011740684023,
+    "octave_low_share": 0.00010209290454313425,
+    "p95_abs_non_gross": 6.470587613414492,
+    "accepted_share": 0.7297426120114394,
+    "coverage_k2": 0.9364467668190725,
+    "gross_share_accepted": 0.008621815806662313
+   },
+   "original": {
+    "valid": 20980,
+    "measured_share": 0.9175405147759771,
+    "gross_share": 0.0017662337662337662,
+    "octave_high_share": 0.0006753246753246753,
+    "octave_low_share": 0.0006753246753246753,
+    "p95_abs_non_gross": 5.04562856575537,
+    "accepted_share": 0.7330791229742613,
+    "coverage_k2": 0.9834850455136541,
+    "gross_share_accepted": 0.0010403120936280884
+   }
+  },
+  "sub(0.5,0.02) | LT-straight": {
+   "clean": {
+    "valid": 19999,
+    "measured_share": 0.9594479723986199,
+    "gross_share": 0.03153012299353763,
+    "octave_high_share": 0.0037002293099854078,
+    "octave_low_share": 0.0,
+    "p95_abs_non_gross": 3.5742844650120404,
+    "accepted_share": 0.9022451122556128,
+    "coverage_k2": 0.9669142097095987,
+    "gross_share_accepted": 0.016238084681888715
+   },
+   "original": {
+    "valid": 19999,
+    "measured_share": 0.952047602380119,
+    "gross_share": 0.018644957983193277,
+    "octave_high_share": 0.0004726890756302521,
+    "octave_low_share": 0.0029411764705882353,
+    "p95_abs_non_gross": 3.120608553577418,
+    "accepted_share": 0.8928946447322366,
+    "coverage_k2": 0.9781598252786022,
+    "gross_share_accepted": 0.0030800246401971217
+   }
+  },
+  "sub(0.5,0.02) | men": {
+   "clean": {
+    "valid": 104820,
+    "measured_share": 0.9073268460217516,
+    "gross_share": 0.029514436523458035,
+    "octave_high_share": 0.005898681471200555,
+    "octave_low_share": 0.0001787479233697138,
+    "p95_abs_non_gross": 6.835020446813399,
+    "accepted_share": 0.6839534439992367,
+    "coverage_k2": 0.9500223176923506,
+    "gross_share_accepted": 0.010084807230932321
+   },
+   "original": {
+    "valid": 104820,
+    "measured_share": 0.890116390001908,
+    "gross_share": 0.009003022443248805,
+    "octave_high_share": 0.0001714861417761677,
+    "octave_low_share": 0.0031617757389980922,
+    "p95_abs_non_gross": 5.62669597782672,
+    "accepted_share": 0.6653787445144056,
+    "coverage_k2": 0.988414940139078,
+    "gross_share_accepted": 0.0032403756541687576
+   }
+  },
+  "sub(0.5,0.02) | women": {
+   "clean": {
+    "valid": 79865,
+    "measured_share": 0.9584048081136919,
+    "gross_share": 0.002769685013652457,
+    "octave_high_share": 0.0008230667729250225,
+    "octave_low_share": 0.00010451641560952667,
+    "p95_abs_non_gross": 6.880647312329891,
+    "accepted_share": 0.8421586427095724,
+    "coverage_k2": 0.9389524078561977,
+    "gross_share_accepted": 0.0005352443539154611
+   },
+   "original": {
+    "valid": 79865,
+    "measured_share": 0.9549740186564828,
+    "gross_share": 0.0018487196632970145,
+    "octave_high_share": 9.178040881616384e-05,
+    "octave_low_share": 0.0013111486973737692,
+    "p95_abs_non_gross": 5.49535481331816,
+    "accepted_share": 0.840631064922056,
+    "coverage_k2": 0.9734721539538556,
+    "gross_share_accepted": 0.0009085898982677212
+   }
+  }
+ },
+ "attribution": {
+  "base-0.1": {
+   "octave_low_frames": 115,
+   "sampled": 115,
+   "partial_at_variant_pitch": 5
+  },
+  "base-0.05": {
+   "octave_low_frames": 188,
+   "sampled": 188,
+   "partial_at_variant_pitch": 12
+  },
+  "cont": {
+   "octave_low_frames": 562,
+   "sampled": 300,
+   "partial_at_variant_pitch": 2
+  },
+  "cont+spec(-15)": {
+   "octave_low_frames": 1036,
+   "sampled": 300,
+   "partial_at_variant_pitch": 8
+  },
+  "cont+sub(0.1,0.01)": {
+   "octave_low_frames": 834,
+   "sampled": 300,
+   "partial_at_variant_pitch": 2
+  },
+  "cont+sub(0.2,0.02)": {
+   "octave_low_frames": 910,
+   "sampled": 300,
+   "partial_at_variant_pitch": 4
+  },
+  "spec(-15)": {
+   "octave_low_frames": 317,
+   "sampled": 300,
+   "partial_at_variant_pitch": 9
+  },
+  "spec(-20)": {
+   "octave_low_frames": 2057,
+   "sampled": 300,
+   "partial_at_variant_pitch": 2
+  },
+  "sub(0.5,0.01)": {
+   "octave_low_frames": 603,
+   "sampled": 300,
+   "partial_at_variant_pitch": 9
+  },
+  "sub(0.5,0.02)": {
+   "octave_low_frames": 395,
+   "sampled": 300,
+   "partial_at_variant_pitch": 13
+  }
+ }
+}

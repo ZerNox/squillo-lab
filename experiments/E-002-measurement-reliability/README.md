@@ -1,6 +1,6 @@
 # E-002 — Measurement reliability and uncertainty
 
-**Status:** running (round 1, pitch, answered on synthetic input; round 2, real voices, pitch ± and four aspects, squillo iteration 28; round 3 open) · **Serves:** VISION §5 (what is measured), §6 (honesty), §12.2
+**Status:** answered (round 1, pitch, answered on synthetic input; round 2, real voices, pitch ± and four aspects, squillo iteration 28; round 3, octave errors and reverberation, squillo iteration 36; a real room is E-003's `needs-human` step, an amateur's voice E-005's) · **Serves:** VISION §5 (what is measured), §6 (honesty), §12.2
 
 ## Question
 
@@ -330,8 +330,137 @@ an amateur.
 original takes only. The held-note rule was written for this data and
 checked on it, not on independent takes.
 
-### Round 3 (open)
+### Round 3: octave errors and reverberation (squillo iteration 36, 2026-09-28)
 
-An honest tracker for octave errors (a continuity rule, or another tracker
-against the same truth); a reverberation estimate that predicts the pitch
-error; amateur voices and other vowels; the ring ratio on repeated material.
+Set by squillo review R-07: compare candidate fixes for YIN's octave-high
+errors against round 2's truth (squillo F-029), and build a reverberation
+estimate from the take that widens *u* or marks the take, checked on
+modelled rooms held out (F-030). The ring ratio on repeated material
+(F-036) only if room was left: it was not run.
+
+**Run:** `uv run python r3_octave.py check && uv run python r3_octave.py &&
+uv run python r3_room.py run && uv run python r3_room.py sweep &&
+uv run python r3_room.py analyse`. Time (S19), from one item of the slowest
+condition timed first: the largest take through `r3_octave.py`'s five
+conditions and the then 45 variants (37 in the final grid) took 8.8 s on one process, so 159 takes about
+1 minute on 16; the run took 6.4 minutes (the analysis and the 300-frame
+attributions are serial). `r3_room.py run` 2.7 minutes, `sweep` 46 s,
+`analyse` seconds. Needs round 2's `data/cache/r2/*.npz` and
+`r2_frames.npz`. Numbers: `results/r3_octave.json`,
+`results/r3_octave_check.json`, `results/r3_room.json`. Tools as round 2.
+
+**What squillo shows.** Since squillo iteration 34 `metrics` MT-003 refuses
+a frame whose aperiodicity (YIN's *d*′ at the chosen lag) is 0.02 or more
+and gives the rest a *u* of √3, 1.88, 2.44 or 4.26 cents (`fold2.json`,
+`measures.spec.table`, read by `r3_octave.spec_table()`). So every variant
+below is judged twice: on the frames it measures (round 2's view) and on the
+frames MT-003 then accepts, which are the ones squillo shows.
+
+#### Part A: octave errors (`r3_octave.py`)
+
+**Variants**, written in the file's docstring before running; each starts
+from round 1's tracker and may replace its lag *t* by the deepest *d*′ dip
+*t*₂ within 2*t* ± 3 (round 2's `octave_check` window), all causal:
+`base-0.1` (ADR 0007's tracker as E-002 runs it), `base-0.05`; `sub(a, d)`,
+a subharmonic check in the CMND: take *t*₂ when the depth *D*(*t*) ≥ *d*
+and *D*(*t*₂) < *a* *D*(*t*), *D* the vertex of the parabola through *d*′ at
+the lag and its neighbours, *a* ∈ {0.05, 0.1, 0.2, 0.5}, *d* ∈ {0.005, 0.01,
+0.02}; `spec(b)`, a subharmonic check in the spectrum: take *t*₂ when the
+power at the odd multiples of *f*/2 exceeds *b* dB of the power at the
+multiples of *f* (up to 4 kHz), *b* ∈ {−30, −25, −20, −15, −10}, only
+where *f*/2 ≥ 125 Hz, the Hann main-lobe width at 1536 samples; `cont`, a
+continuity rule: take *t*₂ when the pitch is 1100 to 1300 cents above the
+median of the previous 31 frames' reported pitches (at least 16 of them)
+and *d*′(*t*₂) < 0.1; and `cont+` each of the others. Each family's
+parameters are chosen on one fold of singers and tested on the other, by a
+rule written before running: the smallest mean gross share of measured
+frames on `clean` and `original`, keeping the measured share within 1 point
+of `base-0.1`'s, among variants that pass every must-pass check.
+
+**Checks (S15), run before the analysis (`r3_octave.py check`).**
+
+| Check | Must | Result |
+| :--- | :--- | :--- |
+| squillo's eleven `fixtures/signal/` files | pass: every variant reports what `base-0.1` reports | Every variant, every frame of all eleven |
+| Round 1's steady harmonic tones, E2..C6 by semitone, `saw6`, `saw12`, `weakf0` (from `run.py`'s own `spectrum()` and `render()`), 5490 frames each | pass: no gross error | Every variant but `sub(·, 0.005)` and `cont+sub(·, 0.005)`, which halve 122 to 366 of `saw6`'s frames; those eight are excluded from the fit. A first form of `sub` on *d*′ at the whole-sample lags failed this check for every parameter (up to 1464 of 5490 frames), because *d*′ at a whole lag grows with the lag's distance from the period; at the vertex these tones give *D* at most 0.008. A first form of `spec` without the 125 Hz bound read correct tones near E2 at −5 dB (leakage) |
+| `saw12` at 350 Hz with H1 26 dB under H2 (round 2 result 17's p10, 25.7 dB) and the other odd harmonics 10 or 20 dB down, 247 frames | fail for `base-0.1` (asserted) | `base-0.1` reads 247 of 247 frames an octave high in both. Explored first: with H1 alone 20 to 40 dB down, it read 175 to 440 Hz tones correctly; the odd harmonics' weakness is what misleads it. At −10 dB MT-003 refuses all 247 frames (aperiodicity ≥ 0.02), and `sub(·, ≥ 0.01)` and `spec(≤ −20)` read all 247 correctly. **At −20 dB MT-003 accepts all 247 an octave high**, and only `spec(−25)` and `spec(−30)` correct them |
+| The octave classes | pass and fail on errors known by construction | 0, 1200, −1200, 1150, 60 cents classed as expected |
+
+**Results.** Percentages of valid frames (measured, accepted) or of
+measured and accepted frames (gross, octave, coverage). *Original*: the
+VocalSet takes against Harvest, two trackers, not a truth.
+
+| # | Question | Result |
+| :--- | :--- | :--- |
+| 26 | The rule's choice, and held out | Fit on odd singers: `sub(0.5, 0.01)`; on even: `sub(0.5, 0.02)`. `base-0.05` fails the measured-share rule on both folds (over all takes it measures 4.6 points fewer valid frames clean, 5.2 original). On the singers not fitted on, gross errors among measured frames fall from 3.24 to 0.81 % (clean) and 1.02 to 0.47 % (original) on the even singers, 5.69 to 2.44 % and 2.72 to 0.79 % on the odd; octave-high errors almost vanish (original: 0.94 → 0.02 %, 2.09 → 0.01 %), octave-low ones appear (original: 0.04 → 0.39 %, 0.09 → 0.24 %). `cont+sub` is best on the odd singers (clean 2.08 %) and worse on the even (1.59 %); `cont` alone and `spec` do less |
+| 27 | What squillo shows, all 159 takes | `base-0.1` with MT-003: 71.7 % of valid frames accepted clean, 72.2 % original; gross errors among them **0.56 % clean and 0.02 % original**; ±2*u* covers 94.5 % and 98.3 %. With `sub(0.5, 0.01)`: 75.3 % and 74.1 % accepted, gross 0.25 % and **0.36 %**, coverage 94.8 % and 98.0 %. With `sub(0.5, 0.02)`: 75.2 %, 74.1 %; gross 0.55 %, 0.21 %. So MT-003's refusal already keeps octave errors out of what squillo shows on the real takes: the frames YIN reads an octave high mostly have *d*′ ≥ 0.02 (original takes: 1.59 % of measured frames octave-high, 0.02 % of accepted frames gross). The fixes buy 1.9 to 3.6 points of accepted frames at 9 to 15 times the gross share on the real takes (0.023 % → 0.21 and 0.36 %) |
+| 28 | S17: who is wrong at the new octave-low frames? | On the original takes, where `sub(0.5, 0.01)` reads an octave below Harvest (603 frames), a partial sits at its pitch in 9 of 300 sampled (≥ 10 dB above the level at 1.5 times it): in 97 % the variant is wrong, not Harvest. `sub(0.5, 0.02)`: 13 of 300 (395 frames). `base-0.1`'s own 115 octave-low frames: 5 of 115 |
+| 29 | Where the errors were | `base-0.1`, original takes: men 3.34 % gross measured, 0.04 % accepted; straight long tones 5.84 % and 0.04 %; women 0.33 % and 0.01 %. `sub(0.5, 0.02)`: men 0.90 % and 0.32 %, straight long tones 1.86 % and 0.31 % |
+| 30 | Noise | White 20 dB: `base-0.1` accepts 28.9 %, 0.79 % gross; `sub(0.5, 0.01)` 31.8 %, 0.23 %. At 10 dB both accept 1.2–2.4 % of valid frames |
+| 31 | The spectral check's cost | `spec(−25)`, the one setting that fixes the −20 dB tone of the checks, reads 4.52 % of the original takes' frames an octave low; `spec(−30)` 13.7 %. `spec(−20)`: 1.21 % |
+
+**What part A says for squillo.** ADR 0007's YIN with MT-003's refusal
+already shows almost no octave errors on real voices: 0.02 % of accepted
+frames on 159 VocalSet takes against Harvest, 0.56 % on the WORLD
+re-syntheses, whose own artefacts round 2 found (result 17). The best
+candidate fix, a subharmonic check on the CMND's interpolated depths,
+removes octave-high errors among measured frames but trades them for
+octave-low ones, which MT-003 then accepts: on the real takes it raises the
+gross share of what squillo shows from 0.02 % to 0.21–0.36 % for 2–4
+points more frames. No candidate dominates. A voice whose odd harmonics
+are 20 dB under the evens would be shown an octave high with a ±; whether
+real voices do that is unmeasured beyond these takes. For squillo's F-029:
+a `signal` scenario on the −10 dB tone (read an octave high, aperiodicity
+≥ 0.02, so unmeasurable in `metrics`) is writable today; the −20 dB tone
+is a known limit.
+
+#### Part B: reverberation (`r3_room.py`)
+
+**Conditions**, in the file's docstring before generating: nine fitting
+rooms, RT60 0.3, 0.6 and 1.0 s at DRR +12, +6 and 0 dB, round 2's room
+model and seeding, DRR asserted within 0.1 dB and T20 within 5 % on the
+tail (0.292–0.313, 0.587–0.611, 0.983–1.014 s measured); the held-out rooms
+are round 2's two (0.4 s at +6 dB, 0.8 s at 0 dB), regenerated and asserted
+to give round 2's cached pitches frame for frame (as are `clean` and
+`white-20`). A first run measured T20 on the whole response as round 2 did
+and stopped on its own assertion: at +12 dB the direct impulse holds 94 %
+of the energy and the −5 to −25 dB span straddles the direct step (0.315 s
+for a 0.3 s tail). The tracker is `base-0.1` with MT-003. A take is shown
+honestly when ±2*u* covers at least 95 % of the accepted frames of the
+takes left unmarked.
+
+| # | Question | Result |
+| :--- | :--- | :--- |
+| 32 | How much reverberation breaks the ± (all 159 takes) | Clean 94.5 %; noise 96.1–99.0 %; original takes 98.3 %. Every room breaks it: RT60 0.3 / 0.6 / 1.0 s at DRR +12 dB 89.8 / 88.6 / 88.2 %, at +6 dB 81.3 / 78.6 / 77.8 %, at 0 dB 65.2 / 62.0 / 59.5 %; the held-out rooms 79.7 % and 60.7 % (on the even singers alone 81.9 % and 64.9 %, squillo F-030's figures). The DRR matters far more than the RT60 |
+| 33 | How much direct sound it needs (`sweep`) | At DRR +18 dB 93.3 / 92.7 / 92.8 %, at +24 dB 94.1 / 94.1 / 94.0 % (RT60 0.3 / 0.6 / 1.0 s), against 94.5 % clean. The rule written for it (every RT60 at least 95 % on both folds) is met by no DRR, because clean itself is 93.9 % on the odd singers; at +24 dB every room is within 0.5 points of clean |
+| 34 | A decay estimate: the steepest fall of the take's level over 6, 12 or 25 frames (48, 96, 200 ms), absolute or relative to the level above the take's floor | Medians over all takes, fall over 96 ms: clean 35.5 dB, original 32.9, white 20 dB 13.6, room 0.3 s +12 dB 26.7, room 0.4 s 18.7, room 0.8 s 11.7. By the rule written before running, the chosen candidate on both folds is the 48 ms fall (the fewest dry takes of the fitting fold marked: 89.4 % odd, 85.9 % even; `fit.*.chosen`), marked below 25.5 dB (fit odd) or 23.8 dB (fit even). Held out, on the even singers it marks 55 % of clean takes, 86 % at 30 dB SNR, every take at 20 dB and below, 62 % of the original takes, and 99–100 % of the takes in every room, the held-out rooms included; on the odd singers 59 %, 73 %, 94 % at 20 dB, 61 % of originals, and the unmarked 3 % of the 0.3 s, +12 dB room cover only 81.3 %. The 96 ms fall does no better (46–53 % of clean takes marked; the other way round its unmarked room takes cover 63.5 %). Noise masks the decay as a room does, and a take with no clear offset cannot show one |
+| 35 | A roughness estimate (added after the first look at the fitting fold, written in the docstring before its run): the median or 90th percentile of \|*p*(*i*) − (*p*(*i* − 1) + *p*(*i* + 1))/2\| over accepted frames | Separates nothing: medians 1.21 cents clean, 1.19 original, 0.94–1.21 in the rooms. Reverberation biases the contour smoothly (it pulls vibrato peaks towards the mean, round 2 result 21), not frame to frame. By the rule it marks every take or meets the rule nowhere |
+| 36 | The rule's bar | Post hoc, with the bar at each fold's own clean coverage (93.9 % odd, 95.2 % even) instead of 95 %: the same picture: every decay candidate that meets it still marks 46–98 % of the held-out clean takes and 94–100 % at 20 dB white noise (`fit_post_hoc_bar_clean`) |
+
+**What part B says for squillo.** No estimate tried here tells a
+reverberant take from a dry or noisy one well enough to mark it: the ones
+that mark the rooms mark most dry takes too. None was tried as a widening
+of *u*. Every modelled room
+breaks the pitch ± (60–90 % coverage against 94.5 % clean), and it takes
+a direct sound 24 dB above the reverberation (a microphone close to the
+mouth in a treated room) before coverage returns to within half a point of
+clean. VISION §6 then needs squillo to state the condition rather than
+detect it: the pitch ± is honest for close, dry capture, and the singer is
+told so. The original VocalSet takes, recorded in a real treated room,
+cover 98.3 % against Harvest, which is two trackers agreeing, not a truth.
+A real room is E-003's `needs-human` step.
+
+**Limits.** Modelled rooms (an exponential Gaussian tail, no early
+reflections, no frequency dependence), one estimate family per idea and
+crude; trained singers on /a/; WORLD re-syntheses for the truth. The octave
+checks' must-fail tones are built, not recorded. Nothing here measures an
+amateur, another vowel or a real room. F-036 (the ring ratio on repeated
+material) was not run.
+
+### Beyond round 3
+
+Amateur voices and other vowels (E-005's `needs-human` step); a real room
+(E-003's); the ring ratio on repeated material (F-036); a reverberation
+estimate of another kind (spectral smearing of the partials, or a blind
+RT60 method with its own evidence) if squillo ever needs detection rather
+than a stated condition.
