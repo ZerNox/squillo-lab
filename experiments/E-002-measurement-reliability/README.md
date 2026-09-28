@@ -270,6 +270,66 @@ and WASM are not in the path. Held notes of at least 2 s are few in scales
 and songs, so the measures rest mostly on long tones, and the split-half
 tests on 8 to 15 takes.
 
+### Round 2, fold into squillo (squillo iteration 34, 2026-09-28)
+
+**Run:** `uv run python fold2.py <squillo>/fixtures` (about 1 minute on one
+process; needs round 2's `data/cache/r2_frames.npz`). It writes squillo's
+four new `fixtures/metrics/` files by the formulas squillo's
+`fixtures/MANIFEST.md` records (pure Python binary64, rounded to `f32`; two
+runs byte-identical) and `results/fold2.json`. Written for squillo findings
+F-028 and F-031.
+
+**What round 2 left for a spec.** (1) Two *u* tables, one per fold of
+singers; a spec needs one. (2) Held notes were cut from the truth, which a
+product never has. (3) The factors *c* (tracking) and κ (split halves) were
+per fold or rough. The cache reproduces round 2's two tables exactly
+(asserted).
+
+**Held notes from the measured contour** (`held_notes` in `fold2.py`,
+squillo `metrics` MT-009): a frame counts when it has a pitch and a finite
+*u*; a run goes from such a frame to the last one before a gap of more than
+12 frames; within a run a frame more than 600 cents from the run's median is
+dropped; the run is filled linearly, low-passed at 2 Hz (order-2
+Butterworth, forward and backward) and cut where the low-passed contour
+leaves the median of the piece's first 31 frames by more than 60 cents; a
+piece is a held note when it is at least 250 frames long, starts and ends
+on a counted frame, has no gap over 12 frames and at most 25 % filled
+frames. Blocks, measures and the take's value as round 2 (*Definitions*),
+with the take's *u* = κ √(SD²/*n* + *ū*²), at least two blocks. New: a block
+gives a vibrato rate only when its extent exceeds twice its tracking *u*,
+so a straight tone gives none. The truth is the same block functions on the
+truth contour over the same frames, where every frame is valid.
+
+**Checks (S15).** Every scenario squillo writes is a predicate in
+`scenarios()`, run once on its fixture (must pass) and once on another
+fixture where it must fail: all 12 pass and all 12 fail on the wrong input.
+The coverage function is checked with *u* = 10⁹ (must give 1) and 10⁻⁹
+(must give < 0.01). Fixture conditions asserted from the exact formula at
+every sample: every frequency inside E2–C6; the vibrato fixture −40.28 to
++39.37 cents at 5.5 Hz, inside SG-007's ±50 cents and 7 Hz. A first form of
+the aperiodic tone, a second sine of constant amplitude, gave every frame
+nearly the same aperiodicity and spanned no bins; its amplitude now rises
+across the second.
+
+| # | Question | Result |
+| :--- | :--- | :--- |
+| F1 | One table | Fitted on all 20 singers: *u* = 1.73, 1.87, 2.39, 3.45 cents, refused from aperiodicity 0.02. The per-bin larger of the two folds' tables is the odd singers' table itself: 1.73, 1.87, 2.44, 4.25, refused from 0.02. Rounded up at two decimals (1.73 = √3 kept, 1.88, 2.44, 4.26), it covers, on the even singers it was not fitted on, 95.2 % of accepted frames clean (70.2 % of valid frames accepted), 96.6 % at 30 dB white noise, 98.2 % at 20 dB, 99.8 % at 10 dB, 97.9 % and 99.6 % in pink noise at 20 and 10 dB; 81.9 % and 64.9 % in the two rooms; 98.1 % of the original takes against Harvest. On all 20 singers: 94.5 % clean, 96.1–99.0 % in noise |
+| F2 | Held notes cut from the measured contour, cross-validated (*u* table and *c* from the other fold, κ = 1) | 123 held notes clean (round 2's truth cut: 125), 46 of 159 takes with at least two blocks. Per block, ± 2 × tracking *u* covers the truth in 93.7 % (steadiness), 90.5 % (extent) and 91.3 % (rate) of blocks clean; the take's ± covers 42 of 42 takes for steadiness and extent, 31 of 31 for rate |
+| F3 | The constants, with F1's table on all singers | *c* = 0.0775 (steadiness), 0.400 (extent), 0.153 (rate), rounded up to 0.078, 0.41, 0.16. κ, the 95th percentile of \|*a* − *b*\| / 2√(*u*ₐ² + *u*ᵦ²) over split halves (at least four blocks), the larger of the clean re-syntheses and the original takes: 1.32 (steadiness; 16 and 20 takes), 1.56 (extent; 16 and 20), 2.50 (rate; 10 original takes, too few clean), rounded up to 1.33, 1.57, 2.51. With them the split halves call a false change in 6.3 % and 5.0 % (steadiness), 0 % and 5.0 % (extent), 0 % and 10 % (rate) of takes, in sample |
+| F4 | The constants as squillo states them, on all takes | Clean: 117 held notes, 43 takes measured; per block ± 2*u* covers 94.4 % (steadiness), 95.1 % (extent), 95.3 % (rate); per take 36 of 36, 36 of 36, 23 of 23, take error p95 0.23 cents, 1.63 cents, 0.024 Hz. White 30 dB: 30 takes, 100 % of takes covered. Rooms (F-030): extent biased low (take median −2.1 cents at 0.4 s), 73 % and 50 % of takes covered |
+| F5 | squillo's fixtures | `held-vibrato.wav` (5 s, 5.5 Hz, −40.28/+39.37 cents): steadiness 0.467 ± 0.36 (*U*), extent 39.27 ± 2.23 cents, rate 5.4994 ± 0.035 Hz, against 0.474, 39.82 and 5.4994 by the same functions on the exact contour. `held-wobble.wav` (0.5 Hz, ±20.8 cents): steadiness 14.633 ± 0.36 against 14.634, no rate. `held-steady.wav`: steadiness and extent within their ± of 0, no rate. `tone-aperiodic.wav`: aperiodicity 2.0 × 10⁻⁵ to 0.0259 over 122 measured frames, *u* 1.73 (38 frames), 1.88 (16), 2.44 (22), 4.26 (33), 13 refused. `signal/sine-220hz.wav`: aperiodicity at most 1.4 × 10⁻⁵, no held note. Every frame of the held fixtures has *u* = √3 |
+
+**What this says for squillo.** One table can be stated, with evidence on
+singers it was not fitted on: the odd fold's table, which is also the
+stricter of the two. Held notes can be found without a truth, and the three
+measures keep their coverage. κ above 1 is needed for each, on few takes.
+Reverberation still breaks the extent (F-030), and nothing here measures
+an amateur.
+
+**Limits.** As round 2. κ rests on 10 to 20 split takes; the rate's on the
+original takes only. The held-note rule was written for this data and
+checked on it, not on independent takes.
+
 ### Round 3 (open)
 
 An honest tracker for octave errors (a continuity rule, or another tracker
