@@ -3197,6 +3197,20 @@
    }
   }
  },
+ "bar_check": {
+  "odd": {
+   "clean": 0.938822259376769,
+   "passes_clean": false,
+   "room_08": 0.5764638035144853,
+   "fails_room_08": true
+  },
+  "even": {
+   "clean": 0.9524940617577197,
+   "passes_clean": true,
+   "room_08": 0.6493057178923746,
+   "fails_room_08": true
+  }
+ },
  "fit_post_hoc_bar_clean": {
   "fit on odd, test on even": {
    "bar": 0.938822259376769,

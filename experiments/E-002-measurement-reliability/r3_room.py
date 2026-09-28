@@ -284,6 +284,12 @@ def analyse():
         dry_marks = {f: float(np.mean([r["fitting"][c]["marked_share"] for c in DRY]))
                      for f, r in out["fit"][key].items() if r["fitting"] is not None}
         out["fit"][key]["chosen"] = dict(feature=min(dry_marks, key=dry_marks.get), dry_marked_fitting=dry_marks)
+    # squillo L-036, S15: the bar is itself a check. Run on the condition that must pass it (clean, each fold)
+    # and on one that must fail it (the held-out 0.8 s room); the 95 % bar fails its must-pass case on the odd fold
+    out["bar_check"] = {name: dict(clean=cov(res, ks, "clean")[0], passes_clean=cov(res, ks, "clean")[0] >= 0.95,
+                                   room_08=cov(res, ks, "room-0.8")[0], fails_room_08=cov(res, ks, "room-0.8")[0] < 0.95)
+                        for name, ks in (("odd", folds[1]), ("even", folds[0]))}
+    print("bar check (95 %):", out["bar_check"])
     # post hoc, after the run: the bar at the fitting fold's own clean coverage (93.9 % odd, 95.2 % even),
     # since the written 95 % lies above the odd singers' clean coverage
     out["fit_post_hoc_bar_clean"] = {}
