@@ -634,6 +634,13 @@ takes its RMS from 4.78 to 4.64 dB.
   of change it can show. Or it can leave tone out of the first slice, with
   that size as the reason. The microphone's response (round 2) is still
   unknown. It cancels only between takes on the same microphone.
+- **Folded in squillo iteration 52** (Q-029 part 1 A, F-036): tone is left
+  out of the first slice. Squillo's `metrics` MT-001 states that catalogue
+  version 2 holds no measure of tone, with τ, σ_w, 2*u* 8.0–11.1 dB and
+  forte against pp called for 6 of 17 as the reason (`@ 6d99459`), and
+  `ui` UI-001 tells the singer, in words, that tone is not measured and
+  why (ADR 0004, ADR 0017, ADR 0020). The `needs-human` step below, on
+  separate takes, may re-rank it.
 
 **Limits.** VocalSet holds no second take of the same material. The two
 renditions are the halves of one take (a scale's ascent and descent), so τ
