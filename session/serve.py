@@ -173,7 +173,16 @@ class H(BaseHTTPRequestHandler):
                 return self.file(EXP[exp] / rel)
         return self.send(404, {"error": "not found"})
 
+    def same_origin(self):
+        """Refuse requests another web page makes: a cross-origin POST carries its Origin,
+        and a rebound DNS name its Host (R-11, squillo iteration 55)."""
+        own = {f"localhost:{PORT}", f"127.0.0.1:{PORT}"}
+        origin = self.headers.get("origin")
+        return self.headers.get("host") in own and (origin is None or origin in {"http://" + o for o in own})
+
     def do_POST(self):
+        if not self.same_origin():
+            return self.send(403, {"error": "not from this page"})
         u = unquote(urlparse(self.path).path)
         if u.startswith("/api/rec/"):
             exp, _, name = u[9:].partition("/")
