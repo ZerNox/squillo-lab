@@ -1,7 +1,9 @@
 """Capture-trace fixtures for squillo's `capture` spec (squillo iteration 32, F-027;
 iteration 43, F-039: events-start-after-load.json, and the model opening only at
 the singer's start and releasing at the run's end, CA-010; iteration 46, F-049:
-events-start-processed.json, and the model's notices, CA-005 and CA-009).
+events-start-processed.json, and the model's notices, CA-005 and CA-009; iteration 51,
+F-053 and F-034 (b): readback-chrome-ns-only.json and readback-chrome-raw-rate-matched.json,
+and a toy of `metrics`' two readback rules, MT-004's widening shown to hold and MT-013's bridge).
 
 Crude and disposable, like everything here. Writes JSON capture traces:
 readbacks taken from round 1's recorded runs (identifiers removed) and small
@@ -80,6 +82,20 @@ def make():
         f"squillo-lab E-003 results/runs.json, run {m['name']}", "chrome", m["version"],
         m["settings"], m["ctxRate"])
 
+    # iteration 51 (F-053): round 2's readback with noise suppression alone on, as recorded
+    # in results/r2/analysis.json (the capture's own JSON is in the uncommitted cache)
+    r2 = json.loads((HERE / "results/r2/analysis.json").read_text())
+    [ns] = r2["groups"]["ns clean"]["readback"]  # S16: one readback for the condition, named in advance
+    fx["readback-chrome-ns-only.json"] = readback_fixture(
+        "squillo-lab E-003 results/r2/analysis.json, groups[\"ns clean\"].readback[0] (round 2: Chrome's "
+        "fake microphone opened with noise suppression alone requested on); context_sample_rate 48000, "
+        "round 2's context (README, round 2, rule 2)", "chrome", r2["versions"][0], json.loads(ns), RATE)
+    # iteration 51 (F-034 (b)): the Chrome raw readback with its track rate written as the context's
+    rm = copy.deepcopy(fx["readback-chrome-raw.json"])
+    rm["source"] = ("readback-chrome-raw.json's settings with sampleRate written as 48000 for this "
+                    "fixture: a raw readback whose track rate matches the context's; E-003 recorded none")
+    rm["settings"]["sampleRate"] = RATE
+    fx["readback-chrome-raw-rate-matched.json"] = rm
     # constructed traces, all on the Chrome raw readback
     base = fx["readback-chrome-raw.json"]
     ch0 = [ramp(0), ramp(32), ramp(64)]
@@ -134,6 +150,26 @@ def tier(settings):
     return "raw"
 
 
+def widening(settings):
+    """A toy of MT-004 (iteration 51, F-053): for a not-raw readback, whether the processing it
+    names is one E-003 round 2 measured the factor to hold for in quiet input: the three flags on,
+    or echo cancellation alone, or automatic gain control alone, the others reported off, and no
+    other processing setting reported on. None for raw."""
+    if tier(settings) == "raw":
+        return None
+    if any(settings.get(k) is True for k in OTHER_PROCESSING):
+        return "not-shown-to-hold"
+    on = tuple(settings.get(k) for k in FLAGS)
+    shown = {(True, True, True), (True, False, False), (False, False, True)}  # FLAGS' order: ec, ns, agc
+    return "shown-to-hold" if on in shown else "not-shown-to-hold"
+
+
+def bridge(settings, ctx):
+    """A toy of MT-013 (iteration 51, F-034 (b)): the bridge's term applies unless the track rate
+    is reported and equals the context's."""
+    return settings.get("sampleRate") != ctx
+
+
 def model(t):
     """What capture does with a trace: start or refuse, the tier, the blocks it
     delivers (first channel), and whether and after which block it reports the input ended."""
@@ -143,7 +179,8 @@ def model(t):
         return {"started": False, "why": "rate"}
     out = {"started": True, "tier": tier(t["settings"]),
            "track_rate": t["settings"].get("sampleRate", "not reported"),
-           "delivered": [], "ended": None, "released": False}
+           "delivered": [], "ended": None, "released": False,
+           "widening": widening(t["settings"]), "bridge": bridge(t["settings"], t["context_sample_rate"])}
     # CA-010: a trace with the singer's start opens nothing before it; one without
     # starts at the singer's start implicitly, as every iteration-32 trace
     gated = any(e["type"] == "singer-start" for e in t["events"])
@@ -226,6 +263,17 @@ def conditions(fx):
           "no flag reported")
     t = fx["readback-chrome-processed.json"]["settings"]
     check("readback-chrome-processed.json", all(t[k] is True for k in FLAGS), "all three flags on")
+    # iteration 51
+    t = fx["readback-chrome-ns-only.json"]["settings"]
+    check("readback-chrome-ns-only.json", t == json.loads(json.loads((HERE / "results/r2/analysis.json").read_text())
+          ["groups"]["ns clean"]["readback"][0]), "settings as recorded")
+    check("readback-chrome-ns-only.json", t["noiseSuppression"] is True and t["echoCancellation"] is False
+          and t["autoGainControl"] is False and t["sampleRate"] == RATE, "noise suppression alone on, track rate 48000")
+    t, r = fx["readback-chrome-raw-rate-matched.json"]["settings"], fx["readback-chrome-raw.json"]["settings"]
+    check("readback-chrome-raw-rate-matched.json", t["sampleRate"] == RATE
+          and {k: v for k, v in t.items() if k != "sampleRate"} == {k: v for k, v in r.items() if k != "sampleRate"}
+          and fx["readback-chrome-raw-rate-matched.json"]["context_sample_rate"] == RATE,
+          "readback-chrome-raw.json's settings but for sampleRate 48000, context 48000")
     two = [e for e in fx["blocks-two-channels.json"]["events"] if e["type"] == "block"]
     check("blocks-two-channels.json", all(e["channels"][0] != e["channels"][1] for e in two),
           "the two channels differ in every block")
@@ -279,6 +327,16 @@ EXPECTED = {  # written from the spec's scenarios before the model ran
                                     "opened_on": "singer-start", "opened_before_start": None,
                                     "released": True,
                                     "notices": [["capture-condition", "page-loaded"], ["processing", 0]]},
+    # iteration 51, written before the model ran: capture's tier and rate as CA-003 and CA-004 state,
+    # and metrics' two readback rules (MT-004's widening shown to hold, MT-013's bridge)
+    "readback-chrome-ns-only.json": {"started": True, "tier": "not-raw", "track_rate": 48000,
+                                     "widening": "not-shown-to-hold", "bridge": False},
+    "readback-chrome-raw-rate-matched.json": {"started": True, "tier": "raw", "track_rate": 48000,
+                                              "widening": None, "bridge": False},
+    "readback-chrome-raw.json#metrics": {"widening": None, "bridge": True},
+    "readback-firefox-raw.json#metrics": {"widening": None, "bridge": True},
+    "readback-flags-unreported.json#metrics": {"widening": "not-shown-to-hold", "bridge": True},
+    "readback-chrome-processed.json#metrics": {"widening": "shown-to-hold", "bridge": False},
     "readback-chrome-raw.json#notices": [["capture-condition", "trace-start"]],
     "readback-chrome-processed.json#notices": [["capture-condition", "trace-start"], ["processing", 0]],
 }
@@ -293,6 +351,9 @@ def outcomes(fx):
         if name + "#notices" in EXPECTED:
             exp = exp | {"notices": EXPECTED[name + "#notices"]}
             ok = ok and got.get("notices") == exp["notices"]
+        if name + "#metrics" in EXPECTED:
+            exp = exp | EXPECTED[name + "#metrics"]
+            ok = ok and all(got.get(k) == v for k, v in EXPECTED[name + "#metrics"].items())
         if name == "blocks-two-channels.json":
             first = [e["channels"][0] for e in t["events"] if e["type"] == "block"]
             ok = ok and got["delivered"] == first
@@ -342,6 +403,19 @@ def check_the_checks():
                  model(proc)["notices"][0] == ["capture-condition", "page-loaded"]))
     rows.append(("capture condition not at the load on a trace with no load",
                  model(dict(proc, events=st[1:]))["notices"][0] == ["capture-condition", "trace-start"]))
+    # iteration 51: the two metrics rules, each on a case it must pass and one it must fail
+    rows.append(("widening shown to hold on Chrome's default readback", widening(d["default"]["settings"]) == "shown-to-hold"))
+    only = lambda k: {**{f: False for f in FLAGS}, k: True}  # noqa: E731
+    rows.append(("widening not shown to hold with noise suppression alone", widening(only("noiseSuppression")) == "not-shown-to-hold"))
+    rows.append(("widening shown to hold with echo cancellation alone", widening(only("echoCancellation")) == "shown-to-hold"))
+    rows.append(("widening shown to hold with gain control alone", widening(only("autoGainControl")) == "shown-to-hold"))
+    rows.append(("widening not shown to hold with two flags on",
+                 widening({**only("echoCancellation"), "autoGainControl": True}) == "not-shown-to-hold"))
+    rows.append(("widening not shown to hold with voice isolation on", widening({**d["default"]["settings"], "voiceIsolation": True}) == "not-shown-to-hold"))
+    rows.append(("no widening class for raw", widening(d["raw"]["settings"]) is None))
+    rows.append(("no bridge at a matched rate", not bridge({"sampleRate": RATE}, RATE)))
+    rows.append(("bridge at another rate", bridge({"sampleRate": 44100}, RATE)))
+    rows.append(("bridge with no rate reported", bridge({}, RATE)))
     # f32 exactness: 0.75 is exact, 0.1 is not
     rows.append(("f32_exact(0.75)", f32_exact(0.75)))
     rows.append(("not f32_exact(0.1)", not f32_exact(0.1)))

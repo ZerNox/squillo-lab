@@ -282,6 +282,28 @@ the notice one block late fails the first of them (run by hand, not kept).
 127 conditions; 14 of 14 outcomes as the scenarios state. The thirteen
 earlier files regenerate byte for byte.
 
+**Squillo iteration 51** (F-053, F-034 (b)). Two more readbacks.
+`readback-chrome-ns-only.json`: round 2's readback with noise suppression
+alone requested on, as `results/r2/analysis.json` holds it
+(`groups["ns clean"].readback`, one readback for the condition; the
+capture's own JSON is in the uncommitted cache), with round 2's 48 kHz
+context. `readback-chrome-raw-rate-matched.json`:
+`readback-chrome-raw.json`'s settings with `sampleRate` written as 48 000,
+a raw readback whose track rate matches the context's, which no run
+recorded (Chrome's fake device runs raw at 44.1 kHz). Each is asserted
+against its source. The model gains a toy of squillo `metrics`' two
+readback rules: whether the not-raw factor was shown to hold in quiet
+input for the processing named (MT-004: the three flags on, or echo
+cancellation or gain control alone, nothing else on), and whether the
+bridge's term applies (MT-013: the track rate not reported, or not the
+context's). Ten more checks of the checks, 26 in all, each rule on cases
+it must pass and must fail that differ in their input (noise suppression
+alone, two flags on, voice isolation on, raw; a matched rate, another
+rate, none). The expected outcomes were written before the model first
+ran, but in the same edit, not in a commit of their own. 132 conditions;
+16 of 16 outcomes as the scenarios state. The fourteen earlier files
+regenerate byte for byte.
+
 ## Round 2: what browser processing does to the measures (squillo iteration 47)
 
 **Question** (squillo F-034 (a), R-09's focus for iteration 47). When a take

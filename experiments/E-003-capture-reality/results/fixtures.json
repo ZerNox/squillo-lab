@@ -57,6 +57,46 @@
       "ok": true
     },
     {
+      "check": "widening shown to hold on Chrome's default readback",
+      "ok": true
+    },
+    {
+      "check": "widening not shown to hold with noise suppression alone",
+      "ok": true
+    },
+    {
+      "check": "widening shown to hold with echo cancellation alone",
+      "ok": true
+    },
+    {
+      "check": "widening shown to hold with gain control alone",
+      "ok": true
+    },
+    {
+      "check": "widening not shown to hold with two flags on",
+      "ok": true
+    },
+    {
+      "check": "widening not shown to hold with voice isolation on",
+      "ok": true
+    },
+    {
+      "check": "no widening class for raw",
+      "ok": true
+    },
+    {
+      "check": "no bridge at a matched rate",
+      "ok": true
+    },
+    {
+      "check": "bridge at another rate",
+      "ok": true
+    },
+    {
+      "check": "bridge with no rate reported",
+      "ok": true
+    },
+    {
       "check": "f32_exact(0.75)",
       "ok": true
     },
@@ -88,6 +128,16 @@
     },
     {
       "fixture": "context-rate-44100.json",
+      "check": "no device identifier",
+      "ok": true
+    },
+    {
+      "fixture": "readback-chrome-ns-only.json",
+      "check": "no device identifier",
+      "ok": true
+    },
+    {
+      "fixture": "readback-chrome-raw-rate-matched.json",
       "check": "no device identifier",
       "ok": true
     },
@@ -637,6 +687,21 @@
       "ok": true
     },
     {
+      "fixture": "readback-chrome-ns-only.json",
+      "check": "settings as recorded",
+      "ok": true
+    },
+    {
+      "fixture": "readback-chrome-ns-only.json",
+      "check": "noise suppression alone on, track rate 48000",
+      "ok": true
+    },
+    {
+      "fixture": "readback-chrome-raw-rate-matched.json",
+      "check": "readback-chrome-raw.json's settings but for sampleRate 48000, context 48000",
+      "ok": true
+    },
+    {
       "fixture": "blocks-two-channels.json",
       "check": "the two channels differ in every block",
       "ok": true
@@ -714,7 +779,9 @@
             "capture-condition",
             "trace-start"
           ]
-        ]
+        ],
+        "widening": null,
+        "bridge": true
       },
       "model": {
         "started": true,
@@ -722,6 +789,8 @@
         "track_rate": 44100,
         "ended": null,
         "released": false,
+        "widening": null,
+        "bridge": true,
         "opened_on": "trace-start",
         "notices": [
           [
@@ -738,7 +807,9 @@
       "expected": {
         "started": true,
         "tier": "raw",
-        "track_rate": "not reported"
+        "track_rate": "not reported",
+        "widening": null,
+        "bridge": true
       },
       "model": {
         "started": true,
@@ -746,6 +817,8 @@
         "track_rate": "not reported",
         "ended": null,
         "released": false,
+        "widening": null,
+        "bridge": true,
         "opened_on": "trace-start",
         "notices": [
           [
@@ -761,7 +834,9 @@
       "fixture": "readback-flags-unreported.json",
       "expected": {
         "started": true,
-        "tier": "not-raw"
+        "tier": "not-raw",
+        "widening": "not-shown-to-hold",
+        "bridge": true
       },
       "model": {
         "started": true,
@@ -769,6 +844,8 @@
         "track_rate": "not reported",
         "ended": null,
         "released": false,
+        "widening": "not-shown-to-hold",
+        "bridge": true,
         "opened_on": "trace-start",
         "notices": [
           [
@@ -798,7 +875,9 @@
             "processing",
             0
           ]
-        ]
+        ],
+        "widening": "shown-to-hold",
+        "bridge": false
       },
       "model": {
         "started": true,
@@ -806,6 +885,8 @@
         "track_rate": 48000,
         "ended": null,
         "released": false,
+        "widening": "shown-to-hold",
+        "bridge": false,
         "opened_on": "trace-start",
         "notices": [
           [
@@ -835,6 +916,66 @@
       "ok": true
     },
     {
+      "fixture": "readback-chrome-ns-only.json",
+      "expected": {
+        "started": true,
+        "tier": "not-raw",
+        "track_rate": 48000,
+        "widening": "not-shown-to-hold",
+        "bridge": false
+      },
+      "model": {
+        "started": true,
+        "tier": "not-raw",
+        "track_rate": 48000,
+        "ended": null,
+        "released": false,
+        "widening": "not-shown-to-hold",
+        "bridge": false,
+        "opened_on": "trace-start",
+        "notices": [
+          [
+            "capture-condition",
+            "trace-start"
+          ],
+          [
+            "processing",
+            0
+          ]
+        ],
+        "blocks_delivered": 0
+      },
+      "ok": true
+    },
+    {
+      "fixture": "readback-chrome-raw-rate-matched.json",
+      "expected": {
+        "started": true,
+        "tier": "raw",
+        "track_rate": 48000,
+        "widening": null,
+        "bridge": false
+      },
+      "model": {
+        "started": true,
+        "tier": "raw",
+        "track_rate": 48000,
+        "ended": null,
+        "released": false,
+        "widening": null,
+        "bridge": false,
+        "opened_on": "trace-start",
+        "notices": [
+          [
+            "capture-condition",
+            "trace-start"
+          ]
+        ],
+        "blocks_delivered": 0
+      },
+      "ok": true
+    },
+    {
       "fixture": "blocks-two-channels.json",
       "expected": {
         "started": true,
@@ -848,6 +989,8 @@
         "track_rate": 44100,
         "ended": null,
         "released": true,
+        "widening": null,
+        "bridge": true,
         "opened_on": "trace-start",
         "notices": [
           [
@@ -872,6 +1015,8 @@
         "track_rate": 44100,
         "ended": null,
         "released": true,
+        "widening": null,
+        "bridge": true,
         "opened_on": "trace-start",
         "notices": [
           [
@@ -903,6 +1048,8 @@
           5
         ],
         "released": true,
+        "widening": null,
+        "bridge": true,
         "opened_on": "trace-start",
         "notices": [
           [
@@ -933,6 +1080,8 @@
           5
         ],
         "released": true,
+        "widening": null,
+        "bridge": true,
         "opened_on": "trace-start",
         "notices": [
           [
@@ -963,6 +1112,8 @@
           5
         ],
         "released": true,
+        "widening": null,
+        "bridge": true,
         "opened_on": "trace-start",
         "notices": [
           [
@@ -993,6 +1144,8 @@
           3
         ],
         "released": true,
+        "widening": null,
+        "bridge": true,
         "opened_on": "trace-start",
         "notices": [
           [
@@ -1039,6 +1192,8 @@
         "track_rate": 44100,
         "ended": null,
         "released": true,
+        "widening": null,
+        "bridge": true,
         "opened_on": "singer-start",
         "notices": [
           [
@@ -1077,6 +1232,8 @@
         "track_rate": 48000,
         "ended": null,
         "released": true,
+        "widening": "shown-to-hold",
+        "bridge": false,
         "opened_on": "singer-start",
         "notices": [
           [
@@ -1099,6 +1256,8 @@
     "readback-flags-unreported.json": "084344ed71bb1b99c15893f62ad384cbc8851c4ad5c15b15cf9ecc9c34f43d27",
     "readback-chrome-processed.json": "2b8e4eaf74aaf901c399e76af88c92e376629c3eabaa1707100142d0cf7a05b4",
     "context-rate-44100.json": "53231febaadd81bac588de3bad144f41489375d0fb0c5ac6d48e4b51f3fce252",
+    "readback-chrome-ns-only.json": "2bc75455e95b1afd51b267aa8d077e981d0e4cb13dc3ddec65de52557d073f69",
+    "readback-chrome-raw-rate-matched.json": "74ae2ec6652effb9b5fe5e2fefdb4485db400c1ebc9297621596cf10cd5931cd",
     "blocks-two-channels.json": "cd1652494750698aca7f8b0044baf33328825192abe1061caef63c2f37fde390",
     "events-singer-stop.json": "0c8ff389864ea8b6625ca86f10a931d2d531619e141ed2700e6474356ae31047",
     "events-track-ended.json": "aea69537781bb1fcf9ffe7e406f5ac4933339105e3a49aecf9f6b1b53f8939cc",
