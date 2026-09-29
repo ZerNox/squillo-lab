@@ -33,7 +33,9 @@ its exact formula, never from nominal parameters, and stops if one fails.
 Any procedure that makes the truth (alignment, segmentation) runs on one
 input of every condition first. **A check is itself checked before it is
 trusted:** its bounds are computed in code from their source's definition,
-never retyped; a tool's arrays are matched to frames by the index it
+never retyped, and a tolerance built from a resolution also carries the
+rounding of the arithmetic that makes the values it compares, at their
+magnitude (squillo L-048); a tool's arrays are matched to frames by the index it
 returns, never by position; and it is run once on a case it must pass and
 once on a case it must fail, each known independently of the check. A
 pass bar or a selection rule written before a run is a check too: it is
@@ -79,7 +81,10 @@ with the test's numbers in the README, before it is called unattributed
 
 **Time the full run before starting it** (squillo standing instruction
 S19). Before a run longer than a few minutes, time a sample of its items
-spread over its conditions **on the pool itself, at the process count the
+spread over its conditions, **every extreme and every must-fail condition
+among them, each run to its end** (a sample item that does not end is a
+fault in the harness, found before the rules are committed; squillo
+L-048), **on the pool itself, at the process count the
 run will use**, since a single idle process can be several times faster
 than the same work under a full pool; multiply out, and write the estimate
 in the README's command block. If the run and its analysis do not fit well

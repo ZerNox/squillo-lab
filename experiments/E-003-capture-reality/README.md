@@ -893,6 +893,14 @@ placeholder cell, the stand-in page work a busy loop (not drawing); the
 display's own delay and the microphone's input latency are not measured;
 Safari and Edge untested.
 
+**Folded in squillo iteration 53** (Q-030, F-042): each frame's `pitch`
+cell crosses engine to page as one JSON message per frame, held for the
+run only (ADR 0006, ADR 0004 revised; `runner` RU-012); the page's handler
+only stores, and draws at the display's pace (ADR 0020 revised; `ui`
+UI-006, UI-012). The timing sample above ran loads 0 only, not the
+overload, which is how the first Chrome step's overload runs failed to end
+(squillo L-048).
+
 ## Needs a human (15 minutes)
 
 Real microphones, drivers and rooms, which fake devices cannot show.
