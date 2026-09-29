@@ -1,6 +1,6 @@
 # E-003 — Capture reality in browsers
 
-**Status:** needs-human (rounds 1 to 3 automated, fake devices; the real-microphone step is left) · **Serves:** VISION §6 (honesty), §12.3 · Absorbs squillo S-001, S-002 and S-003
+**Status:** needs-human (rounds 1 to 4 automated, fake devices; the real-microphone step is left) · **Serves:** VISION §6 (honesty), §12.3 · Absorbs squillo S-001, S-002 and S-003
 
 ## Question
 
@@ -816,6 +816,82 @@ median (the sample: 0.0 ms in Chrome, 1 ms in Firefox) and well under a
 frame period at p99; page load 0.5 queues a frame behind the previous
 one's handler, so up to about 4 ms; page load 1.5 falls behind without
 bound, which is backlog, not loss.
+
+### Round 4 as run and result (squillo iteration 53, 2026-09-29)
+
+`node r4_run.mjs chrome`, then `node r4_run.mjs firefox` (4.3 and 5.0
+minutes, inside the estimate), then `uv run python r4_analyze.py`
+(0.07 s): `results/r4/checks.json`, `results/r4/analysis.json`. The
+per-frame times stay in the uncommitted cache (`data/cache/r4/`); the
+analysis keeps every run's figures.
+
+**Checks.** K0–K3's must-pass and must-fail cases hold (asserted,
+`checks.json`). On all 36 runs: the two clocks agree within the tolerance
+(worst −0.000244 ms, inside it), and the same round trips on each side's
+own clock fail as they must (K0, asserted); every frame the worker posted
+reached the page once, in order, as JSON (C1, asserted); no block was lost,
+reordered or repeated (C2, asserted). The keep-up bar (R2) passed on all
+six reference runs and failed on all six overload runs (asserted); on the
+twelve other runs it is recorded, not asserted (R2 set no expectation for
+them), and it passed on all twelve.
+
+**Result.** 36 runs, 1500 frames each, 54 000 frames, Chrome 154.0.8037.57
+(timer step 0.1 ms) and Firefox 156.0 (timer step 1 ms), headless, fake
+microphones, one Linux laptop. Latencies in ms after the first 0.5 s, the
+worst run of three per condition (`analysis.json` `conditions`).
+
+| Browser | Worker load (of 2.667 ms) | Page load (of 8 ms) | Frames lost or out of order | Transport p50 / p99 / max | From block p99 / max | Over 8 ms | Keeps up | End late (ms) |
+| :--- | ---: | ---: | ---: | :--- | :--- | ---: | :--- | ---: |
+| Chrome | 0 | 0 | 0 of 4500 | 0.2 / 0.3 / 0.4 | 0.3 / 0.4 | 0 | 3 of 3 | −0.9 |
+| Chrome | 0 | 0.5 | 0 of 4500 | 0.1 / 4.2 / 4.3 | 4.2 / 4.3 | 0 | 3 of 3 | 3.3 |
+| Chrome | 0.75 | 0 | 0 of 4500 | 0.1 / 0.2 / 0.3 | 2.2 / 2.6 | 0 | 3 of 3 | 4.2 |
+| Chrome | 0.75 | 0.5 | 0 of 4500 | 0.2 / 0.3 / 0.3 | 2.3 / 2.3 | 0 | 3 of 3 | 11.7 |
+| Chrome | 0 | 1.5 | 0 of 4500 | 3122 / 5938 / 6000 | 5938 / 6000 | 4314 | 0 of 3 | 6009 |
+| Chrome | 0.75 | 1.5 | 0 of 4500 | 3125 / 5939 / 5998 | 5941 / 6000 | 4311 | 0 of 3 | 6017 |
+| Firefox | 0 | 0 | 0 of 4500 | 0 / 1 / 2 | 1 / 2 | 0 | 3 of 3 | −10 |
+| Firefox | 0 | 0.5 | 0 of 4500 | 1 / 6 / 6 | 6 / 6 | 0 | 3 of 3 | −2 |
+| Firefox | 0.75 | 0 | 0 of 4500 | 0 / 1 / 1 | 3 / 3 | 0 | 3 of 3 | −1 |
+| Firefox | 0.75 | 0.5 | 0 of 4500 | 0 / 1 / 1 | 3 / 3 | 0 | 3 of 3 | 2 |
+| Firefox | 0 | 1.5 | 0 of 4500 | 3124 / 5942 / 6004 | 5942 / 6004 | 4314 | 0 of 3 | 6006 |
+| Firefox | 0.75 | 1.5 | 0 of 4500 | 3126 / 5942 / 6001 | 5944 / 6003 | 4311 | 0 of 3 | 6009 |
+
+- **Every frame arrives, in order,** in every condition: 0 of 54 000 lost,
+  reordered or repeated; with 3 runs a condition this bounds the loss rate
+  per frame below 5.6 × 10⁻⁵ at 95 % confidence (3/54 000, the rule of
+  three), and the block path beside it lost nothing (162 000 blocks).
+- **When the page keeps up, a frame reaches it within one frame period**:
+  transport at most 0.4 ms in Chrome and 2 ms in Firefox with the page
+  idle (Firefox's timer step is 1 ms), and at most 4.3 ms and 6 ms with
+  4 ms of page work per frame, which queues a frame behind the one before
+  when blocks arrive in bursts. From the worker's receipt of the frame's
+  last block, add the worker's own work on it (2 ms here): at most 2.6 ms
+  and 3 ms. No frame, in any condition that kept up, arrived more than
+  8 ms after it was posted.
+- **A page that does more work per frame than the frame period falls
+  behind without bound, and loses nothing**: at 12 ms per 8 ms frame the
+  latency grew by 5.25 s over the 12 s run in both browsers, and the
+  stream's end reached the page 6.0 s late. In the first Chrome step
+  (before the revision above), the page's own timer and the worklet's
+  reply queued behind the frames, so the run's end never came within
+  120 s: **a page that falls behind on frame messages delays everything
+  else it must do, the singer's stop included.** The page must do less
+  than a frame period's work per frame message, and draw at the display's
+  pace, not per message.
+- Worker load of 0.75 of a block period adds its own time to each frame's
+  age and nothing to the transport.
+- *End late* is the stream's end reaching the page minus 12 s after the
+  context resumed; a negative value (up to 10 ms) means the last block
+  came before that instant, blocks having started before the clock did.
+
+**For squillo.** One JSON text message per 8 ms frame, worker to page,
+is lossless and ordered in Chrome 154 and Firefox 156, and arrives within
+a frame period while the page's work per message stays under a frame
+period; the page's work per frame message is the budget, not the
+transport (`squillo-lab E-003`, round 4). **Limits:** fake microphones,
+headless, one Linux laptop (not a singer's device), 12 s runs, a
+placeholder cell, the stand-in page work a busy loop (not drawing); the
+display's own delay and the microphone's input latency are not measured;
+Safari and Edge untested.
 
 ## Needs a human (15 minutes)
 

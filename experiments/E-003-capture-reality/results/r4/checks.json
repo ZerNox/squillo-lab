@@ -1,0 +1,12 @@
+{
+ "K0_must_pass": true,
+ "K0_must_fail": true,
+ "K1_must_pass": true,
+ "K1_must_fail_drop": true,
+ "K1_must_fail_swap": true,
+ "K1_must_fail_dup": true,
+ "K2_must_pass": true,
+ "K2_must_fail": true,
+ "K3_must_pass": true,
+ "K3_must_fail": true
+}
