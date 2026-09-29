@@ -1,0 +1,122 @@
+{
+ "K3_table": {
+  "table": [
+   1.7320508075688772,
+   1.88,
+   2.44,
+   4.26,
+   null,
+   null,
+   null,
+   null
+  ],
+  "refuse_at": 0.02
+ },
+ "K1_segmentation": {
+  "must_pass": {
+   "ok": true,
+   "spans_per_tone": [
+    2,
+    2,
+    2,
+    2
+   ],
+   "match": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ]
+  },
+  "must_fail": {
+   "ok": false,
+   "spans_per_tone": [
+    2,
+    2,
+    2,
+    2
+   ],
+   "match": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  "must_pass_44100": {
+   "ok": true,
+   "spans_per_tone": [
+    2,
+    2,
+    2,
+    2
+   ],
+   "match": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+   ]
+  }
+ },
+ "K2_shift": {
+  "tolerance": 0.019433904363893806,
+  "known_shift": 0.500507184722856,
+  "must_pass": {
+   "ok": true,
+   "frames": 368,
+   "accepted": 368,
+   "refused": 0,
+   "max_abs_e": 0.5068698075818592,
+   "p95_abs_e": 0.5050615709081648,
+   "median_e": 0.5004411108542579,
+   "gross": 0,
+   "coverage_2u": 1.0
+  },
+  "must_fail": {
+   "ok": false,
+   "frames": 368,
+   "accepted": 368,
+   "refused": 0,
+   "max_abs_e": 0.009433904363893804,
+   "p95_abs_e": 0.008338749580037183,
+   "median_e": -0.00014979967885508165,
+   "gross": 0,
+   "coverage_2u": 1.0
+  }
+ },
+ "reference": {
+  "probe48000 (ideal)": {
+   "frames": 368,
+   "accepted": 368,
+   "refused": 0,
+   "max_abs_e": 0.009433904363893804,
+   "p95_abs_e": 0.008338749580037183,
+   "median_e": -0.00014979967885508165,
+   "gross": 0,
+   "coverage_2u": 1.0
+  },
+  "probe44100 via the ideal converter": {
+   "frames": 368,
+   "accepted": 368,
+   "refused": 0,
+   "max_abs_e": 0.009696760827714437,
+   "p95_abs_e": 0.008519698404571088,
+   "median_e": 8.411733067173173e-05,
+   "gross": 0,
+   "coverage_2u": 1.0
+  }
+ }
+}

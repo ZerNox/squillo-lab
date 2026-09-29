@@ -227,12 +227,24 @@ def main():
             assert all(q["match"] >= MATCH for q in sp), ("R1: every located tone matches the reference's", name)
             an, cfg = s17(name, rows, ref_max)
             assert cfg["ctxRate"] == 48000
+            for q in sp:  # per occurrence: the offset and its spread within one tone
+                e = np.array([w["e"] for w in rows if q["i0"] <= w["frame"] <= q["i1"] and not w["refused"]])
+                q.update(t_s=round(q["sa"] / SR, 3), median_e=float(np.median(e)), spread_e=float(e.max() - e.min()))
             res["runs"][name] = dict(spans=sp, **summarise(rows),
                                      anomalies=an, round1_steps=steps[step_key[path]]["steps"][r])
             allrows += rows
         res["paths"][path] = summarise(allrows)
     br = res["paths"]["firefox bridge 44100->48000"]
     res["decision_b_cents"] = math.ceil(br["max_abs_e"] * 100) / 100  # R3: rounded up to 0.01 cent
+    bsp = [q for n, r in res["runs"].items() if n.startswith("firefox-stream-fake-src44100") for q in r["spans"]]
+    res["bridge_offsets"] = dict(max_spread_within_a_tone=max(q["spread_e"] for q in bsp),
+                                 first_loop_median={n: float(np.median([q["median_e"] for q in r["spans"] if q["t_s"] < 8]))
+                                                    for n, r in res["runs"].items() if n.startswith("firefox-stream-fake-src44100")},
+                                 second_loop_median={n: float(np.median([q["median_e"] for q in r["spans"] if q["t_s"] >= 8]))
+                                                     for n, r in res["runs"].items() if n.startswith("firefox-stream-fake-src44100")})
+    res["bridge_offsets"]["largest_move_between_loops"] = max(
+        abs(res["bridge_offsets"]["first_loop_median"][n] - res["bridge_offsets"]["second_loop_median"][n])
+        for n in res["bridge_offsets"]["first_loop_median"])
     res["seconds"] = round(time.time() - t0, 1)
     (OUT / "bridge.json").write_text(json.dumps(res, indent=1))
     print(json.dumps(res["paths"], indent=1), res["decision_b_cents"], res["seconds"])

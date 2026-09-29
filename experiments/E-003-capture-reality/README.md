@@ -1,6 +1,6 @@
 # E-003 — Capture reality in browsers
 
-**Status:** needs-human (rounds 1 and 2 automated, fake devices; the real-microphone step is left) · **Serves:** VISION §6 (honesty), §12.3 · Absorbs squillo S-001, S-002 and S-003
+**Status:** needs-human (rounds 1 to 3 automated, fake devices; the real-microphone step is left) · **Serves:** VISION §6 (honesty), §12.3 · Absorbs squillo S-001, S-002 and S-003
 
 ## Question
 
@@ -638,6 +638,65 @@ holds them in code).
 0.4 s figure plus the time base's wander (round 1: up to 350 ppm over a
 stretch, 0.61 cents), so under 1 cent, and no frame is refused that the
 controls accept.
+
+### Round 3 as run and result (squillo iteration 51, 2026-09-29)
+
+`uv run --project ../E-002-measurement-reliability python r3_bridge.py
+checks`, then without `checks`: `results/r3/checks.json`,
+`results/r3/bridge.json` (7.5 s with the checks, inside the estimate).
+
+**Checks** (all asserted in `r3_bridge.py`). K1 with the revised R1: the
+reference gives two occurrences per tone, each matching at 1.0; the
+toneless reference gives the same eight positions (the lag comes from the
+sweep and noise) with matches of 0.0, so it fails as it must; the 44.1 kHz
+probe through the ideal converter passes. K2: the reference's own largest
+error is 0.0094 cents, so the tolerance is 0.0194; the reference made
+sharp by 0.5005 cents (exact length ratio) gives a median of 0.5004 and
+passes; the unshifted reference (median −0.0001) fails as it must. K3: the
+table is √3, 1.88, 2.44, 4.26 cents, refused from 0.02. Every located tone
+on every capture matched its reference at 0.9948 or more (asserted, R1).
+
+**Result.**
+
+| Path into a 48 kHz context | Tone occurrences | Frames | Refused | Max \|error\| (cents) | p95 | Over 50 cents | Inside ±2*u* |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Firefox's bridge, 44.1 kHz track | 19 | 874 | 0 | 0.2859 | 0.2776 | 0 | 100 % |
+| Chrome's converter, 44.1 kHz track (control A) | 18 | 828 | 0 | 0.0098 | 0.0062 | 0 | 100 % |
+| Firefox at equal rates (control B) | 21 | 966 | 0 | 0.0098 | 0.0062 | 0 | 100 % |
+| Reference (ideal converter, 48 kHz / 44.1 kHz source) | 8 / 8 | 368 / 368 | 0 | 0.0094 / 0.0097 | 0.0083 / 0.0085 | 0 | 100 % |
+
+- The bridge moves a frame's pitch by at most **0.29 cents** (R3's *b*,
+  0.2859 rounded up), on 3 runs of 4 tones, a count, not a bound. The
+  controls err no more than the tracker does on the ideal signal.
+- The error is an **offset that holds for seconds and then moves**, not
+  frame-to-frame noise (`bridge.json` `bridge_offsets`): within one 0.4 s
+  tone the frames spread by at most 0.016 cents; each run's first loop
+  (tones at 3–5 s) sits at +0.117, −0.276 and +0.117 cents (median over
+  its tones), and its second loop (11–13 s) at −0.079, −0.000 and −0.079,
+  so the offset moved by up to 0.28 cents between stretches 8 s apart.
+  That is the time base's drift round 1 saw (a steady rate between lag
+  steps; −0.276 cents is −159 ppm).
+- No frame was refused or read more than 50 cents off on any path; the
+  bridge's discontinuity round 1 saw once (fake microphone into a 44.1 kHz
+  context, a path squillo's capture refuses) did not recur on this path.
+- *Anomalies* (R4, S17). `bridge.json` lists every bridge frame over the
+  reference's max by 0.1 cent: they are the offset above, on every tone of
+  the first loop in runs 0 and 2 and of run 1; none on either control.
+  They lie at loop time 3.0–5.0 s, 1.5 s or more from round 1's lag steps
+  that bracket the loop point; round 1's other steps (run 1, 2.25–2.35 s
+  and 6.6–7.65 s) fall outside the tones. Nothing is left out.
+
+**For squillo.** Where a readback reports no track rate (every Firefox
+take, item 3) or one other than the context's, a take may carry the
+bridge: at most 0.29 cents of offset per frame, as measured, on a
+44.1 kHz source. A take measure made relative to the take's own tuning or
+a note's own mean sees only how much the offset moves within the take
+(up to 0.28 cents here, between stretches 8 s apart). **Limits:** a stream track from a
+second context, not a microphone; one source rate (44.1 kHz; a 16 kHz
+headset or a 96 kHz interface is unmeasured); 12 s captures, so a longer
+take's wander is not seen; one Linux machine, Firefox 156. Whether a real
+microphone in Firefox runs at another rate than a 48 kHz context, and so
+takes this path, is still the real-microphone step below.
 
 ## Needs a human (15 minutes)
 
