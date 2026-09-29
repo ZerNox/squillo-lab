@@ -71,7 +71,8 @@ def current_state_texts(root):
         t = p.read_text()
         yield p, t[:t.find("\n## ")] if "\n## " in t else t
     t = (root / "STATUS.md").read_text()
-    yield root / "STATUS.md", t[:t.find("## Ledger")] if "## Ledger" in t else t
+    m = re.search(r"^## .*[Ll]edger", t, re.M)  # squillo's is "## Iteration ledger"
+    yield root / "STATUS.md", t[:m.start()] if m else t
 
 
 def s4(root, adrs):
