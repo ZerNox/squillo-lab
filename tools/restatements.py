@@ -22,7 +22,7 @@ import sys
 from pathlib import Path
 
 ADR_REF = re.compile(r"ADR (\d{4})")
-REVISED = re.compile(r"revised in iterations? ((?:\d+)(?:(?:, | and |, and )\d+)*)")
+REVISED = re.compile(r"revised\s+in\s+iterations?\s+((?:\d+)(?:(?:,\s+|\s+and\s+|,\s+and\s+)\d+)*)")
 
 
 def iters(text):
@@ -31,7 +31,7 @@ def iters(text):
     if not REVISED.search(text):
         return []
     out = []
-    for m in re.finditer(r"iterations? ((?:\d+)(?:(?:, | and |, and )\d+)*)", text):
+    for m in re.finditer(r"iterations?\s+((?:\d+)(?:(?:,\s+|\s+and\s+|,\s+and\s+)\d+)*)", text):
         out += [int(x) for x in re.findall(r"\d+", m.group(1))]
     return out
 
@@ -165,7 +165,8 @@ def self_test():
             "Stale status: ADR 0009 (accepted).\n"
             "Citation, not status: a term (ADR 0009, revised in iteration 48).\n"
             "Another's status: ADR 0009 (new, amending accepted ADR 0013).\n"
-            "Listed in two phrases: ADR 0009 (proposed: revised in iteration 48, and in iteration 53).\n")
+            "Listed in two phrases: ADR 0009 (proposed: revised in iteration 48, and in iteration 53).\n"
+            "Across a line: ADR 0009 (proposed: revised in iterations 48 and\n  53).\n")
         (r / "STATUS.md").write_text("# S\n")
         (r / "docs/questions/Q-032.md").write_text(
             "# Q\n\n## Constraint check\n\n| row | options |\n| :- | :- |\n| r1 | none |\n\n## Other\n")
