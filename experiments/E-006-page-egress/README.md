@@ -3,7 +3,8 @@
 **Status:** answered · **Serves:** `squillo/VISION.md` §8 (audio stays on the
 device; the user decides), §6 (honesty: a claim a singer can check) ·
 **For:** squillo's first `security` spec (iteration 54), ADR 0010, ADR 0014,
-ADR 0006
+ADR 0006 · **Folded in squillo iteration 54** (Q-031, ADR 0021, `security`
+SE-001 to SE-005)
 
 ## Question
 
@@ -24,6 +25,8 @@ engine runs in a dedicated worker (ADR 0006). In Chrome and Firefox:
 5. Does the capture `AudioWorklet`'s scope have any network API at all?
 
 ## Hypotheses (written before the run, `rules.mjs`)
+
+*R-11 (squillo iteration 55).* "Before the run" holds for the full run, not the timing sample: the sample's analysis (`data/cache/sample-summary.json`, 08:11:13) evaluated H1–H5 on rep 0 of every cell 40 s before the rules commit `36a456b` (08:11:53), as S19 then asked (the analysis timed on the sample's outputs), and `rules.mjs`, `run.mjs` and `analyze.mjs` were edited 10 s after it. Re-run under the committed code, the sample gives the same five statements and the same outcomes (all held); what the committed code adds is K0's UDP must-fail (`udpBeforePage`), which the sample's runs lack, so the committed analysis refuses them. The full run's 60 runs were made after the commit. H4 tests WebAssembly in a *policy-bound* worker only: the URL worker under `meta-nowasm` is not bound (H2), so `analyze.mjs` exempts it; that branch is H4's scope, not a check. squillo L-049 moves the rules commit before the sample.
 
 - **H1** Under `meta` and `header`, no judged document probe but WebRTC
   reaches the logger, in both browsers.
@@ -77,7 +80,7 @@ browser (Chrome 154 via Playwright's `chrome` channel; the snap Firefox).
 | Check | What | Must pass | Must fail |
 | :--- | :--- | :--- | :--- |
 | K0 | The logger check | a request the runner sends to the logger before the page loads is seen | a path no one requests is not; the UDP port has received nothing before the page loads |
-| K1 | A probe is judged | it reached the logger in every rep of `none` (browser, worker mode) | a probe that did not is "not judged", never counted as blocked |
+| K1 | A probe is judged | it reached the logger in every rep of `none` (browser, worker mode) | a probe that did not is "not judged", never counted as blocked. Recorded, not asserted (`checks.K1_judged`), but for the WebRTC and navigation probes H3 and H5 rest on, asserted judged in every browser and worker mode (R-11, `f506b4c`), so neither can hold vacuously. No must-fail case known in advance; Firefox's `prefetch` turned out not judged |
 | K2 | A run is complete | every probe and the worklet's list returned, no harness error | — (asserted per run; a run that fails it stops the analysis) |
 
 Recorded, not asserted: whether the reps agree (a count; nothing here is

@@ -52,9 +52,12 @@ check (`check`, `must`, `pass`), and assert it, or say in its README row
 before a run are committed before it runs, in their own commit, so that
 "before" can be read from git; a fixture generator's or model's expected
 outcomes are such rules. A script that holds rules or expected outcomes
-refuses to run on an uncommitted edit of itself (`git diff --quiet HEAD --
-<script>`; E-003 `fixtures.py` and `r3_bridge.py`, `committed_first`),
-so that running first is not possible by accident (squillo L-047). The
+refuses to run on an uncommitted edit of itself, or before it has been
+committed at all (`git ls-files --error-unmatch <script>` and `git diff
+--quiet HEAD -- <script>`, since the second passes for a file git has
+never seen; E-003 `fixtures.py`, `r3_bridge.py`, `r4_analyze.py`,
+`committed_first`, and E-006 `run.mjs`, `analyze.mjs`), so that running
+first is not possible by accident (squillo L-047, L-049). The
 README reports the checks' numbers (squillo L-024, L-026, L-028, L-030,
 L-031, L-032, L-034, L-036, L-041, L-046, L-047).
 
@@ -83,11 +86,10 @@ with the test's numbers in the README, before it is called unattributed
 S19). Before a run longer than a few minutes, time a sample of its items
 spread over its conditions, **every extreme and every must-fail condition
 among them, each run to its end** (a sample item that does not end is a
-fault in the harness, found before the rules are committed; squillo
-L-048), **on the pool itself, at the process count the
+fault in the harness; squillo L-048), **on the pool itself, at the process count the
 run will use**, since a single idle process can be several times faster
 than the same work under a full pool; multiply out, and write the estimate
-in the README's command block. If the run and its analysis do not fit well
+in the README's command block. **The rules are committed before the sample runs**: the sample, and the analysis timed on its outputs, are runs, and an analysis that prints the hypotheses' outcomes on the sample before the rules commit is the rules written after seeing data. A harness fault the sample finds is fixed in a revision recorded before the full run (E-003 round 4, `81f216c`; squillo L-049). If the run and its analysis do not fit well
 inside the session, cut the design (fewer cells, fewer items per cell)
 before starting, never after (squillo L-033). A run longer than a few
 minutes saves its results as it goes and resumes from them, and no time
@@ -148,6 +150,11 @@ from here or from cited literature, never from nowhere.
   needs for the current user only, never with sudo, and skips what is present
   (`--check` only reports). An experiment that needs a new tool adds a step
   there and commits it with the experiment.
+- **squillo's own checks**: `python3 tools/restatements.py <squillo>` flags
+  restatements of an ADR's status that disagree with its header (S4) and
+  constraint tables that miss a `docs/architecture.md` §2 row or say "none"
+  with no reason (S6); `--self-test` runs its must-pass and must-fail cases.
+  A lead, not proof (squillo L-049).
 - **GPU**: an Intel Arc A770M, which stands in for the remote tier and not for
   a singer's device. Read [`COMPUTE.md`](COMPUTE.md) before timing anything on
   it.

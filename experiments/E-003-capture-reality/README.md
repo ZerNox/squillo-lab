@@ -219,6 +219,12 @@ does to a measure is unmeasured (squillo F-034, a candidate round 2).
 - `signal`, `metrics`: a take may contain one 10 ms insertion (item 6),
   and in Firefox up to 0.94 cents of pitch error from the bridge (item 8).
 
+*Since then* (R-11, squillo iteration 55): round 2 measured what Chrome's
+processing does to the measures (folded in squillo iteration 48, MT-004's
+1.11), and round 3 measured the bridge on the path a 48 kHz context takes,
+at most 0.29 cents per frame (folded in iteration 51, MT-013); the 0.94
+above was 48 to 44.1 kHz, into a context squillo's capture refuses.
+
 ## Fixtures for squillo `capture` (squillo iteration 32)
 
 `fixtures.py` writes the twelve capture traces squillo's first `capture`
@@ -691,7 +697,9 @@ on every capture matched its reference at 0.9948 or more (asserted, R1).
   0.2859 rounded up), on 3 runs of 4 tones, a count, not a bound. The
   controls err no more than the tracker does on the ideal signal.
 - The error is an **offset that holds for seconds and then moves**, not
-  frame-to-frame noise (`bridge.json` `bridge_offsets`): within one 0.4 s
+  frame-to-frame noise (`bridge.json` `bridge_offsets`; post hoc: this
+  analysis entered in the results commit `fbca894`, not with the rules,
+  R-11): within one 0.4 s
   tone the frames spread by at most 0.016 cents; each run's first loop
   (tones at 3–5 s) sits at +0.117, −0.276 and +0.117 cents (median over
   its tones), and its second loop (11–13 s) at −0.079, −0.000 and −0.079,
@@ -704,9 +712,14 @@ on every capture matched its reference at 0.9948 or more (asserted, R1).
 - *Anomalies* (R4, S17). `bridge.json` lists every bridge frame over the
   reference's max by 0.1 cent: they are the offset above, on every tone of
   the first loop in runs 0 and 2 and of run 1; none on either control.
-  They lie at loop time 3.0–5.0 s, 1.5 s or more from round 1's lag steps
-  that bracket the loop point; round 1's other steps (run 1, 2.25–2.35 s
-  and 6.6–7.65 s) fall outside the tones. Nothing is left out.
+  They lie at loop time 3.0–5.0 s, **inside** a bracket of round 1's lag
+  steps in every run: 2.35–6.6 s in runs 0 and 1, and 2.35–9.55 s, which
+  wraps the loop point, in run 2 (`bridge.json` `runs.*.round1_steps`;
+  R-11 corrected this sentence, which said they lay 1.5 s or more from
+  the steps). The brackets hold the drift R4 attributes them to (run 1:
+  −29 samples over 4.25 s, about −0.25 cents), so the attribution
+  stands; the steps' own position cannot be narrowed within them.
+  Nothing is left out.
 
 **For squillo.** Where a readback reports no track rate (every Firefox
 take, item 3) or one other than the context's, a take may carry the
@@ -719,6 +732,10 @@ headset or a 96 kHz interface is unmeasured); 12 s captures, so a longer
 take's wander is not seen; one Linux machine, Firefox 156. Whether a real
 microphone in Firefox runs at another rate than a 48 kHz context, and so
 takes this path, is still the real-microphone step below.
+
+**Folded in squillo iteration 51** (Q-028 part 2, `metrics` MT-013, ADR
+0004): every pitch *u* of a take whose readback reports no track rate, or
+another than the context's, gains 0.29/√3 cents in quadrature.
 
 ## Round 4: a frame's pitch to the page, one message per frame (squillo iteration 53)
 
