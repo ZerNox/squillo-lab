@@ -564,7 +564,7 @@ refuses per-frame pitch or says its ± may be too small, as UI-004 already
 says. The take measures moved by no more than their ± on every take
 measured both ways in clean input (35 for steadiness and extent, 23 for
 rate), and by more on 2 of 11 steadiness takes in noise. Firefox (F-034
-(b), its rate bridge) was not measured: its fake device is a tone.
+(b), its rate bridge) was not measured: its fake device is a tone (measured per frame on round 1's stream captures in round 3, below).
 
 **Limits.** Chrome's fake device, which may not run the same processing as
 a real microphone's path (its echo canceller had no far-end signal; with a
