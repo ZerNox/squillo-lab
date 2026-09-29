@@ -581,16 +581,21 @@ holds them in code).
   the probe as an ideal converter delivers it at 48 kHz (round 1's
   `analyze.load_ref`), from each source rate, looped twice. Firefox's fake
   microphone (a 1 kHz tone, above C6) is not used.
-- *R1, tone spans, found without the pitch tracker.* A frame (E-002
-  `yin.frame_windows`, ADR 0007's axis) is a tone frame for a tone *f* of
-  `gen.TONES` when at least 99 % of its Hann-windowed window's power lies
-  within ±100 cents of *f*. Consecutive tone frames of one tone are a span;
-  spans of one tone at most 8 frames apart are merged with the frames
-  between kept, so that a discontinuity inside a tone stays in; a span
-  shorter than twice the sweep's passage through the ±100-cent band plus
-  one window, computed from `gen.py`'s sweep, is dropped (it must stay
-  under three quarters of a tone's frames, asserted). Frames in the first
-  0.5 s of a capture (round 1's `SKIP_S`) are not used.
+- *R1, tone spans, placed by the lag.* The capture's lag against the
+  looped reference is tracked as round 1 does (`analyze.circ_lag`,
+  `analyze.track`: 0.1 s windows over the probe's aperiodic parts). Each
+  occurrence of each tone segment (`gen.SEGMENTS`) after the first 0.5 s
+  (round 1's `SKIP_S`), less round 1's 0.05 s margin at each end
+  (`analyze.TONE_MARGIN_S`), is placed with the lag of the tracked window
+  nearest it; its frames are those whose whole window lies inside it. Its
+  samples must match the reference tone's at a normalised correlation of
+  at least 0.99 within ±200 samples, asserted on every capture. *Revised
+  before any capture was read:* the first R1 found tone frames from the
+  spectrum (99 % of a window's power within ±100 cents of the tone), and
+  K1 failed on the reference itself: one 32 ms window cannot hold 110 Hz
+  within ±6.4 Hz (Hann's main lobe is ±62.5 Hz), so only 880 Hz was found
+  (`[0, 0, 0, 2]` spans per tone). A lag drawn from the same loop is the
+  segmentation round 1 already checked.
 - *R2, per frame.* YIN (E-002 `yin.py`, threshold 0.1), limited to E2–C6
   ±3 cents as round 2 (`r2_measures.py` line 88); a frame is accepted when
   its aperiodicity is under MT-003's refusal, read from the table round 2
@@ -612,10 +617,11 @@ holds them in code).
 (`r3_bridge.py checks`, `results/r3/checks.json`).
 
 - *K1, segmentation.* On the 48 kHz reference (two loops): exactly two
-  spans per tone, each inside its `gen.SEGMENTS` interval, must pass; on
-  the same reference with its four tone segments zeroed (the sweep left),
-  the same check must fail. It must also pass on the 44.1 kHz probe
-  through the ideal converter.
+  occurrences per tone, each matching the reference tone at 0.99 or more,
+  must pass; on the same reference with its four tone segments zeroed (the
+  sweep and noise left, so the lag is still found), the same check must
+  fail. It must also pass on the 44.1 kHz probe through the ideal
+  converter.
 - *K2, the error measure.* The tolerance is the reference's own max
   |error| plus 0.01 cent, computed. The reference made sharp by a known
   shift (the loop FFT-resampled to fewer samples; the shift, 0.50 cents
@@ -624,6 +630,9 @@ holds them in code).
   the same test.
 - *K3, the table.* The table's first *u* is √3 and its refusal 0.02, as
   MT-003 states; asserted.
+
+**Time** (S19). The checks took 4.1 s on one process; the run reads nine
+12 s captures with the same code, estimated under 30 s with the checks.
 
 **Expected before the run.** The bridge's frames err by about round 1's
 0.4 s figure plus the time base's wander (round 1: up to 350 ppm over a

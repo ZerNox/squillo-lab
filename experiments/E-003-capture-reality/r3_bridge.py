@@ -31,9 +31,9 @@ TABLE = np.array([np.inf if v is None else v for v in SPEC["table"]])  # MT-003'
 SR = yin.SR
 assert SR == 48_000
 SKIP_S = analyze.SKIP_S  # round 1's start-up transient
-BAND_CENTS = 100.0  # R1: a tone frame's band, +-100 cents of the tone
-BAND_SHARE = 0.99  # R1: share of the window's power inside the band
-MERGE_GAP = 8  # R1: frames; same-tone spans this close are one span, the gap kept
+MARGIN_S = analyze.TONE_MARGIN_S  # R1: round 1's margin inside each tone segment
+MATCH = 0.99  # R1: a span's samples must match the reference tone's at this normalised correlation
+MATCH_SEARCH = 200  # samples either side of the located position (a quarter-period at 110 Hz is 109)
 GROSS = 50.0  # R2: cents, the error MT-003's refusal is meant to guard (MT-003's reason)
 # R2: the first aperiodicity MT-003 refuses at, read from the table: the first bin whose u is infinite
 REFUSE_AT = A.BINS[int(np.argmax(~np.isfinite(TABLE)))]
@@ -45,76 +45,69 @@ PATHS = {  # R0: round 1's captures into a 48 kHz context, three runs each
 }
 
 
-def min_span_frames():
-    """R1: a span shorter than a tone's but longer than the sweep's passage through a +-100 cent band.
-    The sweep (gen.py) is exponential over its segment: octaves per second from its own parameters."""
-    a, b = gen.SEGMENTS["sweep"]
-    oct_per_s = math.log2(gen.SWEEP_F1 / gen.SWEEP_F0) / (b - a)
-    sweep_s = (2 * BAND_CENTS / 1200) / oct_per_s + yin.WIN / SR  # band crossing plus one window
-    tone_s = min(gen.SEGMENTS[f"tone{int(f)}"][1] - gen.SEGMENTS[f"tone{int(f)}"][0] for f in gen.TONES)
-    tone_frames = (tone_s * SR - yin.WIN) / yin.HOP  # frames whose window lies inside one tone
-    sweep_frames = sweep_s * SR / yin.HOP
-    n = int(math.ceil(2 * sweep_frames))
-    assert n < 0.75 * tone_frames, (n, tone_frames)
-    return n, sweep_frames, tone_frames
+def locate(x, src_sr):
+    """R1: the capture's lag against the looped probe, as round 1 (analyze.analyse_probe's first lines,
+    analyze.track): x[s + i] ~ ref[(s + lag + i) mod N] per tracked 0.1 s window."""
+    ref = analyze.load_ref(SR, src_sr)
+    N = len(ref)
+    s0 = int(SKIP_S * SR)
+    k, _ = analyze.circ_lag(x[s0:s0 + N], analyze.mask_high(ref, SR))
+    tr = analyze.track(x, ref, SR, k - s0)
+    assert len(tr) >= 3, "could not track"
+    return ref, N, tr
 
 
-MIN_SPAN, SWEEP_FRAMES, TONE_FRAMES = min_span_frames()
-
-
-def tone_frames(x):
-    """R1: per frame (yin.frame_windows' index), the tone whose +-100 cent band holds >= 99 % of the
-    Hann-windowed power, or -1. Found without the pitch tracker."""
-    idx, win = yin.frame_windows(x)
-    n_fft = 1 << 15
-    P = np.abs(np.fft.rfft(win * np.hanning(yin.WIN), n_fft, axis=1)) ** 2
-    fr = np.fft.rfftfreq(n_fft, 1 / SR)
-    tot = P.sum(axis=1) + 1e-300
-    lab = np.full(len(idx), -1)
+def spans(x, src_sr):
+    """R1: every occurrence of each tone segment after SKIP_S, less MARGIN_S at each end, placed in the
+    capture by the lag of the nearest tracked window; the frames whose whole window lies inside it; and
+    whether its samples match the reference tone's (normalised correlation >= MATCH within MATCH_SEARCH)."""
+    ref, N, tr = locate(x, src_sr)
+    ts = np.array([t[0] for t in tr])
+    out = []
     for j, f in enumerate(gen.TONES):
-        band = (fr >= f * 2 ** (-BAND_CENTS / 1200)) & (fr <= f * 2 ** (BAND_CENTS / 1200))
-        lab[P[:, band].sum(axis=1) / tot >= BAND_SHARE] = j
-    return idx, lab
+        a, b = (int(round(v * SR)) for v in gen.SEGMENTS[f"tone{int(f)}"])
+        a += int(MARGIN_S * SR)
+        b -= int(MARGIN_S * SR)
+        for m in range(-1, len(x) // N + 2):
+            sa = a + m * N - tr[0][1] % N  # predicted from the first window's lag, taken modulo the loop
+            for _ in range(3):  # then placed with the lag of the window nearest it; the tracked lag
+                lag = tr[int(np.argmin(np.abs(ts - sa)))][1]  # wraps by N at the loop, so the occurrence
+                base = a - lag  # is the one of a - lag + kN nearest the prediction
+                sa = int(round(base + N * round((sa - base) / N)))
+            lag_mod = (lag + N / 2) % N - N / 2
+            sb = sa + (b - a)
+            if sa < int(SKIP_S * SR) or sb > len(x):
+                continue
+            i0 = int(math.ceil(sa / yin.HOP)) + 3  # first frame whose window starts at or after sa
+            i1 = sb // yin.HOP - 1  # last frame whose window ends at or before sb
+            if i1 < i0:
+                continue
+            seg = x[sa:sb]
+            p = int(round((sa + lag) % N))
+            r = ref[(p - MATCH_SEARCH + np.arange(len(seg) + 2 * MATCH_SEARCH)) % N]
+            c = np.correlate(r, seg, "valid")
+            norm = np.sqrt(np.sum(seg ** 2) * np.array([np.sum(r[q:q + len(seg)] ** 2) for q in range(len(c))])) + 1e-30
+            match = float(np.max(c / norm))
+            out.append(dict(tone=j, i0=i0, i1=i1, sa=sa, sb=sb, lag=float(lag_mod), match=match))
+    return out
 
 
-def spans(idx, lab, skip_frames=0):
-    """R1: runs of one tone, merged across gaps of <= MERGE_GAP frames, kept if >= MIN_SPAN frames."""
-    runs = []
-    k = 0
-    while k < len(lab):
-        if lab[k] < 0 or idx[k] < skip_frames:
-            k += 1
-            continue
-        j = k
-        while j + 1 < len(lab) and lab[j + 1] == lab[k]:
-            j += 1
-        runs.append([lab[k], k, j])
-        k = j + 1
-    merged = []
-    for r in runs:
-        if merged and merged[-1][0] == r[0] and r[1] - merged[-1][2] - 1 <= MERGE_GAP:
-            merged[-1][2] = r[2]
-        else:
-            merged.append(r)
-    return [(t, a, b) for t, a, b in merged if b - a + 1 >= MIN_SPAN]
-
-
-def measure(x, skip_frames=0):
+def measure(x, src_sr):
     """R2: YIN on every frame of every span; error against the tone's nominal frequency."""
-    idx, lab = tone_frames(x)
-    sp = spans(idx, lab, skip_frames)
+    sp = spans(x, src_sr)
     fidx, f0, dip = yin.yin(x)
-    assert np.array_equal(fidx, idx)  # frames matched by the index yin returns (S15)
+    assert np.array_equal(fidx, np.arange(3, len(x) // yin.HOP))  # frames matched by the index yin returns (S15)
     f0 = yin.in_range(f0, 3.0)  # as r2_measures.py line 88
     rows = []
-    for t, a, b in sp:
-        f = gen.TONES[t]
-        for k in range(a, b + 1):
+    for s_ in sp:
+        f = gen.TONES[s_["tone"]]
+        for i in range(s_["i0"], s_["i1"] + 1):
+            k = int(np.searchsorted(fidx, i))
+            assert fidx[k] == i
             refused = (not np.isfinite(f0[k])) or not (dip[k] < REFUSE_AT)
             e = float(yin.cents(f0[k], f)) if np.isfinite(f0[k]) else float("nan")
             u = float(A.u_of(np.array([dip[k]]), TABLE)[0]) if np.isfinite(dip[k]) else float("inf")
-            rows.append(dict(tone=f, frame=int(idx[k]), t_s=float((yin.HOP * (idx[k] + 1)) / SR), refused=bool(refused),
-                             e=e, u=u, span=(int(idx[a]), int(idx[b]))))
+            rows.append(dict(tone=f, frame=i, t_s=float(yin.HOP * (i + 1) / SR), refused=bool(refused), e=e, u=u))
     return sp, rows
 
 
@@ -147,29 +140,17 @@ def shifted(x1, cents):
     return np.concatenate([y, y]), 1200 * math.log2(n / m)
 
 
-def seg_ok(sp, idx_of_span, loop_n):
-    """K1: every span lies inside its tone's gen.SEGMENTS interval (modulo the loop), window included."""
-    for t, (fa, fb) in zip([s[0] for s in sp], idx_of_span):
-        a, b = gen.SEGMENTS[f"tone{int(gen.TONES[t])}"]
-        s0 = (yin.HOP * (fa - 3)) % loop_n  # first sample of the first frame's window
-        s1 = (yin.HOP * (fb + 1)) % loop_n  # one past the last frame's last sample
-        if not (a * SR - 1 <= s0 and s1 <= b * SR + 1):
-            return False
-    return True
+def k1(x, src_sr):
+    """K1 as a check: exactly two occurrences per tone over two loops, each matching the reference tone."""
+    sp = spans(x, src_sr)
+    per = [sum(1 for q in sp if q["tone"] == j) for j in range(len(gen.TONES))]
+    ok = per == [2] * len(gen.TONES) and all(q["match"] >= MATCH for q in sp)
+    return bool(ok), per, [round(q["match"], 6) for q in sp]
 
 
-def k1(x, loop_n):
-    """K1 as a check: exactly two spans per tone over two loops, each inside its segment."""
-    idx, lab = tone_frames(x)
-    sp = spans(idx, lab)
-    per = [sum(1 for s in sp if s[0] == j) for j in range(len(gen.TONES))]
-    ok = per == [2] * len(gen.TONES) and seg_ok(sp, [(idx[a], idx[b]) for _, a, b in sp], loop_n)
-    return bool(ok), per
-
-
-def k2(x, shift, tol):
+def k2(x, src_sr, shift, tol):
     """K2 as a check: the median error over accepted frames recovers a known shift within tol."""
-    _, rows = measure(x)
+    _, rows = measure(x, src_sr)
     s = summarise(rows)
     return bool(s["median_e"] is not None and abs(s["median_e"] - shift) <= tol), s
 
@@ -178,34 +159,34 @@ def checks():
     out = {}
     # K3: the table and the refusal, read from E-002's fold2.json, as round 2 used them
     assert TABLE[0] == math.sqrt(3) and REFUSE_AT == 0.02, (TABLE, REFUSE_AT)
-    out["K3_table"] = dict(table=[None if not np.isfinite(v) else float(v) for v in TABLE], refuse_at=REFUSE_AT,
-                           min_span=MIN_SPAN, sweep_frames=SWEEP_FRAMES, tone_frames=TONE_FRAMES)
+    out["K3_table"] = dict(table=[None if not np.isfinite(v) else float(v) for v in TABLE], refuse_at=REFUSE_AT)
     ref48 = reference(48000)
     loop_n = len(ref48) // 2
-    ok, per = k1(ref48, loop_n)
-    assert ok, ("K1 must pass on the reference", per)
+    ok, per, m = k1(ref48, 48000)
+    assert ok, ("K1 must pass on the reference", per, m)
     toneless = ref48.copy()
     for f in gen.TONES:
         a, b = (int(round(v * SR)) for v in gen.SEGMENTS[f"tone{int(f)}"])
         toneless[a:b] = 0
         toneless[loop_n + a:loop_n + b] = 0
-    bad, per_bad = k1(toneless, loop_n)
-    assert not bad, ("K1 must fail on the probe without its tones (sweep only)", per_bad)
-    out["K1_segmentation"] = dict(must_pass=dict(ok=ok, spans_per_tone=per),
-                                  must_fail=dict(ok=bad, spans_per_tone=per_bad))
+    bad, per_bad, m_bad = k1(toneless, 48000)
+    assert not bad, ("K1 must fail on the probe without its tones", per_bad, m_bad)
+    ref441 = reference(44100)
+    ok441, per441, m441 = k1(ref441, 44100)
+    assert ok441, ("K1 must pass on the 44.1 kHz probe through the ideal converter", per441, m441)
+    out["K1_segmentation"] = dict(must_pass=dict(ok=ok, spans_per_tone=per, match=m),
+                                  must_fail=dict(ok=bad, spans_per_tone=per_bad, match=m_bad),
+                                  must_pass_44100=dict(ok=ok441, spans_per_tone=per441, match=m441))
     # K2: the reference's own error sets the tolerance (computed, not typed)
-    _, rows = measure(ref48)
+    _, rows = measure(ref48, 48000)
     s_ref = summarise(rows)
     tol = s_ref["max_abs_e"] + 0.01
     x_sh, sh = shifted(ref48[:loop_n], 0.5)
-    good, s_sh = k2(x_sh, sh, tol)
+    good, s_sh = k2(x_sh, 48000, sh, tol)
     assert good, ("K2 must pass on the reference made sharp by a known shift", sh, s_sh)
-    bad2, s_un = k2(ref48, sh, tol)
+    bad2, s_un = k2(ref48, 48000, sh, tol)
     assert not bad2, ("K2 must fail on the unshifted reference", s_un)
-    ref441 = reference(44100)
-    ok441, per441 = k1(ref441, len(ref441) // 2)
-    assert ok441, ("K1 must pass on the 44.1 kHz probe through the ideal converter", per441)
-    _, rows441 = measure(ref441)
+    _, rows441 = measure(ref441, 44100)
     s_ref441 = summarise(rows441)
     out["K2_shift"] = dict(tolerance=tol, known_shift=sh, must_pass=dict(ok=good, **s_sh),
                            must_fail=dict(ok=bad2, **s_un))
@@ -224,12 +205,15 @@ def s17(name, rows, ref_max):
     return out, rj["cfg"]
 
 
+def cfg_src(name):
+    return json.loads((RAW / f"{name}.json").read_text())["cfg"]["srcRate"]
+
+
 def main():
     t0 = time.time()
     OUT.mkdir(parents=True, exist_ok=True)
     res = dict(checks=checks(), paths={}, runs={})
     ref_max = max(v["max_abs_e"] for v in res["checks"]["reference"].values())
-    skip = int(SKIP_S * SR / yin.HOP)
     steps = json.loads((HERE / "results/summary.json").read_text())["signal"]
     step_key = {"firefox bridge 44100->48000": "firefox/stream/44100->48000",
                 "chrome converter 44100->48000": "chrome/stream/44100->48000",
@@ -239,10 +223,11 @@ def main():
         for r in range(3):
             name = pat.format(r)
             x = np.fromfile(RAW / f"{name}.f32", "<f4").astype(np.float64)
-            sp, rows = measure(x, skip)
+            sp, rows = measure(x, cfg_src(name))
+            assert all(q["match"] >= MATCH for q in sp), ("R1: every located tone matches the reference's", name)
             an, cfg = s17(name, rows, ref_max)
             assert cfg["ctxRate"] == 48000
-            res["runs"][name] = dict(spans=[(gen.TONES[t], int(a), int(b)) for t, a, b in sp], **summarise(rows),
+            res["runs"][name] = dict(spans=sp, **summarise(rows),
                                      anomalies=an, round1_steps=steps[step_key[path]]["steps"][r])
             allrows += rows
         res["paths"][path] = summarise(allrows)
