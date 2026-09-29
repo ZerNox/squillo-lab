@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Squillo lab session</title>
+<style>
+:root {
+  --bg: #f6f7f9; --panel: #ffffff; --ink: #1d2230; --ink2: #545c6e; --muted: #8a91a1;
+  --line: #dde1e8; --accent: #2f5bd3; --accent-ink: #ffffff; --ok: #1f7a4d; --warn: #9a5b00; --bad: #b3261e;
+  --rec: #d0342c; --code: #eef0f4;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14161b; --panel: #1c1f26; --ink: #e7e9ee; --ink2: #b3b9c6; --muted: #7d8494;
+    --line: #2d313b; --accent: #7d9cff; --accent-ink: #0d1020; --ok: #5cc98e; --warn: #e0a64a; --bad: #ff8a80;
+    --rec: #ff6b61; --code: #252932;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; padding-inline: 16px; }
+.wrap { max-width: 980px; margin: 0 auto; padding-block: 24px 64px; }
+header h1 { font-size: 22px; margin: 0 0 4px; }
+header p { margin: 0; color: var(--ink2); max-width: 70ch; }
+nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
+nav button { border: 1px solid var(--line); background: var(--panel); color: var(--ink); border-radius: 8px; padding: 8px 12px; cursor: pointer; font: inherit; display: flex; gap: 8px; align-items: center; }
+nav button[aria-current="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+.dot.part { background: var(--warn); } .dot.done { background: var(--ok); }
+section { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px; }
+section h2 { margin: 0 0 4px; font-size: 18px; }
+.lead { color: var(--ink2); margin: 0 0 16px; max-width: 72ch; }
+.step { border-top: 1px solid var(--line); padding-top: 14px; margin-top: 14px; }
+.step h3 { font-size: 14px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 8px; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+button.b { font: inherit; border-radius: 8px; padding: 7px 14px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer; }
+button.p { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+button.r { background: var(--rec); color: #fff; border-color: var(--rec); }
+button:disabled { opacity: .45; cursor: default; }
+.take { display: grid; grid-template-columns: minmax(0, 14em) 1fr; gap: 6px 14px; align-items: center; padding: 10px 0; border-bottom: 1px dashed var(--line); }
+.take:last-child { border-bottom: 0; }
+.take .what b { display: block; } .take .what span { color: var(--ink2); font-size: 13px; }
+@media (max-width: 640px) { .take { grid-template-columns: 1fr; } }
+.meter { width: 120px; height: 8px; background: var(--code); border-radius: 4px; overflow: hidden; }
+.meter i { display: block; height: 100%; width: 0; background: var(--ok); }
+.meter i.hot { background: var(--bad); }
+.t { font-variant-numeric: tabular-nums; color: var(--ink2); min-width: 3.5em; }
+audio { height: 32px; max-width: 100%; }
+pre { background: var(--code); border-radius: 8px; padding: 10px; overflow: auto; max-height: 320px; font-size: 12.5px; margin: 8px 0 0; white-space: pre-wrap; }
+textarea { width: 100%; min-height: 110px; font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 8px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+.tbl { overflow-x: auto; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
+select, input[type=text], input[type=number] { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 3px 6px; }
+input[type=number] { width: 8.5em; }
+.scale { display: inline-flex; gap: 2px; }
+.scale label { border: 1px solid var(--line); border-radius: 5px; padding: 1px 7px; cursor: pointer; font-variant-numeric: tabular-nums; }
+.scale input { display: none; }
+.scale input:checked + span { color: var(--accent); font-weight: 700; }
+.note { font-size: 13px; color: var(--ink2); }
+.warn { color: var(--warn); } .ok { color: var(--ok); } .bad { color: var(--bad); }
+.big { font-size: 28px; font-weight: 700; font-variant-numeric: tabular-nums; }
+code { background: var(--code); border-radius: 4px; padding: 0 4px; font-size: 13px; }
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Squillo lab session</h1>
+  <p>Five 15-minute human steps for <code>squillo-lab</code>. Recordings stay on this laptop in each experiment's
+  <code>data/cache/human/</code>, which git ignores. <b>Commit</b> publishes only the listed numbers and notes, to a
+  public repo, and only when you press it.</p>
+</header>
+<nav id="nav"></nav>
+<main id="main"></main>
+</div>
+
+<script src="/page/probe.js"></script>
+<script>
+"use strict";
+const $ = (s, el = document) => el.querySelector(s);
+const h = (tag, attrs = {}, ...kids) => {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
+    else if (v === true) el.setAttribute(k, "");
+    else if (v !== false && v != null) el.setAttribute(k, v);
+  }
+  for (const k of kids.flat(Infinity)) if (k != null) el.append(k.nodeType ? k : document.createTextNode(k));
+  return el;
+};
+const api = async (path, opts) => {
+  const r = await fetch(path, opts);
+  const j = r.headers.get("content-type")?.includes("json") ? await r.json() : await r.text();
+  if (!r.ok) throw new Error(j.error || j.log || r.status);
+  return j;
+};
+const fileUrl = (exp, rel) => `/api/file/${exp}/${rel}?t=${Date.now()}`;
+let S = {};  // server state
+const refresh = async () => { S = await api("/api/state"); renderNav(); };
+const has = (exp, rel) => !!S[exp]?.files[rel];
+
+// ---------- CSV ----------
+function parseCSV(text) {
+  const rows = []; let row = [], f = "", q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) { if (c === '"') { if (text[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; }
+    else if (c === '"') q = true;
+    else if (c === ",") { row.push(f); f = ""; }
+    else if (c === "\n" || c === "\r") { if (c === "\r" && text[i + 1] === "\n") i++; row.push(f); rows.push(row); row = []; f = ""; }
+    else f += c;
+  }
+  if (f || row.length) { row.push(f); rows.push(row); }
+  const [head, ...rest] = rows.filter(r => r.length > 1 || r[0]);
+  return { head, rows: rest.map(r => Object.fromEntries(head.map((k, i) => [k, r[i] ?? ""]))) };
+}
+const toCSV = (head, rows) => [head, ...rows.map(r => head.map(k => r[k] ?? ""))]
+  .map(r => r.map(v => /[",\n\r]/.test(v) ? `"${String(v).replace(/"/g, '""')}"` : v).join(",")).join("\r\n") + "\r\n";
+
+// ---------- jobs ----------
+async function runTask(name, pre) {
+  const { job } = await api(`/api/run/${name}`, { method: "POST" });
+  for (;;) {
+    const j = await api(`/api/job/${job}`);
+    pre.textContent = j.log; pre.scrollTop = pre.scrollHeight;
+    if (j.done) { if (j.rc !== 0) throw new Error(`${name} exited ${j.rc}`); return j; }
+    await new Promise(r => setTimeout(r, 700));
+  }
+}
+function taskButton(label, name, after, opts = {}) {
+  const pre = h("pre", { hidden: true });
+  const st = h("span", { class: "note" });
+  const b = h("button", { class: "b p", onclick: async () => {
+    b.disabled = true; pre.hidden = false; st.textContent = "running…"; st.className = "note";
+    try { await runTask(name, pre); st.textContent = "done"; st.className = "note ok"; await refresh(); after && await after(); }
+    catch (e) { st.textContent = String(e.message || e); st.className = "note bad"; }
+    b.disabled = false;
+  } }, label);
+  if (opts.disabled) b.disabled = true;
+  return h("div", {}, h("div", { class: "row" }, b, st), pre);
+}
+
+// ---------- recorder ----------
+const RAW_REQ = { echoCancellation: false, noiseSuppression: false, autoGainControl: false, channelCount: 1 };
+const WORKLET = URL.createObjectURL(new Blob([`class R extends AudioWorkletProcessor{process(i){const c=i[0]&&i[0][0];if(c)this.port.postMessage(c.slice(0));return true}}registerProcessor('rec',R)`], { type: "text/javascript" }));
+function wav(chunks, sr) {
+  const n = chunks.reduce((a, c) => a + c.length, 0);
+  const buf = new ArrayBuffer(44 + 2 * n), v = new DataView(buf);
+  const s = (o, t) => [...t].forEach((c, i) => v.setUint8(o + i, c.charCodeAt(0)));
+  s(0, "RIFF"); v.setUint32(4, 36 + 2 * n, true); s(8, "WAVE"); s(12, "fmt ");
+  v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true); v.setUint32(24, sr, true);
+  v.setUint32(28, 2 * sr, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true); s(36, "data"); v.setUint32(40, 2 * n, true);
+  let o = 44; for (const c of chunks) for (const x of c) { v.setInt16(o, Math.max(-1, Math.min(1, x)) * 32767, true); o += 2; }
+  return new Blob([buf], { type: "audio/wav" });
+}
+let active = null;  // one recording at a time
+function recorder(exp, name, what, detail, hintSeconds) {
+  const rel = `data/cache/human/${name}`;
+  const meter = h("i"), time = h("span", { class: "t" }, "0.0 s");
+  const player = h("audio", { controls: true, preload: "none" });
+  const st = h("span", { class: "note" });
+  const showSaved = () => { if (has(exp, rel)) { player.src = fileUrl(exp, rel); st.textContent = "saved"; st.className = "note ok"; } };
+  const btn = h("button", { class: "b r" }, "Record");
+  btn.onclick = async () => {
+    if (active && active !== btn) return;
+    if (active === btn) return active.stop();
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: RAW_REQ });
+      const ctx = new AudioContext({ sampleRate: 48000 });
+      await ctx.audioWorklet.addModule(WORKLET);
+      const src = ctx.createMediaStreamSource(stream), node = new AudioWorkletNode(ctx, "rec");
+      const chunks = []; let peak = 0; const t0 = performance.now();
+      node.port.onmessage = (e) => { chunks.push(e.data); for (const x of e.data) peak = Math.max(peak, Math.abs(x)); };
+      src.connect(node);
+      const tick = setInterval(() => {
+        time.textContent = ((performance.now() - t0) / 1000).toFixed(1) + " s";
+        meter.style.width = Math.min(100, peak * 100) + "%"; meter.className = peak > 0.98 ? "hot" : ""; peak *= 0.6;
+      }, 100);
+      btn.textContent = "Stop"; active = btn; st.textContent = "recording…"; st.className = "note";
+      btn.stop = async () => {
+        clearInterval(tick); stream.getTracks().forEach(t => t.stop()); await ctx.close();
+        active = null; btn.textContent = "Record again"; meter.style.width = "0";
+        const blob = wav(chunks, ctx.sampleRate);
+        await api(`/api/rec/${exp}/${name}`, { method: "POST", body: blob });
+        await refresh(); showSaved();
+      };
+    } catch (e) { st.textContent = "microphone: " + e.message; st.className = "note bad"; active = null; }
+  };
+  const el = h("div", { class: "take" },
+    h("div", { class: "what" }, h("b", {}, what), h("span", {}, detail + (hintSeconds ? ` · about ${hintSeconds} s` : ""))),
+    h("div", { class: "row" }, btn, h("span", { class: "meter" }, meter), time, player, st));
+  if (has(exp, rel)) { btn.textContent = "Record again"; showSaved(); }
+  return el;
+}
+
+// ---------- commit ----------
+function commitStep(exp) {
+  const files = { "E-001": ["results/human/ratings.csv", "results/human/key.json"], "E-002": ["results/own_r4.json", "results/own_r4.md"],
+    "E-003": ["results/human-chrome.json", "results/human-firefox.json"], "E-004": ["results/listen.csv"],
+    "E-005": ["results/own.json", "results/own.md"] }[exp];
+  const pre = h("pre", { hidden: true });
+  const st = h("span", { class: "note" });
+  const b = h("button", { class: "b p", onclick: async () => {
+    b.disabled = true;
+    try { const r = await api(`/api/commit/${exp}`, { method: "POST" }); pre.hidden = false; pre.textContent = r.log; st.textContent = `committed ${r.commit} and pushed`; st.className = "note ok"; await refresh(); }
+    catch (e) { pre.hidden = false; pre.textContent = e.message; st.textContent = "failed"; st.className = "note bad"; }
+    b.disabled = false;
+  } }, "Commit and push");
+  const pending = S[exp].pending;
+  return h("div", { class: "step" }, h("h3", {}, "Commit"),
+    h("p", { class: "note" }, "Publishes to the public squillo-lab repo: ", files.map((f, i) => [i ? ", " : "", h("code", {}, f)]),
+      ". Never audio. Changed now: ", pending.length ? pending.join("; ") : "nothing"),
+    h("div", { class: "row" }, b, st), pre);
+}
+function notesStep(exp, rel, prompt) {
+  const ta = h("textarea", { placeholder: prompt });
+  const st = h("span", { class: "note" });
+  fetch(fileUrl(exp, rel)).then(r => r.ok ? r.text() : "").then(t => { if (t) ta.value = t; });
+  const save = h("button", { class: "b p", onclick: async () => {
+    await api(`/api/write/${exp}/${rel}`, { method: "POST", body: ta.value }); st.textContent = "saved"; st.className = "note ok"; await refresh();
+  } }, "Save notes");
+  return h("div", {}, ta, h("div", { class: "row" }, save, st));
+}
+async function showJSON(exp, rel, el) {
+  const r = await fetch(fileUrl(exp, rel)); el.textContent = r.ok ? JSON.stringify(await r.json(), null, 1) : "not yet produced";
+}
+
+// ---------- the five tests ----------
+const TESTS = [
+{ id: "E-001", title: "Your voice, re-synthesized", time: "15 min · mic + headphones",
+  done: () => has("E-001", "results/human/ratings.csv"),
+  started: () => has("E-001", "data/cache/human/take1.wav"),
+  render(root) {
+    root.append(h("p", { class: "lead" }, "Does squillo's re-synthesis still sound like you, and natural? Record three takes, then rate 20 shuffled clips without knowing which is which (VISION §12.1)."));
+    root.append(h("div", { class: "step" }, h("h3", {}, "1 · Record"),
+      recorder("E-001", "take1.wav", "A slow scale", 'on "ah", up and down', 10),
+      recorder("E-001", "take2.wav", "A few lines", "of a public-domain or self-written melody", 10),
+      recorder("E-001", "take3.wav", "One sustained note", "comfortable pitch, steady", 10)));
+    const ready = ["take1", "take2", "take3"].every(t => has("E-001", `data/cache/human/${t}.wav`));
+    root.append(h("div", { class: "step" }, h("h3", {}, "2 · Build 20 clips"),
+      h("p", { class: "note" }, "WORLD and PSOLA at 0/50/100 % correction and steadying, plus repeated originals. About a minute."),
+      taskButton("Build clips", "e001-build", () => show(), { disabled: !ready })));
+    const rate = h("div", { class: "step" }, h("h3", {}, "3 · Rate blind"));
+    root.append(rate);
+    const show = async () => {
+      rate.replaceChildren(h("h3", {}, "3 · Rate blind"));
+      const r = await fetch(fileUrl("E-001", "data/cache/listening/ratings.csv"));
+      if (!r.ok) { rate.append(h("p", { class: "note" }, "Build the clips first.")); return; }
+      const { head, rows } = parseCSV(await r.text());
+      const scale = (row, key) => h("span", { class: "scale" }, [1, 2, 3, 4, 5].map(n => h("label", {},
+        h("input", { type: "radio", name: row.clip + key, checked: row[key] === String(n), onchange: () => row[key] = String(n) }), h("span", {}, n))));
+      rate.append(h("p", { class: "note" }, "Listen to each clip once. 1 = not at all, 5 = completely."),
+        h("div", { class: "tbl" }, h("table", {}, h("tr", {}, h("th", {}, "Clip"), h("th", {}, "Play"), h("th", {}, "Same person as you"), h("th", {}, "Natural"), h("th", {}, "Notes")),
+          rows.map(row => h("tr", {}, h("td", {}, row.clip.replace(".wav", "")),
+            h("td", {}, h("audio", { controls: true, preload: "none", src: fileUrl("E-001", "data/cache/listening/" + row.clip) })),
+            h("td", {}, scale(row, "same_person_as_you_1to5")), h("td", {}, scale(row, "natural_1to5")),
+            h("td", {}, h("input", { type: "text", value: row.notes, oninput: (e) => row.notes = e.target.value })))))));
+      const st = h("span", { class: "note" });
+      const key = h("pre", { hidden: true });
+      const save = h("button", { class: "b p", onclick: async () => {
+        const missing = rows.filter(r => !r.same_person_as_you_1to5 || !r.natural_1to5).length;
+        await api("/api/write/E-001/data/cache/listening/ratings.csv", { method: "POST", body: toCSV(head, rows) });
+        st.textContent = missing ? `saved; ${missing} clips still unrated` : "saved, all rated"; st.className = missing ? "note warn" : "note ok";
+        reveal.disabled = !!missing;
+      } }, "Save ratings");
+      const reveal = h("button", { class: "b", disabled: true, onclick: async () => {
+        await api("/api/e001-finish", { method: "POST" }); key.hidden = false;
+        key.textContent = await (await fetch(fileUrl("E-001", "results/human/key.json"))).text(); await refresh(); renderMain();
+      } }, "Done: reveal the key");
+      rate.append(h("div", { class: "row" }, save, reveal, st), key);
+    };
+    show();
+    root.append(commitStep("E-001"));
+  } },
+{ id: "E-005", title: "An amateur's round", time: "15 min · mic",
+  done: () => has("E-005", "results/own.md"), started: () => has("E-005", "data/cache/human/row1.wav"),
+  render(root) {
+    root.append(h("p", { class: "lead" }, 'Can the note you aimed for be inferred from an untrained voice? Sing the traditional round "Row, row, row your boat" once through, twice. Any pitch and pace, unaccompanied, no vibrato on purpose (VISION §12.4).'));
+    root.append(h("div", { class: "step" }, h("h3", {}, "1 · Record"),
+      recorder("E-005", "row1.wav", "Row, row, row your boat", "first time through", 20),
+      recorder("E-005", "row2.wav", "Row, row, row your boat", "second time through", 20)));
+    const out = h("pre", {});
+    root.append(h("div", { class: "step" }, h("h3", {}, "2 · Measure"),
+      taskButton("Run intent inference", "e005-run", () => showJSON("E-005", "results/own.json", out),
+        { disabled: !(has("E-005", "data/cache/human/row1.wav") && has("E-005", "data/cache/human/row2.wav")) }), out));
+    showJSON("E-005", "results/own.json", out);
+    root.append(h("div", { class: "step" }, h("h3", {}, "3 · Does it match your ear?"),
+      h("p", { class: "note" }, "Listen to each take once. Say whether σ̂ (the spread) and the flagged notes match what you hear."),
+      notesStep("E-005", "results/own.md", "e.g. Take 1: the flagged 'gently' was flat, I hear it too. Spread feels right. Take 2: …")));
+    root.append(commitStep("E-005"));
+  } },
+{ id: "E-002", title: "One scale, four takes", time: "15 min · mic, quiet room",
+  done: () => has("E-002", "results/own_r4.md"), started: () => has("E-002", "data/cache/human/same1.wav"),
+  render(root) {
+    root.append(h("p", { class: "lead" }, 'Are separate takes of the same scale measured the same, and is a brighter, ringing tone seen as a change? Sing a one-octave major scale on "ah", up and down, at a comfortable pitch.'));
+    root.append(h("div", { class: "step" }, h("h3", {}, "1 · Record"),
+      recorder("E-002", "same1.wav", "Scale, your normal tone", "take 1", 15),
+      recorder("E-002", "same2.wav", "Scale, your normal tone", "take 2, sung the same way", 15),
+      recorder("E-002", "ring1.wav", "Scale, brighter and ringing", "take 1", 15),
+      recorder("E-002", "ring2.wav", "Scale, brighter and ringing", "take 2", 15)));
+    const all = ["same1", "same2", "ring1", "ring2"].every(t => has("E-002", `data/cache/human/${t}.wav`));
+    const out = h("pre", {});
+    root.append(h("div", { class: "step" }, h("h3", {}, "2 · Measure"),
+      h("p", { class: "note" }, S["E-002"].occ ? "Reference fit ready." : "First prepares round 4's reference fit (copied from the runner's worktree if it has one; otherwise it runs, which can take a while)."),
+      taskButton("Prepare reference", "e002-prep", null, { disabled: S["E-002"].occ }),
+      taskButton("Compare the four takes", "e002-run", () => showJSON("E-002", "results/own_r4.json", out), { disabled: !all }), out));
+    showJSON("E-002", "results/own_r4.json", out);
+    root.append(h("div", { class: "step" }, h("h3", {}, "3 · Did you hear it?"),
+      notesStep("E-002", "results/own_r4.md", "e.g. same1 vs same2: no change called, agreed. ring vs same: called, and I did sing brighter …")));
+    root.append(commitStep("E-002"));
+  } },
+{ id: "E-003", title: "A real microphone", time: "15 min · laptop mic + phone · Chrome and Firefox",
+  done: () => has("E-003", "results/human-chrome.json") && has("E-003", "results/human-firefox.json"),
+  started: () => has("E-003", "data/cache/human/e003-human-chrome.json") || has("E-003", "data/cache/human/e003-human-firefox.json"),
+  render(root) {
+    const ua = navigator.userAgent.includes("Firefox") ? "firefox" : "chrome";
+    root.append(h("p", { class: "lead" }, "What do this laptop's browsers and microphone report and deliver? Run it once in Chrome and once in Firefox, both on this page (VISION §12.3)."));
+    root.append(h("div", { class: "step" }, h("h3", {}, "1 · The tone for your phone"),
+      has("E-003", "data/cache/tone440.wav")
+        ? h("p", { class: "note" }, "Get ", h("code", {}, "tone440.wav"), " onto your phone: ",
+            h("a", { href: fileUrl("E-003", "data/cache/tone440.wav"), download: "tone440.wav" }, "download it here"),
+            " and send it over, or restart the server with ", h("code", {}, "--phone"), " and open the address it prints on the phone.")
+        : taskButton("Make tone440.wav", "e003-gen", () => renderMain())));
+    const msg = h("span", { class: "big" }, "");
+    const go = h("button", { class: "b r", onclick: async () => {
+      go.disabled = true;
+      try {
+        msg.textContent = "reading settings…";
+        const rb = { raw: await window.e003.readback("raw"), default: await window.e003.readback("default") };
+        const pc = new AudioContext(); const defaultCtxRate = pc.sampleRate; await pc.close();
+        msg.textContent = "quiet please (10 s)";
+        setTimeout(() => msg.textContent = "tone now (10 s)", 10000);
+        const out = await window.e003.capture({ path: "mic", ctxRate: 48000, loadMs: 0, seconds: 20 });
+        msg.textContent = "saving…";
+        const bytes = Uint8Array.from(atob(out.samples), c => c.charCodeAt(0)); delete out.samples;
+        out.readback = rb; out.defaultCtxRate = defaultCtxRate;
+        await api(`/api/rec/E-003/e003-human-${ua}.json`, { method: "POST", body: JSON.stringify(out) });
+        await api(`/api/rec/E-003/e003-human-${ua}.f32`, { method: "POST", body: bytes });
+        msg.textContent = `done in ${ua}`; await refresh(); renderMain();
+      } catch (e) { msg.textContent = "failed: " + e.message; }
+      go.disabled = false;
+    } }, `Start in ${ua} (20 s)`);
+    const doneIn = ["chrome", "firefox"].map(b => h("span", { class: has("E-003", `data/cache/human/e003-human-${b}.json`) ? "ok" : "muted" },
+      `${b}: ${has("E-003", `data/cache/human/e003-human-${b}.json`) ? "captured" : "not yet"}`));
+    root.append(h("div", { class: "step" }, h("h3", {}, "2 · Capture"),
+      h("p", { class: "note" }, "Press Start and allow the microphone. Stay quiet for 10 s. When it says ", h("b", {}, "tone now"),
+        ", play the tone from the phone about 30 cm from the laptop until it is done. Then open ", h("code", {}, "http://localhost:8010/"), " in the other browser and repeat."),
+      h("div", { class: "row" }, go, msg), h("p", { class: "row note" }, doneIn)));
+    const out = h("pre", {});
+    root.append(h("div", { class: "step" }, h("h3", {}, "3 · Analyse"),
+      taskButton("Summarise the captures", "e003-analyse", async () => {
+        out.textContent = "";
+        for (const b of ["chrome", "firefox"]) { const r = await fetch(fileUrl("E-003", `results/human-${b}.json`)); if (r.ok) out.textContent += `— ${b}\n` + JSON.stringify(await r.json(), null, 1) + "\n"; }
+      }, { disabled: !S["E-003"].files["data/cache/human/e003-human-chrome.json"] && !S["E-003"].files["data/cache/human/e003-human-firefox.json"] }), out));
+    out.textContent = "not yet produced";
+    root.append(commitStep("E-003"));
+  } },
+{ id: "E-004", title: "The library's melodies", time: "15 min · headphones, no mic",
+  done: () => S["E-004"].pending.length === 0 && localStorageGet("e004-saved") === "1",
+  started: () => localStorageGet("e004-saved") === "1",
+  render(root) {
+    root.append(h("p", { class: "lead" }, "Are the public-domain melodies nobody has confirmed yet the tunes you know, and do the originals sound new? Each clip opens with four clicks at its tempo (VISION §12.5)."));
+    const list = h("div", {});
+    root.append(h("div", { class: "step" }, h("h3", {}, "1 · Render the clips"),
+      h("p", { class: "note" }, "Rewrites results/listen.csv empty, so only press this before you start marking."),
+      taskButton("Render 25 clips", "e004-build", () => show())));
+    root.append(h("div", { class: "step" }, h("h3", {}, "2 · Mark each one"), list));
+    const show = async () => {
+      const r = await fetch(fileUrl("E-004", "results/listen.csv"));
+      if (!r.ok) { list.replaceChildren(h("p", { class: "note" }, "Render the clips first.")); return; }
+      const { head, rows } = parseCSV(await r.text());
+      const st = h("span", { class: "note" });
+      const save = h("button", { class: "b p", onclick: async () => {
+        await api("/api/write/E-004/results/listen.csv", { method: "POST", body: toCSV(head, rows) });
+        localStorageSet("e004-saved", "1");
+        const left = rows.filter(r => !r.verdict).length;
+        st.textContent = left ? `saved; ${left} unmarked` : "saved, all marked"; st.className = left ? "note warn" : "note ok"; await refresh();
+      } }, "Save");
+      list.replaceChildren(h("div", { class: "tbl" }, h("table", {},
+        h("tr", {}, h("th", {}, "#"), h("th", {}, "Phrase"), h("th", {}, "Play"), h("th", {}, "Verdict"), h("th", {}, "Detail")),
+        rows.map(row => {
+          const pd = row.kind !== "original";
+          const opts = pd ? ["", "right", "wrong", "unknown"] : ["", "new", "familiar"];
+          const detail = pd
+            ? h("input", { type: "number", min: 1, placeholder: "1st wrong note", value: row.first_wrong_note, oninput: e => row.first_wrong_note = e.target.value })
+            : h("input", { type: "text", placeholder: "reminds me of…", value: row.reminds_me_of, oninput: e => row.reminds_me_of = e.target.value });
+          return h("tr", {}, h("td", {}, row.n),
+            h("td", {}, h("b", {}, row.title), h("div", { class: "note" }, pd ? "public domain · " : "original · ", row.words)),
+            h("td", {}, h("audio", { controls: true, preload: "none", src: fileUrl("E-004", `data/listen/${String(row.n).padStart(2, "0")}-${row.id}.wav`) })),
+            h("td", {}, h("select", { onchange: e => row.verdict = e.target.value }, opts.map(o => h("option", { value: o, selected: row.verdict === o }, o || "—")))),
+            h("td", {}, detail));
+        }))), h("div", { class: "row" }, save, st));
+    };
+    show();
+    root.append(commitStep("E-004"));
+  } },
+];
+function localStorageGet(k) { try { return localStorage.getItem(k); } catch { return null; } }
+function localStorageSet(k, v) { try { localStorage.setItem(k, v); } catch {} }
+
+let current = localStorageGet("tab") || "E-001";
+function renderNav() {
+  $("#nav").replaceChildren(...TESTS.map(t => h("button", { "aria-current": String(t.id === current), onclick: () => { current = t.id; localStorageSet("tab", t.id); renderNav(); renderMain(); } },
+    h("span", { class: "dot " + (t.done() ? "done" : t.started() ? "part" : "") }), `${t.id} · ${t.title}`)));
+}
+function renderMain() {
+  const t = TESTS.find(x => x.id === current) || TESTS[0];
+  const sec = h("section", {}, h("h2", {}, `${t.id} · ${t.title}`), h("p", { class: "note" }, t.time));
+  t.render(sec);
+  $("#main").replaceChildren(sec);
+}
+refresh().then(renderMain).catch(e => $("#main").textContent = "server not reachable: " + e.message);
+</script>
+</html>

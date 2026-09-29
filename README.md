@@ -118,7 +118,12 @@ result.
 
 **Needs a human.** Some experiments need a real microphone, a real room or a
 real listener. Their README says so in the status line (`needs-human`) and
-gives Joakim a protocol short enough to run in 15 minutes.
+gives Joakim a protocol short enough to run in 15 minutes. All of them run from
+one local page: `python3 session/serve.py`, then open `http://localhost:8010/`.
+It records in the browser into each experiment's ignored `data/cache/human/`,
+runs the protocol's scripts, takes the ratings and notes, and commits only the
+protocol's result files when Joakim presses *Commit*. An experiment that adds
+a `needs-human` step adds it to `session/` too.
 
 **Feeding squillo.** A squillo spec or ADR cites an experiment by ID and commit
 (`squillo-lab E-002 @ <sha>`). Exact numbers in `signal` and `metrics` come
