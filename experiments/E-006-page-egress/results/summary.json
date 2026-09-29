@@ -1,0 +1,1076 @@
+{
+ "sample": false,
+ "runs": 60,
+ "checks": {
+  "K0": {
+   "runs": 60,
+   "pass_seen": 60,
+   "fail_unseen": 60,
+   "udp_silent_before_page": 60
+  },
+  "K1_judged": {
+   "chrome|url": [
+    "doc/fetch",
+    "doc/xhr",
+    "doc/websocket",
+    "doc/eventsource",
+    "doc/beacon",
+    "doc/img",
+    "doc/script",
+    "doc/style",
+    "doc/prefetch",
+    "doc/audio",
+    "doc/iframe",
+    "doc/webrtc",
+    "worker/fetch",
+    "worker/xhr",
+    "worker/websocket",
+    "worker/eventsource",
+    "worker/importscripts",
+    "doc/navigate"
+   ],
+   "chrome|blob": [
+    "doc/fetch",
+    "doc/xhr",
+    "doc/websocket",
+    "doc/eventsource",
+    "doc/beacon",
+    "doc/img",
+    "doc/script",
+    "doc/style",
+    "doc/prefetch",
+    "doc/audio",
+    "doc/iframe",
+    "doc/webrtc",
+    "worker/fetch",
+    "worker/xhr",
+    "worker/websocket",
+    "worker/eventsource",
+    "worker/importscripts",
+    "doc/navigate"
+   ],
+   "firefox|url": [
+    "doc/fetch",
+    "doc/xhr",
+    "doc/websocket",
+    "doc/eventsource",
+    "doc/beacon",
+    "doc/img",
+    "doc/script",
+    "doc/style",
+    "doc/audio",
+    "doc/iframe",
+    "doc/webrtc",
+    "worker/fetch",
+    "worker/xhr",
+    "worker/websocket",
+    "worker/eventsource",
+    "worker/importscripts",
+    "doc/navigate"
+   ],
+   "firefox|blob": [
+    "doc/fetch",
+    "doc/xhr",
+    "doc/websocket",
+    "doc/eventsource",
+    "doc/beacon",
+    "doc/img",
+    "doc/script",
+    "doc/style",
+    "doc/audio",
+    "doc/iframe",
+    "doc/webrtc",
+    "worker/fetch",
+    "worker/xhr",
+    "worker/websocket",
+    "worker/eventsource",
+    "worker/importscripts",
+    "doc/navigate"
+   ]
+  },
+  "K2": {
+   "complete": 60
+  }
+ },
+ "reps_disagree_recorded": 0,
+ "hypotheses": {
+  "H1": {
+   "statement": "Under 'meta' and 'header', no judged document probe but webrtc reaches the logger, in both browsers",
+   "held": true
+  },
+  "H2": {
+   "statement": "Under 'meta', a URL-loaded worker's judged probes reach the logger (it runs under no policy) and a blob worker's do not; under 'header', neither's do",
+   "held": true
+  },
+  "H3": {
+   "statement": "Where judged, webrtc reaches the logger under every condition: the policy does not govern it",
+   "held": true
+  },
+  "H4": {
+   "statement": "WebAssembly instantiates under 'meta' and 'header' in the document and in a policy-bound worker, and is refused under '*-nowasm' there",
+   "held": true
+  },
+  "H5": {
+   "statement": "Navigation of the page itself to the logger reaches it under every condition",
+   "held": true
+  }
+ },
+ "worklet_apis": [
+  {
+   "fetch": "undefined",
+   "XMLHttpRequest": "undefined",
+   "WebSocket": "undefined",
+   "EventSource": "undefined",
+   "importScripts": "undefined"
+  }
+ ],
+ "policy": "default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self'; worker-src 'self' blob:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'",
+ "cells": {
+  "chrome|header|blob": {
+   "version": "154.0.8037.57",
+   "reached": {
+    "doc/webrtc": "3/3",
+    "doc/navigate": "3/3"
+   },
+   "blocked": [
+    "doc/fetch",
+    "doc/xhr",
+    "doc/websocket",
+    "doc/eventsource",
+    "doc/beacon",
+    "doc/img",
+    "doc/script",
+    "doc/style",
+    "doc/prefetch",
+    "doc/audio",
+    "doc/iframe",
+    "worker/fetch",
+    "worker/xhr",
+    "worker/websocket",
+    "worker/eventsource",
+    "worker/importscripts"
+   ],
+   "not_judged": [],
+   "wasm_doc": [
+    "ok"
+   ],
+   "wasm_worker": [
+    "ok"
+   ],
+   "violations": [
+    16,
+    16,
+    16
+   ],
+   "own_origin_requests": [
+    "/",
+    "/app.js",
+    "/favicon.ico",
+    "/worklet.js"
+   ],
+   "udp_from": [
+    "127.0.0.1",
+    "192.168.4.9"
+   ]
+  },
+  "chrome|header-nowasm|blob": {
+   "version": "154.0.8037.57",
+   "reached": {
+    "doc/webrtc": "3/3",
+    "doc/navigate": "3/3"
+   },
+   "blocked": [
+    "doc/fetch",
+    "doc/xhr",
+    "doc/websocket",
+    "doc/eventsource",
+    "doc/beacon",
+    "doc/img",
+    "doc/script",
+    "doc/style",
+    "doc/prefetch",
+    "doc/audio",
+    "doc/iframe",
+    "worker/fetch",
+    "worker/xhr",
+    "worker/websocket",
+    "worker/eventsource",
+    "worker/importscripts"
+   ],
+   "not_judged": [],
+   "wasm_doc": [
+    "throw:CompileError"
+   ],
+   "wasm_worker": [
+    "throw:CompileError"
+   ],
+   "violations": [
+    18,
+    18,
+    18
+   ],
+   "own_origin_requests": [
+    "/",
+    "/app.js",
+    "/favicon.ico",
+    "/worklet.js"
+   ],
+   "udp_from": [
+    "127.0.0.1",
+    "192.168.4.9"
+   ]
+  },
+  "chrome|header-nowasm|url": {
+   "version": "154.0.8037.57",
+   "reached": {
+    "doc/webrtc": "3/3",
+    "doc/navigate": "3/3"
+   },
+   "blocked": [
+    "doc/fetch",
+    "doc/xhr",
+    "doc/websocket",
+    "doc/eventsource",
+    "doc/beacon",
+    "doc/img",
+    "doc/script",
+    "doc/style",
+    "doc/prefetch",
+    "doc/audio",
+    "doc/iframe",
+    "worker/fetch",
+    "worker/xhr",
+    "worker/websocket",
+    "worker/eventsource",
+    "worker/importscripts"
+   ],
+   "not_judged": [],
+   "wasm_doc": [
+    "throw:CompileError"
+   ],
+   "wasm_worker": [
+    "throw:CompileError"
+   ],
+   "violations": [
+    18,
+    18,
+    18
+   ],
+   "own_origin_requests": [
+    "/",
+    "/app.js",
+    "/engine.js",
+    "/favicon.ico",
+    "/worklet.js"
+   ],
+   "udp_from": [
+    "127.0.0.1",
+    "192.168.4.9"
+   ]
+  },
+  "chrome|header|url": {
+   "version": "154.0.8037.57",
+   "reached": {
+    "doc/webrtc": "3/3",
+    "doc/navigate": "3/3"
+   },
+   "blocked": [
+    "doc/fetch",
+    "doc/xhr",
+    "doc/websocket",
+    "doc/eventsource",
+    "doc/beacon",
+    "doc/img",
+    "doc/script",
+    "doc/style",
+    "doc/prefetch",
+    "doc/audio",
+    "doc/iframe",
+    "worker/fetch",
+    "worker/xhr",
+    "worker/websocket",
+    "worker/eventsource",
+    "worker/importscripts"
+   ],
+   "not_judged": [],
+   "wasm_doc": [
+    "ok"
+   ],
+   "wasm_worker": [
+    "ok"
+   ],
+   "violations": [
+    16,
+    16,
+    16
+   ],
+   "own_origin_requests": [
+    "/",
+    "/app.js",
+    "/engine.js",
+    "/favicon.ico",
+    "/worklet.js"
+   ],
+   "udp_from": [
+    "127.0.0.1",
+    "192.168.4.9"
+   ]
+  },
+  "chrome|meta|blob": {
+   "version": "154.0.8037.57",
+   "reached": {
+    "doc/webrtc": "3/3",
+    "doc/navigate": "3/3"
+   },
+   "blocked": [
+    "doc/fetch",
+    "doc/xhr",
+    "doc/websocket",
+    "doc/eventsource",
+    "doc/beacon",
+    "doc/img",
+    "doc/script",
+    "doc/style",
+    "doc/prefetch",
+    "doc/audio",
+    "doc/iframe",
+    "worker/fetch",
+    "worker/xhr",
+    "worker/websocket",
+    "worker/eventsource",
+    "worker/importscripts"
+   ],
+   "not_judged": [],
+   "wasm_doc": [
+    "ok"
+   ],
+   "wasm_worker": [
+    "ok"
+   ],
+   "violations": [
+    16,
+    16,
+    16
+   ],
+   "own_origin_requests": [
+    "/",
+    "/app.js",
+    "/favicon.ico",
+    "/worklet.js"
+   ],
+   "udp_from": [
+    "127.0.0.1",
+    "192.168.4.9"
+   ]
+  },
+  "chrome|meta-nowasm|blob": {
+   "version": "154.0.8037.57",
+   "reached": {
+    "doc/webrtc": "3/3",
+    "doc/navigate": "3/3"
+   },
+   "blocked": [
+    "doc/fetch",
+    "doc/xhr",
+    "doc/websocket",
+    "doc/eventsource",
+    "doc/beacon",
+    "doc/img",
+    "doc/script",
+    "doc/style",
+    "doc/prefetch",
+    "doc/audio",
+    "doc/iframe",
+    "worker/fetch",
+    "worker/xhr",
+    "worker/websocket",
+    "worker/eventsource",
+    "worker/importscripts"
+   ],
+   "not_judged": [],
+   "wasm_doc": [
+    "throw:CompileError"
+   ],
+   "wasm_worker": [
+    "throw:CompileError"
+   ],
+   "violations": [
+    18,
+    18,
+    18
+   ],
+   "own_origin_requests": [
+    "/",
+    "/app.js",
+    "/favicon.ico",
+    "/worklet.js"
+   ],
+   "udp_from": [
+    "127.0.0.1",
+    "192.168.4.9"
+   ]
+  },
+  "chrome|meta-nowasm|url": {
+   "version": "154.0.8037.57",
+   "reached": {
+    "doc/webrtc": "3/3",
+    "worker/fetch": "3/3",
+    "worker/xhr": "3/3",
+    "worker/websocket": "3/3",
+    "worker/eventsource": "3/3",
+    "worker/importscripts": "3/3",
+    "doc/navigate": "3/3"
+   },
+   "blocked": [
+    "doc/fetch",
+    "doc/xhr",
+    "doc/websocket",
+    "doc/eventsource",
+    "doc/beacon",
+    "doc/img",
+    "doc/script",
+    "doc/style",
+    "doc/prefetch",
+    "doc/audio",
+    "doc/iframe"
+   ],
+   "not_judged": [],
+   "wasm_doc": [
+    "throw:CompileError"
+   ],
+   "wasm_worker": [
+    "ok"
+   ],
+   "violations": [
+    12,
+    12,
+    12
+   ],
+   "own_origin_requests": [
+    "/",
+    "/app.js",
+    "/engine.js",
+    "/favicon.ico",
+    "/worklet.js"
+   ],
+   "udp_from": [
+    "127.0.0.1",
+    "192.168.4.9"
+   ]
+  },
+  "chrome|meta|url": {
+   "version": "154.0.8037.57",
+   "reached": {
+    "doc/webrtc": "3/3",
+    "worker/fetch": "3/3",
+    "worker/xhr": "3/3",
+    "worker/websocket": "3/3",
+    "worker/eventsource": "3/3",
+    "worker/importscripts": "3/3",
+    "doc/navigate": "3/3"
+   },
+   "blocked": [
+    "doc/fetch",
+    "doc/xhr",
+    "doc/websocket",
+    "doc/eventsource",
+    "doc/beacon",
+    "doc/img",
+    "doc/script",
+    "doc/style",
+    "doc/prefetch",
+    "doc/audio",
+    "doc/iframe"
+   ],
+   "not_judged": [],
+   "wasm_doc": [
+    "ok"
+   ],
+   "wasm_worker": [
+    "ok"
+   ],
+   "violations": [
+    11,
+    11,
+    11
+   ],
+   "own_origin_requests": [
+    "/",
+    "/app.js",
+    "/engine.js",
+    "/favicon.ico",
+    "/worklet.js"
+   ],
+   "udp_from": [
+    "127.0.0.1",
+    "192.168.4.9"
+   ]
+  },
+  "chrome|none|blob": {
+   "version": "154.0.8037.57",
+   "reached": {
+    "doc/fetch": "3/3",
+    "doc/xhr": "3/3",
+    "doc/websocket": "3/3",
+    "doc/eventsource": "3/3",
+    "doc/beacon": "3/3",
+    "doc/img": "3/3",
+    "doc/script": "3/3",
+    "doc/style": "3/3",
+    "doc/prefetch": "3/3",
+    "doc/audio": "3/3",
+    "doc/iframe": "3/3",
+    "doc/webrtc": "3/3",
+    "worker/fetch": "3/3",
+    "worker/xhr": "3/3",
+    "worker/websocket": "3/3",
+    "worker/eventsource": "3/3",
+    "worker/importscripts": "3/3",
+    "doc/navigate": "3/3"
+   },
+   "blocked": [],
+   "not_judged": [],
+   "wasm_doc": [
+    "ok"
+   ],
+   "wasm_worker": [
+    "ok"
+   ],
+   "violations": [
+    0,
+    0,
+    0
+   ],
+   "own_origin_requests": [
+    "/",
+    "/app.js",
+    "/favicon.ico",
+    "/worklet.js"
+   ],
+   "udp_from": [
+    "127.0.0.1",
+    "192.168.4.9"
+   ]
+  },
+  "chrome|none|url": {
+   "version": "154.0.8037.57",
+   "reached": {
+    "doc/fetch": "3/3",
+    "doc/xhr": "3/3",
+    "doc/websocket": "3/3",
+    "doc/eventsource": "3/3",
+    "doc/beacon": "3/3",
+    "doc/img": "3/3",
+    "doc/script": "3/3",
+    "doc/style": "3/3",
+    "doc/prefetch": "3/3",
+    "doc/audio": "3/3",
+    "doc/iframe": "3/3",
+    "doc/webrtc": "3/3",
+    "worker/fetch": "3/3",
+    "worker/xhr": "3/3",
+    "worker/websocket": "3/3",
+    "worker/eventsource": "3/3",
+    "worker/importscripts": "3/3",
+    "doc/navigate": "3/3"
+   },
+   "blocked": [],
+   "not_judged": [],
+   "wasm_doc": [
+    "ok"
+   ],
+   "wasm_worker": [
+    "ok"
+   ],
+   "violations": [
+    0,
+    0,
+    0
+   ],
+   "own_origin_requests": [
+    "/",
+    "/app.js",
+    "/engine.js",
+    "/favicon.ico",
+    "/worklet.js"
+   ],
+   "udp_from": [
+    "127.0.0.1",
+    "192.168.4.9"
+   ]
+  },
+  "firefox|header|blob": {
+   "version": "156.0",
+   "reached": {
+    "doc/webrtc": "3/3",
+    "doc/navigate": "3/3"
+   },
+   "blocked": [
+    "doc/fetch",
+    "doc/xhr",
+    "doc/websocket",
+    "doc/eventsource",
+    "doc/beacon",
+    "doc/img",
+    "doc/script",
+    "doc/style",
+    "doc/audio",
+    "doc/iframe",
+    "worker/fetch",
+    "worker/xhr",
+    "worker/websocket",
+    "worker/eventsource",
+    "worker/importscripts"
+   ],
+   "not_judged": [
+    "doc/prefetch"
+   ],
+   "wasm_doc": [
+    "ok"
+   ],
+   "wasm_worker": [
+    "ok"
+   ],
+   "violations": [
+    14,
+    14,
+    14
+   ],
+   "own_origin_requests": [
+    "/",
+    "/app.js",
+    "/favicon.ico",
+    "/worklet.js"
+   ],
+   "udp_from": [
+    "192.168.4.9"
+   ]
+  },
+  "firefox|header-nowasm|blob": {
+   "version": "156.0",
+   "reached": {
+    "doc/webrtc": "3/3",
+    "doc/navigate": "3/3"
+   },
+   "blocked": [
+    "doc/fetch",
+    "doc/xhr",
+    "doc/websocket",
+    "doc/eventsource",
+    "doc/beacon",
+    "doc/img",
+    "doc/script",
+    "doc/style",
+    "doc/audio",
+    "doc/iframe",
+    "worker/fetch",
+    "worker/xhr",
+    "worker/websocket",
+    "worker/eventsource",
+    "worker/importscripts"
+   ],
+   "not_judged": [
+    "doc/prefetch"
+   ],
+   "wasm_doc": [
+    "throw:CompileError"
+   ],
+   "wasm_worker": [
+    "throw:CompileError"
+   ],
+   "violations": [
+    16,
+    16,
+    16
+   ],
+   "own_origin_requests": [
+    "/",
+    "/app.js",
+    "/favicon.ico",
+    "/worklet.js"
+   ],
+   "udp_from": [
+    "192.168.4.9"
+   ]
+  },
+  "firefox|header-nowasm|url": {
+   "version": "156.0",
+   "reached": {
+    "doc/webrtc": "3/3",
+    "doc/navigate": "3/3"
+   },
+   "blocked": [
+    "doc/fetch",
+    "doc/xhr",
+    "doc/websocket",
+    "doc/eventsource",
+    "doc/beacon",
+    "doc/img",
+    "doc/script",
+    "doc/style",
+    "doc/audio",
+    "doc/iframe",
+    "worker/fetch",
+    "worker/xhr",
+    "worker/websocket",
+    "worker/eventsource",
+    "worker/importscripts"
+   ],
+   "not_judged": [
+    "doc/prefetch"
+   ],
+   "wasm_doc": [
+    "throw:CompileError"
+   ],
+   "wasm_worker": [
+    "throw:CompileError"
+   ],
+   "violations": [
+    16,
+    16,
+    16
+   ],
+   "own_origin_requests": [
+    "/",
+    "/app.js",
+    "/engine.js",
+    "/favicon.ico",
+    "/worklet.js"
+   ],
+   "udp_from": [
+    "192.168.4.9"
+   ]
+  },
+  "firefox|header|url": {
+   "version": "156.0",
+   "reached": {
+    "doc/webrtc": "3/3",
+    "doc/navigate": "3/3"
+   },
+   "blocked": [
+    "doc/fetch",
+    "doc/xhr",
+    "doc/websocket",
+    "doc/eventsource",
+    "doc/beacon",
+    "doc/img",
+    "doc/script",
+    "doc/style",
+    "doc/audio",
+    "doc/iframe",
+    "worker/fetch",
+    "worker/xhr",
+    "worker/websocket",
+    "worker/eventsource",
+    "worker/importscripts"
+   ],
+   "not_judged": [
+    "doc/prefetch"
+   ],
+   "wasm_doc": [
+    "ok"
+   ],
+   "wasm_worker": [
+    "ok"
+   ],
+   "violations": [
+    14,
+    14,
+    14
+   ],
+   "own_origin_requests": [
+    "/",
+    "/app.js",
+    "/engine.js",
+    "/favicon.ico",
+    "/worklet.js"
+   ],
+   "udp_from": [
+    "192.168.4.9"
+   ]
+  },
+  "firefox|meta|blob": {
+   "version": "156.0",
+   "reached": {
+    "doc/webrtc": "3/3",
+    "doc/navigate": "3/3"
+   },
+   "blocked": [
+    "doc/fetch",
+    "doc/xhr",
+    "doc/websocket",
+    "doc/eventsource",
+    "doc/beacon",
+    "doc/img",
+    "doc/script",
+    "doc/style",
+    "doc/audio",
+    "doc/iframe",
+    "worker/fetch",
+    "worker/xhr",
+    "worker/websocket",
+    "worker/eventsource",
+    "worker/importscripts"
+   ],
+   "not_judged": [
+    "doc/prefetch"
+   ],
+   "wasm_doc": [
+    "ok"
+   ],
+   "wasm_worker": [
+    "ok"
+   ],
+   "violations": [
+    14,
+    14,
+    14
+   ],
+   "own_origin_requests": [
+    "/",
+    "/app.js",
+    "/favicon.ico",
+    "/worklet.js"
+   ],
+   "udp_from": [
+    "192.168.4.9"
+   ]
+  },
+  "firefox|meta-nowasm|blob": {
+   "version": "156.0",
+   "reached": {
+    "doc/webrtc": "3/3",
+    "doc/navigate": "3/3"
+   },
+   "blocked": [
+    "doc/fetch",
+    "doc/xhr",
+    "doc/websocket",
+    "doc/eventsource",
+    "doc/beacon",
+    "doc/img",
+    "doc/script",
+    "doc/style",
+    "doc/audio",
+    "doc/iframe",
+    "worker/fetch",
+    "worker/xhr",
+    "worker/websocket",
+    "worker/eventsource",
+    "worker/importscripts"
+   ],
+   "not_judged": [
+    "doc/prefetch"
+   ],
+   "wasm_doc": [
+    "throw:CompileError"
+   ],
+   "wasm_worker": [
+    "throw:CompileError"
+   ],
+   "violations": [
+    16,
+    16,
+    16
+   ],
+   "own_origin_requests": [
+    "/",
+    "/app.js",
+    "/favicon.ico",
+    "/worklet.js"
+   ],
+   "udp_from": [
+    "192.168.4.9"
+   ]
+  },
+  "firefox|meta-nowasm|url": {
+   "version": "156.0",
+   "reached": {
+    "doc/webrtc": "3/3",
+    "worker/fetch": "3/3",
+    "worker/xhr": "3/3",
+    "worker/websocket": "3/3",
+    "worker/eventsource": "3/3",
+    "worker/importscripts": "3/3",
+    "doc/navigate": "3/3"
+   },
+   "blocked": [
+    "doc/fetch",
+    "doc/xhr",
+    "doc/websocket",
+    "doc/eventsource",
+    "doc/beacon",
+    "doc/img",
+    "doc/script",
+    "doc/style",
+    "doc/audio",
+    "doc/iframe"
+   ],
+   "not_judged": [
+    "doc/prefetch"
+   ],
+   "wasm_doc": [
+    "throw:CompileError"
+   ],
+   "wasm_worker": [
+    "ok"
+   ],
+   "violations": [
+    12,
+    12,
+    12
+   ],
+   "own_origin_requests": [
+    "/",
+    "/app.js",
+    "/engine.js",
+    "/favicon.ico",
+    "/worklet.js"
+   ],
+   "udp_from": [
+    "192.168.4.9"
+   ]
+  },
+  "firefox|meta|url": {
+   "version": "156.0",
+   "reached": {
+    "doc/webrtc": "3/3",
+    "worker/fetch": "3/3",
+    "worker/xhr": "3/3",
+    "worker/websocket": "3/3",
+    "worker/eventsource": "3/3",
+    "worker/importscripts": "3/3",
+    "doc/navigate": "3/3"
+   },
+   "blocked": [
+    "doc/fetch",
+    "doc/xhr",
+    "doc/websocket",
+    "doc/eventsource",
+    "doc/beacon",
+    "doc/img",
+    "doc/script",
+    "doc/style",
+    "doc/audio",
+    "doc/iframe"
+   ],
+   "not_judged": [
+    "doc/prefetch"
+   ],
+   "wasm_doc": [
+    "ok"
+   ],
+   "wasm_worker": [
+    "ok"
+   ],
+   "violations": [
+    11,
+    11,
+    11
+   ],
+   "own_origin_requests": [
+    "/",
+    "/app.js",
+    "/engine.js",
+    "/favicon.ico",
+    "/worklet.js"
+   ],
+   "udp_from": [
+    "192.168.4.9"
+   ]
+  },
+  "firefox|none|blob": {
+   "version": "156.0",
+   "reached": {
+    "doc/fetch": "3/3",
+    "doc/xhr": "3/3",
+    "doc/websocket": "3/3",
+    "doc/eventsource": "3/3",
+    "doc/beacon": "3/3",
+    "doc/img": "3/3",
+    "doc/script": "3/3",
+    "doc/style": "3/3",
+    "doc/audio": "3/3",
+    "doc/iframe": "3/3",
+    "doc/webrtc": "3/3",
+    "worker/fetch": "3/3",
+    "worker/xhr": "3/3",
+    "worker/websocket": "3/3",
+    "worker/eventsource": "3/3",
+    "worker/importscripts": "3/3",
+    "doc/navigate": "3/3"
+   },
+   "blocked": [],
+   "not_judged": [
+    "doc/prefetch"
+   ],
+   "wasm_doc": [
+    "ok"
+   ],
+   "wasm_worker": [
+    "ok"
+   ],
+   "violations": [
+    0,
+    0,
+    0
+   ],
+   "own_origin_requests": [
+    "/",
+    "/app.js",
+    "/favicon.ico",
+    "/worklet.js"
+   ],
+   "udp_from": [
+    "192.168.4.9"
+   ]
+  },
+  "firefox|none|url": {
+   "version": "156.0",
+   "reached": {
+    "doc/fetch": "3/3",
+    "doc/xhr": "3/3",
+    "doc/websocket": "3/3",
+    "doc/eventsource": "3/3",
+    "doc/beacon": "3/3",
+    "doc/img": "3/3",
+    "doc/script": "3/3",
+    "doc/style": "3/3",
+    "doc/audio": "3/3",
+    "doc/iframe": "3/3",
+    "doc/webrtc": "3/3",
+    "worker/fetch": "3/3",
+    "worker/xhr": "3/3",
+    "worker/websocket": "3/3",
+    "worker/eventsource": "3/3",
+    "worker/importscripts": "3/3",
+    "doc/navigate": "3/3"
+   },
+   "blocked": [],
+   "not_judged": [
+    "doc/prefetch"
+   ],
+   "wasm_doc": [
+    "ok"
+   ],
+   "wasm_worker": [
+    "ok"
+   ],
+   "violations": [
+    0,
+    0,
+    0
+   ],
+   "own_origin_requests": [
+    "/",
+    "/app.js",
+    "/engine.js",
+    "/favicon.ico",
+    "/worklet.js"
+   ],
+   "udp_from": [
+    "192.168.4.9"
+   ]
+  }
+ }
+}

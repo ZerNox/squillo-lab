@@ -1,6 +1,6 @@
 # E-006 — Does the page's policy keep everything on the device?
 
-**Status:** running · **Serves:** `squillo/VISION.md` §8 (audio stays on the
+**Status:** answered · **Serves:** `squillo/VISION.md` §8 (audio stays on the
 device; the user decides), §6 (honesty: a claim a singer can check) ·
 **For:** squillo's first `security` spec (iteration 54), ADR 0010, ADR 0014,
 ADR 0006
@@ -96,4 +96,54 @@ found no harness fault.
 
 ## Result
 
-Pending the full run.
+Round 1, squillo iteration 54. Chrome 154.0.8037.57 and Firefox 156.0,
+headless, one Linux laptop, both origins on `127.0.0.1`; 60 runs, 3 reps
+of each cell, `results/summary.json`. Checks: K0 held in 60 of 60 runs
+(`checks.K0`: the runner's request seen 60, the unrequested path unseen
+60, the UDP port silent before the page 60); K2 60 of 60; K1 judged 18
+probes in Chrome and 17 in Firefox, whose `prefetch` never reached the
+logger even with no policy, so it is not judged there
+(`checks.K1_judged`). The reps agreed in every cell
+(`reps_disagree_recorded` 0). Every hypothesis held (`hypotheses`).
+
+1. **The document is bound either way.** Under `meta` and under `header`,
+   in both worker modes and all reps, none of the judged document probes
+   reached the logger: 11 in Chrome (`fetch`, XHR, WebSocket, EventSource,
+   `sendBeacon`, `img`, `script`, stylesheet, `prefetch`, `audio`,
+   `iframe`), 10 in Firefox; 252 probe firings, 0 reached (`cells.*.blocked`).
+   The page's own reports mislead: Chrome's `sendBeacon` returned `true`
+   and its blocked `iframe` fired `load`.
+2. **A worker loaded from its own URL is not bound by a `<meta>` policy.**
+   Under `meta` (and `meta-nowasm`), the URL-loaded worker's five probes
+   reached the logger in 3 of 3 reps in both browsers, and it instantiated
+   WebAssembly under `meta-nowasm`: it ran under no policy. A `blob:`
+   worker made from source text in the page's script inherited the
+   document's policy: none of its probes reached the logger, and
+   WebAssembly was refused under `meta-nowasm`. Under `header`, sent with
+   the worker's own script too, neither worker's probes reached it.
+3. **WebRTC and navigation are not governed.** Under every condition, in
+   60 of 60 runs, the data channel's ICE gathering sent STUN requests to
+   the logger's UDP port (Chrome from 127.0.0.1 and the LAN address,
+   Firefox from the LAN address; `cells.*.udp_from`), and the page setting
+   its own `location.href` reached the logger in 60 of 60. No policy
+   here stops a page that opens a peer connection or navigates itself;
+   only the page's own code can, and `build` can check for it.
+4. **WebAssembly:** instantiated in the document and in a policy-bound
+   worker under `meta` and `header`; refused with a `CompileError` under
+   `meta-nowasm` and `header-nowasm` there, in both browsers, 3 of 3.
+   `'wasm-unsafe-eval'` is needed and sufficient for the empty module.
+5. **The worklet has no network API:** `fetch`, `XMLHttpRequest`,
+   `WebSocket`, `EventSource` and `importScripts` were `undefined` in the
+   `AudioWorklet` scope in 60 of 60 runs (`worklet_apis`).
+6. Own-origin requests: the page, its script, the engine script when
+   URL-loaded, the worklet script, and `/favicon.ico`, which both browsers
+   requested under `default-src 'none'` too (`own_origin_requests`); the
+   favicon is the page's own origin, not egress.
+
+**Limits.** Headless browsers on one laptop, both origins on loopback; a
+real host, HTTPS and a real remote server are untested (the policy
+directives do not depend on the scheme here, all probes cross origins by
+port). Safari and Edge untested. The probe list is the channels named in
+the protocol, not every browser feature; `prefetch` is not judged in
+Firefox. One empty WebAssembly module, not the engine. No human step:
+nothing here needs a microphone, room or listener.
