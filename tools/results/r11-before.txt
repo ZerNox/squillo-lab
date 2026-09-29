@@ -1,0 +1,16 @@
+docs/decisions/0019-runner-the-longest-run-and-its-rungs.md:11: ADR 0006 is proposed; this calls it accepted: "ADR 0006's\n  synthesis path (accepted), stand"
+docs/decisions/0019-runner-the-longest-run-and-its-rungs.md:36: ADR 0006 is proposed; this calls it accepted: 'ADR 0006 (accepted)'
+docs/decisions/0020-ui-the-dashboard-the-rungs-and-the-page.md:54: ADR 0006 is proposed; this calls it accepted: "ADR 0006 (accepted; revised in iteration 53, so each frame's `pitch`\n  cell crosses during a run)"
+docs/decisions/0020-ui-the-dashboard-the-rungs-and-the-page.md:54: ADR 0006 was last revised in iteration 54; this lists [53]: "ADR 0006 (accepted; revised in iteration 53, so each frame's `pitch`\n  cell crosses during a run)"
+docs/architecture.md:61: ADR 0004 was last revised in iteration 53; this lists [48, 51, 52]: 'ADR 0004 (`proposed`: accepted 2026-09-28, revised in iterations 48, 51 and 52)'
+docs/architecture.md:62: ADR 0004 was last revised in iteration 53; this lists [27, 34, 38, 48, 51, 52]: 'ADR 0004 (`proposed`: accepted 2026-09-28, revised in iterations 27, 34, 38, 48, 51 and 52)'
+docs/architecture.md:69: ADR 0006 was last revised in iteration 54; this lists [19, 32]: 'ADR 0006 (`proposed`: accepted 2026-09-28, revised in iterations 19 and 32: one message per block lost none of 321 762 blocks, so no ring buffer; and in iteration 53: one message per frame to the page lost none of 54 000 frames; and in iteration 54: the worker from a `blob:` URL, ADR 0021)'
+docs/architecture.md:162: ADR 0004 was last revised in iteration 53; this lists [48]: 'ADR 0004 (accepted 2026-09-28; revised in iteration 48, back to proposed)'
+docs/glossary.md:55: ADR 0004 was last revised in iteration 53; this lists [48, 51, 52]: 'ADR 0004, accepted by Joakim 2026-09-28, revised in iterations 48, 51 and 52 and so back to `proposed`, agent-decided'
+docs/glossary.md:144: ADR 0006 is proposed; this calls it accepted: 'ADR 0006, accepted by Joakim 2026-09-28, agent-decided, revised\nin iteration 19, and in iteration 53 for the live pitch line, which awaits his review'
+docs/glossary.md:379: ADR 0004 was last revised in iteration 53; this lists [48, 51, 52]: 'ADR 0004 (accepted by Joakim 2026-09-28, revised in iterations 48, 51 and 52 and so back to `proposed`, agent-decided;\nranking in `docs/questions/Q-001.md`)'
+docs/later/certified-mics.md:32: ADR 0004 was last revised in iteration 53; this lists [48]: 'ADR 0004 (accepted by Joakim 2026-09-28, agent-decided from Q-001; revised in iteration 48, back to `proposed`)'
+docs/later/dominance-certificates.md:45: ADR 0004 was last revised in iteration 53; this lists [48]: 'ADR 0004 (accepted 2026-09-28; revised in iteration 48, back to `proposed`)'
+docs/later/research-pipeline.md:36: ADR 0004 was last revised in iteration 53; this lists [48]: 'ADR 0004 (accepted 2026-09-28; revised in iteration 48, back to `proposed`)'
+docs/questions/Q-031.md:0: constraint table has 20 rows; docs/architecture.md §2 had 21 at its first commit
+15 flagged
