@@ -26,9 +26,12 @@ REVISED = re.compile(r"revised in iterations? ((?:\d+)(?:(?:, | and |, and )\d+)
 
 
 def iters(text):
-    """Every iteration a 'revised in iteration(s) …' phrase in text lists."""
+    """Every iteration a text that says 'revised in iteration(s) …' lists, including a later
+    '… and in iteration 53' in the same text."""
+    if not REVISED.search(text):
+        return []
     out = []
-    for m in REVISED.finditer(text):
+    for m in re.finditer(r"iterations? ((?:\d+)(?:(?:, | and |, and )\d+)*)", text):
         out += [int(x) for x in re.findall(r"\d+", m.group(1))]
     return out
 
@@ -161,7 +164,8 @@ def self_test():
             "Stale list: ADR 0009 (proposed; revised in iteration 48).\n"
             "Stale status: ADR 0009 (accepted).\n"
             "Citation, not status: a term (ADR 0009, revised in iteration 48).\n"
-            "Another's status: ADR 0009 (new, amending accepted ADR 0013).\n")
+            "Another's status: ADR 0009 (new, amending accepted ADR 0013).\n"
+            "Listed in two phrases: ADR 0009 (proposed: revised in iteration 48, and in iteration 53).\n")
         (r / "STATUS.md").write_text("# S\n")
         (r / "docs/questions/Q-032.md").write_text(
             "# Q\n\n## Constraint check\n\n| row | options |\n| :- | :- |\n| r1 | none |\n\n## Other\n")
