@@ -15,7 +15,7 @@ const HERE = path.dirname(new URL(import.meta.url).pathname);
 const SAMPLE = process.argv.includes('--sample');
 if (!SAMPLE) {
   for (const f of ['rules.mjs', 'run.mjs', 'analyze.mjs', 'page']) {
-    try { execSync(`git diff --quiet HEAD -- ${f}`, { cwd: HERE }); }
+    try { execSync(`git ls-files --error-unmatch -- ${f}`, { cwd: HERE, stdio: 'ignore' }); execSync(`git diff --quiet HEAD -- ${f}`, { cwd: HERE }); }
     catch { throw new Error(`${f} has uncommitted edits: commit the rules first (S15, L-047)`); }
   }
 }

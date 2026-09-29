@@ -9,7 +9,7 @@ import * as R from './rules.mjs';
 const HERE = path.dirname(new URL(import.meta.url).pathname);
 const SAMPLE = process.argv.includes('--sample');
 if (!SAMPLE) for (const f of ['rules.mjs', 'analyze.mjs']) {
-  try { execSync(`git diff --quiet HEAD -- ${f}`, { cwd: HERE }); }
+  try { execSync(`git ls-files --error-unmatch -- ${f}`, { cwd: HERE, stdio: 'ignore' }); execSync(`git diff --quiet HEAD -- ${f}`, { cwd: HERE }); }
   catch { throw new Error(`${f} has uncommitted edits: commit the rules first (S15, L-047)`); }
 }
 const DIR = path.join(HERE, 'data/cache', SAMPLE ? 'sample' : 'runs');
@@ -57,6 +57,11 @@ for (const r of runs) {
 const judged = {};
 for (const b of R.BROWSERS) for (const m of R.WORKER_MODES) {
   judged[`${b}|${m}`] = probes.filter((p) => cell[`${b}|none|${m}`].probes[p].every(Boolean));
+}
+// R-11: H3 and H5 hold vacuously if their probe is not judged, so K1 is asserted for those two
+// probes in every browser and worker mode; for the rest, K1 is recorded (K1_judged), not asserted
+for (const [k, j] of Object.entries(judged)) {
+  assert.ok(j.includes('doc/webrtc') && j.includes(`doc/${R.NAV_PROBE}`), `K1: H3 and H5's probes judged in ${k}`);
 }
 let disagree = 0;
 const table = {};

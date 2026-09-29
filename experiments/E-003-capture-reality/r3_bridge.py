@@ -214,8 +214,10 @@ def committed_first():
     runs; it refuses to run on an uncommitted edit of itself."""
     import subprocess
     here = Path(__file__).resolve()
+    tracked = subprocess.run(["git", "ls-files", "--error-unmatch", here.name], cwd=here.parent,
+                             capture_output=True).returncode == 0  # R-11: a never-committed script passes diff
     r = subprocess.run(["git", "diff", "--quiet", "HEAD", "--", here.name], cwd=here.parent)
-    if r.returncode != 0:
+    if not tracked or r.returncode != 0:
         raise SystemExit(f"{here.name} has uncommitted edits: commit its rules and expected outcomes first (S15, L-047)")
 
 

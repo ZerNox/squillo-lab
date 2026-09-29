@@ -30,8 +30,10 @@ OVERLOAD = dict(pageLoad=1.5)                # R2: must fail it
 def committed_first():
     """squillo L-047 (S15): refuse to run on an uncommitted edit of this script."""
     here = Path(__file__).resolve()
+    tracked = subprocess.run(["git", "ls-files", "--error-unmatch", here.name], cwd=here.parent,
+                             capture_output=True).returncode == 0  # R-11: a never-committed script passes diff
     r = subprocess.run(["git", "diff", "--quiet", "HEAD", "--", here.name], cwd=here.parent)
-    if r.returncode != 0:
+    if not tracked or r.returncode != 0:
         raise SystemExit(f"{here.name} has uncommitted edits: commit its rules first (S15, L-047)")
 
 
@@ -145,6 +147,14 @@ def main():
         return
     runs = [one(json.loads(Path(f).read_text())) for f in sorted(glob.glob(str(RAW / "*.json")))]
     ok = [r for r in runs if "error" not in r]
+    # R-11: every run of R0's design is present and none errored, so no must-fail passes on missing runs
+    per = {}
+    for r in runs:
+        per.setdefault((r["browser"], r["workerLoad"], r["pageLoad"]), []).append(r)
+    assert not [r for r in runs if "error" in r], "a run errored"
+    assert len(per) == 2 * 2 * 3 and all(len(v) == 3 for v in per.values()), ("R0's design", {k: len(v) for k, v in per.items()})
+    for r in ok:
+        assert r["frames_posted"] > 0, (r, "C1 on a run with frames")
     # asserted checks on every run (C1, C2, K0 and its must-fail on real data)
     for r in ok:
         assert r["clocks_agree"], (r, "K0")
