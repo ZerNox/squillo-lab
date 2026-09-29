@@ -552,6 +552,84 @@ tones, not amateurs'; take-level counts are small (11 to 35 per cell), so
 "no take moved" bounds the share only to its interval; single flags only
 on LT-straight. The real microphone stays the `needs-human` step below.
 
+## Round 3: Firefox's rate bridge, frame by frame (squillo iteration 51)
+
+**Question** (squillo F-034 (b), R-10's focus for iteration 51). Round 1
+(item 8) found that Firefox bridges a track at one rate into a context at
+another with drift correction, and measured the tone error over 0.4 s
+tones: max abs 0.27 cents for a 44.1 kHz track into a 48 kHz context,
+0.94 cents the other way (`results/summary.json`,
+`signal["firefox/stream/44100->48000"]`, `["firefox/stream/48000->44100"]`).
+Squillo's capture accepts only a 48 kHz context (squillo `capture` CA-001),
+so only the first direction can reach a take. squillo's pitch is per frame
+(ADR 0007: 8 ms frames, a 32 ms window), and a 0.4 s mean can hide a
+frame's error while the time base wanders. How far does the bridge move a
+frame's pitch, as squillo measures and accepts it (MT-003)? Serves
+`VISION.md` §6, §12.3. No new capture: round 1's cached captures are read
+again.
+
+**Rules, written and committed before the run** (S15; `r3_bridge.py`
+holds them in code).
+
+- *R0, inputs.* Round 1's captures into a 48 kHz context from a 44.1 kHz
+  or 48 kHz stream source, three runs each (`data/cache/raw/`): the
+  *bridge*, `firefox-stream-fake-src44100-ctx48000-load0-r0..2`; control
+  A, Chrome's converter on the same rates,
+  `chrome-stream-fake48000-src44100-ctx48000-load0-r0..2`; control B,
+  Firefox at equal rates (bit-exact in round 1),
+  `firefox-stream-fake-src48000-ctx48000-load0-r0..2`. The reference is
+  the probe as an ideal converter delivers it at 48 kHz (round 1's
+  `analyze.load_ref`), from each source rate, looped twice. Firefox's fake
+  microphone (a 1 kHz tone, above C6) is not used.
+- *R1, tone spans, found without the pitch tracker.* A frame (E-002
+  `yin.frame_windows`, ADR 0007's axis) is a tone frame for a tone *f* of
+  `gen.TONES` when at least 99 % of its Hann-windowed window's power lies
+  within ±100 cents of *f*. Consecutive tone frames of one tone are a span;
+  spans of one tone at most 8 frames apart are merged with the frames
+  between kept, so that a discontinuity inside a tone stays in; a span
+  shorter than twice the sweep's passage through the ±100-cent band plus
+  one window, computed from `gen.py`'s sweep, is dropped (it must stay
+  under three quarters of a tone's frames, asserted). Frames in the first
+  0.5 s of a capture (round 1's `SKIP_S`) are not used.
+- *R2, per frame.* YIN (E-002 `yin.py`, threshold 0.1), limited to E2–C6
+  ±3 cents as round 2 (`r2_measures.py` line 88); a frame is accepted when
+  its aperiodicity is under MT-003's refusal, read from the table round 2
+  used (`E-002 results/fold2.json`, first infinite *u*); its error is
+  1200 log2(*f*₀/*f*) against the tone's nominal frequency. Per path:
+  frames, accepted, refused, max and p95 of |error| over accepted frames,
+  frames over 50 cents, and the share inside ±2*u* (MT-003's *u*).
+- *R3, the value squillo uses.* *b* = the largest |error| over the
+  bridge's accepted frames, rounded up to 0.01 cent. It includes the
+  tracker's own error on the tone (the reference's max, reported beside
+  it). It is the largest error measured on 3 runs of 4 tones, not a bound.
+- *R4, anomalies* (S17). Every refused frame inside a span, and every
+  accepted frame on any path whose |error| exceeds the reference's max by
+  more than 0.1 cent, is listed with its capture time; round 1's lag steps
+  for the same run are listed beside them. The tones lie at loop time
+  3.0–5.0 s, clear of the loop point (0 s, 8 s).
+
+**Checks of the checks, run before any capture is read**
+(`r3_bridge.py checks`, `results/r3/checks.json`).
+
+- *K1, segmentation.* On the 48 kHz reference (two loops): exactly two
+  spans per tone, each inside its `gen.SEGMENTS` interval, must pass; on
+  the same reference with its four tone segments zeroed (the sweep left),
+  the same check must fail. It must also pass on the 44.1 kHz probe
+  through the ideal converter.
+- *K2, the error measure.* The tolerance is the reference's own max
+  |error| plus 0.01 cent, computed. The reference made sharp by a known
+  shift (the loop FFT-resampled to fewer samples; the shift, 0.50 cents
+  nominal, computed from the exact length ratio) must give a median error
+  within the tolerance of that shift; the unshifted reference must fail
+  the same test.
+- *K3, the table.* The table's first *u* is √3 and its refusal 0.02, as
+  MT-003 states; asserted.
+
+**Expected before the run.** The bridge's frames err by about round 1's
+0.4 s figure plus the time base's wander (round 1: up to 350 ppm over a
+stretch, 0.61 cents), so under 1 cent, and no frame is refused that the
+controls accept.
+
 ## Needs a human (15 minutes)
 
 Real microphones, drivers and rooms, which fake devices cannot show.
