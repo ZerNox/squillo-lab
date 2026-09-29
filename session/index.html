@@ -62,6 +62,9 @@ input[type=number] { width: 8.5em; }
 .note { font-size: 13px; color: var(--ink2); }
 .warn { color: var(--warn); } .ok { color: var(--ok); } .bad { color: var(--bad); }
 .big { font-size: 28px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.guide { padding: 8px 0 0; gap: 8px; }
+.tips { background: var(--code); border-radius: 10px; padding: 12px 14px; margin: 4px 0 8px; font-size: 14px; }
+.tips p { margin: 0 0 6px; } .tips ul { margin: 0 0 8px; padding-left: 20px; color: var(--ink2); }
 code { background: var(--code); border-radius: 4px; padding: 0 4px; font-size: 13px; }
 </style>
 
@@ -227,6 +230,54 @@ async function showJSON(exp, rel, el) {
   const r = await fetch(fileUrl(exp, rel)); el.textContent = r.ok ? JSON.stringify(await r.json(), null, 1) : "not yet produced";
 }
 
+// ---------- listen-first guides ----------
+// A tune is [semitones above the key note, length in eighths]. Played before a take,
+// never during it: the protocols ask for unaccompanied takes, and the mic would hear it.
+const TUNES = {
+  row: { tempo: 150, notes: [[0,3],[0,3],[0,2],[2,1],[4,3],[4,2],[2,1],[4,2],[5,1],[7,6],
+    [12,1],[12,1],[12,1],[7,1],[7,1],[7,1],[4,1],[4,1],[4,1],[0,1],[0,1],[0,1],[7,2],[5,1],[4,2],[2,1],[0,6]] },
+  scale: { tempo: 110, notes: [0,2,4,5,7,9,11,12,11,9,7,5,4,2,0].map((s, i, a) => [s, i === a.length - 1 ? 4 : 2]) },
+  hold: { tempo: 60, notes: [[4, 12]] },
+};
+const KEYS = [["A2", 45, "deep voice"], ["C3", 48, "most men"], ["E3", 52, "higher men / low women"], ["A3", 57, "most women"], ["C4", 60, "higher women"]];
+let keyMidi = +(localStorageGet("key") || 48);
+let playing = null;
+function playTune(tune, onlyFirst) {
+  if (playing) { playing.close(); playing = null; }
+  const ctx = new AudioContext(); playing = ctx;
+  const beat = 60 / tune.tempo / 2; let t = ctx.currentTime + 0.1;
+  const notes = onlyFirst ? [[tune.notes[0][0], 8]] : tune.notes;
+  for (const [semi, len] of notes) {
+    const f = 440 * 2 ** ((keyMidi + semi - 69) / 12), d = len * beat;
+    const g = ctx.createGain(); g.connect(ctx.destination);
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(0.18, t + 0.02); g.gain.setValueAtTime(0.18, t + d - 0.06); g.gain.linearRampToValueAtTime(0, t + d - 0.01);
+    for (const [k, a] of [[1, 1], [2, 0.35], [3, 0.15]]) { const o = ctx.createOscillator(); const og = ctx.createGain(); og.gain.value = a; o.frequency.value = f * k; o.connect(og).connect(g); o.start(t); o.stop(t + d); }
+    t += d;
+  }
+  setTimeout(() => { if (playing === ctx) { ctx.close(); playing = null; } }, (t - ctx.currentTime + 0.3) * 1000);
+}
+function keyPicker() {
+  return h("label", { class: "note" }, "Your key: ", h("select", { onchange: e => { keyMidi = +e.target.value; localStorageSet("key", e.target.value); } },
+    KEYS.map(([n, m, who]) => h("option", { value: m, selected: m === keyMidi }, `${n} · ${who}`))));
+}
+function guide(tuneName, label) {
+  const tune = TUNES[tuneName];
+  return h("div", { class: "row guide" }, h("span", { class: "note" }, "Listen first:"),
+    h("button", { class: "b", onclick: () => playTune(tune, true) }, "▶ Starting note"),
+    tune.notes.length > 1 ? h("button", { class: "b", onclick: () => playTune(tune) }, `▶ ${label}`) : null);
+}
+function tips(extra) {
+  return h("div", { class: "tips" },
+    h("p", {}, h("b", {}, "You don't need to be good at this. "),
+      "Squillo measures you against what you were aiming for, not against the real tune, and an untrained voice is exactly the evidence the lab is missing. Off-key, drifting or a different key are all fine."),
+    h("ul", {},
+      h("li", {}, "Pick a key where the starting note feels easy to hum. Try another if it's too high or low."),
+      h("li", {}, "Play the guide two or three times, humming along. Then stop it, play the starting note once, and sing on your own."),
+      h("li", {}, "Headphones help, but never sing along with the guide: the takes must be you alone."),
+      extra ? h("li", {}, extra) : null),
+    keyPicker());
+}
+
 // ---------- the five tests ----------
 const TESTS = [
 { id: "E-001", title: "Your voice, re-synthesized", time: "15 min · mic + headphones",
@@ -235,8 +286,12 @@ const TESTS = [
   render(root) {
     root.append(h("p", { class: "lead" }, "Does squillo's re-synthesis still sound like you, and natural? Record three takes, then rate 20 shuffled clips without knowing which is which (VISION §12.1)."));
     root.append(h("div", { class: "step" }, h("h3", {}, "1 · Record"),
+      tips("For the few lines, the round below is fine; it is public domain and you'll sing it again in E-005."),
+      guide("scale", "Scale"),
       recorder("E-001", "take1.wav", "A slow scale", 'on "ah", up and down', 10),
+      guide("row", "Row, row, row your boat"),
       recorder("E-001", "take2.wav", "A few lines", "of a public-domain or self-written melody", 10),
+      guide("hold", ""),
       recorder("E-001", "take3.wav", "One sustained note", "comfortable pitch, steady", 10)));
     const ready = ["take1", "take2", "take3"].every(t => has("E-001", `data/cache/human/${t}.wav`));
     root.append(h("div", { class: "step" }, h("h3", {}, "2 · Build 20 clips"),
@@ -279,6 +334,8 @@ const TESTS = [
   render(root) {
     root.append(h("p", { class: "lead" }, 'Can the note you aimed for be inferred from an untrained voice? Sing the traditional round "Row, row, row your boat" once through, twice. Any pitch and pace, unaccompanied, no vibrato on purpose (VISION §12.4).'));
     root.append(h("div", { class: "step" }, h("h3", {}, "1 · Record"),
+      tips("Words: Row, row, row your boat, / gently down the stream. / Merrily, merrily, merrily, merrily, / life is but a dream."),
+      guide("row", "Row, row, row your boat"),
       recorder("E-005", "row1.wav", "Row, row, row your boat", "first time through", 20),
       recorder("E-005", "row2.wav", "Row, row, row your boat", "second time through", 20)));
     const out = h("pre", {});
@@ -296,6 +353,8 @@ const TESTS = [
   render(root) {
     root.append(h("p", { class: "lead" }, 'Are separate takes of the same scale measured the same, and is a brighter, ringing tone seen as a change? Sing a one-octave major scale on "ah", up and down, at a comfortable pitch.'));
     root.append(h("div", { class: "step" }, h("h3", {}, "1 · Record"),
+      tips("For the ringing takes, think bright and forward, as if calling across a room, not louder. If you can't tell the difference, say so in the notes."),
+      guide("scale", "Scale"),
       recorder("E-002", "same1.wav", "Scale, your normal tone", "take 1", 15),
       recorder("E-002", "same2.wav", "Scale, your normal tone", "take 2, sung the same way", 15),
       recorder("E-002", "ring1.wav", "Scale, brighter and ringing", "take 1", 15),
