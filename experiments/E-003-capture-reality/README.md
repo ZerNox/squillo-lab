@@ -790,6 +790,12 @@ is read; `results/r4/checks.json`).
   pass on consistent stamps; must fail on stamps 50 ms apart, and, on every
   real run, on the same round trips stamped with each side's own
   `performance.now()`, whose origins differ.
+  *Revised after the first analysis:* one Chrome run (worker load 0.75,
+  page load 0.5, run 1) exceeded the two timer steps by 0.000244 ms,
+  which is one unit in the last place of a double near 1.8 × 10¹² ms,
+  the stamps' magnitude (`timeOrigin + now()` rounds on each side). The
+  tolerance now adds that rounding, computed per stamp (`np.spacing`),
+  twice; nothing else changed.
 - *K1, frames complete.* Frames 0–9 must pass; one dropped, two swapped or
   one repeated must fail.
 - *K2, blocks intact.* Must fail on one lost, one reordered or one

@@ -38,10 +38,12 @@ def committed_first():
 # ---- the checks, as functions of their inputs ----
 def clocks_agree(pings, res):
     """K0: the page's tA <= worker's tW <= page's tB, each within tol = 2 * res
-    (one timer step on each side). Returns (ok, worst violation in ms)."""
-    tol = 2 * res
-    worst = 0.0
+    (one timer step on each side) plus the rounding of timeOrigin + now() to a
+    double on each stamp (revised after the first analysis: one ulp at the
+    stamps' magnitude, np.spacing). Returns (ok, worst violation in ms)."""
+    worst = -np.inf
     for p in pings:
+        tol = 2 * res + 2 * float(np.spacing(max(abs(p["tA"]), abs(p["tB"]), abs(p["tW"]))))
         worst = max(worst, (p["tA"] - tol) - p["tW"], p["tW"] - (p["tB"] + tol))
     return worst <= 0, worst
 
