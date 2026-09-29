@@ -209,6 +209,16 @@ def cfg_src(name):
     return json.loads((RAW / f"{name}.json").read_text())["cfg"]["srcRate"]
 
 
+def committed_first():
+    """squillo L-047 (S15): the rules and expected outcomes this script holds are committed before it
+    runs; it refuses to run on an uncommitted edit of itself."""
+    import subprocess
+    here = Path(__file__).resolve()
+    r = subprocess.run(["git", "diff", "--quiet", "HEAD", "--", here.name], cwd=here.parent)
+    if r.returncode != 0:
+        raise SystemExit(f"{here.name} has uncommitted edits: commit its rules and expected outcomes first (S15, L-047)")
+
+
 def main():
     t0 = time.time()
     OUT.mkdir(parents=True, exist_ok=True)
@@ -251,6 +261,7 @@ def main():
 
 
 if __name__ == "__main__":
+    committed_first()
     if sys.argv[1:] == ["checks"]:
         t0 = time.time()
         c = checks()

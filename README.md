@@ -48,9 +48,13 @@ commit, search the code for an assert of every results key that names a
 check (`check`, `must`, `pass`), and assert it, or say in its README row
 "recorded, not asserted" and why (squillo L-046). Rules and bars written
 before a run are committed before it runs, in their own commit, so that
-"before" can be read from git. The
+"before" can be read from git; a fixture generator's or model's expected
+outcomes are such rules. A script that holds rules or expected outcomes
+refuses to run on an uncommitted edit of itself (`git diff --quiet HEAD --
+<script>`; E-003 `fixtures.py` and `r3_bridge.py`, `committed_first`),
+so that running first is not possible by accident (squillo L-047). The
 README reports the checks' numbers (squillo L-024, L-026, L-028, L-030,
-L-031, L-032, L-034, L-036, L-041, L-046).
+L-031, L-032, L-034, L-036, L-041, L-046, L-047).
 
 **Name the reference before comparing** (squillo standing instruction S16).
 A check against an outside source names its reference item in advance: the

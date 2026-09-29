@@ -428,6 +428,16 @@ def dump(obj):
     return json.dumps(obj, indent=2, ensure_ascii=False) + "\n"
 
 
+def committed_first():
+    """squillo L-047 (S15): the rules and expected outcomes this script holds are committed before it
+    runs; it refuses to run on an uncommitted edit of itself."""
+    import subprocess
+    here = Path(__file__).resolve()
+    r = subprocess.run(["git", "diff", "--quiet", "HEAD", "--", here.name], cwd=here.parent)
+    if r.returncode != 0:
+        raise SystemExit(f"{here.name} has uncommitted edits: commit its rules and expected outcomes first (S15, L-047)")
+
+
 def main(out):
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
@@ -449,4 +459,5 @@ def main(out):
 
 
 if __name__ == "__main__":
+    committed_first()
     main(sys.argv[1])
