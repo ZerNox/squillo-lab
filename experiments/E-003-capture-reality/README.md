@@ -765,6 +765,22 @@ then burns a set time, standing in for drawing. Both sides stamp
   posted arrives at the page once, in order, as parseable JSON (C1); the
   block path loses, reorders and repeats nothing (C2, round 1's check).
 
+*Revised after the first Chrome step, before any capture was analysed.*
+The page first ended each run itself, 12 s after it started: a timer,
+then the stop sent to the worklet and the worklet's reply, all on the
+page's main thread. In all three Chrome overload runs (page load 1.5) the
+worker's end never reached the page within 120 s of that stop, so they
+returned no data (wall time 141.3 s each; the Chrome runs at loads 0 and
+0.5 were complete). A 3 s overload run with logging showed why: the
+page's 3 s timer fired at 4.7 s and the worklet's reply at 7.0 s, each
+behind the frame messages queued before it, and in 12 s runs the queue
+never let the end through. That is itself a result (below), but the
+must-fail condition must give data, so the worker now ends the frame
+stream after 12 s of blocks (4500) and posts its end, and the page stops
+the worklet after it arrives; every condition is re-run from scratch
+with this code, and the analysis reports how late the end reached the
+page (`end_late_ms`). The measures, bars and checks are unchanged.
+
 **Checks of the checks** (`r4_analyze.py checks`, run before any capture
 is read; `results/r4/checks.json`).
 

@@ -38,7 +38,8 @@ async function capture(cfg) {
   const fRecv = [], fSeq = [];
   let bad = 0, other = null;
   const ready = new Promise((r) => { worker.onmessage = (e) => r(e.data); });
-  worker.postMessage({ port: ch.port1, loadMs: cfg.workerLoadMs, maxBlocks }, [ch.port1]);
+  worker.postMessage({ port: ch.port1, loadMs: cfg.workerLoadMs, maxBlocks,
+    stopAfter: Math.round(cfg.seconds * ctx.sampleRate / 128) }, [ch.port1]);
   await ready;
   let resolveDone;
   const doneP = new Promise((r) => { resolveDone = r; });
@@ -55,20 +56,21 @@ async function capture(cfg) {
   const mute = ctx.createGain(); mute.gain.value = 0;
   node.connect(tap).connect(mute).connect(ctx.destination);
   await ctx.resume();
-  await sleep(cfg.seconds * 1000);
+  // revised after the first Chrome step: the worker ends the frame stream
+  // after cfg.seconds of blocks; the page drains and then stops the tap
+  const t0 = now();
+  const res = await Promise.race([doneP, sleep((cfg.seconds + 120) * 1000).then(() => null)]);
+  out.endMs = now() - t0;
   const tapDone = new Promise((r) => { tap.port.onmessage = (e) => r(e.data); });
   tap.port.postMessage({ stop: true });
   out.tap = await tapDone;
-  const t0 = now();
-  worker.postMessage({ stopAt: out.tap.lastSeq });
-  const res = await Promise.race([doneP, sleep(120000).then(() => null)]);
-  out.drainMs = now() - t0;
   track.stop(); await ctx.close(); worker.terminate();
+  out.fRecv = fRecv; out.fSeq = fSeq;
   if (!res) { out.workerTimeout = true; return out; }
   out.worker = { n: res.n, lost: res.lost, reordered: res.reordered, dup: res.dup, nf: res.nf };
   out.blockSeqs = Array.from(res.seqs);
   out.fBlockRecv = Array.from(res.fBlockRecv); out.fPost = Array.from(res.fPost);
-  out.fRecv = fRecv; out.fSeq = fSeq; out.badJson = bad; out.other = other;
+  out.badJson = bad; out.other = other;
   return out;
 }
 window.e003r4 = { capture };

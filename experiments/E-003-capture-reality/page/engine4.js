@@ -5,10 +5,11 @@
 // work done. The cell is a placeholder of the real one's shape: this round
 // measures the transport, not the pitch.
 const now = () => performance.timeOrigin + performance.now();
-let port, loadMs = 0, maxBlocks = 0, stopAt = -1, rel = false;
+let port, loadMs = 0, maxBlocks = 0, stopAt = -1, stopAfter = -1, finished = false;
 let seqs, recv, n = 0, expect = 0, lost = 0, reordered = 0, dup = 0;
 let fBlockRecv, fPost, nf = 0;
 function finish() {
+  if (finished) return; finished = true;
   postMessage({ done: true, n, lost, reordered, dup, nf,
     seqs: seqs.slice(0, n), recv: recv.slice(0, n),
     fBlockRecv: fBlockRecv.slice(0, nf), fPost: fPost.slice(0, nf) });
@@ -18,13 +19,13 @@ onmessage = (e) => {
   const d = e.data;
   if (d.ping !== undefined) { postMessage({ pong: d.ping, t: now(), tRel: performance.now() }); return; }
   if (d.port) {
-    port = d.port; loadMs = d.loadMs; maxBlocks = d.maxBlocks;
+    port = d.port; loadMs = d.loadMs; maxBlocks = d.maxBlocks; stopAfter = d.stopAfter;
     seqs = new Int32Array(maxBlocks); recv = new Float64Array(maxBlocks);
     fBlockRecv = new Float64Array(Math.ceil(maxBlocks / 3)); fPost = new Float64Array(Math.ceil(maxBlocks / 3));
     port.onmessage = (m) => {
       const t = now();
       const b = m.data;
-      if (n >= maxBlocks) return;
+      if (finished || n >= maxBlocks) return;
       if (b.seq > expect) lost += b.seq - expect;
       else if (b.seq < expect) { reordered++; }
       if (b.seq === expect - 1) dup++;
@@ -39,7 +40,10 @@ onmessage = (e) => {
         fBlockRecv[f] = t; fPost[f] = now(); nf++;
         postMessage(text);
       }
-      if (stopAt >= 0 && b.seq >= stopAt) finish();
+      // revised after the first Chrome step: the worker ends the frame stream
+      // itself after stopAfter blocks, so a page that has fallen behind cannot
+      // hold the run's end (README, round 4, R0)
+      if (n === stopAfter || (stopAt >= 0 && b.seq >= stopAt)) finish();
     };
     postMessage({ ready: true });
   }

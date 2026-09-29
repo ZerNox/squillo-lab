@@ -128,7 +128,7 @@ def one(d):
         r[nm] = dict(p50=pct(x, 50), p95=pct(x, 95), p99=pct(x, 99), max=float(x.max()),
                      over_frame=int((x > FRAME_MS).sum()), n=int(len(x)))
     r["keeps_up"], r["growth_ms"] = keeps_up(post, lt)
-    r["drain_ms"] = d["drainMs"]
+    r["end_late_ms"] = d["endMs"] - 1000 * d["cfg"]["seconds"]  # the stream's end reaching the page, after its last block was due
     return r
 
 
@@ -175,6 +175,7 @@ def main():
             from_block_p99_max=max(r["from_block"]["p99"] for r in rs),
             from_block_max=max(r["from_block"]["max"] for r in rs),
             from_block_over_frame=sum(r["from_block"]["over_frame"] for r in rs),
+            end_late_ms_max=max(r["end_late_ms"] for r in rs),
         )
     res = dict(frame_ms=FRAME_MS, checks=k, runs=runs, conditions=summ,
                errors=[r for r in runs if "error" in r], seconds=round(time.time() - t0, 2))
