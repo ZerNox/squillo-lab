@@ -720,6 +720,81 @@ take's wander is not seen; one Linux machine, Firefox 156. Whether a real
 microphone in Firefox runs at another rate than a 48 kHz context, and so
 takes this path, is still the real-microphone step below.
 
+## Round 4: a frame's pitch to the page, one message per frame (squillo iteration 53)
+
+**Question** (squillo F-042, R-10's focus for iteration 53). Joakim's
+review (2026-09-28) puts a live pitch line into the first slice: each
+frame's measured pitch and its ± cross from the engine worker to the page
+as they are computed. Round 1 measured the worklet-to-worker path at one
+message per 128-sample block. Does a second path, the worker to the page
+at one message per squillo frame (384 samples, 8 ms, squillo SG-002), as
+JSON text (ADR 0006), deliver every frame, in order, how late, and does it
+keep up when the page or the worker is busy? Serves `VISION.md` §2.1, §6,
+§12.3. The cell sent is a placeholder of the real cell's shape (frame,
+state, value, *u*): this round measures the transport, not the pitch.
+
+**Set-up.** `page/r4.js`, `page/engine4.js` and `r4_run.mjs`: round 1's
+mic path (`probe.js` `capture()`), raw request into a 48 kHz context,
+Chrome 154 on its fake microphone fed `data/cache/probe48000.wav` and
+Firefox 156 on its fake microphone, headless, one Linux laptop
+(i7-12700H). The stand-in worker (round 1's `engine.js`, extended) burns a
+set time after each block, and after every third block posts one JSON
+text message to the page. The page records each frame message's arrival,
+then burns a set time, standing in for drawing. Both sides stamp
+`performance.timeOrigin + performance.now()`.
+
+**Rules, written and committed before any capture** (S15;
+`r4_analyze.py` and `r4_run.mjs` hold them in code).
+
+- *R0, conditions.* Each browser × worker load {0, 0.75} of the block
+  period (2.667 ms; round 1's `LOADS`) × page load {0, 0.5, 1.5} of the
+  frame period (8 ms) per frame message × 3 runs × 12 s. Page load 1.5
+  (12 ms of work per 8 ms frame) is the overload that must show backlog.
+- *R1, measures.* Per frame, after the first 0.5 s (round 1's `SKIP_S`):
+  *transport*, the page's arrival minus the worker's post; *from block*,
+  the page's arrival minus the worker's receipt of the block that
+  completes the frame (so it includes the worker's stand-in work on that
+  block). p50, p95, p99, max and the count over one frame period, per run;
+  the worst run per condition. Neither includes the microphone's input
+  latency, the worklet-to-worker leg (round 1) or the display.
+- *R2, the keep-up bar.* A run keeps up when its median transport latency
+  over the last second of frames exceeds that over the first second after
+  0.5 s by at most one frame period. It must pass on every reference run
+  (both loads 0) and fail on every overload run (page load 1.5); asserted.
+- *R3, what is asserted on every run.* K0 below; every frame the worker
+  posted arrives at the page once, in order, as parseable JSON (C1); the
+  block path loses, reorders and repeats nothing (C2, round 1's check).
+
+**Checks of the checks** (`r4_analyze.py checks`, run before any capture
+is read; `results/r4/checks.json`).
+
+- *K0, the two clocks.* Twenty round trips page → worker → page before
+  each run: the worker's stamp must lie between the page's send and
+  receipt, within two timer steps (the page's measured resolution). Must
+  pass on consistent stamps; must fail on stamps 50 ms apart, and, on every
+  real run, on the same round trips stamped with each side's own
+  `performance.now()`, whose origins differ.
+- *K1, frames complete.* Frames 0–9 must pass; one dropped, two swapped or
+  one repeated must fail.
+- *K2, blocks intact.* Must fail on one lost, one reordered or one
+  repeated block.
+- *K3, the keep-up bar.* On 12 s of frames, a flat latency must pass and
+  one growing 4 ms a frame (12 ms of work per 8 ms frame) must fail.
+
+**Time** (S19). One 3 s run of each browser at loads 0 took 3.6 s in
+Chrome and 7.7 s in Firefox, launch included (a sample, deleted before
+the rules were committed); a 12 s run is estimated at 14 s and 17 s, so
+18 runs a browser take about 4 and 5 minutes, run as one step per
+browser. The analysis reads 36 files of about 1500 frames, seconds.
+
+**Expected before the run.** Every frame arrives, in order, in every
+condition (a message port is ordered and lossless, as round 1's blocks
+were). With the page idle, transport is under one timer step at the
+median (the sample: 0.0 ms in Chrome, 1 ms in Firefox) and well under a
+frame period at p99; page load 0.5 queues a frame behind the previous
+one's handler, so up to about 4 ms; page load 1.5 falls behind without
+bound, which is backlog, not loss.
+
 ## Needs a human (15 minutes)
 
 Real microphones, drivers and rooms, which fake devices cannot show.
