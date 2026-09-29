@@ -300,7 +300,7 @@ context's). Ten more checks of the checks, 26 in all, each rule on cases
 it must pass and must fail that differ in their input (noise suppression
 alone, two flags on, voice isolation on, raw; a matched rate, another
 rate, none). The expected outcomes were written before the model first
-ran, but in the same edit, not in a commit of their own. 132 conditions;
+ran, but in the same edit, not in a commit of their own (squillo L-047: `fixtures.py` now refuses to run on an uncommitted edit of itself, `8dc23fc`). 132 conditions;
 16 of 16 outcomes as the scenarios state. The fourteen earlier files
 regenerate byte for byte.
 
