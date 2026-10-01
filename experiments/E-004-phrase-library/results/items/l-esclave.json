@@ -60,7 +60,7 @@
   },
   "content": {
     "licence": "CC-PDM-1.0",
-    "source": "Notes and words of the first line taken from the edition: The University Society, 1904, in the Mutopia Project's Public Domain transcription (https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=587), squillo-lab E-004 round 3. Words corrected from the extracted \"Captive et peutêtre oubliée,\": the source writes `peut -- être`, a syllable break inside the French word peut-être.",
+    "source": "Notes and words of the first line taken from the edition: The University Society, 1904, in the Mutopia Project's Public Domain transcription (https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=587), squillo-lab E-004 round 3. The transcription prints no metronome mark: the tempo is its MIDI setting, written for playback and not printed. Words corrected from the extracted \"Captive et peutêtre oubliée,\": the source writes `peut -- être`, a syllable break inside the French word peut-être.",
     "origin": "public-domain",
     "provenance": {
       "words": {

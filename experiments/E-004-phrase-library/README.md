@@ -681,10 +681,10 @@ every earlier value unchanged, the three new keys true. Recorded and
 asserted, but unable to show the run: `tempo_bound_must_fail` evaluates
 the bound's formula on literals (68.01 against 68). The must-pass case
 `edition-phrase.json` adds no evidence of its own: it is this fold's
-`the-spirit-of-god.json`, already accepted in row 3. Not changed:
+`the-spirit-of-god.json`, already accepted in row 3. Not changed here:
 three items' tempos (The Spirit of God 112, L'Esclave 90, Sapphische
 Ode 68) are the transcription's MIDI setting, not a printed mark, and
-their `source` does not say so (squillo F-062).
+their `source` does not say so (squillo F-062; fixed in fold 3).
 
 ## Fold 3 (squillo iteration 62): the set the first slice ships
 
@@ -734,6 +734,45 @@ uv run python fold.py <squillo> --ship
 uv run python fold3.py <squillo>
 uv run python round2.py check && uv run python round2.py report
 ```
+
+**Result** (`results/fold3.json`; `results/fold2.json` and
+`results/items/` rewritten by `fold.py --ship`). Each run took under 3 s.
+
+| # | Check | Result |
+| ---: | :--- | :--- |
+| T | The tempo's origin, read from the 10 sources | Printed 3 (Good King Wenceslas 120, Le pays des rêves 84, Les roses d'Ispahan 60); the MIDI setting only 3 (Sapphische Ode 68, The Spirit of God 112, L'Esclave a dotted quarter at 60, so 90); LilyPond's default 60, 4 (Après un rêve and Einsamkeit give a word only, The Storm and Les matelots nothing). Equal to `fold.py`'s two sets; every value equal to the item's `tempo_qpm`; the PDF's first page shows "= *n*" for the 3 printed and for none of the other 7; each `source` says what the reader found. The reader's three cases pass and its must-fail holds |
+| — | `fold.py --ship` | Only the three items' `source` changed, one sentence each; `fold2.json` gains `count.midi_setting` and is otherwise byte for byte as before; every other item unchanged. squillo's `fixtures/exercises/edition-phrase.json` is the new The Spirit of God, SHA-256 `2fe4745a…6ebb` |
+| S1 | The set, loaded together | **34 of 34 accepted**: 4 exercises, 30 phrases; the must-fail (a phrase copied under another name) refuses both under EX-004 |
+| S2 | Rights (BU-008) | 30 of 30 phrases ship; the six BU-008 fixture cases re-run as they must |
+| S3 | Licences used | Exercises and originals `LicenseRef-squillo-adr-0008`; public-domain phrases `CC-PDM-1.0` |
+| S4 | BU-009, AN-002 | Each of the 4 exercises names only `pitch-accuracy`, `steadiness`, `vibrato`, each declared once with one widget in `first-slice`, parameters `{}`; both must-fail fixtures flagged as they must |
+| S5 | RU-001 | Own song: `sing-own-song`, `steadier-own-song`; phrase: `sing-phrase`, `steadier-phrase`; 62 offers (2 + 2 × 30) |
+| S6 | CO-005 | The step's exercise: `steadier-own-song` on the own song, `steadier-phrase` on a phrase (one analyzer each). Rule (2) on the written notes: **2 of 30 phrases give two blocks or more**, Le pays des rêves 3 (one note of 30/7 s) and Abide with Me 2 (one of 10/3 s); Après un rêve and Holy, Holy, Holy give 1; the other 26 none, their longest notes 3/5 to 2 s. Rule (2) picks `le-pays-des-reves`. The blocks' arithmetic passes 249 → 0, 250 → 1, 373 → 1, 374 → 2, and its must-fail holds |
+| S7 | Hashes | Every file's SHA-256 recorded; the 30 in squillo equal `results/items/` byte for byte, and the edition fixture equals The Spirit of God |
+| R2 | round2.py re-run | `check` and `report` write `r2-check.json`, `r2-rule2.json` and `r2-summary.json` byte for byte as before. The guard refuses an uncommitted edit (probed: one comment line appended, refused, reverted); `fold3.py`'s guard refuses an uncommitted `fold.py` (probed the same way) |
+
+**What it means.** The first slice's set is 4 exercises and the 30
+phrases, and the build would ship all 34. At their written tempo, 28 of
+the 30 phrases hold no note long enough for MT-009 to measure
+`steadiness` on, so a take sung as written gets no rung (CO-004) unless
+the singer holds notes longer than written; `coach` sends a take with no
+held note to Le pays des rêves. The library was chosen for genres and
+rights, not for held notes (squillo F-065).
+
+**S15 by hand.** `tools/checkkeys.py`: `fold.py` and `fold3.py` 0
+flags. `round2.py`: 7 flags, read by hand. `must_fail_inputs_differ` is
+asserted through the expression it records (`assert differs or n < 2`),
+which the tool cannot see. Recorded, not asserted: `must_fail_pitch`,
+`must_fail_rhythm`, `self_check`, `check_failed`, `checks_self` and
+`pending-check-failed` are per-reference outcomes. A reference whose
+check fails its own cases leaves its phrase pending (rule 5), which is
+the result, not an error; La donna è mobile's is the one case.
+
+**Limits.** The tempo reader reads LilyPond text by pattern, checked on
+the 10 sources it was written for and three texts of its own; the
+blocks are MT-009's arithmetic on written durations, not a measurement
+of anyone singing. A singer who holds a note longer than written gets
+more blocks.
 
 ## Needs a human
 

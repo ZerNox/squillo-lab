@@ -1,0 +1,392 @@
+{
+ "T_cases": {
+  "printed": true,
+  "midi-setting": true,
+  "default": true
+ },
+ "T_must_fail": true,
+ "T_per_item": {
+  "mutopia-607": {
+   "phrase_id": "the-storm",
+   "origin": "default",
+   "value": null,
+   "qpm": "60",
+   "item_qpm": 60,
+   "qpm_equal": true,
+   "pdf_shows_value": false,
+   "source_says": "default"
+  },
+  "mutopia-368": {
+   "phrase_id": "apres-un-reve",
+   "origin": "default",
+   "value": null,
+   "qpm": "60",
+   "item_qpm": 60,
+   "qpm_equal": true,
+   "pdf_shows_value": false,
+   "source_says": "default"
+  },
+  "mutopia-905": {
+   "phrase_id": "good-king-wenceslas",
+   "origin": "printed",
+   "value": "120",
+   "qpm": "120",
+   "item_qpm": 120,
+   "qpm_equal": true,
+   "pdf_shows_value": true,
+   "source_says": null
+  },
+  "mutopia-373": {
+   "phrase_id": "einsamkeit",
+   "origin": "default",
+   "value": null,
+   "qpm": "60",
+   "item_qpm": 60,
+   "qpm_equal": true,
+   "pdf_shows_value": false,
+   "source_says": "default"
+  },
+  "mutopia-580": {
+   "phrase_id": "sapphische-ode",
+   "origin": "midi-setting",
+   "value": "68",
+   "qpm": "68",
+   "item_qpm": 68,
+   "qpm_equal": true,
+   "pdf_shows_value": false,
+   "source_says": "midi-setting"
+  },
+  "mutopia-593": {
+   "phrase_id": "the-spirit-of-god",
+   "origin": "midi-setting",
+   "value": "112",
+   "qpm": "112",
+   "item_qpm": 112,
+   "qpm_equal": true,
+   "pdf_shows_value": false,
+   "source_says": "midi-setting"
+  },
+  "mutopia-587": {
+   "phrase_id": "l-esclave",
+   "origin": "midi-setting",
+   "value": "60",
+   "qpm": "90",
+   "item_qpm": 90,
+   "qpm_equal": true,
+   "pdf_shows_value": false,
+   "source_says": "midi-setting"
+  },
+  "mutopia-648": {
+   "phrase_id": "les-matelots",
+   "origin": "default",
+   "value": null,
+   "qpm": "60",
+   "item_qpm": 60,
+   "qpm_equal": true,
+   "pdf_shows_value": false,
+   "source_says": "default"
+  },
+  "mutopia-1795": {
+   "phrase_id": "les-roses-d-ispahan",
+   "origin": "printed",
+   "value": "60",
+   "qpm": "60",
+   "item_qpm": 60,
+   "qpm_equal": true,
+   "pdf_shows_value": true,
+   "source_says": null
+  },
+  "mutopia-1831": {
+   "phrase_id": "le-pays-des-reves",
+   "origin": "printed",
+   "value": "84",
+   "qpm": "84",
+   "item_qpm": 84,
+   "qpm_equal": true,
+   "pdf_shows_value": true,
+   "source_says": null
+  }
+ },
+ "T_default_is_R3_NO_MARK": true,
+ "T_midi_setting_is_R3_MIDI_SETTING": true,
+ "T_qpm_equal": true,
+ "T_pdf_agrees": true,
+ "T_source_says": true,
+ "T_counts": {
+  "printed": [
+   "good-king-wenceslas",
+   "le-pays-des-reves",
+   "les-roses-d-ispahan"
+  ],
+  "midi-setting": [
+   "l-esclave",
+   "sapphische-ode",
+   "the-spirit-of-god"
+  ],
+  "default": [
+   "apres-un-reve",
+   "einsamkeit",
+   "les-matelots",
+   "the-storm"
+  ]
+ },
+ "S1": {
+  "files": 34,
+  "accepted": 34,
+  "refused": {},
+  "exercises": 4,
+  "phrases": 30
+ },
+ "S1_must_fail": true,
+ "S2_fixtures": true,
+ "S2": {
+  "phrases": 30,
+  "ship": 30,
+  "fail": {}
+ },
+ "S3": {
+  "exercise/-": [
+   "LicenseRef-squillo-adr-0008"
+  ],
+  "phrase/original": [
+   "LicenseRef-squillo-adr-0008"
+  ],
+  "phrase/public-domain": [
+   "CC-PDM-1.0"
+  ]
+ },
+ "S4": {
+  "fixtures/slice/exercises/sing-own-song.json": [],
+  "fixtures/slice/exercises/sing-phrase.json": [],
+  "fixtures/slice/exercises/steadier-own-song.json": [],
+  "fixtures/slice/exercises/steadier-phrase.json": []
+ },
+ "S4_must_fail": true,
+ "S5": {
+  "own_song": [
+   "sing-own-song",
+   "steadier-own-song"
+  ],
+  "phrase": [
+   "sing-phrase",
+   "steadier-phrase"
+  ],
+  "offers": 62
+ },
+ "S6_block_cases": {
+  "249": true,
+  "250": true,
+  "373": true,
+  "374": true
+ },
+ "S6_block_must_fail": true,
+ "S6": {
+  "step_exercise": {
+   "own-song": "steadier-own-song",
+   "phrase": "steadier-phrase"
+  },
+  "phrases_with_two_blocks": 2,
+  "rule2_phrase": "le-pays-des-reves",
+  "blocks": {
+   "abide-with-me": {
+    "total": 2,
+    "per_note": [
+     2
+    ]
+   },
+   "amazing-grace": {
+    "total": 0,
+    "per_note": []
+   },
+   "apres-un-reve": {
+    "total": 1,
+    "per_note": [
+     1
+    ]
+   },
+   "blue-umbrella": {
+    "total": 0,
+    "per_note": []
+   },
+   "einsamkeit": {
+    "total": 0,
+    "per_note": []
+   },
+   "frere-jacques": {
+    "total": 0,
+    "per_note": []
+   },
+   "god-rest-ye-merry": {
+    "total": 0,
+    "per_note": []
+   },
+   "good-king-wenceslas": {
+    "total": 0,
+    "per_note": []
+   },
+   "greensleeves": {
+    "total": 0,
+    "per_note": []
+   },
+   "hark-the-herald": {
+    "total": 0,
+    "per_note": []
+   },
+   "holy-holy-holy": {
+    "total": 1,
+    "per_note": [
+     1
+    ]
+   },
+   "joy-to-the-world": {
+    "total": 0,
+    "per_note": []
+   },
+   "kettles-cold": {
+    "total": 0,
+    "per_note": []
+   },
+   "l-esclave": {
+    "total": 0,
+    "per_note": []
+   },
+   "lamplighter": {
+    "total": 0,
+    "per_note": []
+   },
+   "le-pays-des-reves": {
+    "total": 3,
+    "per_note": [
+     3
+    ]
+   },
+   "les-matelots": {
+    "total": 0,
+    "per_note": []
+   },
+   "les-roses-d-ispahan": {
+    "total": 0,
+    "per_note": []
+   },
+   "o-come-all-ye-faithful": {
+    "total": 0,
+    "per_note": []
+   },
+   "ode-to-joy": {
+    "total": 0,
+    "per_note": []
+   },
+   "paper-lanterns": {
+    "total": 0,
+    "per_note": []
+   },
+   "porch-light": {
+    "total": 0,
+    "per_note": []
+   },
+   "river-at-dawn": {
+    "total": 0,
+    "per_note": []
+   },
+   "row-your-boat": {
+    "total": 0,
+    "per_note": []
+   },
+   "rust-on-the-gate": {
+    "total": 0,
+    "per_note": []
+   },
+   "sapphische-ode": {
+    "total": 0,
+    "per_note": []
+   },
+   "silent-night": {
+    "total": 0,
+    "per_note": []
+   },
+   "the-spirit-of-god": {
+    "total": 0,
+    "per_note": []
+   },
+   "the-storm": {
+    "total": 0,
+    "per_note": []
+   },
+   "twinkle": {
+    "total": 0,
+    "per_note": []
+   }
+  },
+  "longest_note_s": {
+   "abide-with-me": "10/3",
+   "amazing-grace": "10/7",
+   "apres-un-reve": "2",
+   "blue-umbrella": "1",
+   "einsamkeit": "1",
+   "frere-jacques": "3/5",
+   "god-rest-ye-merry": "3/5",
+   "good-king-wenceslas": "1",
+   "greensleeves": "10/11",
+   "hark-the-herald": "15/16",
+   "holy-holy-holy": "30/11",
+   "joy-to-the-world": "9/8",
+   "kettles-cold": "30/19",
+   "l-esclave": "4/3",
+   "lamplighter": "10/7",
+   "le-pays-des-reves": "30/7",
+   "les-matelots": "1",
+   "les-roses-d-ispahan": "1",
+   "o-come-all-ye-faithful": "30/23",
+   "ode-to-joy": "15/28",
+   "paper-lanterns": "15/13",
+   "porch-light": "30/23",
+   "river-at-dawn": "40/23",
+   "row-your-boat": "9/5",
+   "rust-on-the-gate": "15/14",
+   "sapphische-ode": "45/34",
+   "silent-night": "45/38",
+   "the-spirit-of-god": "15/14",
+   "the-storm": "1",
+   "twinkle": "6/5"
+  }
+ },
+ "S7": {
+  "fixtures/slice/exercises/sing-own-song.json": "d12fbb1359b92d1c18add12468cd0293f1212286c5002daadaf73b0358a9f038",
+  "fixtures/slice/exercises/sing-phrase.json": "3443d7cf1897c08b2455dc17a118143bc0aec845b1f5962bbb42d0ec3d7659bb",
+  "fixtures/slice/exercises/steadier-own-song.json": "e571514ec7a5ce7154f5b7b031feb0cb337f2d0595c0f175548419f7afed2151",
+  "fixtures/slice/exercises/steadier-phrase.json": "22563f0a00928e5e3a5fdc9294a1f8f8e5b78eaac5413b09ce7e4964d8c5337f",
+  "fixtures/slice/phrases/abide-with-me.json": "3b42049f345cff0efbb4fc21c6d6e4fde66970c89dd4178c9a7731dfbc30d9f3",
+  "fixtures/slice/phrases/amazing-grace.json": "db8c426b052c7a2b4ce2176ede6ca2ebe6c67448398b9095c5d616c4ea17b963",
+  "fixtures/slice/phrases/apres-un-reve.json": "d983f25648236d0691bc8e66d915055011babacedb65ad4b00247f9db63ba43e",
+  "fixtures/slice/phrases/blue-umbrella.json": "67407f9ca9c836faba7cdadae52ec2668681c5c136bf10aed7e45faf37afe969",
+  "fixtures/slice/phrases/einsamkeit.json": "d52fc78babc61a2a89c29884db95194099773fcbb7e8771ae91fa067a4ef26b5",
+  "fixtures/slice/phrases/frere-jacques.json": "0e366d16c3e092c138f53e8088906d6b2e7ae92e02d7482fad3ab5ab66dffd50",
+  "fixtures/slice/phrases/god-rest-ye-merry.json": "cf9901b75b4e59456c2d7a8ce3cd063f11672f35cbf50f71f9e7466de68279a2",
+  "fixtures/slice/phrases/good-king-wenceslas.json": "cade4cbbb73401c580b99d68bc9d9e2e926b02e153f0bae4ea16768f69d1e50f",
+  "fixtures/slice/phrases/greensleeves.json": "605d06edfe5ad2799c212915902e14ad480df663ddae50ad7bd1b3bbd18387e8",
+  "fixtures/slice/phrases/hark-the-herald.json": "65e401ea872ad8091f3eff719090f9723349f23650a6afac4d9690b31400b23f",
+  "fixtures/slice/phrases/holy-holy-holy.json": "8eca5d4a6f666a165d49c1a3bc1f56560dfa170c5bab526d1de73295398ad49d",
+  "fixtures/slice/phrases/joy-to-the-world.json": "fe5f77f0fb150926c24a978414966c7d9c02af68b42066a8c9e400dd0d33be3b",
+  "fixtures/slice/phrases/kettles-cold.json": "6a4310e06b5780e86a1a7b1d8b3e5999bbae57edbd0060aa5813a1e73ac3d66f",
+  "fixtures/slice/phrases/l-esclave.json": "3140236b0344d25cd6ae31ab41f100d4ecf117d63432b74f311933ee429d3e90",
+  "fixtures/slice/phrases/lamplighter.json": "7ab472e71749d4eddcc1d8f6dca8d2ec7227711a6f7a30234ff5dea13acdcc42",
+  "fixtures/slice/phrases/le-pays-des-reves.json": "a931e7ef46c2af1470d8ce30fff8a69de5142646630f4ec9e72bdcd97a2875d7",
+  "fixtures/slice/phrases/les-matelots.json": "cf98e36e794d60bff818aaf3a69c1911cf5f0b4d7d4f710190800767f473a68b",
+  "fixtures/slice/phrases/les-roses-d-ispahan.json": "d912e5bebab5d2f52462e37e10426786ba123dd24b8ee90177b285720d24fded",
+  "fixtures/slice/phrases/o-come-all-ye-faithful.json": "4f4758d087e77829e6c8a8104f6e4681d573481b2328ab1196601ca31fc56adf",
+  "fixtures/slice/phrases/ode-to-joy.json": "25ead1cb62d303c7bfe1428ede6d674121088deaf1e6374b87798c90ca34ee09",
+  "fixtures/slice/phrases/paper-lanterns.json": "e86e7cc9bc7d6e3347901e2c5ccac26363795b024510f660c74ccbbaf3b3980c",
+  "fixtures/slice/phrases/porch-light.json": "2790b90006790877a926ec1da605ebac447f0b647b60f391ec2a3c3f32a1a4b4",
+  "fixtures/slice/phrases/river-at-dawn.json": "570757257f51e092fcafe1eee95b2ec8c7e46251cdcc4bfdf306d41ab6aeea7d",
+  "fixtures/slice/phrases/row-your-boat.json": "087e5a7a2fa411ddf9e146ef2538b3e890835fe3de6dfeecba5624271826e638",
+  "fixtures/slice/phrases/rust-on-the-gate.json": "03b43362b2501dc744e5dc4285fb9673640d22746bf341c6b4a21b469d7f9ac9",
+  "fixtures/slice/phrases/sapphische-ode.json": "956e8ade031cbfeed187ffcf2b47a3ed26edf16af385c698be0b80210d7b7286",
+  "fixtures/slice/phrases/silent-night.json": "b5376d679111d55958ad16b804a9cd4c3aeda7398f7cb9f4dea742377035dbb5",
+  "fixtures/slice/phrases/the-spirit-of-god.json": "2fe4745ae223780869d5eb98653c79b1cbda4e5d93b483f3d721fafe0d736ebb",
+  "fixtures/slice/phrases/the-storm.json": "74eb18434b3cfcbf54f33ad78d63fbb429634e1de4a0967aabd7b820cf123beb",
+  "fixtures/slice/phrases/twinkle.json": "54e9727a263a3c70ddb1e20becfcedd3136f8b40036659a3a59dae8b7889ccdf",
+  "fixtures/exercises/edition-phrase.json": "2fe4745ae223780869d5eb98653c79b1cbda4e5d93b483f3d721fafe0d736ebb"
+ },
+ "S7_phrases_equal_items": true,
+ "S7_edition_equal_item": true
+}

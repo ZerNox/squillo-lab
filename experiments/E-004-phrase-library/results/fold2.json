@@ -312,6 +312,11 @@
    "les-matelots",
    "the-storm"
   ],
+  "midi_setting": [
+   "l-esclave",
+   "sapphische-ode",
+   "the-spirit-of-god"
+  ],
   "words_corrected": {
    "l-esclave": "the source writes `peut -- être`, a syllable break inside the French word peut-être"
   }
