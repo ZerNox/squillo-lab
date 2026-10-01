@@ -535,7 +535,9 @@ def ly_words(paths, syllables):
             if k == len(want):
                 w = want[0]
                 for x, jn in zip(want[1:], joins):
-                    w += x if jn else " " + x
+                    # a syllable whose own text ends in a hyphen ("Veux- tu")
+                    # keeps it and joins: a hyphenated word
+                    w += x if (jn or w.endswith("-")) else " " + x
                 return " ".join(w.split()), f.name
     return None, None
 
@@ -718,8 +720,10 @@ def extract():
                 ph2, why2 = phrase_from(t2, q2, m2)
                 k6 = dict(available=True, excluded_on_second_path=why2)
                 if ph2:
+                    # words compared as each path's MIDI gives them (ph["words"]
+                    # is replaced by the source's joins below)
                     k6.update(same_pitches=ph2["midi"] == ph["midi"], same_beats=ph2["beats"] == ph["beats"],
-                              same_words=ph2["words"] == ph["words"])
+                              same_syllables=ph2["syllables"] == ph["syllables"])
         rec["k6"] = k6
         assert k1["must_fail_pitch"] and k1["must_fail_rhythm"], (pid, k1)
         assert k2["must_fail"], (pid, k2)

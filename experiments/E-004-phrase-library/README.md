@@ -472,7 +472,10 @@ would, so only Public Domain ones are used.
    piece; and the words are joined where the LilyPond source puts `--`
    between the line's syllables (found in order in the source's tokens,
    a token's LilyPond duration stripped), MIDI's hyphens only where the
-   source does not hold the line. The whole of `extract` was then re-run
+   source does not hold the line; a syllable whose own text ends in a
+   hyphen ("Veux- tu") keeps it and joins. K6 compares the two paths'
+   syllables, not the joined words (its first form compared one path's
+   MIDI joins with the other's source joins). The whole of `extract` was then re-run
    from the start, so rule 3's order chose again from the beginning.
 
    *Time (S19).* The survey: 39 listing pages at 1 s, 71 s. `extract`: at
