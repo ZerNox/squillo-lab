@@ -457,6 +457,24 @@ would, so only Public Domain ones are used.
    *Language*: the words' language is guessed from stop-words, reported
    only.
 
+   *Second attempt.* The first `extract` run stopped at Aurore (1829),
+   whose listed MIDI file the server does not have (404), after six
+   retries. It had also shown four code defects, none in the rules: a
+   blank `arranger = " "` (Lalo 587, Horsley 1366) and Schumann's
+   `arranger = "opus 48, n° 7"` (309) were taken as naming an arranger
+   with no death year, and excluded; a translator credited inside a
+   `\markup` poet field (Horsley 1366: Catherine Winkworth, 1827–1878) was
+   missed; and LilyPond 2.12 and later write MIDI lyrics without hyphens,
+   so words split inside a word ("The tem pest"). Fixed in code: a header
+   value names a person only if it holds a death-date pair or a
+   capitalised word; a "tr." credit anywhere in the header is a
+   translator; a listed file the server reports missing excludes its
+   piece; and the words are joined where the LilyPond source puts `--`
+   between the line's syllables (found in order in the source's tokens,
+   a token's LilyPond duration stripped), MIDI's hyphens only where the
+   source does not hold the line. The whole of `extract` was then re-run
+   from the start, so rule 3's order chose again from the beginning.
+
    *Time (S19).* The survey: 39 listing pages at 1 s, 71 s. `extract`: at
    most 20 pieces, two downloads each at 1 s and a compile of 2–10 s, so
    under 5 minutes; `measure` is timed on a sample before it runs.

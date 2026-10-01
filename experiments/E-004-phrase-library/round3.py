@@ -484,6 +484,74 @@ def ly_header(paths):
     return out
 
 
+def names_person(v):
+    """A header value names a person when it holds a death-date pair or a
+    capitalised word (second attempt: a blank field, and Schumann's
+    `arranger = "opus 48, n° 7"`, name no one)."""
+    return bool(DATES.search(v) or re.search(r"\b[A-ZÀ-Ý][a-zà-ÿ]+", v))
+
+
+def header_people(paths, hdr):
+    """Rule 4c: the header's translator and arranger fields, and a "tr."
+    credit anywhere in the header (second attempt: Mutopia 1366 credits
+    its translator inside a \\markup poet field)."""
+    out = [(k, hdr[k]) for k in ("translator", "arranger") if hdr.get(k) and names_person(hdr[k])]
+    for f in paths:
+        t = f.read_bytes().decode("utf-8", "replace")
+        m = re.search(r"\\header\s*\{(.*?)\n\s*\}", t, re.S)
+        if m:
+            for v in re.findall(r'"\s*(?:tr\.|transl(?:ated|ation)? by)\s*([^"]+)"', m[1], re.I):
+                out.append(("translator", v.strip()))
+    return out
+
+
+def ly_words(paths, syllables):
+    """Rule 5f's joins from the LilyPond source (second attempt: MIDI from
+    LilyPond 2.12 on carries no hyphen): find the line's syllables in order
+    in the source's tokens, skipping `--`, `__`, `_` and commands, and join
+    two syllables where a `--` lies between them. None if not found."""
+    norm = lambda x: x.strip('"').replace("_", " ").strip()  # noqa: E731
+    want = [norm(x) for x in syllables]
+    for f in paths:
+        t = f.read_bytes().decode("utf-8", "replace")
+        t = re.sub(r"%.*", "", t)
+        toks = re.findall(r'"(?:[^"\\]|\\.)*"|--|__|[^\s{}]+', t)
+        for i in range(len(toks)):
+            k, j, joins, prev_hyph = 0, i, [], False
+            while j < len(toks) and k < len(want):
+                tok = toks[j]
+                if tok == "--":
+                    prev_hyph = True
+                elif tok in ("__", "_") or tok.startswith("\\"):
+                    pass
+                elif norm(tok) == want[k] or norm(re.sub(r"\d+\.*$", "", tok)) == want[k]:
+                    if k:
+                        joins.append(prev_hyph)
+                    prev_hyph = False
+                    k += 1
+                else:
+                    break
+                j += 1
+            if k == len(want):
+                w = want[0]
+                for x, jn in zip(want[1:], joins):
+                    w += x if jn else " " + x
+                return " ".join(w.split()), f.name
+    return None, None
+
+
+def head_ok(url):
+    """A listed file that the server does not have (second attempt: Aurore's
+    MIDI, 404) is unreadable; checked before the retrying download."""
+    import urllib.error
+    import urllib.request
+    try:
+        urllib.request.urlopen(urllib.request.Request(url, headers=R.UA, method="HEAD"), timeout=60)
+        return True
+    except urllib.error.HTTPError as e:
+        return e.code not in (404, 410)
+
+
 def ly_paths(s):
     import io
     import zipfile
@@ -588,14 +656,15 @@ def extract():
         hdr = ly_header(lys)
         rec["ly_header"] = {k: hdr[k] for k in ("title", "composer", "poet", "translator", "arranger", "source",
                                                  "date", "copyright", "mutopiacomposer", "mutopiapoet") if k in hdr}
-        for k in ("translator", "arranger"):
-            if hdr.get(k) and not any(p["role"] == "arranger" for p in ppl if k == "arranger"):
-                ds = DATES.search(hdr[k])
-                if not ds:
-                    rec["excluded"] = f"4c header {k} '{hdr[k]}' with no death year"
-                    break
-                ppl.append(dict(role=k, name=hdr[k], mutopia_died=int(ds[2] or ds[3]), died_eff=int(ds[2] or ds[3]),
-                                agree=None))
+        for k, v in header_people(lys, hdr):
+            if k == "arranger" and any(p["role"] == "arranger" for p in ppl):
+                continue
+            ds = DATES.search(v)
+            if not ds:
+                rec["excluded"] = f"4c header {k} '{v}' with no death year"
+                break
+            ppl.append(dict(role=k, name=v, mutopia_died=int(ds[2] or ds[3]), died_eff=int(ds[2] or ds[3]),
+                            agree=None))
         if rec.get("excluded"):
             print(pid, rec["excluded"])
             continue
@@ -609,7 +678,11 @@ def extract():
             print(pid, rec["excluded"])
             continue
         # rule 5a: Mutopia's MIDI; else the compiled LilyPond file
-        mpath = fetch(s["mid"][0]) if s["mid"] else None
+        if not s["mid"] or not head_ok(s["mid"][0]):
+            rec["excluded"] = "5a the listed MIDI file is not on the server"
+            print(pid, rec["excluded"])
+            continue
+        mpath = fetch(s["mid"][0])
         tracks, tpq, meta = read_midi(mpath)
         rec["midi_source"] = "mutopia"
         if not any(t["lyrics"] for t in tracks):
@@ -626,6 +699,12 @@ def extract():
             print(pid, why)
             continue
         rec["phrase"] = ph
+        w, wf = ly_words(lys, ph["syllables"])
+        ph["words_midi"] = ph["words"]
+        if w:
+            ph["words"], ph["words_from"] = w, wf
+        else:
+            ph["words_from"] = "midi"
         rec["conditions"] = c = conditions(ph)
         rec["k1"] = k1 = k1_round_trip(ph)
         rec["k2"] = k2 = k2_words(ph)
