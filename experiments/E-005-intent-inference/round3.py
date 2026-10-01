@@ -56,6 +56,8 @@ Inputs, conditions written before generating (S15):
            inside round 2's range (top <= min(12, base + 17), bottom >= -25
            semitones re A4, round2.py line 109), sigma 0, 10, 20, 30, straight
            or vibrato, three renderings each, 720;
+  (revision 1, before any run: where that placement leaves the item outside
+  the voice's range, its lowest note goes on the range's floor, -25);
   every sounding sample of the contour inside ADR 0007's E2..C6, asserted
   on the generated contour (`round2.contour_ok`); every item's transposition
   fits every voice, asserted. The error model is round 2's: tuning G
@@ -204,6 +206,11 @@ def transpose(semis, base):
         s -= 12
     while s.min() < lo:
         s += 12
+    if s.max() > hi or s.min() < lo:
+        # Revision 1 (before any run; check C1 found apres-un-reve, blue-umbrella and
+        # lamplighter outside the bass's range under the placement above): the lowest
+        # note on the range's floor, when the span fits at all.
+        s += lo - s.min()
     if s.max() > hi or s.min() < lo:
         return None
     return s
