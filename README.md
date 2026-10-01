@@ -65,7 +65,14 @@ L-031, L-032, L-034, L-036, L-041, L-046, L-047).
 A check against an outside source names its reference item in advance: the
 article's score block, the person's entity, the edition. It never takes the
 best match among several, because a different work can match. Caches of
-outside reads are keyed by the whole request (squillo L-027).
+outside reads are keyed by the whole request (squillo L-027). A field
+read from an outside page or file is read by the label or form the source
+itself gives it, checked on one item of each kind the source has (each
+page layout; each version of a file format the run reads, such as MIDI
+from each LilyPond generation) before any rule reads it. A file the
+source lists but does not serve is an outcome recorded for its item, not
+an error retried (squillo L-050; E-004 round 3's `survey`, `head_ok`,
+`ly_words`).
 
 **Place every anomaly in the input's own structure** (squillo standing
 instruction S17). When a known input passes through a system the lab does
