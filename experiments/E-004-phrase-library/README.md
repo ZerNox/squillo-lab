@@ -442,12 +442,24 @@ would, so only Public Domain ones are used.
    a semitone must fail on pitch, one duration doubled on rhythm, each
    input asserted to differ. K2, the words: the line's syllables shifted by
    one tick must fall below `ALIGN_MIN`. K3, the rights rule: rule 2's
-   probe. K4, the people: the cross-check fails a person whose recorded
-   year is set to one Wikidata does not give. K5, an independent
+   probe. K4, the people: each person's Mutopia year compared with the
+   next person's Wikidata entry (names sorted), a wrong entry, must
+   disagree wherever the two Mutopia years differ. K5, an independent
    transcription: where round 1 or 2 compared the same tune against
    Wikipedia or Mutopia, the extracted phrase is compared with that
    reference too and the outcome reported; it decides nothing, since an
-   edition can differ from a later transcription.
+   edition can differ from a later transcription. K6, a second path:
+   where Mutopia's MIDI was used and its LilyPond source is one file, the
+   source compiled with LilyPond 2.24.3 after `convert-ly` and the same
+   rules re-run on it; whether the pitches, durations and words agree is
+   reported, and decides nothing (tested first on Old 100th, 194, which is
+   not eligible: all 125 notes agree).
+   *Language*: the words' language is guessed from stop-words, reported
+   only.
+
+   *Time (S19).* The survey: 39 listing pages at 1 s, 71 s. `extract`: at
+   most 20 pieces, two downloads each at 1 s and a compile of 2–10 s, so
+   under 5 minutes; `measure` is timed on a sample before it runs.
 7. *Measurability* (`measure`): round 1's `measure`, unchanged (E-005's
    synthetic voice, six voice types, per-note error sd 0 or 20 cents,
    vibrato off or on), on the new phrases.
