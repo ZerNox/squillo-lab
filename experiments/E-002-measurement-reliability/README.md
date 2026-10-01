@@ -690,8 +690,9 @@ under 0.2 minutes; the analysis (81 per-set selections per condition
 group, 1000 singer resamples each) is array arithmetic on counts, under a
 minute. `check` alone ran in seconds.
 
-**Result** (`results/f052_sets.json`; 2.0 s for P4 and P5, 13 s in all;
-a second run identical but for `seconds`). Coverage is the share of
+**Result** (`results/f052_sets.json`; 12.4 s in all, `seconds`, of which
+P4 and P5 8.9 s at a pool of 16, inside the estimate; a second run
+identical but for `seconds`). Coverage is the share of
 accepted frames within ±2*u* under MT-003's table as squillo states it;
 intervals are 95 % over 1000 resamples of the singers.
 
