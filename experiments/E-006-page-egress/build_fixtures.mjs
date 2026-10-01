@@ -1,5 +1,5 @@
 // Generator of squillo fixtures/build/engine-modules.json (squillo iteration
-// 56, `build` BU-003): WebAssembly modules written byte by byte, each with the
+// 56, `build` BU-004): WebAssembly modules written byte by byte, each with the
 // properties squillo's build checks of the engine module (ADR 0006: imports
 // nothing; ADR 0016: no relaxed SIMD, no threads). Not the engine: test inputs.
 //
