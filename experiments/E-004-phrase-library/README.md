@@ -506,7 +506,7 @@ LilyPond 2.24.3's `convert-ly`.
 | 2 | How many of those give a phrase that passes rules 4–6? | Rule 3's order tried **20** to take **10**, the number short of 30. The 10 excluded: no lyric events readable 4 (Oh! Boatman, Haste! and Armide: Mutopia's MIDI has none and the source did not compile; All My Heart This Night Rejoices and Es hat die Rose sich beklagt: none on either path), the listed MIDI not on the server 2 (Aurore, Fleur jetée), a rest inside the first line 2 (Gute Nacht!, Les Djinns), a first line of 4 notes 2 (Ich grolle nicht, Ein Ton). No phrase failed a range, length, short-note or pitch-range condition |
 | 3 | Do the checks hold? | K1 (round trip): must-pass 12 of 12, must-fail on pitch 12 of 12 and on rhythm 12 of 12 (asserted). K2 (words): 12 of 12 aligned, at least 90 % of the line's syllables on melody onsets; shifted one tick, 12 of 12 fall below (asserted). K4 (people): 40 person entries; 36 agree with Wikidata; 2 disagree, both Robert Franz (Mutopia 1862, Wikidata 1892; the later year used, no verdict changed, neither piece taken); 2 unchecked (Hans Schmidt, Sapphische Ode's poet: no article under the name committed, so Mutopia's 1923 alone carries its `life100` pass; Catherine Winkworth, a header credit); the 27 must-fail pairings all disagree (asserted). K6 (the source compiled again): on 8 pieces where it ran, pitches, durations and syllables agree 8 of 8; it did not run on 4 (three whose phrase already came from the compiled source, and Les roses d'Ispahan, whose compile gave no MIDI). Recorded, not asserted: K1's and K2's `must_pass`, which are verdicts (a failure excludes the piece), and K6, which decides nothing. K5: no tried piece sets a tune round 1 or 2 compared, so it has no case |
 | 4 | The 10 phrases | The Storm (Hullah, Procter; song), Après un rêve (Fauré, Bussine), Good King Wenceslas (Neale; listed as song by Mutopia's style), Einsamkeit (Schubert, Müller), Sapphische Ode (Brahms, Schmidt), The Spirit of God (Phelps; hymn), L'Esclave (Lalo, Gautier), Les matelots (Fauré, Gautier), Les roses d'Ispahan (Fauré, Leconte de Lisle), Le pays des rêves (Fauré, Silvestre). Editions dated 1844 to 1916. English 3, French 5, German 2. 7 to 18 notes, range 5 to 12 semitones, 4.0 to 13.5 s at the file's tempo, shortest note 0.25 s. All pass `us`, `life70` and `life100`; Mutopia's transcription of each is Public Domain |
-| 5 | Can intent be inferred on them? (round 1's `measure`, unchanged; 240 renderings, 714 notes per condition) | No error, no vibrato: **714 of 714**. Vibrato: **99.7 %** (phrase bootstrap 95 % 99.0–100). 20 cents per-note error: **96.4 %** (94.4–98.0). Both: **92.0 %** (89.3–94.5). Round 1's phrases: 100, 97.6, 96.8 and 93.1 %. The one phrase under 100 % with vibrato alone is Les matelots, 95.2 % |
+| 5 | Can intent be inferred on them? (round 1's `measure`, unchanged; 240 renderings, 714 notes per condition) | No error, no vibrato: **714 of 714**. Vibrato: **99.7 %** (phrase bootstrap 95 % 99.0–100). 20 cents per-note error: **96.4 %** (94.5–97.9). Both: **92.0 %** (89.3–94.5). Round 1's phrases: 100, 97.6, 96.8 and 93.1 %. The one phrase under 100 % with vibrato alone is Les matelots, 95.2 % |
 | 6 | The library now | **30**: 23 public-domain (13 verified against a transcription in rounds 1–2, 10 taken from their edition here) and 7 originals, under **13 genre labels**: classical 8, carol 5, hymn 4, children's 3, song 2, folk 1, and the 7 originals' one each. All 23 public-domain phrases pass squillo's shipping rule (`us` and `life100`) |
 
 **Answer.** Yes: taking notes and words from a named public-domain
@@ -578,7 +578,8 @@ committed so that squillo can cite it.
   first run on **every** file in squillo's `fixtures/exercises/` against
   the outcome its scenario states: 6 accepted (must pass), 22 refused,
   each under its stated requirement at its stated pointer, and the
-  EX-004 pair refused both ways round (must fail).
+  EX-004 pair refused both ways round (must fail); from squillo
+  iteration 58, 7 accepted, with `edition-phrase.json` (below).
 - *B, the rights rules.* `us` (every part published by 1930), `life100`
   (every contributor dead by 1925, an anonymous part published by 1925)
   and the licence (`CC-PDM-1.0`, or `LicenseRef-squillo-adr-0008` for an
@@ -623,6 +624,28 @@ specs, checked on squillo's own fixtures, not an implementation. Round
 3's limits stand: the notes are the transcription's, the spelling of
 accidentals follows the key signature, and Sapphische Ode's `life100`
 pass rests on Mutopia's year for its poet alone.
+
+**Audit by squillo R-12 (iteration 60).** The rules and the results were
+committed in the same second (`f5ea2be`, `fa22caf`), after a first run
+that the *C* bullet discloses; `fold.py` had no guard against running
+uncommitted, and of its check keys only L and B on the fixtures were
+asserted (S15). Fixed in a rules commit before the re-run: `fold.py`
+refuses to run uncommitted (checked: it refused before that commit),
+asserts every check key, L and B on the 30, the notes' round trip and
+C, and adds three must-fail cases that differ in the input the check
+reads: the notes' comparison with one pitch moved
+(`R_notes_must_fail`), the edition fixture against the item with one
+byte changed (`R_edition_fixture_must_fail`), and C's own predicate on
+The Storm slowed tenfold and with a note above C6
+(`C_within_must_fail`). Re-run: every item byte for byte unchanged,
+every earlier value unchanged, the three new keys true. Recorded and
+asserted, but unable to show the run: `tempo_bound_must_fail` evaluates
+the bound's formula on literals (68.01 against 68). The must-pass case
+`edition-phrase.json` adds no evidence of its own: it is this fold's
+`the-spirit-of-god.json`, already accepted in row 3. Not changed:
+three items' tempos (The Spirit of God 112, L'Esclave 90, Sapphische
+Ode 68) are the transcription's MIDI setting, not a printed mark, and
+their `source` does not say so (squillo F-062).
 
 ## Needs a human
 

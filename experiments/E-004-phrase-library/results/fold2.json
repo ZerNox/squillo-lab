@@ -22,6 +22,8 @@
  "R_fixture_amazing_grace_equal": true,
  "R_fixture_must_fail": true,
  "R_edition_fixture_bytes_equal": true,
+ "R_edition_fixture_must_fail": true,
+ "R_notes_must_fail": true,
  "R_notes_exact": {
   "items": 30,
   "equal": 30
@@ -272,6 +274,7 @@
   }
  },
  "C_must_fail": true,
+ "C_within_must_fail": true,
  "tempo_bound_must_fail": true,
  "count": {
   "items": 30,
