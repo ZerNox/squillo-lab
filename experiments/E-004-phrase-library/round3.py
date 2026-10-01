@@ -97,8 +97,13 @@ def survey():
             r0 = rows[0] + [""] * 4
             r1 = (rows[1] if len(rows) > 1 else []) + [""] * 4
             r2 = (rows[2] if len(rows) > 2 else []) + [""] * 4
+            # the fourth cell of the first row is Mutopia's Lyricist(s), of the
+            # second its Arranger(s), as its piece pages label them (first
+            # parsed as "extra" and "poet": corrected after the first screen,
+            # from the cached pages, before any file was read; README)
+            na = lambda c: "" if c.strip().lower() in ("n/a", "none") else c  # noqa: E731
             out.append(dict(id=int(pid[1]) if pid else None, title=r0[0], composer=r0[1], opus=r0[2],
-                            extra=r0[3], instrument=r1[0], date=r1[1], style=r1[2], poet=r1[3],
+                            poet=na(r0[3]), instrument=r1[0], date=r1[1], style=r1[2], arranger=na(r1[3]),
                             source=r2[0], licence=r2[1], ly=ly, ly_zip=lyz, mid=mid, mid_zip=midz))
         print(f"startat={start}: {len(tables)} pieces")
         if f"startat={start + PAGE}&" not in page.replace("&amp;", "&"):
@@ -163,13 +168,14 @@ def screen_one(s, verified_titles):
     comps = people_in(s["composer"])
     if not comps:
         why.append("2c composer cell empty")
-    for p in comps + poets:
+    arrs = people_in(s["arranger"])
+    for p in comps + poets + arrs:
         if not p["anonymous"] and p["died"] is None:
             why.append(f"2c no death year: {p['name']}")
     pub = edition_year(s["source"])
     if pub is None:
         why.append("2d no edition year in the source cell")
-    r = rights([as_parts(comps), as_parts(poets)], pub)
+    r = rights([as_parts(comps), as_parts(poets)] + ([as_parts(arrs)] if as_parts(arrs) else []), pub)
     if not (r["us"] and r["life100"]):
         why.append(f"2e rights us={r['us']} life100={r['life100']} (edition {pub})")
     if not (s["mid"] or s["mid_zip"]) or not (s["ly"] or s["ly_zip"]):
@@ -179,7 +185,7 @@ def screen_one(s, verified_titles):
     if dup:
         why.append("2g a verified phrase sets it: " + ", ".join(dup))
     return dict(id=s["id"], title=s["title"], style=s["style"], genre=GENRE.get(s["style"], "other"),
-                composer=comps, poet=poets, edition=s["source"], edition_year=pub, rights=r,
+                composer=comps, poet=poets, arranger=arrs, edition=s["source"], edition_year=pub, rights=r,
                 eligible=not why, why=why)
 
 

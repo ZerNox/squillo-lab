@@ -367,12 +367,16 @@ would, so only Public Domain ones are used.
 1. *Survey, metadata only* (`survey`). Every page of Mutopia's listing for
    instrument Voice, every style, 10 pieces a page, following the listing
    until it ends. Per piece, the listing's cells: title, composer, opus,
-   instrument, date, style, poet, source (the edition), licence, and the
-   file links. No file is downloaded.
+   instrument, date, style, lyricist, arranger, source (the edition),
+   licence, and the file links. No file is downloaded. (Correction, made
+   after the first screen and before any file was read: the code first
+   took the arranger cell for the poet and missed the lyricist cell; the
+   piece pages' labels, read for 516, 526 and 640, fixed it, and the screen
+   was re-run on the cached pages. "n/a" names no one.)
 2. *Screen, mechanical, from that metadata alone* (`screen`). A piece is
-   eligible when: (a) its licence is Public Domain; (b) the poet cell names
-   someone, so the edition has words; (c) every named composer and poet has
-   a death year in Mutopia's cells (anonymous and traditional parts need
+   eligible when: (a) its licence is Public Domain; (b) the lyricist cell
+   names someone, so the edition has words; (c) every named composer,
+   lyricist and arranger has a death year in Mutopia's cells (anonymous and traditional parts need
    none); (d) the source cell names a year, the edition's (the latest
    four-digit year it names), taken as the published-by year of every part,
    since the edition prints both; (e) round 1's rules pass on that, `us`
