@@ -1,0 +1,93 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "the-spirit-of-god",
+  "title": "The Spirit of God",
+  "instructions": "Sing the first line of the hymn, unaccompanied, at a steady pace.",
+  "genre": "hymn",
+  "language": "en",
+  "words": "The spirit of God like a fire is burning;",
+  "melody": {
+    "key": "C",
+    "meter": "4/4",
+    "tempo_qpm": 112,
+    "notes": [
+      {
+        "pitch": "G4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "C5",
+        "quarters": "2"
+      },
+      {
+        "pitch": "D5",
+        "quarters": "1"
+      },
+      {
+        "pitch": "D5",
+        "quarters": "1"
+      },
+      {
+        "pitch": "E5",
+        "quarters": "2"
+      },
+      {
+        "pitch": "D5",
+        "quarters": "1"
+      },
+      {
+        "pitch": "C5",
+        "quarters": "1"
+      },
+      {
+        "pitch": "C5",
+        "quarters": "2"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "3/2"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "Notes and words of the first line taken from the edition: J. C. Little and G. B. Gardner Hymnbook (Bellows Falls, Vermont: 1844), in the Mutopia Project's Public Domain transcription (https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=593), squillo-lab E-004 round 3.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [
+          {
+            "name": "W. W. Phelps",
+            "role": "poet",
+            "died": 1872
+          }
+        ],
+        "published_by": 1844,
+        "edition": "J. C. Little and G. B. Gardner Hymnbook (Bellows Falls, Vermont: 1844), as transcribed in https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=593"
+      },
+      "tune": {
+        "contributors": [],
+        "published_by": 1844,
+        "edition": "J. C. Little and G. B. Gardner Hymnbook (Bellows Falls, Vermont: 1844), as transcribed in https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=593"
+      }
+    },
+    "melody_checked_against": "taken from https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=593, the transcription of the edition, not checked against an independent one (E-004 round 3)"
+  }
+}

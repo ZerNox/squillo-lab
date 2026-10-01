@@ -1,0 +1,87 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "abide-with-me",
+  "title": "Abide with Me",
+  "instructions": "Sing the first line of the hymn, unaccompanied, at a steady pace.",
+  "genre": "hymn",
+  "language": "en",
+  "words": "Abide with me; fast falls the eventide",
+  "melody": {
+    "key": "C",
+    "meter": "4/4",
+    "tempo_qpm": 72,
+    "notes": [
+      {
+        "pitch": "E4",
+        "quarters": "2"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "D4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "C4",
+        "quarters": "2"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "2"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "F4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "4"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "Words: Lyte, Remains (1850); written 1847. Tune: EVENTIDE, Hymns Ancient and Modern (1861). Melody line transcribed for squillo.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [
+          {
+            "name": "Henry Francis Lyte",
+            "role": "words",
+            "died": 1847
+          }
+        ],
+        "published_by": 1850,
+        "edition": "Lyte, Remains (1850); written 1847"
+      },
+      "tune": {
+        "contributors": [
+          {
+            "name": "William Henry Monk",
+            "role": "music",
+            "died": 1899
+          }
+        ],
+        "published_by": 1861,
+        "edition": "EVENTIDE, Hymns Ancient and Modern (1861)"
+      }
+    },
+    "melody_checked_against": "Mutopia piece 1241, the Public Domain transcription of www.cyberhymnal.org (E-004 round 2, matched in pitch and rhythm)"
+  }
+}

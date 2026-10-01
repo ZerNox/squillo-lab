@@ -1,0 +1,81 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "row-your-boat",
+  "title": "Row, Row, Row Your Boat",
+  "instructions": "Sing the first line of the song, unaccompanied, at a steady pace.",
+  "genre": "children",
+  "language": "en",
+  "words": "Row, row, row your boat, gently down the stream",
+  "melody": {
+    "key": "C",
+    "meter": "6/8",
+    "tempo_qpm": 100,
+    "notes": [
+      {
+        "pitch": "C4",
+        "quarters": "3/2"
+      },
+      {
+        "pitch": "C4",
+        "quarters": "3/2"
+      },
+      {
+        "pitch": "C4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "D4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "3/2"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "D4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "F4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "3"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "Words: American, anonymous; printed by 1852. Tune: Lyte, The Franklin Square Song Collection (1881). Melody line transcribed for squillo.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [],
+        "published_by": 1852,
+        "edition": "American, anonymous; printed by 1852"
+      },
+      "tune": {
+        "contributors": [
+          {
+            "name": "Eliphalet Oram Lyte",
+            "role": "music",
+            "died": 1913
+          }
+        ],
+        "published_by": 1881,
+        "edition": "Lyte, The Franklin Square Song Collection (1881)"
+      }
+    },
+    "melody_checked_against": "en.wikipedia.org \"Row, Row, Row Your Boat\" revision 1363214856, score 0"
+  }
+}

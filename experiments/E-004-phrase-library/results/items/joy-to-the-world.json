@@ -1,0 +1,79 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "joy-to-the-world",
+  "title": "Joy to the World",
+  "instructions": "Sing the first line of the carol, unaccompanied, at a steady pace.",
+  "genre": "carol",
+  "language": "en",
+  "words": "Joy to the world, the Lord is come",
+  "melody": {
+    "key": "D",
+    "meter": "2/4",
+    "tempo_qpm": 80,
+    "notes": [
+      {
+        "pitch": "D5",
+        "quarters": "1"
+      },
+      {
+        "pitch": "C#5",
+        "quarters": "3/4"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "1/4"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "3/2"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "F#4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "D4",
+        "quarters": "3/2"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "Words: Watts, The Psalms of David Imitated (1719). Tune: ANTIOCH, Mason, The Modern Psalmist (1839). Melody line transcribed for squillo.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [
+          {
+            "name": "Isaac Watts",
+            "role": "words",
+            "died": 1748
+          }
+        ],
+        "published_by": 1719,
+        "edition": "Watts, The Psalms of David Imitated (1719)"
+      },
+      "tune": {
+        "contributors": [
+          {
+            "name": "Lowell Mason",
+            "role": "music",
+            "died": 1872
+          }
+        ],
+        "published_by": 1839,
+        "edition": "ANTIOCH, Mason, The Modern Psalmist (1839)"
+      }
+    },
+    "melody_checked_against": "en.wikipedia.org \"Joy to the World\" revision 1343676954, score 0"
+  }
+}

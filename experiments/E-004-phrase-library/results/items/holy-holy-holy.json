@@ -1,0 +1,91 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "holy-holy-holy",
+  "title": "Holy, Holy, Holy",
+  "instructions": "Sing the first line of the hymn, unaccompanied, at a steady pace.",
+  "genre": "hymn",
+  "language": "en",
+  "words": "Holy, holy, holy! Lord God Almighty!",
+  "melody": {
+    "key": "D",
+    "meter": "4/4",
+    "tempo_qpm": 88,
+    "notes": [
+      {
+        "pitch": "D4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "D4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "F#4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "F#4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "2"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "2"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "3/2"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "4"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "Words: Heber, Hymns Written and Adapted to the Weekly Church Service (1827); written by 1826. Tune: NICAEA, Hymns Ancient and Modern (1861). Melody line transcribed for squillo.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [
+          {
+            "name": "Reginald Heber",
+            "role": "words",
+            "died": 1826
+          }
+        ],
+        "published_by": 1826,
+        "edition": "Heber, Hymns Written and Adapted to the Weekly Church Service (1827); written by 1826"
+      },
+      "tune": {
+        "contributors": [
+          {
+            "name": "John Bacchus Dykes",
+            "role": "music",
+            "died": 1876
+          }
+        ],
+        "published_by": 1861,
+        "edition": "NICAEA, Hymns Ancient and Modern (1861)"
+      }
+    },
+    "melody_checked_against": "en.wikipedia.org \"Holy, Holy, Holy! Lord God Almighty\" revision 1374765062, score 0"
+  }
+}

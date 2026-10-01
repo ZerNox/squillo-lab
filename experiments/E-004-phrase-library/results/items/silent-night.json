@@ -1,0 +1,84 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "silent-night",
+  "title": "Silent Night",
+  "instructions": "Sing the first line of the carol, unaccompanied, at a steady pace.",
+  "genre": "carol",
+  "language": "en",
+  "words": "Silent night, holy night",
+  "melody": {
+    "key": "C",
+    "meter": "6/8",
+    "tempo_qpm": 76,
+    "notes": [
+      {
+        "pitch": "G4",
+        "quarters": "3/4"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1/4"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "3/2"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "3/4"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1/4"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "3/2"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "Words: Mohr, Stille Nacht (1818); Young's English, Carols for Christmas-tide (1859-1863). Tune: STILLE NACHT, Gruber (1818), printed in Leipzig by 1833. Melody line transcribed for squillo.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [
+          {
+            "name": "Joseph Mohr",
+            "role": "words (German)",
+            "died": 1848
+          },
+          {
+            "name": "John Freeman Young",
+            "role": "English translation",
+            "died": 1885
+          }
+        ],
+        "published_by": 1863,
+        "edition": "Mohr, Stille Nacht (1818); Young's English, Carols for Christmas-tide (1859-1863)"
+      },
+      "tune": {
+        "contributors": [
+          {
+            "name": "Franz Xaver Gruber",
+            "role": "music",
+            "died": 1863
+          }
+        ],
+        "published_by": 1833,
+        "edition": "STILLE NACHT, Gruber (1818), printed in Leipzig by 1833"
+      }
+    },
+    "melody_checked_against": "en.wikipedia.org \"Silent Night\" revision 1368768347, score 0"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "hark-the-herald",
+  "title": "Hark! The Herald Angels Sing",
+  "instructions": "Sing the first line of the carol, unaccompanied, at a steady pace.",
+  "genre": "carol",
+  "language": "en",
+  "words": "Hark! the herald angels sing",
+  "melody": {
+    "key": "G",
+    "meter": "4/4",
+    "tempo_qpm": 96,
+    "notes": [
+      {
+        "pitch": "D4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "3/2"
+      },
+      {
+        "pitch": "F#4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "Words: Wesley, Hymns and Sacred Poems (1739); Whitefield's alteration (1753). Tune: MENDELSSOHN, from Festgesang (1840), adapted by Cummings (1855-1856). Melody line transcribed for squillo.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [
+          {
+            "name": "Charles Wesley",
+            "role": "words",
+            "died": 1788
+          },
+          {
+            "name": "George Whitefield",
+            "role": "altered first line",
+            "died": 1770
+          }
+        ],
+        "published_by": 1753,
+        "edition": "Wesley, Hymns and Sacred Poems (1739); Whitefield's alteration (1753)"
+      },
+      "tune": {
+        "contributors": [
+          {
+            "name": "Felix Mendelssohn",
+            "role": "music",
+            "died": 1847
+          },
+          {
+            "name": "William Hayman Cummings",
+            "role": "adaptation",
+            "died": 1915
+          }
+        ],
+        "published_by": 1856,
+        "edition": "MENDELSSOHN, from Festgesang (1840), adapted by Cummings (1855-1856)"
+      }
+    },
+    "melody_checked_against": "en.wikipedia.org \"Hark! The Herald Angels Sing\" revision 1359078229, score 0"
+  }
+}

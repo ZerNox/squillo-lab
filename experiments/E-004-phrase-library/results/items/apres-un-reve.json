@@ -1,0 +1,115 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "apres-un-reve",
+  "title": "Après un Rêve",
+  "instructions": "Sing the first line of the song, unaccompanied, at a steady pace.",
+  "genre": "classical",
+  "language": "fr",
+  "words": "Dans un sommeil que charmait ton image Je rêvais le bonheur,",
+  "melody": {
+    "key": "Cm",
+    "meter": "3/4",
+    "tempo_qpm": 60,
+    "notes": [
+      {
+        "pitch": "G4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "C5",
+        "quarters": "1"
+      },
+      {
+        "pitch": "D5",
+        "quarters": "1"
+      },
+      {
+        "pitch": "Eb5",
+        "quarters": "4/3"
+      },
+      {
+        "pitch": "D5",
+        "quarters": "1/3"
+      },
+      {
+        "pitch": "C5",
+        "quarters": "1/3"
+      },
+      {
+        "pitch": "Eb5",
+        "quarters": "1/3"
+      },
+      {
+        "pitch": "D5",
+        "quarters": "1/3"
+      },
+      {
+        "pitch": "C5",
+        "quarters": "1/3"
+      },
+      {
+        "pitch": "C5",
+        "quarters": "2"
+      },
+      {
+        "pitch": "Bb4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "Db5",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "F4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "Db5",
+        "quarters": "1"
+      },
+      {
+        "pitch": "C5",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "C5",
+        "quarters": "3/2"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "Notes and words of the first line taken from the edition: Choudens, 1880, in the Mutopia Project's Public Domain transcription (https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=368), squillo-lab E-004 round 3. The edition gives no metronome mark: the tempo is the transcription's MIDI default.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [
+          {
+            "name": "R. Bussine",
+            "role": "poet",
+            "died": 1899
+          }
+        ],
+        "published_by": 1880,
+        "edition": "Choudens, 1880, as transcribed in https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=368"
+      },
+      "tune": {
+        "contributors": [
+          {
+            "name": "G. Fauré",
+            "role": "composer",
+            "died": 1924
+          }
+        ],
+        "published_by": 1880,
+        "edition": "Choudens, 1880, as transcribed in https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=368"
+      }
+    },
+    "melody_checked_against": "taken from https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=368, the transcription of the edition, not checked against an independent one (E-004 round 3)"
+  }
+}

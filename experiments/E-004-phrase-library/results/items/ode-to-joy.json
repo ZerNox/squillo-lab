@@ -1,0 +1,79 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "ode-to-joy",
+  "title": "Ode to Joy",
+  "instructions": "Sing the first line of the song, unaccompanied, at a steady pace.",
+  "genre": "classical",
+  "language": "de",
+  "words": "Freude, schöner Götterfunken",
+  "melody": {
+    "key": "D",
+    "meter": "4/4",
+    "tempo_qpm": 112,
+    "notes": [
+      {
+        "pitch": "F#4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "F#4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "F#4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "Words: Schiller, An die Freude, Thalia (1786). Tune: Beethoven, Symphony No. 9, finale (Schott, 1826). Melody line transcribed for squillo.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [
+          {
+            "name": "Friedrich Schiller",
+            "role": "words",
+            "died": 1805
+          }
+        ],
+        "published_by": 1786,
+        "edition": "Schiller, An die Freude, Thalia (1786)"
+      },
+      "tune": {
+        "contributors": [
+          {
+            "name": "Ludwig van Beethoven",
+            "role": "music",
+            "died": 1827
+          }
+        ],
+        "published_by": 1826,
+        "edition": "Beethoven, Symphony No. 9, finale (Schott, 1826)"
+      }
+    },
+    "melody_checked_against": "en.wikipedia.org \"Ode to Joy\" revision 1375673953, score 0"
+  }
+}

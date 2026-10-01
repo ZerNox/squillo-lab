@@ -1,0 +1,77 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "amazing-grace",
+  "title": "Amazing Grace",
+  "instructions": "Sing the first line of the hymn, unaccompanied, at a steady pace.",
+  "genre": "hymn",
+  "language": "en",
+  "words": "Amazing grace, how sweet the sound",
+  "melody": {
+    "key": "G",
+    "meter": "3/4",
+    "tempo_qpm": 84,
+    "notes": [
+      {
+        "pitch": "D4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "2"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "2"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "2"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "D4",
+        "quarters": "2"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "Words: Olney Hymns (London, 1779). Tune: NEW BRITAIN, anonymous; Columbian Harmony (1829), set to Newton's text in The Southern Harmony (1835). Melody line transcribed for squillo.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [
+          {
+            "name": "John Newton",
+            "role": "words",
+            "died": 1807
+          }
+        ],
+        "published_by": 1779,
+        "edition": "Olney Hymns (London, 1779)"
+      },
+      "tune": {
+        "contributors": [],
+        "published_by": 1829,
+        "edition": "NEW BRITAIN, anonymous; Columbian Harmony (1829), set to Newton's text in The Southern Harmony (1835)"
+      }
+    },
+    "melody_checked_against": "en.wikipedia.org \"Amazing Grace\" revision 1373961141, score 0"
+  }
+}

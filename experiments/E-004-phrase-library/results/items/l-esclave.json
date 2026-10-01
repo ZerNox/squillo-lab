@@ -1,0 +1,91 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "l-esclave",
+  "title": "L'Esclave",
+  "instructions": "Sing the first line of the song, unaccompanied, at a steady pace.",
+  "genre": "classical",
+  "language": "fr",
+  "words": "Captive et peut-être oubliée,",
+  "melody": {
+    "key": "D",
+    "meter": "9/8",
+    "tempo_qpm": 90,
+    "notes": [
+      {
+        "pitch": "A4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "F4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "2"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "A#4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "F4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "3/2"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1/2"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "Notes and words of the first line taken from the edition: The University Society, 1904, in the Mutopia Project's Public Domain transcription (https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=587), squillo-lab E-004 round 3. Words corrected from the extracted \"Captive et peutêtre oubliée,\": the source writes `peut -- être`, a syllable break inside the French word peut-être.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [
+          {
+            "name": "T. Gautier",
+            "role": "poet",
+            "died": 1872
+          }
+        ],
+        "published_by": 1904,
+        "edition": "The University Society, 1904, as transcribed in https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=587"
+      },
+      "tune": {
+        "contributors": [
+          {
+            "name": "E. Lalo",
+            "role": "composer",
+            "died": 1892
+          }
+        ],
+        "published_by": 1904,
+        "edition": "The University Society, 1904, as transcribed in https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=587"
+      }
+    },
+    "melody_checked_against": "taken from https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=587, the transcription of the edition, not checked against an independent one (E-004 round 3)"
+  }
+}

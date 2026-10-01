@@ -1,0 +1,99 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "les-roses-d-ispahan",
+  "title": "Les roses d’Ispahan",
+  "instructions": "Sing the first line of the song, unaccompanied, at a steady pace.",
+  "genre": "classical",
+  "language": "fr",
+  "words": "Les roses d’Ispahan dans leur gaîne de mousse,",
+  "melody": {
+    "key": "D",
+    "meter": "2/4",
+    "tempo_qpm": 60,
+    "notes": [
+      {
+        "pitch": "F#4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "D4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1/4"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1/4"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1/4"
+      },
+      {
+        "pitch": "D4",
+        "quarters": "1/4"
+      },
+      {
+        "pitch": "D4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1/4"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1/4"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1/2"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "Notes and words of the first line taken from the edition: J. Hamelle, 1885 (IMSLP), in the Mutopia Project's Public Domain transcription (https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1795), squillo-lab E-004 round 3.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [
+          {
+            "name": "Leconte de Lisle",
+            "role": "poet",
+            "died": 1894
+          }
+        ],
+        "published_by": 1885,
+        "edition": "J. Hamelle, 1885 (IMSLP), as transcribed in https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1795"
+      },
+      "tune": {
+        "contributors": [
+          {
+            "name": "G. Fauré",
+            "role": "composer",
+            "died": 1924
+          }
+        ],
+        "published_by": 1885,
+        "edition": "J. Hamelle, 1885 (IMSLP), as transcribed in https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1795"
+      }
+    },
+    "melody_checked_against": "taken from https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1795, the transcription of the edition, not checked against an independent one (E-004 round 3)"
+  }
+}

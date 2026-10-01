@@ -1,0 +1,71 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "god-rest-ye-merry",
+  "title": "God Rest Ye Merry, Gentlemen",
+  "instructions": "Sing the first line of the carol, unaccompanied, at a steady pace.",
+  "genre": "carol",
+  "language": "en",
+  "words": "God rest ye merry, gentlemen",
+  "melody": {
+    "key": "Em",
+    "meter": "4/4",
+    "tempo_qpm": 100,
+    "notes": [
+      {
+        "pitch": "E4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "F#4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "D4",
+        "quarters": "1"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "Words: English traditional; Sandys, Christmas Carols Ancient and Modern (1833). Tune: as the text. Melody line transcribed for squillo.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [],
+        "published_by": 1833,
+        "edition": "English traditional; Sandys, Christmas Carols Ancient and Modern (1833)"
+      },
+      "tune": {
+        "contributors": [],
+        "published_by": 1833,
+        "edition": "English traditional; Sandys, Christmas Carols Ancient and Modern (1833)"
+      }
+    },
+    "melody_checked_against": "en.wikipedia.org \"God Rest Ye Merry, Gentlemen\" revision 1358523236, score 0"
+  }
+}

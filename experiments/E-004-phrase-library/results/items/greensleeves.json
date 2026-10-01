@@ -1,0 +1,87 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "greensleeves",
+  "title": "Greensleeves",
+  "instructions": "Sing the first line of the song, unaccompanied, at a steady pace.",
+  "genre": "folk",
+  "language": "en",
+  "words": "Alas, my love, you do me wrong",
+  "melody": {
+    "key": "Am",
+    "meter": "6/8",
+    "tempo_qpm": 132,
+    "notes": [
+      {
+        "pitch": "A4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "C5",
+        "quarters": "2"
+      },
+      {
+        "pitch": "D5",
+        "quarters": "1"
+      },
+      {
+        "pitch": "E5",
+        "quarters": "3/2"
+      },
+      {
+        "pitch": "F5",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "E5",
+        "quarters": "1"
+      },
+      {
+        "pitch": "D5",
+        "quarters": "2"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "3/2"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "C5",
+        "quarters": "2"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "Words: English, anonymous; registered 1580, A Handful of Pleasant Delights (1584). Tune: English, anonymous; Playford, The English Dancing Master (1652) and later. Melody line transcribed for squillo.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [],
+        "published_by": 1584,
+        "edition": "English, anonymous; registered 1580, A Handful of Pleasant Delights (1584)"
+      },
+      "tune": {
+        "contributors": [],
+        "published_by": 1652,
+        "edition": "English, anonymous; Playford, The English Dancing Master (1652) and later"
+      }
+    },
+    "melody_checked_against": "fr.wikipedia.org \"Greensleeves\" revision 239114744, score 0"
+  }
+}

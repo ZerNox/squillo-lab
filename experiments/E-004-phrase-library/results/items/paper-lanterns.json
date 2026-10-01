@@ -1,0 +1,74 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "paper-lanterns",
+  "title": "Paper Lanterns",
+  "instructions": "Sing the line, unaccompanied, at a steady pace.",
+  "genre": "pop",
+  "language": "en",
+  "words": "Paper lanterns on the ferry, counting every light",
+  "melody": {
+    "key": "C",
+    "meter": "4/4",
+    "tempo_qpm": 104,
+    "notes": [
+      {
+        "pitch": "E4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "D4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "D4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "C4",
+        "quarters": "2"
+      }
+    ]
+  },
+  "content": {
+    "licence": "LicenseRef-squillo-adr-0008",
+    "source": "Written for squillo in squillo iteration 23 (squillo-lab E-004 round 1); words and melody new",
+    "origin": "original"
+  }
+}

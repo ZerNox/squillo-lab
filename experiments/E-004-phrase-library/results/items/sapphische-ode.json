@@ -1,0 +1,95 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "sapphische-ode",
+  "title": "Sapphische Ode",
+  "instructions": "Sing the first line of the song, unaccompanied, at a steady pace.",
+  "genre": "classical",
+  "language": "de",
+  "words": "Rosen brach ich nachts mir am dunklen Hage;",
+  "melody": {
+    "key": "F",
+    "meter": "2/2",
+    "tempo_qpm": 68,
+    "notes": [
+      {
+        "pitch": "A4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "F4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "C4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "C5",
+        "quarters": "1"
+      },
+      {
+        "pitch": "F4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "F4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "C4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "F4",
+        "quarters": "3/2"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "Notes and words of the first line taken from the edition: The University Society, 1904, in the Mutopia Project's Public Domain transcription (https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=580), squillo-lab E-004 round 3.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [
+          {
+            "name": "H. von Schmidt",
+            "role": "poet",
+            "died": 1923
+          }
+        ],
+        "published_by": 1904,
+        "edition": "The University Society, 1904, as transcribed in https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=580"
+      },
+      "tune": {
+        "contributors": [
+          {
+            "name": "J. Brahms",
+            "role": "composer",
+            "died": 1897
+          }
+        ],
+        "published_by": 1904,
+        "edition": "The University Society, 1904, as transcribed in https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=580"
+      }
+    },
+    "melody_checked_against": "taken from https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=580, the transcription of the edition, not checked against an independent one (E-004 round 3)"
+  }
+}

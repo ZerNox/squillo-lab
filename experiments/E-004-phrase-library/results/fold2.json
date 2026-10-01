@@ -1,0 +1,315 @@
+{
+ "L_fixtures": {
+  "cases": 30,
+  "must_pass": 6,
+  "ok": 30,
+  "failed": {}
+ },
+ "B_fixtures": {
+  "cases": 6,
+  "ok": 6,
+  "failed": {}
+ },
+ "L_items": {
+  "files": 30,
+  "accepted": 30,
+  "refused": {}
+ },
+ "B_items": {
+  "ship": 30,
+  "fail": {}
+ },
+ "R_fixture_amazing_grace_equal": true,
+ "R_fixture_must_fail": true,
+ "R_notes_exact": {
+  "items": 30,
+  "equal": 30
+ },
+ "C": {
+  "within": 30,
+  "per_item": {
+   "amazing-grace": {
+    "notes": 9,
+    "range": 9,
+    "seconds": 8.571,
+    "shortest_s": 0.3571,
+    "low": 62,
+    "high": 71
+   },
+   "holy-holy-holy": {
+    "notes": 11,
+    "range": 9,
+    "seconds": 10.909,
+    "shortest_s": 0.3409,
+    "low": 62,
+    "high": 71
+   },
+   "abide-with-me": {
+    "notes": 10,
+    "range": 9,
+    "seconds": 13.333,
+    "shortest_s": 0.8333,
+    "low": 60,
+    "high": 69
+   },
+   "silent-night": {
+    "notes": 8,
+    "range": 5,
+    "seconds": 4.737,
+    "shortest_s": 0.1974,
+    "low": 64,
+    "high": 69
+   },
+   "joy-to-the-world": {
+    "notes": 8,
+    "range": 12,
+    "seconds": 5.625,
+    "shortest_s": 0.1875,
+    "low": 62,
+    "high": 74
+   },
+   "o-come-all-ye-faithful": {
+    "notes": 6,
+    "range": 7,
+    "seconds": 5.87,
+    "shortest_s": 0.6522,
+    "low": 62,
+    "high": 69
+   },
+   "hark-the-herald": {
+    "notes": 8,
+    "range": 9,
+    "seconds": 5.0,
+    "shortest_s": 0.3125,
+    "low": 62,
+    "high": 71
+   },
+   "god-rest-ye-merry": {
+    "notes": 9,
+    "range": 9,
+    "seconds": 5.4,
+    "shortest_s": 0.6,
+    "low": 62,
+    "high": 71
+   },
+   "twinkle": {
+    "notes": 7,
+    "range": 9,
+    "seconds": 4.8,
+    "shortest_s": 0.6,
+    "low": 60,
+    "high": 69
+   },
+   "row-your-boat": {
+    "notes": 10,
+    "range": 7,
+    "seconds": 7.2,
+    "shortest_s": 0.3,
+    "low": 60,
+    "high": 67
+   },
+   "frere-jacques": {
+    "notes": 8,
+    "range": 4,
+    "seconds": 4.8,
+    "shortest_s": 0.6,
+    "low": 60,
+    "high": 64
+   },
+   "greensleeves": {
+    "notes": 13,
+    "range": 10,
+    "seconds": 7.273,
+    "shortest_s": 0.2273,
+    "low": 67,
+    "high": 77
+   },
+   "ode-to-joy": {
+    "notes": 8,
+    "range": 5,
+    "seconds": 4.286,
+    "shortest_s": 0.5357,
+    "low": 64,
+    "high": 69
+   },
+   "paper-lanterns": {
+    "notes": 13,
+    "range": 9,
+    "seconds": 4.904,
+    "shortest_s": 0.2885,
+    "low": 60,
+    "high": 69
+   },
+   "rust-on-the-gate": {
+    "notes": 11,
+    "range": 7,
+    "seconds": 3.75,
+    "shortest_s": 0.2679,
+    "low": 55,
+    "high": 62
+   },
+   "blue-umbrella": {
+    "notes": 14,
+    "range": 12,
+    "seconds": 5.25,
+    "shortest_s": 0.25,
+    "low": 62,
+    "high": 74
+   },
+   "kettles-cold": {
+    "notes": 8,
+    "range": 10,
+    "seconds": 4.737,
+    "shortest_s": 0.3947,
+    "low": 60,
+    "high": 70
+   },
+   "river-at-dawn": {
+    "notes": 10,
+    "range": 10,
+    "seconds": 6.957,
+    "shortest_s": 0.4348,
+    "low": 62,
+    "high": 72
+   },
+   "porch-light": {
+    "notes": 9,
+    "range": 9,
+    "seconds": 4.239,
+    "shortest_s": 0.3261,
+    "low": 62,
+    "high": 71
+   },
+   "lamplighter": {
+    "notes": 10,
+    "range": 14,
+    "seconds": 5.714,
+    "shortest_s": 0.3571,
+    "low": 55,
+    "high": 69
+   },
+   "the-storm": {
+    "notes": 8,
+    "range": 5,
+    "seconds": 6.0,
+    "shortest_s": 0.5,
+    "low": 67,
+    "high": 72
+   },
+   "apres-un-reve": {
+    "notes": 17,
+    "range": 10,
+    "seconds": 13.5,
+    "shortest_s": 0.3333,
+    "low": 65,
+    "high": 75
+   },
+   "good-king-wenceslas": {
+    "notes": 7,
+    "range": 7,
+    "seconds": 4.0,
+    "shortest_s": 0.5,
+    "low": 64,
+    "high": 71
+   },
+   "einsamkeit": {
+    "notes": 13,
+    "range": 7,
+    "seconds": 5.5,
+    "shortest_s": 0.25,
+    "low": 66,
+    "high": 73
+   },
+   "sapphische-ode": {
+    "notes": 12,
+    "range": 12,
+    "seconds": 10.147,
+    "shortest_s": 0.4412,
+    "low": 60,
+    "high": 72
+   },
+   "the-spirit-of-god": {
+    "notes": 13,
+    "range": 9,
+    "seconds": 8.571,
+    "shortest_s": 0.2679,
+    "low": 67,
+    "high": 76
+   },
+   "l-esclave": {
+    "notes": 11,
+    "range": 6,
+    "seconds": 5.667,
+    "shortest_s": 0.3333,
+    "low": 64,
+    "high": 70
+   },
+   "les-matelots": {
+    "notes": 7,
+    "range": 7,
+    "seconds": 6.0,
+    "shortest_s": 0.5,
+    "low": 63,
+    "high": 70
+   },
+   "les-roses-d-ispahan": {
+    "notes": 13,
+    "range": 7,
+    "seconds": 6.0,
+    "shortest_s": 0.25,
+    "low": 62,
+    "high": 69
+   },
+   "le-pays-des-reves": {
+    "notes": 18,
+    "range": 11,
+    "seconds": 13.214,
+    "shortest_s": 0.3571,
+    "low": 64,
+    "high": 75
+   }
+  }
+ },
+ "C_must_fail": true,
+ "tempo_bound_must_fail": true,
+ "count": {
+  "items": 30,
+  "public_domain": 23,
+  "original": 7,
+  "by_round": {
+   "1": 19,
+   "2": 1,
+   "3": 10
+  },
+  "genres": 13,
+  "by_genre": {
+   "classical": 8,
+   "carol": 5,
+   "hymn": 4,
+   "children": 3,
+   "song": 2,
+   "blues": 1,
+   "country": 1,
+   "folk": 1,
+   "jazz": 1,
+   "musical-theatre": 1,
+   "pop": 1,
+   "rock": 1,
+   "soul": 1
+  },
+  "languages": {
+   "de": 3,
+   "en": 21,
+   "fr": 6
+  },
+  "no_metronome_mark": [
+   "apres-un-reve",
+   "einsamkeit",
+   "les-matelots",
+   "the-storm"
+  ],
+  "words_corrected": {
+   "l-esclave": "the source writes `peut -- être`, a syllable break inside the French word peut-être"
+  }
+ }
+}

@@ -1,0 +1,69 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "good-king-wenceslas",
+  "title": "Good King Wenceslas",
+  "instructions": "Sing the first line of the song, unaccompanied, at a steady pace.",
+  "genre": "song",
+  "language": "en",
+  "words": "Good King Wenceslas looked out,",
+  "melody": {
+    "key": "A",
+    "meter": "4/4",
+    "tempo_qpm": 120,
+    "notes": [
+      {
+        "pitch": "A4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "2"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "Notes and words of the first line taken from the edition: Sheet Music from Rev. Charles Lewis Hutchins, Carols Old and Carols New (Boston: Parish Choir, 1916), Carol #415, in the Mutopia Project's Public Domain transcription (https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=905), squillo-lab E-004 round 3.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [
+          {
+            "name": "J.M. Neale",
+            "role": "poet",
+            "died": 1866
+          }
+        ],
+        "published_by": 1916,
+        "edition": "Sheet Music from Rev. Charles Lewis Hutchins, Carols Old and Carols New (Boston: Parish Choir, 1916), Carol #415, as transcribed in https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=905"
+      },
+      "tune": {
+        "contributors": [],
+        "published_by": 1916,
+        "edition": "Sheet Music from Rev. Charles Lewis Hutchins, Carols Old and Carols New (Boston: Parish Choir, 1916), Carol #415, as transcribed in https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=905"
+      }
+    },
+    "melody_checked_against": "taken from https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=905, the transcription of the edition, not checked against an independent one (E-004 round 3)"
+  }
+}

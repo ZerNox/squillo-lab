@@ -545,6 +545,80 @@ rock, jazz and the rest) still rests on one original each.
   for Hans Schmidt (1923) alone.
 - The rights rules are round 1's model, with round 1's limits.
 
+## Fold 2 (squillo iteration 58): the 30 as item files
+
+**Question.** Do the library's 30 phrases (round 1's 19 verified, round
+2's Abide with Me, round 3's 10) load as squillo `exercises` items
+(`format_version` 3, squillo ADR 0005), and would the build ship each
+under ADR 0005's rights and licence rules (`build` BU-008)? Iteration 29
+checked the first 19 the same way in `/tmp`, uncommitted; this fold is
+committed so that squillo can cite it.
+
+**Rules** (`fold.py`, its head, written before the first run).
+
+- *Writing.* Round 1 and 2 items from `results/library.json`: the notes'
+  decimal durations as exact fractions; each part's `edition` from the
+  `source` text's `Words:` and `Tune:` clauses (`as the text` copies the
+  words'); Abide with Me's `melody_checked_against` names round 2's
+  reference, Mutopia 1241. Round 3 items from `results/r3-library.json`:
+  a composer or arranger is a tune contributor, a poet a words
+  contributor; both parts' `published_by` is the edition's year, and
+  their `edition` the edition with its Mutopia transcription; the tempo
+  is the MIDI file's rounded to a whole number, asserted within one
+  microsecond per quarter note of it (|q − round(q)| ≤ q²/6·10⁷), since a
+  MIDI tempo is whole microseconds; `melody_checked_against` says the
+  notes were **taken from** the transcription, **not checked against an
+  independent one**; the two languages read by hand (round 3's limits)
+  are set; one word is corrected, each correction listed with its reason
+  (L'Esclave's `peut -- être`, the syllable break round 3 could not join
+  by rule); a source that states no metronome mark says so in `source`.
+  `instructions` are squillo's own text, one template per genre noun.
+  `phrase_id` is round 1's, or the title folded to ASCII kebab-case.
+- *L, the loader.* A crude reading of `exercises` EX-001 to EX-011,
+  first run on **every** file in squillo's `fixtures/exercises/` against
+  the outcome its scenario states: 6 accepted (must pass), 22 refused,
+  each under its stated requirement at its stated pointer, and the
+  EX-004 pair refused both ways round (must fail).
+- *B, the rights rules.* `us` (every part published by 1930), `life100`
+  (every contributor dead by 1925, an anonymous part published by 1925)
+  and the licence (`CC-PDM-1.0`, or `LicenseRef-squillo-adr-0008` for an
+  original), first run on squillo's BU-008 fixtures: 1 must pass, 5 must
+  fail at their stated pointers.
+- *R, round trips.* The written `amazing-grace` equals squillo's
+  `fixtures/exercises/public-domain-phrase.json` member for member, and
+  with one pitch moved does not (must fail); every item's notes equal its
+  round's record exactly, pitch and duration.
+- *C, conditions.* Round 3's rule 5(e) recomputed from each item: 5–20
+  notes, range ≤ 16 semitones, ≤ 15 s, no note under 0.1 s, E2–C6; must
+  fail: The Storm at a tenth of its tempo. Added after the first run,
+  with the tempo bound's must-fail case (68.01 against 68); neither
+  changed a rule or an output.
+
+```
+uv run python fold.py <squillo>   # under 1 s -> results/items/*.json, results/fold2.json
+```
+
+**Result** (`results/fold2.json`).
+
+| # | Check | Result |
+| ---: | :--- | :--- |
+| 1 | L on squillo's fixtures | 30 of 30 cases as their scenarios state (6 must pass, 24 must fail, the EX-004 pair in both orders) |
+| 2 | B on squillo's fixtures | 6 of 6 (1 must pass, 5 must fail at their pointers) |
+| 3 | The 30, loaded together | **30 of 30 accepted**, no identifier shared |
+| 4 | The 30 under the rights rules | **30 of 30 would ship**: 23 public-domain under `CC-PDM-1.0`, 7 originals under `LicenseRef-squillo-adr-0008` |
+| 5 | Round trips | `amazing-grace` equals the squillo fixture (must-fail differs); 30 of 30 items' notes exact |
+| 6 | Conditions | 30 of 30 within, and the must-fail case fails: 6 to 18 notes, range 4 to 14 semitones, 3.75 to 13.5 s, shortest note 0.1875 s, MIDI 55 to 77 (G3 to F5) |
+| 7 | The library | 30: 23 public-domain, 7 original; 13 genres (classical 8, carol 5, hymn 4, children 3, song 2, and blues, country, folk, jazz, musical-theatre, pop, rock, soul 1 each); English 21, French 6, German 3. Four tempos are the transcription's default, the edition giving no mark (`apres-un-reve`, `einsamkeit`, `les-matelots`, `the-storm`); one word corrected (`l-esclave`) |
+
+The fixture squillo takes for a phrase taken from its edition is
+`results/items/the-spirit-of-god.json`, byte for byte.
+
+**Limits.** The loader and rules are this script's reading of squillo's
+specs, checked on squillo's own fixtures, not an implementation. Round
+3's limits stand: the notes are the transcription's, the spelling of
+accidentals follows the key signature, and Sapphische Ode's `life100`
+pass rests on Mutopia's year for its poet alone.
+
 ## Needs a human
 
 15 minutes, headphones, no microphone.

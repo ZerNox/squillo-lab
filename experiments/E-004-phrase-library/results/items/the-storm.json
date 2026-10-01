@@ -1,0 +1,79 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "the-storm",
+  "title": "The Storm",
+  "instructions": "Sing the first line of the song, unaccompanied, at a steady pace.",
+  "genre": "song",
+  "language": "en",
+  "words": "The tempest rages wild and high,",
+  "melody": {
+    "key": "Cm",
+    "meter": "6/8",
+    "tempo_qpm": 60,
+    "notes": [
+      {
+        "pitch": "G4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "C5",
+        "quarters": "1"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "Ab4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "C5",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "Notes and words of the first line taken from the edition: C. M. Cady, Pub. 1878, in the Mutopia Project's Public Domain transcription (https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=607), squillo-lab E-004 round 3. The edition gives no metronome mark: the tempo is the transcription's MIDI default.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [
+          {
+            "name": "A. Procter",
+            "role": "poet",
+            "died": 1864
+          }
+        ],
+        "published_by": 1878,
+        "edition": "C. M. Cady, Pub. 1878, as transcribed in https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=607"
+      },
+      "tune": {
+        "contributors": [
+          {
+            "name": "J. Hullah",
+            "role": "composer",
+            "died": 1884
+          }
+        ],
+        "published_by": 1878,
+        "edition": "C. M. Cady, Pub. 1878, as transcribed in https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=607"
+      }
+    },
+    "melody_checked_against": "taken from https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=607, the transcription of the edition, not checked against an independent one (E-004 round 3)"
+  }
+}

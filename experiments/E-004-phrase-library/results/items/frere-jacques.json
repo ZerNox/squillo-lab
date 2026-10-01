@@ -1,0 +1,67 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "frere-jacques",
+  "title": "Frère Jacques",
+  "instructions": "Sing the first line of the song, unaccompanied, at a steady pace.",
+  "genre": "children",
+  "language": "fr",
+  "words": "Frère Jacques, frère Jacques",
+  "melody": {
+    "key": "C",
+    "meter": "4/4",
+    "tempo_qpm": 100,
+    "notes": [
+      {
+        "pitch": "C4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "D4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "C4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "C4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "D4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "C4",
+        "quarters": "1"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "Words: French, anonymous; printed by the 18th century, and quoted in Mahler's First Symphony (1888). Tune: as the text. Melody line transcribed for squillo.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [],
+        "published_by": 1888,
+        "edition": "French, anonymous; printed by the 18th century, and quoted in Mahler's First Symphony (1888)"
+      },
+      "tune": {
+        "contributors": [],
+        "published_by": 1888,
+        "edition": "French, anonymous; printed by the 18th century, and quoted in Mahler's First Symphony (1888)"
+      }
+    },
+    "melody_checked_against": "en.wikipedia.org \"Frère Jacques\" revision 1366602658, score 0"
+  }
+}

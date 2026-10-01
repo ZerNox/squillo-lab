@@ -1,0 +1,99 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "einsamkeit",
+  "title": "Einsamkeit",
+  "instructions": "Sing the first line of the song, unaccompanied, at a steady pace.",
+  "genre": "classical",
+  "language": "de",
+  "words": "Wie eine trübe Wolke durch heit're Lüfte geht,",
+  "melody": {
+    "key": "Bm",
+    "meter": "2/4",
+    "tempo_qpm": 60,
+    "notes": [
+      {
+        "pitch": "F#4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "F#4",
+        "quarters": "3/4"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1/4"
+      },
+      {
+        "pitch": "F#4",
+        "quarters": "1/4"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1/4"
+      },
+      {
+        "pitch": "F#4",
+        "quarters": "1/4"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "1/4"
+      },
+      {
+        "pitch": "C#5",
+        "quarters": "1"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "1/4"
+      },
+      {
+        "pitch": "F#4",
+        "quarters": "1/4"
+      },
+      {
+        "pitch": "F#4",
+        "quarters": "1/2"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "Notes and words of the first line taken from the edition: Breitkopf & Härtel, 1895, in the Mutopia Project's Public Domain transcription (https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=373), squillo-lab E-004 round 3. The edition gives no metronome mark: the tempo is the transcription's MIDI default.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [
+          {
+            "name": "W. Müller",
+            "role": "poet",
+            "died": 1827
+          }
+        ],
+        "published_by": 1895,
+        "edition": "Breitkopf & Härtel, 1895, as transcribed in https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=373"
+      },
+      "tune": {
+        "contributors": [
+          {
+            "name": "F. Schubert",
+            "role": "composer",
+            "died": 1828
+          }
+        ],
+        "published_by": 1895,
+        "edition": "Breitkopf & Härtel, 1895, as transcribed in https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=373"
+      }
+    },
+    "melody_checked_against": "taken from https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=373, the transcription of the edition, not checked against an independent one (E-004 round 3)"
+  }
+}

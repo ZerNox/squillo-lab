@@ -1,0 +1,76 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "o-come-all-ye-faithful",
+  "title": "O Come, All Ye Faithful",
+  "instructions": "Sing the first line of the carol, unaccompanied, at a steady pace.",
+  "genre": "carol",
+  "language": "en",
+  "words": "O come, all ye faithful",
+  "melody": {
+    "key": "G",
+    "meter": "4/4",
+    "tempo_qpm": 92,
+    "notes": [
+      {
+        "pitch": "G4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "2"
+      },
+      {
+        "pitch": "D4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "2"
+      },
+      {
+        "pitch": "D4",
+        "quarters": "2"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "Words: Adeste Fideles (Wade, c. 1751); Oakeley's English (1841), Murray's Hymnal (1852). Tune: ADESTE FIDELES, An Essay on the Church Plain Chant (1782). Melody line transcribed for squillo.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [
+          {
+            "name": "John Francis Wade",
+            "role": "words (Latin)",
+            "died": 1786
+          },
+          {
+            "name": "Frederick Oakeley",
+            "role": "English translation",
+            "died": 1880
+          }
+        ],
+        "published_by": 1852,
+        "edition": "Adeste Fideles (Wade, c. 1751); Oakeley's English (1841), Murray's Hymnal (1852)"
+      },
+      "tune": {
+        "contributors": [
+          {
+            "name": "John Francis Wade",
+            "role": "music",
+            "died": 1786
+          }
+        ],
+        "published_by": 1782,
+        "edition": "ADESTE FIDELES, An Essay on the Church Plain Chant (1782)"
+      }
+    },
+    "melody_checked_against": "en.wikipedia.org \"O Come, All Ye Faithful\" revision 1340893460, score 0"
+  }
+}

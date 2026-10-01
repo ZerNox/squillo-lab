@@ -1,0 +1,66 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "rust-on-the-gate",
+  "title": "Rust on the Gate",
+  "instructions": "Sing the line, unaccompanied, at a steady pace.",
+  "genre": "rock",
+  "language": "en",
+  "words": "Rust on the gate and the thunder rolling in",
+  "melody": {
+    "key": "Am",
+    "meter": "4/4",
+    "tempo_qpm": 112,
+    "notes": [
+      {
+        "pitch": "A3",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "A3",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "C4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "A3",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "D4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "C4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "A3",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "G3",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "A3",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "C4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "A3",
+        "quarters": "2"
+      }
+    ]
+  },
+  "content": {
+    "licence": "LicenseRef-squillo-adr-0008",
+    "source": "Written for squillo in squillo iteration 23 (squillo-lab E-004 round 1); words and melody new",
+    "origin": "original"
+  }
+}

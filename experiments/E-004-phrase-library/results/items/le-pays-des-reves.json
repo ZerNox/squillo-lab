@@ -1,0 +1,119 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "le-pays-des-reves",
+  "title": "Le pays des rêves",
+  "instructions": "Sing the first line of the song, unaccompanied, at a steady pace.",
+  "genre": "classical",
+  "language": "fr",
+  "words": "Veux-tu qu’au beau pays des rêves Nous allions la main dans la main ?",
+  "melody": {
+    "key": "Gb",
+    "meter": "12/8",
+    "tempo_qpm": 84,
+    "notes": [
+      {
+        "pitch": "Bb4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "Db5",
+        "quarters": "5/2"
+      },
+      {
+        "pitch": "Db5",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "Db5",
+        "quarters": "1"
+      },
+      {
+        "pitch": "Ab4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "F4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "Gb4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "Ab4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "Bb4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "Bb4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "Eb5",
+        "quarters": "1"
+      },
+      {
+        "pitch": "Db5",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "Ab4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "Ab4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "Db5",
+        "quarters": "6"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "Notes and words of the first line taken from the edition: J. Hamelle, 1885 (IMSLP), in the Mutopia Project's Public Domain transcription (https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1831), squillo-lab E-004 round 3.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [
+          {
+            "name": "Armand Silvestre",
+            "role": "poet",
+            "died": 1901
+          }
+        ],
+        "published_by": 1885,
+        "edition": "J. Hamelle, 1885 (IMSLP), as transcribed in https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1831"
+      },
+      "tune": {
+        "contributors": [
+          {
+            "name": "G. Fauré",
+            "role": "composer",
+            "died": 1924
+          }
+        ],
+        "published_by": 1885,
+        "edition": "J. Hamelle, 1885 (IMSLP), as transcribed in https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1831"
+      }
+    },
+    "melody_checked_against": "taken from https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1831, the transcription of the edition, not checked against an independent one (E-004 round 3)"
+  }
+}
