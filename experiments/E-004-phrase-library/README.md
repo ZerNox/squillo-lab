@@ -602,7 +602,7 @@ uv run python fold.py <squillo>   # under 1 s -> results/items/*.json, results/f
 
 | # | Check | Result |
 | ---: | :--- | :--- |
-| 1 | L on squillo's fixtures | 30 of 30 cases as their scenarios state (6 must pass, 24 must fail, the EX-004 pair in both orders) |
+| 1 | L on squillo's fixtures | 30 of 30 cases as their scenarios state (6 must pass, 24 must fail, the EX-004 pair in both orders); 31 of 31 once squillo added `edition-phrase.json` (7 must pass), below |
 | 2 | B on squillo's fixtures | 6 of 6 (1 must pass, 5 must fail at their pointers) |
 | 3 | The 30, loaded together | **30 of 30 accepted**, no identifier shared |
 | 4 | The 30 under the rights rules | **30 of 30 would ship**: 23 public-domain under `CC-PDM-1.0`, 7 originals under `LicenseRef-squillo-adr-0008` |
@@ -611,7 +611,12 @@ uv run python fold.py <squillo>   # under 1 s -> results/items/*.json, results/f
 | 7 | The library | 30: 23 public-domain, 7 original; 13 genres (classical 8, carol 5, hymn 4, children 3, song 2, and blues, country, folk, jazz, musical-theatre, pop, rock, soul 1 each); English 21, French 6, German 3. Four tempos are the transcription's default, the edition giving no mark (`apres-un-reve`, `einsamkeit`, `les-matelots`, `the-storm`); one word corrected (`l-esclave`) |
 
 The fixture squillo takes for a phrase taken from its edition is
-`results/items/the-spirit-of-god.json`, byte for byte.
+`results/items/the-spirit-of-god.json`, byte for byte. Once squillo
+committed it as `fixtures/exercises/edition-phrase.json` (iteration 58,
+EX-011's new scenario), it was added to L's expected outcomes as a must
+pass and the fold re-run: L 31 of 31 (7 must pass), the fixture equal
+to the item byte for byte (`R_edition_fixture_bytes_equal`), every other
+value unchanged.
 
 **Limits.** The loader and rules are this script's reading of squillo's
 specs, checked on squillo's own fixtures, not an implementation. Round

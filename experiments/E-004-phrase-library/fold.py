@@ -69,6 +69,8 @@ PD_LICENCE, ORIGINAL_LICENCE = "CC-PDM-1.0", "LicenseRef-squillo-adr-0008"
 EXPECT = {
     "own-song-exercise.json": None, "phrase-exercise.json": None, "phrase.json": None,
     "public-domain-phrase.json": None, "unlisted-licence.json": None, "late-publication.json": None,
+    # added in squillo iteration 58 with EX-011's new scenario: this fold's the-spirit-of-god.json, byte for byte
+    "edition-phrase.json": None,
     "malformed.json": ("EX-001", ""), "unknown-kind.json": ("EX-001", "/kind"),
     "format-1-track.json": ("EX-002", "/format_version"), "format-2-phrase.json": ("EX-002", "/format_version"),
     "bad-exercise-id.json": ("EX-003", "/exercise_id"), "bad-phrase-id.json": ("EX-003", "/phrase_id"),
@@ -540,6 +542,8 @@ def main(squillo):
     # must fail: the same comparison with one note moved a semitone
     ag2 = json.loads(json.dumps(ag)); ag2["melody"]["notes"][0]["pitch"] = "D#4"
     report["R_fixture_must_fail"] = ag2 != pdp
+    ep = fx / "exercises" / "edition-phrase.json"
+    report["R_edition_fixture_bytes_equal"] = ep.read_bytes() == (OUT / "the-spirit-of-god.json").read_bytes()
     rt = []
     for rnd, o in items:
         if rnd == 3:

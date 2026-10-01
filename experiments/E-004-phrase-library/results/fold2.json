@@ -1,8 +1,8 @@
 {
  "L_fixtures": {
-  "cases": 30,
-  "must_pass": 6,
-  "ok": 30,
+  "cases": 31,
+  "must_pass": 7,
+  "ok": 31,
   "failed": {}
  },
  "B_fixtures": {
@@ -21,6 +21,7 @@
  },
  "R_fixture_amazing_grace_equal": true,
  "R_fixture_must_fail": true,
+ "R_edition_fixture_bytes_equal": true,
  "R_notes_exact": {
   "items": 30,
   "equal": 30
