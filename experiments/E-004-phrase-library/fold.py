@@ -19,6 +19,7 @@ Crude, disposable lab code: never product code (squillo PLAN.md rule 11).
 
 import json
 import re
+import subprocess
 import sys
 import unicodedata
 from decimal import Decimal
@@ -479,6 +480,15 @@ def conditions(o):
 
 # ---------------------------------------------------------------- main
 
+def committed_first():
+    """S15 (squillo R-12): refuse to run on an uncommitted edit of this file, or before it is committed."""
+    me = Path(__file__).name
+    a = subprocess.run(["git", "ls-files", "--error-unmatch", me], cwd=HERE, capture_output=True)
+    b = subprocess.run(["git", "diff", "--quiet", "HEAD", "--", me], cwd=HERE)
+    if a.returncode or b.returncode:
+        sys.exit(f"{me} is not committed as it stands: commit the rules before running")
+
+
 def dump(o):
     return json.dumps(o, indent=2, ensure_ascii=False) + "\n"
 
@@ -534,6 +544,9 @@ def main(squillo):
     report["L_items"] = dict(files=len(acc) + len(ref), accepted=len(acc), refused={k: list(v) for k, v in ref.items()})
     fails = {n: build_rights(o) for n, o in acc.items()}
     report["B_items"] = dict(ship=sum(v is None for v in fails.values()), fail={k: v for k, v in fails.items() if v})
+    # R-12: the 30 must all load and all ship (S15: recorded keys asserted).
+    assert report["L_items"]["files"] == 30 and not report["L_items"]["refused"], report["L_items"]
+    assert report["B_items"]["ship"] == 30 and not report["B_items"]["fail"], report["B_items"]
 
     # R: round trips. amazing-grace against squillo's fixture; each item's notes against its round's record.
     pdp = json.loads(texts["public-domain-phrase.json"])
@@ -544,6 +557,9 @@ def main(squillo):
     report["R_fixture_must_fail"] = ag2 != pdp
     ep = fx / "exercises" / "edition-phrase.json"
     report["R_edition_fixture_bytes_equal"] = ep.read_bytes() == (OUT / "the-spirit-of-god.json").read_bytes()
+    # must fail (R-12): the same comparison against the item with its last byte changed
+    sg = bytearray((OUT / "the-spirit-of-god.json").read_bytes()); sg[-2] ^= 1
+    report["R_edition_fixture_must_fail"] = ep.read_bytes() != bytes(sg)
     rt = []
     for rnd, o in items:
         if rnd == 3:
@@ -554,20 +570,27 @@ def main(squillo):
             want = [(t.split(":")[0], Fraction(Decimal(t.split(":")[1]))) for t in src["melody"]["notes"].split()]
         got = [(n["pitch"], Fraction(n["quarters"])) for n in o["melody"]["notes"]]
         rt.append(got == want)
+        if o["phrase_id"] == "amazing-grace":  # must fail (R-12): one note moved a semitone, compared the same way
+            moved = [(n["pitch"], Fraction(n["quarters"])) for n in ag2["melody"]["notes"]]
+            report["R_notes_must_fail"] = moved != want
     report["R_notes_exact"] = dict(items=len(rt), equal=sum(rt))
 
     # C: conditions, and the count.
     lo, hi = midi(COND["low"]), midi(COND["high"])
     cond = {o["phrase_id"]: conditions(o) for _, o in items}
-    report["C"] = dict(
-        within=sum(COND["notes"][0] <= c["notes"] <= COND["notes"][1] and c["range"] <= COND["range_max"]
-                   and c["seconds"] <= COND["seconds_max"] and c["shortest_s"] >= COND["shortest_min"]
-                   and lo <= c["low"] and c["high"] <= hi for c in cond.values()),
-        per_item=cond)
+    def within(c):
+        return (COND["notes"][0] <= c["notes"] <= COND["notes"][1] and c["range"] <= COND["range_max"]
+                and c["seconds"] <= COND["seconds_max"] and c["shortest_s"] >= COND["shortest_min"]
+                and lo <= c["low"] and c["high"] <= hi)
+    report["C"] = dict(within=sum(within(c) for c in cond.values()), per_item=cond)
     # must fail: the same conditions on The Storm at a tenth of its tempo (too long, and notes no shorter)
     slow = json.loads(json.dumps(next(o for _, o in items if o["phrase_id"] == "the-storm")))
     slow["melody"]["tempo_qpm"] = 6
     report["C_must_fail"] = conditions(slow)["seconds"] > COND["seconds_max"]
+    # must fail (R-12): through the same predicate, the slowed item and one with a note an octave above C6
+    high = json.loads(json.dumps(next(o for _, o in items if o["phrase_id"] == "the-storm")))
+    high["melody"]["notes"][0]["pitch"] = "C#7"
+    report["C_within_must_fail"] = not within(conditions(slow)) and not within(conditions(high))
     # must fail: the tempo bound on a file tempo a hundredth of a quarter note per minute off 68
     report["tempo_bound_must_fail"] = not (abs(68.01 - 68) <= 68 * 68 / 6e7)
     by = {}
@@ -581,9 +604,18 @@ def main(squillo):
         languages={l: sum(o["language"] == l for _, o in items) for l in sorted({o["language"] for _, o in items})},
         no_metronome_mark=sorted(slug(p["title"]) for p in r3 if p["id"] in R3_NO_MARK),
         words_corrected={slug(p["title"]): R3_WORDS[p["id"]][2] for p in r3 if p["id"] in R3_WORDS})
+    # R-12 (S15): every key naming a check is asserted. tempo_bound_must_fail is recorded and asserted,
+    # but it evaluates the bound's formula on literals, so it can only show the formula, not the run.
+    for k in ("R_fixture_amazing_grace_equal", "R_fixture_must_fail", "R_edition_fixture_bytes_equal",
+              "R_edition_fixture_must_fail", "R_notes_must_fail", "C_must_fail", "C_within_must_fail",
+              "tempo_bound_must_fail"):
+        assert report[k] is True, k
+    assert report["R_notes_exact"]["equal"] == report["R_notes_exact"]["items"] == 30, report["R_notes_exact"]
+    assert report["C"]["within"] == 30, report["C"]["within"]
     (RES / "fold2.json").write_text(json.dumps(report, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps({k: v for k, v in report.items() if k != "C"}, indent=1, ensure_ascii=False))
     print("C within:", report["C"]["within"], "of", len(cond))
 
 if __name__ == "__main__":
+    committed_first()
     main(sys.argv[1])
