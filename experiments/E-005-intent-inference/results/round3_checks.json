@@ -1,0 +1,60 @@
+{
+ "c1_generator": {
+  "items_not_fitting": [],
+  "wide_fits": false,
+  "extremes": [
+   [
+    -2502.6371479109384,
+    -1457.9274340159468
+   ],
+   [
+    -31.989594707639924,
+    1020.5917068475796
+   ],
+   [
+    -2564.425259846443,
+    -1426.387033232528
+   ],
+   [
+    -287.56016834288835,
+    1054.0204441294595
+   ]
+  ],
+  "shifted_raises": true,
+  "passes": true
+ },
+ "c2_truth_centre": {
+  "must_pass": true,
+  "must_fail": false
+ },
+ "c3_known_equals_round2": {
+  "phrases": [
+   20261001831,
+   20261001881,
+   20261002351
+  ],
+  "must_pass": true,
+  "must_fail": false
+ },
+ "c4_b1_bar": {
+  "must_pass": [
+   0,
+   168
+  ],
+  "must_fail": [
+   168,
+   168
+  ],
+  "passes": true
+ },
+ "c5_b2_bar": {
+  "moved": 99,
+  "must_pass_harmful": 0,
+  "must_fail_harmful": 99,
+  "passes": true
+ },
+ "c6_rung": {
+  "must_pass": true,
+  "must_fail": false
+ }
+}

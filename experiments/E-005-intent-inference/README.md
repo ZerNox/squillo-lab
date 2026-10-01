@@ -1,6 +1,6 @@
 # E-005 — Intent inference: pitch accuracy without a reference
 
-**Status:** needs-human (round 1 folded into squillo `metrics`, iteration 27; round 2 done, squillo iteration 31; one `needs-human` step) · **Serves:** VISION §3 (every song is your cover), §5 (reference-free), §6, §12.4
+**Status:** needs-human (round 1 folded into squillo `metrics`, iteration 27; round 2 done, squillo iteration 31; round 3, per-note centre and aim, squillo iteration 59; one `needs-human` step) · **Serves:** VISION §3 (every song is your cover; the next step), §4.3, §5 (reference-free), §6, §12.4
 
 ## Question
 
@@ -558,3 +558,120 @@ extremes and 14 × 800 ms structure were stated, not asserted. Now:
 F-040's claim is kept as a reported result, not a check
 (`f040_claim_result`): the first splitting take is at +41 cents, the last
 whole one at +40. Every row of the table above is unchanged.
+
+## Round 3: each note's centre and aim, and the rung that centres it (squillo iteration 59)
+
+```
+uv run python round3.py check          # the checks, each checked (S15), 25 s -> results/round3_checks.json
+uv run python round3.py time 48 18     # S19 sample, on the pool
+uv run python round3.py synth 18       # 1680 phrases, 9.7 min on 18 processes -> data/cache/r3_synth.pkl
+uv run python round3.py real           # 40 E-002 re-syntheses, 77 VocalSet originals, 6 s -> data/cache/r3_real.pkl
+uv run python round3.py select         # the two selections, fit half only -> results/round3_select.json
+uv run python round3.py rungs 18       # H3, 20 s -> data/cache/r3_rungs.pkl
+uv run python round3.py report         # -> results/round3.json
+uv run python round3.py posthoc 18     # revision 2, after the report -> results/round3_posthoc.json
+```
+
+**Question** (squillo F-045, R-11's focus for iteration 59; F-041's first
+case). Only `steadiness` has a ladder, so a take with no held note has no
+far vision. The rung that would serve every take moves each note's centre
+towards the note it aimed at. Can each note's centre, and its distance from
+its aim, be given an honest ±; can a gate keep a wrong aim from moving the
+singer towards a wrong note; and is the centred rung a step `metrics` calls
+improved? Reference-free (any song) and with the written melody (a library
+phrase).
+
+**Rules first.** The measurand, the candidates, the bars B1 and B2, both
+selections and every check are in `round3.py`'s docstring, committed before
+any run (`815cbdc`). Revision 1 (`7d4c87f`), before any run: check C1 found
+three wide library items (`apres-un-reve`, `blue-umbrella`, `lamplighter`)
+outside the bass's range under E-004's placement, so where that placement
+does not fit the lowest note goes on the range's floor. Revision 2 (`71c8f08`), after
+the report: post hoc diagnostics, labelled as such, never a selection.
+
+**Measurand**, per note: δ = *C* − *A*, the note's realised centre (round 2's
+centre rule on the sung contour over its true boundaries) minus its aim on
+the singer's own realised tuning (100 *n* + τ, τ the weighted linear mean of
+*C* − 100 *n*). *d* is its estimate. Two paths: **free**, round 2's
+segmentation, centre and circular tuning, the aim the nearest semitone
+(*right* when within 50 cents of *A*); **known**, the written notes aligned by
+round 2's DTW, deviations on the weighted linear tuning, a note more than
+150 cents off a wrong note, never moved. MT-003's refusal on throughout.
+
+**Inputs.** 960 random phrases (round 2's generator, 14 and 28 notes) and
+720 renderings of E-004 fold 2's 30 library items (`squillo-lab E-004 @
+d0f9cde`, three each), σ = 0, 10, 20, 30 cents, straight or vibrato (5.5 Hz
+±50 cents faded in), six voices, round 2's error model. Every sounding
+sample inside ADR 0007's E2–C6, asserted: extremes −2659.5 and +1319.7
+cents. Halves by seed: 840 *fit*, 840 *held out*; both selections read the
+fit half only. Real: E-002's 40 WORLD re-syntheses (known f0; 20 straight
+scales, 20 vibrato rounds, every score state found by the truth alignment in
+40 of 40) and the 77 VocalSet originals (H3 only).
+
+**Candidates and bars.** Per-note *u*: P1, the note's settle *u*; P2, P1 ⊕
+the tuning's *u* (free: round 2's circular delta method; known: *s*/√*n*ₑ).
+**B1**: in every cell with ≥ 20 counted notes, |*d* − δ| > 2*u* in at most
+5 % (GUM 6.3.3, *k* = 2). A note is moved by *m* = −clip(*s d*, ±50) (SY-002's
+clip), only when |*d*| > 2*u*; it is *harmed* when |δ + *m*| > |δ|. Gates:
+free, phrase state (σ̂ above chance, or measured under U25) × |*d*| + 2*u* ≤
+*T*, *T* = 50, 40, 30, 20; known, *T* = none, 50, 40, 30, 20. **B2**: in every
+cell with ≥ 20 moved notes, at most 2.5 % harmed at full strength (one
+tail of B1's interval). **H3**, reported with no bar: the rung (the take's
+pitch with each moved note shifted, SY-004's description) measured again;
+improved by fold 2's `compare` (free) or round 2's `t_K` (known), at *s* =
+0.25, 0.5, 0.75, 1.
+
+**Timing (S19).** 48 phrases, two in each of the 24 conditions, on the
+18-process pool: 0.50 s of wall time per phrase, 14.0 minutes for 1680; the
+rung step 0.057 s per phrase. The run took 9.7 minutes.
+
+**Checks** (`results/round3_checks.json`):
+
+| Check | Must pass | Must fail | Result |
+| :--- | :--- | :--- | :--- |
+| C1 generator: every item fits every voice; the contour inside E2–C6 | 30 items × 6 voices fit (after revision 1); 4 extreme renderings (bass and high soprano, σ = 30, vibrato) inside | a 30-semitone span does not fit; a rendering shifted +1500 cents raises | as they must |
+| C2 the truth's centre rule | four constant notes with gaps: centres equal within 10⁻⁹ | the same expectation on a contour with one note 5 cents off: refused | as they must |
+| C3 the known path equals round 2's `known_melody` (*s*, *u*_B, 10⁻⁹) | 3 phrases, each against itself | each against the next phrase's | as they must |
+| C4 bar B1 on reference conditions (12 phrases, random14, σ = 10, straight) | *d* := δ: 0 of 168 missed | *u* := 0: 168 of 168 missed | as they must |
+| C5 bar B2 on reference conditions (the same 12) | moves from the truth: 0 of 99 harmed | the same moves reversed: 99 of 99 harmed | as they must |
+| C6 the rung's frames | moved segments shift exactly, NaN stays NaN | every segment one frame late: caught | as they must |
+
+**Results** (`results/round3.json`, `round3_select.json`; post hoc
+`round3_posthoc.json`; Wilson 95 % intervals).
+
+| # | Question | Result |
+| :--- | :--- | :--- |
+| R3-1 | Reference-free, is the per-note ± honest? | **No.** Neither candidate passes B1, even with σ ≤ 20, so selection 1 reports it not honest. Held out, P2 misses in 0.5 % (random14, σ = 0, vibrato) to 25.8 % (random14, σ = 30, straight; 59 of 229); it passes in 7 of 24 cells (every σ = 0 cell but the library's under vibrato, 5.6 %, and two σ = 10 vibrato cells). Real re-syntheses: 7.0 % (4.6–10.3; 316 notes, straight scales), 13.6 % (8.4–21.3; 110, vibrato rounds). The aim itself is mostly right: of found notes, 100 % at σ = 0 straight, 96.4–98.5 % at σ = 20 on random phrases, 92.1–96.8 % on library phrases, 79.7–86.7 % at σ = 30 |
+| R3-2 | With the written melody? | **Yes, with P2** (settle *u* ⊕ *s*/√*n*ₑ): B1 holds in 24 of 24 cells on the fit half and 24 of 24 held out, worst 3.7 % (2.1–6.4; random14, σ = 30, straight; 12 of 323), the library's cells 0.0–1.2 %. P1 alone fails from σ = 10 (held out 5.9 % to 37.8 %). Real re-syntheses: straight scales 3.3 % (1.9–5.8; 333 notes), **vibrato rounds 6.4 % (4.0–10.0; 265)**, above the bar |
+| R3-3 | Can a gate keep moves from going the wrong way (B2)? | Free: **no gate** passes on the fit half (the nearest, σ̂ measured and *T* = 20, harms 6 of 168 moved notes in random28, σ = 10, straight, 3.6 %), so no reference-free centring. Known: only *T* = 20 passes on the fit half (6 of 470 moved notes harmed, every judged cell within 2.5 %) and it **fails one held-out cell**: library, σ = 10, vibrato, 2 of 36 (5.6 %, 1.5–18.1); held out 11 of 447 overall. Post hoc, the known path harms 0.8–2.5 % of moved notes overall at every gate on either half (none: 29 of 3283 held out, 45 of 3253 fit), but no gate keeps every cell within 2.5 % on both halves; where a gate fails on a half, its worst cell holds 21 to 106 moved notes, at 2.6–5.9 % |
+| R3-4 | Is the centred rung a step `metrics` calls improved (H3)? | **No.** With the selected gate (known, *T* = 20) no far vision is improved: 0 of 840 held-out phrases (0–0.46 %) and 0 of 117 real takes (0–3.2 %), at any strength, though some note moves in up to 80 % of phrases (random, σ = 10, straight). Post hoc, moving every note measurably off (no *T*): improved in 0–3.3 % of phrases at σ ≤ 10, 16.7–46.7 % at σ = 20 and 30 straight, 0–10 % under vibrato, 0 of 117 real takes, where the spread falls by a median 3.3–7.6 cents against a bound 2√(*u*₁² + *u*₂²) of 30–187 cents. No rung is ever called worse |
+
+**What this says for squillo.**
+
+- **With a library phrase's written notes**, each note's distance from its
+  aim on the singer's own tuning has an honest ± on synthetic phrases to
+  σ = 30 and on real straight scales: *u* = the note's settle *u* ⊕ *s*/√*n*ₑ,
+  *k* = 2. Not yet under real vibrato (6.4 %). This is F-041's first case,
+  per note.
+- **Reference-free, it has none**: a singer's own song gets no per-note
+  centre with an honest ±, and so no centring rung (`VISION.md` §6: a
+  step only if reachable and measured).
+- **The centred rung is not a step MT-008 can show.** The spread a
+  centring narrows carries a *u* too wide to show the narrowing (the settle
+  term again, rounds 1 and 2), so on the measures `metrics` has, centring
+  gives no far vision that is "improved". A far vision without held notes
+  needs a step measured per note (each moved note measurably off its
+  written note, |*d*| > 2*u*, under R3-2's ±), not by the take's spread;
+  that is a new measure for `metrics` and a new rule for `coach`, and no
+  bar here tested it as the rung's claim.
+- **No gate is yet safe enough by B2's per-cell rule**: about 1 % of moved
+  notes overall go the wrong way with the written melody, but where a
+  gate fails, its worst cell, of 21 to 106 moved notes, reaches 2.6–5.9 %. Squillo F-045 stays open with this
+  evidence.
+
+**Limits.** Synthetic voices (rounds 1 and 2's limits); round 2's error
+model, normal per note, no drift; the real check is WORLD re-syntheses of
+trained singers, whose truth uses the same centre rule; the harm is judged
+at full strength only; B2's cells are small at σ ≥ 20, where the gate moves
+few notes. Which part of the free path (segmentation or tuning) costs its
+coverage is not measured.

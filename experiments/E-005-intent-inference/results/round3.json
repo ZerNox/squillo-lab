@@ -1,0 +1,5399 @@
+{
+ "selection": {
+  "free": {
+   "u": "P2",
+   "range": "none: per-note +- not honest",
+   "gate": null
+  },
+  "known": {
+   "u": "P2",
+   "range": "every cell",
+   "gate": {
+    "gate": [
+     "any",
+     20
+    ],
+    "moved_fit": 470
+   }
+  },
+  "fit_phrases": 840
+ },
+ "phrases": {
+  "fit": 840,
+  "held": 840
+ },
+ "inputs": {
+  "lo": -2659.4602608457944,
+  "hi": 1319.720143577585,
+  "refused_share": 48.41904761904762
+ },
+ "free": {
+  "B1_P1_fit": {
+   "passes": false,
+   "cells": [
+    {
+     "cell": [
+      "library",
+      0,
+      0
+     ],
+     "k": 21,
+     "n": 618,
+     "share": [
+      3.4,
+      2.2,
+      5.1,
+      618
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      0,
+      1
+     ],
+     "k": 24,
+     "n": 304,
+     "share": [
+      7.9,
+      5.4,
+      11.5,
+      304
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      10,
+      0
+     ],
+     "k": 53,
+     "n": 618,
+     "share": [
+      8.6,
+      6.6,
+      11.0,
+      618
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      10,
+      1
+     ],
+     "k": 44,
+     "n": 292,
+     "share": [
+      15.1,
+      11.4,
+      19.6,
+      292
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      20,
+      0
+     ],
+     "k": 187,
+     "n": 518,
+     "share": [
+      36.1,
+      32.1,
+      40.3,
+      518
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      20,
+      1
+     ],
+     "k": 52,
+     "n": 208,
+     "share": [
+      25.0,
+      19.6,
+      31.3,
+      208
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      30,
+      0
+     ],
+     "k": 153,
+     "n": 305,
+     "share": [
+      50.2,
+      44.6,
+      55.7,
+      305
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      30,
+      1
+     ],
+     "k": 68,
+     "n": 125,
+     "share": [
+      54.4,
+      45.7,
+      62.9,
+      125
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      0,
+      0
+     ],
+     "k": 6,
+     "n": 420,
+     "share": [
+      1.4,
+      0.7,
+      3.1,
+      420
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      0,
+      1
+     ],
+     "k": 13,
+     "n": 420,
+     "share": [
+      3.1,
+      1.8,
+      5.2,
+      420
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      10,
+      0
+     ],
+     "k": 46,
+     "n": 420,
+     "share": [
+      11.0,
+      8.3,
+      14.3,
+      420
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      10,
+      1
+     ],
+     "k": 31,
+     "n": 420,
+     "share": [
+      7.4,
+      5.2,
+      10.3,
+      420
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      20,
+      0
+     ],
+     "k": 130,
+     "n": 355,
+     "share": [
+      36.6,
+      31.8,
+      41.7,
+      355
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      20,
+      1
+     ],
+     "k": 75,
+     "n": 394,
+     "share": [
+      19.0,
+      15.5,
+      23.2,
+      394
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      30,
+      0
+     ],
+     "k": 119,
+     "n": 221,
+     "share": [
+      53.8,
+      47.3,
+      60.3,
+      221
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      30,
+      1
+     ],
+     "k": 82,
+     "n": 209,
+     "share": [
+      39.2,
+      32.9,
+      46.0,
+      209
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      0,
+      0
+     ],
+     "k": 14,
+     "n": 840,
+     "share": [
+      1.7,
+      1.0,
+      2.8,
+      840
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      0,
+      1
+     ],
+     "k": 22,
+     "n": 839,
+     "share": [
+      2.6,
+      1.7,
+      3.9,
+      839
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      10,
+      0
+     ],
+     "k": 88,
+     "n": 840,
+     "share": [
+      10.5,
+      8.6,
+      12.7,
+      840
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      10,
+      1
+     ],
+     "k": 53,
+     "n": 840,
+     "share": [
+      6.3,
+      4.9,
+      8.2,
+      840
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      20,
+      0
+     ],
+     "k": 303,
+     "n": 824,
+     "share": [
+      36.8,
+      33.5,
+      40.1,
+      824
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      20,
+      1
+     ],
+     "k": 148,
+     "n": 808,
+     "share": [
+      18.3,
+      15.8,
+      21.1,
+      808
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      30,
+      0
+     ],
+     "k": 320,
+     "n": 597,
+     "share": [
+      53.6,
+      49.6,
+      57.6,
+      597
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      30,
+      1
+     ],
+     "k": 239,
+     "n": 543,
+     "share": [
+      44.0,
+      39.9,
+      48.2,
+      543
+     ],
+     "judged": true,
+     "passes": false
+    }
+   ]
+  },
+  "B1_P2_fit": {
+   "passes": false,
+   "cells": [
+    {
+     "cell": [
+      "library",
+      0,
+      0
+     ],
+     "k": 18,
+     "n": 618,
+     "share": [
+      2.9,
+      1.9,
+      4.6,
+      618
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      0,
+      1
+     ],
+     "k": 21,
+     "n": 304,
+     "share": [
+      6.9,
+      4.6,
+      10.3,
+      304
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      10,
+      0
+     ],
+     "k": 33,
+     "n": 618,
+     "share": [
+      5.3,
+      3.8,
+      7.4,
+      618
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      10,
+      1
+     ],
+     "k": 33,
+     "n": 292,
+     "share": [
+      11.3,
+      8.2,
+      15.4,
+      292
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      20,
+      0
+     ],
+     "k": 46,
+     "n": 518,
+     "share": [
+      8.9,
+      6.7,
+      11.6,
+      518
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      20,
+      1
+     ],
+     "k": 10,
+     "n": 208,
+     "share": [
+      4.8,
+      2.6,
+      8.6,
+      208
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      30,
+      0
+     ],
+     "k": 92,
+     "n": 305,
+     "share": [
+      30.2,
+      25.3,
+      35.5,
+      305
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      30,
+      1
+     ],
+     "k": 47,
+     "n": 125,
+     "share": [
+      37.6,
+      29.6,
+      46.3,
+      125
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      0,
+      0
+     ],
+     "k": 6,
+     "n": 420,
+     "share": [
+      1.4,
+      0.7,
+      3.1,
+      420
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      0,
+      1
+     ],
+     "k": 8,
+     "n": 420,
+     "share": [
+      1.9,
+      1.0,
+      3.7,
+      420
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      10,
+      0
+     ],
+     "k": 28,
+     "n": 420,
+     "share": [
+      6.7,
+      4.7,
+      9.5,
+      420
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      10,
+      1
+     ],
+     "k": 20,
+     "n": 420,
+     "share": [
+      4.8,
+      3.1,
+      7.2,
+      420
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      20,
+      0
+     ],
+     "k": 34,
+     "n": 355,
+     "share": [
+      9.6,
+      6.9,
+      13.1,
+      355
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      20,
+      1
+     ],
+     "k": 20,
+     "n": 394,
+     "share": [
+      5.1,
+      3.3,
+      7.7,
+      394
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      30,
+      0
+     ],
+     "k": 54,
+     "n": 221,
+     "share": [
+      24.4,
+      19.2,
+      30.5,
+      221
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      30,
+      1
+     ],
+     "k": 48,
+     "n": 209,
+     "share": [
+      23.0,
+      17.8,
+      29.1,
+      209
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      0,
+      0
+     ],
+     "k": 12,
+     "n": 840,
+     "share": [
+      1.4,
+      0.8,
+      2.5,
+      840
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      0,
+      1
+     ],
+     "k": 15,
+     "n": 839,
+     "share": [
+      1.8,
+      1.1,
+      2.9,
+      839
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      10,
+      0
+     ],
+     "k": 60,
+     "n": 840,
+     "share": [
+      7.1,
+      5.6,
+      9.1,
+      840
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      10,
+      1
+     ],
+     "k": 37,
+     "n": 840,
+     "share": [
+      4.4,
+      3.2,
+      6.0,
+      840
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      20,
+      0
+     ],
+     "k": 83,
+     "n": 824,
+     "share": [
+      10.1,
+      8.2,
+      12.3,
+      824
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      20,
+      1
+     ],
+     "k": 57,
+     "n": 808,
+     "share": [
+      7.1,
+      5.5,
+      9.0,
+      808
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      30,
+      0
+     ],
+     "k": 123,
+     "n": 597,
+     "share": [
+      20.6,
+      17.6,
+      24.0,
+      597
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      30,
+      1
+     ],
+     "k": 135,
+     "n": 543,
+     "share": [
+      24.9,
+      21.4,
+      28.7,
+      543
+     ],
+     "judged": true,
+     "passes": false
+    }
+   ]
+  },
+  "B1_P1_held": {
+   "passes": false,
+   "cells": [
+    {
+     "cell": [
+      "library",
+      0,
+      0
+     ],
+     "k": 8,
+     "n": 309,
+     "share": [
+      2.6,
+      1.3,
+      5.0,
+      309
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      0,
+      1
+     ],
+     "k": 56,
+     "n": 605,
+     "share": [
+      9.3,
+      7.2,
+      11.8,
+      605
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      10,
+      0
+     ],
+     "k": 39,
+     "n": 309,
+     "share": [
+      12.6,
+      9.4,
+      16.8,
+      309
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      10,
+      1
+     ],
+     "k": 86,
+     "n": 600,
+     "share": [
+      14.3,
+      11.8,
+      17.4,
+      600
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      20,
+      0
+     ],
+     "k": 107,
+     "n": 236,
+     "share": [
+      45.3,
+      39.1,
+      51.7,
+      236
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      20,
+      1
+     ],
+     "k": 95,
+     "n": 376,
+     "share": [
+      25.3,
+      21.1,
+      29.9,
+      376
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      30,
+      0
+     ],
+     "k": 88,
+     "n": 174,
+     "share": [
+      50.6,
+      43.2,
+      57.9,
+      174
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      30,
+      1
+     ],
+     "k": 81,
+     "n": 198,
+     "share": [
+      40.9,
+      34.3,
+      47.9,
+      198
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      0,
+      0
+     ],
+     "k": 8,
+     "n": 420,
+     "share": [
+      1.9,
+      1.0,
+      3.7,
+      420
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      0,
+      1
+     ],
+     "k": 8,
+     "n": 420,
+     "share": [
+      1.9,
+      1.0,
+      3.7,
+      420
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      10,
+      0
+     ],
+     "k": 59,
+     "n": 420,
+     "share": [
+      14.0,
+      11.0,
+      17.7,
+      420
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      10,
+      1
+     ],
+     "k": 31,
+     "n": 419,
+     "share": [
+      7.4,
+      5.3,
+      10.3,
+      419
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      20,
+      0
+     ],
+     "k": 155,
+     "n": 368,
+     "share": [
+      42.1,
+      37.2,
+      47.2,
+      368
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      20,
+      1
+     ],
+     "k": 67,
+     "n": 383,
+     "share": [
+      17.5,
+      14.0,
+      21.6,
+      383
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      30,
+      0
+     ],
+     "k": 151,
+     "n": 229,
+     "share": [
+      65.9,
+      59.6,
+      71.8,
+      229
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      30,
+      1
+     ],
+     "k": 77,
+     "n": 185,
+     "share": [
+      41.6,
+      34.8,
+      48.8,
+      185
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      0,
+      0
+     ],
+     "k": 8,
+     "n": 840,
+     "share": [
+      1.0,
+      0.5,
+      1.9,
+      840
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      0,
+      1
+     ],
+     "k": 21,
+     "n": 840,
+     "share": [
+      2.5,
+      1.6,
+      3.8,
+      840
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      10,
+      0
+     ],
+     "k": 90,
+     "n": 840,
+     "share": [
+      10.7,
+      8.8,
+      13.0,
+      840
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      10,
+      1
+     ],
+     "k": 42,
+     "n": 839,
+     "share": [
+      5.0,
+      3.7,
+      6.7,
+      839
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      20,
+      0
+     ],
+     "k": 299,
+     "n": 827,
+     "share": [
+      36.2,
+      33.0,
+      39.5,
+      827
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      20,
+      1
+     ],
+     "k": 142,
+     "n": 788,
+     "share": [
+      18.0,
+      15.5,
+      20.9,
+      788
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      30,
+      0
+     ],
+     "k": 338,
+     "n": 526,
+     "share": [
+      64.3,
+      60.1,
+      68.2,
+      526
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      30,
+      1
+     ],
+     "k": 160,
+     "n": 502,
+     "share": [
+      31.9,
+      27.9,
+      36.1,
+      502
+     ],
+     "judged": true,
+     "passes": false
+    }
+   ]
+  },
+  "B1_P2_held": {
+   "passes": false,
+   "cells": [
+    {
+     "cell": [
+      "library",
+      0,
+      0
+     ],
+     "k": 7,
+     "n": 309,
+     "share": [
+      2.3,
+      1.1,
+      4.6,
+      309
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      0,
+      1
+     ],
+     "k": 34,
+     "n": 605,
+     "share": [
+      5.6,
+      4.0,
+      7.8,
+      605
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      10,
+      0
+     ],
+     "k": 21,
+     "n": 309,
+     "share": [
+      6.8,
+      4.5,
+      10.2,
+      309
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      10,
+      1
+     ],
+     "k": 38,
+     "n": 600,
+     "share": [
+      6.3,
+      4.6,
+      8.6,
+      600
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      20,
+      0
+     ],
+     "k": 28,
+     "n": 236,
+     "share": [
+      11.9,
+      8.3,
+      16.6,
+      236
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      20,
+      1
+     ],
+     "k": 48,
+     "n": 376,
+     "share": [
+      12.8,
+      9.8,
+      16.5,
+      376
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      30,
+      0
+     ],
+     "k": 33,
+     "n": 174,
+     "share": [
+      19.0,
+      13.8,
+      25.4,
+      174
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      30,
+      1
+     ],
+     "k": 37,
+     "n": 198,
+     "share": [
+      18.7,
+      13.9,
+      24.7,
+      198
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      0,
+      0
+     ],
+     "k": 7,
+     "n": 420,
+     "share": [
+      1.7,
+      0.8,
+      3.4,
+      420
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      0,
+      1
+     ],
+     "k": 2,
+     "n": 420,
+     "share": [
+      0.5,
+      0.1,
+      1.7,
+      420
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      10,
+      0
+     ],
+     "k": 27,
+     "n": 420,
+     "share": [
+      6.4,
+      4.5,
+      9.2,
+      420
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      10,
+      1
+     ],
+     "k": 17,
+     "n": 419,
+     "share": [
+      4.1,
+      2.5,
+      6.4,
+      419
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      20,
+      0
+     ],
+     "k": 26,
+     "n": 368,
+     "share": [
+      7.1,
+      4.9,
+      10.2,
+      368
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      20,
+      1
+     ],
+     "k": 28,
+     "n": 383,
+     "share": [
+      7.3,
+      5.1,
+      10.4,
+      383
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      30,
+      0
+     ],
+     "k": 59,
+     "n": 229,
+     "share": [
+      25.8,
+      20.5,
+      31.8,
+      229
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      30,
+      1
+     ],
+     "k": 37,
+     "n": 185,
+     "share": [
+      20.0,
+      14.9,
+      26.3,
+      185
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      0,
+      0
+     ],
+     "k": 7,
+     "n": 840,
+     "share": [
+      0.8,
+      0.4,
+      1.7,
+      840
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      0,
+      1
+     ],
+     "k": 15,
+     "n": 840,
+     "share": [
+      1.8,
+      1.1,
+      2.9,
+      840
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      10,
+      0
+     ],
+     "k": 62,
+     "n": 840,
+     "share": [
+      7.4,
+      5.8,
+      9.3,
+      840
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      10,
+      1
+     ],
+     "k": 26,
+     "n": 839,
+     "share": [
+      3.1,
+      2.1,
+      4.5,
+      839
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      20,
+      0
+     ],
+     "k": 79,
+     "n": 827,
+     "share": [
+      9.6,
+      7.7,
+      11.7,
+      827
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      20,
+      1
+     ],
+     "k": 60,
+     "n": 788,
+     "share": [
+      7.6,
+      6.0,
+      9.7,
+      788
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      30,
+      0
+     ],
+     "k": 94,
+     "n": 526,
+     "share": [
+      17.9,
+      14.8,
+      21.4,
+      526
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      30,
+      1
+     ],
+     "k": 58,
+     "n": 502,
+     "share": [
+      11.6,
+      9.0,
+      14.6,
+      502
+     ],
+     "judged": true,
+     "passes": false
+    }
+   ]
+  },
+  "B2_fit_all_('any', 50)": false,
+  "B2_fit_all_('any', 40)": false,
+  "B2_fit_all_('any', 30)": false,
+  "B2_fit_all_('any', 20)": false,
+  "B2_fit_all_('measured', 50)": false,
+  "B2_fit_all_('measured', 40)": false,
+  "B2_fit_all_('measured', 30)": false,
+  "B2_fit_all_('measured', 20)": false,
+  "attribution_held": {
+   "('library', 0, 0)": {
+    "found": [
+     100.0,
+     98.8,
+     100.0,
+     309
+    ],
+    "right_of_found": [
+     100.0,
+     98.8,
+     100.0,
+     309
+    ],
+    "uncertain": 0,
+    "measured": 30,
+    "phrases": 30
+   },
+   "('library', 0, 1)": {
+    "found": [
+     100.0,
+     99.4,
+     100.0,
+     618
+    ],
+    "right_of_found": [
+     97.9,
+     96.4,
+     98.8,
+     618
+    ],
+    "uncertain": 0,
+    "measured": 37,
+    "phrases": 60
+   },
+   "('library', 10, 0)": {
+    "found": [
+     100.0,
+     98.8,
+     100.0,
+     309
+    ],
+    "right_of_found": [
+     100.0,
+     98.8,
+     100.0,
+     309
+    ],
+    "uncertain": 0,
+    "measured": 24,
+    "phrases": 30
+   },
+   "('library', 10, 1)": {
+    "found": [
+     100.0,
+     99.4,
+     100.0,
+     618
+    ],
+    "right_of_found": [
+     98.1,
+     96.6,
+     98.9,
+     618
+    ],
+    "uncertain": 1,
+    "measured": 14,
+    "phrases": 60
+   },
+   "('library', 20, 0)": {
+    "found": [
+     100.0,
+     98.8,
+     100.0,
+     309
+    ],
+    "right_of_found": [
+     96.8,
+     94.1,
+     98.2,
+     309
+    ],
+    "uncertain": 7,
+    "measured": 3,
+    "phrases": 30
+   },
+   "('library', 20, 1)": {
+    "found": [
+     99.8,
+     99.1,
+     100.0,
+     618
+    ],
+    "right_of_found": [
+     92.1,
+     89.7,
+     93.9,
+     617
+    ],
+    "uncertain": 24,
+    "measured": 2,
+    "phrases": 60
+   },
+   "('library', 30, 0)": {
+    "found": [
+     100.0,
+     98.8,
+     100.0,
+     309
+    ],
+    "right_of_found": [
+     84.8,
+     80.4,
+     88.4,
+     309
+    ],
+    "uncertain": 11,
+    "measured": 0,
+    "phrases": 30
+   },
+   "('library', 30, 1)": {
+    "found": [
+     99.8,
+     99.1,
+     100.0,
+     618
+    ],
+    "right_of_found": [
+     79.7,
+     76.4,
+     82.7,
+     617
+    ],
+    "uncertain": 38,
+    "measured": 0,
+    "phrases": 60
+   },
+   "('random14', 0, 0)": {
+    "found": [
+     100.0,
+     99.1,
+     100.0,
+     420
+    ],
+    "right_of_found": [
+     100.0,
+     99.1,
+     100.0,
+     420
+    ],
+    "uncertain": 0,
+    "measured": 30,
+    "phrases": 30
+   },
+   "('random14', 0, 1)": {
+    "found": [
+     100.0,
+     99.1,
+     100.0,
+     420
+    ],
+    "right_of_found": [
+     100.0,
+     99.1,
+     100.0,
+     420
+    ],
+    "uncertain": 0,
+    "measured": 27,
+    "phrases": 30
+   },
+   "('random14', 10, 0)": {
+    "found": [
+     100.0,
+     99.1,
+     100.0,
+     420
+    ],
+    "right_of_found": [
+     100.0,
+     99.1,
+     100.0,
+     420
+    ],
+    "uncertain": 0,
+    "measured": 26,
+    "phrases": 30
+   },
+   "('random14', 10, 1)": {
+    "found": [
+     100.0,
+     99.1,
+     100.0,
+     420
+    ],
+    "right_of_found": [
+     99.8,
+     98.7,
+     100.0,
+     420
+    ],
+    "uncertain": 0,
+    "measured": 11,
+    "phrases": 30
+   },
+   "('random14', 20, 0)": {
+    "found": [
+     100.0,
+     99.1,
+     100.0,
+     420
+    ],
+    "right_of_found": [
+     97.6,
+     95.7,
+     98.7,
+     420
+    ],
+    "uncertain": 3,
+    "measured": 2,
+    "phrases": 30
+   },
+   "('random14', 20, 1)": {
+    "found": [
+     100.0,
+     99.1,
+     100.0,
+     420
+    ],
+    "right_of_found": [
+     96.4,
+     94.2,
+     97.8,
+     420
+    ],
+    "uncertain": 2,
+    "measured": 1,
+    "phrases": 30
+   },
+   "('random14', 30, 0)": {
+    "found": [
+     100.0,
+     99.1,
+     100.0,
+     420
+    ],
+    "right_of_found": [
+     86.7,
+     83.1,
+     89.6,
+     420
+    ],
+    "uncertain": 11,
+    "measured": 0,
+    "phrases": 30
+   },
+   "('random14', 30, 1)": {
+    "found": [
+     100.0,
+     99.1,
+     100.0,
+     420
+    ],
+    "right_of_found": [
+     81.7,
+     77.7,
+     85.1,
+     420
+    ],
+    "uncertain": 15,
+    "measured": 0,
+    "phrases": 30
+   },
+   "('random28', 0, 0)": {
+    "found": [
+     100.0,
+     99.5,
+     100.0,
+     840
+    ],
+    "right_of_found": [
+     100.0,
+     99.5,
+     100.0,
+     840
+    ],
+    "uncertain": 0,
+    "measured": 30,
+    "phrases": 30
+   },
+   "('random28', 0, 1)": {
+    "found": [
+     100.0,
+     99.5,
+     100.0,
+     840
+    ],
+    "right_of_found": [
+     100.0,
+     99.5,
+     100.0,
+     840
+    ],
+    "uncertain": 0,
+    "measured": 28,
+    "phrases": 30
+   },
+   "('random28', 10, 0)": {
+    "found": [
+     100.0,
+     99.5,
+     100.0,
+     840
+    ],
+    "right_of_found": [
+     100.0,
+     99.5,
+     100.0,
+     840
+    ],
+    "uncertain": 0,
+    "measured": 27,
+    "phrases": 30
+   },
+   "('random28', 10, 1)": {
+    "found": [
+     100.0,
+     99.5,
+     100.0,
+     840
+    ],
+    "right_of_found": [
+     99.9,
+     99.3,
+     100.0,
+     840
+    ],
+    "uncertain": 0,
+    "measured": 10,
+    "phrases": 30
+   },
+   "('random28', 20, 0)": {
+    "found": [
+     100.0,
+     99.5,
+     100.0,
+     840
+    ],
+    "right_of_found": [
+     98.5,
+     97.4,
+     99.1,
+     840
+    ],
+    "uncertain": 0,
+    "measured": 5,
+    "phrases": 30
+   },
+   "('random28', 20, 1)": {
+    "found": [
+     100.0,
+     99.5,
+     100.0,
+     840
+    ],
+    "right_of_found": [
+     96.9,
+     95.5,
+     97.9,
+     840
+    ],
+    "uncertain": 1,
+    "measured": 0,
+    "phrases": 30
+   },
+   "('random28', 30, 0)": {
+    "found": [
+     100.0,
+     99.5,
+     100.0,
+     840
+    ],
+    "right_of_found": [
+     85.0,
+     82.4,
+     87.3,
+     840
+    ],
+    "uncertain": 8,
+    "measured": 0,
+    "phrases": 30
+   },
+   "('random28', 30, 1)": {
+    "found": [
+     99.8,
+     99.1,
+     99.9,
+     840
+    ],
+    "right_of_found": [
+     84.5,
+     81.9,
+     86.8,
+     838
+    ],
+    "uncertain": 10,
+    "measured": 0,
+    "phrases": 30
+   }
+  },
+  "real_resynth": {
+   "scales_straight": {
+    "takes": 20,
+    "all_states_found": 20,
+    "B1_all_found": [
+     7.0,
+     4.6,
+     10.3,
+     316
+    ],
+    "B1_every_take": [
+     7.0,
+     4.6,
+     10.3,
+     316
+    ],
+    "states": {
+     "at least": 20
+    }
+   },
+   "row_vibrato": {
+    "takes": 20,
+    "all_states_found": 20,
+    "B1_all_found": [
+     13.6,
+     8.4,
+     21.3,
+     110
+    ],
+    "B1_every_take": [
+     13.6,
+     8.4,
+     21.3,
+     110
+    ],
+    "states": {
+     "uncertain": 5,
+     "at least": 15
+    }
+   }
+  }
+ },
+ "known": {
+  "B1_P1_fit": {
+   "passes": false,
+   "cells": [
+    {
+     "cell": [
+      "library",
+      0,
+      0
+     ],
+     "k": 2,
+     "n": 518,
+     "share": [
+      0.4,
+      0.1,
+      1.4,
+      518
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      0,
+      1
+     ],
+     "k": 9,
+     "n": 259,
+     "share": [
+      3.5,
+      1.8,
+      6.5,
+      259
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      10,
+      0
+     ],
+     "k": 4,
+     "n": 518,
+     "share": [
+      0.8,
+      0.3,
+      2.0,
+      518
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      10,
+      1
+     ],
+     "k": 7,
+     "n": 259,
+     "share": [
+      2.7,
+      1.3,
+      5.5,
+      259
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      20,
+      0
+     ],
+     "k": 71,
+     "n": 516,
+     "share": [
+      13.8,
+      11.1,
+      17.0,
+      516
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      20,
+      1
+     ],
+     "k": 13,
+     "n": 259,
+     "share": [
+      5.0,
+      3.0,
+      8.4,
+      259
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      30,
+      0
+     ],
+     "k": 98,
+     "n": 511,
+     "share": [
+      19.2,
+      16.0,
+      22.8,
+      511
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      30,
+      1
+     ],
+     "k": 39,
+     "n": 252,
+     "share": [
+      15.5,
+      11.5,
+      20.5,
+      252
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      0,
+      0
+     ],
+     "k": 0,
+     "n": 344,
+     "share": [
+      0.0,
+      0.0,
+      1.1,
+      344
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      0,
+      1
+     ],
+     "k": 7,
+     "n": 341,
+     "share": [
+      2.1,
+      1.0,
+      4.2,
+      341
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      10,
+      0
+     ],
+     "k": 10,
+     "n": 335,
+     "share": [
+      3.0,
+      1.6,
+      5.4,
+      335
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      10,
+      1
+     ],
+     "k": 7,
+     "n": 323,
+     "share": [
+      2.2,
+      1.1,
+      4.4,
+      323
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      20,
+      0
+     ],
+     "k": 60,
+     "n": 342,
+     "share": [
+      17.5,
+      13.9,
+      21.9,
+      342
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      20,
+      1
+     ],
+     "k": 18,
+     "n": 331,
+     "share": [
+      5.4,
+      3.5,
+      8.4,
+      331
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      30,
+      0
+     ],
+     "k": 101,
+     "n": 337,
+     "share": [
+      30.0,
+      25.3,
+      35.1,
+      337
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      30,
+      1
+     ],
+     "k": 42,
+     "n": 341,
+     "share": [
+      12.3,
+      9.2,
+      16.2,
+      341
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      0,
+      0
+     ],
+     "k": 0,
+     "n": 670,
+     "share": [
+      0.0,
+      0.0,
+      0.6,
+      670
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      0,
+      1
+     ],
+     "k": 10,
+     "n": 670,
+     "share": [
+      1.5,
+      0.8,
+      2.7,
+      670
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      10,
+      0
+     ],
+     "k": 11,
+     "n": 680,
+     "share": [
+      1.6,
+      0.9,
+      2.9,
+      680
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      10,
+      1
+     ],
+     "k": 11,
+     "n": 650,
+     "share": [
+      1.7,
+      0.9,
+      3.0,
+      650
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      20,
+      0
+     ],
+     "k": 42,
+     "n": 661,
+     "share": [
+      6.4,
+      4.7,
+      8.5,
+      661
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      20,
+      1
+     ],
+     "k": 21,
+     "n": 660,
+     "share": [
+      3.2,
+      2.1,
+      4.8,
+      660
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      30,
+      0
+     ],
+     "k": 177,
+     "n": 658,
+     "share": [
+      26.9,
+      23.7,
+      30.4,
+      658
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      30,
+      1
+     ],
+     "k": 59,
+     "n": 654,
+     "share": [
+      9.0,
+      7.1,
+      11.5,
+      654
+     ],
+     "judged": true,
+     "passes": false
+    }
+   ]
+  },
+  "B1_P2_fit": {
+   "passes": true,
+   "cells": [
+    {
+     "cell": [
+      "library",
+      0,
+      0
+     ],
+     "k": 0,
+     "n": 518,
+     "share": [
+      0.0,
+      0.0,
+      0.7,
+      518
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      0,
+      1
+     ],
+     "k": 1,
+     "n": 259,
+     "share": [
+      0.4,
+      0.1,
+      2.2,
+      259
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      10,
+      0
+     ],
+     "k": 0,
+     "n": 518,
+     "share": [
+      0.0,
+      0.0,
+      0.7,
+      518
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      10,
+      1
+     ],
+     "k": 0,
+     "n": 259,
+     "share": [
+      0.0,
+      0.0,
+      1.5,
+      259
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      20,
+      0
+     ],
+     "k": 5,
+     "n": 516,
+     "share": [
+      1.0,
+      0.4,
+      2.2,
+      516
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      20,
+      1
+     ],
+     "k": 0,
+     "n": 259,
+     "share": [
+      0.0,
+      0.0,
+      1.5,
+      259
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      30,
+      0
+     ],
+     "k": 14,
+     "n": 511,
+     "share": [
+      2.7,
+      1.6,
+      4.5,
+      511
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      30,
+      1
+     ],
+     "k": 7,
+     "n": 252,
+     "share": [
+      2.8,
+      1.4,
+      5.6,
+      252
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      0,
+      0
+     ],
+     "k": 0,
+     "n": 344,
+     "share": [
+      0.0,
+      0.0,
+      1.1,
+      344
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      0,
+      1
+     ],
+     "k": 2,
+     "n": 341,
+     "share": [
+      0.6,
+      0.2,
+      2.1,
+      341
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      10,
+      0
+     ],
+     "k": 0,
+     "n": 335,
+     "share": [
+      0.0,
+      0.0,
+      1.1,
+      335
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      10,
+      1
+     ],
+     "k": 1,
+     "n": 323,
+     "share": [
+      0.3,
+      0.1,
+      1.7,
+      323
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      20,
+      0
+     ],
+     "k": 0,
+     "n": 342,
+     "share": [
+      0.0,
+      -0.0,
+      1.1,
+      342
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      20,
+      1
+     ],
+     "k": 0,
+     "n": 331,
+     "share": [
+      0.0,
+      0.0,
+      1.1,
+      331
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      30,
+      0
+     ],
+     "k": 11,
+     "n": 337,
+     "share": [
+      3.3,
+      1.8,
+      5.7,
+      337
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      30,
+      1
+     ],
+     "k": 4,
+     "n": 341,
+     "share": [
+      1.2,
+      0.5,
+      3.0,
+      341
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      0,
+      0
+     ],
+     "k": 0,
+     "n": 670,
+     "share": [
+      0.0,
+      0.0,
+      0.6,
+      670
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      0,
+      1
+     ],
+     "k": 1,
+     "n": 670,
+     "share": [
+      0.1,
+      0.0,
+      0.8,
+      670
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      10,
+      0
+     ],
+     "k": 0,
+     "n": 680,
+     "share": [
+      0.0,
+      0.0,
+      0.6,
+      680
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      10,
+      1
+     ],
+     "k": 1,
+     "n": 650,
+     "share": [
+      0.2,
+      0.0,
+      0.9,
+      650
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      20,
+      0
+     ],
+     "k": 1,
+     "n": 661,
+     "share": [
+      0.2,
+      0.0,
+      0.9,
+      661
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      20,
+      1
+     ],
+     "k": 0,
+     "n": 660,
+     "share": [
+      0.0,
+      0.0,
+      0.6,
+      660
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      30,
+      0
+     ],
+     "k": 6,
+     "n": 658,
+     "share": [
+      0.9,
+      0.4,
+      2.0,
+      658
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      30,
+      1
+     ],
+     "k": 1,
+     "n": 654,
+     "share": [
+      0.2,
+      0.0,
+      0.9,
+      654
+     ],
+     "judged": true,
+     "passes": true
+    }
+   ]
+  },
+  "B2_fit": {
+   "passes": true,
+   "cells": [
+    {
+     "cell": [
+      "library",
+      0,
+      0
+     ],
+     "k": 0,
+     "n": 16,
+     "share": [
+      0.0,
+      0.0,
+      19.4,
+      16
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      0,
+      1
+     ],
+     "k": 0,
+     "n": 4,
+     "share": [
+      0.0,
+      0.0,
+      49.0,
+      4
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      10,
+      0
+     ],
+     "k": 0,
+     "n": 73,
+     "share": [
+      0.0,
+      -0.0,
+      5.0,
+      73
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      10,
+      1
+     ],
+     "k": 0,
+     "n": 17,
+     "share": [
+      0.0,
+      0.0,
+      18.4,
+      17
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      20,
+      0
+     ],
+     "k": 1,
+     "n": 7,
+     "share": [
+      14.3,
+      2.6,
+      51.3,
+      7
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      20,
+      1
+     ],
+     "k": 0,
+     "n": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      30,
+      0
+     ],
+     "k": 0,
+     "n": 1,
+     "share": [
+      0.0,
+      0.0,
+      79.3,
+      1
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      30,
+      1
+     ],
+     "k": 0,
+     "n": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      0,
+      0
+     ],
+     "k": 0,
+     "n": 14,
+     "share": [
+      0.0,
+      0.0,
+      21.5,
+      14
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      0,
+      1
+     ],
+     "k": 3,
+     "n": 6,
+     "share": [
+      50.0,
+      18.8,
+      81.2,
+      6
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      10,
+      0
+     ],
+     "k": 0,
+     "n": 43,
+     "share": [
+      0.0,
+      0.0,
+      8.2,
+      43
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      10,
+      1
+     ],
+     "k": 0,
+     "n": 18,
+     "share": [
+      0.0,
+      0.0,
+      17.6,
+      18
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      20,
+      0
+     ],
+     "k": 0,
+     "n": 9,
+     "share": [
+      0.0,
+      0.0,
+      29.9,
+      9
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      20,
+      1
+     ],
+     "k": 0,
+     "n": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      30,
+      0
+     ],
+     "k": 0,
+     "n": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      30,
+      1
+     ],
+     "k": 0,
+     "n": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      0,
+      0
+     ],
+     "k": 0,
+     "n": 25,
+     "share": [
+      0.0,
+      0.0,
+      13.3,
+      25
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      0,
+      1
+     ],
+     "k": 2,
+     "n": 6,
+     "share": [
+      33.3,
+      9.7,
+      70.0,
+      6
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      10,
+      0
+     ],
+     "k": 0,
+     "n": 151,
+     "share": [
+      0.0,
+      0.0,
+      2.5,
+      151
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      10,
+      1
+     ],
+     "k": 0,
+     "n": 48,
+     "share": [
+      0.0,
+      0.0,
+      7.4,
+      48
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      20,
+      0
+     ],
+     "k": 0,
+     "n": 26,
+     "share": [
+      0.0,
+      0.0,
+      12.9,
+      26
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      20,
+      1
+     ],
+     "k": 0,
+     "n": 3,
+     "share": [
+      0.0,
+      0.0,
+      56.2,
+      3
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      30,
+      0
+     ],
+     "k": 0,
+     "n": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      30,
+      1
+     ],
+     "k": 0,
+     "n": 3,
+     "share": [
+      0.0,
+      0.0,
+      56.2,
+      3
+     ],
+     "judged": false,
+     "passes": true
+    }
+   ]
+  },
+  "B1_P1_held": {
+   "passes": false,
+   "cells": [
+    {
+     "cell": [
+      "library",
+      0,
+      0
+     ],
+     "k": 0,
+     "n": 259,
+     "share": [
+      0.0,
+      0.0,
+      1.5,
+      259
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      0,
+      1
+     ],
+     "k": 13,
+     "n": 518,
+     "share": [
+      2.5,
+      1.5,
+      4.2,
+      518
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      10,
+      0
+     ],
+     "k": 11,
+     "n": 259,
+     "share": [
+      4.2,
+      2.4,
+      7.4,
+      259
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      10,
+      1
+     ],
+     "k": 14,
+     "n": 518,
+     "share": [
+      2.7,
+      1.6,
+      4.5,
+      518
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      20,
+      0
+     ],
+     "k": 38,
+     "n": 257,
+     "share": [
+      14.8,
+      11.0,
+      19.6,
+      257
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      20,
+      1
+     ],
+     "k": 35,
+     "n": 517,
+     "share": [
+      6.8,
+      4.9,
+      9.3,
+      517
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      30,
+      0
+     ],
+     "k": 57,
+     "n": 257,
+     "share": [
+      22.2,
+      17.5,
+      27.6,
+      257
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      30,
+      1
+     ],
+     "k": 34,
+     "n": 509,
+     "share": [
+      6.7,
+      4.8,
+      9.2,
+      509
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      0,
+      0
+     ],
+     "k": 0,
+     "n": 346,
+     "share": [
+      0.0,
+      -0.0,
+      1.1,
+      346
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      0,
+      1
+     ],
+     "k": 11,
+     "n": 347,
+     "share": [
+      3.2,
+      1.8,
+      5.6,
+      347
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      10,
+      0
+     ],
+     "k": 20,
+     "n": 340,
+     "share": [
+      5.9,
+      3.8,
+      8.9,
+      340
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      10,
+      1
+     ],
+     "k": 4,
+     "n": 329,
+     "share": [
+      1.2,
+      0.5,
+      3.1,
+      329
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      20,
+      0
+     ],
+     "k": 47,
+     "n": 334,
+     "share": [
+      14.1,
+      10.7,
+      18.2,
+      334
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      20,
+      1
+     ],
+     "k": 9,
+     "n": 335,
+     "share": [
+      2.7,
+      1.4,
+      5.0,
+      335
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      30,
+      0
+     ],
+     "k": 122,
+     "n": 323,
+     "share": [
+      37.8,
+      32.7,
+      43.2,
+      323
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random14",
+      30,
+      1
+     ],
+     "k": 37,
+     "n": 327,
+     "share": [
+      11.3,
+      8.3,
+      15.2,
+      327
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      0,
+      0
+     ],
+     "k": 0,
+     "n": 660,
+     "share": [
+      0.0,
+      0.0,
+      0.6,
+      660
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      0,
+      1
+     ],
+     "k": 8,
+     "n": 631,
+     "share": [
+      1.3,
+      0.6,
+      2.5,
+      631
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      10,
+      0
+     ],
+     "k": 4,
+     "n": 662,
+     "share": [
+      0.6,
+      0.2,
+      1.5,
+      662
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      10,
+      1
+     ],
+     "k": 12,
+     "n": 662,
+     "share": [
+      1.8,
+      1.0,
+      3.1,
+      662
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      20,
+      0
+     ],
+     "k": 62,
+     "n": 670,
+     "share": [
+      9.3,
+      7.3,
+      11.7,
+      670
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      20,
+      1
+     ],
+     "k": 14,
+     "n": 655,
+     "share": [
+      2.1,
+      1.3,
+      3.6,
+      655
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      30,
+      0
+     ],
+     "k": 167,
+     "n": 651,
+     "share": [
+      25.7,
+      22.4,
+      29.1,
+      651
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "random28",
+      30,
+      1
+     ],
+     "k": 65,
+     "n": 664,
+     "share": [
+      9.8,
+      7.8,
+      12.3,
+      664
+     ],
+     "judged": true,
+     "passes": false
+    }
+   ]
+  },
+  "B1_P2_held": {
+   "passes": true,
+   "cells": [
+    {
+     "cell": [
+      "library",
+      0,
+      0
+     ],
+     "k": 0,
+     "n": 259,
+     "share": [
+      0.0,
+      0.0,
+      1.5,
+      259
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      0,
+      1
+     ],
+     "k": 0,
+     "n": 518,
+     "share": [
+      0.0,
+      0.0,
+      0.7,
+      518
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      10,
+      0
+     ],
+     "k": 0,
+     "n": 259,
+     "share": [
+      0.0,
+      0.0,
+      1.5,
+      259
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      10,
+      1
+     ],
+     "k": 2,
+     "n": 518,
+     "share": [
+      0.4,
+      0.1,
+      1.4,
+      518
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      20,
+      0
+     ],
+     "k": 3,
+     "n": 257,
+     "share": [
+      1.2,
+      0.4,
+      3.4,
+      257
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      20,
+      1
+     ],
+     "k": 0,
+     "n": 517,
+     "share": [
+      0.0,
+      -0.0,
+      0.7,
+      517
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      30,
+      0
+     ],
+     "k": 0,
+     "n": 257,
+     "share": [
+      0.0,
+      0.0,
+      1.5,
+      257
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      30,
+      1
+     ],
+     "k": 2,
+     "n": 509,
+     "share": [
+      0.4,
+      0.1,
+      1.4,
+      509
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      0,
+      0
+     ],
+     "k": 0,
+     "n": 346,
+     "share": [
+      0.0,
+      -0.0,
+      1.1,
+      346
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      0,
+      1
+     ],
+     "k": 0,
+     "n": 347,
+     "share": [
+      0.0,
+      0.0,
+      1.1,
+      347
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      10,
+      0
+     ],
+     "k": 0,
+     "n": 340,
+     "share": [
+      0.0,
+      0.0,
+      1.1,
+      340
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      10,
+      1
+     ],
+     "k": 0,
+     "n": 329,
+     "share": [
+      0.0,
+      -0.0,
+      1.2,
+      329
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      20,
+      0
+     ],
+     "k": 0,
+     "n": 334,
+     "share": [
+      0.0,
+      0.0,
+      1.1,
+      334
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      20,
+      1
+     ],
+     "k": 0,
+     "n": 335,
+     "share": [
+      0.0,
+      0.0,
+      1.1,
+      335
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      30,
+      0
+     ],
+     "k": 12,
+     "n": 323,
+     "share": [
+      3.7,
+      2.1,
+      6.4,
+      323
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      30,
+      1
+     ],
+     "k": 2,
+     "n": 327,
+     "share": [
+      0.6,
+      0.2,
+      2.2,
+      327
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      0,
+      0
+     ],
+     "k": 0,
+     "n": 660,
+     "share": [
+      0.0,
+      0.0,
+      0.6,
+      660
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      0,
+      1
+     ],
+     "k": 1,
+     "n": 631,
+     "share": [
+      0.2,
+      0.0,
+      0.9,
+      631
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      10,
+      0
+     ],
+     "k": 0,
+     "n": 662,
+     "share": [
+      0.0,
+      0.0,
+      0.6,
+      662
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      10,
+      1
+     ],
+     "k": 0,
+     "n": 662,
+     "share": [
+      0.0,
+      0.0,
+      0.6,
+      662
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      20,
+      0
+     ],
+     "k": 1,
+     "n": 670,
+     "share": [
+      0.1,
+      0.0,
+      0.8,
+      670
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      20,
+      1
+     ],
+     "k": 0,
+     "n": 655,
+     "share": [
+      0.0,
+      -0.0,
+      0.6,
+      655
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      30,
+      0
+     ],
+     "k": 5,
+     "n": 651,
+     "share": [
+      0.8,
+      0.3,
+      1.8,
+      651
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      30,
+      1
+     ],
+     "k": 5,
+     "n": 664,
+     "share": [
+      0.8,
+      0.3,
+      1.8,
+      664
+     ],
+     "judged": true,
+     "passes": true
+    }
+   ]
+  },
+  "B2_held": {
+   "passes": false,
+   "cells": [
+    {
+     "cell": [
+      "library",
+      0,
+      0
+     ],
+     "k": 0,
+     "n": 5,
+     "share": [
+      0.0,
+      -0.0,
+      43.4,
+      5
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      0,
+      1
+     ],
+     "k": 2,
+     "n": 7,
+     "share": [
+      28.6,
+      8.2,
+      64.1,
+      7
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      10,
+      0
+     ],
+     "k": 1,
+     "n": 45,
+     "share": [
+      2.2,
+      0.4,
+      11.6,
+      45
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      10,
+      1
+     ],
+     "k": 2,
+     "n": 36,
+     "share": [
+      5.6,
+      1.5,
+      18.1,
+      36
+     ],
+     "judged": true,
+     "passes": false
+    },
+    {
+     "cell": [
+      "library",
+      20,
+      0
+     ],
+     "k": 0,
+     "n": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      20,
+      1
+     ],
+     "k": 0,
+     "n": 1,
+     "share": [
+      0.0,
+      0.0,
+      79.3,
+      1
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      30,
+      0
+     ],
+     "k": 0,
+     "n": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "library",
+      30,
+      1
+     ],
+     "k": 0,
+     "n": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      0,
+      0
+     ],
+     "k": 0,
+     "n": 14,
+     "share": [
+      0.0,
+      0.0,
+      21.5,
+      14
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      0,
+      1
+     ],
+     "k": 2,
+     "n": 9,
+     "share": [
+      22.2,
+      6.3,
+      54.7,
+      9
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      10,
+      0
+     ],
+     "k": 0,
+     "n": 67,
+     "share": [
+      0.0,
+      0.0,
+      5.4,
+      67
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      10,
+      1
+     ],
+     "k": 0,
+     "n": 12,
+     "share": [
+      0.0,
+      0.0,
+      24.3,
+      12
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      20,
+      0
+     ],
+     "k": 0,
+     "n": 4,
+     "share": [
+      0.0,
+      0.0,
+      49.0,
+      4
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      20,
+      1
+     ],
+     "k": 0,
+     "n": 5,
+     "share": [
+      0.0,
+      -0.0,
+      43.4,
+      5
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      30,
+      0
+     ],
+     "k": 0,
+     "n": 2,
+     "share": [
+      0.0,
+      0.0,
+      65.8,
+      2
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random14",
+      30,
+      1
+     ],
+     "k": 0,
+     "n": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      0,
+      0
+     ],
+     "k": 0,
+     "n": 16,
+     "share": [
+      0.0,
+      0.0,
+      19.4,
+      16
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      0,
+      1
+     ],
+     "k": 2,
+     "n": 8,
+     "share": [
+      25.0,
+      7.1,
+      59.1,
+      8
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      10,
+      0
+     ],
+     "k": 0,
+     "n": 137,
+     "share": [
+      0.0,
+      0.0,
+      2.7,
+      137
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      10,
+      1
+     ],
+     "k": 1,
+     "n": 51,
+     "share": [
+      2.0,
+      0.3,
+      10.3,
+      51
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      20,
+      0
+     ],
+     "k": 0,
+     "n": 21,
+     "share": [
+      0.0,
+      0.0,
+      15.5,
+      21
+     ],
+     "judged": true,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      20,
+      1
+     ],
+     "k": 1,
+     "n": 7,
+     "share": [
+      14.3,
+      2.6,
+      51.3,
+      7
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      30,
+      0
+     ],
+     "k": 0,
+     "n": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    {
+     "cell": [
+      "random28",
+      30,
+      1
+     ],
+     "k": 0,
+     "n": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    }
+   ]
+  },
+  "B2_fit_all_('any', None)": false,
+  "B2_fit_all_('any', 50)": false,
+  "B2_fit_all_('any', 40)": false,
+  "B2_fit_all_('any', 30)": false,
+  "B2_fit_all_('any', 20)": true,
+  "real_resynth": {
+   "scales_straight": {
+    "takes": 20,
+    "all_states_found": 20,
+    "B1_all_found": [
+     3.3,
+     1.9,
+     5.8,
+     333
+    ],
+    "B1_every_take": [
+     3.3,
+     1.9,
+     5.8,
+     333
+    ],
+    "B2_all_found": [
+     0.0,
+     0.0,
+     65.8,
+     2
+    ],
+    "B2_every_take": [
+     0.0,
+     0.0,
+     65.8,
+     2
+    ],
+    "states": {
+     "finite": 20
+    }
+   },
+   "row_vibrato": {
+    "takes": 20,
+    "all_states_found": 20,
+    "B1_all_found": [
+     6.4,
+     4.0,
+     10.0,
+     265
+    ],
+    "B1_every_take": [
+     6.4,
+     4.0,
+     10.0,
+     265
+    ],
+    "B2_all_found": [
+     null,
+     null,
+     null,
+     0
+    ],
+    "B2_every_take": [
+     null,
+     null,
+     null,
+     0
+    ],
+    "states": {
+     "finite": 20
+    }
+   }
+  }
+ },
+ "H3_held": {
+  "free": null,
+  "known": {
+   "('library', 0, 0)": {
+    "phrases": 30,
+    "any_moved": [
+     16.7,
+     7.3,
+     33.6,
+     30
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('library', 0, 1)": {
+    "phrases": 60,
+    "any_moved": [
+     10.0,
+     4.7,
+     20.1,
+     60
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     6.0,
+     60
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('library', 10, 0)": {
+    "phrases": 30,
+    "any_moved": [
+     56.7,
+     39.2,
+     72.6,
+     30
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('library', 10, 1)": {
+    "phrases": 60,
+    "any_moved": [
+     33.3,
+     22.7,
+     45.9,
+     60
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     6.0,
+     60
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('library', 20, 0)": {
+    "phrases": 30,
+    "any_moved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('library', 20, 1)": {
+    "phrases": 60,
+    "any_moved": [
+     1.7,
+     0.3,
+     8.9,
+     60
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     6.0,
+     60
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('library', 30, 0)": {
+    "phrases": 30,
+    "any_moved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('library', 30, 1)": {
+    "phrases": 60,
+    "any_moved": [
+     0.0,
+     -0.0,
+     6.0,
+     60
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     6.0,
+     60
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('random14', 0, 0)": {
+    "phrases": 30,
+    "any_moved": [
+     40.0,
+     24.6,
+     57.7,
+     30
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('random14', 0, 1)": {
+    "phrases": 30,
+    "any_moved": [
+     30.0,
+     16.7,
+     47.9,
+     30
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('random14', 10, 0)": {
+    "phrases": 30,
+    "any_moved": [
+     80.0,
+     62.7,
+     90.5,
+     30
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('random14', 10, 1)": {
+    "phrases": 30,
+    "any_moved": [
+     26.7,
+     14.2,
+     44.4,
+     30
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('random14', 20, 0)": {
+    "phrases": 30,
+    "any_moved": [
+     6.7,
+     1.8,
+     21.3,
+     30
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('random14', 20, 1)": {
+    "phrases": 30,
+    "any_moved": [
+     6.7,
+     1.8,
+     21.3,
+     30
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('random14', 30, 0)": {
+    "phrases": 30,
+    "any_moved": [
+     3.3,
+     0.6,
+     16.7,
+     30
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('random14', 30, 1)": {
+    "phrases": 30,
+    "any_moved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('random28', 0, 0)": {
+    "phrases": 30,
+    "any_moved": [
+     40.0,
+     24.6,
+     57.7,
+     30
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('random28', 0, 1)": {
+    "phrases": 30,
+    "any_moved": [
+     23.3,
+     11.8,
+     40.9,
+     30
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('random28', 10, 0)": {
+    "phrases": 30,
+    "any_moved": [
+     80.0,
+     62.7,
+     90.5,
+     30
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('random28', 10, 1)": {
+    "phrases": 30,
+    "any_moved": [
+     66.7,
+     48.8,
+     80.8,
+     30
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('random28', 20, 0)": {
+    "phrases": 30,
+    "any_moved": [
+     30.0,
+     16.7,
+     47.9,
+     30
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('random28', 20, 1)": {
+    "phrases": 30,
+    "any_moved": [
+     16.7,
+     7.3,
+     33.6,
+     30
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('random28', 30, 0)": {
+    "phrases": 30,
+    "any_moved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('random28', 30, 1)": {
+    "phrases": 30,
+    "any_moved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     11.4,
+     30
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   }
+  }
+ },
+ "H3_real": {
+  "free": null,
+  "known": {
+   "('row_straight', -1, -1)": {
+    "phrases": 19,
+    "any_moved": [
+     5.3,
+     0.9,
+     24.6,
+     19
+    ],
+    "far_vision_improved": [
+     0.0,
+     0.0,
+     16.8,
+     19
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('row_vibrato', -1, -1)": {
+    "phrases": 39,
+    "any_moved": [
+     0.0,
+     0.0,
+     9.0,
+     39
+    ],
+    "far_vision_improved": [
+     0.0,
+     0.0,
+     9.0,
+     39
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('scales_straight', -1, -1)": {
+    "phrases": 39,
+    "any_moved": [
+     10.3,
+     4.1,
+     23.6,
+     39
+    ],
+    "far_vision_improved": [
+     0.0,
+     0.0,
+     9.0,
+     39
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   },
+   "('scales_vibrato', -1, -1)": {
+    "phrases": 20,
+    "any_moved": [
+     0.0,
+     -0.0,
+     16.1,
+     20
+    ],
+    "far_vision_improved": [
+     0.0,
+     -0.0,
+     16.1,
+     20
+    ],
+    "least_s_improved_median": null,
+    "least_s_counts": {
+     "0.25": 0,
+     "0.5": 0,
+     "0.75": 0,
+     "1.0": 0
+    },
+    "worse_any_s": 0
+   }
+  }
+ },
+ "real_states": {
+  "resynth/row_vibrato": {
+   "takes": 20,
+   "free_states": {
+    "uncertain": 5,
+    "at least": 15
+   },
+   "known_s_median": 45.44551828045944,
+   "known_uB_median": 65.34109552453091
+  },
+  "resynth/scales_straight": {
+   "takes": 20,
+   "free_states": {
+    "at least": 20
+   },
+   "known_s_median": 19.202884338667378,
+   "known_uB_median": 12.078073297800476
+  },
+  "original/row_straight": {
+   "takes": 19,
+   "free_states": {
+    "at least": 19
+   },
+   "known_s_median": 17.697783524472037,
+   "known_uB_median": 13.602715385134056
+  },
+  "original/row_vibrato": {
+   "takes": 19,
+   "free_states": {
+    "uncertain": 9,
+    "at least": 10
+   },
+   "known_s_median": 39.22952561323875,
+   "known_uB_median": 58.66882384964647
+  },
+  "original/scales_straight": {
+   "takes": 19,
+   "free_states": {
+    "at least": 19
+   },
+   "known_s_median": 18.18945146656935,
+   "known_uB_median": 11.095721362993663
+  },
+  "original/scales_vibrato": {
+   "takes": 20,
+   "free_states": {
+    "uncertain": 7,
+    "at least": 13
+   },
+   "known_s_median": 39.026091364101276,
+   "known_uB_median": 66.10507085809775
+  }
+ }
+}

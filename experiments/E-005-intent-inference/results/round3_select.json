@@ -1,0 +1,19 @@
+{
+ "free": {
+  "u": "P2",
+  "range": "none: per-note +- not honest",
+  "gate": null
+ },
+ "known": {
+  "u": "P2",
+  "range": "every cell",
+  "gate": {
+   "gate": [
+    "any",
+    20
+   ],
+   "moved_fit": 470
+  }
+ },
+ "fit_phrases": 840
+}
