@@ -540,7 +540,10 @@ rock, jazz and the rest) still rests on one original each.
 - Tempo is the MIDI file's. Four sources state no metronome mark (The
   Storm, Les matelots; Après un rêve and Einsamkeit give only a word),
   so their 60 quarter notes a minute is LilyPond's default, not the
-  edition's. Seconds and the 0.1 s condition are at that tempo.
+  edition's. Seconds and the 0.1 s condition are at that tempo. Three
+  more (Sapphische Ode, The Spirit of God, L'Esclave) set theirs only in
+  the transcription's `\midi` block, for playback, printed nowhere in it
+  (fold 3, squillo F-062 (a)); the other three print theirs.
 - Words are the transcription's syllables of verse 1. L'Esclave reads
   "peutêtre": its source writes `peut -- être`, a syllable break, so the
   hyphen of "peut-être" is not recoverable by rule. The words' language
@@ -575,7 +578,7 @@ above, and said here:
   `self_check.must_fail_inputs_differ` is not asserted, though its
   docstring says it is, and `round2.py` has no guard against running
   uncommitted (`e9ff55a` committed its code and results together)
-  (squillo F-062).
+  (squillo F-062; fixed in fold 3).
 - **S19**: the survey's 71 s is a measurement written after it; the
   measure sample's figures were committed with the results, the sample
   the first two items. All runs are about a minute.
