@@ -48,7 +48,13 @@ by construction, and never an expectation taken from the claim under test
 check records but does not assert is not a check: before the results
 commit, search the code for an assert of every results key that names a
 check (`check`, `must`, `pass`), and assert it, or say in its README row
-"recorded, not asserted" and why (squillo L-046). Rules and bars written
+"recorded, not asserted" and why (squillo L-046). **Then run
+`python3 tools/checkkeys.py <script> <results.json>...`**: it flags a
+script with no committed-first guard and a check key neither asserted by
+name nor listed as recorded; each flag is fixed, or read by hand and
+listed in the README with why (it reads names, not data flow). A guard
+covers every module of the experiment that holds a rule, not only the
+entry script (squillo L-051). Rules and bars written
 before a run are committed before it runs, in their own commit, so that
 "before" can be read from git; a fixture generator's or model's expected
 outcomes are such rules. A script that holds rules or expected outcomes
@@ -96,7 +102,9 @@ among them, each run to its end** (a sample item that does not end is a
 fault in the harness; squillo L-048), **on the pool itself, at the process count the
 run will use**, since a single idle process can be several times faster
 than the same work under a full pool; multiply out, and write the estimate
-in the README's command block. **The rules are committed before the sample runs**: the sample, and the analysis timed on its outputs, are runs, and an analysis that prints the hypotheses' outcomes on the sample before the rules commit is the rules written after seeing data. A harness fault the sample finds is fixed in a revision recorded before the full run (E-003 round 4, `81f216c`; squillo L-049). If the run and its analysis do not fit well
+in the README's command block, **and commit that estimate before the full
+run starts**, with a revision of the rules or on its own, so that git
+shows it came first (squillo L-051). **The rules are committed before the sample runs**: the sample, and the analysis timed on its outputs, are runs, and an analysis that prints the hypotheses' outcomes on the sample before the rules commit is the rules written after seeing data. A harness fault the sample finds is fixed in a revision recorded before the full run (E-003 round 4, `81f216c`; squillo L-049). If the run and its analysis do not fit well
 inside the session, cut the design (fewer cells, fewer items per cell)
 before starting, never after (squillo L-033). A run longer than a few
 minutes saves its results as it goes and resumes from them, and no time
@@ -161,7 +169,9 @@ from here or from cited literature, never from nowhere.
   restatements of an ADR's status that disagree with its header (S4) and
   constraint tables that miss a `docs/architecture.md` §2 row or say "none"
   with no reason (S6); `--self-test` runs its must-pass and must-fail cases.
-  A lead, not proof (squillo L-049).
+  A lead, not proof (squillo L-049). `python3 tools/checkkeys.py <script>
+  <results.json>...` flags a missing committed-first guard and check keys
+  neither asserted nor listed as recorded (S15; squillo L-051).
 - **GPU**: an Intel Arc A770M, which stands in for the remote tier and not for
   a singer's device. Read [`COMPUTE.md`](COMPUTE.md) before timing anything on
   it.
