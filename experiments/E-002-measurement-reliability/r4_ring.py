@@ -123,6 +123,7 @@ than twice the bound from 0.
 
 import json
 import pickle
+import subprocess
 import sys
 import time
 from multiprocessing import Pool
@@ -586,7 +587,35 @@ def analyse(sample=None):
     return res
 
 
+def committed_first():
+    """squillo L-047 (S15), added for F-054 (a) (squillo iteration 63): refuse to run on an
+    uncommitted edit of this script."""
+    here = Path(__file__).resolve()
+    tracked = subprocess.run(["git", "ls-files", "--error-unmatch", here.name], cwd=here.parent,
+                             capture_output=True).returncode == 0  # a never-committed script passes diff
+    r = subprocess.run(["git", "diff", "--quiet", "HEAD", "--", here.name], cwd=here.parent)
+    if not tracked or r.returncode != 0:
+        raise SystemExit(f"{here.name} has uncommitted edits: commit its rules first (S15, L-047)")
+
+
+def assert_checks(r):
+    """F-054 (a) (squillo iteration 63): B1's and B3's own checks, recorded since iteration 49 and
+    asserted from here on. B3's must-fail is asserted with the odd singers as the fitting fold only:
+    with the even singers it passes (1 of 41), as R-10 found and the README states, so the gate's
+    bar is checked on one fold of two; the even fold's outcome is asserted to be the one recorded,
+    so a change in it stops the run too."""
+    assert r["B1_check_fitting_fold"]["pass"], r["B1_check_fitting_fold"]
+    assert not r["B1_check_boost_test_fold"]["pass"], r["B1_check_boost_test_fold"]
+    b3 = r["B3_check"]
+    assert b3["V0_white10_fit_must_fail"]["odd_fit"]["fails"], b3["V0_white10_fit_must_fail"]
+    assert not b3["V0_white10_fit_must_fail"]["even_fit"]["fails"], b3["V0_white10_fit_must_fail"]
+    for var in ("V1", "V2"):
+        for k in ("even_fit", "odd_fit"):
+            assert b3["chosen_g_clean_fit_must_pass"][var][k]["passes"], (var, k)
+
+
 if __name__ == "__main__":
+    committed_first()
     cmd = sys.argv[1]
     if cmd == "check":
         check()
@@ -600,6 +629,7 @@ if __name__ == "__main__":
         r = analyse(n)
         print(f"analysis {time.time() - t0:.1f} s")
         if n is None:
+            assert_checks(r)
             (OUT / "r4_ring.json").write_text(json.dumps(r, indent=1))
         print(json.dumps({k: v for k, v in r.items() if k not in ("sensitivity", "B3")}, indent=1))
         print(json.dumps({k: {kk: vv for kk, vv in v.items() if kk != "rows"} for k, v in r["sensitivity"].items()}, indent=1))
