@@ -60,6 +60,11 @@ ALIGN_MIN = 0.9                       # rule 5b: share of the line's syllables o
 
 TARGET = 30                           # VISION.md §9
 
+# Rule 2g, by tune as well as title: an eligible piece setting a verified
+# phrase's tune under another title, named by the agent from the metadata
+# (added after the first screen listed it, before any file was read; README).
+SAME_TUNE = {367: "ocomeallyefaithful"}
+
 # Rule 4: each named person of the 21 eligible pieces (results/r3-screen.json),
 # by Mutopia's name, to the English Wikipedia article the agent names from that
 # metadata alone, committed before any Wikidata, MIDI or LilyPond file is read.
@@ -203,6 +208,8 @@ def screen_one(s, verified_titles):
         why.append("2f no MIDI or LilyPond file listed")
     t = re.sub(r"[^a-z]", "", s["title"].lower())
     dup = [v for v in verified_titles if v and (v in t or t in v)]
+    if s["id"] in SAME_TUNE:
+        dup.append(SAME_TUNE[s["id"]] + " (the same tune)")
     if dup:
         why.append("2g a verified phrase sets it: " + ", ".join(dup))
     return dict(id=s["id"], title=s["title"], style=s["style"], genre=GENRE.get(s["style"], "other"),

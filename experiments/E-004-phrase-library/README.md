@@ -382,8 +382,11 @@ would, so only Public Domain ones are used.
    since the edition prints both; (e) round 1's rules pass on that, `us`
    (the edition by 1930) and `life100` (every named person died by 1925, an
    anonymous part published by 1925), squillo's shipping rule; (f) it has a
-   MIDI and a LilyPond file; (g) its title is not one of the 20 verified
-   phrases'. The rights rule is first run on one case it must pass and four
+   MIDI and a LilyPond file; (g) neither its title nor its tune is one of
+   the 20 verified phrases' (the tune named by the agent from the
+   metadata; added after the first screen listed Adeste Fideles, Mutopia
+   367, which sets the verified O Come, All Ye Faithful's tune with its
+   Latin words, and before any file was read). The rights rule is first run on one case it must pass and four
    it must fail (an edition of 1931, a death in 1926, an unknown death, an
    anonymous part published 1926), each differing in its input.
 3. *Order.* Phrases round 2 left pending come first, in its `PENDING`
