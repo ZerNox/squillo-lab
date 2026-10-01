@@ -150,3 +150,32 @@ port). Safari and Edge untested. The probe list is the channels named in
 the protocol, not every browser feature; `prefetch` is not judged in
 Firefox. One empty WebAssembly module, not the engine. No human step:
 nothing here needs a microphone, room or listener.
+
+### Re-read for squillo F-059 (iteration 56): which blocks the browser reports
+
+squillo `security` SE-002's first scenario said the browser reports every
+governed probe as refused by the page's policy; round 1 recorded
+`securitypolicyviolation` events but asserted none. `node violations.mjs`
+(committed before it ran, `violations.mjs`; reads `data/cache/runs` only,
+writes `results/violations.json`) counts, in the configuration squillo
+ships (the worker from a `blob:` URL) under `meta` and `header`, 12 runs,
+whether the context that fired each judged governed probe recorded a
+violation naming the probe's own URL. Rule written before the read: a
+blocked frame is matched by the other origin alone, since both browsers
+report a frame by its origin (`iframe_by`). Checks: the matcher passes a
+violation naming the probe in the right context and fails one from the
+other context, one from another run and an empty list (asserted); every
+recorded violation is matched to a probe (`unmatched` 0, asserted); the
+reps agree for every probe reported (asserted).
+
+- **Chrome 154:** all 11 document probes and all 5 worker probes reported,
+  3 of 3, under both `meta` and `header` (`cells["chrome|*"].not_reported`
+  empty).
+- **Firefox 156:** all 11 document probes reported (its `prefetch` too,
+  though round 1 could not judge it, since it reached nothing with no
+  policy either), and 3 of the worker's 5: `eventsource` and
+  `importscripts` were blocked (round 1: none reached the logger) but
+  reported in no run (`cells["firefox|*"].not_reported`).
+
+So a report is evidence of a refusal, but its absence is not evidence of
+a reach: the listener stays the measure, as round 1's protocol said.

@@ -1,0 +1,118 @@
+{
+ "source": "data/cache/runs (E-006 round 1, results commit 7a2e669)",
+ "conds": [
+  "meta",
+  "header"
+ ],
+ "mode": "blob",
+ "runs": 12,
+ "cells": {
+  "chrome|meta": {
+   "runs": 3,
+   "reported": {
+    "doc/fetch": 3,
+    "doc/xhr": 3,
+    "doc/websocket": 3,
+    "doc/eventsource": 3,
+    "doc/beacon": 3,
+    "doc/img": 3,
+    "doc/script": 3,
+    "doc/style": 3,
+    "doc/prefetch": 3,
+    "doc/audio": 3,
+    "doc/iframe": 3,
+    "worker/fetch": 3,
+    "worker/xhr": 3,
+    "worker/websocket": 3,
+    "worker/eventsource": 3,
+    "worker/importscripts": 3
+   },
+   "not_reported": [],
+   "not_judged": [],
+   "iframe_by": "origin"
+  },
+  "chrome|header": {
+   "runs": 3,
+   "reported": {
+    "doc/fetch": 3,
+    "doc/xhr": 3,
+    "doc/websocket": 3,
+    "doc/eventsource": 3,
+    "doc/beacon": 3,
+    "doc/img": 3,
+    "doc/script": 3,
+    "doc/style": 3,
+    "doc/prefetch": 3,
+    "doc/audio": 3,
+    "doc/iframe": 3,
+    "worker/fetch": 3,
+    "worker/xhr": 3,
+    "worker/websocket": 3,
+    "worker/eventsource": 3,
+    "worker/importscripts": 3
+   },
+   "not_reported": [],
+   "not_judged": [],
+   "iframe_by": "origin"
+  },
+  "firefox|meta": {
+   "runs": 3,
+   "reported": {
+    "doc/fetch": 3,
+    "doc/xhr": 3,
+    "doc/websocket": 3,
+    "doc/eventsource": 3,
+    "doc/beacon": 3,
+    "doc/img": 3,
+    "doc/script": 3,
+    "doc/style": 3,
+    "doc/prefetch": 3,
+    "doc/audio": 3,
+    "doc/iframe": 3,
+    "worker/fetch": 3,
+    "worker/xhr": 3,
+    "worker/websocket": 3,
+    "worker/eventsource": 0,
+    "worker/importscripts": 0
+   },
+   "not_reported": [
+    "worker/eventsource",
+    "worker/importscripts"
+   ],
+   "not_judged": [
+    "doc/prefetch"
+   ],
+   "iframe_by": "origin"
+  },
+  "firefox|header": {
+   "runs": 3,
+   "reported": {
+    "doc/fetch": 3,
+    "doc/xhr": 3,
+    "doc/websocket": 3,
+    "doc/eventsource": 3,
+    "doc/beacon": 3,
+    "doc/img": 3,
+    "doc/script": 3,
+    "doc/style": 3,
+    "doc/prefetch": 3,
+    "doc/audio": 3,
+    "doc/iframe": 3,
+    "worker/fetch": 3,
+    "worker/xhr": 3,
+    "worker/websocket": 3,
+    "worker/eventsource": 0,
+    "worker/importscripts": 0
+   },
+   "not_reported": [
+    "worker/eventsource",
+    "worker/importscripts"
+   ],
+   "not_judged": [
+    "doc/prefetch"
+   ],
+   "iframe_by": "origin"
+  }
+ },
+ "unmatched": 0
+}
