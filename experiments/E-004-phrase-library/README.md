@@ -545,6 +545,38 @@ rock, jazz and the rest) still rests on one original each.
   for Hans Schmidt (1923) alone.
 - The rights rules are round 1's model, with round 1's limits.
 
+**Audit by squillo R-12 (iteration 60).** Re-run in a clone with the
+network blocked and the cache copied: `survey`, `screen`, `extract`,
+`measure` and `report` give every round 3 results file byte for byte,
+and round 2's `check` and `report` theirs. Nothing moves. Not said
+above, and said here:
+
+- **The 30 rests on `55d16cd`**, made after the first extract run: before
+  it, L'Esclave was excluded for a blank arranger cell, and 9 were taken.
+  `03a33c3` changed the words' reader and K6 after a second extract run;
+  no selection moved.
+- **Armide (532) was never compiled**: the code compiles single-file
+  sources only (`round3.py`, `extract`), which rule 5a does not state,
+  and Armide's is a seven-file archive; its reason "the source did not
+  compile" is the code's, not LilyPond's. Had it compiled, which 10 were
+  taken could differ, not their count. Les roses d'Ispahan's "compile
+  gave no MIDI" is a commented-out `\midi` the test mistook for a block;
+  it touches K6 only.
+- **Checks never probed**: rule 5e's conditions beyond the note count,
+  rule 3's order, and the screen's readers of people and years. K4 can
+  fail but has no must-pass case; K6 has no must-fail case. Round 2's
+  `self_check.must_fail_inputs_differ` is not asserted, though its
+  docstring says it is, and `round2.py` has no guard against running
+  uncommitted (`e9ff55a` committed its code and results together)
+  (squillo F-062).
+- **S19**: the survey's 71 s is a measurement written after it; the
+  measure sample's figures were committed with the results, the sample
+  the first two items. All runs are about a minute.
+- **S16**: the listing's cells are read by position (the listing has no
+  labels), matched to the piece pages' labels by hand for three pieces;
+  the survey's cache is keyed by `startat` only. `6851b66` ("wip-order")
+  holds `PEOPLE` and `order()`, which `88882e5`'s message claims.
+
 ## Fold 2 (squillo iteration 58): the 30 as item files
 
 **Question.** Do the library's 30 phrases (round 1's 19 verified, round

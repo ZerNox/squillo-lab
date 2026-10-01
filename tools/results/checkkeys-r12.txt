@@ -1,0 +1,39 @@
+# tools/checkkeys.py runs, squillo R-12 (iteration 60)
+self-test: 7 of 7 cases as expected
+## E-004-phrase-library/fold.py
+outcome keys, not flagged (the README says which are checks): ok
+0 flagged
+## E-004-phrase-library/round3.py
+FLAG check key not asserted and not listed as recorded: must_fail_all_fail
+FLAG check key not asserted and not listed as recorded: must_fail_cases
+2 flagged
+## E-004-phrase-library/round2.py
+FLAG no committed-first guard (git ls-files --error-unmatch and git diff --quiet)
+FLAG check key not asserted and not listed as recorded: must_fail_inputs_differ
+FLAG check key not asserted and not listed as recorded: must_fail_pitch
+FLAG check key not asserted and not listed as recorded: must_fail_rhythm
+FLAG check key not asserted and not listed as recorded: self_check
+FLAG check key not asserted and not listed as recorded: must_fail
+FLAG check key not asserted and not listed as recorded: must_fail_no_ref_la_donna_called_no_score
+FLAG check key not asserted and not listed as recorded: must_fail_no_ref_reason_names_no_claim
+outcome keys, not flagged (the README says which are checks): ok
+8 flagged
+## E-005-intent-inference/round3.py
+outcome keys, not flagged (the README says which are checks): passes
+0 flagged
+## fold.py at fa22caf (the case that failed)
+FLAG no committed-first guard (git ls-files --error-unmatch and git diff --quiet)
+FLAG check key not asserted and not listed as recorded: C_must_fail
+FLAG check key not asserted and not listed as recorded: R_fixture_must_fail
+FLAG check key not asserted and not listed as recorded: tempo_bound_must_fail
+4 flagged
+
+# Each flag read by hand (R-12)
+- round3.py must_fail_all_fail, must_fail_cases (K4): asserted by expression at round3.py:633
+  (`assert k4 and not any(x["agrees"] for x in k4)`), before the keys are recorded. Tool's limit.
+- round2.py must_fail, must_fail_no_ref_*: asserted through check_fails_when_it_must (round2.py:331-333). Tool's limit.
+- round2.py self_check must_pass / must_fail_pitch / must_fail_rhythm: README line 311-313 says recorded, not
+  asserted, by design (the phrase is on the next line from the key names). Listed.
+- round2.py must_fail_inputs_differ: REAL. Not asserted; round2.py:243-245's docstring says it is (squillo F-062).
+- round2.py no committed-first guard: REAL; e9ff55a ran it uncommitted and committed code and results together (F-062).
+- fold.py at fa22caf: all four REAL; fixed in 9a56256, re-run 4502356.
