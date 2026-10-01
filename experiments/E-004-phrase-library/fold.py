@@ -1,6 +1,8 @@
 """E-004 fold 2 (squillo iteration 58): the library's 30 phrases written as squillo item files.
 
-    uv run python fold.py <squillo>      # -> results/items/*.json, results/fold2.json
+    uv run python fold.py <squillo>          # -> results/items/*.json, results/fold2.json
+    uv run python fold.py <squillo> --ship   # fold 3: also writes them into squillo (fixtures/slice/phrases/,
+                                             # fixtures/exercises/edition-phrase.json) before the checks read them
 
 Writes round 1's 19 verified phrases and round 2's Abide with Me from results/library.json, and
 round 3's 10 from results/r3-library.json, as squillo `exercises` format_version 3 items (squillo
@@ -54,6 +56,10 @@ R3_WORDS = {"mutopia-587": ("Captive et peutêtre oubliée,", "Captive et peut-�
 
 # Round 3: the sources that state no metronome mark, so the tempo is LilyPond's default (README).
 R3_NO_MARK = {"mutopia-607", "mutopia-648", "mutopia-368", "mutopia-373"}
+# Fold 3 (squillo iteration 62, F-062 (a)): the sources whose tempo is set only inside the transcription's
+# \midi block, for playback, and printed nowhere in it. fold3.py reads every round 3 source and asserts
+# both sets against what it finds.
+R3_MIDI_SETTING = {"mutopia-580", "mutopia-593", "mutopia-587"}
 
 # Round 3: which part a Mutopia role belongs to.
 R3_PART = {"composer": "tune", "arranger": "tune", "poet": "words", "lyricist": "words", "translator": "words"}
@@ -445,8 +451,11 @@ def r3_item(p):
     for who in pv["contributors"]:
         parts[R3_PART[who["role"]]].append({"name": who["name"], "role": who["role"], "died": who["died_eff"]})
     edition = f"{pv['edition']}, as transcribed in {pv['transcription']}"
+    assert not (pid in R3_NO_MARK and pid in R3_MIDI_SETTING), pid
     mark = (" The edition gives no metronome mark: the tempo is the transcription's MIDI default."
-            if pid in R3_NO_MARK else "")
+            if pid in R3_NO_MARK else
+            " The transcription prints no metronome mark: the tempo is its MIDI setting, written for playback"
+            " and not printed." if pid in R3_MIDI_SETTING else "")
     fix = ""
     if pid in R3_WORDS:
         fix = f" Words corrected from the extracted \"{R3_WORDS[pid][0]}\": {R3_WORDS[pid][2]}."
@@ -492,7 +501,18 @@ def committed_first():
 def dump(o):
     return json.dumps(o, indent=2, ensure_ascii=False) + "\n"
 
-def main(squillo):
+def ship(squillo, items):
+    """Fold 3 (squillo iteration 62, F-061): the 30 items as squillo's fixtures/slice/phrases/, byte for byte,
+    and the-spirit-of-god as fixtures/exercises/edition-phrase.json; every other file there is removed."""
+    d = squillo / "fixtures" / "slice" / "phrases"
+    d.mkdir(parents=True, exist_ok=True)
+    for old in d.glob("*.json"):
+        old.unlink()
+    for _, o in items:
+        (d / f"{o['phrase_id']}.json").write_bytes((OUT / f"{o['phrase_id']}.json").read_bytes())
+    (squillo / "fixtures" / "exercises" / "edition-phrase.json").write_bytes((OUT / "the-spirit-of-god.json").read_bytes())
+
+def main(squillo, write_squillo=False):
     squillo = Path(squillo)
     fx = squillo / "fixtures"
     report = {}
@@ -538,6 +558,8 @@ def main(squillo):
         old.unlink()
     for _, o in items:
         (OUT / f"{o['phrase_id']}.json").write_text(dump(o), encoding="utf-8")
+    if write_squillo:
+        ship(squillo, items)
 
     # L and B on the 30, loaded together from their files.
     acc, ref = load_together({p.name: p.read_text(encoding="utf-8") for p in sorted(OUT.glob("*.json"))})
@@ -603,6 +625,7 @@ def main(squillo):
         genres=len(by), by_genre={g: len(v) for g, v in sorted(by.items(), key=lambda kv: (-len(kv[1]), kv[0]))},
         languages={l: sum(o["language"] == l for _, o in items) for l in sorted({o["language"] for _, o in items})},
         no_metronome_mark=sorted(slug(p["title"]) for p in r3 if p["id"] in R3_NO_MARK),
+        midi_setting=sorted(slug(p["title"]) for p in r3 if p["id"] in R3_MIDI_SETTING),
         words_corrected={slug(p["title"]): R3_WORDS[p["id"]][2] for p in r3 if p["id"] in R3_WORDS})
     # R-12 (S15): every key naming a check is asserted. tempo_bound_must_fail is recorded and asserted,
     # but it evaluates the bound's formula on literals, so it can only show the formula, not the run.
@@ -618,4 +641,4 @@ def main(squillo):
 
 if __name__ == "__main__":
     committed_first()
-    main(sys.argv[1])
+    main(sys.argv[1], write_squillo="--ship" in sys.argv[2:])

@@ -411,6 +411,13 @@ would, so only Public Domain ones are used.
    transcription; if it holds no lyric events, the LilyPond file compiled
    with LilyPond 2.24.3 after `convert-ly`, a `\midi` block added where a
    score has none. No lyric events either way: excluded.
+   *Stated in fold 3 (squillo iteration 62, F-062 (b)):* the code
+   compiles a source of one `.ly` file only (`round3.py`, `extract`,
+   `len(lys) == 1`); a source of several files is never compiled. Armide
+   (532), a seven-file archive, was excluded for that, and its recorded
+   reason in `results/r3-summary.json`, "the LilyPond file did not
+   compile", is the code's wording, not LilyPond's: read it as "a
+   multi-file source, not compiled". The result file stands as recorded.
    (b) Verse 1 is the first track holding lyric events. The melody track
    is the note track on whose onsets most of verse 1's syllables fall
    (ties: the earlier track). The melody is that track's top line: an
@@ -678,6 +685,55 @@ the bound's formula on literals (68.01 against 68). The must-pass case
 three items' tempos (The Spirit of God 112, L'Esclave 90, Sapphische
 Ode 68) are the transcription's MIDI setting, not a printed mark, and
 their `source` does not say so (squillo F-062).
+
+## Fold 3 (squillo iteration 62): the set the first slice ships
+
+**Question.** squillo F-061: no spec names the items the first slice
+ships, and the 30 phrases exist as items only here. With F-062 (a) first
+(three tempos whose origin `source` does not state), are the 30 phrases,
+written into squillo as `fixtures/slice/phrases/`, together with the four
+exercises squillo wrote for the slice (`fixtures/slice/exercises/`,
+iteration 62, squillo Q-035), a set the build would ship, and what does
+`coach` CO-005 make of it?
+
+**Rules** (`fold3.py`'s docstring and `fold.py`'s `R3_MIDI_SETTING`,
+committed before any run).
+
+- *fold.py, revised.* A round 3 item whose tempo is set only in its
+  transcription's `\midi` block says so in `source`: "The transcription
+  prints no metronome mark: the tempo is its MIDI setting, written for
+  playback and not printed." The set is The Spirit of God, L'Esclave and
+  Sapphische Ode (R-12's audit). With `--ship`, the fold also writes the
+  30 items into squillo's `fixtures/slice/phrases/` and The Spirit of God
+  as `fixtures/exercises/edition-phrase.json`, before its checks read
+  them back. Nothing else changes.
+- *T, the tempo's origin*, read independently of `fold.py`'s two sets
+  from each round 3 transcription's LilyPond source and asserted equal to
+  them, with the value equal to the item's `tempo_qpm`, and cross-checked
+  against the compiled PDF's first page; must pass and must fail on three
+  short texts written in `fold3.py`.
+- *S, the set*: the loader on all of it together (must fail: a phrase
+  copied under another name), the rights rules (BU-008), the licences
+  used, BU-009's declarations and AN-002's empty parameters (must fail:
+  two squillo fixtures), what RU-001 offers, CO-005's exercise for each
+  subject and its rule (2) on the written notes (must pass and must fail
+  on the blocks' arithmetic), and every file's SHA-256.
+- *round2.py* (F-062 (c)): refuses to run uncommitted, and asserts
+  `self_check`'s `must_fail_inputs_differ` for a voice of two notes or
+  more (it cannot fail there by construction; it guards the two lines
+  that build the cases). Re-run, `check` then `report`, from the cache;
+  every result file must be unchanged.
+
+**Estimate** (S19), before any run: `fold.py` ran under 1 s in fold 2;
+`fold3.py` adds ten `pdftotext` calls and one more load of 34 small
+files, a few seconds; round 2's `check` and `report` ran in about a
+minute at R-12, from the cache. All three well inside the session.
+
+```
+uv run python fold.py <squillo> --ship
+uv run python fold3.py <squillo>
+uv run python round2.py check && uv run python round2.py report
+```
 
 ## Needs a human
 

@@ -20,6 +20,7 @@ No note of any reference enters `library.py`.
 import html
 import json
 import re
+import subprocess
 import sys
 import urllib.parse
 from pathlib import Path
@@ -253,6 +254,10 @@ def self_check(tracks):
     bad_p = [(p + (1 if i == ip else 0), b) for i, (p, b) in enumerate(mine)]
     bad_r = [(p, b * (2 if i == ir else 1)) for i, (p, b) in enumerate(mine)]
     differs = n >= 1 and bad_p != mine and bad_r != mine
+    # squillo F-062 (c), iteration 62: asserted, as the docstring says. A voice of two notes or more always
+    # differs by construction (a pitch moved, a duration doubled), so this cannot fail there; it guards
+    # against an edit of the two lines above.
+    assert differs or n < 2, (n, ip, ir)
     rp, rr = R.compare(bad_p, tracks), R.compare(bad_r, tracks)
 
     def rhythm_ok(r):
@@ -423,5 +428,17 @@ def report():
     print(json.dumps({k: v for k, v in out.items() if k != "per_phrase"}, indent=1, ensure_ascii=False))
 
 
+def committed_first():
+    """S15 (squillo F-062 (c), iteration 62): refuse to run on an uncommitted edit of this file, or before
+    it is committed."""
+    me = Path(__file__).name
+    here = Path(__file__).parent
+    a = subprocess.run(["git", "ls-files", "--error-unmatch", me], cwd=here, capture_output=True)
+    b = subprocess.run(["git", "diff", "--quiet", "HEAD", "--", me], cwd=here)
+    if a.returncode or b.returncode:
+        sys.exit(f"{me} is not committed as it stands: commit the rules before running")
+
+
 if __name__ == "__main__":
+    committed_first()
     {"survey": survey, "check": check, "report": report}[sys.argv[1]]()
