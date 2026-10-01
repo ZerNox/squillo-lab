@@ -1,0 +1,312 @@
+{
+ "tried": 20,
+ "taken": 10,
+ "need": 10,
+ "excluded": {
+  "516": "5a no lyric events in Mutopia's MIDI, and the LilyPond file did not compile",
+  "309": "5e notes 4",
+  "532": "5a no lyric events in Mutopia's MIDI, and the LilyPond file did not compile",
+  "583": "5e notes 4",
+  "585": "5c rest inside the line (before tick 4416)",
+  "1366": "5a no lyric events",
+  "669": "5c rest inside the line (before tick 3840)",
+  "1367": "5a no lyric events",
+  "1829": "5a the listed MIDI file is not on the server",
+  "1830": "5a the listed MIDI file is not on the server"
+ },
+ "k1": {
+  "run": 12,
+  "must_pass": 12,
+  "must_fail_pitch": 12,
+  "must_fail_rhythm": 12
+ },
+ "k2": {
+  "run": 12,
+  "must_pass": 12,
+  "must_fail": 12
+ },
+ "k4": {
+  "people": 40,
+  "agree": 36,
+  "disagree": [
+   [
+    585,
+    "R. Franz",
+    1862,
+    [
+     1892
+    ]
+   ],
+   [
+    1367,
+    "R. Franz",
+    1862,
+    [
+     1892
+    ]
+   ]
+  ],
+  "unchecked": [
+   [
+    580,
+    "H. von Schmidt"
+   ],
+   [
+    1366,
+    "Catherine Winkworth (1827-1878)"
+   ]
+  ],
+  "must_fail_cases": 27,
+  "must_fail_all_fail": true
+ },
+ "k6": {
+  "607": {
+   "available": false
+  },
+  "309": {
+   "available": true,
+   "excluded_on_second_path": null,
+   "same_pitches": true,
+   "same_beats": true,
+   "same_syllables": true
+  },
+  "368": {
+   "available": true,
+   "excluded_on_second_path": null,
+   "same_pitches": true,
+   "same_beats": true,
+   "same_syllables": true
+  },
+  "905": {
+   "available": true,
+   "excluded_on_second_path": null,
+   "same_pitches": true,
+   "same_beats": true,
+   "same_syllables": true
+  },
+  "373": {
+   "available": true,
+   "excluded_on_second_path": null,
+   "same_pitches": true,
+   "same_beats": true,
+   "same_syllables": true
+  },
+  "580": {
+   "available": true,
+   "excluded_on_second_path": null,
+   "same_pitches": true,
+   "same_beats": true,
+   "same_syllables": true
+  },
+  "593": {
+   "available": false
+  },
+  "583": {
+   "available": true,
+   "excluded_on_second_path": null,
+   "same_pitches": true,
+   "same_beats": true,
+   "same_syllables": true
+  },
+  "587": {
+   "available": true,
+   "excluded_on_second_path": null,
+   "same_pitches": true,
+   "same_beats": true,
+   "same_syllables": true
+  },
+  "648": {
+   "available": false
+  },
+  "1795": {
+   "available": false
+  },
+  "1831": {
+   "available": true,
+   "excluded_on_second_path": null,
+   "same_pitches": true,
+   "same_beats": true,
+   "same_syllables": true
+  }
+ },
+ "phrases": {
+  "607": {
+   "title": "The Storm",
+   "genre": "song",
+   "language": "en",
+   "words": "The tempest rages wild and high,",
+   "notes": 8,
+   "range": 5,
+   "seconds": 6.0,
+   "shortest_s": 0.5,
+   "midi_source": "compiled"
+  },
+  "368": {
+   "title": "Après un Rêve",
+   "genre": "classical",
+   "language": "fr",
+   "words": "Dans un sommeil que charmait ton image Je rêvais le bonheur,",
+   "notes": 17,
+   "range": 10,
+   "seconds": 13.5,
+   "shortest_s": 0.3333333333333333,
+   "midi_source": "mutopia"
+  },
+  "905": {
+   "title": "Good King Wenceslas",
+   "genre": "song",
+   "language": null,
+   "words": "Good King Wenceslas looked out,",
+   "notes": 7,
+   "range": 7,
+   "seconds": 4.0,
+   "shortest_s": 0.5,
+   "midi_source": "mutopia"
+  },
+  "373": {
+   "title": "Einsamkeit",
+   "genre": "classical",
+   "language": null,
+   "words": "Wie eine trübe Wolke durch heit're Lüfte geht,",
+   "notes": 13,
+   "range": 7,
+   "seconds": 5.5,
+   "shortest_s": 0.25,
+   "midi_source": "mutopia"
+  },
+  "580": {
+   "title": "Sapphische Ode",
+   "genre": "classical",
+   "language": "de",
+   "words": "Rosen brach ich nachts mir am dunklen Hage;",
+   "notes": 12,
+   "range": 12,
+   "seconds": 10.147048,
+   "shortest_s": 0.441176,
+   "midi_source": "mutopia"
+  },
+  "593": {
+   "title": "The Spirit of God",
+   "genre": "hymn",
+   "language": "en",
+   "words": "The spirit of God like a fire is burning;",
+   "notes": 13,
+   "range": 9,
+   "seconds": 8.571424,
+   "shortest_s": 0.267857,
+   "midi_source": "compiled"
+  },
+  "587": {
+   "title": "L'Esclave",
+   "genre": "classical",
+   "language": "fr",
+   "words": "Captive et peutêtre oubliée,",
+   "notes": 11,
+   "range": 6,
+   "seconds": 5.6666609999999995,
+   "shortest_s": 0.333333,
+   "midi_source": "mutopia"
+  },
+  "648": {
+   "title": "Les matelots",
+   "genre": "classical",
+   "language": "fr",
+   "words": "Sur l'eau bleue et profonde,",
+   "notes": 7,
+   "range": 7,
+   "seconds": 6.0,
+   "shortest_s": 0.5,
+   "midi_source": "compiled"
+  },
+  "1795": {
+   "title": "Les roses d’Ispahan",
+   "genre": "classical",
+   "language": "fr",
+   "words": "Les roses d’Ispahan dans leur gaîne de mousse,",
+   "notes": 13,
+   "range": 7,
+   "seconds": 6.0,
+   "shortest_s": 0.25,
+   "midi_source": "mutopia"
+  },
+  "1831": {
+   "title": "Le pays des rêves",
+   "genre": "classical",
+   "language": "fr",
+   "words": "Veux-tu qu’au beau pays des rêves Nous allions la main dans la main ?",
+   "notes": 18,
+   "range": 11,
+   "seconds": 13.2142725,
+   "shortest_s": 0.3571425,
+   "midi_source": "mutopia"
+  }
+ },
+ "library": 30,
+ "library_genres": {
+  "hymn": 4,
+  "carol": 5,
+  "children": 3,
+  "folk": 1,
+  "classical": 8,
+  "pop": 1,
+  "rock": 1,
+  "jazz": 1,
+  "blues": 1,
+  "soul": 1,
+  "country": 1,
+  "musical theatre": 1,
+  "song": 2
+ },
+ "library_genre_count": 13,
+ "target": 30,
+ "measure": {
+  "sigma0_vib0": {
+   "found": 714,
+   "notes": 714,
+   "share": 1.0,
+   "bootstrap95": [
+    1.0,
+    1.0
+   ]
+  },
+  "sigma0_vib1": {
+   "found": 712,
+   "notes": 714,
+   "share": 0.9971988795518207,
+   "bootstrap95": [
+    0.9900990099009901,
+    1.0
+   ]
+  },
+  "sigma20_vib0": {
+   "found": 688,
+   "notes": 714,
+   "share": 0.9635854341736695,
+   "bootstrap95": [
+    0.944954128440367,
+    0.9793513836212951
+   ]
+  },
+  "sigma20_vib1": {
+   "found": 657,
+   "notes": 714,
+   "share": 0.9201680672268907,
+   "bootstrap95": [
+    0.893222038473236,
+    0.9448927508220031
+   ]
+  },
+  "per_phrase_vib1_sigma0": {
+   "m1795": 1.0,
+   "m1831": 1.0,
+   "m368": 1.0,
+   "m373": 1.0,
+   "m580": 1.0,
+   "m587": 1.0,
+   "m593": 1.0,
+   "m607": 1.0,
+   "m648": 0.9523809523809523,
+   "m905": 1.0
+  }
+ }
+}

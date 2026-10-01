@@ -1,6 +1,6 @@
 # E-004 — A publishable phrase library
 
-**Status:** needs-human (rounds 1 and 2 automated evidence in; a listening check remains) · **Serves:** VISION §7 (the guided library), §9 (first slice), §12.5
+**Status:** needs-human (rounds 1–3 automated evidence in; a listening check remains for round 1's from-memory melodies and the originals) · **Serves:** VISION §7 (the guided library), §9 (first slice), §12.5
 
 ## Question
 
@@ -486,6 +486,64 @@ would, so only Public Domain ones are used.
    vibrato off or on), on the new phrases.
 8. *Count* (`report`): the library is round 2's 20 verified phrases plus
    round 3's; reported by genre, and under squillo's shipping rule.
+
+```
+uv run python round3.py survey     # 71 s: 39 listing pages, 1 s apart, cached -> results/r3-survey.json
+uv run python round3.py screen     # -> results/r3-screen.json
+uv run python round3.py extract    # about 5 min, cached reads -> results/r3-extract.json
+uv run python round3.py measure    # 63 s on 18 processes (sample: 48 renderings in 18 s) -> results/r3-measure.json
+uv run python round3.py report     # -> results/r3-summary.json, results/r3-library.json
+```
+
+Mutopia and Wikidata were read on 2026-10-01. Tools as round 1, and
+LilyPond 2.24.3's `convert-ly`.
+
+## Round 3 result
+
+| # | Question | Result (conditions; uncertainty) |
+| ---: | :--- | :--- |
+| 1 | How many of Mutopia's voice pieces pass rule 2 on metadata alone? | **20 of 389** (one more, Adeste Fideles, sets a verified tune). A piece can fail several rules: licence not Public Domain 133, no lyricist named 212, a person with no death year 136, no edition year 224, rights (`us` and `life100`) 294. The rights rule's probe: must-pass 1 of 1, must-fail 4 of 4 |
+| 2 | How many of those give a phrase that passes rules 4–6? | Rule 3's order tried **20** to take **10**, the number short of 30. The 10 excluded: no lyric events readable 4 (Oh! Boatman, Haste! and Armide: Mutopia's MIDI has none and the source did not compile; All My Heart This Night Rejoices and Es hat die Rose sich beklagt: none on either path), the listed MIDI not on the server 2 (Aurore, Fleur jetée), a rest inside the first line 2 (Gute Nacht!, Les Djinns), a first line of 4 notes 2 (Ich grolle nicht, Ein Ton). No phrase failed a range, length, short-note or pitch-range condition |
+| 3 | Do the checks hold? | K1 (round trip): must-pass 12 of 12, must-fail on pitch 12 of 12 and on rhythm 12 of 12 (asserted). K2 (words): 12 of 12 aligned, at least 90 % of the line's syllables on melody onsets; shifted one tick, 12 of 12 fall below (asserted). K4 (people): 40 person entries; 36 agree with Wikidata; 2 disagree, both Robert Franz (Mutopia 1862, Wikidata 1892; the later year used, no verdict changed, neither piece taken); 2 unchecked (Hans Schmidt, Sapphische Ode's poet: no article under the name committed, so Mutopia's 1923 alone carries its `life100` pass; Catherine Winkworth, a header credit); the 27 must-fail pairings all disagree (asserted). K6 (the source compiled again): on 8 pieces where it ran, pitches, durations and syllables agree 8 of 8; it did not run on 4 (three already compiled, one source with no `\midi` output). K5: no tried piece sets a tune round 1 or 2 compared, so it has no case |
+| 4 | The 10 phrases | The Storm (Hullah, Procter; song), Après un rêve (Fauré, Bussine), Good King Wenceslas (Neale; listed as song by Mutopia's style), Einsamkeit (Schubert, Müller), Sapphische Ode (Brahms, Schmidt), The Spirit of God (Phelps; hymn), L'Esclave (Lalo, Gautier), Les matelots (Fauré, Gautier), Les roses d'Ispahan (Fauré, Leconte de Lisle), Le pays des rêves (Fauré, Silvestre). Editions dated 1844 to 1916. English 3, French 5, German 2. 7 to 18 notes, range 5 to 12 semitones, 4.0 to 13.5 s at the file's tempo, shortest note 0.25 s. All pass `us`, `life70` and `life100`; Mutopia's transcription of each is Public Domain |
+| 5 | Can intent be inferred on them? (round 1's `measure`, unchanged; 240 renderings, 714 notes per condition) | No error, no vibrato: **714 of 714**. Vibrato: **99.7 %** (phrase bootstrap 95 % 99.0–100). 20 cents per-note error: **96.4 %** (94.5–97.9). Both: **92.0 %** (89.3–94.5). Round 1's phrases: 100, 97.6, 96.8 and 93.1 %. The one phrase under 100 % with vibrato alone is Les matelots, 95.2 % |
+| 6 | The library now | **30**: 23 public-domain (13 verified against a transcription in rounds 1–2, 10 taken from their edition here) and 7 originals, under **13 genre labels**: classical 8, carol 5, hymn 4, children's 3, song 2, folk 1, and the 7 originals' one each. All 23 public-domain phrases pass squillo's shipping rule (`us` and `life100`) |
+
+**Answer.** Yes: taking notes and words from a named public-domain
+edition reaches `VISION.md` §9's 30 phrases with no listener and no
+from-memory melody. Each new phrase is its edition's first line, with
+the edition, its year and every contributor recorded. The route's cost
+is balance. Mutopia's Public Domain voice pieces with a dated edition
+and named, dead-by-1925 contributors are mostly 19th-century art songs.
+So 6 of the 10 are French or German art songs, 4 of them by Fauré, and
+"classical" now holds 8 of the 30. The genre spread squillo wants (pop,
+rock, jazz and the rest) still rests on one original each.
+
+**Limits.**
+
+- A phrase is the edition's notes as Mutopia's volunteers transcribed
+  them. K6 shows the MIDI is the transcription's, not that the
+  transcription is the print's. No tried piece had an independent
+  transcription to compare with (K5).
+- MIDI has no spelling of accidentals. Pitch names follow the key
+  signature: sharps in sharp keys and C, flats in flat keys. So
+  L'Esclave writes A♯4 (in D), and Le pays des rêves writes B4 and E4
+  in G♭, where the print may write B♭, C♭ and F♭. The pitches are exact;
+  the spelling may not be the edition's.
+- Tempo is the MIDI file's. Four sources state no metronome mark (The
+  Storm, Les matelots; Après un rêve and Einsamkeit give only a word),
+  so their 60 quarter notes a minute is LilyPond's default, not the
+  edition's. Seconds and the 0.1 s condition are at that tempo.
+- Words are the transcription's syllables of verse 1. L'Esclave reads
+  "peutêtre": its source writes `peut -- être`, a syllable break, so the
+  hyphen of "peut-être" is not recoverable by rule. The words' language
+  was guessed from stop-words for 8 of 10. Good King Wenceslas (English)
+  and Einsamkeit (German) had too few stop-words and were read by hand.
+- Genre is Mutopia's style, mapped by a fixed table. Good King Wenceslas
+  is a carol that Mutopia lists as a song.
+- One `life100` pass, Sapphische Ode's, rests on Mutopia's death year
+  for Hans Schmidt (1923) alone.
+- The rights rules are round 1's model, with round 1's limits.
 
 ## Needs a human
 

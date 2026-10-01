@@ -1,0 +1,5042 @@
+[
+{
+"id": "m607",
+"voice": "bass",
+"sigma": 0,
+"vib": 0,
+"n_notes": 8,
+"lo": -20,
+"hi": -15,
+"short": 0,
+"est": {
+"found": 8,
+"called": 8,
+"missed": []
+},
+"oracle": {
+"found": 8,
+"called": 8,
+"missed": []
+}
+},
+{
+"id": "m607",
+"voice": "bass",
+"sigma": 0,
+"vib": 1,
+"n_notes": 8,
+"lo": -20,
+"hi": -15,
+"short": 0,
+"est": {
+"found": 8,
+"called": 8,
+"missed": []
+},
+"oracle": {
+"found": 8,
+"called": 8,
+"missed": []
+}
+},
+{
+"id": "m607",
+"voice": "bass",
+"sigma": 20,
+"vib": 0,
+"n_notes": 8,
+"lo": -20,
+"hi": -15,
+"short": 0,
+"est": {
+"found": 8,
+"called": 8,
+"missed": []
+},
+"oracle": {
+"found": 8,
+"called": 8,
+"missed": []
+}
+},
+{
+"id": "m607",
+"voice": "bass",
+"sigma": 20,
+"vib": 1,
+"n_notes": 8,
+"lo": -20,
+"hi": -15,
+"short": 0,
+"est": {
+"found": 7,
+"called": 8,
+"missed": [
+0
+]
+},
+"oracle": {
+"found": 7,
+"called": 8,
+"missed": [
+0
+]
+}
+},
+{
+"id": "m607",
+"voice": "baritone",
+"sigma": 0,
+"vib": 0,
+"n_notes": 8,
+"lo": -17,
+"hi": -12,
+"short": 0,
+"est": {
+"found": 8,
+"called": 8,
+"missed": []
+},
+"oracle": {
+"found": 8,
+"called": 8,
+"missed": []
+}
+},
+{
+"id": "m607",
+"voice": "baritone",
+"sigma": 0,
+"vib": 1,
+"n_notes": 8,
+"lo": -17,
+"hi": -12,
+"short": 0,
+"est": {
+"found": 8,
+"called": 8,
+"missed": []
+},
+"oracle": {
+"found": 8,
+"called": 8,
+"missed": []
+}
+},
+{
+"id": "m607",
+"voice": "baritone",
+"sigma": 20,
+"vib": 0,
+"n_notes": 8,
+"lo": -17,
+"hi": -12,
+"short": 0,
+"est": {
+"found": 6,
+"called": 8,
+"missed": [
+1,
+6
+]
+},
+"oracle": {
+"found": 6,
+"called": 8,
+"missed": [
+1,
+6
+]
+}
+},
+{
+"id": "m607",
+"voice": "baritone",
+"sigma": 20,
+"vib": 1,
+"n_notes": 8,
+"lo": -17,
+"hi": -12,
+"short": 0,
+"est": {
+"found": 8,
+"called": 8,
+"missed": []
+},
+"oracle": {
+"found": 8,
+"called": 8,
+"missed": []
+}
+},
+{
+"id": "m607",
+"voice": "tenor",
+"sigma": 0,
+"vib": 0,
+"n_notes": 8,
+"lo": -13,
+"hi": -8,
+"short": 0,
+"est": {
+"found": 8,
+"called": 8,
+"missed": []
+},
+"oracle": {
+"found": 8,
+"called": 8,
+"missed": []
+}
+},
+{
+"id": "m607",
+"voice": "tenor",
+"sigma": 0,
+"vib": 1,
+"n_notes": 8,
+"lo": -13,
+"hi": -8,
+"short": 0,
+"est": {
+"found": 8,
+"called": 8,
+"missed": []
+},
+"oracle": {
+"found": 8,
+"called": 8,
+"missed": []
+}
+},
+{
+"id": "m607",
+"voice": "tenor",
+"sigma": 20,
+"vib": 0,
+"n_notes": 8,
+"lo": -13,
+"hi": -8,
+"short": 0,
+"est": {
+"found": 8,
+"called": 8,
+"missed": []
+},
+"oracle": {
+"found": 8,
+"called": 8,
+"missed": []
+}
+},
+{
+"id": "m607",
+"voice": "tenor",
+"sigma": 20,
+"vib": 1,
+"n_notes": 8,
+"lo": -13,
+"hi": -8,
+"short": 0,
+"est": {
+"found": 7,
+"called": 8,
+"missed": [
+4
+]
+},
+"oracle": {
+"found": 8,
+"called": 8,
+"missed": []
+}
+},
+{
+"id": "m607",
+"voice": "mezzo",
+"sigma": 0,
+"vib": 0,
+"n_notes": 8,
+"lo": -8,
+"hi": -3,
+"short": 0,
+"est": {
+"found": 8,
+"called": 8,
+"missed": []
+},
+"oracle": {
+"found": 8,
+"called": 8,
+"missed": []
+}
+},
+{
+"id": "m607",
+"voice": "mezzo",
+"sigma": 0,
+"vib": 1,
+"n_notes": 8,
+"lo": -8,
+"hi": -3,
+"short": 0,
+"est": {
+"found": 8,
+"called": 8,
+"missed": []
+},
+"oracle": {
+"found": 8,
+"called": 8,
+"missed": []
+}
+},
+{
+"id": "m607",
+"voice": "mezzo",
+"sigma": 20,
+"vib": 0,
+"n_notes": 8,
+"lo": -8,
+"hi": -3,
+"short": 0,
+"est": {
+"found": 5,
+"called": 8,
+"missed": [
+0,
+1,
+4
+]
+},
+"oracle": {
+"found": 5,
+"called": 8,
+"missed": [
+0,
+1,
+4
+]
+}
+},
+{
+"id": "m607",
+"voice": "mezzo",
+"sigma": 20,
+"vib": 1,
+"n_notes": 8,
+"lo": -8,
+"hi": -3,
+"short": 0,
+"est": {
+"found": 5,
+"called": 8,
+"missed": [
+4,
+5,
+7
+]
+},
+"oracle": {
+"found": 8,
+"called": 8,
+"missed": []
+}
+},
+{
+"id": "m607",
+"voice": "soprano",
+"sigma": 0,
+"vib": 0,
+"n_notes": 8,
+"lo": -3,
+"hi": 2,
+"short": 0,
+"est": {
+"found": 8,
+"called": 8,
+"missed": []
+},
+"oracle": {
+"found": 8,
+"called": 8,
+"missed": []
+}
+},
+{
+"id": "m607",
+"voice": "soprano",
+"sigma": 0,
+"vib": 1,
+"n_notes": 8,
+"lo": -3,
+"hi": 2,
+"short": 0,
+"est": {
+"found": 8,
+"called": 8,
+"missed": []
+},
+"oracle": {
+"found": 8,
+"called": 8,
+"missed": []
+}
+},
+{
+"id": "m607",
+"voice": "soprano",
+"sigma": 20,
+"vib": 0,
+"n_notes": 8,
+"lo": -3,
+"hi": 2,
+"short": 0,
+"est": {
+"found": 8,
+"called": 8,
+"missed": []
+},
+"oracle": {
+"found": 8,
+"called": 8,
+"missed": []
+}
+},
+{
+"id": "m607",
+"voice": "soprano",
+"sigma": 20,
+"vib": 1,
+"n_notes": 8,
+"lo": -3,
+"hi": 2,
+"short": 0,
+"est": {
+"found": 8,
+"called": 8,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 8,
+"missed": [
+6
+]
+}
+},
+{
+"id": "m607",
+"voice": "soprano_high",
+"sigma": 0,
+"vib": 0,
+"n_notes": 8,
+"lo": 4,
+"hi": 9,
+"short": 0,
+"est": {
+"found": 8,
+"called": 8,
+"missed": []
+},
+"oracle": {
+"found": 8,
+"called": 8,
+"missed": []
+}
+},
+{
+"id": "m607",
+"voice": "soprano_high",
+"sigma": 0,
+"vib": 1,
+"n_notes": 8,
+"lo": 4,
+"hi": 9,
+"short": 0,
+"est": {
+"found": 8,
+"called": 8,
+"missed": []
+},
+"oracle": {
+"found": 8,
+"called": 8,
+"missed": []
+}
+},
+{
+"id": "m607",
+"voice": "soprano_high",
+"sigma": 20,
+"vib": 0,
+"n_notes": 8,
+"lo": 4,
+"hi": 9,
+"short": 0,
+"est": {
+"found": 8,
+"called": 8,
+"missed": []
+},
+"oracle": {
+"found": 8,
+"called": 8,
+"missed": []
+}
+},
+{
+"id": "m607",
+"voice": "soprano_high",
+"sigma": 20,
+"vib": 1,
+"n_notes": 8,
+"lo": 4,
+"hi": 9,
+"short": 0,
+"est": {
+"found": 8,
+"called": 8,
+"missed": []
+},
+"oracle": {
+"found": 8,
+"called": 8,
+"missed": []
+}
+},
+{
+"id": "m368",
+"voice": "bass",
+"sigma": 0,
+"vib": 0,
+"n_notes": 17,
+"lo": -26,
+"hi": -16,
+"short": 0,
+"est": {
+"found": 17,
+"called": 17,
+"missed": []
+},
+"oracle": {
+"found": 17,
+"called": 17,
+"missed": []
+}
+},
+{
+"id": "m368",
+"voice": "bass",
+"sigma": 0,
+"vib": 1,
+"n_notes": 17,
+"lo": -26,
+"hi": -16,
+"short": 0,
+"est": {
+"found": 17,
+"called": 17,
+"missed": []
+},
+"oracle": {
+"found": 17,
+"called": 17,
+"missed": []
+}
+},
+{
+"id": "m368",
+"voice": "bass",
+"sigma": 20,
+"vib": 0,
+"n_notes": 17,
+"lo": -26,
+"hi": -16,
+"short": 0,
+"est": {
+"found": 17,
+"called": 17,
+"missed": []
+},
+"oracle": {
+"found": 17,
+"called": 17,
+"missed": []
+}
+},
+{
+"id": "m368",
+"voice": "bass",
+"sigma": 20,
+"vib": 1,
+"n_notes": 17,
+"lo": -26,
+"hi": -16,
+"short": 0,
+"est": {
+"found": 15,
+"called": 17,
+"missed": [
+10,
+13
+]
+},
+"oracle": {
+"found": 17,
+"called": 17,
+"missed": []
+}
+},
+{
+"id": "m368",
+"voice": "baritone",
+"sigma": 0,
+"vib": 0,
+"n_notes": 17,
+"lo": -23,
+"hi": -13,
+"short": 0,
+"est": {
+"found": 17,
+"called": 17,
+"missed": []
+},
+"oracle": {
+"found": 17,
+"called": 17,
+"missed": []
+}
+},
+{
+"id": "m368",
+"voice": "baritone",
+"sigma": 0,
+"vib": 1,
+"n_notes": 17,
+"lo": -23,
+"hi": -13,
+"short": 0,
+"est": {
+"found": 17,
+"called": 17,
+"missed": []
+},
+"oracle": {
+"found": 17,
+"called": 17,
+"missed": []
+}
+},
+{
+"id": "m368",
+"voice": "baritone",
+"sigma": 20,
+"vib": 0,
+"n_notes": 17,
+"lo": -23,
+"hi": -13,
+"short": 0,
+"est": {
+"found": 16,
+"called": 17,
+"missed": [
+7
+]
+},
+"oracle": {
+"found": 15,
+"called": 17,
+"missed": [
+0,
+7
+]
+}
+},
+{
+"id": "m368",
+"voice": "baritone",
+"sigma": 20,
+"vib": 1,
+"n_notes": 17,
+"lo": -23,
+"hi": -13,
+"short": 0,
+"est": {
+"found": 17,
+"called": 17,
+"missed": []
+},
+"oracle": {
+"found": 17,
+"called": 17,
+"missed": []
+}
+},
+{
+"id": "m368",
+"voice": "tenor",
+"sigma": 0,
+"vib": 0,
+"n_notes": 17,
+"lo": -19,
+"hi": -9,
+"short": 0,
+"est": {
+"found": 17,
+"called": 17,
+"missed": []
+},
+"oracle": {
+"found": 17,
+"called": 17,
+"missed": []
+}
+},
+{
+"id": "m368",
+"voice": "tenor",
+"sigma": 0,
+"vib": 1,
+"n_notes": 17,
+"lo": -19,
+"hi": -9,
+"short": 0,
+"est": {
+"found": 17,
+"called": 17,
+"missed": []
+},
+"oracle": {
+"found": 17,
+"called": 17,
+"missed": []
+}
+},
+{
+"id": "m368",
+"voice": "tenor",
+"sigma": 20,
+"vib": 0,
+"n_notes": 17,
+"lo": -19,
+"hi": -9,
+"short": 0,
+"est": {
+"found": 17,
+"called": 17,
+"missed": []
+},
+"oracle": {
+"found": 17,
+"called": 17,
+"missed": []
+}
+},
+{
+"id": "m368",
+"voice": "tenor",
+"sigma": 20,
+"vib": 1,
+"n_notes": 17,
+"lo": -19,
+"hi": -9,
+"short": 0,
+"est": {
+"found": 16,
+"called": 17,
+"missed": [
+13
+]
+},
+"oracle": {
+"found": 16,
+"called": 17,
+"missed": [
+13
+]
+}
+},
+{
+"id": "m368",
+"voice": "mezzo",
+"sigma": 0,
+"vib": 0,
+"n_notes": 17,
+"lo": -14,
+"hi": -4,
+"short": 0,
+"est": {
+"found": 17,
+"called": 17,
+"missed": []
+},
+"oracle": {
+"found": 17,
+"called": 17,
+"missed": []
+}
+},
+{
+"id": "m368",
+"voice": "mezzo",
+"sigma": 0,
+"vib": 1,
+"n_notes": 17,
+"lo": -14,
+"hi": -4,
+"short": 0,
+"est": {
+"found": 17,
+"called": 17,
+"missed": []
+},
+"oracle": {
+"found": 17,
+"called": 17,
+"missed": []
+}
+},
+{
+"id": "m368",
+"voice": "mezzo",
+"sigma": 20,
+"vib": 0,
+"n_notes": 17,
+"lo": -14,
+"hi": -4,
+"short": 0,
+"est": {
+"found": 17,
+"called": 17,
+"missed": []
+},
+"oracle": {
+"found": 17,
+"called": 17,
+"missed": []
+}
+},
+{
+"id": "m368",
+"voice": "mezzo",
+"sigma": 20,
+"vib": 1,
+"n_notes": 17,
+"lo": -14,
+"hi": -4,
+"short": 0,
+"est": {
+"found": 15,
+"called": 17,
+"missed": [
+11,
+14
+]
+},
+"oracle": {
+"found": 16,
+"called": 17,
+"missed": [
+11
+]
+}
+},
+{
+"id": "m368",
+"voice": "soprano",
+"sigma": 0,
+"vib": 0,
+"n_notes": 17,
+"lo": -9,
+"hi": 1,
+"short": 0,
+"est": {
+"found": 17,
+"called": 17,
+"missed": []
+},
+"oracle": {
+"found": 17,
+"called": 17,
+"missed": []
+}
+},
+{
+"id": "m368",
+"voice": "soprano",
+"sigma": 0,
+"vib": 1,
+"n_notes": 17,
+"lo": -9,
+"hi": 1,
+"short": 0,
+"est": {
+"found": 17,
+"called": 17,
+"missed": []
+},
+"oracle": {
+"found": 17,
+"called": 17,
+"missed": []
+}
+},
+{
+"id": "m368",
+"voice": "soprano",
+"sigma": 20,
+"vib": 0,
+"n_notes": 17,
+"lo": -9,
+"hi": 1,
+"short": 0,
+"est": {
+"found": 17,
+"called": 17,
+"missed": []
+},
+"oracle": {
+"found": 17,
+"called": 17,
+"missed": []
+}
+},
+{
+"id": "m368",
+"voice": "soprano",
+"sigma": 20,
+"vib": 1,
+"n_notes": 17,
+"lo": -9,
+"hi": 1,
+"short": 0,
+"est": {
+"found": 11,
+"called": 17,
+"missed": [
+4,
+6,
+9,
+10,
+14,
+15
+]
+},
+"oracle": {
+"found": 16,
+"called": 17,
+"missed": [
+14
+]
+}
+},
+{
+"id": "m368",
+"voice": "soprano_high",
+"sigma": 0,
+"vib": 0,
+"n_notes": 17,
+"lo": -2,
+"hi": 8,
+"short": 0,
+"est": {
+"found": 17,
+"called": 17,
+"missed": []
+},
+"oracle": {
+"found": 17,
+"called": 17,
+"missed": []
+}
+},
+{
+"id": "m368",
+"voice": "soprano_high",
+"sigma": 0,
+"vib": 1,
+"n_notes": 17,
+"lo": -2,
+"hi": 8,
+"short": 0,
+"est": {
+"found": 17,
+"called": 17,
+"missed": []
+},
+"oracle": {
+"found": 17,
+"called": 17,
+"missed": []
+}
+},
+{
+"id": "m368",
+"voice": "soprano_high",
+"sigma": 20,
+"vib": 0,
+"n_notes": 17,
+"lo": -2,
+"hi": 8,
+"short": 0,
+"est": {
+"found": 16,
+"called": 17,
+"missed": [
+11
+]
+},
+"oracle": {
+"found": 16,
+"called": 17,
+"missed": [
+11
+]
+}
+},
+{
+"id": "m368",
+"voice": "soprano_high",
+"sigma": 20,
+"vib": 1,
+"n_notes": 17,
+"lo": -2,
+"hi": 8,
+"short": 0,
+"est": {
+"found": 13,
+"called": 17,
+"missed": [
+10,
+11,
+13,
+15
+]
+},
+"oracle": {
+"found": 16,
+"called": 17,
+"missed": [
+11
+]
+}
+},
+{
+"id": "m905",
+"voice": "bass",
+"sigma": 0,
+"vib": 0,
+"n_notes": 7,
+"lo": -24,
+"hi": -17,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m905",
+"voice": "bass",
+"sigma": 0,
+"vib": 1,
+"n_notes": 7,
+"lo": -24,
+"hi": -17,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m905",
+"voice": "bass",
+"sigma": 20,
+"vib": 0,
+"n_notes": 7,
+"lo": -24,
+"hi": -17,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m905",
+"voice": "bass",
+"sigma": 20,
+"vib": 1,
+"n_notes": 7,
+"lo": -24,
+"hi": -17,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 6,
+"called": 7,
+"missed": [
+0
+]
+}
+},
+{
+"id": "m905",
+"voice": "baritone",
+"sigma": 0,
+"vib": 0,
+"n_notes": 7,
+"lo": -21,
+"hi": -14,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m905",
+"voice": "baritone",
+"sigma": 0,
+"vib": 1,
+"n_notes": 7,
+"lo": -21,
+"hi": -14,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m905",
+"voice": "baritone",
+"sigma": 20,
+"vib": 0,
+"n_notes": 7,
+"lo": -21,
+"hi": -14,
+"short": 0,
+"est": {
+"found": 6,
+"called": 7,
+"missed": [
+3
+]
+},
+"oracle": {
+"found": 6,
+"called": 7,
+"missed": [
+3
+]
+}
+},
+{
+"id": "m905",
+"voice": "baritone",
+"sigma": 20,
+"vib": 1,
+"n_notes": 7,
+"lo": -21,
+"hi": -14,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m905",
+"voice": "tenor",
+"sigma": 0,
+"vib": 0,
+"n_notes": 7,
+"lo": -17,
+"hi": -10,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m905",
+"voice": "tenor",
+"sigma": 0,
+"vib": 1,
+"n_notes": 7,
+"lo": -17,
+"hi": -10,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m905",
+"voice": "tenor",
+"sigma": 20,
+"vib": 0,
+"n_notes": 7,
+"lo": -17,
+"hi": -10,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m905",
+"voice": "tenor",
+"sigma": 20,
+"vib": 1,
+"n_notes": 7,
+"lo": -17,
+"hi": -10,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m905",
+"voice": "mezzo",
+"sigma": 0,
+"vib": 0,
+"n_notes": 7,
+"lo": -12,
+"hi": -5,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m905",
+"voice": "mezzo",
+"sigma": 0,
+"vib": 1,
+"n_notes": 7,
+"lo": -12,
+"hi": -5,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m905",
+"voice": "mezzo",
+"sigma": 20,
+"vib": 0,
+"n_notes": 7,
+"lo": -12,
+"hi": -5,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m905",
+"voice": "mezzo",
+"sigma": 20,
+"vib": 1,
+"n_notes": 7,
+"lo": -12,
+"hi": -5,
+"short": 0,
+"est": {
+"found": 6,
+"called": 7,
+"missed": [
+6
+]
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m905",
+"voice": "soprano",
+"sigma": 0,
+"vib": 0,
+"n_notes": 7,
+"lo": -7,
+"hi": 0,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m905",
+"voice": "soprano",
+"sigma": 0,
+"vib": 1,
+"n_notes": 7,
+"lo": -7,
+"hi": 0,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m905",
+"voice": "soprano",
+"sigma": 20,
+"vib": 0,
+"n_notes": 7,
+"lo": -7,
+"hi": 0,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m905",
+"voice": "soprano",
+"sigma": 20,
+"vib": 1,
+"n_notes": 7,
+"lo": -7,
+"hi": 0,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 6,
+"called": 7,
+"missed": [
+0
+]
+}
+},
+{
+"id": "m905",
+"voice": "soprano_high",
+"sigma": 0,
+"vib": 0,
+"n_notes": 7,
+"lo": 0,
+"hi": 7,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m905",
+"voice": "soprano_high",
+"sigma": 0,
+"vib": 1,
+"n_notes": 7,
+"lo": 0,
+"hi": 7,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m905",
+"voice": "soprano_high",
+"sigma": 20,
+"vib": 0,
+"n_notes": 7,
+"lo": 0,
+"hi": 7,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m905",
+"voice": "soprano_high",
+"sigma": 20,
+"vib": 1,
+"n_notes": 7,
+"lo": 0,
+"hi": 7,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m373",
+"voice": "bass",
+"sigma": 0,
+"vib": 0,
+"n_notes": 13,
+"lo": -21,
+"hi": -14,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m373",
+"voice": "bass",
+"sigma": 0,
+"vib": 1,
+"n_notes": 13,
+"lo": -21,
+"hi": -14,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m373",
+"voice": "bass",
+"sigma": 20,
+"vib": 0,
+"n_notes": 13,
+"lo": -21,
+"hi": -14,
+"short": 0,
+"est": {
+"found": 12,
+"called": 13,
+"missed": [
+5
+]
+},
+"oracle": {
+"found": 12,
+"called": 13,
+"missed": [
+5
+]
+}
+},
+{
+"id": "m373",
+"voice": "bass",
+"sigma": 20,
+"vib": 1,
+"n_notes": 13,
+"lo": -21,
+"hi": -14,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m373",
+"voice": "baritone",
+"sigma": 0,
+"vib": 0,
+"n_notes": 13,
+"lo": -18,
+"hi": -11,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m373",
+"voice": "baritone",
+"sigma": 0,
+"vib": 1,
+"n_notes": 13,
+"lo": -18,
+"hi": -11,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m373",
+"voice": "baritone",
+"sigma": 20,
+"vib": 0,
+"n_notes": 13,
+"lo": -18,
+"hi": -11,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m373",
+"voice": "baritone",
+"sigma": 20,
+"vib": 1,
+"n_notes": 13,
+"lo": -18,
+"hi": -11,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m373",
+"voice": "tenor",
+"sigma": 0,
+"vib": 0,
+"n_notes": 13,
+"lo": -14,
+"hi": -7,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m373",
+"voice": "tenor",
+"sigma": 0,
+"vib": 1,
+"n_notes": 13,
+"lo": -14,
+"hi": -7,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m373",
+"voice": "tenor",
+"sigma": 20,
+"vib": 0,
+"n_notes": 13,
+"lo": -14,
+"hi": -7,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m373",
+"voice": "tenor",
+"sigma": 20,
+"vib": 1,
+"n_notes": 13,
+"lo": -14,
+"hi": -7,
+"short": 0,
+"est": {
+"found": 12,
+"called": 13,
+"missed": [
+12
+]
+},
+"oracle": {
+"found": 12,
+"called": 13,
+"missed": [
+12
+]
+}
+},
+{
+"id": "m373",
+"voice": "mezzo",
+"sigma": 0,
+"vib": 0,
+"n_notes": 13,
+"lo": -9,
+"hi": -2,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m373",
+"voice": "mezzo",
+"sigma": 0,
+"vib": 1,
+"n_notes": 13,
+"lo": -9,
+"hi": -2,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m373",
+"voice": "mezzo",
+"sigma": 20,
+"vib": 0,
+"n_notes": 13,
+"lo": -9,
+"hi": -2,
+"short": 0,
+"est": {
+"found": 12,
+"called": 13,
+"missed": [
+5
+]
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m373",
+"voice": "mezzo",
+"sigma": 20,
+"vib": 1,
+"n_notes": 13,
+"lo": -9,
+"hi": -2,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m373",
+"voice": "soprano",
+"sigma": 0,
+"vib": 0,
+"n_notes": 13,
+"lo": -4,
+"hi": 3,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m373",
+"voice": "soprano",
+"sigma": 0,
+"vib": 1,
+"n_notes": 13,
+"lo": -4,
+"hi": 3,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m373",
+"voice": "soprano",
+"sigma": 20,
+"vib": 0,
+"n_notes": 13,
+"lo": -4,
+"hi": 3,
+"short": 0,
+"est": {
+"found": 11,
+"called": 13,
+"missed": [
+4,
+9
+]
+},
+"oracle": {
+"found": 11,
+"called": 13,
+"missed": [
+4,
+9
+]
+}
+},
+{
+"id": "m373",
+"voice": "soprano",
+"sigma": 20,
+"vib": 1,
+"n_notes": 13,
+"lo": -4,
+"hi": 3,
+"short": 0,
+"est": {
+"found": 10,
+"called": 13,
+"missed": [
+6,
+11,
+12
+]
+},
+"oracle": {
+"found": 12,
+"called": 13,
+"missed": [
+11
+]
+}
+},
+{
+"id": "m373",
+"voice": "soprano_high",
+"sigma": 0,
+"vib": 0,
+"n_notes": 13,
+"lo": 3,
+"hi": 10,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m373",
+"voice": "soprano_high",
+"sigma": 0,
+"vib": 1,
+"n_notes": 13,
+"lo": 3,
+"hi": 10,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m373",
+"voice": "soprano_high",
+"sigma": 20,
+"vib": 0,
+"n_notes": 13,
+"lo": 3,
+"hi": 10,
+"short": 0,
+"est": {
+"found": 12,
+"called": 13,
+"missed": [
+12
+]
+},
+"oracle": {
+"found": 12,
+"called": 13,
+"missed": [
+12
+]
+}
+},
+{
+"id": "m373",
+"voice": "soprano_high",
+"sigma": 20,
+"vib": 1,
+"n_notes": 13,
+"lo": 3,
+"hi": 10,
+"short": 0,
+"est": {
+"found": 12,
+"called": 13,
+"missed": [
+2
+]
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "bass",
+"sigma": 0,
+"vib": 0,
+"n_notes": 12,
+"lo": -25,
+"hi": -13,
+"short": 0,
+"est": {
+"found": 12,
+"called": 12,
+"missed": []
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "bass",
+"sigma": 0,
+"vib": 1,
+"n_notes": 12,
+"lo": -25,
+"hi": -13,
+"short": 0,
+"est": {
+"found": 12,
+"called": 12,
+"missed": []
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "bass",
+"sigma": 20,
+"vib": 0,
+"n_notes": 12,
+"lo": -25,
+"hi": -13,
+"short": 0,
+"est": {
+"found": 12,
+"called": 12,
+"missed": []
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "bass",
+"sigma": 20,
+"vib": 1,
+"n_notes": 12,
+"lo": -25,
+"hi": -13,
+"short": 0,
+"est": {
+"found": 12,
+"called": 12,
+"missed": []
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "baritone",
+"sigma": 0,
+"vib": 0,
+"n_notes": 12,
+"lo": -22,
+"hi": -10,
+"short": 0,
+"est": {
+"found": 12,
+"called": 12,
+"missed": []
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "baritone",
+"sigma": 0,
+"vib": 1,
+"n_notes": 12,
+"lo": -22,
+"hi": -10,
+"short": 0,
+"est": {
+"found": 12,
+"called": 12,
+"missed": []
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "baritone",
+"sigma": 20,
+"vib": 0,
+"n_notes": 12,
+"lo": -22,
+"hi": -10,
+"short": 0,
+"est": {
+"found": 12,
+"called": 12,
+"missed": []
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "baritone",
+"sigma": 20,
+"vib": 1,
+"n_notes": 12,
+"lo": -22,
+"hi": -10,
+"short": 0,
+"est": {
+"found": 12,
+"called": 12,
+"missed": []
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "tenor",
+"sigma": 0,
+"vib": 0,
+"n_notes": 12,
+"lo": -18,
+"hi": -6,
+"short": 0,
+"est": {
+"found": 12,
+"called": 12,
+"missed": []
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "tenor",
+"sigma": 0,
+"vib": 1,
+"n_notes": 12,
+"lo": -18,
+"hi": -6,
+"short": 0,
+"est": {
+"found": 12,
+"called": 12,
+"missed": []
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "tenor",
+"sigma": 20,
+"vib": 0,
+"n_notes": 12,
+"lo": -18,
+"hi": -6,
+"short": 0,
+"est": {
+"found": 12,
+"called": 12,
+"missed": []
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "tenor",
+"sigma": 20,
+"vib": 1,
+"n_notes": 12,
+"lo": -18,
+"hi": -6,
+"short": 0,
+"est": {
+"found": 12,
+"called": 12,
+"missed": []
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "mezzo",
+"sigma": 0,
+"vib": 0,
+"n_notes": 12,
+"lo": -13,
+"hi": -1,
+"short": 0,
+"est": {
+"found": 12,
+"called": 12,
+"missed": []
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "mezzo",
+"sigma": 0,
+"vib": 1,
+"n_notes": 12,
+"lo": -13,
+"hi": -1,
+"short": 0,
+"est": {
+"found": 12,
+"called": 12,
+"missed": []
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "mezzo",
+"sigma": 20,
+"vib": 0,
+"n_notes": 12,
+"lo": -13,
+"hi": -1,
+"short": 0,
+"est": {
+"found": 12,
+"called": 12,
+"missed": []
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "mezzo",
+"sigma": 20,
+"vib": 1,
+"n_notes": 12,
+"lo": -13,
+"hi": -1,
+"short": 0,
+"est": {
+"found": 11,
+"called": 12,
+"missed": [
+2
+]
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "soprano",
+"sigma": 0,
+"vib": 0,
+"n_notes": 12,
+"lo": -8,
+"hi": 4,
+"short": 0,
+"est": {
+"found": 12,
+"called": 12,
+"missed": []
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "soprano",
+"sigma": 0,
+"vib": 1,
+"n_notes": 12,
+"lo": -8,
+"hi": 4,
+"short": 0,
+"est": {
+"found": 12,
+"called": 12,
+"missed": []
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "soprano",
+"sigma": 20,
+"vib": 0,
+"n_notes": 12,
+"lo": -8,
+"hi": 4,
+"short": 0,
+"est": {
+"found": 12,
+"called": 12,
+"missed": []
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "soprano",
+"sigma": 20,
+"vib": 1,
+"n_notes": 12,
+"lo": -8,
+"hi": 4,
+"short": 0,
+"est": {
+"found": 11,
+"called": 12,
+"missed": [
+6
+]
+},
+"oracle": {
+"found": 11,
+"called": 12,
+"missed": [
+6
+]
+}
+},
+{
+"id": "m580",
+"voice": "soprano_high",
+"sigma": 0,
+"vib": 0,
+"n_notes": 12,
+"lo": -1,
+"hi": 11,
+"short": 0,
+"est": {
+"found": 12,
+"called": 12,
+"missed": []
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "soprano_high",
+"sigma": 0,
+"vib": 1,
+"n_notes": 12,
+"lo": -1,
+"hi": 11,
+"short": 0,
+"est": {
+"found": 12,
+"called": 12,
+"missed": []
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m580",
+"voice": "soprano_high",
+"sigma": 20,
+"vib": 0,
+"n_notes": 12,
+"lo": -1,
+"hi": 11,
+"short": 0,
+"est": {
+"found": 11,
+"called": 12,
+"missed": [
+2
+]
+},
+"oracle": {
+"found": 11,
+"called": 12,
+"missed": [
+2
+]
+}
+},
+{
+"id": "m580",
+"voice": "soprano_high",
+"sigma": 20,
+"vib": 1,
+"n_notes": 12,
+"lo": -1,
+"hi": 11,
+"short": 0,
+"est": {
+"found": 11,
+"called": 12,
+"missed": [
+5
+]
+},
+"oracle": {
+"found": 12,
+"called": 12,
+"missed": []
+}
+},
+{
+"id": "m593",
+"voice": "bass",
+"sigma": 0,
+"vib": 0,
+"n_notes": 13,
+"lo": -23,
+"hi": -14,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m593",
+"voice": "bass",
+"sigma": 0,
+"vib": 1,
+"n_notes": 13,
+"lo": -23,
+"hi": -14,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m593",
+"voice": "bass",
+"sigma": 20,
+"vib": 0,
+"n_notes": 13,
+"lo": -23,
+"hi": -14,
+"short": 0,
+"est": {
+"found": 12,
+"called": 13,
+"missed": [
+4
+]
+},
+"oracle": {
+"found": 12,
+"called": 13,
+"missed": [
+4
+]
+}
+},
+{
+"id": "m593",
+"voice": "bass",
+"sigma": 20,
+"vib": 1,
+"n_notes": 13,
+"lo": -23,
+"hi": -14,
+"short": 0,
+"est": {
+"found": 11,
+"called": 13,
+"missed": [
+8,
+11
+]
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m593",
+"voice": "baritone",
+"sigma": 0,
+"vib": 0,
+"n_notes": 13,
+"lo": -20,
+"hi": -11,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m593",
+"voice": "baritone",
+"sigma": 0,
+"vib": 1,
+"n_notes": 13,
+"lo": -20,
+"hi": -11,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m593",
+"voice": "baritone",
+"sigma": 20,
+"vib": 0,
+"n_notes": 13,
+"lo": -20,
+"hi": -11,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m593",
+"voice": "baritone",
+"sigma": 20,
+"vib": 1,
+"n_notes": 13,
+"lo": -20,
+"hi": -11,
+"short": 0,
+"est": {
+"found": 12,
+"called": 13,
+"missed": [
+5
+]
+},
+"oracle": {
+"found": 12,
+"called": 13,
+"missed": [
+5
+]
+}
+},
+{
+"id": "m593",
+"voice": "tenor",
+"sigma": 0,
+"vib": 0,
+"n_notes": 13,
+"lo": -16,
+"hi": -7,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m593",
+"voice": "tenor",
+"sigma": 0,
+"vib": 1,
+"n_notes": 13,
+"lo": -16,
+"hi": -7,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m593",
+"voice": "tenor",
+"sigma": 20,
+"vib": 0,
+"n_notes": 13,
+"lo": -16,
+"hi": -7,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m593",
+"voice": "tenor",
+"sigma": 20,
+"vib": 1,
+"n_notes": 13,
+"lo": -16,
+"hi": -7,
+"short": 0,
+"est": {
+"found": 12,
+"called": 13,
+"missed": [
+8
+]
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m593",
+"voice": "mezzo",
+"sigma": 0,
+"vib": 0,
+"n_notes": 13,
+"lo": -11,
+"hi": -2,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m593",
+"voice": "mezzo",
+"sigma": 0,
+"vib": 1,
+"n_notes": 13,
+"lo": -11,
+"hi": -2,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m593",
+"voice": "mezzo",
+"sigma": 20,
+"vib": 0,
+"n_notes": 13,
+"lo": -11,
+"hi": -2,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 12,
+"called": 13,
+"missed": [
+11
+]
+}
+},
+{
+"id": "m593",
+"voice": "mezzo",
+"sigma": 20,
+"vib": 1,
+"n_notes": 13,
+"lo": -11,
+"hi": -2,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m593",
+"voice": "soprano",
+"sigma": 0,
+"vib": 0,
+"n_notes": 13,
+"lo": -6,
+"hi": 3,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m593",
+"voice": "soprano",
+"sigma": 0,
+"vib": 1,
+"n_notes": 13,
+"lo": -6,
+"hi": 3,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m593",
+"voice": "soprano",
+"sigma": 20,
+"vib": 0,
+"n_notes": 13,
+"lo": -6,
+"hi": 3,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m593",
+"voice": "soprano",
+"sigma": 20,
+"vib": 1,
+"n_notes": 13,
+"lo": -6,
+"hi": 3,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m593",
+"voice": "soprano_high",
+"sigma": 0,
+"vib": 0,
+"n_notes": 13,
+"lo": 1,
+"hi": 10,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m593",
+"voice": "soprano_high",
+"sigma": 0,
+"vib": 1,
+"n_notes": 13,
+"lo": 1,
+"hi": 10,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m593",
+"voice": "soprano_high",
+"sigma": 20,
+"vib": 0,
+"n_notes": 13,
+"lo": 1,
+"hi": 10,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m593",
+"voice": "soprano_high",
+"sigma": 20,
+"vib": 1,
+"n_notes": 13,
+"lo": 1,
+"hi": 10,
+"short": 0,
+"est": {
+"found": 12,
+"called": 13,
+"missed": [
+12
+]
+},
+"oracle": {
+"found": 12,
+"called": 13,
+"missed": [
+12
+]
+}
+},
+{
+"id": "m587",
+"voice": "bass",
+"sigma": 0,
+"vib": 0,
+"n_notes": 11,
+"lo": -22,
+"hi": -16,
+"short": 0,
+"est": {
+"found": 11,
+"called": 11,
+"missed": []
+},
+"oracle": {
+"found": 11,
+"called": 11,
+"missed": []
+}
+},
+{
+"id": "m587",
+"voice": "bass",
+"sigma": 0,
+"vib": 1,
+"n_notes": 11,
+"lo": -22,
+"hi": -16,
+"short": 0,
+"est": {
+"found": 11,
+"called": 11,
+"missed": []
+},
+"oracle": {
+"found": 11,
+"called": 11,
+"missed": []
+}
+},
+{
+"id": "m587",
+"voice": "bass",
+"sigma": 20,
+"vib": 0,
+"n_notes": 11,
+"lo": -22,
+"hi": -16,
+"short": 0,
+"est": {
+"found": 10,
+"called": 11,
+"missed": [
+0
+]
+},
+"oracle": {
+"found": 10,
+"called": 11,
+"missed": [
+0
+]
+}
+},
+{
+"id": "m587",
+"voice": "bass",
+"sigma": 20,
+"vib": 1,
+"n_notes": 11,
+"lo": -22,
+"hi": -16,
+"short": 0,
+"est": {
+"found": 10,
+"called": 11,
+"missed": [
+5
+]
+},
+"oracle": {
+"found": 11,
+"called": 11,
+"missed": []
+}
+},
+{
+"id": "m587",
+"voice": "baritone",
+"sigma": 0,
+"vib": 0,
+"n_notes": 11,
+"lo": -19,
+"hi": -13,
+"short": 0,
+"est": {
+"found": 11,
+"called": 11,
+"missed": []
+},
+"oracle": {
+"found": 11,
+"called": 11,
+"missed": []
+}
+},
+{
+"id": "m587",
+"voice": "baritone",
+"sigma": 0,
+"vib": 1,
+"n_notes": 11,
+"lo": -19,
+"hi": -13,
+"short": 0,
+"est": {
+"found": 11,
+"called": 11,
+"missed": []
+},
+"oracle": {
+"found": 11,
+"called": 11,
+"missed": []
+}
+},
+{
+"id": "m587",
+"voice": "baritone",
+"sigma": 20,
+"vib": 0,
+"n_notes": 11,
+"lo": -19,
+"hi": -13,
+"short": 0,
+"est": {
+"found": 11,
+"called": 11,
+"missed": []
+},
+"oracle": {
+"found": 11,
+"called": 11,
+"missed": []
+}
+},
+{
+"id": "m587",
+"voice": "baritone",
+"sigma": 20,
+"vib": 1,
+"n_notes": 11,
+"lo": -19,
+"hi": -13,
+"short": 0,
+"est": {
+"found": 11,
+"called": 11,
+"missed": []
+},
+"oracle": {
+"found": 11,
+"called": 11,
+"missed": []
+}
+},
+{
+"id": "m587",
+"voice": "tenor",
+"sigma": 0,
+"vib": 0,
+"n_notes": 11,
+"lo": -15,
+"hi": -9,
+"short": 0,
+"est": {
+"found": 11,
+"called": 11,
+"missed": []
+},
+"oracle": {
+"found": 11,
+"called": 11,
+"missed": []
+}
+},
+{
+"id": "m587",
+"voice": "tenor",
+"sigma": 0,
+"vib": 1,
+"n_notes": 11,
+"lo": -15,
+"hi": -9,
+"short": 0,
+"est": {
+"found": 11,
+"called": 11,
+"missed": []
+},
+"oracle": {
+"found": 11,
+"called": 11,
+"missed": []
+}
+},
+{
+"id": "m587",
+"voice": "tenor",
+"sigma": 20,
+"vib": 0,
+"n_notes": 11,
+"lo": -15,
+"hi": -9,
+"short": 0,
+"est": {
+"found": 10,
+"called": 11,
+"missed": [
+9
+]
+},
+"oracle": {
+"found": 11,
+"called": 11,
+"missed": []
+}
+},
+{
+"id": "m587",
+"voice": "tenor",
+"sigma": 20,
+"vib": 1,
+"n_notes": 11,
+"lo": -15,
+"hi": -9,
+"short": 0,
+"est": {
+"found": 10,
+"called": 11,
+"missed": [
+3
+]
+},
+"oracle": {
+"found": 11,
+"called": 11,
+"missed": []
+}
+},
+{
+"id": "m587",
+"voice": "mezzo",
+"sigma": 0,
+"vib": 0,
+"n_notes": 11,
+"lo": -10,
+"hi": -4,
+"short": 0,
+"est": {
+"found": 11,
+"called": 11,
+"missed": []
+},
+"oracle": {
+"found": 11,
+"called": 11,
+"missed": []
+}
+},
+{
+"id": "m587",
+"voice": "mezzo",
+"sigma": 0,
+"vib": 1,
+"n_notes": 11,
+"lo": -10,
+"hi": -4,
+"short": 0,
+"est": {
+"found": 11,
+"called": 11,
+"missed": []
+},
+"oracle": {
+"found": 11,
+"called": 11,
+"missed": []
+}
+},
+{
+"id": "m587",
+"voice": "mezzo",
+"sigma": 20,
+"vib": 0,
+"n_notes": 11,
+"lo": -10,
+"hi": -4,
+"short": 0,
+"est": {
+"found": 9,
+"called": 11,
+"missed": [
+0,
+1
+]
+},
+"oracle": {
+"found": 9,
+"called": 11,
+"missed": [
+0,
+1
+]
+}
+},
+{
+"id": "m587",
+"voice": "mezzo",
+"sigma": 20,
+"vib": 1,
+"n_notes": 11,
+"lo": -10,
+"hi": -4,
+"short": 0,
+"est": {
+"found": 10,
+"called": 11,
+"missed": [
+3
+]
+},
+"oracle": {
+"found": 11,
+"called": 11,
+"missed": []
+}
+},
+{
+"id": "m587",
+"voice": "soprano",
+"sigma": 0,
+"vib": 0,
+"n_notes": 11,
+"lo": -5,
+"hi": 1,
+"short": 0,
+"est": {
+"found": 11,
+"called": 11,
+"missed": []
+},
+"oracle": {
+"found": 11,
+"called": 11,
+"missed": []
+}
+},
+{
+"id": "m587",
+"voice": "soprano",
+"sigma": 0,
+"vib": 1,
+"n_notes": 11,
+"lo": -5,
+"hi": 1,
+"short": 0,
+"est": {
+"found": 11,
+"called": 11,
+"missed": []
+},
+"oracle": {
+"found": 11,
+"called": 11,
+"missed": []
+}
+},
+{
+"id": "m587",
+"voice": "soprano",
+"sigma": 20,
+"vib": 0,
+"n_notes": 11,
+"lo": -5,
+"hi": 1,
+"short": 0,
+"est": {
+"found": 11,
+"called": 11,
+"missed": []
+},
+"oracle": {
+"found": 11,
+"called": 11,
+"missed": []
+}
+},
+{
+"id": "m587",
+"voice": "soprano",
+"sigma": 20,
+"vib": 1,
+"n_notes": 11,
+"lo": -5,
+"hi": 1,
+"short": 0,
+"est": {
+"found": 9,
+"called": 11,
+"missed": [
+3,
+6
+]
+},
+"oracle": {
+"found": 10,
+"called": 11,
+"missed": [
+6
+]
+}
+},
+{
+"id": "m587",
+"voice": "soprano_high",
+"sigma": 0,
+"vib": 0,
+"n_notes": 11,
+"lo": 2,
+"hi": 8,
+"short": 0,
+"est": {
+"found": 11,
+"called": 11,
+"missed": []
+},
+"oracle": {
+"found": 11,
+"called": 11,
+"missed": []
+}
+},
+{
+"id": "m587",
+"voice": "soprano_high",
+"sigma": 0,
+"vib": 1,
+"n_notes": 11,
+"lo": 2,
+"hi": 8,
+"short": 0,
+"est": {
+"found": 11,
+"called": 11,
+"missed": []
+},
+"oracle": {
+"found": 11,
+"called": 11,
+"missed": []
+}
+},
+{
+"id": "m587",
+"voice": "soprano_high",
+"sigma": 20,
+"vib": 0,
+"n_notes": 11,
+"lo": 2,
+"hi": 8,
+"short": 0,
+"est": {
+"found": 11,
+"called": 11,
+"missed": []
+},
+"oracle": {
+"found": 11,
+"called": 11,
+"missed": []
+}
+},
+{
+"id": "m587",
+"voice": "soprano_high",
+"sigma": 20,
+"vib": 1,
+"n_notes": 11,
+"lo": 2,
+"hi": 8,
+"short": 0,
+"est": {
+"found": 11,
+"called": 11,
+"missed": []
+},
+"oracle": {
+"found": 11,
+"called": 11,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "bass",
+"sigma": 0,
+"vib": 0,
+"n_notes": 7,
+"lo": -23,
+"hi": -16,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "bass",
+"sigma": 0,
+"vib": 1,
+"n_notes": 7,
+"lo": -23,
+"hi": -16,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "bass",
+"sigma": 20,
+"vib": 0,
+"n_notes": 7,
+"lo": -23,
+"hi": -16,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "bass",
+"sigma": 20,
+"vib": 1,
+"n_notes": 7,
+"lo": -23,
+"hi": -16,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "baritone",
+"sigma": 0,
+"vib": 0,
+"n_notes": 7,
+"lo": -20,
+"hi": -13,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "baritone",
+"sigma": 0,
+"vib": 1,
+"n_notes": 7,
+"lo": -20,
+"hi": -13,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "baritone",
+"sigma": 20,
+"vib": 0,
+"n_notes": 7,
+"lo": -20,
+"hi": -13,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "baritone",
+"sigma": 20,
+"vib": 1,
+"n_notes": 7,
+"lo": -20,
+"hi": -13,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "tenor",
+"sigma": 0,
+"vib": 0,
+"n_notes": 7,
+"lo": -16,
+"hi": -9,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "tenor",
+"sigma": 0,
+"vib": 1,
+"n_notes": 7,
+"lo": -16,
+"hi": -9,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "tenor",
+"sigma": 20,
+"vib": 0,
+"n_notes": 7,
+"lo": -16,
+"hi": -9,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "tenor",
+"sigma": 20,
+"vib": 1,
+"n_notes": 7,
+"lo": -16,
+"hi": -9,
+"short": 0,
+"est": {
+"found": 6,
+"called": 7,
+"missed": [
+6
+]
+},
+"oracle": {
+"found": 6,
+"called": 7,
+"missed": [
+6
+]
+}
+},
+{
+"id": "m648",
+"voice": "mezzo",
+"sigma": 0,
+"vib": 0,
+"n_notes": 7,
+"lo": -11,
+"hi": -4,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "mezzo",
+"sigma": 0,
+"vib": 1,
+"n_notes": 7,
+"lo": -11,
+"hi": -4,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "mezzo",
+"sigma": 20,
+"vib": 0,
+"n_notes": 7,
+"lo": -11,
+"hi": -4,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "mezzo",
+"sigma": 20,
+"vib": 1,
+"n_notes": 7,
+"lo": -11,
+"hi": -4,
+"short": 0,
+"est": {
+"found": 6,
+"called": 7,
+"missed": [
+1
+]
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "soprano",
+"sigma": 0,
+"vib": 0,
+"n_notes": 7,
+"lo": -6,
+"hi": 1,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "soprano",
+"sigma": 0,
+"vib": 1,
+"n_notes": 7,
+"lo": -6,
+"hi": 1,
+"short": 0,
+"est": {
+"found": 5,
+"called": 7,
+"missed": [
+1,
+6
+]
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "soprano",
+"sigma": 20,
+"vib": 0,
+"n_notes": 7,
+"lo": -6,
+"hi": 1,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "soprano",
+"sigma": 20,
+"vib": 1,
+"n_notes": 7,
+"lo": -6,
+"hi": 1,
+"short": 0,
+"est": {
+"found": 5,
+"called": 7,
+"missed": [
+0,
+3
+]
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "soprano_high",
+"sigma": 0,
+"vib": 0,
+"n_notes": 7,
+"lo": 1,
+"hi": 8,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "soprano_high",
+"sigma": 0,
+"vib": 1,
+"n_notes": 7,
+"lo": 1,
+"hi": 8,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "soprano_high",
+"sigma": 20,
+"vib": 0,
+"n_notes": 7,
+"lo": 1,
+"hi": 8,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 7,
+"called": 7,
+"missed": []
+}
+},
+{
+"id": "m648",
+"voice": "soprano_high",
+"sigma": 20,
+"vib": 1,
+"n_notes": 7,
+"lo": 1,
+"hi": 8,
+"short": 0,
+"est": {
+"found": 7,
+"called": 7,
+"missed": []
+},
+"oracle": {
+"found": 4,
+"called": 7,
+"missed": [
+0,
+1,
+6
+]
+}
+},
+{
+"id": "m1795",
+"voice": "bass",
+"sigma": 0,
+"vib": 0,
+"n_notes": 13,
+"lo": -23,
+"hi": -16,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m1795",
+"voice": "bass",
+"sigma": 0,
+"vib": 1,
+"n_notes": 13,
+"lo": -23,
+"hi": -16,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m1795",
+"voice": "bass",
+"sigma": 20,
+"vib": 0,
+"n_notes": 13,
+"lo": -23,
+"hi": -16,
+"short": 0,
+"est": {
+"found": 11,
+"called": 13,
+"missed": [
+4,
+11
+]
+},
+"oracle": {
+"found": 11,
+"called": 13,
+"missed": [
+4,
+11
+]
+}
+},
+{
+"id": "m1795",
+"voice": "bass",
+"sigma": 20,
+"vib": 1,
+"n_notes": 13,
+"lo": -23,
+"hi": -16,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m1795",
+"voice": "baritone",
+"sigma": 0,
+"vib": 0,
+"n_notes": 13,
+"lo": -20,
+"hi": -13,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m1795",
+"voice": "baritone",
+"sigma": 0,
+"vib": 1,
+"n_notes": 13,
+"lo": -20,
+"hi": -13,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m1795",
+"voice": "baritone",
+"sigma": 20,
+"vib": 0,
+"n_notes": 13,
+"lo": -20,
+"hi": -13,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m1795",
+"voice": "baritone",
+"sigma": 20,
+"vib": 1,
+"n_notes": 13,
+"lo": -20,
+"hi": -13,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m1795",
+"voice": "tenor",
+"sigma": 0,
+"vib": 0,
+"n_notes": 13,
+"lo": -16,
+"hi": -9,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m1795",
+"voice": "tenor",
+"sigma": 0,
+"vib": 1,
+"n_notes": 13,
+"lo": -16,
+"hi": -9,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m1795",
+"voice": "tenor",
+"sigma": 20,
+"vib": 0,
+"n_notes": 13,
+"lo": -16,
+"hi": -9,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m1795",
+"voice": "tenor",
+"sigma": 20,
+"vib": 1,
+"n_notes": 13,
+"lo": -16,
+"hi": -9,
+"short": 0,
+"est": {
+"found": 12,
+"called": 13,
+"missed": [
+1
+]
+},
+"oracle": {
+"found": 12,
+"called": 13,
+"missed": [
+1
+]
+}
+},
+{
+"id": "m1795",
+"voice": "mezzo",
+"sigma": 0,
+"vib": 0,
+"n_notes": 13,
+"lo": -11,
+"hi": -4,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m1795",
+"voice": "mezzo",
+"sigma": 0,
+"vib": 1,
+"n_notes": 13,
+"lo": -11,
+"hi": -4,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m1795",
+"voice": "mezzo",
+"sigma": 20,
+"vib": 0,
+"n_notes": 13,
+"lo": -11,
+"hi": -4,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m1795",
+"voice": "mezzo",
+"sigma": 20,
+"vib": 1,
+"n_notes": 13,
+"lo": -11,
+"hi": -4,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m1795",
+"voice": "soprano",
+"sigma": 0,
+"vib": 0,
+"n_notes": 13,
+"lo": -6,
+"hi": 1,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m1795",
+"voice": "soprano",
+"sigma": 0,
+"vib": 1,
+"n_notes": 13,
+"lo": -6,
+"hi": 1,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m1795",
+"voice": "soprano",
+"sigma": 20,
+"vib": 0,
+"n_notes": 13,
+"lo": -6,
+"hi": 1,
+"short": 0,
+"est": {
+"found": 11,
+"called": 13,
+"missed": [
+7,
+8
+]
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m1795",
+"voice": "soprano",
+"sigma": 20,
+"vib": 1,
+"n_notes": 13,
+"lo": -6,
+"hi": 1,
+"short": 0,
+"est": {
+"found": 12,
+"called": 13,
+"missed": [
+7
+]
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m1795",
+"voice": "soprano_high",
+"sigma": 0,
+"vib": 0,
+"n_notes": 13,
+"lo": 1,
+"hi": 8,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m1795",
+"voice": "soprano_high",
+"sigma": 0,
+"vib": 1,
+"n_notes": 13,
+"lo": 1,
+"hi": 8,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 13,
+"called": 13,
+"missed": []
+}
+},
+{
+"id": "m1795",
+"voice": "soprano_high",
+"sigma": 20,
+"vib": 0,
+"n_notes": 13,
+"lo": 1,
+"hi": 8,
+"short": 0,
+"est": {
+"found": 12,
+"called": 13,
+"missed": [
+8
+]
+},
+"oracle": {
+"found": 12,
+"called": 13,
+"missed": [
+8
+]
+}
+},
+{
+"id": "m1795",
+"voice": "soprano_high",
+"sigma": 20,
+"vib": 1,
+"n_notes": 13,
+"lo": 1,
+"hi": 8,
+"short": 0,
+"est": {
+"found": 13,
+"called": 13,
+"missed": []
+},
+"oracle": {
+"found": 8,
+"called": 13,
+"missed": [
+0,
+2,
+6,
+7,
+8
+]
+}
+},
+{
+"id": "m1831",
+"voice": "bass",
+"sigma": 0,
+"vib": 0,
+"n_notes": 18,
+"lo": -25,
+"hi": -14,
+"short": 0,
+"est": {
+"found": 18,
+"called": 18,
+"missed": []
+},
+"oracle": {
+"found": 18,
+"called": 18,
+"missed": []
+}
+},
+{
+"id": "m1831",
+"voice": "bass",
+"sigma": 0,
+"vib": 1,
+"n_notes": 18,
+"lo": -25,
+"hi": -14,
+"short": 0,
+"est": {
+"found": 18,
+"called": 18,
+"missed": []
+},
+"oracle": {
+"found": 18,
+"called": 18,
+"missed": []
+}
+},
+{
+"id": "m1831",
+"voice": "bass",
+"sigma": 20,
+"vib": 0,
+"n_notes": 18,
+"lo": -25,
+"hi": -14,
+"short": 0,
+"est": {
+"found": 18,
+"called": 18,
+"missed": []
+},
+"oracle": {
+"found": 18,
+"called": 18,
+"missed": []
+}
+},
+{
+"id": "m1831",
+"voice": "bass",
+"sigma": 20,
+"vib": 1,
+"n_notes": 18,
+"lo": -25,
+"hi": -14,
+"short": 0,
+"est": {
+"found": 15,
+"called": 18,
+"missed": [
+12,
+15,
+16
+]
+},
+"oracle": {
+"found": 17,
+"called": 18,
+"missed": [
+11
+]
+}
+},
+{
+"id": "m1831",
+"voice": "baritone",
+"sigma": 0,
+"vib": 0,
+"n_notes": 18,
+"lo": -22,
+"hi": -11,
+"short": 0,
+"est": {
+"found": 18,
+"called": 18,
+"missed": []
+},
+"oracle": {
+"found": 18,
+"called": 18,
+"missed": []
+}
+},
+{
+"id": "m1831",
+"voice": "baritone",
+"sigma": 0,
+"vib": 1,
+"n_notes": 18,
+"lo": -22,
+"hi": -11,
+"short": 0,
+"est": {
+"found": 18,
+"called": 18,
+"missed": []
+},
+"oracle": {
+"found": 18,
+"called": 18,
+"missed": []
+}
+},
+{
+"id": "m1831",
+"voice": "baritone",
+"sigma": 20,
+"vib": 0,
+"n_notes": 18,
+"lo": -22,
+"hi": -11,
+"short": 0,
+"est": {
+"found": 18,
+"called": 18,
+"missed": []
+},
+"oracle": {
+"found": 17,
+"called": 18,
+"missed": [
+3
+]
+}
+},
+{
+"id": "m1831",
+"voice": "baritone",
+"sigma": 20,
+"vib": 1,
+"n_notes": 18,
+"lo": -22,
+"hi": -11,
+"short": 0,
+"est": {
+"found": 15,
+"called": 18,
+"missed": [
+1,
+9,
+17
+]
+},
+"oracle": {
+"found": 14,
+"called": 18,
+"missed": [
+2,
+6,
+7,
+11
+]
+}
+},
+{
+"id": "m1831",
+"voice": "tenor",
+"sigma": 0,
+"vib": 0,
+"n_notes": 18,
+"lo": -18,
+"hi": -7,
+"short": 0,
+"est": {
+"found": 18,
+"called": 18,
+"missed": []
+},
+"oracle": {
+"found": 18,
+"called": 18,
+"missed": []
+}
+},
+{
+"id": "m1831",
+"voice": "tenor",
+"sigma": 0,
+"vib": 1,
+"n_notes": 18,
+"lo": -18,
+"hi": -7,
+"short": 0,
+"est": {
+"found": 18,
+"called": 18,
+"missed": []
+},
+"oracle": {
+"found": 18,
+"called": 18,
+"missed": []
+}
+},
+{
+"id": "m1831",
+"voice": "tenor",
+"sigma": 20,
+"vib": 0,
+"n_notes": 18,
+"lo": -18,
+"hi": -7,
+"short": 0,
+"est": {
+"found": 18,
+"called": 18,
+"missed": []
+},
+"oracle": {
+"found": 18,
+"called": 18,
+"missed": []
+}
+},
+{
+"id": "m1831",
+"voice": "tenor",
+"sigma": 20,
+"vib": 1,
+"n_notes": 18,
+"lo": -18,
+"hi": -7,
+"short": 0,
+"est": {
+"found": 16,
+"called": 18,
+"missed": [
+1,
+13
+]
+},
+"oracle": {
+"found": 17,
+"called": 18,
+"missed": [
+0
+]
+}
+},
+{
+"id": "m1831",
+"voice": "mezzo",
+"sigma": 0,
+"vib": 0,
+"n_notes": 18,
+"lo": -13,
+"hi": -2,
+"short": 0,
+"est": {
+"found": 18,
+"called": 18,
+"missed": []
+},
+"oracle": {
+"found": 18,
+"called": 18,
+"missed": []
+}
+},
+{
+"id": "m1831",
+"voice": "mezzo",
+"sigma": 0,
+"vib": 1,
+"n_notes": 18,
+"lo": -13,
+"hi": -2,
+"short": 0,
+"est": {
+"found": 18,
+"called": 18,
+"missed": []
+},
+"oracle": {
+"found": 18,
+"called": 18,
+"missed": []
+}
+},
+{
+"id": "m1831",
+"voice": "mezzo",
+"sigma": 20,
+"vib": 0,
+"n_notes": 18,
+"lo": -13,
+"hi": -2,
+"short": 0,
+"est": {
+"found": 18,
+"called": 18,
+"missed": []
+},
+"oracle": {
+"found": 18,
+"called": 18,
+"missed": []
+}
+},
+{
+"id": "m1831",
+"voice": "mezzo",
+"sigma": 20,
+"vib": 1,
+"n_notes": 18,
+"lo": -13,
+"hi": -2,
+"short": 0,
+"est": {
+"found": 18,
+"called": 18,
+"missed": []
+},
+"oracle": {
+"found": 18,
+"called": 18,
+"missed": []
+}
+},
+{
+"id": "m1831",
+"voice": "soprano",
+"sigma": 0,
+"vib": 0,
+"n_notes": 18,
+"lo": -8,
+"hi": 3,
+"short": 0,
+"est": {
+"found": 18,
+"called": 18,
+"missed": []
+},
+"oracle": {
+"found": 18,
+"called": 18,
+"missed": []
+}
+},
+{
+"id": "m1831",
+"voice": "soprano",
+"sigma": 0,
+"vib": 1,
+"n_notes": 18,
+"lo": -8,
+"hi": 3,
+"short": 0,
+"est": {
+"found": 18,
+"called": 18,
+"missed": []
+},
+"oracle": {
+"found": 18,
+"called": 18,
+"missed": []
+}
+},
+{
+"id": "m1831",
+"voice": "soprano",
+"sigma": 20,
+"vib": 0,
+"n_notes": 18,
+"lo": -8,
+"hi": 3,
+"short": 0,
+"est": {
+"found": 17,
+"called": 18,
+"missed": [
+8
+]
+},
+"oracle": {
+"found": 16,
+"called": 18,
+"missed": [
+8,
+16
+]
+}
+},
+{
+"id": "m1831",
+"voice": "soprano",
+"sigma": 20,
+"vib": 1,
+"n_notes": 18,
+"lo": -8,
+"hi": 3,
+"short": 0,
+"est": {
+"found": 17,
+"called": 18,
+"missed": [
+0
+]
+},
+"oracle": {
+"found": 14,
+"called": 18,
+"missed": [
+4,
+5,
+6,
+10
+]
+}
+},
+{
+"id": "m1831",
+"voice": "soprano_high",
+"sigma": 0,
+"vib": 0,
+"n_notes": 18,
+"lo": -1,
+"hi": 10,
+"short": 0,
+"est": {
+"found": 18,
+"called": 18,
+"missed": []
+},
+"oracle": {
+"found": 18,
+"called": 18,
+"missed": []
+}
+},
+{
+"id": "m1831",
+"voice": "soprano_high",
+"sigma": 0,
+"vib": 1,
+"n_notes": 18,
+"lo": -1,
+"hi": 10,
+"short": 0,
+"est": {
+"found": 18,
+"called": 18,
+"missed": []
+},
+"oracle": {
+"found": 18,
+"called": 18,
+"missed": []
+}
+},
+{
+"id": "m1831",
+"voice": "soprano_high",
+"sigma": 20,
+"vib": 0,
+"n_notes": 18,
+"lo": -1,
+"hi": 10,
+"short": 0,
+"est": {
+"found": 17,
+"called": 18,
+"missed": [
+1
+]
+},
+"oracle": {
+"found": 17,
+"called": 18,
+"missed": [
+1
+]
+}
+},
+{
+"id": "m1831",
+"voice": "soprano_high",
+"sigma": 20,
+"vib": 1,
+"n_notes": 18,
+"lo": -1,
+"hi": 10,
+"short": 0,
+"est": {
+"found": 15,
+"called": 18,
+"missed": [
+3,
+5,
+16
+]
+},
+"oracle": {
+"found": 17,
+"called": 18,
+"missed": [
+5
+]
+}
+}
+]

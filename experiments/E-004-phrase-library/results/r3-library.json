@@ -1,0 +1,806 @@
+[
+ {
+  "id": "mutopia-607",
+  "title": "The Storm",
+  "genre": "song",
+  "language": "en",
+  "words": "The tempest rages wild and high,",
+  "key": "Cm",
+  "meter": "6/8",
+  "tempo_qpm": 60.0,
+  "notes": [
+   {
+    "pitch": "G4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "G4",
+    "beats": "1"
+   },
+   {
+    "pitch": "G4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "C5",
+    "beats": "1"
+   },
+   {
+    "pitch": "G4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "Ab4",
+    "beats": "1"
+   },
+   {
+    "pitch": "C5",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "G4",
+    "beats": "1"
+   }
+  ],
+  "provenance": {
+   "edition": "C. M. Cady, Pub. 1878",
+   "edition_year": 1878,
+   "contributors": [
+    {
+     "role": "composer",
+     "name": "J. Hullah",
+     "died_eff": 1884,
+     "article": "John Pyke Hullah"
+    },
+    {
+     "role": "poet",
+     "name": "A. Procter",
+     "died_eff": 1864,
+     "article": "Adelaide Anne Procter"
+    }
+   ],
+   "transcription": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=607",
+   "licence_of_transcription": "Public Domain"
+  },
+  "melody_from": "the edition (round 3, route (a))",
+  "licence": "CC-PDM-1.0"
+ },
+ {
+  "id": "mutopia-368",
+  "title": "Après un Rêve",
+  "genre": "classical",
+  "language": "fr",
+  "words": "Dans un sommeil que charmait ton image Je rêvais le bonheur,",
+  "key": "Cm",
+  "meter": "3/4",
+  "tempo_qpm": 60.0,
+  "notes": [
+   {
+    "pitch": "G4",
+    "beats": "1"
+   },
+   {
+    "pitch": "C5",
+    "beats": "1"
+   },
+   {
+    "pitch": "D5",
+    "beats": "1"
+   },
+   {
+    "pitch": "Eb5",
+    "beats": "4/3"
+   },
+   {
+    "pitch": "D5",
+    "beats": "1/3"
+   },
+   {
+    "pitch": "C5",
+    "beats": "1/3"
+   },
+   {
+    "pitch": "Eb5",
+    "beats": "1/3"
+   },
+   {
+    "pitch": "D5",
+    "beats": "1/3"
+   },
+   {
+    "pitch": "C5",
+    "beats": "1/3"
+   },
+   {
+    "pitch": "C5",
+    "beats": "2"
+   },
+   {
+    "pitch": "Bb4",
+    "beats": "1"
+   },
+   {
+    "pitch": "Db5",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "F4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "Db5",
+    "beats": "1"
+   },
+   {
+    "pitch": "C5",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "B4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "C5",
+    "beats": "3/2"
+   }
+  ],
+  "provenance": {
+   "edition": "Choudens, 1880",
+   "edition_year": 1880,
+   "contributors": [
+    {
+     "role": "composer",
+     "name": "G. Fauré",
+     "died_eff": 1924,
+     "article": "Gabriel Fauré"
+    },
+    {
+     "role": "poet",
+     "name": "R. Bussine",
+     "died_eff": 1899,
+     "article": "Romain Bussine"
+    }
+   ],
+   "transcription": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=368",
+   "licence_of_transcription": "Public Domain"
+  },
+  "melody_from": "the edition (round 3, route (a))",
+  "licence": "CC-PDM-1.0"
+ },
+ {
+  "id": "mutopia-905",
+  "title": "Good King Wenceslas",
+  "genre": "song",
+  "language": null,
+  "words": "Good King Wenceslas looked out,",
+  "key": "A",
+  "meter": "4/4",
+  "tempo_qpm": 120.0,
+  "notes": [
+   {
+    "pitch": "A4",
+    "beats": "1"
+   },
+   {
+    "pitch": "A4",
+    "beats": "1"
+   },
+   {
+    "pitch": "A4",
+    "beats": "1"
+   },
+   {
+    "pitch": "B4",
+    "beats": "1"
+   },
+   {
+    "pitch": "A4",
+    "beats": "1"
+   },
+   {
+    "pitch": "A4",
+    "beats": "1"
+   },
+   {
+    "pitch": "E4",
+    "beats": "2"
+   }
+  ],
+  "provenance": {
+   "edition": "Sheet Music from Rev. Charles Lewis Hutchins, Carols Old and Carols New (Boston: Parish Choir, 1916), Carol #415",
+   "edition_year": 1916,
+   "contributors": [
+    {
+     "role": "poet",
+     "name": "J.M. Neale",
+     "died_eff": 1866,
+     "article": "John Mason Neale"
+    }
+   ],
+   "transcription": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=905",
+   "licence_of_transcription": "Public Domain"
+  },
+  "melody_from": "the edition (round 3, route (a))",
+  "licence": "CC-PDM-1.0"
+ },
+ {
+  "id": "mutopia-373",
+  "title": "Einsamkeit",
+  "genre": "classical",
+  "language": null,
+  "words": "Wie eine trübe Wolke durch heit're Lüfte geht,",
+  "key": "Bm",
+  "meter": "2/4",
+  "tempo_qpm": 60.0,
+  "notes": [
+   {
+    "pitch": "F#4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "F#4",
+    "beats": "3/4"
+   },
+   {
+    "pitch": "G4",
+    "beats": "1/4"
+   },
+   {
+    "pitch": "F#4",
+    "beats": "1/4"
+   },
+   {
+    "pitch": "G4",
+    "beats": "1/4"
+   },
+   {
+    "pitch": "F#4",
+    "beats": "1/4"
+   },
+   {
+    "pitch": "B4",
+    "beats": "1/4"
+   },
+   {
+    "pitch": "C#5",
+    "beats": "1"
+   },
+   {
+    "pitch": "B4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "B4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "B4",
+    "beats": "1/4"
+   },
+   {
+    "pitch": "F#4",
+    "beats": "1/4"
+   },
+   {
+    "pitch": "F#4",
+    "beats": "1/2"
+   }
+  ],
+  "provenance": {
+   "edition": "Breitkopf & Härtel, 1895",
+   "edition_year": 1895,
+   "contributors": [
+    {
+     "role": "composer",
+     "name": "F. Schubert",
+     "died_eff": 1828,
+     "article": "Franz Schubert"
+    },
+    {
+     "role": "poet",
+     "name": "W. Müller",
+     "died_eff": 1827,
+     "article": "Wilhelm Müller"
+    }
+   ],
+   "transcription": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=373",
+   "licence_of_transcription": "Public Domain"
+  },
+  "melody_from": "the edition (round 3, route (a))",
+  "licence": "CC-PDM-1.0"
+ },
+ {
+  "id": "mutopia-580",
+  "title": "Sapphische Ode",
+  "genre": "classical",
+  "language": "de",
+  "words": "Rosen brach ich nachts mir am dunklen Hage;",
+  "key": "F",
+  "meter": "2/2",
+  "tempo_qpm": 68.0000725334107,
+  "notes": [
+   {
+    "pitch": "A4",
+    "beats": "1"
+   },
+   {
+    "pitch": "F4",
+    "beats": "1"
+   },
+   {
+    "pitch": "C4",
+    "beats": "1"
+   },
+   {
+    "pitch": "A4",
+    "beats": "1"
+   },
+   {
+    "pitch": "C5",
+    "beats": "1"
+   },
+   {
+    "pitch": "F4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "G4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "A4",
+    "beats": "1"
+   },
+   {
+    "pitch": "F4",
+    "beats": "1"
+   },
+   {
+    "pitch": "C4",
+    "beats": "1"
+   },
+   {
+    "pitch": "G4",
+    "beats": "1"
+   },
+   {
+    "pitch": "F4",
+    "beats": "3/2"
+   }
+  ],
+  "provenance": {
+   "edition": "The University Society, 1904",
+   "edition_year": 1904,
+   "contributors": [
+    {
+     "role": "composer",
+     "name": "J. Brahms",
+     "died_eff": 1897,
+     "article": "Johannes Brahms"
+    },
+    {
+     "role": "poet",
+     "name": "H. von Schmidt",
+     "died_eff": 1923,
+     "article": "Hans Schmidt (poet)"
+    }
+   ],
+   "transcription": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=580",
+   "licence_of_transcription": "Public Domain"
+  },
+  "melody_from": "the edition (round 3, route (a))",
+  "licence": "CC-PDM-1.0"
+ },
+ {
+  "id": "mutopia-593",
+  "title": "The Spirit of God",
+  "genre": "hymn",
+  "language": "en",
+  "words": "The spirit of God like a fire is burning;",
+  "key": "C",
+  "meter": "4/4",
+  "tempo_qpm": 112.00005973336519,
+  "notes": [
+   {
+    "pitch": "G4",
+    "beats": "1"
+   },
+   {
+    "pitch": "C5",
+    "beats": "2"
+   },
+   {
+    "pitch": "D5",
+    "beats": "1"
+   },
+   {
+    "pitch": "D5",
+    "beats": "1"
+   },
+   {
+    "pitch": "E5",
+    "beats": "2"
+   },
+   {
+    "pitch": "D5",
+    "beats": "1"
+   },
+   {
+    "pitch": "C5",
+    "beats": "1"
+   },
+   {
+    "pitch": "C5",
+    "beats": "2"
+   },
+   {
+    "pitch": "B4",
+    "beats": "1"
+   },
+   {
+    "pitch": "A4",
+    "beats": "1"
+   },
+   {
+    "pitch": "G4",
+    "beats": "3/2"
+   },
+   {
+    "pitch": "A4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "G4",
+    "beats": "1"
+   }
+  ],
+  "provenance": {
+   "edition": "J. C. Little and G. B. Gardner Hymnbook (Bellows Falls, Vermont: 1844)",
+   "edition_year": 1844,
+   "contributors": [
+    {
+     "role": "poet",
+     "name": "W. W. Phelps",
+     "died_eff": 1872,
+     "article": "W. W. Phelps (Mormon)"
+    }
+   ],
+   "transcription": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=593",
+   "licence_of_transcription": "Public Domain"
+  },
+  "melody_from": "the edition (round 3, route (a))",
+  "licence": "CC-PDM-1.0"
+ },
+ {
+  "id": "mutopia-587",
+  "title": "L'Esclave",
+  "genre": "classical",
+  "language": "fr",
+  "words": "Captive et peutêtre oubliée,",
+  "key": "D",
+  "meter": "9/8",
+  "tempo_qpm": 90.00009000009,
+  "notes": [
+   {
+    "pitch": "A4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "A4",
+    "beats": "1"
+   },
+   {
+    "pitch": "F4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "E4",
+    "beats": "2"
+   },
+   {
+    "pitch": "A4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "A#4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "A4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "A4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "F4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "E4",
+    "beats": "3/2"
+   },
+   {
+    "pitch": "E4",
+    "beats": "1/2"
+   }
+  ],
+  "provenance": {
+   "edition": "The University Society, 1904",
+   "edition_year": 1904,
+   "contributors": [
+    {
+     "role": "composer",
+     "name": "E. Lalo",
+     "died_eff": 1892,
+     "article": "Édouard Lalo"
+    },
+    {
+     "role": "poet",
+     "name": "T. Gautier",
+     "died_eff": 1872,
+     "article": "Théophile Gautier"
+    }
+   ],
+   "transcription": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=587",
+   "licence_of_transcription": "Public Domain"
+  },
+  "melody_from": "the edition (round 3, route (a))",
+  "licence": "CC-PDM-1.0"
+ },
+ {
+  "id": "mutopia-648",
+  "title": "Les matelots",
+  "genre": "classical",
+  "language": "fr",
+  "words": "Sur l'eau bleue et profonde,",
+  "key": "Eb",
+  "meter": "3/4",
+  "tempo_qpm": 60.0,
+  "notes": [
+   {
+    "pitch": "Eb4",
+    "beats": "1"
+   },
+   {
+    "pitch": "G4",
+    "beats": "1"
+   },
+   {
+    "pitch": "Bb4",
+    "beats": "1"
+   },
+   {
+    "pitch": "Ab4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "G4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "G4",
+    "beats": "1"
+   },
+   {
+    "pitch": "F4",
+    "beats": "1"
+   }
+  ],
+  "provenance": {
+   "edition": "Hamelle, 1879",
+   "edition_year": 1879,
+   "contributors": [
+    {
+     "role": "composer",
+     "name": "G. Fauré",
+     "died_eff": 1924,
+     "article": "Gabriel Fauré"
+    },
+    {
+     "role": "poet",
+     "name": "T. Gautier",
+     "died_eff": 1872,
+     "article": "Théophile Gautier"
+    }
+   ],
+   "transcription": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=648",
+   "licence_of_transcription": "Public Domain"
+  },
+  "melody_from": "the edition (round 3, route (a))",
+  "licence": "CC-PDM-1.0"
+ },
+ {
+  "id": "mutopia-1795",
+  "title": "Les roses d’Ispahan",
+  "genre": "classical",
+  "language": "fr",
+  "words": "Les roses d’Ispahan dans leur gaîne de mousse,",
+  "key": "D",
+  "meter": "2/4",
+  "tempo_qpm": 60.0,
+  "notes": [
+   {
+    "pitch": "F#4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "A4",
+    "beats": "1"
+   },
+   {
+    "pitch": "D4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "E4",
+    "beats": "1/4"
+   },
+   {
+    "pitch": "G4",
+    "beats": "1/4"
+   },
+   {
+    "pitch": "A4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "A4",
+    "beats": "1/4"
+   },
+   {
+    "pitch": "D4",
+    "beats": "1/4"
+   },
+   {
+    "pitch": "D4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "E4",
+    "beats": "1/4"
+   },
+   {
+    "pitch": "G4",
+    "beats": "1/4"
+   },
+   {
+    "pitch": "A4",
+    "beats": "1"
+   },
+   {
+    "pitch": "A4",
+    "beats": "1/2"
+   }
+  ],
+  "provenance": {
+   "edition": "J. Hamelle, 1885 (IMSLP)",
+   "edition_year": 1885,
+   "contributors": [
+    {
+     "role": "composer",
+     "name": "G. Fauré",
+     "died_eff": 1924,
+     "article": "Gabriel Fauré"
+    },
+    {
+     "role": "poet",
+     "name": "Leconte de Lisle",
+     "died_eff": 1894,
+     "article": "Leconte de Lisle"
+    }
+   ],
+   "transcription": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1795",
+   "licence_of_transcription": "Public Domain"
+  },
+  "melody_from": "the edition (round 3, route (a))",
+  "licence": "CC-PDM-1.0"
+ },
+ {
+  "id": "mutopia-1831",
+  "title": "Le pays des rêves",
+  "genre": "classical",
+  "language": "fr",
+  "words": "Veux-tu qu’au beau pays des rêves Nous allions la main dans la main ?",
+  "key": "Gb",
+  "meter": "12/8",
+  "tempo_qpm": 84.000084000084,
+  "notes": [
+   {
+    "pitch": "Bb4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "Db5",
+    "beats": "5/2"
+   },
+   {
+    "pitch": "Db5",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "Db5",
+    "beats": "1"
+   },
+   {
+    "pitch": "Ab4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "F4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "Gb4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "Ab4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "Bb4",
+    "beats": "1"
+   },
+   {
+    "pitch": "Bb4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "Eb5",
+    "beats": "1"
+   },
+   {
+    "pitch": "Db5",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "B4",
+    "beats": "1"
+   },
+   {
+    "pitch": "Ab4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "E4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "Ab4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "B4",
+    "beats": "1/2"
+   },
+   {
+    "pitch": "Db5",
+    "beats": "6"
+   }
+  ],
+  "provenance": {
+   "edition": "J. Hamelle, 1885 (IMSLP)",
+   "edition_year": 1885,
+   "contributors": [
+    {
+     "role": "composer",
+     "name": "G. Fauré",
+     "died_eff": 1924,
+     "article": "Gabriel Fauré"
+    },
+    {
+     "role": "poet",
+     "name": "Armand Silvestre",
+     "died_eff": 1901,
+     "article": "Armand Silvestre"
+    }
+   ],
+   "transcription": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1831",
+   "licence_of_transcription": "Public Domain"
+  },
+  "melody_from": "the edition (round 3, route (a))",
+  "licence": "CC-PDM-1.0"
+ }
+]

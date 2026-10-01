@@ -1,0 +1,3236 @@
+{
+ "rights_probe": {
+  "must_pass": true,
+  "must_fail_pub_1931": true,
+  "must_fail_death_1926": true,
+  "must_fail_death_unknown": true,
+  "must_fail_anonymous_published_1926": true
+ },
+ "need": 10,
+ "taken": [
+  607,
+  368,
+  905,
+  373,
+  580,
+  593,
+  587,
+  648,
+  1795,
+  1831
+ ],
+ "tried": [
+  516,
+  607,
+  309,
+  368,
+  905,
+  373,
+  532,
+  580,
+  593,
+  583,
+  585,
+  587,
+  1366,
+  648,
+  669,
+  1367,
+  1795,
+  1829,
+  1830,
+  1831
+ ],
+ "k4_must_fail_cases": 27,
+ "k4_must_fail_all_fail": true,
+ "k4_probe": [
+  {
+   "person": "A. Procter",
+   "against": "Armand Silvestre",
+   "agrees": false
+  },
+  {
+   "person": "Armand Silvestre",
+   "against": "C. E. Horsley",
+   "agrees": false
+  },
+  {
+   "person": "C. E. Horsley",
+   "against": "D. D. Emmett",
+   "agrees": false
+  },
+  {
+   "person": "D. D. Emmett",
+   "against": "E. Lalo",
+   "agrees": false
+  },
+  {
+   "person": "E. Lalo",
+   "against": "F. Schubert",
+   "agrees": false
+  },
+  {
+   "person": "F. Schubert",
+   "against": "Friedrich von Bodenstedt",
+   "agrees": false
+  },
+  {
+   "person": "Friedrich von Bodenstedt",
+   "against": "G. Fauré",
+   "agrees": false
+  },
+  {
+   "person": "G. Fauré",
+   "against": "G. Loder",
+   "agrees": false
+  },
+  {
+   "person": "G. Loder",
+   "against": "G. P. Morris",
+   "agrees": false
+  },
+  {
+   "person": "G. P. Morris",
+   "against": "H. Heine",
+   "agrees": false
+  },
+  {
+   "person": "H. von Schmidt",
+   "against": "J. B. Lully",
+   "agrees": false
+  },
+  {
+   "person": "J. B. Lully",
+   "against": "J. Brahms",
+   "agrees": false
+  },
+  {
+   "person": "J. Brahms",
+   "against": "J. Hullah",
+   "agrees": false
+  },
+  {
+   "person": "J. Hullah",
+   "against": "J.M. Neale",
+   "agrees": false
+  },
+  {
+   "person": "J.M. Neale",
+   "against": "Joseph von Eichendorff",
+   "agrees": false
+  },
+  {
+   "person": "Joseph von Eichendorff",
+   "against": "Leconte de Lisle",
+   "agrees": false
+  },
+  {
+   "person": "Leconte de Lisle",
+   "against": "P. Cornelius",
+   "agrees": false
+  },
+  {
+   "person": "P. Cornelius",
+   "against": "P. Quinault",
+   "agrees": false
+  },
+  {
+   "person": "P. Quinault",
+   "against": "Paul Gerhardt",
+   "agrees": false
+  },
+  {
+   "person": "Paul Gerhardt",
+   "against": "R. Bussine",
+   "agrees": false
+  },
+  {
+   "person": "R. Bussine",
+   "against": "R. Franz",
+   "agrees": false
+  },
+  {
+   "person": "R. Franz",
+   "against": "R. Schumann",
+   "agrees": false
+  },
+  {
+   "person": "R. Schumann",
+   "against": "T. Gautier",
+   "agrees": false
+  },
+  {
+   "person": "T. Gautier",
+   "against": "V. Hugo",
+   "agrees": false
+  },
+  {
+   "person": "V. Hugo",
+   "against": "W. Müller",
+   "agrees": false
+  },
+  {
+   "person": "W. Müller",
+   "against": "W. W. Phelps",
+   "agrees": false
+  },
+  {
+   "person": "W. W. Phelps",
+   "against": "A. Procter",
+   "agrees": false
+  }
+ ],
+ "pieces": [
+  {
+   "id": 516,
+   "title": "Oh! Boatman, Haste!",
+   "genre": "song",
+   "edition": "Atwill, 1843",
+   "edition_year": 1843,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=516",
+   "people": [
+    {
+     "role": "composer",
+     "name": "D. D. Emmett",
+     "mutopia_died": 1904,
+     "died_eff": 1904,
+     "agree": true,
+     "article": "Dan Emmett",
+     "qid": "Q3602423",
+     "wd_label": "Dan Emmett",
+     "wd_died": [
+      1904
+     ]
+    },
+    {
+     "role": "poet",
+     "name": "G. P. Morris",
+     "mutopia_died": 1864,
+     "died_eff": 1864,
+     "agree": true,
+     "article": "George Pope Morris",
+     "qid": "Q5543490",
+     "wd_label": "George Pope Morris",
+     "wd_died": [
+      1864
+     ]
+    },
+    {
+     "role": "arranger",
+     "name": "G. Loder",
+     "mutopia_died": 1868,
+     "died_eff": 1868,
+     "agree": true,
+     "article": "George Loder",
+     "qid": "Q18671310",
+     "wd_label": "George Loder",
+     "wd_died": [
+      1868
+     ]
+    }
+   ],
+   "ly_header": {
+    "title": "Oh! Boatman, Haste!",
+    "composer": "Daniel Decatur Emmett Esq. (1815-1904)",
+    "poet": "Words by G. P. Morris Esq. (1802-1864)",
+    "arranger": "Arranged by George Loder Esq. (1816-1868)",
+    "source": "Atwill, 1843",
+    "date": "1843",
+    "copyright": "Public Domain",
+    "mutopiacomposer": "EmmettDD",
+    "mutopiapoet": "G. P. Morris (1802-1864)"
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "mutopia",
+   "excluded": "5a no lyric events in Mutopia's MIDI, and the LilyPond file did not compile"
+  },
+  {
+   "id": 607,
+   "title": "The Storm",
+   "genre": "song",
+   "edition": "C. M. Cady, Pub. 1878",
+   "edition_year": 1878,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=607",
+   "people": [
+    {
+     "role": "composer",
+     "name": "J. Hullah",
+     "mutopia_died": 1884,
+     "died_eff": 1884,
+     "agree": true,
+     "article": "John Pyke Hullah",
+     "qid": "Q6253603",
+     "wd_label": "John Pyke Hullah",
+     "wd_died": [
+      1884
+     ]
+    },
+    {
+     "role": "poet",
+     "name": "A. Procter",
+     "mutopia_died": 1864,
+     "died_eff": 1864,
+     "agree": true,
+     "article": "Adelaide Anne Procter",
+     "qid": "Q4681673",
+     "wd_label": "Adelaide Anne Procter",
+     "wd_died": [
+      1864,
+      1864
+     ]
+    }
+   ],
+   "ly_header": {
+    "title": "The Storm",
+    "source": "C. M. Cady, Pub. 1878",
+    "date": "1812-1884",
+    "copyright": "Public Domain",
+    "mutopiacomposer": "HullahJ",
+    "mutopiapoet": "Procter A"
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "phrase": {
+    "track": 1,
+    "lyric_track": 4,
+    "tpq": 384,
+    "ticks": [
+     [
+      5568,
+      5760,
+      67
+     ],
+     [
+      5760,
+      6144,
+      67
+     ],
+     [
+      6144,
+      6336,
+      67
+     ],
+     [
+      6336,
+      6720,
+      72
+     ],
+     [
+      6720,
+      6912,
+      67
+     ],
+     [
+      6912,
+      7296,
+      68
+     ],
+     [
+      7296,
+      7488,
+      72
+     ],
+     [
+      7488,
+      7872,
+      67
+     ]
+    ],
+    "midi": [
+     67,
+     67,
+     67,
+     72,
+     67,
+     68,
+     72,
+     67
+    ],
+    "pitches": [
+     "G4",
+     "G4",
+     "G4",
+     "C5",
+     "G4",
+     "Ab4",
+     "C5",
+     "G4"
+    ],
+    "beats": [
+     "1/2",
+     "1",
+     "1/2",
+     "1",
+     "1/2",
+     "1",
+     "1/2",
+     "1"
+    ],
+    "melody": "G4:0.5 G4:1.0 G4:0.5 C5:1.0 G4:0.5 Ab4:1.0 C5:0.5 G4:1.0",
+    "words": "The tempest rages wild and high,",
+    "syllables": [
+     "The",
+     "tem",
+     "pest",
+     "ra",
+     "ges",
+     "wild",
+     "and",
+     "high,"
+    ],
+    "syllable_ticks": [
+     5568,
+     5760,
+     6144,
+     6336,
+     6720,
+     6912,
+     7296,
+     7488
+    ],
+    "align_share": 1.0,
+    "key": "Cm",
+    "meter": "6/8",
+    "tempo_qpm": 60.0,
+    "words_midi": "The tem pest ra ges wild and high,",
+    "words_from": "HullahJ__storm__storm.ly"
+   },
+   "conditions": {
+    "notes": 8,
+    "range": 5,
+    "seconds": 6.0,
+    "shortest_s": 0.5,
+    "lowest": 67,
+    "highest": 72,
+    "fails": []
+   },
+   "k1": {
+    "must_pass": true,
+    "must_fail_pitch": true,
+    "must_fail_rhythm": true,
+    "spelled_back": true,
+    "moved_index": 3,
+    "doubled_index": 2
+   },
+   "k2": {
+    "must_pass": true,
+    "shifted_share": 0.0,
+    "must_fail": true
+   },
+   "language": "en",
+   "language_scores": {
+    "en": 2,
+    "de": 0,
+    "fr": 0,
+    "it": 0,
+    "la": 0
+   },
+   "k6": {
+    "available": false
+   },
+   "taken": true
+  },
+  {
+   "id": 309,
+   "title": "Ich grolle nicht",
+   "genre": "classical",
+   "edition": "Breitkopf & Härtel, 1882",
+   "edition_year": 1882,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=309",
+   "people": [
+    {
+     "role": "composer",
+     "name": "R. Schumann",
+     "mutopia_died": 1856,
+     "died_eff": 1856,
+     "agree": true,
+     "article": "Robert Schumann",
+     "qid": "Q7351",
+     "wd_label": "Robert Schumann",
+     "wd_died": [
+      1856
+     ]
+    },
+    {
+     "role": "poet",
+     "name": "H. Heine",
+     "mutopia_died": 1856,
+     "died_eff": 1856,
+     "agree": true,
+     "article": "Heinrich Heine",
+     "qid": "Q44403",
+     "wd_label": "Heinrich Heine",
+     "wd_died": [
+      1856,
+      1856
+     ]
+    }
+   ],
+   "ly_header": {
+    "title": "Ich grolle nicht",
+    "composer": "Robert Schumann (1810 - 1856)",
+    "poet": "Heinrich Heine (1797 - 1856)",
+    "arranger": "opus 48, n° 7",
+    "source": "Breitkopf & Härtel, 1882",
+    "date": "1840",
+    "copyright": "Public Domain",
+    "mutopiacomposer": "SchumannR",
+    "mutopiapoet": "H. Heine (1797-1856)"
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "mutopia",
+   "phrase": {
+    "track": 1,
+    "lyric_track": 4,
+    "tpq": 384,
+    "ticks": [
+     [
+      960,
+      1152,
+      64
+     ],
+     [
+      1152,
+      1440,
+      62
+     ],
+     [
+      1440,
+      1536,
+      60
+     ],
+     [
+      1536,
+      2304,
+      65
+     ]
+    ],
+    "midi": [
+     64,
+     62,
+     60,
+     65
+    ],
+    "pitches": [
+     "E4",
+     "D4",
+     "C4",
+     "F4"
+    ],
+    "beats": [
+     "1/2",
+     "3/4",
+     "1/4",
+     "2"
+    ],
+    "melody": "E4:0.5 D4:0.75 C4:0.25 F4:2.0",
+    "words": "Ich grolle nicht,",
+    "syllables": [
+     "Ich",
+     "grol",
+     "le",
+     "nicht,"
+    ],
+    "syllable_ticks": [
+     960,
+     1152,
+     1440,
+     1536
+    ],
+    "align_share": 1.0,
+    "key": "Am",
+    "meter": "4/4",
+    "tempo_qpm": 120.0,
+    "words_midi": "Ich grol le nicht,",
+    "words_from": "SchumannR__O48__Ich_grolle_nicht__Ich_grolle_nicht.ly"
+   },
+   "conditions": {
+    "notes": 4,
+    "range": 5,
+    "seconds": 1.75,
+    "shortest_s": 0.125,
+    "lowest": 60,
+    "highest": 65,
+    "fails": [
+     "notes 4"
+    ]
+   },
+   "k1": {
+    "must_pass": true,
+    "must_fail_pitch": true,
+    "must_fail_rhythm": true,
+    "spelled_back": true,
+    "moved_index": 3,
+    "doubled_index": 2
+   },
+   "k2": {
+    "must_pass": true,
+    "shifted_share": 0.0,
+    "must_fail": true
+   },
+   "language": "de",
+   "language_scores": {
+    "en": 0,
+    "de": 2,
+    "fr": 0,
+    "it": 0,
+    "la": 0
+   },
+   "k6": {
+    "available": true,
+    "excluded_on_second_path": null,
+    "same_pitches": true,
+    "same_beats": true,
+    "same_syllables": true
+   },
+   "excluded": "5e notes 4"
+  },
+  {
+   "id": 368,
+   "title": "Après un Rêve",
+   "genre": "classical",
+   "edition": "Choudens, 1880",
+   "edition_year": 1880,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=368",
+   "people": [
+    {
+     "role": "composer",
+     "name": "G. Fauré",
+     "mutopia_died": 1924,
+     "died_eff": 1924,
+     "agree": true,
+     "article": "Gabriel Fauré",
+     "qid": "Q104919",
+     "wd_label": "Gabriel Fauré",
+     "wd_died": [
+      1924,
+      1924
+     ]
+    },
+    {
+     "role": "poet",
+     "name": "R. Bussine",
+     "mutopia_died": 1899,
+     "died_eff": 1899,
+     "agree": true,
+     "article": "Romain Bussine",
+     "qid": "Q76806",
+     "wd_label": "Romain Bussine",
+     "wd_died": [
+      1899
+     ]
+    }
+   ],
+   "ly_header": {
+    "title": "Après un Rêve",
+    "composer": "Gabriel Fauré",
+    "poet": "Poésie de Romain Bussine.",
+    "source": "Choudens, 1880",
+    "date": "1877",
+    "mutopiacomposer": "FaureG",
+    "mutopiapoet": "R. Bussine (1830-1899)"
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "mutopia",
+   "phrase": {
+    "track": 1,
+    "lyric_track": 4,
+    "tpq": 384,
+    "ticks": [
+     [
+      1152,
+      1536,
+      67
+     ],
+     [
+      1536,
+      1920,
+      72
+     ],
+     [
+      1920,
+      2304,
+      74
+     ],
+     [
+      2304,
+      2816,
+      75
+     ],
+     [
+      2816,
+      2944,
+      74
+     ],
+     [
+      2944,
+      3072,
+      72
+     ],
+     [
+      3072,
+      3200,
+      75
+     ],
+     [
+      3200,
+      3328,
+      74
+     ],
+     [
+      3328,
+      3456,
+      72
+     ],
+     [
+      3456,
+      4224,
+      72
+     ],
+     [
+      4224,
+      4608,
+      70
+     ],
+     [
+      4608,
+      4800,
+      73
+     ],
+     [
+      4800,
+      4992,
+      65
+     ],
+     [
+      4992,
+      5376,
+      73
+     ],
+     [
+      5376,
+      5568,
+      72
+     ],
+     [
+      5568,
+      5760,
+      71
+     ],
+     [
+      5760,
+      6336,
+      72
+     ]
+    ],
+    "midi": [
+     67,
+     72,
+     74,
+     75,
+     74,
+     72,
+     75,
+     74,
+     72,
+     72,
+     70,
+     73,
+     65,
+     73,
+     72,
+     71,
+     72
+    ],
+    "pitches": [
+     "G4",
+     "C5",
+     "D5",
+     "Eb5",
+     "D5",
+     "C5",
+     "Eb5",
+     "D5",
+     "C5",
+     "C5",
+     "Bb4",
+     "Db5",
+     "F4",
+     "Db5",
+     "C5",
+     "B4",
+     "C5"
+    ],
+    "beats": [
+     "1",
+     "1",
+     "1",
+     "4/3",
+     "1/3",
+     "1/3",
+     "1/3",
+     "1/3",
+     "1/3",
+     "2",
+     "1",
+     "1/2",
+     "1/2",
+     "1",
+     "1/2",
+     "1/2",
+     "3/2"
+    ],
+    "melody": "G4:1.0 C5:1.0 D5:1.0 Eb5:1.3333333333333333 D5:0.3333333333333333 C5:0.3333333333333333 Eb5:0.3333333333333333 D5:0.3333333333333333 C5:0.3333333333333333 C5:2.0 Bb4:1.0 Db5:0.5 F4:0.5 Db5:1.0 C5:0.5 B4:0.5 C5:1.5",
+    "words": "Dans un sommeil que charmait ton image Je rêvais le bonheur,",
+    "syllables": [
+     "Dans",
+     "un",
+     "som",
+     "meil",
+     "que",
+     "char",
+     "mait",
+     "ton",
+     "i",
+     "ma",
+     "ge",
+     "Je",
+     "rê",
+     "vais",
+     "le",
+     "bon",
+     "heur,"
+    ],
+    "syllable_ticks": [
+     1152,
+     1536,
+     1920,
+     2304,
+     2816,
+     2944,
+     3072,
+     3200,
+     3328,
+     3456,
+     4224,
+     4608,
+     4800,
+     4992,
+     5376,
+     5568,
+     5760
+    ],
+    "align_share": 1.0,
+    "key": "Cm",
+    "meter": "3/4",
+    "tempo_qpm": 60.0,
+    "words_midi": "Dans un som meil que char mait ton i ma ge Je rê vais le bon heur,",
+    "words_from": "FaureG__O7__apres__apres.ly"
+   },
+   "conditions": {
+    "notes": 17,
+    "range": 10,
+    "seconds": 13.5,
+    "shortest_s": 0.3333333333333333,
+    "lowest": 65,
+    "highest": 75,
+    "fails": []
+   },
+   "k1": {
+    "must_pass": true,
+    "must_fail_pitch": true,
+    "must_fail_rhythm": true,
+    "spelled_back": true,
+    "moved_index": 3,
+    "doubled_index": 2
+   },
+   "k2": {
+    "must_pass": true,
+    "shifted_share": 0.0,
+    "must_fail": true
+   },
+   "language": "fr",
+   "language_scores": {
+    "en": 0,
+    "de": 0,
+    "fr": 4,
+    "it": 1,
+    "la": 0
+   },
+   "k6": {
+    "available": true,
+    "excluded_on_second_path": null,
+    "same_pitches": true,
+    "same_beats": true,
+    "same_syllables": true
+   },
+   "taken": true
+  },
+  {
+   "id": 905,
+   "title": "Good King Wenceslas",
+   "genre": "song",
+   "edition": "Sheet Music from Rev. Charles Lewis Hutchins, Carols Old and Carols New (Boston: Parish Choir, 1916), Carol #415",
+   "edition_year": 1916,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=905",
+   "people": [
+    {
+     "role": "poet",
+     "name": "J.M. Neale",
+     "mutopia_died": 1866,
+     "died_eff": 1866,
+     "agree": true,
+     "article": "John Mason Neale",
+     "qid": "Q246018",
+     "wd_label": "John Mason Neale",
+     "wd_died": [
+      1866
+     ]
+    }
+   ],
+   "ly_header": {
+    "title": "Good King Wenceslas",
+    "composer": "Anonymous",
+    "poet": "John Mason Neale (1818-1866)",
+    "source": "Sheet Music from Rev. Charles Lewis Hutchins, Carols Old and Carols New (Boston: Parish Choir, 1916), Carol #415",
+    "date": "1853",
+    "copyright": "Public Domain",
+    "mutopiacomposer": "Anonymous",
+    "mutopiapoet": "J.M. Neale (1818-1866)"
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "mutopia",
+   "phrase": {
+    "track": 1,
+    "lyric_track": 3,
+    "tpq": 384,
+    "ticks": [
+     [
+      0,
+      384,
+      69
+     ],
+     [
+      384,
+      768,
+      69
+     ],
+     [
+      768,
+      1152,
+      69
+     ],
+     [
+      1152,
+      1536,
+      71
+     ],
+     [
+      1536,
+      1920,
+      69
+     ],
+     [
+      1920,
+      2304,
+      69
+     ],
+     [
+      2304,
+      3072,
+      64
+     ]
+    ],
+    "midi": [
+     69,
+     69,
+     69,
+     71,
+     69,
+     69,
+     64
+    ],
+    "pitches": [
+     "A4",
+     "A4",
+     "A4",
+     "B4",
+     "A4",
+     "A4",
+     "E4"
+    ],
+    "beats": [
+     "1",
+     "1",
+     "1",
+     "1",
+     "1",
+     "1",
+     "2"
+    ],
+    "melody": "A4:1.0 A4:1.0 A4:1.0 B4:1.0 A4:1.0 A4:1.0 E4:2.0",
+    "words": "Good King Wenceslas looked out,",
+    "syllables": [
+     "Good",
+     "King",
+     "Wen",
+     "ces",
+     "las",
+     "looked",
+     "out,"
+    ],
+    "syllable_ticks": [
+     0,
+     384,
+     768,
+     1152,
+     1536,
+     1920,
+     2304
+    ],
+    "align_share": 1.0,
+    "key": "A",
+    "meter": "4/4",
+    "tempo_qpm": 120.0,
+    "words_midi": "Good King Wen ces las looked out,",
+    "words_from": "Anonymous__GoodKingWenceslas__GoodKingWenceslas.ly"
+   },
+   "conditions": {
+    "notes": 7,
+    "range": 7,
+    "seconds": 4.0,
+    "shortest_s": 0.5,
+    "lowest": 64,
+    "highest": 71,
+    "fails": []
+   },
+   "k1": {
+    "must_pass": true,
+    "must_fail_pitch": true,
+    "must_fail_rhythm": true,
+    "spelled_back": true,
+    "moved_index": 3,
+    "doubled_index": 2
+   },
+   "k2": {
+    "must_pass": true,
+    "shifted_share": 0.0,
+    "must_fail": true
+   },
+   "language": null,
+   "language_scores": {
+    "en": 0,
+    "de": 0,
+    "fr": 0,
+    "it": 0,
+    "la": 0
+   },
+   "k6": {
+    "available": true,
+    "excluded_on_second_path": null,
+    "same_pitches": true,
+    "same_beats": true,
+    "same_syllables": true
+   },
+   "taken": true
+  },
+  {
+   "id": 373,
+   "title": "Einsamkeit",
+   "genre": "classical",
+   "edition": "Breitkopf & Härtel, 1895",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=373",
+   "people": [
+    {
+     "role": "composer",
+     "name": "F. Schubert",
+     "mutopia_died": 1828,
+     "died_eff": 1828,
+     "agree": true,
+     "article": "Franz Schubert",
+     "qid": "Q7312",
+     "wd_label": "Franz Schubert",
+     "wd_died": [
+      1828
+     ]
+    },
+    {
+     "role": "poet",
+     "name": "W. Müller",
+     "mutopia_died": 1827,
+     "died_eff": 1827,
+     "agree": true,
+     "article": "Wilhelm Müller",
+     "qid": "Q57879",
+     "wd_label": "Wilhelm Müller",
+     "wd_died": [
+      1827,
+      1827
+     ]
+    }
+   ],
+   "ly_header": {
+    "title": "Einsamkeit",
+    "composer": "Franz SCHUBERT",
+    "poet": "Wilhelm MÜLLER",
+    "source": "Breitkopf & Härtel, 1895",
+    "copyright": "Public Domain",
+    "mutopiacomposer": "SchubertF",
+    "mutopiapoet": "W. Müller (1794-1827)"
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "mutopia",
+   "phrase": {
+    "track": 1,
+    "lyric_track": 4,
+    "tpq": 384,
+    "ticks": [
+     [
+      4416,
+      4608,
+      66
+     ],
+     [
+      4608,
+      4896,
+      66
+     ],
+     [
+      4896,
+      4992,
+      67
+     ],
+     [
+      4992,
+      5088,
+      66
+     ],
+     [
+      5088,
+      5184,
+      67
+     ],
+     [
+      5184,
+      5280,
+      66
+     ],
+     [
+      5280,
+      5376,
+      71
+     ],
+     [
+      5376,
+      5760,
+      73
+     ],
+     [
+      5760,
+      5952,
+      71
+     ],
+     [
+      5952,
+      6144,
+      71
+     ],
+     [
+      6144,
+      6240,
+      71
+     ],
+     [
+      6240,
+      6336,
+      66
+     ],
+     [
+      6336,
+      6528,
+      66
+     ]
+    ],
+    "midi": [
+     66,
+     66,
+     67,
+     66,
+     67,
+     66,
+     71,
+     73,
+     71,
+     71,
+     71,
+     66,
+     66
+    ],
+    "pitches": [
+     "F#4",
+     "F#4",
+     "G4",
+     "F#4",
+     "G4",
+     "F#4",
+     "B4",
+     "C#5",
+     "B4",
+     "B4",
+     "B4",
+     "F#4",
+     "F#4"
+    ],
+    "beats": [
+     "1/2",
+     "3/4",
+     "1/4",
+     "1/4",
+     "1/4",
+     "1/4",
+     "1/4",
+     "1",
+     "1/2",
+     "1/2",
+     "1/4",
+     "1/4",
+     "1/2"
+    ],
+    "melody": "F#4:0.5 F#4:0.75 G4:0.25 F#4:0.25 G4:0.25 F#4:0.25 B4:0.25 C#5:1.0 B4:0.5 B4:0.5 B4:0.25 F#4:0.25 F#4:0.5",
+    "words": "Wie eine trübe Wolke durch heit're Lüfte geht,",
+    "syllables": [
+     "Wie",
+     "ei",
+     "ne",
+     "trü",
+     "be",
+     "Wol",
+     "ke",
+     "durch",
+     "heit'",
+     "re",
+     "Lüf",
+     "te",
+     "geht,"
+    ],
+    "syllable_ticks": [
+     4416,
+     4608,
+     4896,
+     4992,
+     5088,
+     5184,
+     5280,
+     5376,
+     5760,
+     5952,
+     6144,
+     6240,
+     6336
+    ],
+    "align_share": 1.0,
+    "key": "Bm",
+    "meter": "2/4",
+    "tempo_qpm": 60.0,
+    "words_midi": "Wie ei ne trü be Wol ke durch heit' re Lüf te geht,",
+    "words_from": "SchubertF__D911__einsamkeit__einsamkeit.ly"
+   },
+   "conditions": {
+    "notes": 13,
+    "range": 7,
+    "seconds": 5.5,
+    "shortest_s": 0.25,
+    "lowest": 66,
+    "highest": 73,
+    "fails": []
+   },
+   "k1": {
+    "must_pass": true,
+    "must_fail_pitch": true,
+    "must_fail_rhythm": true,
+    "spelled_back": true,
+    "moved_index": 3,
+    "doubled_index": 2
+   },
+   "k2": {
+    "must_pass": true,
+    "shifted_share": 0.0,
+    "must_fail": true
+   },
+   "language": null,
+   "language_scores": {
+    "en": 0,
+    "de": 0,
+    "fr": 0,
+    "it": 0,
+    "la": 0
+   },
+   "k6": {
+    "available": true,
+    "excluded_on_second_path": null,
+    "same_pitches": true,
+    "same_beats": true,
+    "same_syllables": true
+   },
+   "taken": true
+  },
+  {
+   "id": 532,
+   "title": "Acte II, Scene III from Armide",
+   "genre": "classical",
+   "edition": "Ballard, 1686",
+   "edition_year": 1686,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=532",
+   "people": [
+    {
+     "role": "composer",
+     "name": "J. B. Lully",
+     "mutopia_died": 1687,
+     "died_eff": 1687,
+     "agree": true,
+     "article": "Jean-Baptiste Lully",
+     "qid": "Q1192",
+     "wd_label": "Jean-Baptiste Lully",
+     "wd_died": [
+      1687,
+      1687
+     ]
+    },
+    {
+     "role": "poet",
+     "name": "P. Quinault",
+     "mutopia_died": 1688,
+     "died_eff": 1688,
+     "agree": true,
+     "article": "Philippe Quinault",
+     "qid": "Q379947",
+     "wd_label": "Philippe Quinault",
+     "wd_died": [
+      1688
+     ]
+    }
+   ],
+   "ly_header": {
+    "title": "ACTE II SCENE III.",
+    "source": "Ballard, 1686",
+    "copyright": "Public Domain",
+    "mutopiacomposer": "LullyJB",
+    "mutopiapoet": "P. Quinault (1635-1688)"
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "mutopia",
+   "excluded": "5a no lyric events in Mutopia's MIDI, and the LilyPond file did not compile"
+  },
+  {
+   "id": 580,
+   "title": "Sapphische Ode",
+   "genre": "classical",
+   "edition": "The University Society, 1904",
+   "edition_year": 1904,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=580",
+   "people": [
+    {
+     "role": "composer",
+     "name": "J. Brahms",
+     "mutopia_died": 1897,
+     "died_eff": 1897,
+     "agree": true,
+     "article": "Johannes Brahms",
+     "qid": "Q7294",
+     "wd_label": "Johannes Brahms",
+     "wd_died": [
+      1897
+     ]
+    },
+    {
+     "role": "poet",
+     "name": "H. von Schmidt",
+     "mutopia_died": 1923,
+     "died_eff": 1923,
+     "agree": null,
+     "article": "Hans Schmidt (poet)",
+     "qid": null,
+     "wd_label": null,
+     "wd_died": []
+    }
+   ],
+   "ly_header": {
+    "title": "Sapphische Ode",
+    "composer": "Johannes Brahms (1833 – 1897)",
+    "poet": "Hans von Schmidt (1856 – 1923)",
+    "source": "The University Society, 1904",
+    "date": "1884",
+    "copyright": "Public Domain",
+    "mutopiacomposer": "BrahmsJ",
+    "mutopiapoet": "H. von Schmidt (1856-1923)"
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "mutopia",
+   "phrase": {
+    "track": 1,
+    "lyric_track": 2,
+    "tpq": 384,
+    "ticks": [
+     [
+      1536,
+      1920,
+      69
+     ],
+     [
+      1920,
+      2304,
+      65
+     ],
+     [
+      2304,
+      2688,
+      60
+     ],
+     [
+      2688,
+      3072,
+      69
+     ],
+     [
+      3072,
+      3456,
+      72
+     ],
+     [
+      3456,
+      3648,
+      65
+     ],
+     [
+      3648,
+      3840,
+      67
+     ],
+     [
+      3840,
+      4224,
+      69
+     ],
+     [
+      4224,
+      4608,
+      65
+     ],
+     [
+      4608,
+      4992,
+      60
+     ],
+     [
+      4992,
+      5376,
+      67
+     ],
+     [
+      5376,
+      5952,
+      65
+     ]
+    ],
+    "midi": [
+     69,
+     65,
+     60,
+     69,
+     72,
+     65,
+     67,
+     69,
+     65,
+     60,
+     67,
+     65
+    ],
+    "pitches": [
+     "A4",
+     "F4",
+     "C4",
+     "A4",
+     "C5",
+     "F4",
+     "G4",
+     "A4",
+     "F4",
+     "C4",
+     "G4",
+     "F4"
+    ],
+    "beats": [
+     "1",
+     "1",
+     "1",
+     "1",
+     "1",
+     "1/2",
+     "1/2",
+     "1",
+     "1",
+     "1",
+     "1",
+     "3/2"
+    ],
+    "melody": "A4:1.0 F4:1.0 C4:1.0 A4:1.0 C5:1.0 F4:0.5 G4:0.5 A4:1.0 F4:1.0 C4:1.0 G4:1.0 F4:1.5",
+    "words": "Rosen brach ich nachts mir am dunklen Hage;",
+    "syllables": [
+     "Ro",
+     "sen",
+     "brach",
+     "ich",
+     "nachts",
+     "mir",
+     "am",
+     "dunk",
+     "len",
+     "Ha",
+     "ge;"
+    ],
+    "syllable_ticks": [
+     1536,
+     1920,
+     2304,
+     2688,
+     3072,
+     3456,
+     3648,
+     3840,
+     4224,
+     4608,
+     5376
+    ],
+    "align_share": 1.0,
+    "key": "F",
+    "meter": "2/2",
+    "tempo_qpm": 68.0000725334107,
+    "words_midi": "Ro sen brach ich nachts mir am dunk len Ha ge;",
+    "words_from": "BrahmsJ__O94__brahms-sapphische-ode__brahms-sapphische-ode.ly"
+   },
+   "conditions": {
+    "notes": 12,
+    "range": 12,
+    "seconds": 10.147048,
+    "shortest_s": 0.441176,
+    "lowest": 60,
+    "highest": 72,
+    "fails": []
+   },
+   "k1": {
+    "must_pass": true,
+    "must_fail_pitch": true,
+    "must_fail_rhythm": true,
+    "spelled_back": true,
+    "moved_index": 3,
+    "doubled_index": 2
+   },
+   "k2": {
+    "must_pass": true,
+    "shifted_share": 0.0,
+    "must_fail": true
+   },
+   "language": "de",
+   "language_scores": {
+    "en": 0,
+    "de": 1,
+    "fr": 0,
+    "it": 0,
+    "la": 0
+   },
+   "k6": {
+    "available": true,
+    "excluded_on_second_path": null,
+    "same_pitches": true,
+    "same_beats": true,
+    "same_syllables": true
+   },
+   "taken": true
+  },
+  {
+   "id": 593,
+   "title": "The Spirit of God",
+   "genre": "hymn",
+   "edition": "J. C. Little and G. B. Gardner Hymnbook (Bellows Falls, Vermont: 1844)",
+   "edition_year": 1844,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=593",
+   "people": [
+    {
+     "role": "poet",
+     "name": "W. W. Phelps",
+     "mutopia_died": 1872,
+     "died_eff": 1872,
+     "agree": true,
+     "article": "W. W. Phelps (Mormon)",
+     "qid": "Q7946054",
+     "wd_label": "W. W. Phelps",
+     "wd_died": [
+      1872,
+      1872
+     ]
+    }
+   ],
+   "ly_header": {
+    "title": "The Spirit of God",
+    "composer": "Anonymous",
+    "poet": "William Wines Phelps (1792--1872)",
+    "source": "J. C. Little and G. B. Gardner Hymnbook (Bellows Falls, Vermont: 1844)",
+    "date": "19th century",
+    "copyright": "Public Domain",
+    "mutopiapoet": "W. W. Phelps (1792--1872)"
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "phrase": {
+    "track": 1,
+    "lyric_track": 2,
+    "tpq": 384,
+    "ticks": [
+     [
+      0,
+      384,
+      67
+     ],
+     [
+      384,
+      1152,
+      72
+     ],
+     [
+      1152,
+      1536,
+      74
+     ],
+     [
+      1536,
+      1920,
+      74
+     ],
+     [
+      1920,
+      2688,
+      76
+     ],
+     [
+      2688,
+      3072,
+      74
+     ],
+     [
+      3072,
+      3456,
+      72
+     ],
+     [
+      3456,
+      4224,
+      72
+     ],
+     [
+      4224,
+      4608,
+      71
+     ],
+     [
+      4608,
+      4992,
+      69
+     ],
+     [
+      4992,
+      5568,
+      67
+     ],
+     [
+      5568,
+      5760,
+      69
+     ],
+     [
+      5760,
+      6144,
+      67
+     ]
+    ],
+    "midi": [
+     67,
+     72,
+     74,
+     74,
+     76,
+     74,
+     72,
+     72,
+     71,
+     69,
+     67,
+     69,
+     67
+    ],
+    "pitches": [
+     "G4",
+     "C5",
+     "D5",
+     "D5",
+     "E5",
+     "D5",
+     "C5",
+     "C5",
+     "B4",
+     "A4",
+     "G4",
+     "A4",
+     "G4"
+    ],
+    "beats": [
+     "1",
+     "2",
+     "1",
+     "1",
+     "2",
+     "1",
+     "1",
+     "2",
+     "1",
+     "1",
+     "3/2",
+     "1/2",
+     "1"
+    ],
+    "melody": "G4:1.0 C5:2.0 D5:1.0 D5:1.0 E5:2.0 D5:1.0 C5:1.0 C5:2.0 B4:1.0 A4:1.0 G4:1.5 A4:0.5 G4:1.0",
+    "words": "The spirit of God like a fire is burning;",
+    "syllables": [
+     "The",
+     "spi",
+     "rit",
+     "of",
+     "God",
+     "like",
+     "a",
+     "fire",
+     "is",
+     "burn",
+     "ing;"
+    ],
+    "syllable_ticks": [
+     0,
+     384,
+     1152,
+     1536,
+     1920,
+     2688,
+     3072,
+     3456,
+     4608,
+     4992,
+     5760
+    ],
+    "align_share": 1.0,
+    "key": "C",
+    "meter": "4/4",
+    "tempo_qpm": 112.00005973336519,
+    "words_midi": "The spi rit of God like a fire is burn ing;",
+    "words_from": "Anonymous__spirit-of-god-bellow-falls__spirit-of-god-bellow-falls.ly"
+   },
+   "conditions": {
+    "notes": 13,
+    "range": 9,
+    "seconds": 8.571424,
+    "shortest_s": 0.267857,
+    "lowest": 67,
+    "highest": 76,
+    "fails": []
+   },
+   "k1": {
+    "must_pass": true,
+    "must_fail_pitch": true,
+    "must_fail_rhythm": true,
+    "spelled_back": true,
+    "moved_index": 3,
+    "doubled_index": 2
+   },
+   "k2": {
+    "must_pass": true,
+    "shifted_share": 0.0,
+    "must_fail": true
+   },
+   "language": "en",
+   "language_scores": {
+    "en": 4,
+    "de": 0,
+    "fr": 0,
+    "it": 0,
+    "la": 0
+   },
+   "k6": {
+    "available": false
+   },
+   "taken": true
+  },
+  {
+   "id": 583,
+   "title": "Ein Ton",
+   "genre": "classical",
+   "edition": "The University Society, 1909",
+   "edition_year": 1909,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=583",
+   "people": [
+    {
+     "role": "composer",
+     "name": "P. Cornelius",
+     "mutopia_died": 1874,
+     "died_eff": 1874,
+     "agree": true,
+     "article": "Peter Cornelius",
+     "qid": "Q57257",
+     "wd_label": "Peter Cornelius",
+     "wd_died": [
+      1874
+     ]
+    },
+    {
+     "role": "poet",
+     "name": "P. Cornelius",
+     "mutopia_died": 1874,
+     "died_eff": 1874,
+     "agree": true,
+     "article": "Peter Cornelius",
+     "qid": "Q57257",
+     "wd_label": "Peter Cornelius",
+     "wd_died": [
+      1874
+     ]
+    }
+   ],
+   "ly_header": {
+    "title": "Ein Ton",
+    "composer": "Peter Cornelius (1824–1874)",
+    "source": "The University Society, 1909",
+    "date": "19th Century",
+    "copyright": "Public Domain",
+    "mutopiacomposer": "CorneliusP",
+    "mutopiapoet": "P. Cornelius (1824-1874)"
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "mutopia",
+   "phrase": {
+    "track": 1,
+    "lyric_track": 2,
+    "tpq": 384,
+    "ticks": [
+     [
+      1728,
+      1920,
+      71
+     ],
+     [
+      1920,
+      2112,
+      71
+     ],
+     [
+      2112,
+      2304,
+      71
+     ],
+     [
+      2304,
+      2880,
+      71
+     ]
+    ],
+    "midi": [
+     71,
+     71,
+     71,
+     71
+    ],
+    "pitches": [
+     "B4",
+     "B4",
+     "B4",
+     "B4"
+    ],
+    "beats": [
+     "1/2",
+     "1/2",
+     "1/2",
+     "3/2"
+    ],
+    "melody": "B4:0.5 B4:0.5 B4:0.5 B4:1.5",
+    "words": "Mir klingt ein Ton,",
+    "syllables": [
+     "Mir",
+     "klingt",
+     "ein",
+     "Ton,"
+    ],
+    "syllable_ticks": [
+     1728,
+     1920,
+     2112,
+     2304
+    ],
+    "align_share": 1.0,
+    "key": "Em",
+    "meter": "3/4",
+    "tempo_qpm": 90.00009000009,
+    "words_midi": "Mir klingt ein Ton,",
+    "words_from": "CorneliusP__cornelius-ein-ton__cornelius-ein-ton.ly"
+   },
+   "conditions": {
+    "notes": 4,
+    "range": 0,
+    "seconds": 1.9999980000000002,
+    "shortest_s": 0.333333,
+    "lowest": 71,
+    "highest": 71,
+    "fails": [
+     "notes 4"
+    ]
+   },
+   "k1": {
+    "must_pass": true,
+    "must_fail_pitch": true,
+    "must_fail_rhythm": true,
+    "spelled_back": true,
+    "moved_index": 3,
+    "doubled_index": 2
+   },
+   "k2": {
+    "must_pass": true,
+    "shifted_share": 0.0,
+    "must_fail": true
+   },
+   "language": "de",
+   "language_scores": {
+    "en": 0,
+    "de": 1,
+    "fr": 0,
+    "it": 0,
+    "la": 0
+   },
+   "k6": {
+    "available": true,
+    "excluded_on_second_path": null,
+    "same_pitches": true,
+    "same_beats": true,
+    "same_syllables": true
+   },
+   "excluded": "5e notes 4"
+  },
+  {
+   "id": 585,
+   "title": "Gute Nacht!",
+   "genre": "classical",
+   "edition": "The University Society, 1904",
+   "edition_year": 1904,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=585",
+   "people": [
+    {
+     "role": "composer",
+     "name": "R. Franz",
+     "mutopia_died": 1862,
+     "died_eff": 1892,
+     "agree": false,
+     "article": "Robert Franz",
+     "qid": "Q561967",
+     "wd_label": "Robert Franz",
+     "wd_died": [
+      1892
+     ]
+    },
+    {
+     "role": "poet",
+     "name": "Joseph von Eichendorff",
+     "mutopia_died": 1857,
+     "died_eff": 1857,
+     "agree": true,
+     "article": "Joseph von Eichendorff",
+     "qid": "Q77204",
+     "wd_label": "Joseph von Eichendorff",
+     "wd_died": [
+      1857,
+      1857
+     ]
+    }
+   ],
+   "ly_header": {
+    "title": "Gute Nacht!",
+    "composer": "Robert Franz (1815–1862)",
+    "poet": "Joseph von Eichendorff (1788–1857)",
+    "source": "The University Society, 1904",
+    "date": "19th century",
+    "copyright": "Public Domain",
+    "mutopiacomposer": "FranzR",
+    "mutopiapoet": "Joseph von Eichendorff (1788-1857)"
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "mutopia",
+   "excluded": "5c rest inside the line (before tick 4416)"
+  },
+  {
+   "id": 587,
+   "title": "L'Esclave",
+   "genre": "classical",
+   "edition": "The University Society, 1904",
+   "edition_year": 1904,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=587",
+   "people": [
+    {
+     "role": "composer",
+     "name": "E. Lalo",
+     "mutopia_died": 1892,
+     "died_eff": 1892,
+     "agree": true,
+     "article": "Édouard Lalo",
+     "qid": "Q224002",
+     "wd_label": "Edouard Lalo",
+     "wd_died": [
+      1892,
+      1892
+     ]
+    },
+    {
+     "role": "poet",
+     "name": "T. Gautier",
+     "mutopia_died": 1872,
+     "died_eff": 1872,
+     "agree": true,
+     "article": "Théophile Gautier",
+     "qid": "Q183713",
+     "wd_label": "Théophile Gautier",
+     "wd_died": [
+      1872,
+      1872
+     ]
+    }
+   ],
+   "ly_header": {
+    "title": "L’Esclave",
+    "composer": "Edouard Lalo (1823–1892)",
+    "poet": "Théophile Gautier (1811–1872)",
+    "arranger": " ",
+    "source": "The University Society, 1904",
+    "date": "1872",
+    "copyright": "Public Domain",
+    "mutopiacomposer": "LaloE",
+    "mutopiapoet": "T. Gautier (1811-1872)"
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "mutopia",
+   "phrase": {
+    "track": 1,
+    "lyric_track": 2,
+    "tpq": 384,
+    "ticks": [
+     [
+      6720,
+      6912,
+      69
+     ],
+     [
+      6912,
+      7296,
+      69
+     ],
+     [
+      7296,
+      7488,
+      65
+     ],
+     [
+      7488,
+      8256,
+      64
+     ],
+     [
+      8256,
+      8448,
+      69
+     ],
+     [
+      8448,
+      8640,
+      70
+     ],
+     [
+      8640,
+      8832,
+      69
+     ],
+     [
+      8832,
+      9024,
+      69
+     ],
+     [
+      9024,
+      9216,
+      65
+     ],
+     [
+      9216,
+      9792,
+      64
+     ],
+     [
+      9792,
+      9984,
+      64
+     ]
+    ],
+    "midi": [
+     69,
+     69,
+     65,
+     64,
+     69,
+     70,
+     69,
+     69,
+     65,
+     64,
+     64
+    ],
+    "pitches": [
+     "A4",
+     "A4",
+     "F4",
+     "E4",
+     "A4",
+     "A#4",
+     "A4",
+     "A4",
+     "F4",
+     "E4",
+     "E4"
+    ],
+    "beats": [
+     "1/2",
+     "1",
+     "1/2",
+     "2",
+     "1/2",
+     "1/2",
+     "1/2",
+     "1/2",
+     "1/2",
+     "3/2",
+     "1/2"
+    ],
+    "melody": "A4:0.5 A4:1.0 F4:0.5 E4:2.0 A4:0.5 A#4:0.5 A4:0.5 A4:0.5 F4:0.5 E4:1.5 E4:0.5",
+    "words": "Captive et peutêtre oubliée,",
+    "syllables": [
+     "Cap",
+     "ti",
+     "ve",
+     "et",
+     "peut",
+     "être",
+     "ou",
+     "bli",
+     "é",
+     "e,"
+    ],
+    "syllable_ticks": [
+     6720,
+     6912,
+     7488,
+     8256,
+     8448,
+     8640,
+     8832,
+     9024,
+     9216,
+     9792
+    ],
+    "align_share": 1.0,
+    "key": "D",
+    "meter": "9/8",
+    "tempo_qpm": 90.00009000009,
+    "words_midi": "Cap ti ve et peut être ou bli é e,",
+    "words_from": "LaloE__lalo-lesclave__lalo-lesclave.ly"
+   },
+   "conditions": {
+    "notes": 11,
+    "range": 6,
+    "seconds": 5.6666609999999995,
+    "shortest_s": 0.333333,
+    "lowest": 64,
+    "highest": 70,
+    "fails": []
+   },
+   "k1": {
+    "must_pass": true,
+    "must_fail_pitch": true,
+    "must_fail_rhythm": true,
+    "spelled_back": true,
+    "moved_index": 3,
+    "doubled_index": 2
+   },
+   "k2": {
+    "must_pass": true,
+    "shifted_share": 0.0,
+    "must_fail": true
+   },
+   "language": "fr",
+   "language_scores": {
+    "en": 0,
+    "de": 0,
+    "fr": 1,
+    "it": 0,
+    "la": 1
+   },
+   "k6": {
+    "available": true,
+    "excluded_on_second_path": null,
+    "same_pitches": true,
+    "same_beats": true,
+    "same_syllables": true
+   },
+   "taken": true
+  },
+  {
+   "id": 1366,
+   "title": "All My Heart This Night Rejoices",
+   "genre": "hymn",
+   "edition": "Melbourne: C. E. Horsley, c. 1862",
+   "edition_year": 1862,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1366",
+   "people": [
+    {
+     "role": "composer",
+     "name": "C. E. Horsley",
+     "mutopia_died": 1876,
+     "died_eff": 1876,
+     "agree": true,
+     "article": "Charles Edward Horsley",
+     "qid": "Q5077278",
+     "wd_label": "Charles Edward Horsley",
+     "wd_died": [
+      1876
+     ]
+    },
+    {
+     "role": "poet",
+     "name": "Paul Gerhardt",
+     "mutopia_died": 1676,
+     "died_eff": 1676,
+     "agree": true,
+     "article": "Paul Gerhardt",
+     "qid": "Q76331",
+     "wd_label": "Paul Gerhardt",
+     "wd_died": [
+      1676
+     ]
+    },
+    {
+     "role": "translator",
+     "name": "Catherine Winkworth (1827-1878)",
+     "mutopia_died": 1878,
+     "died_eff": 1878,
+     "agree": null
+    }
+   ],
+   "ly_header": {
+    "title": "All My Heart This Night Rejoices",
+    "composer": "Charles Edward Horsley (1822-1876)",
+    "arranger": " ",
+    "source": "Melbourne: C. E. Horsley, c. 1862",
+    "date": "1862",
+    "copyright": "Public Domain",
+    "mutopiacomposer": "HorsleyCE",
+    "mutopiapoet": "Paul Gerhardt (1607-1676)"
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 648,
+   "title": "Les matelots",
+   "genre": "classical",
+   "edition": "Hamelle, 1879",
+   "edition_year": 1879,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=648",
+   "people": [
+    {
+     "role": "composer",
+     "name": "G. Fauré",
+     "mutopia_died": 1924,
+     "died_eff": 1924,
+     "agree": true,
+     "article": "Gabriel Fauré",
+     "qid": "Q104919",
+     "wd_label": "Gabriel Fauré",
+     "wd_died": [
+      1924,
+      1924
+     ]
+    },
+    {
+     "role": "poet",
+     "name": "T. Gautier",
+     "mutopia_died": 1872,
+     "died_eff": 1872,
+     "agree": true,
+     "article": "Théophile Gautier",
+     "qid": "Q183713",
+     "wd_label": "Théophile Gautier",
+     "wd_died": [
+      1872,
+      1872
+     ]
+    }
+   ],
+   "ly_header": {
+    "title": "Les Matelots",
+    "composer": "Gabriel Fauré",
+    "poet": "Théophile Gautier",
+    "source": "Hamelle, 1879",
+    "date": "ca. 1870",
+    "copyright": "Public Domain",
+    "mutopiacomposer": "FaureG",
+    "mutopiapoet": "T. Gautier (1811-1872)"
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "phrase": {
+    "track": 1,
+    "lyric_track": 4,
+    "tpq": 384,
+    "ticks": [
+     [
+      2304,
+      2688,
+      63
+     ],
+     [
+      2688,
+      3072,
+      67
+     ],
+     [
+      3072,
+      3456,
+      70
+     ],
+     [
+      3456,
+      3648,
+      68
+     ],
+     [
+      3648,
+      3840,
+      67
+     ],
+     [
+      3840,
+      4224,
+      67
+     ],
+     [
+      4224,
+      4608,
+      65
+     ]
+    ],
+    "midi": [
+     63,
+     67,
+     70,
+     68,
+     67,
+     67,
+     65
+    ],
+    "pitches": [
+     "Eb4",
+     "G4",
+     "Bb4",
+     "Ab4",
+     "G4",
+     "G4",
+     "F4"
+    ],
+    "beats": [
+     "1",
+     "1",
+     "1",
+     "1/2",
+     "1/2",
+     "1",
+     "1"
+    ],
+    "melody": "Eb4:1.0 G4:1.0 Bb4:1.0 Ab4:0.5 G4:0.5 G4:1.0 F4:1.0",
+    "words": "Sur l'eau bleue et profonde,",
+    "syllables": [
+     "Sur",
+     "l'eau",
+     "bleue",
+     "et",
+     "pro",
+     "fon",
+     "de,"
+    ],
+    "syllable_ticks": [
+     2304,
+     2688,
+     3072,
+     3456,
+     3648,
+     3840,
+     4224
+    ],
+    "align_share": 1.0,
+    "key": "Eb",
+    "meter": "3/4",
+    "tempo_qpm": 60.0,
+    "words_midi": "Sur l'eau bleue et pro fon de,",
+    "words_from": "FaureG__O2__matelots__matelots.ly"
+   },
+   "conditions": {
+    "notes": 7,
+    "range": 7,
+    "seconds": 6.0,
+    "shortest_s": 0.5,
+    "lowest": 63,
+    "highest": 70,
+    "fails": []
+   },
+   "k1": {
+    "must_pass": true,
+    "must_fail_pitch": true,
+    "must_fail_rhythm": true,
+    "spelled_back": true,
+    "moved_index": 3,
+    "doubled_index": 2
+   },
+   "k2": {
+    "must_pass": true,
+    "shifted_share": 0.0,
+    "must_fail": true
+   },
+   "language": "fr",
+   "language_scores": {
+    "en": 0,
+    "de": 0,
+    "fr": 2,
+    "it": 0,
+    "la": 1
+   },
+   "k6": {
+    "available": false
+   },
+   "taken": true
+  },
+  {
+   "id": 669,
+   "title": "Les Djinns",
+   "genre": "classical",
+   "edition": "Hamelle, 1891",
+   "edition_year": 1891,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=669",
+   "people": [
+    {
+     "role": "composer",
+     "name": "G. Fauré",
+     "mutopia_died": 1924,
+     "died_eff": 1924,
+     "agree": true,
+     "article": "Gabriel Fauré",
+     "qid": "Q104919",
+     "wd_label": "Gabriel Fauré",
+     "wd_died": [
+      1924,
+      1924
+     ]
+    },
+    {
+     "role": "poet",
+     "name": "V. Hugo",
+     "mutopia_died": 1885,
+     "died_eff": 1885,
+     "agree": true,
+     "article": "Victor Hugo",
+     "qid": "Q535",
+     "wd_label": null,
+     "wd_died": [
+      1885
+     ]
+    }
+   ],
+   "ly_header": {
+    "title": "Les Djinns",
+    "composer": "Gabriel FAURÉ",
+    "poet": "Victor HUGO",
+    "source": "Hamelle, 1891",
+    "mutopiacomposer": "FaureG",
+    "mutopiapoet": "V. Hugo (1802-1885)"
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "mutopia",
+   "excluded": "5c rest inside the line (before tick 3840)"
+  },
+  {
+   "id": 1367,
+   "title": "Es hat die Rose sich beklagt",
+   "genre": "classical",
+   "edition": "Oliver Ditson Company, 1902",
+   "edition_year": 1902,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1367",
+   "people": [
+    {
+     "role": "composer",
+     "name": "R. Franz",
+     "mutopia_died": 1862,
+     "died_eff": 1892,
+     "agree": false,
+     "article": "Robert Franz",
+     "qid": "Q561967",
+     "wd_label": "Robert Franz",
+     "wd_died": [
+      1892
+     ]
+    },
+    {
+     "role": "poet",
+     "name": "Friedrich von Bodenstedt",
+     "mutopia_died": 1892,
+     "died_eff": 1892,
+     "agree": true,
+     "article": "Friedrich von Bodenstedt",
+     "qid": "Q77645",
+     "wd_label": "Friedrich von Bodenstedt",
+     "wd_died": [
+      1892,
+      1892
+     ]
+    }
+   ],
+   "ly_header": {
+    "title": "Es hat die Rose sich beklagt",
+    "composer": "Robert Franz (1815–1892)",
+    "poet": "Friedrich von Bodenstedt (1819–1892)",
+    "source": "Oliver Ditson Company, 1902",
+    "date": "19th century",
+    "copyright": "Public Domain",
+    "mutopiacomposer": "FranzR",
+    "mutopiapoet": "Friedrich von Bodenstedt (1819–1892)"
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1795,
+   "title": "Les roses d’Ispahan",
+   "genre": "classical",
+   "edition": "J. Hamelle, 1885 (IMSLP)",
+   "edition_year": 1885,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1795",
+   "people": [
+    {
+     "role": "composer",
+     "name": "G. Fauré",
+     "mutopia_died": 1924,
+     "died_eff": 1924,
+     "agree": true,
+     "article": "Gabriel Fauré",
+     "qid": "Q104919",
+     "wd_label": "Gabriel Fauré",
+     "wd_died": [
+      1924,
+      1924
+     ]
+    },
+    {
+     "role": "poet",
+     "name": "Leconte de Lisle",
+     "mutopia_died": 1894,
+     "died_eff": 1894,
+     "agree": true,
+     "article": "Leconte de Lisle",
+     "qid": "Q309704",
+     "wd_label": "Charles Marie René Leconte de Lisle",
+     "wd_died": [
+      1894
+     ]
+    }
+   ],
+   "ly_header": {
+    "title": "Les roses d’Ispahan",
+    "composer": "Gabriel Fauré",
+    "poet": "Leconte de Lisle",
+    "source": "J. Hamelle, 1885 (IMSLP)",
+    "date": "1884",
+    "copyright": "Public Domain",
+    "mutopiacomposer": "FaureG",
+    "mutopiapoet": "Leconte de Lisle (1818–1894)"
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "mutopia",
+   "phrase": {
+    "track": 1,
+    "lyric_track": 4,
+    "tpq": 384,
+    "ticks": [
+     [
+      5184,
+      5376,
+      66
+     ],
+     [
+      5376,
+      5760,
+      69
+     ],
+     [
+      5760,
+      5952,
+      62
+     ],
+     [
+      5952,
+      6048,
+      64
+     ],
+     [
+      6048,
+      6144,
+      67
+     ],
+     [
+      6144,
+      6336,
+      69
+     ],
+     [
+      6336,
+      6432,
+      69
+     ],
+     [
+      6432,
+      6528,
+      62
+     ],
+     [
+      6528,
+      6720,
+      62
+     ],
+     [
+      6720,
+      6816,
+      64
+     ],
+     [
+      6816,
+      6912,
+      67
+     ],
+     [
+      6912,
+      7296,
+      69
+     ],
+     [
+      7296,
+      7488,
+      69
+     ]
+    ],
+    "midi": [
+     66,
+     69,
+     62,
+     64,
+     67,
+     69,
+     69,
+     62,
+     62,
+     64,
+     67,
+     69,
+     69
+    ],
+    "pitches": [
+     "F#4",
+     "A4",
+     "D4",
+     "E4",
+     "G4",
+     "A4",
+     "A4",
+     "D4",
+     "D4",
+     "E4",
+     "G4",
+     "A4",
+     "A4"
+    ],
+    "beats": [
+     "1/2",
+     "1",
+     "1/2",
+     "1/4",
+     "1/4",
+     "1/2",
+     "1/4",
+     "1/4",
+     "1/2",
+     "1/4",
+     "1/4",
+     "1",
+     "1/2"
+    ],
+    "melody": "F#4:0.5 A4:1.0 D4:0.5 E4:0.25 G4:0.25 A4:0.5 A4:0.25 D4:0.25 D4:0.5 E4:0.25 G4:0.25 A4:1.0 A4:0.5",
+    "words": "Les roses d’Ispahan dans leur gaîne de mousse,",
+    "syllables": [
+     "Les",
+     "ro",
+     "ses",
+     "d’Is",
+     "pa",
+     "han",
+     "dans",
+     "leur",
+     "gaî",
+     "ne",
+     "de",
+     "mous",
+     "se,"
+    ],
+    "syllable_ticks": [
+     5184,
+     5376,
+     5760,
+     5952,
+     6048,
+     6144,
+     6336,
+     6432,
+     6528,
+     6720,
+     6816,
+     6912,
+     7296
+    ],
+    "align_share": 1.0,
+    "key": "D",
+    "meter": "2/4",
+    "tempo_qpm": 60.0,
+    "words_midi": "Les ro ses d’Is pa han dans leur gaî ne de mous se,",
+    "words_from": "FaureG__O39__les_roses_d_ispahan__les_roses_d_ispahan.ly"
+   },
+   "conditions": {
+    "notes": 13,
+    "range": 7,
+    "seconds": 6.0,
+    "shortest_s": 0.25,
+    "lowest": 62,
+    "highest": 69,
+    "fails": []
+   },
+   "k1": {
+    "must_pass": true,
+    "must_fail_pitch": true,
+    "must_fail_rhythm": true,
+    "spelled_back": true,
+    "moved_index": 3,
+    "doubled_index": 2
+   },
+   "k2": {
+    "must_pass": true,
+    "shifted_share": 0.0,
+    "must_fail": true
+   },
+   "language": "fr",
+   "language_scores": {
+    "en": 0,
+    "de": 0,
+    "fr": 3,
+    "it": 0,
+    "la": 0
+   },
+   "k6": {
+    "available": false
+   },
+   "taken": true
+  },
+  {
+   "id": 1829,
+   "title": "Aurore",
+   "genre": "classical",
+   "edition": "J. Hamelle, 1885 (IMSLP)",
+   "edition_year": 1885,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1829",
+   "people": [
+    {
+     "role": "composer",
+     "name": "G. Fauré",
+     "mutopia_died": 1924,
+     "died_eff": 1924,
+     "agree": true,
+     "article": "Gabriel Fauré",
+     "qid": "Q104919",
+     "wd_label": "Gabriel Fauré",
+     "wd_died": [
+      1924,
+      1924
+     ]
+    },
+    {
+     "role": "poet",
+     "name": "Armand Silvestre",
+     "mutopia_died": 1901,
+     "died_eff": 1901,
+     "agree": true,
+     "article": "Armand Silvestre",
+     "qid": "Q2058470",
+     "wd_label": "Armand Silvestre",
+     "wd_died": [
+      1901
+     ]
+    }
+   ],
+   "ly_header": {
+    "title": "Aurore",
+    "composer": "Gabriel Fauré",
+    "poet": "Armand Silvestre",
+    "source": "J. Hamelle, 1885 (IMSLP)",
+    "date": "1884",
+    "copyright": "Public Domain",
+    "mutopiacomposer": "FaureG",
+    "mutopiapoet": "Armand Silvestre (1837-1901)"
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "excluded": "5a the listed MIDI file is not on the server"
+  },
+  {
+   "id": 1830,
+   "title": "Fleur jetée",
+   "genre": "classical",
+   "edition": "J. Hamelle, 1885 (IMSLP)",
+   "edition_year": 1885,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1830",
+   "people": [
+    {
+     "role": "composer",
+     "name": "G. Fauré",
+     "mutopia_died": 1924,
+     "died_eff": 1924,
+     "agree": true,
+     "article": "Gabriel Fauré",
+     "qid": "Q104919",
+     "wd_label": "Gabriel Fauré",
+     "wd_died": [
+      1924,
+      1924
+     ]
+    },
+    {
+     "role": "poet",
+     "name": "Armand Silvestre",
+     "mutopia_died": 1901,
+     "died_eff": 1901,
+     "agree": true,
+     "article": "Armand Silvestre",
+     "qid": "Q2058470",
+     "wd_label": "Armand Silvestre",
+     "wd_died": [
+      1901
+     ]
+    }
+   ],
+   "ly_header": {
+    "title": "Fleur jetée",
+    "composer": "Gabriel Fauré",
+    "poet": "Armand Silvestre",
+    "source": "J. Hamelle, 1885 (IMSLP)",
+    "date": "1884",
+    "copyright": "Public Domain",
+    "mutopiacomposer": "FaureG",
+    "mutopiapoet": "Armand Silvestre (1837-1901)"
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "excluded": "5a the listed MIDI file is not on the server"
+  },
+  {
+   "id": 1831,
+   "title": "Le pays des rêves",
+   "genre": "classical",
+   "edition": "J. Hamelle, 1885 (IMSLP)",
+   "edition_year": 1885,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1831",
+   "people": [
+    {
+     "role": "composer",
+     "name": "G. Fauré",
+     "mutopia_died": 1924,
+     "died_eff": 1924,
+     "agree": true,
+     "article": "Gabriel Fauré",
+     "qid": "Q104919",
+     "wd_label": "Gabriel Fauré",
+     "wd_died": [
+      1924,
+      1924
+     ]
+    },
+    {
+     "role": "poet",
+     "name": "Armand Silvestre",
+     "mutopia_died": 1901,
+     "died_eff": 1901,
+     "agree": true,
+     "article": "Armand Silvestre",
+     "qid": "Q2058470",
+     "wd_label": "Armand Silvestre",
+     "wd_died": [
+      1901
+     ]
+    }
+   ],
+   "ly_header": {
+    "title": "Le pays des rêves",
+    "composer": "Gabriel Fauré",
+    "poet": "Armand Silvestre",
+    "source": "J. Hamelle, 1885 (IMSLP)",
+    "date": "1884",
+    "copyright": "Public Domain",
+    "mutopiacomposer": "FaureG",
+    "mutopiapoet": "Armand Silvestre (1837-1901)"
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "mutopia",
+   "phrase": {
+    "track": 1,
+    "lyric_track": 4,
+    "tpq": 384,
+    "ticks": [
+     [
+      4416,
+      4608,
+      70
+     ],
+     [
+      4608,
+      5568,
+      73
+     ],
+     [
+      5568,
+      5760,
+      73
+     ],
+     [
+      5760,
+      6144,
+      73
+     ],
+     [
+      6144,
+      6336,
+      68
+     ],
+     [
+      6336,
+      6528,
+      65
+     ],
+     [
+      6528,
+      6720,
+      66
+     ],
+     [
+      6720,
+      6912,
+      68
+     ],
+     [
+      6912,
+      7296,
+      70
+     ],
+     [
+      7296,
+      7488,
+      70
+     ],
+     [
+      7488,
+      7872,
+      75
+     ],
+     [
+      7872,
+      8064,
+      73
+     ],
+     [
+      8064,
+      8448,
+      71
+     ],
+     [
+      8448,
+      8640,
+      68
+     ],
+     [
+      8640,
+      8832,
+      64
+     ],
+     [
+      8832,
+      9024,
+      68
+     ],
+     [
+      9024,
+      9216,
+      71
+     ],
+     [
+      9216,
+      11520,
+      73
+     ]
+    ],
+    "midi": [
+     70,
+     73,
+     73,
+     73,
+     68,
+     65,
+     66,
+     68,
+     70,
+     70,
+     75,
+     73,
+     71,
+     68,
+     64,
+     68,
+     71,
+     73
+    ],
+    "pitches": [
+     "Bb4",
+     "Db5",
+     "Db5",
+     "Db5",
+     "Ab4",
+     "F4",
+     "Gb4",
+     "Ab4",
+     "Bb4",
+     "Bb4",
+     "Eb5",
+     "Db5",
+     "B4",
+     "Ab4",
+     "E4",
+     "Ab4",
+     "B4",
+     "Db5"
+    ],
+    "beats": [
+     "1/2",
+     "5/2",
+     "1/2",
+     "1",
+     "1/2",
+     "1/2",
+     "1/2",
+     "1/2",
+     "1",
+     "1/2",
+     "1",
+     "1/2",
+     "1",
+     "1/2",
+     "1/2",
+     "1/2",
+     "1/2",
+     "6"
+    ],
+    "melody": "Bb4:0.5 Db5:2.5 Db5:0.5 Db5:1.0 Ab4:0.5 F4:0.5 Gb4:0.5 Ab4:0.5 Bb4:1.0 Bb4:0.5 Eb5:1.0 Db5:0.5 B4:1.0 Ab4:0.5 E4:0.5 Ab4:0.5 B4:0.5 Db5:6.0",
+    "words": "Veux-tu qu’au beau pays des rêves Nous allions la main dans la main ?",
+    "syllables": [
+     "Veux-",
+     "tu",
+     "qu’au",
+     "beau",
+     "pa",
+     "ys",
+     "des",
+     "rê",
+     "ves",
+     "Nous",
+     "al",
+     "lions",
+     "la",
+     "main",
+     "dans",
+     "la",
+     "main ?"
+    ],
+    "syllable_ticks": [
+     4416,
+     4608,
+     5568,
+     5760,
+     6144,
+     6336,
+     6720,
+     6912,
+     7296,
+     7488,
+     7872,
+     8064,
+     8448,
+     8640,
+     8832,
+     9024,
+     9216
+    ],
+    "align_share": 1.0,
+    "key": "Gb",
+    "meter": "12/8",
+    "tempo_qpm": 84.000084000084,
+    "words_midi": "Veuxtu qu’au beau pa ys des rê ves Nous al lions la main dans la main ?",
+    "words_from": "FaureG__O39__le_pays_des_reves__le_pays_des_reves.ly"
+   },
+   "conditions": {
+    "notes": 18,
+    "range": 11,
+    "seconds": 13.2142725,
+    "shortest_s": 0.3571425,
+    "lowest": 64,
+    "highest": 75,
+    "fails": []
+   },
+   "k1": {
+    "must_pass": true,
+    "must_fail_pitch": true,
+    "must_fail_rhythm": true,
+    "spelled_back": true,
+    "moved_index": 3,
+    "doubled_index": 2
+   },
+   "k2": {
+    "must_pass": true,
+    "shifted_share": 0.0,
+    "must_fail": true
+   },
+   "language": "fr",
+   "language_scores": {
+    "en": 0,
+    "de": 0,
+    "fr": 5,
+    "it": 2,
+    "la": 0
+   },
+   "k6": {
+    "available": true,
+    "excluded_on_second_path": null,
+    "same_pitches": true,
+    "same_beats": true,
+    "same_syllables": true
+   },
+   "taken": true
+  }
+ ]
+}
