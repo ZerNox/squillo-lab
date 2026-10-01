@@ -5,6 +5,7 @@
   "block not listed (la-donna-e-mobile de 1)": false
  },
  "must_fail_no_ref_la_donna_called_no_score": false,
+ "must_fail_no_ref_reason_names_no_claim": false,
  "named": {
   "old-hundredth": {
    "ok": true,

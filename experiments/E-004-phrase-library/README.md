@@ -299,6 +299,19 @@ not a copy, so the first-language order of rule 2 is not in question.
 Every verdict, `r2-check.json` outside `self_check`, and `r2-summary.json`
 are unchanged.
 
+**Recorded checks asserted (squillo iteration 57, F-054 b).** R-10 found
+that `all_named_pass` and `all_no_ref_pass` were written to
+`r2-rule2.json` and never asserted, and that `rule2_no_ref_check` returned
+`ok=True` for a reason naming no block claim, a branch that could not
+fail. Now both keys are asserted in `rule2_all`, that branch returns
+`ok=False`, and a new must-fail probe (a phrase whose reason names no block
+claim, `must_fail_no_ref_reason_names_no_claim`) fails as it must. Re-run:
+every value of `r2-rule2.json`, `r2-check.json` and `r2-summary.json` is
+unchanged; the one new key is the probe's `false`. In `r2-check.json`,
+`self_check`'s `must_pass`, `must_fail_pitch` and `must_fail_rhythm` are
+recorded, not asserted, by design: a reference failing them is not an
+error but a verdict (`pending-check-failed`, La donna è mobile).
+
 ## Round 2 result
 
 | # | Question | Result (conditions; uncertainty) |

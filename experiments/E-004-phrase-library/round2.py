@@ -298,7 +298,9 @@ def rule2_no_ref_check(pid, survey):
         return dict(ok=not blocks, blocks=len(blocks))
     if "copy" in why:
         return dict(ok=bool(blocks) and all(b["same_as_en_block"] for b in blocks), blocks=len(blocks))
-    return dict(ok=True, blocks=len(blocks), note="reason names no block claim")
+    # squillo iteration 57 (F-054 b): a reason that names no block claim is
+    # not checked by anything, so it fails (it used to return ok=True)
+    return dict(ok=False, blocks=len(blocks), note="reason names no block claim")
 
 
 def rule2_all():
@@ -319,13 +321,21 @@ def rule2_all():
     NO_REF["_probe"] = "no score in the 16 editions"
     survey["_probe"] = survey["la-donna-e-mobile"]
     probe = rule2_no_ref_check("_probe", survey)["ok"]
-    del NO_REF["_probe"]
+    # and (squillo iteration 57, F-054 b) a reason naming no block claim, which
+    # must fail now that that branch can
+    NO_REF["_probe"] = "no reference, for a reason naming no block claim"
+    probe_unclaimed = rule2_no_ref_check("_probe", survey)["ok"]
+    del NO_REF["_probe"], survey["_probe"]
     out = dict(must_fail=fail_res, must_fail_no_ref_la_donna_called_no_score=probe,
+               must_fail_no_ref_reason_names_no_claim=probe_unclaimed,
                named=named, no_reference=none,
                all_named_pass=all(v["ok"] for v in named.values()),
                all_no_ref_pass=all(v["ok"] for v in none.values()),
-               check_fails_when_it_must=not any(fail_res.values()) and not probe)
+               check_fails_when_it_must=not any(fail_res.values()) and not probe and not probe_unclaimed)
     assert out["check_fails_when_it_must"], out
+    # squillo iteration 57 (F-054 b): recorded and now asserted
+    assert out["all_named_pass"], out["named"]
+    assert out["all_no_ref_pass"], out["no_reference"]
     return out
 
 
@@ -334,7 +344,7 @@ def check():
     r2 = rule2_all()
     json.dump(r2, open(RES / "r2-rule2.json", "w"), indent=1, ensure_ascii=False)
     print("rule 2:", {k: r2[k] for k in ("must_fail", "must_fail_no_ref_la_donna_called_no_score",
-                                          "all_named_pass", "all_no_ref_pass")})
+                                          "must_fail_no_ref_reason_names_no_claim", "all_named_pass", "all_no_ref_pass")})
     r1 = json.load(open(RES / "summary.json"))["survive"]["per_phrase"]
     out = []
     for pid in PENDING:
