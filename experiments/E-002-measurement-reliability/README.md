@@ -674,6 +674,22 @@ report. Commit the two results files, never the audio. A smoke run on
 VocalSet's f1 scales passed (the same file twice gives D = 0, not called;
 breathy against straight gives D = −13.03 dB, called).
 
+### Fold F1 re-read per set and on E-003's inputs (squillo iteration 63, F-052)
+
+**Run:** `uv run python f052_sets.py check`, then `uv run python
+f052_sets.py run` (writes `results/f052_sets.json`). Rules, bars R1 and
+R2, and the checks P1 and P4 are in the script's docstring, committed
+before any run (`f052_sets.py`, its first commit). Needs round 2's
+`data/cache/r2_frames.npz` and `data/cache/r2/*.npz`, and E-003 round 2's
+`data/cache/r2/measures.pkl` and `in/` files.
+
+**Estimate (S19), committed before the full run.** `time`: 8 of the 80
+long tones (singers f1 and m11, all four sets) through P4's live
+recompute and P5's binary64 measure in 1.0 s at a pool of 16, so the 80 in
+under 0.2 minutes; the analysis (81 per-set selections per condition
+group, 1000 singer resamples each) is array arithmetic on counts, under a
+minute. `check` alone ran in seconds.
+
 ### Beyond round 3
 
 Amateur voices and other vowels (E-005's `needs-human` step); a real room
