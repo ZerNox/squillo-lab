@@ -667,7 +667,7 @@ rung step 0.057 s per phrase. The run took 9.7 minutes.
 - **No gate is yet safe enough by B2's per-cell rule**: about 1 % of moved
   notes overall go the wrong way with the written melody, but where a
   gate fails, its worst cell, of 21 to 106 moved notes, reaches 2.6–5.9 %. Squillo F-045 stays open with this
-  evidence.
+  evidence (deferred to Stage D by squillo R-12, iteration 60).
 
 **Limits.** Synthetic voices (rounds 1 and 2's limits); round 2's error
 model, normal per note, no drift; the real check is WORLD re-syntheses of
@@ -675,3 +675,34 @@ trained singers, whose truth uses the same centre rule; the harm is judged
 at full strength only; B2's cells are small at σ ≥ 20, where the gate moves
 few notes. Which part of the free path (segmentation or tuning) costs its
 coverage is not measured.
+
+**Audit by squillo R-12 (iteration 60).** Re-run in a clone: `select`,
+`rungs`, `report`, `posthoc` and `check` give every committed results
+file byte for byte; 47 phrases re-synthesised (one per condition, the
+three items revision 1 moved, both extreme voices at σ = 30 with
+vibrato) equal the cached rows exactly. No selection, bar or outcome
+moves. What it found, stated here rather than re-run:
+
+- *S19.* The timing estimate (48 phrases, 0.50 s each, 14.0 min) was
+  first committed with the results (`9083454`), not before the run; the
+  sample took the first two jobs per condition, so one library item and
+  none of the three wide items revision 1 moved; the README's
+  `time 48` is the code's `time 36` with an argument. The run took
+  9.7 min, inside the estimate.
+- *Revision 1* (`7d4c87f`) came after check C1 had run on generated
+  audio and failed, before the timing sample and the full run, not
+  "before any run"; it changed only how three library items are placed.
+- *Recorded, not asserted:* the 250 `passes` keys in
+  `results/round3.json` and the 52 in `results/round3_posthoc.json`.
+  They are the bars' outcomes, the results themselves, which may be true
+  or false; asserting them would assert the claim under test. The checks
+  C1 to C6 are asserted.
+- *The checks' reach:* C4 and C5 test the bars' arithmetic on an oracle
+  (*d* set to the truth), not through `judge()`, so the per-cell grouping
+  and the 20-note minimum are read by hand, not checked, and only on the
+  free path's columns; the known path's were read by hand and are
+  right. C1's in-range clause cannot fail (`render()` raises first); its
+  +1500-cent case is the must-fail. C3's must-fail compares `s` only.
+- *The guard* covers `round3.py`, not the modules it imports (`round2.py`,
+  `fold_refusal.py`, `run.py`, `infer.py`, `synth.py`, `voice.py`) or
+  E-004's items; all were committed and clean at `9083454`.
