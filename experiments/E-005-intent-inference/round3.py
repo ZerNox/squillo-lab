@@ -12,6 +12,7 @@ and fold 2's refusal (squillo MT-003).
     uv run python round3.py select         # the two selections, fit half only -> results/round3_select.json
     uv run python round3.py rungs 18       # H3 on the held-out half and real takes -> data/cache/r3_rungs.pkl
     uv run python round3.py report         # -> results/round3.json
+    uv run python round3.py posthoc 18     # revision 2, after the report: labelled diagnostics -> results/round3_posthoc.json
 
 Why (squillo F-045): only `steadiness` has a ladder, so a take with no held
 note has no far vision. The rung that would serve every take moves each
@@ -955,7 +956,52 @@ def Counter_states(b, path):
     return out
 
 
+# ------------------------------------------------------------ revision 2: post hoc (after the run, labelled)
+
+def posthoc(procs="18"):
+    """Post hoc, written after `report` (revision 2), never a selection: (a) B2 for every
+    gate on both halves, with the worst judged cell; (b) H3 for the known path with no
+    T gate (every note measurably off and not a wrong note moved), held-out half and real."""
+    committed_first()
+    rows = pickle.load(open(CACHE / "r3_synth.pkl", "rb"))
+    real = pickle.load(open(CACHE / "r3_real.pkl", "rb"))
+    sel = _sel()
+    out = dict(note="post hoc: written after the run's report; not a selection", gates=[])
+    for half in (True, False):
+        rs = [r for r in rows if r["fit"] == half]
+        for path in ("free", "known"):
+            cand = sel[path]["u"]
+            for g in GATES[path]:
+                ok, tab = judge(rs, lambda q: b2(q, path, cand, g), B2_MAX, str(g))
+                j = [c for c in tab if c["judged"]]
+                worst = max(j, key=lambda c: c["k"] / c["n"]) if j else None
+                out["gates"].append(dict(half="fit" if half else "held", path=path, u=cand, gate=[g[0], g[1]], passes=ok,
+                                         moved=sum(c["n"] for c in tab), harmed=sum(c["k"] for c in tab),
+                                         worst_cell=worst))
+    s2 = dict(free=dict(u=sel["free"]["u"], gate=None), known=dict(u=sel["known"]["u"], gate=["any", None]))
+    held = [r for r in rows if not r["fit"]]
+    with Pool(int(procs)) as p:
+        a = p.map(rung_one, [(r, s2) for r in held], chunksize=2)
+        b = p.map(rung_one, [(r, s2) for r in real], chunksize=1)
+    h = {}
+    for name, entries, ref in (("held", a, held), ("real", b, real)):
+        by = {e["key"]: e["out"]["known"] for e in entries}
+        c = {}
+        for key, rs in sorted(cells(ref).items(), key=lambda kv: str(kv[0])):
+            o = [by[r.get("seed", r.get("name"))] for r in rs]
+            ds = [x[1.0]["take"]["s"] - x[1.0]["rung"]["s"] for x in o if x[1.0]["any_moved"]]
+            bd = [2 * math.hypot(x[1.0]["take"]["uB"], x[1.0]["rung"]["uB"]) for x in o if x[1.0]["any_moved"]]
+            c[str(key)] = dict(phrases=len(o), any_moved=wilson(sum(x[1.0]["any_moved"] for x in o), len(o)),
+                               far_vision_improved=wilson(sum(x[1.0]["cmp"] == 1 for x in o), len(o)),
+                               worse_any_s=sum(x[s]["cmp"] == -1 for x in o for s in STRENGTHS),
+                               spread_drop_median=_med(ds), bound_median=_med(bd))
+        h[name] = c
+    out["H3_known_no_T"] = h
+    json.dump(out, open(OUT / "round3_posthoc.json", "w"), indent=1, default=float)
+    print("written results/round3_posthoc.json")
+
+
 if __name__ == "__main__":
     cmd, args = sys.argv[1], sys.argv[2:]
     dict(check=check, time=time_sample, synth=run_synth, real=run_real, select=select, rungs=run_rungs,
-         report=report)[cmd](*args)
+         report=report, posthoc=posthoc)[cmd](*args)
