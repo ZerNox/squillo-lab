@@ -179,3 +179,18 @@ reps agree for every probe reported (asserted).
 
 So a report is evidence of a refusal, but its absence is not evidence of
 a reach: the listener stays the measure, as round 1's protocol said.
+
+### Fixture for squillo `build` (iteration 56): engine modules
+
+`node build_fixtures.mjs` (conditions and expected outcomes committed
+first, `aae67db`) writes `results/engine-modules.json`, copied byte for byte
+to squillo `fixtures/build/engine-modules.json`: five WebAssembly modules
+written byte by byte, the inputs for squillo `build`'s check that the
+engine module imports nothing and uses neither relaxed SIMD nor threads
+(squillo ADR 0006, ADR 0016). Each is valid in Node v22.22.1's V8 and its
+import count is read by `WebAssembly.Module.imports` (asserted); an
+independent section reader finds the one relaxed SIMD instruction and the
+one shared memory, and passes the plain-SIMD module and the memoryless one
+(its must-pass and must-fail inputs, asserted). Expected: `no-import` and
+`simd` accepted; `one-import`, `relaxed-simd` and `shared-memory` refused,
+each for its one property. Not the engine, and not measured in a browser.

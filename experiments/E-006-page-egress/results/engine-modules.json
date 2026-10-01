@@ -1,0 +1,40 @@
+{
+  "generator": "squillo-lab experiments/E-006-page-egress/build_fixtures.mjs",
+  "modules": {
+    "no-import": {
+      "bytes_hex": "0061736d01000000",
+      "imports": 0,
+      "relaxed_simd": false,
+      "shared_memory": false,
+      "build": "accept"
+    },
+    "one-import": {
+      "bytes_hex": "0061736d01000000010401600000020701016d01660000",
+      "imports": 1,
+      "relaxed_simd": false,
+      "shared_memory": false,
+      "build": "refuse"
+    },
+    "simd": {
+      "bytes_hex": "0061736d010000000105016000017b030201000a2a012800fd0c00000000000000000000000000000000fd0c00000000000000000000000000000000fd0e0b",
+      "imports": 0,
+      "relaxed_simd": false,
+      "shared_memory": false,
+      "build": "accept"
+    },
+    "relaxed-simd": {
+      "bytes_hex": "0061736d010000000105016000017b030201000a2b012900fd0c00000000000000000000000000000000fd0c00000000000000000000000000000000fd80020b",
+      "imports": 0,
+      "relaxed_simd": true,
+      "shared_memory": false,
+      "build": "refuse"
+    },
+    "shared-memory": {
+      "bytes_hex": "0061736d01000000050401030101",
+      "imports": 0,
+      "relaxed_simd": false,
+      "shared_memory": true,
+      "build": "refuse"
+    }
+  }
+}
