@@ -626,9 +626,23 @@ takes its RMS from 4.78 to 4.64 dB.
   must-fail case (no gate at white 10 dB) failed the bar only with the odd
   singers as the fit (11.8 %), and passed it with the even ones (2.4 %),
   so on that fold the bar could not tell a gate from none (R-10: the gate
-  is shown on one fold of two; `B1_check_*` and `B3_check` are recorded in
-  `r4_ring.json` but not asserted, S15). Below about 20 dB it leaves most
+  is shown on one fold of two). Below about 20 dB it leaves most
   takes with nothing comparable.
+- **Checks asserted (squillo iteration 63, F-054 (a)).** Since R-10,
+  `B1_check_*` and `B3_check` were written to `r4_ring.json` and never
+  asserted (S15). `r4_ring.py` now refuses to run uncommitted
+  (`committed_first`) and `assert_checks` stops `analyse` before
+  `r4_ring.json` is written unless B1's fitting-fold check passes, its
+  6.02 dB boost fails the bar, the chosen gate passes on clean input on both
+  fitting folds (V1 and V2), and no gate at white 10 dB fails the bar with
+  the odd singers as the fit; with the even singers its pass (1 of 41) is
+  asserted unchanged, so the gate stays shown on one fold of two. Re-run
+  after the rules commit: `r4_ring.json` byte-identical, no value moved.
+  Must-fail of the asserts, each on `r4_ring.json` with one outcome changed
+  (the boost called in none, the fitting fold over 5 %, no gate passing on
+  the odd fold, failing on the even, V2 failing clean): 5 of 5 stop it.
+  `tools/checkkeys.py` flags `B3_check` by name only: it is asserted through
+  the local `b3` (`assert_checks`), read by hand.
 - For the fold: squillo can specify tone as the ring ratio compared note by
   note with *u* = √(τ² + σ_w²/*k*), from τ and σ_w above, and say what size
   of change it can show. Or it can leave tone out of the first slice, with
