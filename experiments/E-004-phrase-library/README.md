@@ -348,6 +348,105 @@ provenance agree there. The two
 references of the four round 1 mismatches were not compared with each
 other.
 
+## Round 3 (squillo iteration 57): notes and words from the edition
+
+**Question.** Round 2 showed that checking from-memory melodies cannot
+reach `VISION.md` §9's 30. If a phrase's notes **and** words are taken
+from a named public-domain edition, so that the melody is the cited edition
+by construction (squillo F-044, route (a)), how many such phrases pass
+round 1's rights rules and squillo's shipping rule (`us` and `life100`),
+and does the library reach 30 across genres?
+
+**Source.** The Mutopia Project: LilyPond transcriptions of named printed
+editions, each with its own licence. A transcription marked Public Domain
+by its typesetter adds no rights of its own; one under CC BY or CC BY-SA
+would, so only Public Domain ones are used.
+
+**Rules, written and committed before the survey ran** (`round3.py`).
+
+1. *Survey, metadata only* (`survey`). Every page of Mutopia's listing for
+   instrument Voice, every style, 10 pieces a page, following the listing
+   until it ends. Per piece, the listing's cells: title, composer, opus,
+   instrument, date, style, poet, source (the edition), licence, and the
+   file links. No file is downloaded.
+2. *Screen, mechanical, from that metadata alone* (`screen`). A piece is
+   eligible when: (a) its licence is Public Domain; (b) the poet cell names
+   someone, so the edition has words; (c) every named composer and poet has
+   a death year in Mutopia's cells (anonymous and traditional parts need
+   none); (d) the source cell names a year, the edition's (the latest
+   four-digit year it names), taken as the published-by year of every part,
+   since the edition prints both; (e) round 1's rules pass on that, `us`
+   (the edition by 1930) and `life100` (every named person died by 1925, an
+   anonymous part published by 1925), squillo's shipping rule; (f) it has a
+   MIDI and a LilyPond file; (g) its title is not one of the 20 verified
+   phrases'. The rights rule is first run on one case it must pass and four
+   it must fail (an edition of 1931, a death in 1926, an unknown death, an
+   anonymous part published 1926), each differing in its input.
+3. *Order.* Phrases round 2 left pending come first, in its `PENDING`
+   order, if an eligible piece sets their tune (named from the metadata).
+   Then the rest, one at a time: the piece whose genre (Mutopia's style,
+   mapped by `GENRE`) has fewest phrases in the library so far, ties by
+   lower Mutopia id. Each phrase taken counts towards its genre before the
+   next is chosen.
+4. *People* (`PEOPLE`). Before any Wikidata, MIDI or LilyPond file is
+   read, the agent names, from the survey's metadata alone, the English
+   Wikipedia article of every named person of the eligible pieces it may
+   reach, and commits it. Death years are then cross-checked against
+   Wikidata (P570) as in round 1; where the two disagree the later year is
+   used, and the rights rules re-run on it. A person with no article keeps
+   Mutopia's year, reported as unchecked. (c) The LilyPond file's own
+   header is also read: a translator or arranger it names is a contributor
+   too, needing a death year, or the piece is excluded.
+5. *Extraction* (`extract`), in rule 3's order, until 10 phrases pass
+   (20 + 10 = 30) or the list ends. A piece that fails any step is
+   excluded with its reason, and the next is taken.
+   (a) Mutopia's own MIDI file, made by its LilyPond from the edition's
+   transcription; if it holds no lyric events, the LilyPond file compiled
+   with LilyPond 2.24.3 after `convert-ly`, a `\midi` block added where a
+   score has none. No lyric events either way: excluded.
+   (b) Verse 1 is the first track holding lyric events. The melody track
+   is the note track on whose onsets most of verse 1's syllables fall
+   (ties: the earlier track). The melody is that track's top line: an
+   onset is a melody note when the highest note sounding then starts then.
+   (c) The line: from verse 1's first syllable to the first syllable, the
+   third or later, whose text ends in punctuation (`,.;:!?`); the phrase
+   is every melody note from the first syllable's onset to before the next
+   syllable's onset, ending at that line-end syllable's note and the notes
+   that continue its syllable. A rest (a gap between one melody note's end
+   and the next onset) inside the line, or no line end within 20
+   syllables: excluded. At least 90 % of the line's syllables must fall on
+   melody onsets (`ALIGN_MIN`).
+   (d) Durations in quarter notes, exact fractions of the MIDI file's
+   ticks: inter-onset intervals, and the last note's own written length.
+   Key, meter and tempo from the file's first key-signature, time-signature
+   and tempo events. Pitch spelled from the key signature (sharps for a
+   sharp or no key, flats for a flat key).
+   (e) Conditions on the phrase (S15), each asserted on what was
+   extracted: 5 to 20 notes; range at most 16 semitones (round 1's widest);
+   at most 15 s at the file's tempo (round 1's longest, 13.3 s); no note
+   shorter than 0.1 s (E-005 `report.py:19`, `TRANS_S`); every pitch within
+   E2–C6 (squillo ADR 0007). A phrase failing one is excluded.
+   (f) Words: verse 1's syllables of the line, joined where a syllable ends
+   in a hyphen.
+6. *Checks (S15), each on a case it must pass and one it must fail.*
+   K1, the round trip: the phrase written in library notation and parsed by
+   round 1's `parse` matches the melody track by round 1's `compare`, exact
+   in pitch and in every inter-onset interval at scale 1.0; one pitch moved
+   a semitone must fail on pitch, one duration doubled on rhythm, each
+   input asserted to differ. K2, the words: the line's syllables shifted by
+   one tick must fall below `ALIGN_MIN`. K3, the rights rule: rule 2's
+   probe. K4, the people: the cross-check fails a person whose recorded
+   year is set to one Wikidata does not give. K5, an independent
+   transcription: where round 1 or 2 compared the same tune against
+   Wikipedia or Mutopia, the extracted phrase is compared with that
+   reference too and the outcome reported; it decides nothing, since an
+   edition can differ from a later transcription.
+7. *Measurability* (`measure`): round 1's `measure`, unchanged (E-005's
+   synthetic voice, six voice types, per-note error sd 0 or 20 cents,
+   vibrato off or on), on the new phrases.
+8. *Count* (`report`): the library is round 2's 20 verified phrases plus
+   round 3's; reported by genre, and under squillo's shipping rule.
+
 ## Needs a human
 
 15 minutes, headphones, no microphone.
