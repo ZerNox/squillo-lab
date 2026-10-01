@@ -60,6 +60,27 @@ ALIGN_MIN = 0.9                       # rule 5b: share of the line's syllables o
 
 TARGET = 30                           # VISION.md §9
 
+# Rule 4: each named person of the 21 eligible pieces (results/r3-screen.json),
+# by Mutopia's name, to the English Wikipedia article the agent names from that
+# metadata alone, committed before any Wikidata, MIDI or LilyPond file is read.
+PEOPLE = {
+    "J.M. Neale": "John Mason Neale", "W. W. Phelps": "W. W. Phelps (Mormon)",
+    "J. Brahms": "Johannes Brahms", "H. von Schmidt": "Hans Schmidt (poet)",
+    "P. Cornelius": "Peter Cornelius", "D. D. Emmett": "Dan Emmett",
+    "G. P. Morris": "George Pope Morris", "G. Loder": "George Loder",
+    "G. Fauré": "Gabriel Fauré", "T. Gautier": "Théophile Gautier",
+    "R. Bussine": "Romain Bussine", "V. Hugo": "Victor Hugo",
+    "Armand Silvestre": "Armand Silvestre", "Leconte de Lisle": "Leconte de Lisle",
+    "R. Franz": "Robert Franz", "Joseph von Eichendorff": "Joseph von Eichendorff",
+    "Friedrich von Bodenstedt": "Friedrich von Bodenstedt", "C. E. Horsley": "Charles Edward Horsley",
+    "Paul Gerhardt": "Paul Gerhardt", "J. Hullah": "John Pyke Hullah",
+    "A. Procter": "Adelaide Anne Procter", "E. Lalo": "Édouard Lalo",
+    "J. B. Lully": "Jean-Baptiste Lully", "P. Quinault": "Philippe Quinault",
+    "F. Schubert": "Franz Schubert", "W. Müller": "Wilhelm Müller",
+    "R. Schumann": "Robert Schumann", "H. Heine": "Heinrich Heine",
+    "J. F. Wade": "John Francis Wade",
+}
+
 
 def committed_first():
     """S15: refuse to run on an uncommitted edit of this file, or before it is committed."""
@@ -216,6 +237,30 @@ def verified_titles():
     return {k: re.sub(r"[^a-z]", "", by[k]["title"].lower()) for k, v in now.items() if v.startswith("verified")}
 
 
+def library_genres():
+    """The verified library's genres before round 3 (round 2's count)."""
+    return Counter(json.load(open(RES / "r2-summary.json"))["verified_genres"])
+
+
+def order(el, taken=None):
+    """Rule 3. No eligible piece sets a pending phrase's tune (checked by
+    title against round 2's PENDING list by the agent from the metadata:
+    none of the 21 does), so the order is the genre rule alone. `taken`
+    lists the ids already taken; the order of the rest is recomputed from
+    the counts so far, so an excluded piece does not count."""
+    g = library_genres()
+    for pid in taken or []:
+        g[next(r for r in el if r["id"] == pid)["genre"]] += 1
+    rest = [r for r in el if r["id"] not in set(taken or [])]
+    seq = []
+    while rest:
+        r = min(rest, key=lambda r: (g[r["genre"]], r["id"]))
+        seq.append(r["id"])
+        g[r["genre"]] += 1
+        rest.remove(r)
+    return seq
+
+
 def screen():
     committed_first()
     probe = rights_probe()
@@ -224,7 +269,7 @@ def screen():
     sv = json.load(open(RES / "r3-survey.json"))
     rows = [screen_one(s, list(vt.values())) for s in sv]
     el = [r for r in rows if r["eligible"]]
-    out = dict(rights_probe=probe, listed=len(rows), eligible=len(el),
+    out = dict(rights_probe=probe, listed=len(rows), eligible=len(el), order=order(el),
                reasons=dict(Counter(w.split(" ")[0] for r in rows for w in r["why"])),
                eligible_by_genre=dict(Counter(r["genre"] for r in el)), rows=rows)
     json.dump(out, open(RES / "r3-screen.json", "w"), indent=1, ensure_ascii=False)
