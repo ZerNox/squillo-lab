@@ -690,6 +690,35 @@ under 0.2 minutes; the analysis (81 per-set selections per condition
 group, 1000 singer resamples each) is array arithmetic on counts, under a
 minute. `check` alone ran in seconds.
 
+**Result** (`results/f052_sets.json`; 2.0 s for P4 and P5, 13 s in all;
+a second run identical but for `seconds`). Coverage is the share of
+accepted frames within ±2*u* under MT-003's table as squillo states it;
+intervals are 95 % over 1000 resamples of the singers.
+
+| # | Question | Result |
+| :--- | :--- | :--- |
+| F052-1 | Checks | P1: fold F1's spec coverage recomputed from the cache, 94.46 % on 132 373 accepted frames (all 20) and 95.25 % on 56 414 (the even ten), equal to `fold2.json`; with the table's entries above √3 times 0.9, 93.37 %, not equal, as it must not be. E-003's raw clean direct 93.20 % on 69 649, equal to `analysis.json`; its white-20 frames 96.06 % on 27 163, not equal. P4: E-003's clean frame statistics recomputed from its 80 written files equal the pickle's in 80 of 80 takes, and the white-20 pickle's in 0 of 80. R2's own check: all sets clean, held out, 95.25 % (93.66–96.35 %), not shown under, as it must not be; room 0.8 s, 64.93 % (57.63–69.74 %), shown under, as it must be. `tools/checkkeys.py`: 0 flagged |
+| F052-2 | Is the shortfall the subset or the input path? (P3, P5) | **The subset.** G = 94.46 − 93.20 = 1.26 points (0.58–2.18), shown. S, all 159 takes against the 80 long tones on E-002's own frames (94.46 against 93.20 %): 1.26 points (0.58–2.18), shown. P, E-002's 80 against E-003's: 0.0016 points (−0.0074 to +0.0104), not shown; of it, level and padding 0 exactly (the binary64 padded signal gives E-002's frames' coverage, 93.2018 %), 16-bit rounding 0.0016 points (not shown): 5 of 80 takes accept a frame more or fewer, 69 651 against 69 649 in all. **The frame-validity rule is not a cause**: valid frames are equal take by take, 0 of 80 differing, 90 583 on every side |
+| F052-3 | ±2*u* per set, clean, on the ten held-out singers (R2) | LT-straight 98.38 % (97.65–99.12), SC-straight 99.41 % (99.12–99.67), SC-breathy 97.64 % (95.93–98.84), VIB-arpeggio 98.98 % (98.13–99.69): shown at or over 95 %. LT-forte 94.04 % (90.29–96.63), LT-messa 93.23 % (88.83–95.68): not shown either way. **LT-pp 91.36 % (88.39–94.24) and VIB-row 91.22 % (89.34–93.78): shown under 95 %.** All sets 95.25 % (93.66–96.35): not shown either way, so fold F1's 95.2 % is a point whose singer interval reaches below 95 % |
+| F052-4 | The same on all 20 singers, and on E-003's inputs | E-002 clean, all 20: LT-straight 96.51 %, LT-forte 94.02 %, LT-messa 92.08 %, LT-pp 90.93 %, SC-straight 98.50 %, SC-breathy 96.45 %, VIB-arpeggio 97.93 %, VIB-row 90.74 %. E-003's inputs, clean, all 20: LT-straight 96.51 % (92.39–98.72), LT-forte 94.02 % (91.95–95.88), LT-pp 90.93 % (88.38–93.28), LT-messa 92.07 % (88.89–94.76); the even ten 94.17 % over the four. In noise coverage rises as frames are refused: E-002 held out, white 20 dB, 95.7–99.9 % per set; the room at 0.4 s, 66.5 % (LT-pp) to 91.6 % (LT-straight) |
+
+**What this says for squillo.** MT-003's table does not fail on E-003's
+input path: the 93.20 % is the long tones' own coverage, the same on
+E-002's frames to 0.002 points. The pooled 95.2 % on held-out singers
+hides a spread by material: on soft long tones and on the sung round, the
+one set with words and consonants and so the closest to a singer's own
+song, ±2*u* is shown to cover under 95 % (91.4 % and 91.2 % held out). No
+bound changes here, and nothing refits the table; by the rule written
+before the run, these are limits MT-003's reason states with their
+numbers, in squillo iteration 64's fold. Why these two sets fall short
+was not asked and is not attributed.
+
+**Limits.** Twenty trained singers re-synthesized with WORLD for a known
+pitch (round 2's limits); ten held-out singers per set, so a set's
+interval is wide (up to 7 points); the bootstrap resamples singers, not
+takes, and treats the ten as exchangeable. Nothing here measures an
+amateur or a real microphone.
+
 ### Beyond round 3
 
 Amateur voices and other vowels (E-005's `needs-human` step); a real room
