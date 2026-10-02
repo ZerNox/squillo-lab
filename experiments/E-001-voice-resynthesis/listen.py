@@ -9,6 +9,14 @@ Two originals are repeated as a consistency check: 20 clips for three takes.
 Clips go to data/cache/listening/ in shuffled order, with ratings.csv to fill
 in and key.json (do not open it until the ratings are done). Nothing here is
 committed: data/cache/ is ignored, and the takes stay on this machine.
+
+Every clip is levelled to its take's integrated loudness (ITU-R BS.1770-4, round 3's
+`r3_loudness.bs1770`), since round 3 found WORLD's output 1.1-4.8 LU louder than its input
+on real voices, enough to tell the clips apart, or to prefer one, by loudness alone
+(squillo F-063, iteration 66). If a levelled clip would exceed full scale, every clip is
+scaled down by the same factor, so their levels stay equal. The gain is applied until the
+levels agree within 0.001 LU: BS.1770's absolute gate does not move with the gain, so one
+step can leave a clip short (0.045 LU on a VocalSet take).
 """
 
 import csv
@@ -23,6 +31,7 @@ from scipy.signal import resample_poly
 
 import resynth
 import run
+from r3_loudness import bs1770
 
 VARIANTS = [("original", None, None), ("world_harvest", "id", "world id"),
             ("world_harvest", "c50", "world c50"), ("world_harvest", "c100", "world c100"),
@@ -49,8 +58,13 @@ def main(paths):
             else:
                 a = analyses.setdefault(method, resynth.analyse(method, x))
                 y = resynth.synthesize(a, run.request(grid, mod))
+            for _ in range(4):  # the -70 LKFS gate is absolute, so one gain step can move blocks across it
+                y = y * 10 ** ((bs1770(x) - bs1770(y)) / 20)
+            assert abs(bs1770(y) - bs1770(x)) < 0.001, (p, label)
             clips.append((Path(p).name, "original" if mod is None else label, y))
     clips += [c for c in clips if c[1] == "original"][:2]
+    top = max(1.0, max(np.abs(c[2]).max() for c in clips))
+    clips = [(t, lab, y / top) for t, lab, y in clips]
     order = np.random.default_rng().permutation(len(clips))
     key = {}
     with open(out / "ratings.csv", "w", newline="") as f:
@@ -59,7 +73,7 @@ def main(paths):
         for k, i in enumerate(order, 1):
             name = f"clip{k:02d}.wav"
             take, label, y = clips[i]
-            sf.write(out / name, y / max(1.0, np.abs(y).max()), run.SR)
+            sf.write(out / name, y, run.SR)
             key[name] = dict(take=take, variant=label)
             w.writerow([name, "", "", ""])
     (out / "key.json").write_text(json.dumps(key, indent=1))

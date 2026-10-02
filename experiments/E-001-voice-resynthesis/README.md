@@ -137,7 +137,8 @@ needs a listener, and the listener should be the singer.
 2. `uv run python listen.py take1.wav take2.wav take3.wav` builds 20 shuffled
    clips in `data/cache/listening/`: for each take the original, WORLD with
    no change, 50 % and 100 % correction and steadying, and PSOLA with 100 %
-   correction, plus two repeated originals (1 minute).
+   correction, plus two repeated originals, every clip levelled to its
+   take's integrated loudness (since round 3) (1 minute).
 3. Listen once to each clip and fill in `ratings.csv`: *same person as you*
    1–5 and *natural* 1–5 (8 minutes). Only then open `key.json`.
 4. Commit `ratings.csv` and `key.json` only, never the audio (1 minute).
@@ -488,7 +489,13 @@ for that alone (VISION §6, §10.4). Rungs of one take match each other to
 within 0.23 LU, so levelling each rung to its take's integrated loudness,
 one gain per rung, removes the difference on the whole; it does not remove
 the passage-level differences of result 5. The gain is negative, so it also
-removes result 4's clipping risk.
+removes result 4's clipping risk. One gain step computed from the two
+gated levels does not land exactly: BS.1770's absolute gate (−70 LKFS)
+does not move with the gain, so blocks cross it; on VocalSet f1's take
+through `listen.py` one step left a WORLD clip 0.045 LU loud, and a
+repeated step converges (to under 0.001 LU). `listen.py` now levels its
+clips this way, so the listening check no longer hears WORLD's clips
+louder than the originals.
 
 **Limits.** VocalSet's straight-tone scales on /a/ by trained singers,
 normalised to a peak of 0.5; no amateurs, songs, rooms or microphones. The
