@@ -49,7 +49,11 @@ returns, never by position; and it is run once on a case it must pass and
 once on a case it must fail, each known independently of the check. A
 pass bar or a selection rule written before a run is a check too: it is
 applied first to the reference condition that must pass it (such as clean
-input on the fitting fold) and to one that must fail it. **A must-fail
+input on the fitting fold) and to one that must fail it. A rule that
+predicts what a change leaves unmoved over a set of inputs is written
+only after each input's value of the condition the change acts on is read
+(from its generator or manifest), and names the inputs the change is
+expected to move (squillo L-058, E-005 fold 4). **A must-fail
 case differs from the must-pass case in the input the check reads**: never
 the check applied to identical arguments, never a value that cannot fail
 by construction, and never an expectation taken from the claim under test
