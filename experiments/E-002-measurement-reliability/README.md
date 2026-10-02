@@ -720,6 +720,26 @@ interval is wide (up to 7 points); the bootstrap resamples singers, not
 takes, and treats the ten as exchangeable. Nothing here measures an
 amateur or a real microphone.
 
+### Round 5: held notes trimmed to their measured cells, and the next step against blocks (squillo iteration 78, F-070, F-046)
+
+**Run:** `uv run python r5_trim.py check <squillo>`, `sample`, `run`, then
+`analyse` (writes `results/r5_trim.json`). Rules T0 to T4 and B0 to B2,
+the bars T1 and T2 and the constructed cases P and Q are in the script's
+docstring, committed before any run (`5dd50dc`; revision 1, `check`'s
+own assertion on the constructed case, before any data was read). Needs
+round 2's `data/cache/r2_frames.npz`, `results/fold2.json` and
+`results/fold3_ladder.json`, and E-004 round 4's `data/cache/r4/`,
+`results/r4/held.json` and `results/r4/diag.json`; the 936 renderings
+are re-made by E-004's `r4_held.one` into `data/cache/r5/`, resumable.
+
+**Estimate (S19), committed before the full run.** `sample`: 32
+renderings (the longest and shortest items, `held-ah` and `ode-to-joy`,
+bass and high soprano, every spread and vibrato condition) in 8.9 s at a
+pool of 16, so the 936 in about 232 s (`results/r5_sample.json`); round
+2's evaluation under one finder 10.1 s and part B under one finder 14.2 s
+on one process, so `analyse` (three evaluations, the finders compared on
+every take, part B twice, the renderings read) about 2 minutes.
+
 ### Beyond round 3
 
 Amateur voices and other vowels (E-005's `needs-human` step); a real room

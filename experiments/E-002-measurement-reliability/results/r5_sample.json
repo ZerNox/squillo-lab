@@ -1,0 +1,13 @@
+{
+ "items": [
+  "apres-un-reve",
+  "held-ah",
+  "ode-to-joy",
+  "rust-on-the-gate"
+ ],
+ "renderings": 32,
+ "wall_s": 8.863972902297974,
+ "estimate_renderings_s": 232.2338854027644,
+ "r2_eval_s": 10.131878137588501,
+ "part_B_one_finder_s": 14.233168363571167
+}
