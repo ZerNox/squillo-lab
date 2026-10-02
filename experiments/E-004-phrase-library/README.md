@@ -148,7 +148,8 @@ rights rules the way it checks SPDX identifiers today. Also the independent
 transcription the melody was checked against. The licence is `CC-PDM-1.0`
 only when `life100` passes. Otherwise the item needs a `LicenseRef-` saying
 where it is free, or it stays out. Originals are `LicenseRef-squillo-adr-0008`
-until squillo ADR 0008 chooses a licence.
+until squillo ADR 0008 chooses a licence (squillo iteration 69: ADR 0008,
+`proposed`, states its terms, CC0 1.0; the identifier is unchanged).
 
 **For measurement** (`VISION.md` §12.4): library phrases are easier than
 E-005's random melodies (96.8 % against E-005's 92.3 % at 20 cents), because
@@ -881,6 +882,12 @@ unmeasured frames more or less often. The 24 renderings per item are one
 seed each. Words and melodies are new, but whether any recalls a song is
 for a listener (the needs-human step now covers the nine). The 62-frame
 margin (W5) had no source and turned out not to be what matters.
+
+**Folded** in squillo iteration 69 (Q-038 part 1 A, ADR 0022, `build`
+BU-010): all nine copied byte for byte from `results/r4/items/` into
+squillo's `fixtures/slice/phrases/`, their SHA-256 equal to `write.json`
+`sha256`; the first slice ships 39 phrases, and CO-005 rule (2) sends a
+take with no held note to `fence-line-home`.
 
 **S15 by hand.** `tools/checkkeys.py`: `r4_held.py` 0 flags on
 `write.json` and `held.json`; `r4_diag.py` 0 flags once guarded. It ran
