@@ -379,7 +379,24 @@ that differs by one ulp. Both pass their own cases and every rung;
 `compare.json`'s `rungs`, `time` and `summary` are unchanged from
 iteration 43's, and `check_of_check` gains the six cases.
 
-### Round 3 (open)
+### Round 3: the rung's loudness against its take's (squillo iteration 66, F-063)
+
+**Question.** squillo plays the take (UI-013) and each rung (UI-007)
+unchanged, so the singer hears them at whatever loudness each has. Fold 1
+saw a rung's peak at 0.718–0.719 from its take's 0.5, a peak and not a
+loudness. Is a rung as loud as its take, within what a listener can tell
+apart? If not, squillo must level them, or a louder far vision could
+sound better for that alone (VISION §6, §10.4).
+
+**Rules, bar, checks and estimate** are in `r3_loudness.py`'s docstring,
+committed before the run. The bar is the smallest level difference limen
+of Jesteadt, Wier and Green's (1977) fit inside its measured levels,
+computed in `bar()`. **Prediction, written before the run:** |ΔL| under
+1 LU on every rung and its median under 0.5 LU; the peak rises (fold 1:
++3.1 dB) because WORLD re-synthesizes with its own phase, not because
+the rung is louder.
+
+### Round 4 (open)
 
 The listening ratings; vibrato regularisation; amateur voices; why the
 tracker misreads WORLD's output (and whether octave protection in the
