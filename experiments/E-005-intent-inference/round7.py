@@ -420,7 +420,7 @@ def report():
         out = {}
         for r in rs:
             k = "|".join(map(str, keyf(r)))
-            d = out.setdefault(k, dict(n=0, found=[], kept=[], sung=r["sung"], written=r["written"], seg_found=0,
+            d = out.setdefault(k, dict(n=0, found=[], kept=[], sung=r.get("sung", r["n_notes"]), written=r.get("written", r["on"]["states"]), seg_found=0,
                                        seg_right=0, uB=[], **{f"F{F}": {"measured": 0, "at least": 0, "too few": 0} for F in FS}))
             d["n"] += 1
             d["found"].append(r["on"]["found"])
