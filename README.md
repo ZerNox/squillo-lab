@@ -35,7 +35,14 @@ input of every condition first. **A check is itself checked before it is
 trusted:** its bounds are computed in code from their source's definition,
 never retyped, and a tolerance built from a resolution also carries the
 rounding of the arithmetic that makes the values it compares, at their
-magnitude (squillo L-048); a tool's arrays are matched to frames by the index it
+magnitude (squillo L-048); an expected value is computed from the
+definition on the exact input the check reads (a gate's blocks that
+straddle a silence's edge included), never its nominal value; a tolerance
+on two implementations' agreement is built from their differences read
+from both codes (coefficients, framing, how a count is rounded), each
+bounded, and where one cannot be bounded the agreement is recorded, not
+asserted, and the rule reads the stricter of the two (squillo L-054,
+E-001 round 3); a tool's arrays are matched to frames by the index it
 returns, never by position; and it is run once on a case it must pass and
 once on a case it must fail, each known independently of the check. A
 pass bar or a selection rule written before a run is a check too: it is

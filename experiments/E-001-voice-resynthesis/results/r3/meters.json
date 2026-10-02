@@ -1,0 +1,38 @@
+{
+ "filters_db": {
+  "20": [
+   -0.043120050695194756,
+   0.0013291350221500409
+  ],
+  "50": [
+   -0.043120050695194756,
+   -0.025893694784148824
+  ],
+  "80": [
+   -0.043120050695194756,
+   -0.035289671085646734
+  ]
+ },
+ "filters_at_997": -0.04141617247869976,
+ "m11_c100": {
+  "take": {
+   "standard": -22.31242041476716,
+   "pyln": -22.35419754651885,
+   "pyfilters_whole_blocks": -22.35419754651885,
+   "blocks_whole": 97,
+   "pyfilters_round_blocks": -22.35419754651885,
+   "blocks_round": 98,
+   "last_block_samples": 17078
+  },
+  "rung": {
+   "standard": -19.761961973300775,
+   "pyln": -19.853748643327492,
+   "pyfilters_whole_blocks": -19.803631571007596,
+   "blocks_whole": 97,
+   "pyfilters_round_blocks": -19.853748643327492,
+   "blocks_round": 98,
+   "last_block_samples": 17078
+  }
+ },
+ "reproduced": 0.0
+}

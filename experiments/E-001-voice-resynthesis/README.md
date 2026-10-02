@@ -404,6 +404,7 @@ uv run python r2_export.py                      # round 1's 43 inputs and reques
 (cd wasm && cargo build --release --bin f1)
 uv run python r3_loudness.py                    # results/r3/loudness.json, native.jsonl (54 s)
 uv run python r3_describe.py                    # results/r3/describe.json, written after the run, no rule
+uv run python r3_meters.py                      # results/r3/meters.json, why the meters differ, no rule
 ```
 
 **Inputs.** Round 1's 19 VocalSet singers and 24 synthetic phrases, each
@@ -451,6 +452,20 @@ VocalSet m11, `c100`, at 0.0500 (ΔL 2.550 against 2.500). The tolerance was
 not widened; the agreement is recorded (largest 0.0500 over all 134 rungs;
 pyloudnorm's absolute offset −0.092 to −0.041 LU), and R1 reads the larger
 |ΔL| of the two meters, so the outcome never rests on the more lenient one.
+
+**Why the meters differ** (`r3_meters.py`, `results/r3/meters.json`, after
+the run; squillo L-054). Read from both codes: (a) pyloudnorm's
+K-weighting differs from the standard's 48 kHz coefficients by −0.043 to
++0.001 dB over 20 Hz–20 kHz (−0.041 at 997 Hz, its sine's offset); (b)
+pyloudnorm counts blocks as round((T − 0.4) / 0.1) + 1 and sums a final
+block shorter than 400 ms over the full length, where this meter counts
+whole blocks only. On m11 `c100` the rung's 98th block holds 17 078 of
+19 200 samples and reads −68.7 LKFS: above the absolute gate, it lowers
+the relative gate. With pyloudnorm's filters, this meter's gating reads
+the rung at −19.8036 on whole blocks and at −19.8537 on pyloudnorm's
+blocks, which is pyloudnorm's reading exactly (difference 0.0); the take
+reads the same under both. So 0.044 of the possible disagreement is the
+filters and the rest is framing, which no round tolerance anticipated.
 
 **Results** (`results/r3/loudness.json` `summary`, `R1`, `R2_*`;
 `describe.json`).
