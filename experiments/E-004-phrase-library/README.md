@@ -988,6 +988,17 @@ uv run python round5.py measure   # -> results/r5-measure.json
 uv run python round5.py report    # -> results/r5-summary.json, results/r5-library.json
 ```
 
+*Post hoc, written after the screen and before it ran* (`posthoc_anthem`).
+The one anthem named, Hen Wlad Fy Nhadau (Mutopia 1017), fails rule 3 for
+no year in its source cell, which names the National Library of Wales
+(the composer's manuscript). Rule 6's extraction and K1, K2 run on it
+with no rights verdict, counted apart and never taken, so that the fold
+can judge it with its phrase in hand.
+
+```
+uv run python round5.py posthoc_anthem   # -> results/r5-posthoc-anthem.json
+```
+
 ## Needs a human
 
 15 minutes, headphones, no microphone.

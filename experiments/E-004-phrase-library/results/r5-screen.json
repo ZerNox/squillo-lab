@@ -1,0 +1,4212 @@
+{
+ "rights_probe": {
+  "must_pass": true,
+  "must_fail_pub_1931": true,
+  "must_fail_death_1926": true,
+  "must_fail_death_unknown": true,
+  "must_fail_anonymous_published_1926": true
+ },
+ "words_probe": {
+  "must_pass_traditional": true,
+  "must_fail_named_composer": true
+ },
+ "listed": 124,
+ "anthem_named": 1,
+ "folk_listed": 110,
+ "eligible": 29,
+ "order": [
+  1759,
+  1961,
+  1962,
+  1963,
+  1964,
+  1965,
+  1966,
+  1967,
+  1968,
+  1969,
+  1970,
+  1971,
+  1972,
+  1973,
+  1974,
+  1975,
+  1976,
+  1977,
+  1978,
+  1979,
+  1980,
+  1981,
+  1982,
+  1983,
+  1984,
+  1985,
+  1986,
+  1987,
+  1988
+ ],
+ "reasons": {
+  "2d": 13,
+  "2e": 24,
+  "2c": 18,
+  "2a": 63,
+  "2b": 2
+ },
+ "eligible_by_genre": {
+  "folk": 29
+ },
+ "rows": [
+  {
+   "id": 214,
+   "title": "Innocence",
+   "style": "Romantic",
+   "genre": "classical",
+   "composer": [
+    {
+     "name": "J. F. F. Burgmüller",
+     "died": 1874,
+     "anonymous": false
+    }
+   ],
+   "poet": [],
+   "arranger": [],
+   "edition": "Collection Litolff, 19th Century",
+   "edition_year": null,
+   "rights": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2d no edition year in the source cell",
+    "2e rights us=False life100=False (edition None)",
+    "2b no words named, composer named",
+    "2 neither a named anthem nor Mutopia style Folk"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 281,
+   "title": "Anitra's Dance (Tanz) from Peer Gynt Suite I",
+   "style": "Romantic",
+   "genre": "classical",
+   "composer": [
+    {
+     "name": "E. Grieg",
+     "died": 1907,
+     "anonymous": false
+    }
+   ],
+   "poet": [
+    {
+     "name": "Henrik Ibsen",
+     "died": null,
+     "anonymous": false
+    }
+   ],
+   "arranger": [],
+   "edition": "Kunkel Brothers 1891, 1893, Best National Music Co. 188?",
+   "edition_year": 1893,
+   "rights": {
+    "us": true,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2c no death year: Henrik Ibsen",
+    "2e rights us=True life100=False (edition 1893)",
+    "2 neither a named anthem nor Mutopia style Folk"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 510,
+   "title": "Soldier's Joy",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Transcribed by ear",
+   "edition_year": null,
+   "rights": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2d no edition year in the source cell",
+    "2e rights us=False life100=False (edition None)"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 529,
+   "title": "Red Apple Rag",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Transcribed by ear",
+   "edition_year": null,
+   "rights": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2d no edition year in the source cell",
+    "2e rights us=False life100=False (edition None)"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 566,
+   "title": "Fugue sur l'hymne de la Vierge, Ave Maris Stella",
+   "style": "Baroque",
+   "genre": "classical",
+   "composer": [
+    {
+     "name": "J.-F. Dandrieu",
+     "died": 1738,
+     "anonymous": false
+    }
+   ],
+   "poet": [],
+   "arranger": [],
+   "edition": "Édition d'Alexandre Guilmant - 1905",
+   "edition_year": 1905,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2b no words named, composer named",
+    "2 neither a named anthem nor Mutopia style Folk"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 581,
+   "title": "Sonata a due viola da gamba n°6",
+   "style": "Baroque",
+   "genre": "classical",
+   "composer": [
+    {
+     "name": "A. Kuhnel",
+     "died": 1700,
+     "anonymous": false
+    }
+   ],
+   "poet": [],
+   "arranger": [],
+   "edition": "Facsimile",
+   "edition_year": null,
+   "rights": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution-ShareAlike 2.5",
+    "2d no edition year in the source cell",
+    "2e rights us=False life100=False (edition None)",
+    "2b no words named, composer named",
+    "2 neither a named anthem nor Mutopia style Folk"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 608,
+   "title": "Hail to the Spirit of Liberty",
+   "style": "Classical",
+   "genre": "classical",
+   "composer": [
+    {
+     "name": "J. P. Sousa",
+     "died": 1932,
+     "anonymous": false
+    }
+   ],
+   "poet": [],
+   "arranger": [],
+   "edition": "The John Church Company",
+   "edition_year": null,
+   "rights": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2d no edition year in the source cell",
+    "2e rights us=False life100=False (edition None)",
+    "2b no words named, composer named",
+    "2 neither a named anthem nor Mutopia style Folk"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 625,
+   "title": "The Liberty Bell March",
+   "style": "Classical",
+   "genre": "classical",
+   "composer": [
+    {
+     "name": "J. P. Sousa",
+     "died": 1932,
+     "anonymous": false
+    }
+   ],
+   "poet": [],
+   "arranger": [],
+   "edition": "The John Church Company",
+   "edition_year": null,
+   "rights": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2d no edition year in the source cell",
+    "2e rights us=False life100=False (edition None)",
+    "2b no words named, composer named",
+    "2 neither a named anthem nor Mutopia style Folk"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 789,
+   "title": "Sing Ivy",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [
+    {
+     "name": "trad. arr. Gustav von Holst",
+     "died": null,
+     "anonymous": false
+    }
+   ],
+   "edition": "Folk Songs from Hampshire",
+   "edition_year": null,
+   "rights": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2c no death year: trad. arr. Gustav von Holst",
+    "2d no edition year in the source cell",
+    "2e rights us=False life100=False (edition None)"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 814,
+   "title": "John Barleycorn",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [
+    {
+     "name": "trad. arr. Gustav von Holst",
+     "died": null,
+     "anonymous": false
+    }
+   ],
+   "edition": "Folk-Songs from Hampshire",
+   "edition_year": null,
+   "rights": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2c no death year: trad. arr. Gustav von Holst",
+    "2d no edition year in the source cell",
+    "2e rights us=False life100=False (edition None)"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 815,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 1",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 816,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 10",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 817,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 11",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 818,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 12",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 819,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 13",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 820,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 2",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 821,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 22",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 822,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 23",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 823,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 3",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 824,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 31",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 825,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 33",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 826,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 4",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 827,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 5",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 828,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 6",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 829,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 7",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 830,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 8",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 831,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 9",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 832,
+   "title": "Traditioner af Swenska Folk-Dansar, 2nd part, nr 15",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 2nd part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 836,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 14",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 837,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 15",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 838,
+   "title": "Traditioner af Swenska Folk-Dansar, 2nd part, nr 27",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 2nd part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 839,
+   "title": "Traditioner af Swenska Folk-Dansar, 2nd part, nr 30",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 2nd part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 840,
+   "title": "Traditioner af Swenska Folk-Dansar, 2nd part, nr 31",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 2nd part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 841,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 14",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 842,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 18",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 843,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 2",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 844,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 21",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 845,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 22",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 846,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 23",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 847,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 24",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 848,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 3",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 853,
+   "title": "Ellen's Song",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "O. Comeau",
+     "died": 1971,
+     "anonymous": false
+    }
+   ],
+   "poet": [],
+   "arranger": [],
+   "edition": "memory",
+   "edition_year": null,
+   "rights": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution-ShareAlike 2.5",
+    "2d no edition year in the source cell",
+    "2e rights us=False life100=False (edition None)",
+    "2b no words named, composer named"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 857,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 16",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 858,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 17",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 859,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 18",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 860,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 19",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 861,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 20",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 862,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 26",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 863,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 27",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 864,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 29",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 865,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 30",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 866,
+   "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 34",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 867,
+   "title": "Traditioner af Swenska Folk-Dansar, 2nd part, nr 36",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 2nd part, 1814",
+   "edition_year": 1814,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 868,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 1",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 869,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 11",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 870,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 12",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 871,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 13",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 872,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 15",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 873,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 16",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 874,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 17",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 875,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 19",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 876,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 34",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 877,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 4",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 878,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 5",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 879,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 6",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 880,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 7",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 881,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 8",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 882,
+   "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 9",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+   "edition_year": 1815,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 883,
+   "title": "Lindormen",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Svenska fornsånger, 2nd part, 1837",
+   "edition_year": 1837,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution-ShareAlike 2.5"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 888,
+   "title": "Oats and Beans",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [
+    {
+     "name": "L. E. Broadwood",
+     "died": 1929,
+     "anonymous": false
+    }
+   ],
+   "edition": "English County Songs",
+   "edition_year": null,
+   "rights": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2d no edition year in the source cell",
+    "2e rights us=False life100=False (edition None)"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 889,
+   "title": "The Water of Tyne",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [
+    {
+     "name": "J. A. Fuller-Maitland",
+     "died": 1936,
+     "anonymous": false
+    }
+   ],
+   "edition": "English County Songs",
+   "edition_year": null,
+   "rights": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2d no edition year in the source cell",
+    "2e rights us=False life100=False (edition None)"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 949,
+   "title": "O nata lux de lumine",
+   "style": "Renaissance",
+   "genre": "early music",
+   "composer": [
+    {
+     "name": "T. Tallis",
+     "died": 1585,
+     "anonymous": false
+    }
+   ],
+   "poet": [
+    {
+     "name": "Anonymous (10th century)",
+     "died": null,
+     "anonymous": false
+    }
+   ],
+   "arranger": [],
+   "edition": "Cantiones quae ab argumento sacra vocantur, 1575",
+   "edition_year": 1575,
+   "rights": {
+    "us": true,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2c no death year: Anonymous (10th century)",
+    "2e rights us=True life100=False (edition 1575)",
+    "2 neither a named anthem nor Mutopia style Folk"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1017,
+   "title": "Hen Wlad Fy Nhadau",
+   "style": "Song",
+   "genre": "anthem",
+   "composer": [
+    {
+     "name": "J. James",
+     "died": 1902,
+     "anonymous": false
+    }
+   ],
+   "poet": [
+    {
+     "name": "Ieuan ap Iago",
+     "died": 1878,
+     "anonymous": false
+    }
+   ],
+   "arranger": [],
+   "edition": "Llyfrgell Genedlaethol Cymru",
+   "edition_year": null,
+   "rights": {
+    "us": false,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2d no edition year in the source cell",
+    "2e rights us=False life100=True (edition None)"
+   ],
+   "anthem": "Hen Wlad Fy Nhadau"
+  },
+  {
+   "id": 1019,
+   "title": "Taivas on sininen ja valkoinen",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [
+    {
+     "name": "Arr. Tanja Kivi",
+     "died": null,
+     "anonymous": false
+    }
+   ],
+   "edition": "Transcription",
+   "edition_year": null,
+   "rights": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2c no death year: Arr. Tanja Kivi",
+    "2d no edition year in the source cell",
+    "2e rights us=False life100=False (edition None)"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1020,
+   "title": "Aamulla varhain",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [
+    {
+     "name": "Arr. Tanja Kivi",
+     "died": null,
+     "anonymous": false
+    }
+   ],
+   "edition": "Transcription",
+   "edition_year": null,
+   "rights": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2c no death year: Arr. Tanja Kivi",
+    "2d no edition year in the source cell",
+    "2e rights us=False life100=False (edition None)"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1098,
+   "title": "Nº. 9. Polish National Air.",
+   "style": "Classical",
+   "genre": "classical",
+   "composer": [
+    {
+     "name": "F. Horetzky",
+     "died": 1870,
+     "anonymous": false
+    }
+   ],
+   "poet": [],
+   "arranger": [],
+   "edition": "Boije collection #268",
+   "edition_year": null,
+   "rights": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2d no edition year in the source cell",
+    "2e rights us=False life100=False (edition None)",
+    "2b no words named, composer named",
+    "2 neither a named anthem nor Mutopia style Folk"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1321,
+   "title": "The Washington Post",
+   "style": "March",
+   "genre": "other",
+   "composer": [
+    {
+     "name": "J. P. Sousa",
+     "died": 1932,
+     "anonymous": false
+    }
+   ],
+   "poet": [],
+   "arranger": [],
+   "edition": "D. Davis & Co. Sydney, 189-?",
+   "edition_year": null,
+   "rights": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution-ShareAlike 3.0",
+    "2d no edition year in the source cell",
+    "2e rights us=False life100=False (edition None)",
+    "2b no words named, composer named",
+    "2 neither a named anthem nor Mutopia style Folk"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1328,
+   "title": "Das Wohltemperierte Clavier II, Fuga IX",
+   "style": "Baroque",
+   "genre": "classical",
+   "composer": [
+    {
+     "name": "J. S. Bach",
+     "died": 1750,
+     "anonymous": false
+    }
+   ],
+   "poet": [],
+   "arranger": [],
+   "edition": "Le clavecin bien tempéré, volume 2, Révision et annotations par Vincent d'Indy, Édition nationale de musique classique, Éditions Salabert, Paris, 1920.",
+   "edition_year": 1920,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution-ShareAlike 3.0",
+    "2b no words named, composer named",
+    "2 neither a named anthem nor Mutopia style Folk"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1602,
+   "title": "Sibylla Samia",
+   "style": "Renaissance",
+   "genre": "early music",
+   "composer": [
+    {
+     "name": "O. de Lassus (1530 or 1532–1594)",
+     "died": null,
+     "anonymous": false
+    }
+   ],
+   "poet": [],
+   "arranger": [],
+   "edition": "Vienna, Österreichische Nationalbibliothek, Musiksammlung, Mus. Hs. 18.744",
+   "edition_year": null,
+   "rights": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution-ShareAlike 3.0",
+    "2c no death year: O. de Lassus (1530 or 1532–1594)",
+    "2d no edition year in the source cell",
+    "2e rights us=False life100=False (edition None)",
+    "2b no words named, composer named",
+    "2 neither a named anthem nor Mutopia style Folk"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1641,
+   "title": "The Old Folks At Home (Swanee River)",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "S. C. Foster",
+     "died": 1864,
+     "anonymous": false
+    }
+   ],
+   "poet": [],
+   "arranger": [
+    {
+     "name": "Arr. by W. L. HAYDEN, 1881",
+     "died": null,
+     "anonymous": false
+    }
+   ],
+   "edition": "Gems of The Season (arranged for guitar by W.L. Hayden) Boston: Ditson & Co., Oliver, 1881. Library of Congress http://memory.loc.gov/cgi-bin/ampage?collId=mussm&fileName=sm/sm1881/01900/01976/mussm01976.db&recNum=0&itemLink=h?ammem/mussm:@field(NUMBER+@band(sm1881+01976))&linkText=0",
+   "edition_year": 1881,
+   "rights": {
+    "us": true,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution-ShareAlike 3.0",
+    "2c no death year: Arr. by W. L. HAYDEN, 1881",
+    "2e rights us=True life100=False (edition 1881)",
+    "2b no words named, composer named"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1759,
+   "title": "Banza-Bushi",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1760,
+   "title": "Yanreso Hoi",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [
+    {
+     "name": "Arr. Y. Nagai, K. Obata",
+     "died": null,
+     "anonymous": false
+    }
+   ],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2c no death year: Arr. Y. Nagai, K. Obata",
+    "2e rights us=True life100=False (edition 1895)"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1761,
+   "title": "Noue Bushi",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [
+    {
+     "name": "Arr. Y. Nagai, K. Obata",
+     "died": null,
+     "anonymous": false
+    }
+   ],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2c no death year: Arr. Y. Nagai, K. Obata",
+    "2e rights us=True life100=False (edition 1895)"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1762,
+   "title": "Umewa Saitaka",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [
+    {
+     "name": "Arr. Y. Nagai, K. Obata",
+     "died": null,
+     "anonymous": false
+    }
+   ],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2c no death year: Arr. Y. Nagai, K. Obata",
+    "2e rights us=True life100=False (edition 1895)"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1763,
+   "title": "Doujan",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [
+    {
+     "name": "Arr. Y. Nagai, K. Obata",
+     "died": null,
+     "anonymous": false
+    }
+   ],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2c no death year: Arr. Y. Nagai, K. Obata",
+    "2e rights us=True life100=False (edition 1895)"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1764,
+   "title": "Saakorasa",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [
+    {
+     "name": "Arr. Y. Nagai, K. Obata",
+     "died": null,
+     "anonymous": false
+    }
+   ],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2c no death year: Arr. Y. Nagai, K. Obata",
+    "2e rights us=True life100=False (edition 1895)"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1765,
+   "title": "Chidori Meimei",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [
+    {
+     "name": "Arr. Y. Nagai, K. Obata",
+     "died": null,
+     "anonymous": false
+    }
+   ],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2c no death year: Arr. Y. Nagai, K. Obata",
+    "2e rights us=True life100=False (edition 1895)"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1766,
+   "title": "Nisshin Danpan",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [
+    {
+     "name": "Arr. Y. Nagai, K. Obata",
+     "died": null,
+     "anonymous": false
+    }
+   ],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2c no death year: Arr. Y. Nagai, K. Obata",
+    "2e rights us=True life100=False (edition 1895)"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1767,
+   "title": "Shashari",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [
+    {
+     "name": "Arr. Y. Nagai, K. Obata",
+     "died": null,
+     "anonymous": false
+    }
+   ],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2c no death year: Arr. Y. Nagai, K. Obata",
+    "2e rights us=True life100=False (edition 1895)"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1768,
+   "title": "Soushi-Bushi",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [
+    {
+     "name": "Arr. Y. Nagai, K. Obata",
+     "died": null,
+     "anonymous": false
+    }
+   ],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2c no death year: Arr. Y. Nagai, K. Obata",
+    "2e rights us=True life100=False (edition 1895)"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1769,
+   "title": "Shigin-Cho, Nanagon Zeku",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [
+    {
+     "name": "Arr. Y. Nagai, K. Obata",
+     "died": null,
+     "anonymous": false
+    }
+   ],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2c no death year: Arr. Y. Nagai, K. Obata",
+    "2e rights us=True life100=False (edition 1895)"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1887,
+   "title": "Air varié",
+   "style": "Classical",
+   "genre": "classical",
+   "composer": [
+    {
+     "name": "J. Küffner",
+     "died": 1856,
+     "anonymous": false
+    }
+   ],
+   "poet": [],
+   "arranger": [],
+   "edition": "München. Internationaler Guitarristen-Verband. 1905",
+   "edition_year": 1905,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution-ShareAlike 3.0",
+    "2b no words named, composer named",
+    "2 neither a named anthem nor Mutopia style Folk"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1889,
+   "title": "Nº1. Halling.",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [
+    {
+     "name": "Johan Halvorsen",
+     "died": null,
+     "anonymous": false
+    }
+   ],
+   "edition": "Carl Warmuths Musikforlag",
+   "edition_year": null,
+   "rights": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution-ShareAlike 3.0",
+    "2c no death year: Johan Halvorsen",
+    "2d no edition year in the source cell",
+    "2e rights us=False life100=False (edition None)"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1890,
+   "title": "Nº2. Bruralaat.",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [
+    {
+     "name": "Johan Halvorsen",
+     "died": null,
+     "anonymous": false
+    }
+   ],
+   "edition": "Carl Warmuths Musikforlag",
+   "edition_year": null,
+   "rights": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution-ShareAlike 3.0",
+    "2c no death year: Johan Halvorsen",
+    "2d no edition year in the source cell",
+    "2e rights us=False life100=False (edition None)"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1894,
+   "title": "Nº1. Nöring.",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [
+    {
+     "name": "Johan Halvorsen",
+     "died": null,
+     "anonymous": false
+    }
+   ],
+   "edition": "Carl Warmuths Musikforlag",
+   "edition_year": null,
+   "rights": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution-ShareAlike 3.0",
+    "2c no death year: Johan Halvorsen",
+    "2d no edition year in the source cell",
+    "2e rights us=False life100=False (edition None)"
+   ],
+   "anthem": null
+  },
+  {
+   "id": 1961,
+   "title": "Gonbe ga Tanemaku",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1962,
+   "title": "Toka-Ebisu",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1963,
+   "title": "O-Edo-Nihonbashi",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1964,
+   "title": "Suiryo-Bushi",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1965,
+   "title": "Riukiu-Bushi",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1966,
+   "title": "Sedo no Danbatake",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1967,
+   "title": "Inshu-Inaba",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1968,
+   "title": "Kappore",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1969,
+   "title": "Yube-Yonda",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1970,
+   "title": "K Honen",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1971,
+   "title": "Sakura-Miyotote",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1972,
+   "title": "Kuro-Kami",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1973,
+   "title": "Waga-Koiwa",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1974,
+   "title": "Kosunoto",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1975,
+   "title": "Kayo-Kami",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1976,
+   "title": "Horete-Kayouni",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1977,
+   "title": "Doteo-Toruwa",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1978,
+   "title": "Otsue-Bushi",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1979,
+   "title": "Asaku-Tomo",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1980,
+   "title": "Iyo-Bushi",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1981,
+   "title": "Oki No Taisen",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1982,
+   "title": "Gosho no Oniwa",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1983,
+   "title": "Murasaki",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1984,
+   "title": "Na No Ha",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1985,
+   "title": "Echigo Jishi",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1986,
+   "title": "Echigo Jishi",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1987,
+   "title": "Fuku-Ju-So",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 1988,
+   "title": "Ukiyo-Bushi",
+   "style": "Folk",
+   "genre": "folk",
+   "composer": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "poet": [
+    {
+     "name": "Traditional",
+     "died": null,
+     "anonymous": true
+    }
+   ],
+   "arranger": [],
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "eligible": true,
+   "why": [],
+   "anthem": null
+  },
+  {
+   "id": 2017,
+   "title": "Perger Präludium",
+   "style": "Romantic",
+   "genre": "classical",
+   "composer": [
+    {
+     "name": "A. Bruckner",
+     "died": 1896,
+     "anonymous": false
+    }
+   ],
+   "poet": [],
+   "arranger": [],
+   "edition": "Composer Manuscript, Austrian National Library, Mus.Hs.44609/1",
+   "edition_year": null,
+   "rights": {
+    "us": false,
+    "life70": false,
+    "life100": false
+   },
+   "eligible": false,
+   "why": [
+    "2a licence Creative Commons Attribution-ShareAlike 4.0",
+    "2d no edition year in the source cell",
+    "2e rights us=False life100=False (edition None)",
+    "2b no words named, composer named",
+    "2 neither a named anthem nor Mutopia style Folk"
+   ],
+   "anthem": null
+  }
+ ]
+}

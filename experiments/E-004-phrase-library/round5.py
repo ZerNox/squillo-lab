@@ -70,7 +70,9 @@ ITEMS = [HERE / "results" / "items", HERE / "results" / "r4" / "items"]
 # Rule 5 (filled from r5-screen.json's eligible pieces alone and committed
 # before `extract` reads Wikidata or any file): Mutopia's name -> English
 # Wikipedia article.
-PEOPLE5 = None
+# Named from r5-screen.json: its 29 eligible pieces name no person (every
+# composer and lyricist cell anonymous, no arranger cell filled).
+PEOPLE5 = {}
 
 
 def committed_first():
@@ -363,6 +365,50 @@ def extract():
     print("taken", len(res["taken"]), "tried", len(out))
 
 
+# ---------------------------------------------------------------- post hoc, counted apart
+
+def posthoc_anthem():
+    """Written after the screen, before it runs (README, *Round 5*, post
+    hoc): Hen Wlad Fy Nhadau (1017), the one anthem named, fails rule 3 for
+    no year in its source cell (the National Library of Wales, a
+    manuscript). Rule 6's extraction and K1, K2, K6 run on it with no
+    rights verdict, so the fold can judge it with its phrase in hand.
+    Counted apart; it is never taken by this round."""
+    committed_first()
+    s = {p["id"]: p for p in json.load(open(RES / "r5-survey.json"))}[1017]
+    lys = R3.ly_paths(s)
+    hdr = R3.ly_header(lys)
+    rec = dict(id=1017, title=s["title"], counted="apart, post hoc; no rights verdict", source_cell=s["source"],
+               ly_header={k: hdr[k] for k in ("title", "composer", "poet", "translator", "arranger", "source",
+                                              "date", "copyright", "mutopiacomposer", "mutopiapoet") if k in hdr},
+               header_people=list(R3.header_people(lys, hdr)))
+    tracks, tpq, meta = R3.read_midi(R3.fetch(s["mid"][0]))
+    rec["midi_source"] = "mutopia"
+    if not any(t["lyrics"] for t in tracks):
+        cm = R3.compile_ly(lys[0], 1017) if len(lys) == 1 else None
+        rec["midi_source"] = "compiled" if cm else None
+        if cm:
+            tracks, tpq, meta = R3.read_midi(cm)
+    ph, why = R3.phrase_from(tracks, tpq, meta) if rec["midi_source"] else (None, "6a no lyric events")
+    rec["excluded_by_rule_6"] = why
+    if ph:
+        w, wf = R3.ly_words(lys, ph["syllables"])
+        ph["words_midi"] = ph["words"]
+        if w:
+            ph["words"], ph["words_from"] = w, wf
+        rec["phrase"] = ph
+        rec["conditions"] = R3.conditions(ph)
+        rec["k1"] = k1 = R3.k1_round_trip(ph)
+        rec["k2"] = k2 = R3.k2_words(ph)
+        assert k1["must_fail_pitch"] and k1["must_fail_rhythm"], k1
+        assert k2["must_fail"], k2
+        rec["passes_rule_6_and_checks"] = not rec["conditions"]["fails"] and k1["must_pass"] and k2["must_pass"]
+    json.dump(rec, open(RES / "r5-posthoc-anthem.json", "w"), indent=1, ensure_ascii=False)
+    print(json.dumps({k: v for k, v in rec.items() if k != "phrase"}, ensure_ascii=False)[:1500])
+    if ph:
+        print(ph["words"], ph["melody"], ph["key"], ph["meter"], ph["tempo_qpm"])
+
+
 # ---------------------------------------------------------------- measure, report (rules 7, 8)
 
 def measure():
@@ -432,4 +478,5 @@ def report():
 
 
 if __name__ == "__main__":
-    {"survey": survey, "screen": screen, "extract": extract, "measure": measure, "report": report}[sys.argv[1]]()
+    {"survey": survey, "screen": screen, "extract": extract, "measure": measure, "report": report,
+     "posthoc_anthem": posthoc_anthem}[sys.argv[1]]()
