@@ -33,7 +33,9 @@ its exact formula, never from nominal parameters, and stops if one fails.
 Any procedure that makes the truth (alignment, segmentation) runs on one
 input of every condition first. **A check is itself checked before it is
 trusted:** its bounds are computed in code from their source's definition,
-never retyped, and a tolerance built from a resolution also carries the
+never retyped; a bound is a named constant whose own line states its
+source (a definition, a lab result, literature), never a bare number in a
+comparison (squillo L-057); and a tolerance built from a resolution also carries the
 rounding of the arithmetic that makes the values it compares, at their
 magnitude (squillo L-048); an expected value is computed from the
 definition on the exact input the check reads (a gate's blocks that
