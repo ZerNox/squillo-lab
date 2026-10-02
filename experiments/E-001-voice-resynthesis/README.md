@@ -1,6 +1,6 @@
 # E-001 — Voice re-synthesis: the synthesized you
 
-**Status:** needs-human (rounds 1 and 2 answered on automated evidence: the change delivered, round 1; the time in WASM in a browser, round 2; the listening check `needs-human`; fold 1, squillo iteration 37: squillo's `synthesis` fixtures, a delivered-change rule, the same samples in both browsers, a 30 s and a 60 s take) · **Serves:** VISION §3 (core idea), §8 (on-device), §12.1
+**Status:** needs-human (round 3, squillo iteration 66: every rung 1.1–4.8 LU louder than its take on real voices, levelling needed; rounds 1 and 2 answered on automated evidence: the change delivered, round 1; the time in WASM in a browser, round 2; the listening check `needs-human`; fold 1, squillo iteration 37: squillo's `synthesis` fixtures, a delivered-change rule, the same samples in both browsers, a 30 s and a 60 s take) · **Serves:** VISION §3 (core idea), §8 (on-device), §12.1
 
 ## Question
 
@@ -396,9 +396,98 @@ computed in `bar()`. **Prediction, written before the run:** |ΔL| under
 +3.1 dB) because WORLD re-synthesizes with its own phase, not because
 the rung is louder.
 
+**Run** (one process, 54 s, against the docstring's estimate of under 2.5
+minutes):
+
+```
+uv run python r2_export.py                      # round 1's 43 inputs and requests, data/cache/r2 (40 s)
+(cd wasm && cargo build --release --bin f1)
+uv run python r3_loudness.py                    # results/r3/loudness.json, native.jsonl (54 s)
+uv run python r3_describe.py                    # results/r3/describe.json, written after the run, no rule
+```
+
+**Inputs.** Round 1's 19 VocalSet singers and 24 synthetic phrases, each
+with `id`, `c100` and `s100`, and squillo's `synthesis` fixtures as fold 1
+exports them (`voice` with `zero`, `up-50c` and `steady`, and `long30` and
+`long60` with `steady`): 57 real, 72 synthetic and 5 fixture rungs. Each
+rung is made natively by round 2's crate (world-rs, WORLD-DIO), rounded to
+`f32`. Round 1 normalised every take to a peak of 0.5 (`take_max`
+0.5000).
+
+**Measures.** ΔL: the rung's integrated loudness minus its take's (ITU-R
+BS.1770-4, K-weighted, gated), by this script's meter (the standard's
+48 kHz coefficients) and by pyloudnorm 0.2.0. ΔRMS and ΔPeak: whole-file
+levels. Block p95: over the 400 ms blocks the take's gates keep, the 95th
+percentile of how far each block's difference lies from ΔL, which is what a
+single gain would leave. Python 3.13, numpy 2.5.3, scipy 1.18.1; same laptop.
+
+**The bar.** Jesteadt, Wier and Green (1977), *J. Acoust. Soc. Am.* 61(1)
+169–177 (doi:10.1121/1.381278, abstract read through Crossref): for pulsed
+sinusoids at 200–8000 Hz and 5–80 dB SL, ΔI/I = 0.463 (I/I₀)^−0.072 at 71 %
+correct in two-interval forced choice. As a level, ΔL = 10 log₁₀(1 + ΔI/I):
+1.54 dB at 5 dB SL, falling to 0.503 dB at 80 dB SL. The bar is the
+smallest, floored: **0.50 dB**. It is a pure-tone figure at a 71 %
+criterion, applied to a sung take at an unknown playback level, so the
+smallest value in the fit's range is taken.
+
+**Checks** (S15; `loudness.json` `checks`; `tools/checkkeys.py`: 0 flags).
+
+| Check | Must pass | Must fail |
+| :--- | :--- | :--- |
+| `meter_sine`: a full-scale 997 Hz sine reads −3.01 LKFS within 0.05 | this meter −3.0103, pyloudnorm −3.0517 | half amplitude: −9.031, −9.072 |
+| `meter_gate`: 5 s of silence then that sine reads what the gating gives by definition, −3.0756 | −3.0759, −3.1173 | the ungated level: −4.749 |
+| `meters_agree`: the meters' ΔL agree within 0.05 | the take against itself × 0.9: 1.8 × 10⁻¹⁴ | pyloudnorm's ΔL for +0.2 dB against this meter's for none: 0.200 |
+| `rule`: R1's comparison | the take against itself: ΔL 0 | the take raised by 1 dB: ΔL 1.000 |
+
+**Two revisions, both in git before this result.** Revision 1
+(`df97cd6`), before any rung was read: the first
+`meter_gate` expected −3.01, but BS.1770's gating keeps the three blocks
+that straddle the silence's edge, so −3.0756 is the definition's value; and
+pyloudnorm reads the standard's sine 0.04 LU low (its K-weighting is designed
+from analogue prototypes), so the meters are compared on ΔL, not on absolute
+level. Revision 2 (`41b2653`), **after the run had read real rungs**: the per-rung
+assertion that the two meters' ΔL agree within 0.05 stopped the run on
+VocalSet m11, `c100`, at 0.0500 (ΔL 2.550 against 2.500). The tolerance was
+not widened; the agreement is recorded (largest 0.0500 over all 134 rungs;
+pyloudnorm's absolute offset −0.092 to −0.041 LU), and R1 reads the larger
+|ΔL| of the two meters, so the outcome never rests on the more lenient one.
+
+**Results** (`results/r3/loudness.json` `summary`, `R1`, `R2_*`;
+`describe.json`).
+
+| # | Question | Result |
+| :--- | :--- | :--- |
+| 1 | Is a rung as loud as its take? (R1) | **No.** Every one of the 57 real rungs is louder than its take by more than the bar: ΔL +1.08 to +4.84 LU. Median by request, with its 95 % bootstrap interval over singers: `id` +2.07 (1.69–2.32), `c100` +1.85 (1.65–2.22), `s100` +2.03 (1.68–2.30). Women +1.16 to +3.74 (median 1.85, 24 rungs), men +1.08 to +4.84 (median 2.03, 33). **R1's outcome: levelling needed** |
+| 2 | Synthetic phrases and squillo's fixtures (R2) | The same: 0 of 72 synthetic rungs and 0 of 5 fixture rungs under the bar. Synthetic +0.81 to +3.36 LU; fixtures +1.18 (`up-50c`), +1.35 to +1.36 (`steady` on the 5, 30 and 60 s takes), +1.40 (`zero`) |
+| 3 | Is it the request or the re-synthesis? | The re-synthesis. A rung with no change (`id`, `zero`) is as much louder as one with a change, and the rungs of one take differ among themselves by at most 0.23 LU (median 0.07 real, 0.14 synthetic; fixture `voice` 0.22): under the bar. Next step and far vision are as loud as each other; both are louder than the take |
+| 4 | RMS and peak | ΔRMS follows ΔL: +0.95 to +4.51 dB real, +0.80 to +3.24 synthetic, +1.13 to +1.35 fixtures. ΔPeak −0.50 to +4.87 dB real; +3.15 to +3.16 on the fixtures, fold 1's 0.718 from 0.5. No rung exceeds full scale here (largest 0.876, m9 `id`), but only because every take peaks at 0.5: a take that peaks within 4.87 dB of full scale would give a rung that clips |
+| 5 | Does one gain per take level it? | On the fixtures, yes: block p95 0.02–0.11 dB. On real voices, only on the whole: after a gain bringing ΔL to 0, the blocks' differences still reach a p95 of 0.69 to 3.63 dB per take (synthetic 0.32 to 1.25), so some passages stay off by more than the bar. Recorded, not a rule; where in the take those blocks fall is not analysed here |
+
+**What this says for squillo.** squillo F-063 is a real effect, and the
+sign flatters: WORLD's re-synthesis, as squillo's crate runs it, makes
+every rung 1.1 to 4.8 LU louder than the take on real voices, at least
+twice the smallest level difference listeners told apart at 71 % in
+Jesteadt, Wier and Green's data, and well above it at the median. A singer
+comparing the far vision with their take by ear would hear the rung louder
+for that alone (VISION §6, §10.4). Rungs of one take match each other to
+within 0.23 LU, so levelling each rung to its take's integrated loudness,
+one gain per rung, removes the difference on the whole; it does not remove
+the passage-level differences of result 5. The gain is negative, so it also
+removes result 4's clipping risk.
+
+**Limits.** VocalSet's straight-tone scales on /a/ by trained singers,
+normalised to a peak of 0.5; no amateurs, songs, rooms or microphones. The
+bar is a pure-tone, 71 %-correct threshold; whether a singer hears
+1–5 LU on their own voice as "better" is the listening check's. Native
+rungs, not the browser's (fold 2: at most 4.9 × 10⁻¹⁰ apart). Why WORLD's
+output is louder (its aperiodicity, its envelope's level, its pulse
+synthesis) is not analysed.
+
 ### Round 4 (open)
 
 The listening ratings; vibrato regularisation; amateur voices; why the
 tracker misreads WORLD's output (and whether octave protection in the
 tracker or H1 restoration in WORLD fixes it); a PSOLA as precise as Praat's
-in WASM; memory held as f32; a slower device.
+in WASM; memory held as f32; a slower device; why WORLD's output is
+louder than its input (round 3), and where in a take the passages a single
+gain leaves off fall.
