@@ -29,8 +29,12 @@ Rules, written and committed before any run (S15, S19). Every rule below is asse
      W4 give CO-005 rule (2) at least BLOCKS_MIN = 2 blocks from its written notes, by fold3.phrase_blocks
         (each written note one held note of its written duration at the tempo, whole 8 ms frames, a note of
         N frames >= 250 giving (N - 124) // 125 blocks); fold3's own cases 249 -> 0, 250 -> 1, 373 -> 1,
-        374 -> 2 re-run here first; must fail: an item at twice its tempo, whose longest note then falls
-        under 374 frames (asserted per item, so the case differs from the must-pass in the input);
+        374 -> 2 re-run here first; must fail: each item at three times its tempo, whose every note then
+        falls under 250 frames, so no note is held (asserted per item, so the case differs from the
+        must-pass in the input). Revision 1, after the first `write` stopped here before any rendering:
+        the committed case was twice the tempo, under which an item with two held notes keeps one block
+        on each, two in all (held-ah: 576 frames halved to 288 gives 1 block, twice), so the case could
+        not fail as stated; the items are unchanged.
      W5 each held note (>= 374 frames written) is at least HELD_MARGIN = 62 frames longer than the
         least note giving its blocks, so that a transition's half (the 2 Hz cut, below) cannot alone cost
         it a block. 62 is MT-009's own trim at each end (fold3.TRIM), chosen as a margin before any run;
@@ -231,7 +235,7 @@ def write(squillo):
                                   seconds=str(sum(Fraction(n["quarters"]) for n in o["melody"]["notes"])
                                               * 60 / o["melody"]["tempo_qpm"]))
         fast = json.loads(json.dumps(o))
-        fast["melody"]["tempo_qpm"] = 2 * o["melody"]["tempo_qpm"]
+        fast["melody"]["tempo_qpm"] = 3 * o["melody"]["tempo_qpm"]
         w4f.append(F3.phrase_blocks(fast)[0] < BLOCKS_MIN)
         w5[o["phrase_id"]] = [dict(frames=n, blocks=F3.blocks_of_frames(n),
                                    over_least=n - (2 * F3.TRIM + F3.BLOCK * F3.blocks_of_frames(n)))
