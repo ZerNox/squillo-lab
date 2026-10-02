@@ -345,7 +345,7 @@ def run_checks():
     _, intune = F5.k_of(F5.load("take-in-tune.wav", H), notes)
     p, _ = b5_cells([dict(mode="tone", n_notes=14, vib=0, on=steady)], 0.0)
     f, _ = b5_cells([dict(r, mode="tone") for r in full if r["n_notes"] == 14 and r["sigma"] == 0 and not r["vib"]], 0.0)
-    out["r4"] = dict(must_pass=bool(p), must_fail=bool(f), steady_state=steady["state"])
+    out["r4"] = dict(must_pass=bool(p), must_fail=bool(f), steady_state=R5.state(steady, X40))
     assert p and not f, out["r4"]
     p = state_f(intune, 0.75) != "too few"
     f = state_f(steady, 0.25) != "too few"
