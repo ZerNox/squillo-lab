@@ -53,7 +53,16 @@ input on the fitting fold) and to one that must fail it. A rule that
 predicts what a change leaves unmoved over a set of inputs is written
 only after each input's value of the condition the change acts on is read
 (from its generator or manifest), and names the inputs the change is
-expected to move (squillo L-058, E-005 fold 4). **A must-fail
+expected to move (squillo L-058, E-005 fold 4). The same holds for any
+rule that predicts an outcome on every input of a set (every state
+found, every take measured): it is written only after the rate at which
+the experiment's own earlier results gave that outcome is read, and
+where that rate was below 100 % it names why each of its inputs will not
+be the exception, or it is reported without a bar (squillo L-059, E-005
+fold 5). `checkkeys.py` with the results is run, and its output read,
+in a command of its own before the README's check paragraph is written
+and before the results commit; never chained to the commit (squillo
+L-059). **A must-fail
 case differs from the must-pass case in the input the check reads**: never
 the check applied to identical arguments, never a value that cannot fail
 by construction, and never an expectation taken from the claim under test
