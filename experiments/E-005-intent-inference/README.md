@@ -902,3 +902,102 @@ in 30.0 s, 0.833 s of wall time each; for 2040 phrases, 28.3 minutes (an
 upper bound, since most of round 2's phrases are 14 or 28 notes). The run
 is driven in foreground calls of under 600 s, each resuming from the rows
 saved every 100 phrases.
+
+**Question** (squillo R-14 §8; F-041, F-033 (c), Q-021 part 6). Round 2
+(R7, R8) found the spread about a library phrase's written notes,
+unwrapped (K), honest to 40 cents and two to three times as powerful as
+the take's own wrapped spread, measuring with every frame YIN gave. Does K
+stay honest under squillo MT-003's refusal (aperiodicity ≥ 0.02), in which
+states may squillo show it, and what exactly is the alignment rule?
+
+**Rules first.** The measure K with its alignment stated step by step,
+four candidate state rules, the inputs' conditions, bars B1–B3 and checks
+c1–c5 are in `round5.py`'s docstring, committed before any run
+(`65910cb`); the estimate after the timing sample, before the full run
+(`4330b9c`). No revision.
+
+**The measure K**, stated exactly (`round5.py` docstring, steps 1–9): the
+measured cells in order, gaps skipped, each replaced by the median of the
+25 cells centred on it (ends padded); the written notes, consecutive
+repeats merged; transposition candidates r0 + 100 *k*, *k* = −45 … 45, r0
+the contour's circular mean; the monotone path (each cell stays on its
+state or moves to the next, first cell on the first state, last on the
+last) of least Σ min(|*x* − 100 *s* − *T*|, 300) cents, the first *T* on a
+tie and staying on a tie; each state's segment from its first to its last
+cell; round 2's centre (whole cycles where the fitted vibrato is at least
+25 cents, else the median, over 30–90 %); states under 0.1 s dropped; a
+note more than 150 cents from the weighted median deviation a wrong note,
+left out; tuning the weighted mean; K the weighted SD with *n*ₑ/(*n*ₑ − 1);
+*u*_B = K/√(2(*n*ₑ − 1)) ⊕ the weighted rms settle *u*; no value with
+fewer than two notes. **Candidates:** measured when K + 2*u*_B ≤ *X*, else
+the lower end only, *X* = ∞, 40, 35, 30 in that order; the first to pass
+B1 is selected.
+
+**Inputs.** R: round 2's design under its seeds, the first 40 phrases of
+each of its 42 cells (14, 28, 56 notes; σ 0–40; straight or vibrato faded
+in), 1680; O: round 4's 50-cent vibrato full from each onset, the first 40
+of each of its 6 cells (14, 28 notes; σ 0, 10, 20), 240; L: E-004 fold 2's
+30 library items at σ 0 and 20, straight and vibrato, one rendering each,
+120 (round 3's renderer); every contour asserted inside E2..C6 by its
+generator. Real: round 2's 40 E-002 re-syntheses (truth from round 2's
+cache) and 77 VocalSet originals. MT-003's refusal on; 4.82 % of the
+synthetic frames YIN measured refused. Python 3.13.14, numpy 2.5.3, scipy
+1.18.1.
+
+**The run.** 2040 phrases in three foreground calls under 600 s, each
+resuming from the rows saved every 100 (the first two calls' limits cut
+the chunks in flight, re-run whole), about 29 minutes in all against the
+28.3 estimated; real takes 1 minute.
+
+**Checks** (`results/round5_checks.json`; c1 also over the whole run in
+`results/round5.json`):
+
+| Check | Must pass | Must fail | Result |
+| :--- | :--- | :--- | :--- |
+| c1 K reimplemented equals round 2's cached `known` (*s*, *u*_B) within 10⁻⁹, no refusal | 4 of 4 phrases; the whole run 1680 of 1680 | the next phrase's cached values: 0 of 4; 0 of 1680 | as they must |
+| c2 `round2.dtw_T` equals an independent full-matrix programme in *T*, path and cost | 20 of 20 random cases | the reference given one state a semitone off: 0 of 20 equal | as they must |
+| c3 the refusal drops exactly the frames at *d*′ ≥ 0.02 | `tone-aperiodic.wav`: 13 refused (E-002 fold F5) | the threshold at 0.2: 0 refused | as they must |
+| c4 bar B1 on round 2's cached values | K always measured, σ ≤ 30: worst cell 2.5 % | the wrapped spread always shown measured, σ = 40: worst 52.7 % | as they must |
+| c5 the comparison | a phrase against itself: no change | against itself with K raised by three times the bound earlier: improved | as they must |
+
+`checkkeys.py round5.py results/round5.json results/round5_checks.json`
+flags six check keys (`must_pass_refused`, `must_fail_threshold_0p2`,
+`must_pass_worst_percent`, `must_fail_worst_percent`,
+`must_fail_next_phrase`, `must_fail_state_off`). Read by hand: each is
+asserted through the local it records (`n02`, `n2`, `wp`, `wf`, `fail`,
+`ok_fail`) on the assert line that follows it. *Recorded, not asserted:*
+the `passes` keys of B1 (per candidate), B2 and `B3_passes`: they are the
+bars' outcomes, the results themselves.
+
+**Results** (`results/round5.json`; Wilson 95 % intervals).
+
+| # | Question | Result |
+| :--- | :--- | :--- |
+| R5-1 | Is K honest under the refusal (B1)? | **Yes, always measured (*X* = ∞, selected).** In every one of the 52 cells the shown statement excludes σ in at most 5 %: worst R, 14 notes, straight, σ = 25, 2 of 40 (5.0 %, 1.4–16.5), at the bar; σ = 30 and 40 at 14 notes 1 of 40; every other R cell 0; O (onset vibrato) 0 of 40 in all six; L 0 of 30 except σ = 20 straight, 1 of 30 (3.3 %, 0.6–16.7). Without the refusal the same worst cell, 2 of 40. The lower end holds in 2040 of 2040 (99.8–100) and every interval covers the realised spread (2040 of 2040). *X* = 40, 35 and 30 also pass, measuring 1356, 1141 and 899 of 2040 phrases. *u*_B median per cell 3.1–13.6 cents (L: 3.1–9.2; O: 3.7–6.7) |
+| R5-2 | False changes (B2)? | **None:** 0 of 140 pairs from one cell in each of the six length × vibrato conditions (0–2.7 %); 0 of 77 halves of VocalSet originals |
+| R5-3 | Power, against the wrapped spread on the same phrases | Straight, 20 → 0 cents: K 57.5 / 72.5 / 62.5 % (14, 28, 56 notes) against 25.0 / 42.5 / 27.5 %; 40 → 10: 50.0 / 67.5 / 82.5 % against 0 / 10.0 / 22.5 %. Vibrato faded in, 40 → 10: 17.5–22.5 % against 0; 20 → 0: 0 for both. K never calls worse |
+| R5-4 | Real takes (B3) | **Passes:** re-syntheses whose truth found every state, excluded in 0 of 20 straight scales and 0 of 15 vibrato rounds. Every real take is measured under *X* = ∞ (the wrapped spread: none), but with a wide ±: *u*_B median 12.1 (re-synthesized straight scales, K median 19.2), 11.1 and 13.6 (original straight scales and round), 58.7–66.1 under vibrato (K median 39.0–45.5), where 36.5–40.9 % of frames are refused |
+| R5-5 | What the alignment finds | Every written state found in 1442 of 1680 R phrases, 234 of 240 O and 118 of 120 L; 1 wrong note in 2040 synthetic phrases; real: every state in 15 of 20 and 4 of 20 re-syntheses (straight, vibrato), 19, 11, 13 and 3 of the originals' four sets; 0–9 wrong notes per set. A state not found leaves the spread honest (R5-1) on fewer notes |
+
+**What this says for squillo.** F-041's lab round is done: the
+known-melody spread K, with the alignment stated in `round5.py`'s steps
+1–9, stays honest under MT-003's refusal on round 2's design, under a
+50-cent vibrato from each onset and on E-004's 30 library items, and on
+real re-syntheses; it sees 20 → 0 cents in 57.5–72.5 % of straight
+phrases where the wrapped spread sees 25.0–42.5 %, with no false change.
+Shown always as measured it passes the bar; so do the caps at 40, 35 and
+30 cents. The fold (squillo iteration 74) chooses between them on what
+the bar cannot see: always measured gives real vibrato takes a value with
+a ± of about 60 cents, an interval far beyond the 40 cents tested, where
+*X* = 40 gives them a lower end, as MT-007 does for the wrapped spread.
+It needs `runner` to pass the phrase's written notes, `metrics` to name K
+as a take measure of a library phrase with these steps, and MT-008's
+comparison to apply to it.
+
+**Limits.** Synthetic voices and round 2's error model (normal per note,
+no drift); 40 phrases a cell (a cell at the bar, 2 of 40, has an interval
+up to 16.5 %); E-004 fold 2's 30 items, not the 39 the slice now ships
+(the 9 originals written for held notes are not rendered here); the real
+truth is WORLD re-syntheses of trained singers; one vibrato rate. Merging
+repeated written notes into one state is the rule as stated, and the
+spread of a phrase with repeats is measured on fewer notes.

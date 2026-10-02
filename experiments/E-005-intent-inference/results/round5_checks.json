@@ -1,0 +1,36 @@
+{
+ "c1_reproduces_round2": {
+  "must_pass": [
+   4,
+   4
+  ],
+  "must_fail_next_phrase": [
+   0,
+   4
+  ]
+ },
+ "c2_alignment_reference": {
+  "must_pass": [
+   20,
+   20
+  ],
+  "must_fail_state_off": [
+   0,
+   20
+  ]
+ },
+ "c3_refusal": {
+  "must_pass_refused": 13,
+  "expected": 13,
+  "must_fail_threshold_0p2": 0
+ },
+ "c4_bar": {
+  "must_pass_worst_percent": 2.5,
+  "must_fail_worst_percent": 52.73,
+  "bar": 5.0
+ },
+ "c5_compare": {
+  "must_pass_self": 0,
+  "must_fail_lowered": 1
+ }
+}

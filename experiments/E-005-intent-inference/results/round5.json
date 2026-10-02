@@ -1,0 +1,2801 @@
+{
+ "conditions": {
+  "refuse_at": 0.02,
+  "bar_percent": 5.0,
+  "candidates": [
+   "inf",
+   "40.0",
+   "35.0",
+   "30.0"
+  ],
+  "phrases": {
+   "R": 1680,
+   "O": 240,
+   "L": 120
+  }
+ },
+ "c1_check_all": {
+  "must_pass": [
+   1680,
+   1680
+  ],
+  "must_fail_next": [
+   0,
+   1680
+  ]
+ },
+ "frames_refused_percent": 4.82,
+ "B1": {
+  "inf": {
+   "passes": true,
+   "worst": [
+    "R L=14 vib=0 sigma=25",
+    [
+     5.0,
+     1.4,
+     16.5,
+     40
+    ]
+   ],
+   "measured": 2040,
+   "cells": {
+    "L sigma=0 vib=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "measured": 30,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "L sigma=0 vib=1": {
+     "miss": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "measured": 30,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "L sigma=20 vib=0": {
+     "miss": [
+      3.3,
+      0.6,
+      16.7,
+      30
+     ],
+     "measured": 30,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "L sigma=20 vib=1": {
+     "miss": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "measured": 30,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "O L=14 vib=onset50 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "O L=14 vib=onset50 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "O L=14 vib=onset50 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "O L=28 vib=onset50 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "O L=28 vib=onset50 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "O L=28 vib=onset50 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=25": {
+     "miss": [
+      5.0,
+      1.4,
+      16.5,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=30": {
+     "miss": [
+      2.5,
+      0.4,
+      12.9,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=40": {
+     "miss": [
+      2.5,
+      0.4,
+      12.9,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=25": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=30": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=40": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=25": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=30": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=40": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=25": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=30": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=40": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=25": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=30": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=40": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=25": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=30": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=40": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    }
+   }
+  },
+  "40.0": {
+   "passes": true,
+   "worst": [
+    "R L=14 vib=0 sigma=25",
+    [
+     5.0,
+     1.4,
+     16.5,
+     40
+    ]
+   ],
+   "measured": 1356,
+   "cells": {
+    "L sigma=0 vib=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "measured": 30,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "L sigma=0 vib=1": {
+     "miss": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "measured": 29,
+     "at_least": 1,
+     "too_few": 0
+    },
+    "L sigma=20 vib=0": {
+     "miss": [
+      3.3,
+      0.6,
+      16.7,
+      30
+     ],
+     "measured": 21,
+     "at_least": 9,
+     "too_few": 0
+    },
+    "L sigma=20 vib=1": {
+     "miss": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "measured": 17,
+     "at_least": 13,
+     "too_few": 0
+    },
+    "O L=14 vib=onset50 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 34,
+     "at_least": 6,
+     "too_few": 0
+    },
+    "O L=14 vib=onset50 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 39,
+     "at_least": 1,
+     "too_few": 0
+    },
+    "O L=14 vib=onset50 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 32,
+     "at_least": 8,
+     "too_few": 0
+    },
+    "O L=28 vib=onset50 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 38,
+     "at_least": 2,
+     "too_few": 0
+    },
+    "O L=28 vib=onset50 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 35,
+     "at_least": 5,
+     "too_few": 0
+    },
+    "O L=28 vib=onset50 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 31,
+     "at_least": 9,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 38,
+     "at_least": 2,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 38,
+     "at_least": 2,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=25": {
+     "miss": [
+      5.0,
+      1.4,
+      16.5,
+      40
+     ],
+     "measured": 21,
+     "at_least": 19,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=30": {
+     "miss": [
+      2.5,
+      0.4,
+      12.9,
+      40
+     ],
+     "measured": 11,
+     "at_least": 29,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=40": {
+     "miss": [
+      2.5,
+      0.4,
+      12.9,
+      40
+     ],
+     "measured": 1,
+     "at_least": 39,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 38,
+     "at_least": 2,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 38,
+     "at_least": 2,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 32,
+     "at_least": 8,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 28,
+     "at_least": 12,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=25": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 8,
+     "at_least": 32,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=30": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 8,
+     "at_least": 32,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=40": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=25": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 29,
+     "at_least": 11,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=30": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 11,
+     "at_least": 29,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=40": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 39,
+     "at_least": 1,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 38,
+     "at_least": 2,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 33,
+     "at_least": 7,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 28,
+     "at_least": 12,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=25": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 9,
+     "at_least": 31,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=30": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 4,
+     "at_least": 36,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=40": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 39,
+     "at_least": 1,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=25": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 31,
+     "at_least": 9,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=30": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 9,
+     "at_least": 31,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=40": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 39,
+     "at_least": 1,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 38,
+     "at_least": 2,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 37,
+     "at_least": 3,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 30,
+     "at_least": 10,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=25": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 12,
+     "at_least": 28,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=30": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 3,
+     "at_least": 37,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=40": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    }
+   }
+  },
+  "35.0": {
+   "passes": true,
+   "worst": [
+    "R L=14 vib=0 sigma=25",
+    [
+     5.0,
+     1.4,
+     16.5,
+     40
+    ]
+   ],
+   "measured": 1141,
+   "cells": {
+    "L sigma=0 vib=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "measured": 30,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "L sigma=0 vib=1": {
+     "miss": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "measured": 28,
+     "at_least": 2,
+     "too_few": 0
+    },
+    "L sigma=20 vib=0": {
+     "miss": [
+      3.3,
+      0.6,
+      16.7,
+      30
+     ],
+     "measured": 19,
+     "at_least": 11,
+     "too_few": 0
+    },
+    "L sigma=20 vib=1": {
+     "miss": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "measured": 13,
+     "at_least": 17,
+     "too_few": 0
+    },
+    "O L=14 vib=onset50 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 33,
+     "at_least": 7,
+     "too_few": 0
+    },
+    "O L=14 vib=onset50 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 38,
+     "at_least": 2,
+     "too_few": 0
+    },
+    "O L=14 vib=onset50 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 27,
+     "at_least": 13,
+     "too_few": 0
+    },
+    "O L=28 vib=onset50 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 35,
+     "at_least": 5,
+     "too_few": 0
+    },
+    "O L=28 vib=onset50 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 31,
+     "at_least": 9,
+     "too_few": 0
+    },
+    "O L=28 vib=onset50 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 24,
+     "at_least": 16,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 36,
+     "at_least": 4,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 30,
+     "at_least": 10,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=25": {
+     "miss": [
+      5.0,
+      1.4,
+      16.5,
+      40
+     ],
+     "measured": 13,
+     "at_least": 27,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=30": {
+     "miss": [
+      2.5,
+      0.4,
+      12.9,
+      40
+     ],
+     "measured": 4,
+     "at_least": 36,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=40": {
+     "miss": [
+      2.5,
+      0.4,
+      12.9,
+      40
+     ],
+     "measured": 1,
+     "at_least": 39,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 37,
+     "at_least": 3,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 36,
+     "at_least": 4,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 28,
+     "at_least": 12,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 17,
+     "at_least": 23,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=25": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 4,
+     "at_least": 36,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=30": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 2,
+     "at_least": 38,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=40": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 34,
+     "at_least": 6,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=25": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 13,
+     "at_least": 27,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=30": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 4,
+     "at_least": 36,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=40": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 38,
+     "at_least": 2,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 36,
+     "at_least": 4,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 28,
+     "at_least": 12,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 12,
+     "at_least": 28,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=25": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 4,
+     "at_least": 36,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=30": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 2,
+     "at_least": 38,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=40": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 37,
+     "at_least": 3,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=25": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 13,
+     "at_least": 27,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=30": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 1,
+     "at_least": 39,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=40": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 39,
+     "at_least": 1,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 30,
+     "at_least": 10,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 30,
+     "at_least": 10,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 14,
+     "at_least": 26,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=25": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=30": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=40": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    }
+   }
+  },
+  "30.0": {
+   "passes": true,
+   "worst": [
+    "R L=14 vib=0 sigma=25",
+    [
+     5.0,
+     1.4,
+     16.5,
+     40
+    ]
+   ],
+   "measured": 899,
+   "cells": {
+    "L sigma=0 vib=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "measured": 30,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "L sigma=0 vib=1": {
+     "miss": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "measured": 28,
+     "at_least": 2,
+     "too_few": 0
+    },
+    "L sigma=20 vib=0": {
+     "miss": [
+      3.3,
+      0.6,
+      16.7,
+      30
+     ],
+     "measured": 13,
+     "at_least": 17,
+     "too_few": 0
+    },
+    "L sigma=20 vib=1": {
+     "miss": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "measured": 9,
+     "at_least": 21,
+     "too_few": 0
+    },
+    "O L=14 vib=onset50 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 31,
+     "at_least": 9,
+     "too_few": 0
+    },
+    "O L=14 vib=onset50 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 35,
+     "at_least": 5,
+     "too_few": 0
+    },
+    "O L=14 vib=onset50 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 14,
+     "at_least": 26,
+     "too_few": 0
+    },
+    "O L=28 vib=onset50 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 34,
+     "at_least": 6,
+     "too_few": 0
+    },
+    "O L=28 vib=onset50 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 29,
+     "at_least": 11,
+     "too_few": 0
+    },
+    "O L=28 vib=onset50 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 12,
+     "at_least": 28,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 39,
+     "at_least": 1,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 29,
+     "at_least": 11,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 17,
+     "at_least": 23,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=25": {
+     "miss": [
+      5.0,
+      1.4,
+      16.5,
+      40
+     ],
+     "measured": 4,
+     "at_least": 36,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=30": {
+     "miss": [
+      2.5,
+      0.4,
+      12.9,
+      40
+     ],
+     "measured": 1,
+     "at_least": 39,
+     "too_few": 0
+    },
+    "R L=14 vib=0 sigma=40": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 35,
+     "at_least": 5,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 31,
+     "at_least": 9,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 21,
+     "at_least": 19,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 5,
+     "at_least": 35,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=25": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 1,
+     "at_least": 39,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=30": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=14 vib=1 sigma=40": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 34,
+     "at_least": 6,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 18,
+     "at_least": 22,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=25": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 4,
+     "at_least": 36,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=30": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=28 vib=0 sigma=40": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 38,
+     "at_least": 2,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 31,
+     "at_least": 9,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 19,
+     "at_least": 21,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 4,
+     "at_least": 36,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=25": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=30": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=28 vib=1 sigma=40": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 40,
+     "at_least": 0,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 38,
+     "at_least": 2,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 13,
+     "at_least": 27,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=25": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 3,
+     "at_least": 37,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=30": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=56 vib=0 sigma=40": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=0": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 38,
+     "at_least": 2,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=10": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 24,
+     "at_least": 16,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=15": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 17,
+     "at_least": 23,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=20": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=25": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=30": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    },
+    "R L=56 vib=1 sigma=40": {
+     "miss": [
+      0.0,
+      -0.0,
+      8.8,
+      40
+     ],
+     "measured": 0,
+     "at_least": 40,
+     "too_few": 0
+    }
+   }
+  }
+ },
+ "selected": "inf",
+ "B1_off_inf_worst": [
+  "R L=14 vib=0 sigma=25",
+  [
+   5.0,
+   1.4,
+   16.5,
+   40
+  ]
+ ],
+ "lower_end_holds": [
+  100.0,
+  99.8,
+  100.0,
+  2040
+ ],
+ "measured_covers_realised": [
+  100.0,
+  99.8,
+  100.0,
+  2040
+ ],
+ "uB_median_by_cell": {
+  "L sigma=0 vib=0": 3.14,
+  "L sigma=0 vib=1": 6.59,
+  "L sigma=20 vib=0": 6.71,
+  "L sigma=20 vib=1": 9.21,
+  "O L=14 vib=onset50 sigma=0": 4.91,
+  "O L=14 vib=onset50 sigma=10": 4.4,
+  "O L=14 vib=onset50 sigma=20": 6.66,
+  "O L=28 vib=onset50 sigma=0": 3.66,
+  "O L=28 vib=onset50 sigma=10": 5.19,
+  "O L=28 vib=onset50 sigma=20": 5.99,
+  "R L=14 vib=0 sigma=0": 3.14,
+  "R L=14 vib=0 sigma=10": 4.48,
+  "R L=14 vib=0 sigma=15": 6.11,
+  "R L=14 vib=0 sigma=20": 6.58,
+  "R L=14 vib=0 sigma=25": 7.77,
+  "R L=14 vib=0 sigma=30": 9.55,
+  "R L=14 vib=0 sigma=40": 13.12,
+  "R L=14 vib=1 sigma=0": 6.68,
+  "R L=14 vib=1 sigma=10": 7.68,
+  "R L=14 vib=1 sigma=15": 8.43,
+  "R L=14 vib=1 sigma=20": 9.24,
+  "R L=14 vib=1 sigma=25": 10.21,
+  "R L=14 vib=1 sigma=30": 11.17,
+  "R L=14 vib=1 sigma=40": 13.62,
+  "R L=28 vib=0 sigma=0": 3.62,
+  "R L=28 vib=0 sigma=10": 4.42,
+  "R L=28 vib=0 sigma=15": 5.57,
+  "R L=28 vib=0 sigma=20": 5.81,
+  "R L=28 vib=0 sigma=25": 7.06,
+  "R L=28 vib=0 sigma=30": 8.36,
+  "R L=28 vib=0 sigma=40": 10.44,
+  "R L=28 vib=1 sigma=0": 6.78,
+  "R L=28 vib=1 sigma=10": 7.81,
+  "R L=28 vib=1 sigma=15": 8.26,
+  "R L=28 vib=1 sigma=20": 8.84,
+  "R L=28 vib=1 sigma=25": 9.83,
+  "R L=28 vib=1 sigma=30": 10.45,
+  "R L=28 vib=1 sigma=40": 11.83,
+  "R L=56 vib=0 sigma=0": 4.03,
+  "R L=56 vib=0 sigma=10": 4.58,
+  "R L=56 vib=0 sigma=15": 5.03,
+  "R L=56 vib=0 sigma=20": 5.74,
+  "R L=56 vib=0 sigma=25": 7.03,
+  "R L=56 vib=0 sigma=30": 7.88,
+  "R L=56 vib=0 sigma=40": 9.84,
+  "R L=56 vib=1 sigma=0": 7.57,
+  "R L=56 vib=1 sigma=10": 8.26,
+  "R L=56 vib=1 sigma=15": 7.73,
+  "R L=56 vib=1 sigma=20": 8.61,
+  "R L=56 vib=1 sigma=25": 8.97,
+  "R L=56 vib=1 sigma=30": 9.57,
+  "R L=56 vib=1 sigma=40": 11.23
+ },
+ "states_found": {
+  "every_state": 1794,
+  "of": 2040,
+  "wrong_notes": 1,
+  "every_state_by_src": {
+   "R": [
+    1442,
+    1680
+   ],
+   "O": [
+    234,
+    240
+   ],
+   "L": [
+    118,
+    120
+   ]
+  }
+ },
+ "B2_false_change": {
+  "cells": {
+   "L=14 vib=0": [
+    0.0,
+    0.0,
+    2.7,
+    140
+   ],
+   "L=14 vib=1": [
+    0.0,
+    0.0,
+    2.7,
+    140
+   ],
+   "L=28 vib=0": [
+    0.0,
+    0.0,
+    2.7,
+    140
+   ],
+   "L=28 vib=1": [
+    0.0,
+    0.0,
+    2.7,
+    140
+   ],
+   "L=56 vib=0": [
+    0.0,
+    0.0,
+    2.7,
+    140
+   ],
+   "L=56 vib=1": [
+    0.0,
+    0.0,
+    2.7,
+    140
+   ]
+  },
+  "passes": true
+ },
+ "power": {
+  "L=14 vib=0 20->0": {
+   "known_improved": [
+    57.5,
+    42.2,
+    71.5,
+    40
+   ],
+   "known_worse": 0,
+   "wrapped_improved": [
+    25.0,
+    14.2,
+    40.2,
+    40
+   ]
+  },
+  "L=14 vib=0 40->10": {
+   "known_improved": [
+    50.0,
+    35.2,
+    64.8,
+    40
+   ],
+   "known_worse": 0,
+   "wrapped_improved": [
+    0.0,
+    -0.0,
+    8.8,
+    40
+   ]
+  },
+  "L=14 vib=1 20->0": {
+   "known_improved": [
+    0.0,
+    -0.0,
+    8.8,
+    40
+   ],
+   "known_worse": 0,
+   "wrapped_improved": [
+    0.0,
+    -0.0,
+    8.8,
+    40
+   ]
+  },
+  "L=14 vib=1 40->10": {
+   "known_improved": [
+    20.0,
+    10.5,
+    34.8,
+    40
+   ],
+   "known_worse": 0,
+   "wrapped_improved": [
+    0.0,
+    -0.0,
+    8.8,
+    40
+   ]
+  },
+  "L=28 vib=0 20->0": {
+   "known_improved": [
+    72.5,
+    57.2,
+    83.9,
+    40
+   ],
+   "known_worse": 0,
+   "wrapped_improved": [
+    42.5,
+    28.5,
+    57.8,
+    40
+   ]
+  },
+  "L=28 vib=0 40->10": {
+   "known_improved": [
+    67.5,
+    52.0,
+    79.9,
+    40
+   ],
+   "known_worse": 0,
+   "wrapped_improved": [
+    10.0,
+    4.0,
+    23.1,
+    40
+   ]
+  },
+  "L=28 vib=1 20->0": {
+   "known_improved": [
+    0.0,
+    -0.0,
+    8.8,
+    40
+   ],
+   "known_worse": 0,
+   "wrapped_improved": [
+    0.0,
+    -0.0,
+    8.8,
+    40
+   ]
+  },
+  "L=28 vib=1 40->10": {
+   "known_improved": [
+    22.5,
+    12.3,
+    37.5,
+    40
+   ],
+   "known_worse": 0,
+   "wrapped_improved": [
+    0.0,
+    -0.0,
+    8.8,
+    40
+   ]
+  },
+  "L=56 vib=0 20->0": {
+   "known_improved": [
+    62.5,
+    47.0,
+    75.8,
+    40
+   ],
+   "known_worse": 0,
+   "wrapped_improved": [
+    27.5,
+    16.1,
+    42.8,
+    40
+   ]
+  },
+  "L=56 vib=0 40->10": {
+   "known_improved": [
+    82.5,
+    68.0,
+    91.3,
+    40
+   ],
+   "known_worse": 0,
+   "wrapped_improved": [
+    22.5,
+    12.3,
+    37.5,
+    40
+   ]
+  },
+  "L=56 vib=1 20->0": {
+   "known_improved": [
+    0.0,
+    -0.0,
+    8.8,
+    40
+   ],
+   "known_worse": 0,
+   "wrapped_improved": [
+    0.0,
+    -0.0,
+    8.8,
+    40
+   ]
+  },
+  "L=56 vib=1 40->10": {
+   "known_improved": [
+    17.5,
+    8.7,
+    32.0,
+    40
+   ],
+   "known_worse": 0,
+   "wrapped_improved": [
+    0.0,
+    -0.0,
+    8.8,
+    40
+   ]
+  }
+ },
+ "real": {
+  "resynth scales_straight": {
+   "takes": 20,
+   "frames_refused_percent": 11.5,
+   "measured": 20,
+   "at_least": 0,
+   "too_few": 0,
+   "K_median": 19.2,
+   "uB_median": 12.08,
+   "every_state_found": 15,
+   "wrong_notes": 0,
+   "wrapped_measured": 0,
+   "truth_every_state": 20,
+   "miss_on_full_truth": [
+    0.0,
+    -0.0,
+    16.1,
+    20
+   ]
+  },
+  "resynth row_vibrato": {
+   "takes": 20,
+   "frames_refused_percent": 40.85,
+   "measured": 20,
+   "at_least": 0,
+   "too_few": 0,
+   "K_median": 45.45,
+   "uB_median": 65.34,
+   "every_state_found": 4,
+   "wrong_notes": 7,
+   "wrapped_measured": 0,
+   "truth_every_state": 15,
+   "miss_on_full_truth": [
+    0.0,
+    -0.0,
+    20.4,
+    15
+   ]
+  },
+  "original scales_straight": {
+   "takes": 19,
+   "frames_refused_percent": 10.43,
+   "measured": 19,
+   "at_least": 0,
+   "too_few": 0,
+   "K_median": 18.19,
+   "uB_median": 11.1,
+   "every_state_found": 19,
+   "wrong_notes": 0,
+   "wrapped_measured": 0,
+   "halves_false_change": [
+    0,
+    19
+   ]
+  },
+  "original row_straight": {
+   "takes": 19,
+   "frames_refused_percent": 16.22,
+   "measured": 19,
+   "at_least": 0,
+   "too_few": 0,
+   "K_median": 17.7,
+   "uB_median": 13.6,
+   "every_state_found": 11,
+   "wrong_notes": 0,
+   "wrapped_measured": 0,
+   "halves_false_change": [
+    0,
+    19
+   ]
+  },
+  "original scales_vibrato": {
+   "takes": 20,
+   "frames_refused_percent": 36.51,
+   "measured": 20,
+   "at_least": 0,
+   "too_few": 0,
+   "K_median": 39.03,
+   "uB_median": 66.11,
+   "every_state_found": 13,
+   "wrong_notes": 9,
+   "wrapped_measured": 0,
+   "halves_false_change": [
+    0,
+    20
+   ]
+  },
+  "original row_vibrato": {
+   "takes": 19,
+   "frames_refused_percent": 39.19,
+   "measured": 19,
+   "at_least": 0,
+   "too_few": 0,
+   "K_median": 39.23,
+   "uB_median": 58.67,
+   "every_state_found": 3,
+   "wrong_notes": 5,
+   "wrapped_measured": 0,
+   "halves_false_change": [
+    0,
+    19
+   ]
+  }
+ },
+ "B3_passes": true
+}
