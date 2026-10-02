@@ -1405,3 +1405,66 @@ contiguous blocks and fixed groupings, not what singers do; one tone at
 the first written note only; the 39 shipped phrases are not rendered here;
 the cost on real takes is from round 5's 117, trained singers' scales and
 rows; P2's misassignment is judged by a segment's middle frame only.
+
+## Fold 7: a least share of written notes kept, into squillo MT-014 (squillo iteration 84)
+
+```
+uv run python fold7.py run <dir>   # writes notes-a-major-up-down-up.json to <dir> -> results/fold7.json
+```
+
+**Question** (squillo F-073). Squillo iteration 84 adds round 7's selection
+to MT-014: a take given a phrase's written notes is intent uncertain also
+when its notes kept (found less wrong) are fewer than *F* = 0.75 of the
+written states (the written notes, consecutive repeats merged; R7-3, read
+by the script from `results/round7.json` `selected`). Do MT-014's existing
+scenarios keep their outcomes, and which fixtures show the rule where
+MT-014 as it stood gives a value?
+
+**Rules first** (`fold7.py`'s docstring, committed before the run). G0:
+fold 5's seven take fixtures with the 14 notes, and `held-steady.wav` with
+`notes-a3.json`, keep their states (each kept at least 13 of 14, read from
+`results/fold5.json` first, C12). H1: `held-wobble.wav` with the 14 notes
+(fold 6's F6-4, 2 of 14 kept, measured under *F* = 0) is intent uncertain
+under the share. H2: `take-in-tune.wav` given a new 20-note list,
+`notes-a-major-up-down-up.json` (the 14 notes, then A3 B3 C#4 D4 E4 F#4), a
+take that sings the first 14 of 20 written notes, is intent uncertain under
+*F* = 0.75 with its notes kept at least half its states, so *F* = 0.5
+would value it. Applied from the lab's checklist: C1, C2, C12 (inputs'
+kept counts read from folds 5 and 6 before the rules), C3 (the list's
+neighbours asserted unequal and its parse asserted), C5 (*F* read from the
+results, the two-note bound and the nearest candidate named constants with
+sources), C10 (M0 to M3, below, each differing in the take or the written
+notes, run and asserted before the rules' outcomes), C13 (each rule on
+named inputs whose kept counts were read), C14 to C16 (the guard covers
+`fold7.py` and the modules holding its measure; `checkkeys.py fold7.py`
+0 flagged before the run), C17 to C19 (below). Run: 2 s, one process.
+
+**Checks.** M0 (G0's predicate on `held-wobble.wav`), M1 (H1's on
+`take-in-tune.wav` with the 14 notes), M2 (H2's on the same take with 14
+notes, not 20) and M3 (H2's half-kept clause on `held-steady.wav`, 1 of 14)
+fail as they must; G0, H1 and H2 hold (`results/fold7.json` `must_fail`,
+`checks`, all asserted). `checkkeys.py fold7.py results/fold7.json`: 0
+flagged. *Recorded, not asserted:* `recorded` (below).
+
+**Results** (`results/fold7.json`, MT-003's refusal on, X = 40, *F* = 0.75):
+
+| # | Take, written notes | Result |
+| :--- | :--- | :--- |
+| F7-1 | fold 5's seven take fixtures, the 14 notes; `held-steady.wav`, `notes-a3.json` (G0) | states unchanged: six measured on 14 of 14 kept, `take-uncertain.wav` at least on 13 of 14 (0.93), the one tone too few |
+| F7-2 | `held-wobble.wav`, the 14 notes (H1) | **too few**: 2 of 14 kept (0.14); under *F* = 0 measured, 8.047 ± 27.130 cents (fold 6) |
+| F7-3 | `take-in-tune.wav`, `notes-a-major-up-down-up.json` (H2) | **too few**: 14 of 20 kept (0.70); under *F* = 0.5 and *F* = 0 measured, 0.001 ± 2.000 cents |
+| F7-4 | recorded, no bar: `held-vibrato.wav` with 14; `held-steady.wav`, `held-wobble.wav` with 20 | too few under *F* = 0.75 on all three (1 of 14, 1 of 20, 3 of 20 kept); `held-wobble.wav` with 20 is measured under *F* = 0 (7.385 ± 14.652 cents) |
+
+The new list's hash is `7f4fa7be5cb2c3fb066569a9db2e59e40efebaff80a007f8cede9549af0dc972`
+(228 bytes, `results/fold7.json` `fixtures`).
+
+**What this says for squillo.** MT-014's existing scenarios hold under the
+share rule, and two new ones tell it from MT-014 as it stood: one wandering
+tone given 14 notes (F7-2), and a take that sings the first 14 of 20
+written notes (F7-3), which also tells *F* = 0.75 from round 7's next
+candidate, 0.5.
+
+**Limits.** Pure-tone fixtures; F7-3's take sings a contiguous head of the
+list exactly in tune, the simplest partial take; the 0.70 share lies
+between 0.5 and 0.75, so the fixtures pin *F* only to (0.70, 0.93], the
+share of `take-uncertain.wav`.
