@@ -812,6 +812,13 @@ and cut are not modelled; 2 to 8 blocks only, few takes at 6 or more. The
 floor is a model's extrapolation, never a measurement. Pooling the blocks
 of several takes is not measured.
 
+**Folded** in squillo iteration 79 (change `fold-held-notes-trimmed`):
+`metrics` MT-009 trims each piece to its first and last measured cells
+(ADR 0004, F-070 fixed); `coach` CO-004 compares a rung with the take only
+as MT-008 compares two takes, never by pairing their blocks, so the
+coarse ladder stays (ADR 0018, F-046 closed with its reason). No `metrics`
+fixture tells the two finders apart (T3), so squillo logs F-075 for one.
+
 ### Beyond round 3
 
 Amateur voices and other vowels (E-005's `needs-human` step); a real room
