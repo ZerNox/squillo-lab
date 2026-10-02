@@ -193,7 +193,10 @@ a proposed correction included, is matched to the results
 entry that holds it, for the same takes and the same definition (a gross
 error is not an octave error; a re-synthesis is not an original); a number
 no results file holds is written to one or not stated (squillo L-038,
-L-040).
+L-040). A round that reports a quantity under more than one rule (the rule
+in force and the one it proposes) names the rule in every result row that
+gives it, and a fold that adopts a rule cites only the entries computed
+under that rule (squillo L-062).
 
 **A result is a number with its conditions.** State what was measured, on what
 input, with which tool versions, and the uncertainty. "Works well" is not a
