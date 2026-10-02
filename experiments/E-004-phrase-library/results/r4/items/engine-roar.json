@@ -1,0 +1,58 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "engine-roar",
+  "title": "Engine Roar",
+  "instructions": "Sing the line, unaccompanied, at a steady pace.",
+  "genre": "rock",
+  "language": "en",
+  "words": "Turn the key and let the engine roar",
+  "melody": {
+    "key": "Em",
+    "meter": "4/4",
+    "tempo_qpm": 100,
+    "notes": [
+      {
+        "pitch": "E4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "D4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "B4",
+        "quarters": "8"
+      }
+    ]
+  },
+  "content": {
+    "licence": "LicenseRef-squillo-adr-0008",
+    "source": "Written for squillo in squillo iteration 68 (squillo-lab E-004 round 4), for held notes; words and melody new",
+    "origin": "original"
+  }
+}

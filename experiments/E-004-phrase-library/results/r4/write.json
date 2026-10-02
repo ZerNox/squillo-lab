@@ -1,0 +1,537 @@
+{
+ "slice_files": 34,
+ "W1": {
+  "files": 43,
+  "accepted": 43,
+  "refused": {}
+ },
+ "W1_must_fail": true,
+ "W2": {
+  "held-ah": null,
+  "slow-scale-ah": null,
+  "halfway-home": null,
+  "engine-roar": null,
+  "late-train": null,
+  "dusty-road": null,
+  "let-the-morning-wait": null,
+  "fence-line-home": null,
+  "when-the-curtain-falls": null
+ },
+ "W2_must_fail": true,
+ "W3": {
+  "held-ah": {
+   "notes": 5,
+   "range": 7,
+   "seconds": 12.692,
+   "shortest_s": 1.1538,
+   "low": 60,
+   "high": 67,
+   "within": true
+  },
+  "slow-scale-ah": {
+   "notes": 9,
+   "range": 7,
+   "seconds": 13.269,
+   "shortest_s": 0.5769,
+   "low": 60,
+   "high": 67,
+   "within": true
+  },
+  "halfway-home": {
+   "notes": 10,
+   "range": 10,
+   "seconds": 10.312,
+   "shortest_s": 0.3125,
+   "low": 57,
+   "high": 67,
+   "within": true
+  },
+  "engine-roar": {
+   "notes": 9,
+   "range": 9,
+   "seconds": 7.5,
+   "shortest_s": 0.3,
+   "low": 62,
+   "high": 71,
+   "within": true
+  },
+  "late-train": {
+   "notes": 10,
+   "range": 12,
+   "seconds": 9.375,
+   "shortest_s": 0.375,
+   "low": 62,
+   "high": 74,
+   "within": true
+  },
+  "dusty-road": {
+   "notes": 9,
+   "range": 8,
+   "seconds": 10.312,
+   "shortest_s": 0.4688,
+   "low": 58,
+   "high": 66,
+   "within": true
+  },
+  "let-the-morning-wait": {
+   "notes": 7,
+   "range": 9,
+   "seconds": 10.455,
+   "shortest_s": 0.4545,
+   "low": 63,
+   "high": 72,
+   "within": true
+  },
+  "fence-line-home": {
+   "notes": 6,
+   "range": 12,
+   "seconds": 10.875,
+   "shortest_s": 0.375,
+   "low": 57,
+   "high": 69,
+   "within": true
+  },
+  "when-the-curtain-falls": {
+   "notes": 7,
+   "range": 12,
+   "seconds": 11.364,
+   "shortest_s": 0.4545,
+   "low": 60,
+   "high": 72,
+   "within": true
+  }
+ },
+ "W3_must_fail": true,
+ "W4_block_cases": {
+  "249": true,
+  "250": true,
+  "373": true,
+  "374": true
+ },
+ "W4": {
+  "held-ah": {
+   "blocks": 6,
+   "per_note": [
+    0,
+    0,
+    3,
+    0,
+    3
+   ],
+   "frames": [
+    144,
+    144,
+    576,
+    144,
+    576
+   ],
+   "seconds": "165/13"
+  },
+  "slow-scale-ah": {
+   "blocks": 6,
+   "per_note": [
+    0,
+    0,
+    0,
+    0,
+    3,
+    0,
+    0,
+    0,
+    3
+   ],
+   "frames": [
+    72,
+    72,
+    72,
+    72,
+    576,
+    72,
+    72,
+    72,
+    576
+   ],
+   "seconds": "345/26"
+  },
+  "halfway-home": {
+   "blocks": 4,
+   "per_note": [
+    0,
+    0,
+    0,
+    0,
+    2,
+    0,
+    0,
+    0,
+    0,
+    2
+   ],
+   "frames": [
+    39,
+    39,
+    39,
+    39,
+    468,
+    39,
+    39,
+    78,
+    39,
+    468
+   ],
+   "seconds": "165/16"
+  },
+  "engine-roar": {
+   "blocks": 3,
+   "per_note": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    3
+   ],
+   "frames": [
+    37,
+    37,
+    75,
+    37,
+    37,
+    37,
+    37,
+    37,
+    600
+   ],
+   "seconds": "15/2"
+  },
+  "late-train": {
+   "blocks": 3,
+   "per_note": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    3
+   ],
+   "frames": [
+    93,
+    93,
+    93,
+    93,
+    46,
+    46,
+    46,
+    46,
+    46,
+    562
+   ],
+   "seconds": "75/8"
+  },
+  "dusty-road": {
+   "blocks": 4,
+   "per_note": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    4
+   ],
+   "frames": [
+    58,
+    58,
+    117,
+    58,
+    58,
+    117,
+    58,
+    58,
+    703
+   ],
+   "seconds": "165/16"
+  },
+  "let-the-morning-wait": {
+   "blocks": 4,
+   "per_note": [
+    0,
+    0,
+    0,
+    0,
+    2,
+    0,
+    2
+   ],
+   "frames": [
+    56,
+    56,
+    113,
+    113,
+    454,
+    56,
+    454
+   ],
+   "seconds": "115/11"
+  },
+  "fence-line-home": {
+   "blocks": 6,
+   "per_note": [
+    0,
+    0,
+    0,
+    0,
+    3,
+    3
+   ],
+   "frames": [
+    46,
+    46,
+    46,
+    93,
+    562,
+    562
+   ],
+   "seconds": "87/8"
+  },
+  "when-the-curtain-falls": {
+   "blocks": 5,
+   "per_note": [
+    0,
+    0,
+    0,
+    0,
+    2,
+    0,
+    3
+   ],
+   "frames": [
+    56,
+    56,
+    113,
+    113,
+    454,
+    56,
+    568
+   ],
+   "seconds": "125/11"
+  }
+ },
+ "W4_must_fail": true,
+ "W5": {
+  "held-ah": [
+   {
+    "frames": 576,
+    "blocks": 3,
+    "over_least": 77
+   },
+   {
+    "frames": 576,
+    "blocks": 3,
+    "over_least": 77
+   }
+  ],
+  "slow-scale-ah": [
+   {
+    "frames": 576,
+    "blocks": 3,
+    "over_least": 77
+   },
+   {
+    "frames": 576,
+    "blocks": 3,
+    "over_least": 77
+   }
+  ],
+  "halfway-home": [
+   {
+    "frames": 468,
+    "blocks": 2,
+    "over_least": 94
+   },
+   {
+    "frames": 468,
+    "blocks": 2,
+    "over_least": 94
+   }
+  ],
+  "engine-roar": [
+   {
+    "frames": 600,
+    "blocks": 3,
+    "over_least": 101
+   }
+  ],
+  "late-train": [
+   {
+    "frames": 562,
+    "blocks": 3,
+    "over_least": 63
+   }
+  ],
+  "dusty-road": [
+   {
+    "frames": 703,
+    "blocks": 4,
+    "over_least": 79
+   }
+  ],
+  "let-the-morning-wait": [
+   {
+    "frames": 454,
+    "blocks": 2,
+    "over_least": 80
+   },
+   {
+    "frames": 454,
+    "blocks": 2,
+    "over_least": 80
+   }
+  ],
+  "fence-line-home": [
+   {
+    "frames": 562,
+    "blocks": 3,
+    "over_least": 63
+   },
+   {
+    "frames": 562,
+    "blocks": 3,
+    "over_least": 63
+   }
+  ],
+  "when-the-curtain-falls": [
+   {
+    "frames": 454,
+    "blocks": 2,
+    "over_least": 80
+   },
+   {
+    "frames": 568,
+    "blocks": 3,
+    "over_least": 69
+   }
+  ]
+ },
+ "W6_novelty_screen": {
+  "held-ah": {
+   "intervals": 4,
+   "vs_30": {
+    "longest": 2,
+    "with_": "rust-on-the-gate"
+   },
+   "vs_new": {
+    "longest": 2,
+    "with_": "engine-roar"
+   }
+  },
+  "slow-scale-ah": {
+   "intervals": 8,
+   "vs_30": {
+    "longest": 4,
+    "with_": "joy-to-the-world"
+   },
+   "vs_new": {
+    "longest": 4,
+    "with_": "late-train"
+   }
+  },
+  "halfway-home": {
+   "intervals": 9,
+   "vs_30": {
+    "longest": 4,
+    "with_": "rust-on-the-gate"
+   },
+   "vs_new": {
+    "longest": 4,
+    "with_": "dusty-road"
+   }
+  },
+  "engine-roar": {
+   "intervals": 8,
+   "vs_30": {
+    "longest": 4,
+    "with_": "rust-on-the-gate"
+   },
+   "vs_new": {
+    "longest": 3,
+    "with_": "let-the-morning-wait"
+   }
+  },
+  "late-train": {
+   "intervals": 9,
+   "vs_30": {
+    "longest": 3,
+    "with_": "row-your-boat"
+   },
+   "vs_new": {
+    "longest": 4,
+    "with_": "slow-scale-ah"
+   }
+  },
+  "dusty-road": {
+   "intervals": 8,
+   "vs_30": {
+    "longest": 5,
+    "with_": "greensleeves"
+   },
+   "vs_new": {
+    "longest": 4,
+    "with_": "halfway-home"
+   }
+  },
+  "let-the-morning-wait": {
+   "intervals": 6,
+   "vs_30": {
+    "longest": 6,
+    "with_": "blue-umbrella"
+   },
+   "vs_new": {
+    "longest": 3,
+    "with_": "when-the-curtain-falls"
+   }
+  },
+  "fence-line-home": {
+   "intervals": 5,
+   "vs_30": {
+    "longest": 3,
+    "with_": "blue-umbrella"
+   },
+   "vs_new": {
+    "longest": 4,
+    "with_": "when-the-curtain-falls"
+   }
+  },
+  "when-the-curtain-falls": {
+   "intervals": 6,
+   "vs_30": {
+    "longest": 3,
+    "with_": "les-matelots"
+   },
+   "vs_new": {
+    "longest": 4,
+    "with_": "fence-line-home"
+   }
+  }
+ },
+ "sha256": {
+  "r4/dusty-road.json": "b70f25620ed3d541965b669f4c275eb7af8948ccb5fefb9641cb23bed481d3e9",
+  "r4/engine-roar.json": "7b7762968d5a3cc4bdffc443b44b46baa8dfe07bf6f1cc5579092026ec3b5f42",
+  "r4/fence-line-home.json": "b05fd3bb453e965ac0eba7bc11517e0a59e7ed4a35cd735a4db6b04577d78858",
+  "r4/halfway-home.json": "9409c9057e6b0f51b45af357d02918888c9185f68d0193965f14a2a5c8ad4c50",
+  "r4/held-ah.json": "b2487c4bcc5f0d8fbbb771b0ecd2065d870f175a99ccc6ff062ffac0f47471c4",
+  "r4/late-train.json": "8d8760b760cb12d9bad9106a92d68bf2afdc0cc7be525f7fb2d2bc9970384ed1",
+  "r4/let-the-morning-wait.json": "d45d6734c1b8f9b8e7a4899e84efd50c16de3c81a64b9ee2bb5d323cc66e815c",
+  "r4/slow-scale-ah.json": "c190c8156373664fa88db40f4c124fe22308d0b145511bf47fbc1ad2275ce085",
+  "r4/when-the-curtain-falls.json": "281111352325fa2a1407807baf5f2a27e99841f30ee7e7ec191f24c39da7f382"
+ }
+}

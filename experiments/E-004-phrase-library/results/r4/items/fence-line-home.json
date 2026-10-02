@@ -1,0 +1,46 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "fence-line-home",
+  "title": "Fence Line Home",
+  "instructions": "Sing the line, unaccompanied, at a steady pace.",
+  "genre": "country",
+  "language": "en",
+  "words": "Walking the fence line home",
+  "melody": {
+    "key": "D",
+    "meter": "4/4",
+    "tempo_qpm": 80,
+    "notes": [
+      {
+        "pitch": "A3",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "D4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "E4",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "F#4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "A4",
+        "quarters": "6"
+      },
+      {
+        "pitch": "D4",
+        "quarters": "6"
+      }
+    ]
+  },
+  "content": {
+    "licence": "LicenseRef-squillo-adr-0008",
+    "source": "Written for squillo in squillo iteration 68 (squillo-lab E-004 round 4), for held notes; words and melody new",
+    "origin": "original"
+  }
+}

@@ -777,6 +777,69 @@ blocks are MT-009's arithmetic on written durations, not a measurement
 of anyone singing. A singer who holds a note longer than written gets
 more blocks.
 
+## Round 4 (squillo iteration 68): originals written for held notes
+
+**Question.** squillo F-065: at their written tempo 28 of the 30 phrases
+the first slice ships hold no note long enough for MT-009's `steadiness`
+(fold 3, S6), and `VISION.md` §7 names vowel and scale exercises, which
+the library lacks. F-060: pop, rock, jazz, blues, soul, country and
+musical theatre rest on one original each. Can originals written for held
+notes, a sustained vowel, a slow scale and one more line in each thin
+genre, (a) give `coach` CO-005 rule (2) at least two blocks each from
+their written notes, while loading with the 34 files the slice ships and
+passing the rights rules and round 3's conditions, and (b) give MT-009 at
+least two blocks when sung, measured from the contour alone on a
+synthetic voice?
+
+**Rules** (`r4_held.py`'s docstring, committed before any run, `9552e4e`;
+revision 1 below). *W*, writing: the nine items, written for squillo in
+this iteration, words and melodies new, as `fold.py` writes an original,
+asserted to load with the 34 (must fail: a copy under a second name), to
+pass the rights rules (must fail: the public-domain licence), to lie
+within round 3's conditions (must fail: each slowed tenfold), to give
+rule (2) at least two blocks (fold 3's arithmetic cases first; must
+fail: each at three times its tempo), and each held note to be at least
+62 frames (MT-009's trim, chosen as a margin before any run, no other
+source) longer than the least note giving its blocks; a novelty screen,
+recorded, not asserted. *M*, measured: the nine and the 30 sung by
+E-005's synthetic voice as round 1 sang the library (`run.py` `_one`), 6
+voices × spread 0 and 20 cents × vibrato off and on, 936 renderings, the
+transposition kept within −25 to +10 semitones of A4 so that every true
+contour lies in E2–C6 (asserted per rendering); each tracked by E-002's
+YIN, frames accepted under MT-003's table, held notes and blocks by
+E-002 `fold2.py` `held_notes` and `r2_analyse.block_measures`, the code
+MT-009 cites. The finder is checked first on squillo's
+`held-steady.wav` (one held note, frames 3 to 624, 3 blocks) and
+`sine-220hz.wav` (none). **Bar B**: an item gives at least 2 blocks on
+all 24 of its renderings. **Predictions**: B holds for all nine; on the
+30 it holds for exactly `le-pays-des-reves` and `abide-with-me` and fails
+for every phrase rule (2) gives none; measured blocks differ from rule
+(2)'s count both ways.
+
+**Revision 1** (`r4_held.py`, before any rendering). The first `write`
+stopped on W4's must-fail case: at twice its tempo an item with two held
+notes keeps one block on each, two in all (`held-ah`: 576 frames halved
+to 288), so the case could not fail as written. It is now three times
+the tempo, where every note falls under 250 frames; the items are
+unchanged. **Harness**: `fold2.py` imports `pyworld` through
+`r2_truth.py`, which this experiment's environment lacks, so the M
+commands run in E-002's (`uv run --project ../E-002-measurement-reliability`);
+`write` runs in either.
+
+**Estimate** (S19), on a sample of 32 renderings (the longest and
+shortest phrases, `held-ah` and `ode-to-joy`, bass and the highest
+soprano, every spread and vibrato condition), at the pool of 18: 9.4 s
+wall for 280 s of audio, so 936 renderings (7342 s of audio) about
+250 s; the analysis reads 936 small files, seconds. Both well inside the
+session.
+
+```
+uv run python r4_held.py write <squillo>                                          # results/r4/items/, write.json
+uv run --project ../E-002-measurement-reliability python r4_held.py sample        # results/r4/sample.json
+uv run --project ../E-002-measurement-reliability python r4_held.py run           # data/cache/r4/ (resumes)
+uv run --project ../E-002-measurement-reliability python r4_held.py analyse       # results/r4/held.json
+```
+
 ## Needs a human
 
 15 minutes, headphones, no microphone.
