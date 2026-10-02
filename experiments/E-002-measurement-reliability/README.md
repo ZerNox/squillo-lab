@@ -740,15 +740,15 @@ pool of 16, so the 936 in about 232 s (`results/r5_sample.json`); round
 on one process, so `analyse` (three evaluations, the finders compared on
 every take, part B twice, the renderings read) about 2 minutes.
 
-**Revisions, each committed before the run it governs.** (1) `check`
+**Revisions, each committed before the run it governs.** (1, `0e07c44`) `check`
 stopped on its own assertion before any data was read: across the step
 the cut forms one-frame pieces, so the constructed case's cut is read at
-the piece holding the second note. (2) The first `analyse` stopped on
+the piece holding the second note. (2, `827c63d`) The first `analyse` stopped on
 T2's must-fail case and printed T2's outcome (true) with it: dividing
 the block *u* by 1000 cannot fail the bar, since a take's *u* is
 κ √(*s*²/*n* + *ū*²) and *s* dominates; the must-fail input became every
 block value moved off its truth (`SHIFT`), written after that outcome was
-seen; the bar is unchanged. (3) The next `analyse` stopped on B0 (fold
+seen; the bar is unchanged. (3, `6e3676a`) The next `analyse` stopped on B0 (fold
 3's next step reproduced on 31 of 47 original takes; part B's summaries
 unseen): the steadying moves the cut by a few frames, so a rung's blocks
 rarely start on the take's frames; a rung at *n* is measured on its own
