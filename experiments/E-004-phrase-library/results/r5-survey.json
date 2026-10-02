@@ -1,0 +1,2981 @@
+[
+ {
+  "id": 214,
+  "title": "Innocence",
+  "composer": "by J. F. F. Burgmüller (1806–1874)",
+  "opus": "Opus 100.",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "19th Century",
+  "style": "Romantic",
+  "arranger": "",
+  "source": "Collection Litolff, 19th Century",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/BurgmullerJFF/O100/25EF-05/25EF-05.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/BurgmullerJFF/O100/25EF-05/25EF-05.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "inno"
+  ]
+ },
+ {
+  "id": 281,
+  "title": "Anitra's Dance (Tanz) from Peer Gynt Suite I",
+  "composer": "by E. Grieg (1843–1907)",
+  "opus": "O 46, No. 3",
+  "poet": "Henrik Ibsen",
+  "instrument": "for String Ensemble: Violins, Violas, Cello, Double Bass, Triangle",
+  "date": "1874-76 - rescored by Grieg 1886",
+  "style": "Romantic",
+  "arranger": "",
+  "source": "Kunkel Brothers 1891, 1893, Best National Music Co. 188?",
+  "licence": "Public Domain",
+  "ly": [],
+  "ly_zip": [
+   "https://www.mutopiaproject.org/ftp/GriegE/O46/03-anitrasdance/03-anitrasdance-lys.zip"
+  ],
+  "mid": [],
+  "mid_zip": [
+   "https://www.mutopiaproject.org/ftp/GriegE/O46/03-anitrasdance/03-anitrasdance-mids.zip"
+  ],
+  "found_by": [
+   "national"
+  ]
+ },
+ {
+  "id": 510,
+  "title": "Soldier's Joy",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Violin, Guitar",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Transcribed by ear",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/soldiers-joy/soldiers-joy.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/soldiers-joy/soldiers-joy.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 529,
+  "title": "Red Apple Rag",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Violin, Guitar",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Transcribed by ear",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/RedAppleRag/RedAppleRag.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/RedAppleRag/RedAppleRag.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 566,
+  "title": "Fugue sur l'hymne de la Vierge, Ave Maris Stella",
+  "composer": "by J.-F. Dandrieu (1681–1738)",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Organ",
+  "date": "",
+  "style": "Baroque",
+  "arranger": "",
+  "source": "Édition d'Alexandre Guilmant - 1905",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/DandrieuJ/Fugue_sur_l_Ave_maris_stella/Fugue_sur_l_Ave_maris_stella.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/DandrieuJ/Fugue_sur_l_Ave_maris_stella/Fugue_sur_l_Ave_maris_stella.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "hymne"
+  ]
+ },
+ {
+  "id": 581,
+  "title": "Sonata a due viola da gamba n°6",
+  "composer": "by A. Kuhnel (1645–1700)",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Ensemble: Basso, viola da gamba, viola da gamba",
+  "date": "1698",
+  "style": "Baroque",
+  "arranger": "",
+  "source": "Facsimile",
+  "licence": "Creative Commons Attribution-ShareAlike 2.5",
+  "ly": [],
+  "ly_zip": [
+   "https://www.mutopiaproject.org/ftp/KuhnelA/sonate6/sonate6-lys.zip"
+  ],
+  "mid": [],
+  "mid_zip": [
+   "https://www.mutopiaproject.org/ftp/KuhnelA/sonate6/sonate6-mids.zip"
+  ],
+  "found_by": [
+   "liberty"
+  ]
+ },
+ {
+  "id": 608,
+  "title": "Hail to the Spirit of Liberty",
+  "composer": "by J. P. Sousa (1854–1932)",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "1900/Mar",
+  "style": "Classical",
+  "arranger": "",
+  "source": "The John Church Company",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/SousaJP/HailtotheSpiritofLiberty/HailtotheSpiritofLiberty.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/SousaJP/HailtotheSpiritofLiberty/HailtotheSpiritofLiberty.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "liberty"
+  ]
+ },
+ {
+  "id": 625,
+  "title": "The Liberty Bell March",
+  "composer": "by J. P. Sousa (1854–1932)",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "1893",
+  "style": "Classical",
+  "arranger": "",
+  "source": "The John Church Company",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/SousaJP/TheLibertyBell/TheLibertyBell.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/SousaJP/TheLibertyBell/TheLibertyBell.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "liberty"
+  ]
+ },
+ {
+  "id": 789,
+  "title": "Sing Ivy",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Voice and Piano",
+  "date": "1909",
+  "style": "Folk",
+  "arranger": "trad. arr. Gustav von Holst",
+  "source": "Folk Songs from Hampshire",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/SingIvy/SingIvy.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/SingIvy/SingIvy.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 814,
+  "title": "John Barleycorn",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Voice, Piano",
+  "date": "1909",
+  "style": "Folk",
+  "arranger": "trad. arr. Gustav von Holst",
+  "source": "Folk-Songs from Hampshire",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/johnbarleycorn/johnbarleycorn.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/johnbarleycorn/johnbarleycorn.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 815,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 1",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.1/traditioner_af_swenska_folk_dansar.1.1.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.1/traditioner_af_swenska_folk_dansar.1.1.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 816,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 10",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.10/traditioner_af_swenska_folk_dansar.1.10.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.10/traditioner_af_swenska_folk_dansar.1.10.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 817,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 11",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.11/traditioner_af_swenska_folk_dansar.1.11.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.11/traditioner_af_swenska_folk_dansar.1.11.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 818,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 12",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.12/traditioner_af_swenska_folk_dansar.1.12.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.12/traditioner_af_swenska_folk_dansar.1.12.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 819,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 13",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.13/traditioner_af_swenska_folk_dansar.1.13.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.13/traditioner_af_swenska_folk_dansar.1.13.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 820,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 2",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.2/traditioner_af_swenska_folk_dansar.1.2.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.2/traditioner_af_swenska_folk_dansar.1.2.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 821,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 22",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.22/traditioner_af_swenska_folk_dansar.1.22.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.22/traditioner_af_swenska_folk_dansar.1.22.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 822,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 23",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.23/traditioner_af_swenska_folk_dansar.1.23.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.23/traditioner_af_swenska_folk_dansar.1.23.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 823,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 3",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.3/traditioner_af_swenska_folk_dansar.1.3.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.3/traditioner_af_swenska_folk_dansar.1.3.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 824,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 31",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.31/traditioner_af_swenska_folk_dansar.1.31.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.31/traditioner_af_swenska_folk_dansar.1.31.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 825,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 33",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.33/traditioner_af_swenska_folk_dansar.1.33.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.33/traditioner_af_swenska_folk_dansar.1.33.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 826,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 4",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.4/traditioner_af_swenska_folk_dansar.1.4.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.4/traditioner_af_swenska_folk_dansar.1.4.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 827,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 5",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.5/traditioner_af_swenska_folk_dansar.1.5.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.5/traditioner_af_swenska_folk_dansar.1.5.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 828,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 6",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.6/traditioner_af_swenska_folk_dansar.1.6.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.6/traditioner_af_swenska_folk_dansar.1.6.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 829,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 7",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.7/traditioner_af_swenska_folk_dansar.1.7.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.7/traditioner_af_swenska_folk_dansar.1.7.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 830,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 8",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.8/traditioner_af_swenska_folk_dansar.1.8.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.8/traditioner_af_swenska_folk_dansar.1.8.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 831,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 9",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.9/traditioner_af_swenska_folk_dansar.1.9.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.9/traditioner_af_swenska_folk_dansar.1.9.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 832,
+  "title": "Traditioner af Swenska Folk-Dansar, 2nd part, nr 15",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 2nd part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.2.15/traditioner_af_swenska_folk_dansar.2.15.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.2.15/traditioner_af_swenska_folk_dansar.2.15.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 836,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 14",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.14/traditioner_af_swenska_folk_dansar.1.14.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.14/traditioner_af_swenska_folk_dansar.1.14.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 837,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 15",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.15/traditioner_af_swenska_folk_dansar.1.15.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.15/traditioner_af_swenska_folk_dansar.1.15.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 838,
+  "title": "Traditioner af Swenska Folk-Dansar, 2nd part, nr 27",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 2nd part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.2.27/traditioner_af_swenska_folk_dansar.2.27.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.2.27/traditioner_af_swenska_folk_dansar.2.27.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 839,
+  "title": "Traditioner af Swenska Folk-Dansar, 2nd part, nr 30",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 2nd part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.2.30/traditioner_af_swenska_folk_dansar.2.30.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.2.30/traditioner_af_swenska_folk_dansar.2.30.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 840,
+  "title": "Traditioner af Swenska Folk-Dansar, 2nd part, nr 31",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 2nd part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.2.31/traditioner_af_swenska_folk_dansar.2.31.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.2.31/traditioner_af_swenska_folk_dansar.2.31.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 841,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 14",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.14/traditioner_af_swenska_folk_dansar.3.14.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.14/traditioner_af_swenska_folk_dansar.3.14.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 842,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 18",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.18/traditioner_af_swenska_folk_dansar.3.18.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.18/traditioner_af_swenska_folk_dansar.3.18.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 843,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 2",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.2/traditioner_af_swenska_folk_dansar.3.2.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.2/traditioner_af_swenska_folk_dansar.3.2.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 844,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 21",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.21/traditioner_af_swenska_folk_dansar.3.21.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.21/traditioner_af_swenska_folk_dansar.3.21.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 845,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 22",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.22/traditioner_af_swenska_folk_dansar.3.22.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.22/traditioner_af_swenska_folk_dansar.3.22.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 846,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 23",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.23/traditioner_af_swenska_folk_dansar.3.23.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.23/traditioner_af_swenska_folk_dansar.3.23.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 847,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 24",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.24/traditioner_af_swenska_folk_dansar.3.24.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.24/traditioner_af_swenska_folk_dansar.3.24.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 848,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 3",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.3/traditioner_af_swenska_folk_dansar.3.3.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.3/traditioner_af_swenska_folk_dansar.3.3.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 853,
+  "title": "Ellen's Song",
+  "composer": "by O. Comeau (1924–1971)",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "1950s",
+  "style": "Folk",
+  "arranger": "",
+  "source": "memory",
+  "licence": "Creative Commons Attribution-ShareAlike 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/ComeauO/ellens_song/ellens_song.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/ComeauO/ellens_song/ellens_song.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 857,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 16",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.16/traditioner_af_swenska_folk_dansar.1.16.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.16/traditioner_af_swenska_folk_dansar.1.16.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 858,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 17",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.17/traditioner_af_swenska_folk_dansar.1.17.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.17/traditioner_af_swenska_folk_dansar.1.17.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 859,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 18",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.18/traditioner_af_swenska_folk_dansar.1.18.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.18/traditioner_af_swenska_folk_dansar.1.18.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 860,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 19",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.19/traditioner_af_swenska_folk_dansar.1.19.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.19/traditioner_af_swenska_folk_dansar.1.19.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 861,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 20",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.20/traditioner_af_swenska_folk_dansar.1.20.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.20/traditioner_af_swenska_folk_dansar.1.20.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 862,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 26",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.26/traditioner_af_swenska_folk_dansar.1.26.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.26/traditioner_af_swenska_folk_dansar.1.26.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 863,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 27",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.27/traditioner_af_swenska_folk_dansar.1.27.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.27/traditioner_af_swenska_folk_dansar.1.27.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 864,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 29",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.29/traditioner_af_swenska_folk_dansar.1.29.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.29/traditioner_af_swenska_folk_dansar.1.29.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 865,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 30",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.30/traditioner_af_swenska_folk_dansar.1.30.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.30/traditioner_af_swenska_folk_dansar.1.30.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 866,
+  "title": "Traditioner af Swenska Folk-Dansar, 1st part, nr 34",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 1st part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.34/traditioner_af_swenska_folk_dansar.1.34.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.1.34/traditioner_af_swenska_folk_dansar.1.34.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 867,
+  "title": "Traditioner af Swenska Folk-Dansar, 2nd part, nr 36",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 2nd part, 1814",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.2.36/traditioner_af_swenska_folk_dansar.2.36.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.2.36/traditioner_af_swenska_folk_dansar.2.36.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 868,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 1",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.1/traditioner_af_swenska_folk_dansar.3.1.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.1/traditioner_af_swenska_folk_dansar.3.1.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 869,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 11",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.11/traditioner_af_swenska_folk_dansar.3.11.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.11/traditioner_af_swenska_folk_dansar.3.11.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 870,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 12",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.12/traditioner_af_swenska_folk_dansar.3.12.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.12/traditioner_af_swenska_folk_dansar.3.12.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 871,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 13",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.13/traditioner_af_swenska_folk_dansar.3.13.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.13/traditioner_af_swenska_folk_dansar.3.13.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 872,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 15",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.15/traditioner_af_swenska_folk_dansar.3.15.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.15/traditioner_af_swenska_folk_dansar.3.15.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 873,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 16",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.16/traditioner_af_swenska_folk_dansar.3.16.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.16/traditioner_af_swenska_folk_dansar.3.16.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 874,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 17",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.17/traditioner_af_swenska_folk_dansar.3.17.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.17/traditioner_af_swenska_folk_dansar.3.17.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 875,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 19",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.19/traditioner_af_swenska_folk_dansar.3.19.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.19/traditioner_af_swenska_folk_dansar.3.19.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 876,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 34",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.34/traditioner_af_swenska_folk_dansar.3.34.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.34/traditioner_af_swenska_folk_dansar.3.34.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 877,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 4",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.4/traditioner_af_swenska_folk_dansar.3.4.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.4/traditioner_af_swenska_folk_dansar.3.4.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 878,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 5",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.5/traditioner_af_swenska_folk_dansar.3.5.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.5/traditioner_af_swenska_folk_dansar.3.5.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 879,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 6",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.6/traditioner_af_swenska_folk_dansar.3.6.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.6/traditioner_af_swenska_folk_dansar.3.6.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 880,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 7",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.7/traditioner_af_swenska_folk_dansar.3.7.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.7/traditioner_af_swenska_folk_dansar.3.7.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 881,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 8",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.8/traditioner_af_swenska_folk_dansar.3.8.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.8/traditioner_af_swenska_folk_dansar.3.8.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 882,
+  "title": "Traditioner af Swenska Folk-Dansar, 3rd part, nr 9",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Traditioner af Swenska Folk-Dansar, 3rd part, 1815",
+  "licence": "Creative Commons Attribution 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.9/traditioner_af_swenska_folk_dansar.3.9.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/traditioner_af_swenska_folk_dansar.3.9/traditioner_af_swenska_folk_dansar.3.9.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 883,
+  "title": "Lindormen",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Voice and Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Svenska fornsånger, 2nd part, 1837",
+  "licence": "Creative Commons Attribution-ShareAlike 2.5",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/lindormen/lindormen.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/lindormen/lindormen.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 888,
+  "title": "Oats and Beans",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Voice and Piano",
+  "date": "1893",
+  "style": "Folk",
+  "arranger": "L. E. Broadwood (1858-1929)",
+  "source": "English County Songs",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/oatsandbeans/oatsandbeans.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/oatsandbeans/oatsandbeans.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 889,
+  "title": "The Water of Tyne",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Voice and Piano",
+  "date": "1893",
+  "style": "Folk",
+  "arranger": "J. A. Fuller-Maitland (1856-1936)",
+  "source": "English County Songs",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/wateroftyne/wateroftyne.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/wateroftyne/wateroftyne.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 949,
+  "title": "O nata lux de lumine",
+  "composer": "by T. Tallis (1510–1585)",
+  "opus": "",
+  "poet": "Anonymous (10th century)",
+  "instrument": "for Voice (SATB)",
+  "date": "",
+  "style": "Renaissance",
+  "arranger": "",
+  "source": "Cantiones quae ab argumento sacra vocantur, 1575",
+  "licence": "Public Domain",
+  "ly": [],
+  "ly_zip": [
+   "https://www.mutopiaproject.org/ftp/TallisT/tallis/tallis-lys.zip"
+  ],
+  "mid": [],
+  "mid_zip": [
+   "https://www.mutopiaproject.org/ftp/TallisT/tallis/tallis-mids.zip"
+  ],
+  "found_by": [
+   "anthem"
+  ]
+ },
+ {
+  "id": 1017,
+  "title": "Hen Wlad Fy Nhadau",
+  "composer": "by J. James (1833–1902)",
+  "opus": "",
+  "poet": "Ieuan ap Iago (1809-1878)",
+  "instrument": "for Voice",
+  "date": "",
+  "style": "Song",
+  "arranger": "",
+  "source": "Llyfrgell Genedlaethol Cymru",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/JamesJ/henwlad/henwlad.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/JamesJ/henwlad/henwlad.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "hen wlad"
+  ]
+ },
+ {
+  "id": 1019,
+  "title": "Taivas on sininen ja valkoinen",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Voice and Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "Arr. Tanja Kivi",
+  "source": "Transcription",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/SINIVALKOINEN/SINIVALKOINEN.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/SINIVALKOINEN/SINIVALKOINEN.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1020,
+  "title": "Aamulla varhain",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Voice and Piano",
+  "date": "",
+  "style": "Folk",
+  "arranger": "Arr. Tanja Kivi",
+  "source": "Transcription",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/AAMULLAVARHAIN/AAMULLAVARHAIN.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/AAMULLAVARHAIN/AAMULLAVARHAIN.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1098,
+  "title": "Nº. 9. Polish National Air.",
+  "composer": "by F. Horetzky (1796–1870)",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Classical Guitar",
+  "date": "unk",
+  "style": "Classical",
+  "arranger": "",
+  "source": "Boije collection #268",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/HoretzkyF/horetzky9/horetzky9.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/HoretzkyF/horetzky9/horetzky9.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "national"
+  ]
+ },
+ {
+  "id": 1321,
+  "title": "The Washington Post",
+  "composer": "by J. P. Sousa (1854–1932)",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Piano",
+  "date": "",
+  "style": "March",
+  "arranger": "",
+  "source": "D. Davis & Co. Sydney, 189-?",
+  "licence": "Creative Commons Attribution-ShareAlike 3.0",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/SousaJP/sousa_washington_post/sousa_washington_post.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/SousaJP/sousa_washington_post/sousa_washington_post.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "national"
+  ]
+ },
+ {
+  "id": 1328,
+  "title": "Das Wohltemperierte Clavier II, Fuga IX",
+  "composer": "by J. S. Bach (1685–1750)",
+  "opus": "BWV 878",
+  "poet": "",
+  "instrument": "for Harpsichord, Piano",
+  "date": "",
+  "style": "Baroque",
+  "arranger": "",
+  "source": "Le clavecin bien tempéré, volume 2, Révision et annotations par Vincent d'Indy, Édition nationale de musique classique, Éditions Salabert, Paris, 1920.",
+  "licence": "Creative Commons Attribution-ShareAlike 3.0",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/BachJS/BWV878/f9/f9.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/BachJS/BWV878/f9/f9.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "national"
+  ]
+ },
+ {
+  "id": 1602,
+  "title": "Sibylla Samia",
+  "composer": "by O. de Lassus (1530 or 1532–1594)",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Voice (SATB)",
+  "date": "Mid-to-late 1550's",
+  "style": "Renaissance",
+  "arranger": "",
+  "source": "Vienna, Österreichische Nationalbibliothek, Musiksammlung, Mus. Hs. 18.744",
+  "licence": "Creative Commons Attribution-ShareAlike 3.0",
+  "ly": [],
+  "ly_zip": [
+   "https://www.mutopiaproject.org/ftp/LassusOd/samia/samia-lys.zip"
+  ],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/LassusOd/samia/samia.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "national"
+  ]
+ },
+ {
+  "id": 1641,
+  "title": "The Old Folks At Home (Swanee River)",
+  "composer": "by S. C. Foster (1826–1864)",
+  "opus": "",
+  "poet": "",
+  "instrument": "for guitar",
+  "date": "1851",
+  "style": "Folk",
+  "arranger": "Arr. by W. L. HAYDEN, 1881",
+  "source": "Gems of The Season (arranged for guitar by W.L. Hayden) Boston: Ditson & Co., Oliver, 1881. Library of Congress http://memory.loc.gov/cgi-bin/ampage?collId=mussm&fileName=sm/sm1881/01900/01976/mussm01976.db&recNum=0&itemLink=h?ammem/mussm:@field(NUMBER+@band(sm1881+01976))&linkText=0",
+  "licence": "Creative Commons Attribution-ShareAlike 3.0",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/FosterSC/oldfolks/oldfolks.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/FosterSC/oldfolks/oldfolks.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1759,
+  "title": "Banza-Bushi",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Shamisen",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95000-Banzai-Bushi/J95000-Banzai-Bushi.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95000-Banzai-Bushi/J95000-Banzai-Bushi.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1760,
+  "title": "Yanreso Hoi",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Shamisen",
+  "date": "",
+  "style": "Folk",
+  "arranger": "Arr. Y. Nagai, K. Obata",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95000-YanresoHoi/J95000-YanresoHoi.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95000-YanresoHoi/J95000-YanresoHoi.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1761,
+  "title": "Noue Bushi",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Shamisen",
+  "date": "",
+  "style": "Folk",
+  "arranger": "Arr. Y. Nagai, K. Obata",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95002-Noue-Bushi/J95002-Noue-Bushi.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95002-Noue-Bushi/J95002-Noue-Bushi.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1762,
+  "title": "Umewa Saitaka",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Shamisen",
+  "date": "",
+  "style": "Folk",
+  "arranger": "Arr. Y. Nagai, K. Obata",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95002-UmewaSaitaka/J95002-UmewaSaitaka.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95002-UmewaSaitaka/J95002-UmewaSaitaka.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1763,
+  "title": "Doujan",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Shamisen",
+  "date": "",
+  "style": "Folk",
+  "arranger": "Arr. Y. Nagai, K. Obata",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95004-Doujan/J95004-Doujan.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95004-Doujan/J95004-Doujan.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1764,
+  "title": "Saakorasa",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Shamisen",
+  "date": "",
+  "style": "Folk",
+  "arranger": "Arr. Y. Nagai, K. Obata",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95004-Saakorasa/J95004-Saakorasa.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95004-Saakorasa/J95004-Saakorasa.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1765,
+  "title": "Chidori Meimei",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Shamisen",
+  "date": "",
+  "style": "Folk",
+  "arranger": "Arr. Y. Nagai, K. Obata",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95006-ChidoriMeimei/J95006-ChidoriMeimei.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95006-ChidoriMeimei/J95006-ChidoriMeimei.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1766,
+  "title": "Nisshin Danpan",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Shamisen",
+  "date": "",
+  "style": "Folk",
+  "arranger": "Arr. Y. Nagai, K. Obata",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95010-NisshinDanpan/J95010-NisshinDanpan.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95010-NisshinDanpan/J95010-NisshinDanpan.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1767,
+  "title": "Shashari",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Shamisen",
+  "date": "",
+  "style": "Folk",
+  "arranger": "Arr. Y. Nagai, K. Obata",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95014-Shashari/J95014-Shashari.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95014-Shashari/J95014-Shashari.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1768,
+  "title": "Soushi-Bushi",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Shamisen",
+  "date": "",
+  "style": "Folk",
+  "arranger": "Arr. Y. Nagai, K. Obata",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95014-Soushi-Bushi/J95014-Soushi-Bushi.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95014-Soushi-Bushi/J95014-Soushi-Bushi.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1769,
+  "title": "Shigin-Cho, Nanagon Zeku",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Shamisen",
+  "date": "",
+  "style": "Folk",
+  "arranger": "Arr. Y. Nagai, K. Obata",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95016-Shigin-Cho/J95016-Shigin-Cho.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/J95016-Shigin-Cho/J95016-Shigin-Cho.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1887,
+  "title": "Air varié",
+  "composer": "by J. Küffner (1776–1856)",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Guitar",
+  "date": "",
+  "style": "Classical",
+  "arranger": "",
+  "source": "München. Internationaler Guitarristen-Verband. 1905",
+  "licence": "Creative Commons Attribution-ShareAlike 3.0",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/KuffnerJ/air-varie/air-varie.ly"
+  ],
+  "ly_zip": [],
+  "mid": [],
+  "mid_zip": [
+   "https://www.mutopiaproject.org/ftp/KuffnerJ/air-varie/air-varie-mids.zip"
+  ],
+  "found_by": [
+   "national"
+  ]
+ },
+ {
+  "id": 1889,
+  "title": "Nº1. Halling.",
+  "composer": "Traditional",
+  "opus": "Verk 24",
+  "poet": "",
+  "instrument": "for Piano, Violin",
+  "date": "1895",
+  "style": "Folk",
+  "arranger": "Johan Halvorsen",
+  "source": "Carl Warmuths Musikforlag",
+  "licence": "Creative Commons Attribution-ShareAlike 3.0",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/no1Halling/no1Halling.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/no1Halling/no1Halling.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "national",
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1890,
+  "title": "Nº2. Bruralaat.",
+  "composer": "Traditional",
+  "opus": "Verk 24",
+  "poet": "",
+  "instrument": "for Piano, Violin",
+  "date": "1895",
+  "style": "Folk",
+  "arranger": "Johan Halvorsen",
+  "source": "Carl Warmuths Musikforlag",
+  "licence": "Creative Commons Attribution-ShareAlike 3.0",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/no2Bruralaat/no2Bruralaat.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/no2Bruralaat/no2Bruralaat.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "national",
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1894,
+  "title": "Nº1. Nöring.",
+  "composer": "Traditional",
+  "opus": "Verk 24",
+  "poet": "",
+  "instrument": "for Piano, Violin",
+  "date": "1895",
+  "style": "Folk",
+  "arranger": "Johan Halvorsen",
+  "source": "Carl Warmuths Musikforlag",
+  "licence": "Creative Commons Attribution-ShareAlike 3.0",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/no11Noring/no11Noring.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/no11Noring/no11Noring.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "national",
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1961,
+  "title": "Gonbe ga Tanemaku",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Shamisen",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM001-GonbeGaTanemaku/JPM001-GonbeGaTanemaku.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM001-GonbeGaTanemaku/JPM001-GonbeGaTanemaku.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1962,
+  "title": "Toka-Ebisu",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Shamisen",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM004-Toka-Ebisu/JPM004-Toka-Ebisu.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM004-Toka-Ebisu/JPM004-Toka-Ebisu.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1963,
+  "title": "O-Edo-Nihonbashi",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Shamisen",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM007-O-Edo-Nihonbashi/JPM007-O-Edo-Nihonbashi.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM007-O-Edo-Nihonbashi/JPM007-O-Edo-Nihonbashi.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1964,
+  "title": "Suiryo-Bushi",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Shamisen",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM009-Suiryo-Bushi/JPM009-Suiryo-Bushi.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM009-Suiryo-Bushi/JPM009-Suiryo-Bushi.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1965,
+  "title": "Riukiu-Bushi",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Shamisen",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM013-Riukiu-Bushi/JPM013-Riukiu-Bushi.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM013-Riukiu-Bushi/JPM013-Riukiu-Bushi.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1966,
+  "title": "Sedo no Danbatake",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Shamisen",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM016-SedoNoDanbatake/JPM016-SedoNoDanbatake.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM016-SedoNoDanbatake/JPM016-SedoNoDanbatake.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1967,
+  "title": "Inshu-Inaba",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Shamisen",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM021-Inshu-Inaba/JPM021-Inshu-Inaba.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM021-Inshu-Inaba/JPM021-Inshu-Inaba.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1968,
+  "title": "Kappore",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Shakuhachi",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM024-Kappore/JPM024-Kappore.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM024-Kappore/JPM024-Kappore.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1969,
+  "title": "Yube-Yonda",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Koto",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM029-YubeYonda/JPM029-YubeYonda.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM029-YubeYonda/JPM029-YubeYonda.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1970,
+  "title": "K Honen",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Koto",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM032-K-Honen/JPM032-K-Honen.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM032-K-Honen/JPM032-K-Honen.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1971,
+  "title": "Sakura-Miyotote",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Koto",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM037-Sakura-Miyotote/JPM037-Sakura-Miyotote.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM037-Sakura-Miyotote/JPM037-Sakura-Miyotote.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1972,
+  "title": "Kuro-Kami",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Koto",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM040-Kuro-Kami/JPM040-Kuro-Kami.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM040-Kuro-Kami/JPM040-Kuro-Kami.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1973,
+  "title": "Waga-Koiwa",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Koto",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM045-Waga-Koiwa/JPM045-Waga-Koiwa.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM045-Waga-Koiwa/JPM045-Waga-Koiwa.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1974,
+  "title": "Kosunoto",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Koto",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM048-Kosunoto/JPM048-Kosunoto.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM048-Kosunoto/JPM048-Kosunoto.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1975,
+  "title": "Kayo-Kami",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Koto",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM053-Kayo-Kami/JPM053-Kayo-Kami.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM053-Kayo-Kami/JPM053-Kayo-Kami.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1976,
+  "title": "Horete-Kayouni",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Koto",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM056-Horete-Kayouni/JPM056-Horete-Kayouni.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM056-Horete-Kayouni/JPM056-Horete-Kayouni.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1977,
+  "title": "Doteo-Toruwa",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Koto",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM061-Doteo-Toruwa/JPM061-Doteo-Toruwa.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM061-Doteo-Toruwa/JPM061-Doteo-Toruwa.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1978,
+  "title": "Otsue-Bushi",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Koto",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM064-Otsue-Bushi/JPM064-Otsue-Bushi.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM064-Otsue-Bushi/JPM064-Otsue-Bushi.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1979,
+  "title": "Asaku-Tomo",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Koto",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM069-Asaku-Tomo/JPM069-Asaku-Tomo.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM069-Asaku-Tomo/JPM069-Asaku-Tomo.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1980,
+  "title": "Iyo-Bushi",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Koto",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM072-Iyo-Bushi/JPM072-Iyo-Bushi.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM072-Iyo-Bushi/JPM072-Iyo-Bushi.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1981,
+  "title": "Oki No Taisen",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Koto",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM077-OkiNoTaisen/JPM077-OkiNoTaisen.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM077-OkiNoTaisen/JPM077-OkiNoTaisen.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1982,
+  "title": "Gosho no Oniwa",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Koto",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM080-GoshoNoOniwa/JPM080-GoshoNoOniwa.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM080-GoshoNoOniwa/JPM080-GoshoNoOniwa.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1983,
+  "title": "Murasaki",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Koto",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM085-Murasaki/JPM085-Murasaki.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM085-Murasaki/JPM085-Murasaki.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1984,
+  "title": "Na No Ha",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Koto",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM088-NaNoHa/JPM088-NaNoHa.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM088-NaNoHa/JPM088-NaNoHa.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1985,
+  "title": "Echigo Jishi",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Koto",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM096-Echigo-Jishi-hiragana/JPM096-Echigo-Jishi-hiragana.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM096-Echigo-Jishi-hiragana/JPM096-Echigo-Jishi-hiragana.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1986,
+  "title": "Echigo Jishi",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Koto",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM096-Echigo-Jishi-katakana/JPM096-Echigo-Jishi-katakana.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM096-Echigo-Jishi-katakana/JPM096-Echigo-Jishi-katakana.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1987,
+  "title": "Fuku-Ju-So",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Koto",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM101-Fuku-Ju-So/JPM101-Fuku-Ju-So.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM101-Fuku-Ju-So/JPM101-Fuku-Ju-So.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 1988,
+  "title": "Ukiyo-Bushi",
+  "composer": "Traditional",
+  "opus": "",
+  "poet": "",
+  "instrument": "for Koto",
+  "date": "",
+  "style": "Folk",
+  "arranger": "",
+  "source": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+  "licence": "Public Domain",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM105-Ukiyo-Bushi/JPM105-Ukiyo-Bushi.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/Traditional/JPM105-Ukiyo-Bushi/JPM105-Ukiyo-Bushi.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "Style=Folk"
+  ]
+ },
+ {
+  "id": 2017,
+  "title": "Perger Präludium",
+  "composer": "by A. Bruckner (1824–1896)",
+  "opus": "WAB 129",
+  "poet": "",
+  "instrument": "for Organ",
+  "date": "20 August 1884",
+  "style": "Romantic",
+  "arranger": "",
+  "source": "Composer Manuscript, Austrian National Library, Mus.Hs.44609/1",
+  "licence": "Creative Commons Attribution-ShareAlike 4.0",
+  "ly": [
+   "https://www.mutopiaproject.org/ftp/BrucknerA/WAB129/perger/perger.ly"
+  ],
+  "ly_zip": [],
+  "mid": [
+   "https://www.mutopiaproject.org/ftp/BrucknerA/WAB129/perger/perger.mid"
+  ],
+  "mid_zip": [],
+  "found_by": [
+   "national"
+  ]
+ }
+]

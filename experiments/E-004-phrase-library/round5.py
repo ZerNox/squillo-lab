@@ -54,7 +54,13 @@ PAGE = R3.PAGE  # 10 pieces a page (round3.py line 40)
 # before `screen` runs): Mutopia id -> the national anthem whose words and
 # tune the piece sets, by its title and source. A piece that sets an anthem's
 # tune to other words, or arranges it with no words, is not named.
-ANTHEM_OF = None
+# Named from r5-survey.json (17 pieces found by a query; the rest are the
+# Folk listing's): only 1017 sets a national anthem's words and tune. 1098,
+# "Polish National Air", is for guitar with no words; 949 is a church
+# anthem; the rest are other works the words matched (Sousa's marches,
+# Grieg, Bach, Bruckner, Lassus, Burgmüller, Kühnel, Dandrieu, Küffner) or
+# Norwegian dances for violin.
+ANTHEM_OF = {1017: "Hen Wlad Fy Nhadau"}
 
 # Rule 3c: the 39 items the library ships (results/items, fold 2's 30, and
 # results/r4/items, round 4's 9; squillo fixtures/slice/phrases/), by
