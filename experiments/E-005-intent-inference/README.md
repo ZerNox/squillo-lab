@@ -1283,3 +1283,21 @@ and given a measured spread with a wide ± (squillo F-073).
 
 **Limits.** Pure tones, not voices; one held pitch (A3); the shipped
 phrases' notes are measured against that one tone, not sung.
+
+## Round 7: part of a phrase, a note held across written notes, one tone (squillo iteration 83)
+
+```
+uv run python round7.py check          # the checks, each checked (S15) -> results/round7_checks.json
+uv run python round7.py time 28 18     # S19 sample on the pool
+uv run python round7.py synth 18       # 4000 takes -> data/cache/r7_synth.pkl (saves every 100, resumes)
+uv run python round7.py report         # -> results/round7.json
+uv run python round6_r64.py run 18     # F-074: round 6's R6-4 counts -> results/round6_r64.json
+```
+
+**Estimate (S19)**, committed before the full run: `round7.py time 28 18`,
+after the rules commit (`cfdd5ed`) and revision 1, on the pool of 18
+processes: 28 takes, four of each of the six modes and the tone, over the
+extremes (28 notes, σ 0 and 30, vibrato; 14 notes, σ 0, straight), each to
+its end, in 6.0 s, 0.213 s of wall time each; for 4000 takes, 14.2 minutes.
+The run is driven in foreground calls of under 600 s, each resuming from
+the rows saved every 100.
