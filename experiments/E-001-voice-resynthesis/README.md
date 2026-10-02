@@ -527,6 +527,14 @@ hand, both are asserted through the expression they record
 | V2 | Does levelling change SY-003's outcome? | **No.** On the three levelled `voice` fixture rungs the rule passes 621 of 622 frames each (`zero`, `up-50c`, `steady`), as unlevelled (fold 1); largest error 1.90, 1.65, 1.80 cents |
 | — | Gain and peak (recorded) | Gain −4.84 to −1.08 dB real, −3.36 to −0.81 synthetic, −1.40 to −1.18 fixtures. The levelled rung's peak against its take's: −1.95 to +2.73 dB real, −0.49 to +1.24 synthetic, +1.75 to +1.97 fixtures. So levelling lowers round 3's peak excess from up to +4.87 dB to up to +2.73, and does not remove it: a take peaking within 2.73 dB of full scale can still give a levelled rung above full scale |
 
+**A fixture for squillo's SY-008** (iteration 67; `r3_fixture.py`,
+`7d506c8`, guarded `273d7a1`): `request-silence-1s.json`, 125 `null`
+entries for squillo's `fixtures/signal/silence.wav`, whose 48 000 zero
+samples give no measured frame and no 400 ms block above BS.1770's absolute
+gate, each asserted; sha256 `86761600…`. Its first version ran committed
+but without the committed-first guard (squillo L-055); the guarded re-run
+refused while uncommitted and, committed, wrote the same bytes.
+
 ### Round 4 (open)
 
 The listening ratings; vibrato regularisation; amateur voices; why the
