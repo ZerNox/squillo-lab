@@ -64,10 +64,23 @@ Checks of the checks (S15; each must-pass and must-fail differs in the input it 
   meter_sine: a 997 Hz sine at full scale, 10 s, mono, reads -3.01 LKFS within 0.05
       (BS.1770-4, Annex 1 note: such a sine in one channel gives -3.01 LKFS), in both
       meters; must fail: the same sine at half amplitude (-9.03).
-  meter_gate: 5 s of silence then that sine reads -3.01 within 0.05 in both meters
-      (gated); must fail: the ungated mean-square level of the same input (-6.0).
-  meters_agree: the two meters agree within 0.05 LU on every take and rung; must fail:
-      one meter on a take raised by 0.2 dB against the other on the take as is.
+  meter_gate: 5 s of silence then that sine reads, within 0.05 in both meters, what the
+      gating gives by its definition: the 97 blocks wholly in the sine and the 3 that straddle
+      the edge (holding 3/4, 1/2 and 1/4 of a block's energy) pass both gates, so
+      -3.01 + 10 log10(98.5 / 100) (computed in code); must fail: the ungated mean-square
+      level of the same input.
+  meters_agree: the two meters' dL agree within 0.05 LU on every rung; must pass: both on a
+      take against itself scaled by 0.9; must fail: pyloudnorm on the take against itself
+      raised by 0.2 dB, against this meter on the take against itself.
+
+Revision 1, before the full run (S19, a harness fault found by the checks' own first run,
+which read no rung): the first meter_gate expected -3.01, but under BS.1770's gating the 3
+blocks straddling the silence's edge pass the relative gate and pull the level to -3.076, as
+this meter read; and pyloudnorm reads the full-scale sine at -3.052, 0.04 LU from the
+standard's -3.01 (its K-weighting is designed from analogue prototypes, not the standard's
+48 kHz coefficients), an offset in absolute level that cancels in a difference. So meters_agree
+compares the two meters' dL, the measure the rule reads, not their absolute levels, which are
+recorded.
   rule: R1's comparison passes a take against itself and fails it against the same take
       raised by 1 dB.
 """
@@ -187,13 +200,16 @@ def check_the_checks(b):
     assert all(abs(v - SINE_LKFS) <= TOL_METER for v in out["meter_sine_must_pass"]), out
     assert not any(abs(v - SINE_LKFS) <= TOL_METER for v in out["meter_sine_must_fail"]), out
     zg = blocks(gated)
+    whole = (10 * SR - int(0.4 * SR)) // int(0.1 * SR) + 1  # blocks wholly in the sine: 97
+    gate_expect = SINE_LKFS + 10 * np.log10((whole + 0.75 + 0.5 + 0.25) / (whole + 3))
+    out["meter_gate_expect"] = float(gate_expect)
     out["meter_gate_must_pass"] = [bs1770(gated), pyln_l(gated)]
     out["meter_gate_must_fail"] = float(lk(zg.mean()))
-    assert all(abs(v - SINE_LKFS) <= TOL_METER for v in out["meter_gate_must_pass"]), out
-    assert abs(out["meter_gate_must_fail"] - SINE_LKFS) > TOL_METER, out
+    assert all(abs(v - gate_expect) <= TOL_METER for v in out["meter_gate_must_pass"]), out
+    assert abs(out["meter_gate_must_fail"] - gate_expect) > TOL_METER, out
     x = np.fromfile(CACHE / "r2" / "m1.x.f64", dtype="<f8")
-    out["meters_agree_must_pass"] = pyln_l(x) - bs1770(x)
-    out["meters_agree_must_fail"] = pyln_l(x * 10 ** (0.2 / 20)) - bs1770(x)
+    out["meters_agree_must_pass"] = (pyln_l(0.9 * x) - pyln_l(x)) - (bs1770(0.9 * x) - bs1770(x))
+    out["meters_agree_must_fail"] = (pyln_l(x * 10 ** (0.2 / 20)) - pyln_l(x)) - (bs1770(x) - bs1770(x))
     assert abs(out["meters_agree_must_pass"]) <= TOL_METER, out
     assert abs(out["meters_agree_must_fail"]) > TOL_METER, out
     out["rule_must_pass"] = compare(x, x)["dL"]
@@ -244,10 +260,12 @@ def main():
             y = read(d / "out" / f"{n}.{q}.native.f64").astype(np.float32).astype(np.float64)
             assert len(y) == len(x), (n, q)
             c = compare(x, y)
-            assert abs(c["meters_take"]) <= TOL_METER and abs(c["meters_rung"]) <= TOL_METER, (n, q, c)
+            assert abs(c["dL_pyln"] - c["dL"]) <= TOL_METER, (n, q, c)
             report["items"].append(dict(kind=kind, input=n, request=q, **c,
                                         inaudible=inaudible(c, b["bar"])))
-    report["meters_agree_max"] = max(max(abs(i["meters_take"]), abs(i["meters_rung"])) for i in report["items"])
+    report["meters_agree_max"] = max(abs(i["dL_pyln"] - i["dL"]) for i in report["items"])
+    report["meters_offset_range"] = [min(min(i["meters_take"], i["meters_rung"]) for i in report["items"]),
+                                     max(max(i["meters_take"], i["meters_rung"]) for i in report["items"])]
     rng = np.random.default_rng(20261002)
     summ = {}
     for kind in ("vocalset", "synthetic", "fixture"):
