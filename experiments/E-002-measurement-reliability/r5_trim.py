@@ -68,6 +68,11 @@ a check; a bar's outcome is the result.
   max, 64 strengths, MT-008), with one addition: the take and each rung are measured on the first n of the
   take's blocks, n = 2 .. B, B the take's own block count. Blocks are matched between the take and a rung
   by their first frame in the take; a rung missing one of the n is not measured at n, so not improved.
+  Revision 3, after the first full `analyse` stopped on B0 (n = B gave fold 3's next k on 31 of 47
+  original takes; part B's summaries were not printed): the steadying moves the 60-cent cut by a few
+  frames, so a rung's blocks rarely start on the take's frames, and a rung may hold more or fewer blocks
+  than the take (fold 3 measures it on all of its own). A rung at n is now measured on its own first n
+  blocks in time order, and on all of them at n = B, as fold 3; the floor (B2) likewise on all.
   The next step at n is the least strength improved at n; its strength is k * alpha_max / 64 (fold 3 L3).
   B0 Check: at n = B, the next k equals fold3_ladder.json's next_k on every measured take of both
      conditions (must pass); the same comparison against the next_k list rotated by one take must not
@@ -323,15 +328,19 @@ def ladder_n(p, u):
     rungs = []
     for k in range(1, L.K + 1):
         nr, br, _ = L.measure(p + ch * (k * amax / L.K), u)
-        rungs.append(keyed(nr, br))
+        kr = keyed(nr, br)
+        rungs.append([kr[s] for s in sorted(kr)])   # revision 3: the rung's own blocks in time order
+
+    def rung_n(r, n):
+        """revision 3: a rung at n is its own first n blocks in time order, all of them at n = B."""
+        return r if n == B else r[:n]
     res = {}
     for n in range(2, B + 1):
         sub = order[:n]
         t = F2.take([kb[s] for s in sub], "S", K_SP["S"])
         nk = None
         for k in range(1, L.K + 1):
-            r = rungs[k - 1]
-            if all(s in r for s in sub) and L.improved(t, F2.take([r[s] for s in sub], "S", K_SP["S"])):
+            if L.improved(t, F2.take(rung_n(rungs[k - 1], n), "S", K_SP["S"])):
                 nk = k
                 break
         res[n] = dict(next_k=nk, strength=None if nk is None else nk * amax / L.K, S=t[0], u=t[1])
@@ -340,8 +349,7 @@ def ladder_n(p, u):
         v = np.array([b["S"] for b in blocks])
         return float(v.mean()), float(K_SP["S"] * np.mean([b["uS"] for b in blocks]))
     tf = floor([kb[s] for s in order])
-    fk = next((k for k in range(1, L.K + 1) if all(s in rungs[k - 1] for s in order)
-               and L.improved(tf, floor([rungs[k - 1][s] for s in order]))), None)
+    fk = next((k for k in range(1, L.K + 1) if len(rungs[k - 1]) >= 2 and L.improved(tf, floor(rungs[k - 1]))), None)
     assert tf[1] <= tk[1] + 1e-12   # the floor's u is never wider (by construction: a sanity assertion)
     return dict(B=B, alpha_max=amax, by_n=res, floor_next_k=fk, floor_strength=None if fk is None else fk * amax / L.K,
                 floor_u=tf[1], u=tk[1])
