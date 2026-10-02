@@ -1087,7 +1087,13 @@ chooses *X* = 40 (ADR 0015, Q-040 part 2), which passed B1 (worst cell R,
 measured, 684 at least; `results/round5.json` `B1["40.0"]`), so B2 and B3
 are read at *X* = 40 on round 5's cached rows, with rules and checks
 committed before the run (`fold5_x40.py`'s first commit). `checkkeys.py
-fold5_x40.py` alone and with `results/fold5_x40.json`: 0 flags. Seconds.
+fold5_x40.py` alone: 0 flags; with `results/fold5_x40.json`: one,
+`must_fail_C2_across_cells`, read by hand: it is the Wilson record of C2,
+asserted through `must_fail_C2_exceeds_bar` (its first element above the
+bar) on the script's last line. *Recorded, not asserted:* the `passes`
+keys of B2@40 and `B3_at_40_passes`, the bars' outcomes. Seconds. (This
+paragraph first said "0 flags" with the results; corrected in the next
+commit.)
 
 Checks: C1, this script's code at *X* = ∞ reproduces `round5.json`'s B2
 cells and B3 counts exactly (true); C2 (must fail), the B2 rule applied
