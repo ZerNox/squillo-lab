@@ -1117,3 +1117,22 @@ from 50.0 / 67.5 / 82.5 % to 15.0 / 40.0 / 32.5 %, vibrato 40 → 10 from
 gains no honesty on B1–B3, which ∞ passed too; what it buys is that no
 interval shown reaches beyond the 40 cents tested (real vibrato takes
 under ∞: *u*_B median 58.7–66.1 cents).
+
+## Round 6: a centring rung for a library phrase (squillo iteration 76)
+
+```
+uv run python round6.py check           # the checks, each checked (S15) -> results/round6_checks.json
+uv run python round6.py time 24 18      # S19 sample on the pool
+uv run python round6.py fresh 18        # 720 fresh held-out phrases -> data/cache/r6_fresh.pkl (saves every 100, resumes)
+uv run python round6.py analyse 18      # every phrase x gate x strength -> data/cache/r6_rows.pkl
+uv run python round6.py world 18        # WORLD re-syntheses of the rung -> data/cache/r6_world.pkl
+uv run python round6.py report          # -> results/round6.json
+```
+
+**Estimate (S19)**, committed before the full run: `round6.py time 24 18`,
+after the rules commit (`e63abe2`), on the pool of 18 processes: 24 fresh
+phrases over the extremes (28 notes, library and 14 notes; σ 0 and 30;
+straight and vibrato), each generated and analysed to its end, and WORLD on
+6 of them. Generation 0.473 s of wall time each, 5.7 minutes for 720;
+analysis 0.132 s each, 5.5 minutes for 2517 rows; WORLD 1.616 s a pair,
+2.4 minutes for 88. Each step runs in the foreground under 600 s.
