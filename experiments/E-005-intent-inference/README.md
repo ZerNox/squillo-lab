@@ -824,3 +824,62 @@ vibrato rate (5.5 Hz) and sinusoidal vibrato; synthetic voices; real takes
 are 40 re-syntheses and 77 originals of trained singers; *t* only to 6 s;
 B compares two estimates on nested data, so its misses include the whole
 take's own error.
+
+## Fold 4: the provisional tuning into squillo `metrics`, and its fixture (squillo iteration 72)
+
+Squillo iteration 72 folds round 4 (F-040): ADR 0015 step 1's provisional
+tuning becomes PM, the circular mean of each bridged voiced run's 200 ms
+running median (`round4.provisional`). Code: `fold4.py`, whose docstring
+holds the fixture's conditions, rules F1–F3 and the checks of the checks,
+committed before any run (`69ff606`; the guard refused the uncommitted
+script first). `checkkeys.py fold4.py` alone and with `results/fold4.json`:
+0 flags. The run takes 3.5 s.
+
+**The fixture.** `take-vibrato-onset-50c.wav`: fold 2's fourteen-note take
+(`fold_refusal.py:393-426`), every note on its semitone of a tuning 23
+cents above A4 = 440 Hz, with take-vibrato-in-tune's 5.5 Hz vibrato widened
+to *f*ⱼ · (1 + β sin(2π · 5.5 · *t*)), β = 2^(50/1200) − 1 =
+0.029302236643492074, full from each note's first sample: +50.0000 and
+−51.4871 cents on the sample grid (asserted), 216.41 to 458.95 Hz, inside
+E2..C6. 609 600 samples, 2 438 458 bytes, SHA-256
+`9bc0ae78112011490b635abeb7031d605358cb32c9b439aaf8eed36df5623bae`.
+
+**Results** (`results/fold4.json`; MT-003's refusal on, 31 frames refused
+on the fixture under both rules):
+
+| Rule | Fixture held | F1 under PM | F2 under P0 (must fail) |
+| :--- | :--- | :--- | :--- |
+| F1, F2 | `take-vibrato-onset-50c.wav` | **measured**, σ̂ 0.037, *u* 1.013, interval −1.989 to 2.063 cents, 14 segments: holds | **at least**, lower end −58.0, upper 91.8, 98 segments (round 1's F-040 count): not measured, as required |
+
+Checks of the checks: "measured and contains 0" fails on
+`take-spread-5c.wav` under PM, and "not measured" fails on
+`take-vibrato-in-tune.wav` under P0 (measured): both as required.
+
+**F3 failed as written.** Every MT-006, MT-007 and MT-008 scenario check
+holds under PM (in tune and vibrato in tune measured containing 0; 5c
+containing 5 and not 0; 15c containing 15 and not 5; drift at least with
+its lower end in (0, 18.6052]; uncertain; the six compare checks), and 22
+of the 24 wav fixtures keep their state. Two do not, and "no state moved"
+is false:
+
+| Fixture | P0 | PM |
+| :--- | :--- | :--- |
+| `fixtures/metrics/held-vibrato.wav` (one 5 s tone, 220 Hz, vibrato −40.28 / +39.37 cents) | measured, σ̂ 0.39 ± 2.05, **15 segments** | intent uncertain, **1 segment** |
+| `fixtures/signal/vibrato-220hz-5p5hz.wav` (one 1 s tone, −49.2 / +47.8 cents) | at least, lower end −38.2, **9 segments** | intent uncertain, **1 segment** |
+
+Both are one sustained tone each, with a vibrato wider than the 38.3
+cents at which P0 turns (F-040), read from squillo's `fixtures/MANIFEST.md`
+after the run. Under P0 each tone was split into 15 and 9 "notes", and
+`held-vibrato.wav`'s spread was given as measured, a claim about pitch
+accuracy that one note cannot support. Under PM each is one note, and one
+note is not enough to tell aimed notes apart (fewer than two notes kept),
+so intent uncertain. The rule was wrong, not PM: F3 was written without
+reading each fixture's vibrato extent against 38.3 cents (squillo L-058).
+No squillo scenario reads `pitch-spread` on either fixture (squillo
+iteration 72 searched every spec). The asserts after F3 did not run;
+`fold4.json` holds their values, every one true.
+
+**What this says for squillo.** MT-006 states that a vibrato from each
+note's onset does not turn the tuning, with this fixture as its scenario,
+and ADR 0015 step 1 names PM; `held-vibrato.wav`'s `pitch-spread` is
+intent uncertain under the new rule, which no scenario contradicts.

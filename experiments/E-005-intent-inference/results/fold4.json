@@ -1,0 +1,590 @@
+{
+ "fixture": {
+  "sha256": "9bc0ae78112011490b635abeb7031d605358cb32c9b439aaf8eed36df5623bae",
+  "bytes": 2438458,
+  "samples": 609600,
+  "beta": 0.029302236643492074,
+  "extent_up": 50.0,
+  "extent_down": -51.4871,
+  "f_min": 216.41,
+  "f_max": 458.95
+ },
+ "rows": {
+  "fixtures/metrics/held-steady.wav": {
+   "P0": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 1,
+    "r0": 8.663671821343512e-05,
+    "refused": 0
+   },
+   "PM": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 1,
+    "r0": 0.00010531711841653398,
+    "refused": 0
+   }
+  },
+  "fixtures/metrics/held-vibrato.wav": {
+   "P0": {
+    "state": "measured",
+    "s": 0.3910640632684943,
+    "uB": 1.0231541103533937,
+    "lower": -1.655244157438293,
+    "upper": 2.4373722839752814,
+    "nseg": 15,
+    "r0": 42.58461007396478,
+    "refused": 0
+   },
+   "PM": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 1,
+    "r0": 0.5847415130072238,
+    "refused": 0
+   }
+  },
+  "fixtures/metrics/held-wobble.wav": {
+   "P0": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 1,
+    "r0": 3.447669751753006,
+    "refused": 0
+   },
+   "PM": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 1,
+    "r0": 3.440675389884496,
+    "refused": 0
+   }
+  },
+  "fixtures/metrics/take-drift-60c.wav": {
+   "P0": {
+    "state": "at least",
+    "s": 22.483931076705833,
+    "uB": 4.521562220840792,
+    "lower": 13.440806635024249,
+    "upper": 31.527055518387417,
+    "nseg": 14,
+    "r0": 23.01602499736063,
+    "refused": 28
+   },
+   "PM": {
+    "state": "at least",
+    "s": 22.483931076705833,
+    "uB": 4.521562220840792,
+    "lower": 13.440806635024249,
+    "upper": 31.527055518387417,
+    "nseg": 14,
+    "r0": 23.01628946805674,
+    "refused": 28
+   }
+  },
+  "fixtures/metrics/take-in-tune.wav": {
+   "P0": {
+    "state": "measured",
+    "s": 0.0006831043263965991,
+    "uB": 1.0000038986107438,
+    "lower": -1.999324692895091,
+    "upper": 2.000690901547884,
+    "nseg": 14,
+    "r0": 23.020033583374296,
+    "refused": 31
+   },
+   "PM": {
+    "state": "measured",
+    "s": 0.0006831043263965991,
+    "uB": 1.0000038986107438,
+    "lower": -1.999324692895091,
+    "upper": 2.000690901547884,
+    "nseg": 14,
+    "r0": 23.020307839898923,
+    "refused": 31
+   }
+  },
+  "fixtures/metrics/take-spread-15c.wav": {
+   "P0": {
+    "state": "measured",
+    "s": 16.89714930265014,
+    "uB": 3.4614970172013244,
+    "lower": 9.97415526824749,
+    "upper": 23.820143337052787,
+    "nseg": 14,
+    "r0": 23.02092386035674,
+    "refused": 30
+   },
+   "PM": {
+    "state": "measured",
+    "s": 16.89714930265014,
+    "uB": 3.4614970172013244,
+    "lower": 9.97415526824749,
+    "upper": 23.820143337052787,
+    "nseg": 14,
+    "r0": 23.021164445429747,
+    "refused": 30
+   }
+  },
+  "fixtures/metrics/take-spread-5c.wav": {
+   "P0": {
+    "state": "measured",
+    "s": 5.226390497801498,
+    "uB": 1.4320096211756472,
+    "lower": 2.3623712554502037,
+    "upper": 8.090409740152793,
+    "nseg": 14,
+    "r0": 23.017818920213486,
+    "refused": 30
+   },
+   "PM": {
+    "state": "measured",
+    "s": 5.226390497801498,
+    "uB": 1.4320096211756472,
+    "lower": 2.3623712554502037,
+    "upper": 8.090409740152793,
+    "nseg": 14,
+    "r0": 23.01792642614818,
+    "refused": 30
+   }
+  },
+  "fixtures/metrics/take-uncertain.wav": {
+   "P0": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 14,
+    "r0": -47.29800966533232,
+    "refused": 27
+   },
+   "PM": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 14,
+    "r0": -47.26400074715193,
+    "refused": 27
+   }
+  },
+  "fixtures/metrics/take-vibrato-in-tune.wav": {
+   "P0": {
+    "state": "measured",
+    "s": 0.059301179362059434,
+    "uB": 1.0047262168244016,
+    "lower": -1.9501512542867436,
+    "upper": 2.0687536130108626,
+    "nseg": 14,
+    "r0": 32.08182843558064,
+    "refused": 31
+   },
+   "PM": {
+    "state": "measured",
+    "s": 0.059301179362059434,
+    "uB": 1.0047262168244016,
+    "lower": -1.9501512542867436,
+    "upper": 2.0687536130108626,
+    "nseg": 14,
+    "r0": 26.64804384259595,
+    "refused": 31
+   }
+  },
+  "fixtures/metrics/tone-aperiodic.wav": {
+   "P0": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 1,
+    "r0": 0.7637284915691022,
+    "refused": 13
+   },
+   "PM": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 1,
+    "r0": 1.1006919412297282,
+    "refused": 13
+   }
+  },
+  "fixtures/metrics/tone-weak-odd.wav": {
+   "P0": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 0,
+    "r0": null,
+    "refused": 122
+   },
+   "PM": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 0,
+    "r0": null,
+    "refused": 122
+   }
+  },
+  "fixtures/signal/glide-220hz-600c.wav": {
+   "P0": {
+    "state": "at least",
+    "s": 1.983619147367726,
+    "uB": 20.831436535810674,
+    "lower": -39.67925392425362,
+    "upper": 43.646492218989074,
+    "nseg": 6,
+    "r0": 46.275073070442716,
+    "refused": 0
+   },
+   "PM": {
+    "state": "at least",
+    "s": 1.983619147367726,
+    "uB": 20.831436535810674,
+    "lower": -39.67925392425362,
+    "upper": 43.646492218989074,
+    "nseg": 6,
+    "r0": 46.275073070442716,
+    "refused": 0
+   }
+  },
+  "fixtures/signal/silence.wav": {
+   "P0": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 0,
+    "r0": null,
+    "refused": 0
+   },
+   "PM": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 0,
+    "r0": null,
+    "refused": 0
+   }
+  },
+  "fixtures/signal/sine-220hz-overshoot.wav": {
+   "P0": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 1,
+    "r0": 8.676643948502548e-05,
+    "refused": 0
+   },
+   "PM": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 1,
+    "r0": 0.00010471880271561166,
+    "refused": 0
+   }
+  },
+  "fixtures/signal/sine-220hz.wav": {
+   "P0": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 1,
+    "r0": 8.676643948502548e-05,
+    "refused": 0
+   },
+   "PM": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 1,
+    "r0": 0.00010471880271561166,
+    "refused": 0
+   }
+  },
+  "fixtures/signal/sine-c2.wav": {
+   "P0": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 0,
+    "r0": null,
+    "refused": 0
+   },
+   "PM": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 0,
+    "r0": null,
+    "refused": 0
+   }
+  },
+  "fixtures/signal/sine-c6-plus-7c.wav": {
+   "P0": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 0,
+    "r0": null,
+    "refused": 0
+   },
+   "PM": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 0,
+    "r0": null,
+    "refused": 0
+   }
+  },
+  "fixtures/signal/sine-c6.wav": {
+   "P0": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 1,
+    "r0": -0.007409681149723801,
+    "refused": 0
+   },
+   "PM": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 1,
+    "r0": -0.009132796307658073,
+    "refused": 0
+   }
+  },
+  "fixtures/signal/sine-c7.wav": {
+   "P0": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 0,
+    "r0": null,
+    "refused": 0
+   },
+   "PM": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 0,
+    "r0": null,
+    "refused": 0
+   }
+  },
+  "fixtures/signal/sine-e2-minus-7c.wav": {
+   "P0": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 0,
+    "r0": null,
+    "refused": 0
+   },
+   "PM": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 0,
+    "r0": null,
+    "refused": 0
+   }
+  },
+  "fixtures/signal/sine-e2.wav": {
+   "P0": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 1,
+    "r0": 2.90889412205101e-06,
+    "refused": 0
+   },
+   "PM": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 1,
+    "r0": -8.961464301546702e-07,
+    "refused": 0
+   }
+  },
+  "fixtures/signal/vibrato-220hz-5p5hz.wav": {
+   "P0": {
+    "state": "at least",
+    "s": 25.163862211879554,
+    "uB": 31.67171848050581,
+    "lower": -38.179574749132065,
+    "upper": 88.50729917289118,
+    "nseg": 9,
+    "r0": 46.93906342854367,
+    "refused": 0
+   },
+   "PM": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 1,
+    "r0": 3.5583312282819994,
+    "refused": 0
+   }
+  },
+  "fixtures/synthesis/silence-30s-plus.wav": {
+   "P0": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 0,
+    "r0": null,
+    "refused": 0
+   },
+   "PM": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 0,
+    "r0": null,
+    "refused": 0
+   }
+  },
+  "fixtures/synthesis/voice-220hz-wobble.wav": {
+   "P0": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 1,
+    "r0": 3.4451769836530217,
+    "refused": 0
+   },
+   "PM": {
+    "state": "uncertain",
+    "s": null,
+    "uB": null,
+    "lower": null,
+    "upper": null,
+    "nseg": 1,
+    "r0": 3.4382758907644195,
+    "refused": 0
+   }
+  },
+  "fixtures/metrics/take-vibrato-onset-50c.wav": {
+   "P0": {
+    "state": "at least",
+    "s": 16.916666043700364,
+    "uB": 37.46628760893436,
+    "lower": -58.01590917416836,
+    "upper": 91.84924126156908,
+    "nseg": 98,
+    "r0": -28.941853933400974,
+    "refused": 31
+   },
+   "PM": {
+    "state": "measured",
+    "s": 0.03705487287883071,
+    "uB": 1.0131753521568,
+    "lower": -1.9892958314347695,
+    "upper": 2.063405577192431,
+    "nseg": 14,
+    "r0": 27.13865544601176,
+    "refused": 31
+   }
+  }
+ },
+ "moved": [
+  "fixtures/metrics/held-vibrato.wav",
+  "fixtures/signal/vibrato-220hz-5p5hz.wav"
+ ],
+ "checks": {
+  "F1_new_measured_contains_0": true,
+  "F1_new_14_segments": true,
+  "F3_no_state_moved": false,
+  "F3_in_tune": true,
+  "F3_vibrato_in_tune": true,
+  "F3_spread_5": true,
+  "F3_spread_15": true,
+  "F3_drift": true,
+  "F3_uncertain": true,
+  "F3_15_to_5_improved": true,
+  "F3_5_to_in_tune_improved": true,
+  "F3_5_to_5_no_change": true,
+  "F3_drift_to_in_tune_improved": true,
+  "F3_in_tune_to_drift_worse": true,
+  "F3_drift_to_drift_no_change": true
+ },
+ "must_fail": {
+  "F2_new_not_measured_under_P0": true,
+  "contains_0_fails_on_spread_5c": true,
+  "not_measured_fails_on_vibrato_in_tune_P0": true
+ }
+}
