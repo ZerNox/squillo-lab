@@ -505,6 +505,28 @@ rungs, not the browser's (fold 2: at most 4.9 × 10⁻¹⁰ apart). Why WORLD's
 output is louder (its aperiodicity, its envelope's level, its pulse
 synthesis) is not analysed.
 
+**Levelling step** (squillo iteration 67, F-063's fold; `r3_level.py`, rules
+V1 and V2, checks and estimate committed before the run, `results/r3/level.json`;
+4 s, one process). Round 3's 134 rungs, each levelled as squillo's fold
+states it: the gain 10^((L_take − L_rung)/20) by this round's BS.1770-4
+meter, applied in `f64`, re-measured and repeated while the levels differ by
+0.001 LU or more, at most 4 times (listen.py's values), then rounded to `f32`.
+
+| Check | Must pass | Must fail |
+| :--- | :--- | :--- |
+| `level_check`: V1's test (within 0.001 LU) | m1's take at −2 dB, levelled: −2.9 × 10⁻¹⁰ | the same, not levelled: −2.000 |
+| `delivered_check`: V2's rule (SY-003, fold 1's `delivered`) | levelled `zero` rung, `zero` request: passes | levelled `zero` rung, `up-50c` request: fails |
+
+`tools/checkkeys.py` flags `level_check_must_pass` and `_must_fail`: read by
+hand, both are asserted through the expression they record
+(`within(x, lev)`, `not within(x, s)`), not by name.
+
+| # | Question | Result |
+| :--- | :--- | :--- |
+| V1 | Does the levelling reach its take on every rung? | **Yes**, 134 of 134, within 2.6 × 10⁻⁹ LU after `f32` rounding. Steps: 1 on all 72 synthetic and 5 fixture rungs and on 52 of 57 real; 2 on 4 real (f1 `id`, f1 `c100`, f7 `c100`, m11 `s100`), 3 on 1 (f7 `id`). One step alone leaves real rungs up to 0.0815 LU off (f7 `id`), synthetic and fixture rungs under 2 × 10⁻¹³: the absolute gate moves blocks on real takes only. pyloudnorm, the other meter, reads the levelled rungs within 0.047 LU of their takes (real; synthetic and fixtures under 0.00011), under round 3's 0.50 bar |
+| V2 | Does levelling change SY-003's outcome? | **No.** On the three levelled `voice` fixture rungs the rule passes 621 of 622 frames each (`zero`, `up-50c`, `steady`), as unlevelled (fold 1); largest error 1.90, 1.65, 1.80 cents |
+| — | Gain and peak (recorded) | Gain −4.84 to −1.08 dB real, −3.36 to −0.81 synthetic, −1.40 to −1.18 fixtures. The levelled rung's peak against its take's: −1.95 to +2.73 dB real, −0.49 to +1.24 synthetic, +1.75 to +1.97 fixtures. So levelling lowers round 3's peak excess from up to +4.87 dB to up to +2.73, and does not remove it: a take peaking within 2.73 dB of full scale can still give a levelled rung above full scale |
+
 ### Round 4 (open)
 
 The listening ratings; vibrato regularisation; amateur voices; why the
