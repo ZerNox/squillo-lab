@@ -1,0 +1,64 @@
+{
+ "listed": 124,
+ "anthem_named": 1,
+ "folk_listed": 110,
+ "eligible": 29,
+ "eligible_by_genre": {
+  "folk": 29
+ },
+ "reasons": {
+  "2d": 13,
+  "2e": 24,
+  "2c": 18,
+  "2a": 63,
+  "2b": 2
+ },
+ "tried": 29,
+ "taken": 0,
+ "taken_by_genre": {},
+ "excluded": {
+  "1759": "5a no lyric events",
+  "1961": "5a no lyric events",
+  "1962": "5a no lyric events",
+  "1963": "5a no lyric events",
+  "1964": "5a no lyric events",
+  "1965": "5a no lyric events",
+  "1966": "5a no lyric events",
+  "1967": "5a no lyric events",
+  "1968": "5a no lyric events",
+  "1969": "5a no lyric events",
+  "1970": "5a no lyric events",
+  "1971": "5a no lyric events",
+  "1972": "5a no lyric events",
+  "1973": "5a no lyric events",
+  "1974": "5a no lyric events",
+  "1975": "5a no lyric events",
+  "1976": "5a no lyric events",
+  "1977": "5a no lyric events",
+  "1978": "5a no lyric events",
+  "1979": "5a no lyric events",
+  "1980": "5a no lyric events",
+  "1981": "5a no lyric events",
+  "1982": "5a no lyric events",
+  "1983": "5a no lyric events",
+  "1984": "5a no lyric events",
+  "1985": "5c no line end within 20 syllables",
+  "1986": "5c no line end within 20 syllables",
+  "1987": "5a no lyric events",
+  "1988": "5a no lyric events"
+ },
+ "k1": {
+  "run": 0,
+  "must_pass": 0
+ },
+ "k4": {
+  "people": 0,
+  "agree": 0,
+  "disagree": [],
+  "must_fail_cases": 0
+ },
+ "k5": {},
+ "k6": {},
+ "measure": null,
+ "library_after": 39
+}

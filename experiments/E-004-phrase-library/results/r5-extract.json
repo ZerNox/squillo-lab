@@ -1,0 +1,770 @@
+{
+ "rights_probe": {
+  "must_pass": true,
+  "must_fail_pub_1931": true,
+  "must_fail_death_1926": true,
+  "must_fail_death_unknown": true,
+  "must_fail_anonymous_published_1926": true
+ },
+ "taken": [],
+ "tried": [
+  1759,
+  1961,
+  1962,
+  1963,
+  1964,
+  1965,
+  1966,
+  1967,
+  1968,
+  1969,
+  1970,
+  1971,
+  1972,
+  1973,
+  1974,
+  1975,
+  1976,
+  1977,
+  1978,
+  1979,
+  1980,
+  1981,
+  1982,
+  1983,
+  1984,
+  1985,
+  1986,
+  1987,
+  1988
+ ],
+ "k4_must_fail_cases": 0,
+ "k4_must_fail_all_fail": true,
+ "k4_probe": [],
+ "pieces": [
+  {
+   "id": 1759,
+   "title": "Banza-Bushi",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1759",
+   "people": [],
+   "ly_header": {
+    "title": "Banzai-Bushi",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "copyright": "Public Domain",
+    "mutopiacomposer": "Traditional"
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1961,
+   "title": "Gonbe ga Tanemaku",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1961",
+   "people": [],
+   "ly_header": {
+    "title": "Gonbe ga Tanemaku",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1962,
+   "title": "Toka-Ebisu",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1962",
+   "people": [],
+   "ly_header": {
+    "title": "Toka-Ebisu",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1963,
+   "title": "O-Edo-Nihonbashi",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1963",
+   "people": [],
+   "ly_header": {
+    "title": "O-Edo-Nihonbashi",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1964,
+   "title": "Suiryo-Bushi",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1964",
+   "people": [],
+   "ly_header": {
+    "title": "Suiryo-Bushi",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1965,
+   "title": "Riukiu-Bushi",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1965",
+   "people": [],
+   "ly_header": {
+    "title": "Riukiu-Bushi",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1966,
+   "title": "Sedo no Danbatake",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1966",
+   "people": [],
+   "ly_header": {
+    "title": "Sedo no Danbatake",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1967,
+   "title": "Inshu-Inaba",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1967",
+   "people": [],
+   "ly_header": {
+    "title": "Inshu-Inaba",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1968,
+   "title": "Kappore",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1968",
+   "people": [],
+   "ly_header": {
+    "title": "Kappore",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1969,
+   "title": "Yube-Yonda",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1969",
+   "people": [],
+   "ly_header": {
+    "title": "Yube-Yonda",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1970,
+   "title": "K Honen",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1970",
+   "people": [],
+   "ly_header": {
+    "title": "K Honen",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1971,
+   "title": "Sakura-Miyotote",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1971",
+   "people": [],
+   "ly_header": {
+    "title": "Sakura-Miyotote",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1972,
+   "title": "Kuro-Kami",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1972",
+   "people": [],
+   "ly_header": {
+    "title": "Kuro-Kami",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1973,
+   "title": "Waga-Koiwa",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1973",
+   "people": [],
+   "ly_header": {
+    "title": "Waga-Koiwa",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1974,
+   "title": "Kosunoto",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1974",
+   "people": [],
+   "ly_header": {
+    "title": "Kosunoto",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1975,
+   "title": "Kayo-Kami",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1975",
+   "people": [],
+   "ly_header": {
+    "title": "Kayo-Kami",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1976,
+   "title": "Horete-Kayouni",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1976",
+   "people": [],
+   "ly_header": {
+    "title": "Horete-Kayouni",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1977,
+   "title": "Doteo-Toruwa",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1977",
+   "people": [],
+   "ly_header": {
+    "title": "Doteo-Toruwa",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1978,
+   "title": "Otsue-Bushi",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1978",
+   "people": [],
+   "ly_header": {
+    "title": "Otsue-Bushi",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1979,
+   "title": "Asaku-Tomo",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1979",
+   "people": [],
+   "ly_header": {
+    "title": "Asaku-Tomo",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1980,
+   "title": "Iyo-Bushi",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1980",
+   "people": [],
+   "ly_header": {
+    "title": "Iyo-Bushi",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1981,
+   "title": "Oki No Taisen",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1981",
+   "people": [],
+   "ly_header": {
+    "title": "Oki No Taisen",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1982,
+   "title": "Gosho no Oniwa",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1982",
+   "people": [],
+   "ly_header": {
+    "title": "Gosho no Oniwa",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1983,
+   "title": "Murasaki",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1983",
+   "people": [],
+   "ly_header": {
+    "title": "Murasaki",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1984,
+   "title": "Na No Ha",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1984",
+   "people": [],
+   "ly_header": {
+    "title": "Na No Ha",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1985,
+   "title": "Echigo Jishi",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1985",
+   "people": [],
+   "ly_header": {
+    "title": "えちご  ぢし",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "mutopia",
+   "excluded": "5c no line end within 20 syllables"
+  },
+  {
+   "id": 1986,
+   "title": "Echigo Jishi",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1986",
+   "people": [],
+   "ly_header": {
+    "title": "エチゴ ヂシ",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "mutopia",
+   "excluded": "5c no line end within 20 syllables"
+  },
+  {
+   "id": 1987,
+   "title": "Fuku-Ju-So",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1987",
+   "people": [],
+   "ly_header": {
+    "title": "Fuku-Ju-So",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  },
+  {
+   "id": 1988,
+   "title": "Ukiyo-Bushi",
+   "genre": "folk",
+   "anthem": null,
+   "edition": "Nagai, Iwai and Obata, Kenhachiro, \"Seiyo gakufu Nihon zokkyokushu\", pub. Miki Shoten, Osaka, 1895. English title, \"A Collection of Japanese Popular Music.\"",
+   "edition_year": 1895,
+   "mutopia": "https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1988",
+   "people": [],
+   "ly_header": {
+    "title": "Ukiyo-Bushi",
+    "composer": "Arr. Y. Nagai, K. Obata",
+    "source": "Nagai, Iwai and Obata, Kenhachiro, \\\"Seiyo gakufu Nihon zokkyokushu\\\", pub. Miki Shoten, Osaka, 1895.  English title, \\\"A Collection of Japanese Popular Music.\\\" ",
+    "date": "",
+    "mutopiacomposer": "Traditional",
+    "mutopiapoet": ""
+   },
+   "rights": {
+    "us": true,
+    "life70": true,
+    "life100": true
+   },
+   "midi_source": "compiled",
+   "excluded": "5a no lyric events"
+  }
+ ]
+}

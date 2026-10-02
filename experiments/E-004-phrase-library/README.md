@@ -916,8 +916,8 @@ if `round3.py`, `round2.py` or `run.py` is uncommitted).
 1. *Survey, metadata only* (`survey`). (a) Mutopia's search, every
    instrument and style, for each of 31 fixed terms (`QUERIES`: the word
    "anthem" and its French, Spanish and Italian forms, "national", and the
-   titles of 26 national anthems whose words and tune could be out of
-   copyright), every page followed; (b) Mutopia's listing for style Folk,
+   26 terms from the titles of national anthems whose words and
+   tune could be out of copyright), every page followed; (b) Mutopia's listing for style Folk,
    every instrument. Per piece, round 3's cells, parsed by round 3's
    parser (`round3.py` lines 113–138), and the queries that found it. No
    file is downloaded.
@@ -998,6 +998,75 @@ can judge it with its phrase in hand.
 ```
 uv run python round5.py posthoc_anthem   # -> results/r5-posthoc-anthem.json
 ```
+
+Mutopia and Wikipedia were read on 2026-10-02. Tools as round 3.
+
+## Round 5 result
+
+| # | Question | Result (conditions; uncertainty) |
+| ---: | :--- | :--- |
+| 1 | What does the survey find? | **124 pieces**: 17 found by a query, 110 in the Folk listing (3 both). Of the 26 anthem-title terms, one finds a piece: "hen wlad", Mutopia 1017. "god save", "marseillaise", "star spangled" and the other 22 find none (a multi-word search was first seen to work on "good king", which finds Good King Wenceslas). The generic terms find other works: Sousa's marches, Grieg, Bach, a church anthem (Tallis), a guitar "Polish National Air" with no words |
+| 2 | How many anthems are named, and do they pass the screen? | **1 named** (`ANTHEM_OF`): *Hen Wlad Fy Nhadau*, Wales, music James James (1833–1902), words Evan James (Ieuan ap Iago, 1809–1878), for voice, Mutopia Public Domain. **It fails rule 3** at 2d: its source cell names the National Library of Wales (*Llyfrgell Genedlaethol Cymru*), the composer's manuscript, and no year, so `us` (published by 1930) cannot be judged; `life100` passes on the two death years |
+| 3 | How many folk pieces pass the screen? | **29 of 110**, all from Nagai and Obata's *Seiyō gakufu Nihon zokkyokushū* (*A Collection of Japanese Popular Music*, Osaka, 1895), for shamisen or koto, every person cell anonymous. The 81 excluded (a piece can fail several rules): licence not Public Domain 63, a person with no death year 18, no edition year 13, rights 24, a named composer with no lyricist 2. The English folk songs with words (*Sing Ivy*, *John Barleycorn*, Holst 1909; *Oats and Beans*, *The Water of Tyne*, *English County Songs* 1893) fail for no year in the source cell, and their arrangers (Holst d. 1934, Broadwood d. 1929, Fuller-Maitland d. 1936) would fail `life100` |
+| 4 | How many give a phrase? | **0 of 29.** 27 have no lyric events on either path (Mutopia's MIDI, and the source compiled): their LilyPond sources hold empty `\lyricmode` blocks or none, read by hand for *Banza-Bushi* (1759). The two settings of *Echigo Jishi* (1985 katakana, 1986 hiragana) have words, but no syllable ends in punctuation, so rule 6c finds no line end within 20 syllables. No phrase reached rule 6e's conditions |
+| 5 | Post hoc, counted apart: Hen Wlad Fy Nhadau's phrase | Rule 6's extraction passes: verse 1's first line, *Mae hen wlad fy nhadau yn annwyl i mi;*, **12 notes** (E♭4–E♭5, 12 semitones), in E♭, 3/4, 12.0 s at 60 quarter notes a minute (LilyPond's default: the source states no mark), shortest note 0.5 s, from Mutopia's MIDI. K1 must-pass, must-fail on pitch and on rhythm: all hold; K2 aligned, and shifted one tick falls to 0.0. The LilyPond header names the composer by his bardic name, *Iago ap Ieuan (1833-1902)*, and the poet, and no translator or arranger. No rights verdict was given (`r5-posthoc-anthem.json`) |
+| 6 | The library | **Unchanged at 39.** No phrase is taken. Folk still rests on Greensleeves; no anthem passes the rules as written |
+
+**Answer.** Route (a), run on all of Mutopia, gives **no anthem and no
+folk phrase** under round 3's rules. Mutopia holds one national anthem
+with words, *Hen Wlad Fy Nhadau*, and its transcription cites a
+manuscript in the National Library of Wales, not a dated edition, so the
+rights model, which needs a year of publication for `us`, cannot judge
+it. Its phrase extracts cleanly. Its two contributors died in 1878 and
+1902, so `life100` passes. Literature dates the song's composition to
+January 1856 and its first publication, as *Hen Wlad Fy Nhadau*, to John
+Owen's *Gems of Welsh Melody* (1860–1864) (English Wikipedia, *Hen Wlad
+Fy Nhadau*, revision 1375915823, read 2026-10-02; not a primary source).
+Whether the first slice may ship a phrase whose source is a manuscript,
+with a year of publication taken from literature for a form that may
+differ from the manuscript's, is a rights question for the fold, not a
+measurement. Mutopia's Public Domain folk songs with words in a dated,
+named edition are either instrumental transcriptions with no words
+(Japanese, 1895) or English arrangements whose source cell has no year.
+
+**Limits.**
+
+- The anthem terms are the agent's list of 26, fixed in advance. Mutopia
+  may hold an anthem under a title none of them matches, such as a
+  hymn-book setting. Mutopia's search matched whole words: "save" found
+  nothing, and neither did "god save".
+- The 29 eligible pieces' editors, Nagai and Obata, were not treated as
+  contributors because Mutopia's arranger cell is empty for them. On the
+  other 10 of the collection's 39 pieces on Mutopia the cell names them ("Arr. Y.
+  Nagai, K. Obata"), with no death year, and those were excluded at 2c.
+  No eligible piece was taken, so no verdict depends on this. A rule
+  that ships from this collection must treat the editors alike.
+- Rule 6c's line end is punctuation, which Japanese words do not carry.
+  *Echigo Jishi*'s exclusion is that rule's, not its words' absence.
+- The words rule (3a) read the composer cell; a piece with a named
+  composer and words by an unnamed poet still fails, as in round 3.
+- K4 had no case: no eligible piece names a person. K5 had none: no
+  anthem was taken. Hen Wlad's phrase was not measured with E-005's
+  inference (rule 8 runs on taken phrases only, and none was taken);
+  `measure` was not run.
+- The post hoc step was written after the screen showed Hen Wlad's
+  exclusion and before it ran (`a3418f4`); it decides nothing.
+
+**S15 by hand.** `tools/checkkeys.py round5.py` on the script alone:
+0 flags before its first run (`3ecf81b`, `a3418f4`). On the results
+(`r5-screen.json`, `r5-extract.json`, `r5-posthoc-anthem.json`,
+`r5-summary.json`): 14 flags, each read by hand. The rights probe's
+five keys (`must_pass`, `must_fail_pub_1931`, `must_fail_death_1926`,
+`must_fail_death_unknown`, `must_fail_anonymous_published_1926`) are
+asserted by `assert all(res.values())` in `round3.py` `rights_probe`;
+`words_probe`'s two (`must_pass_traditional`, `must_fail_named_composer`)
+by the same line in `round5.py`; `k4_must_fail_all_fail` by the
+expression it records (`assert not any(x["agrees"] for x in k4)`).
+Recorded, not asserted: `k4_must_fail_cases` and the summary's
+`must_fail_cases`, counts, 0 here (K4 had no case);
+`passes_rule_6_and_checks`, the post hoc step's verdict, which decides
+nothing. K1's and K2's must-fail cases are asserted on the one phrase
+that reached them (Hen Wlad, post hoc).
 
 ## Needs a human
 

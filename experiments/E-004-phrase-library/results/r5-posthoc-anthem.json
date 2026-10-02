@@ -1,0 +1,182 @@
+{
+ "id": 1017,
+ "title": "Hen Wlad Fy Nhadau",
+ "counted": "apart, post hoc; no rights verdict",
+ "source_cell": "Llyfrgell Genedlaethol Cymru",
+ "ly_header": {
+  "title": "Hen Wlad Fy Nhadau",
+  "composer": "Iago ap Ieuan (1833-1902)",
+  "poet": "Ieuan ap Iago (1809-1878)",
+  "source": "Llyfrgell Genedlaethol Cymru",
+  "mutopiacomposer": "JamesJ"
+ },
+ "header_people": [],
+ "midi_source": "mutopia",
+ "excluded_by_rule_6": null,
+ "phrase": {
+  "track": 1,
+  "lyric_track": 2,
+  "tpq": 384,
+  "ticks": [
+   [
+    768,
+    1152,
+    63
+   ],
+   [
+    1152,
+    1536,
+    67
+   ],
+   [
+    1536,
+    1920,
+    65
+   ],
+   [
+    1920,
+    2304,
+    63
+   ],
+   [
+    2304,
+    2688,
+    70
+   ],
+   [
+    2688,
+    3072,
+    68
+   ],
+   [
+    3072,
+    3456,
+    67
+   ],
+   [
+    3456,
+    3840,
+    75
+   ],
+   [
+    3840,
+    4224,
+    75
+   ],
+   [
+    4224,
+    4416,
+    72
+   ],
+   [
+    4416,
+    4608,
+    74
+   ],
+   [
+    4608,
+    5376,
+    75
+   ]
+  ],
+  "midi": [
+   63,
+   67,
+   65,
+   63,
+   70,
+   68,
+   67,
+   75,
+   75,
+   72,
+   74,
+   75
+  ],
+  "pitches": [
+   "Eb4",
+   "G4",
+   "F4",
+   "Eb4",
+   "Bb4",
+   "Ab4",
+   "G4",
+   "Eb5",
+   "Eb5",
+   "C5",
+   "D5",
+   "Eb5"
+  ],
+  "beats": [
+   "1",
+   "1",
+   "1",
+   "1",
+   "1",
+   "1",
+   "1",
+   "1",
+   "1",
+   "1/2",
+   "1/2",
+   "2"
+  ],
+  "melody": "Eb4:1.0 G4:1.0 F4:1.0 Eb4:1.0 Bb4:1.0 Ab4:1.0 G4:1.0 Eb5:1.0 Eb5:1.0 C5:0.5 D5:0.5 Eb5:2.0",
+  "words": "Mae hen wlad fy nhadau yn annwyl i mi;",
+  "syllables": [
+   "Mae",
+   "hen",
+   "wlad",
+   "fy",
+   "nha",
+   "dau",
+   "yn",
+   "an",
+   "nwyl",
+   "i",
+   "mi;"
+  ],
+  "syllable_ticks": [
+   768,
+   1152,
+   1536,
+   1920,
+   2304,
+   2688,
+   3072,
+   3456,
+   3840,
+   4224,
+   4608
+  ],
+  "align_share": 1.0,
+  "key": "Eb",
+  "meter": "3/4",
+  "tempo_qpm": 60.0,
+  "words_midi": "Mae hen wlad fy nha dau yn an nwyl i mi;",
+  "words_from": "JamesJ__henwlad__henwlad.ly"
+ },
+ "conditions": {
+  "notes": 12,
+  "range": 12,
+  "seconds": 12.0,
+  "shortest_s": 0.5,
+  "lowest": 63,
+  "highest": 75,
+  "fails": []
+ },
+ "k1": {
+  "must_pass": true,
+  "must_fail_pitch": true,
+  "must_fail_rhythm": true,
+  "spelled_back": true,
+  "moved_index": 3,
+  "doubled_index": 2
+ },
+ "k2": {
+  "must_pass": true,
+  "shifted_share": 0.0,
+  "must_fail": true
+ },
+ "passes_rule_6_and_checks": true
+}
