@@ -120,6 +120,7 @@ MIN_B = 20
 RULES = ("P0", "PM", "PL")
 LP = butter(2, 2.0, "low", fs=FR_HZ)  # MT-009's contour filter (E-002 fold2.py:124-126)
 VIB_RATE = 5.5  # round2.py:146
+HALF_MARGIN = P / 4  # cents: half of the 50 cents segment_r leaves between a correct tuning's notes and a cut
 
 
 def committed_first():
@@ -512,16 +513,20 @@ def check():
                                must_fail_on_boundary_not_14=n_off != 14, n_own=n_own, n_off=n_off)
     # 4. the candidates' smoothing: on a frame contour of 14 notes at known centres
     #    (tuning 23 cents), each held 100 frames with a 5.5 Hz vibrato of 50 cents from its
-    #    first frame, PM and PL lie within 2 cents of 23 (must pass), and P0 lies further
-    #    than 2 cents from it (must fail), as its mean J0(pi) = -0.30 of the notes' gives
-    #    by definition (the mean of exp(i a sin) over whole cycles is J0(a)).
+    #    first frame, PM and PL lie within HALF_MARGIN of 23 (must pass), and P0 lies further
+    #    (must fail), as its mean J0(pi) = -0.30 of the notes' gives by definition (the mean
+    #    of exp(i a sin) over whole cycles is J0(a)). Revision 2: the bound was 2 cents, with
+    #    no source, and PM failed it (2.21); HALF_MARGIN is the quantiser's own: segment_r
+    #    cuts at 50 cents from the tuning it is given, so a tuning within 25 cents of the
+    #    notes' keeps every centre at least half a correct tuning's margin from a cut.
     k = np.arange(100) / FR_HZ
     seg = [100 * m + 23.0 + 50.0 * np.sin(2 * np.pi * VIB_RATE * k) for m in FR.MELODY]
     cc = np.concatenate([np.concatenate([s_, np.full(12, np.nan)]) for s_ in seg])
     d = {r: abs(float(wrap(provisional(cc, r) - 23.0))) for r in RULES}
     from scipy.special import j0
-    out["c4_provisional"] = dict(must_pass_PM=d["PM"] <= 2.0, must_pass_PL=d["PL"] <= 2.0,
-                                 must_fail_P0=d["P0"] > 2.0, dist=d, j0_pi=float(j0(math.pi)))
+    out["c4_provisional"] = dict(must_pass_PM=d["PM"] <= HALF_MARGIN, must_pass_PL=d["PL"] <= HALF_MARGIN,
+                                 must_fail_P0=d["P0"] > HALF_MARGIN, dist=d, j0_pi=float(j0(math.pi)),
+                                 half_margin=HALF_MARGIN, first_bound_2_cents_PM_failed=d["PM"] > 2.0)
     # 5. B's coverage test: Delta 0 covered (must pass); a whole-take tuning 2u_e + 0.01 away
     #    not covered (must fail); the wrap: 99 and -1 cents are the same tuning (must pass).
     out["c5_covered"] = dict(must_pass_zero=covered(10.0, 10.0, 1.0),
