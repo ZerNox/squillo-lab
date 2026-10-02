@@ -61,9 +61,10 @@ script with no committed-first guard and a check key neither asserted by
 name nor listed as recorded; each flag is fixed, or read by hand and
 listed in the README with why (it reads names, not data flow). A guard
 covers every module of the experiment that holds a rule, not only the
-entry script (squillo L-051). **Before the first run** of any script that holds a rule,
-a fixture generator included, `python3 tools/checkkeys.py <script>` runs on
-it alone and its guard flag is fixed first (squillo L-055). Rules and bars written
+entry script (squillo L-051). **Before the first run** of any script that holds a rule or an
+assert, a fixture generator or a diagnosis written after the results
+included, `python3 tools/checkkeys.py <script>` runs on
+it alone and its guard flag is fixed first (squillo L-055, L-056). Rules and bars written
 before a run are committed before it runs, in their own commit, so that
 "before" can be read from git; a fixture generator's or model's expected
 outcomes are such rules. A script that holds rules or expected outcomes

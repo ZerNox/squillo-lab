@@ -1,6 +1,6 @@
 # E-004 — A publishable phrase library
 
-**Status:** needs-human (rounds 1–3 automated evidence in; a listening check remains for round 1's from-memory melodies and the originals) · **Serves:** VISION §7 (the guided library), §9 (first slice), §12.5
+**Status:** needs-human (rounds 1–4 automated evidence in; a listening check remains for round 1's from-memory melodies and the originals, round 4's included) · **Serves:** VISION §7 (the guided library), §9 (first slice), §12.5
 
 ## Question
 
@@ -840,14 +840,64 @@ uv run --project ../E-002-measurement-reliability python r4_held.py run         
 uv run --project ../E-002-measurement-reliability python r4_held.py analyse       # results/r4/held.json
 ```
 
+**Result** (`results/r4/write.json`, `held.json`, `diag.json`; the full
+run took 267 s wall at the pool of 18, the analysis under 1 s).
+
+| # | Check | Result |
+| ---: | :--- | :--- |
+| W1 | The nine with the 34 the slice ships | **43 of 43 accepted** together; the copy under a second name refused both ways under EX-004 |
+| W2 | Rights | 9 of 9 pass (`LicenseRef-squillo-adr-0008`); the public-domain licence on an original refused at `/content/licence` |
+| W3 | Round 3's conditions | 9 of 9 within: 5 to 10 notes, range 7 to 12 semitones, 7.5 to 13.27 s, A3 to D5; each slowed tenfold fails |
+| W4 | Rule (2) on the written notes | **9 of 9 give two blocks or more**: `held-ah`, `slow-scale-ah` and `fence-line-home` 6, `when-the-curtain-falls` 5, `halfway-home`, `dusty-road` and `let-the-morning-wait` 4, `engine-roar` and `late-train` 3; fold 3's arithmetic cases pass; at three times the tempo none does |
+| W5 | Margin | Every held note 63 to 101 frames over the least that gives its blocks |
+| W6 | Novelty screen (recorded) | Longest run of shared pitch intervals with the 30: 2 to 6. `let-the-morning-wait` shares all 6 of its intervals with `blue-umbrella`, squillo's own round 1 original (a rising pentatonic run and its turn), `dusty-road` 5 with Greensleeves, `slow-scale-ah` 4 with Joy to the World (a scale), `held-ah` 2; among the nine, 2 to 4. Not a rights test (round 1's limit) |
+| M0 | The finder, checked first | `held-steady.wav`: one held note, frames 3 to 624, 3 blocks; `sine-220hz.wav`: none; bar B passes the first and fails the second |
+| M1 | Range | Every true contour within −2708.4 to +1124.1 cents of A4, inside E2–C6 |
+| B | **Bar B, the nine** | **6 of 9 pass**: every item with two held notes (`held-ah`, `slow-scale-ah`, `halfway-home`, `let-the-morning-wait`, `fence-line-home`, `when-the-curtain-falls`) gives at least 2 blocks on all 24 renderings, 144 of 144 (Wilson 95 % 0.974–1); the three with one held note fail, `dusty-road` 21, `engine-roar` 18, `late-train` 22 of 24, together 61 of 72 (0.747–0.913), losing it on 11 renderings |
+| B | **Bar B, the 30** | **None pass.** `abide-with-me` (rule (2): 2) gives 2 or more on 14 of 24, `le-pays-des-reves` (3) on 18 of 24, `holy-holy-holy` (1) on 23 of 24, `apres-un-reve` (1) on 1; every phrase rule (2) gives none gives at most 1 (`einsamkeit`, `hark-the-herald`, `row-your-boat` 1, from repeated written pitches merging), so none reaches 2 |
+| D | **Why a held note is lost** (`r4_diag.py`, post hoc) | Of the 360 held notes written into the nine's 216 renderings, MT-009 lost **26** (7.2 %, Wilson 95 % 5.0–10.4 %), none to refusal or to a short piece: each lies in one long piece, **443 to 703 frames**, which MT-009 rejects because the 60-cent cut put its first frame (23), or its last (2), on a frame not measured, or (1) more than a quarter of it filled. The cut falls inside the glide between notes, where YIN's aperiodicity refuses frames, and MT-009 rejects the piece rather than starting it at its first measured frame. `pieces`, the copy of `held_notes` that lists rejected pieces, gives exactly its held notes on all 26 renderings |
+| E | E-005's intent (recorded, as round 1) | Aimed notes found on 1590 of 1728 notes of the nine (92.0 %) and 7205 of 7416 of the 30 (97.2 %) |
+
+**Predictions.** B for all nine: **no** (6 of 9). B for exactly the two
+phrases rule (2) gives two blocks: **no** (neither passes). B fails for
+every phrase rule (2) gives none: **yes**. Measured blocks differ from
+rule (2) both ways: **yes** (−4 to +2 per rendering).
+
+**What it means.** (a) Writing for held notes works on paper: all nine
+give rule (2) its two blocks, load with the slice's set and pass the
+rights rules, and the library's thin genres and its vowel and scale
+exercises gain one item each. (b) On a synthetic voice, a phrase reliably
+gives MT-009 two blocks only when it holds **two** notes long enough: one
+held note is lost on about one rendering in fourteen, because MT-009
+rejects a long piece whose cut lands on a frame not measured. This holds
+for the two phrases CO-005 rule (2) sends a singer to now: `abide-with-me`
+gives two blocks on 14 of 24 renderings. So rule (2)'s count from the
+written notes overstates what MT-009 measures, and MT-009's endpoint
+rule, not the phrases' length, is the larger loss (squillo F-070).
+
+**Limits.** One synthetic voice (E-001's, through E-005's phrase model),
+not a singer: real transitions and consonants may land the cut on
+unmeasured frames more or less often. The 24 renderings per item are one
+seed each. Words and melodies are new, but whether any recalls a song is
+for a listener (the needs-human step now covers the nine). The 62-frame
+margin (W5) had no source and turned out not to be what matters.
+
+**S15 by hand.** `tools/checkkeys.py`: `r4_held.py` 0 flags on
+`write.json` and `held.json`; `r4_diag.py` 0 flags once guarded. It ran
+three times uncommitted and unguarded first (squillo L-056); the guarded
+run (`999e02d`) wrote `diag.json` byte for byte as the last unguarded one.
+Recorded, not asserted: `W6_novelty_screen` (a screen, not a check);
+`predictions` and `bar_B` (the result itself).
+
 ## Needs a human
 
 15 minutes, headphones, no microphone.
 
 1. `cd experiments/E-004-phrase-library && uv run python listen.py`. This
-   writes 25 WAVs to `data/listen/`: the 18 phrases whose melody round 1
+   writes 34 WAVs to `data/listen/`: the 18 phrases whose melody round 1
    did not confirm (round 2 has since confirmed Abide with Me; a verdict on
-   it still checks the check), and the 7 originals. Each opens with four clicks at its tempo.
+   it still checks the check), the 7 originals, and round 4's 9 originals
+   written for held notes (rows 26 to 34). Each opens with four clicks at its tempo.
 2. Play each once or twice. In `results/listen.csv`, set `verdict`:
    - For a public-domain phrase: `right`, `wrong` (with `first_wrong_note`,
      counting from 1) or `unknown`, if you do not know the tune.

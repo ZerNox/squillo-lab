@@ -1,0 +1,884 @@
+{
+ "renderings": 26,
+ "held_note_causes": {
+  "cut": 26,
+  "found": 15
+ },
+ "lost_by": {
+  "begins-unmeasured": 23,
+  "filled": 1,
+  "ends-unmeasured": 2
+ },
+ "share": {
+  "held_notes": 360,
+  "lost": 26,
+  "lost_share": 0.0722,
+  "lost_wilson95": [
+   0.0498,
+   0.1037
+  ],
+  "one_held_note_items": [
+   "dusty-road",
+   "engine-roar",
+   "late-train"
+  ],
+  "two_blocks_one_held": [
+   61,
+   72
+  ],
+  "two_blocks_one_held_wilson95": [
+   0.7468,
+   0.9125
+  ],
+  "two_blocks_two_held": [
+   144,
+   144
+  ],
+  "two_blocks_two_held_wilson95": [
+   0.974,
+   1.0
+  ],
+  "bar_B_one_held": [],
+  "bar_B_two_held": [
+   "fence-line-home",
+   "halfway-home",
+   "held-ah",
+   "let-the-morning-wait",
+   "slow-scale-ah",
+   "when-the-curtain-falls"
+  ]
+ },
+ "lost_piece_frames": {
+  "min": 443,
+  "max": 703
+ },
+ "rows": [
+  {
+   "id": "dusty-road",
+   "voice": "baritone",
+   "sigma": 0,
+   "vib": 1,
+   "blocks": 0,
+   "rule2": 4,
+   "notes": [
+    {
+     "note": 8,
+     "frames": 704,
+     "accepted": 0.8963,
+     "longest_unaccepted": 3,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 699,
+      "why": "begins-unmeasured"
+     }
+    }
+   ]
+  },
+  {
+   "id": "dusty-road",
+   "voice": "soprano",
+   "sigma": 20,
+   "vib": 0,
+   "blocks": 0,
+   "rule2": 4,
+   "notes": [
+    {
+     "note": 8,
+     "frames": 704,
+     "accepted": 0.9957,
+     "longest_unaccepted": 3,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 703,
+      "why": "begins-unmeasured"
+     }
+    }
+   ]
+  },
+  {
+   "id": "dusty-road",
+   "voice": "soprano",
+   "sigma": 20,
+   "vib": 1,
+   "blocks": 0,
+   "rule2": 4,
+   "notes": [
+    {
+     "note": 8,
+     "frames": 704,
+     "accepted": 0.9943,
+     "longest_unaccepted": 3,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 703,
+      "why": "begins-unmeasured"
+     }
+    }
+   ]
+  },
+  {
+   "id": "engine-roar",
+   "voice": "bass",
+   "sigma": 0,
+   "vib": 1,
+   "blocks": 0,
+   "rule2": 3,
+   "notes": [
+    {
+     "note": 8,
+     "frames": 600,
+     "accepted": 0.9917,
+     "longest_unaccepted": 3,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 597,
+      "why": "begins-unmeasured"
+     }
+    }
+   ]
+  },
+  {
+   "id": "engine-roar",
+   "voice": "bass",
+   "sigma": 20,
+   "vib": 1,
+   "blocks": 0,
+   "rule2": 3,
+   "notes": [
+    {
+     "note": 8,
+     "frames": 600,
+     "accepted": 0.9933,
+     "longest_unaccepted": 3,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 599,
+      "why": "begins-unmeasured"
+     }
+    }
+   ]
+  },
+  {
+   "id": "engine-roar",
+   "voice": "baritone",
+   "sigma": 0,
+   "vib": 1,
+   "blocks": 0,
+   "rule2": 3,
+   "notes": [
+    {
+     "note": 8,
+     "frames": 600,
+     "accepted": 0.9917,
+     "longest_unaccepted": 4,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 596,
+      "why": "begins-unmeasured"
+     }
+    }
+   ]
+  },
+  {
+   "id": "engine-roar",
+   "voice": "baritone",
+   "sigma": 20,
+   "vib": 1,
+   "blocks": 0,
+   "rule2": 3,
+   "notes": [
+    {
+     "note": 8,
+     "frames": 600,
+     "accepted": 0.995,
+     "longest_unaccepted": 2,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 601,
+      "why": "begins-unmeasured"
+     }
+    }
+   ]
+  },
+  {
+   "id": "engine-roar",
+   "voice": "tenor",
+   "sigma": 0,
+   "vib": 1,
+   "blocks": 0,
+   "rule2": 3,
+   "notes": [
+    {
+     "note": 8,
+     "frames": 600,
+     "accepted": 0.995,
+     "longest_unaccepted": 3,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 598,
+      "why": "begins-unmeasured"
+     }
+    }
+   ]
+  },
+  {
+   "id": "engine-roar",
+   "voice": "soprano",
+   "sigma": 20,
+   "vib": 1,
+   "blocks": 0,
+   "rule2": 3,
+   "notes": [
+    {
+     "note": 8,
+     "frames": 600,
+     "accepted": 0.9967,
+     "longest_unaccepted": 2,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 601,
+      "why": "begins-unmeasured"
+     }
+    }
+   ]
+  },
+  {
+   "id": "halfway-home",
+   "voice": "bass",
+   "sigma": 0,
+   "vib": 1,
+   "blocks": 2,
+   "rule2": 4,
+   "notes": [
+    {
+     "note": 4,
+     "frames": 468,
+     "accepted": 0.9765,
+     "longest_unaccepted": 3,
+     "found": [
+      [
+       184,
+       626
+      ]
+     ],
+     "cause": "found",
+     "longest_piece": {
+      "frames": 443,
+      "why": null
+     }
+    },
+    {
+     "note": 9,
+     "frames": 469,
+     "accepted": 0.8102,
+     "longest_unaccepted": 5,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 466,
+      "why": "begins-unmeasured"
+     }
+    }
+   ]
+  },
+  {
+   "id": "halfway-home",
+   "voice": "baritone",
+   "sigma": 20,
+   "vib": 1,
+   "blocks": 2,
+   "rule2": 4,
+   "notes": [
+    {
+     "note": 4,
+     "frames": 468,
+     "accepted": 0.9915,
+     "longest_unaccepted": 3,
+     "found": [
+      [
+       184,
+       626
+      ]
+     ],
+     "cause": "found",
+     "longest_piece": {
+      "frames": 443,
+      "why": null
+     }
+    },
+    {
+     "note": 9,
+     "frames": 469,
+     "accepted": 0.887,
+     "longest_unaccepted": 3,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 467,
+      "why": "begins-unmeasured"
+     }
+    }
+   ]
+  },
+  {
+   "id": "halfway-home",
+   "voice": "tenor",
+   "sigma": 20,
+   "vib": 1,
+   "blocks": 2,
+   "rule2": 4,
+   "notes": [
+    {
+     "note": 4,
+     "frames": 468,
+     "accepted": 0.9893,
+     "longest_unaccepted": 3,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 443,
+      "why": "filled"
+     }
+    },
+    {
+     "note": 9,
+     "frames": 469,
+     "accepted": 0.9893,
+     "longest_unaccepted": 3,
+     "found": [
+      [
+       844,
+       1301
+      ]
+     ],
+     "cause": "found",
+     "longest_piece": {
+      "frames": 458,
+      "why": null
+     }
+    }
+   ]
+  },
+  {
+   "id": "late-train",
+   "voice": "bass",
+   "sigma": 20,
+   "vib": 0,
+   "blocks": 0,
+   "rule2": 3,
+   "notes": [
+    {
+     "note": 9,
+     "frames": 562,
+     "accepted": 0.9947,
+     "longest_unaccepted": 3,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 561,
+      "why": "begins-unmeasured"
+     }
+    }
+   ]
+  },
+  {
+   "id": "late-train",
+   "voice": "mezzo",
+   "sigma": 20,
+   "vib": 1,
+   "blocks": 0,
+   "rule2": 3,
+   "notes": [
+    {
+     "note": 9,
+     "frames": 562,
+     "accepted": 0.9964,
+     "longest_unaccepted": 2,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 563,
+      "why": "begins-unmeasured"
+     }
+    }
+   ]
+  },
+  {
+   "id": "let-the-morning-wait",
+   "voice": "bass",
+   "sigma": 20,
+   "vib": 0,
+   "blocks": 2,
+   "rule2": 4,
+   "notes": [
+    {
+     "note": 4,
+     "frames": 455,
+     "accepted": 0.989,
+     "longest_unaccepted": 3,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 450,
+      "why": "begins-unmeasured"
+     }
+    },
+    {
+     "note": 6,
+     "frames": 454,
+     "accepted": 0.9912,
+     "longest_unaccepted": 3,
+     "found": [
+      [
+       874,
+       1319
+      ]
+     ],
+     "cause": "found",
+     "longest_piece": {
+      "frames": 446,
+      "why": null
+     }
+    }
+   ]
+  },
+  {
+   "id": "slow-scale-ah",
+   "voice": "bass",
+   "sigma": 0,
+   "vib": 1,
+   "blocks": 3,
+   "rule2": 6,
+   "notes": [
+    {
+     "note": 4,
+     "frames": 577,
+     "accepted": 0.9879,
+     "longest_unaccepted": 4,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 569,
+      "why": "ends-unmeasured"
+     }
+    },
+    {
+     "note": 8,
+     "frames": 577,
+     "accepted": 0.7851,
+     "longest_unaccepted": 6,
+     "found": [
+      [
+       1099,
+       1670
+      ]
+     ],
+     "cause": "found",
+     "longest_piece": {
+      "frames": 572,
+      "why": null
+     }
+    }
+   ]
+  },
+  {
+   "id": "slow-scale-ah",
+   "voice": "bass",
+   "sigma": 20,
+   "vib": 0,
+   "blocks": 3,
+   "rule2": 6,
+   "notes": [
+    {
+     "note": 4,
+     "frames": 577,
+     "accepted": 0.9896,
+     "longest_unaccepted": 3,
+     "found": [
+      [
+       307,
+       874
+      ]
+     ],
+     "cause": "found",
+     "longest_piece": {
+      "frames": 568,
+      "why": null
+     }
+    },
+    {
+     "note": 8,
+     "frames": 577,
+     "accepted": 0.9931,
+     "longest_unaccepted": 3,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 575,
+      "why": "begins-unmeasured"
+     }
+    }
+   ]
+  },
+  {
+   "id": "slow-scale-ah",
+   "voice": "bass",
+   "sigma": 20,
+   "vib": 1,
+   "blocks": 3,
+   "rule2": 6,
+   "notes": [
+    {
+     "note": 4,
+     "frames": 577,
+     "accepted": 0.9879,
+     "longest_unaccepted": 3,
+     "found": [
+      [
+       310,
+       876
+      ]
+     ],
+     "cause": "found",
+     "longest_piece": {
+      "frames": 567,
+      "why": null
+     }
+    },
+    {
+     "note": 8,
+     "frames": 577,
+     "accepted": 0.8111,
+     "longest_unaccepted": 5,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 575,
+      "why": "begins-unmeasured"
+     }
+    }
+   ]
+  },
+  {
+   "id": "slow-scale-ah",
+   "voice": "baritone",
+   "sigma": 20,
+   "vib": 0,
+   "blocks": 3,
+   "rule2": 6,
+   "notes": [
+    {
+     "note": 4,
+     "frames": 577,
+     "accepted": 0.9896,
+     "longest_unaccepted": 3,
+     "found": [
+      [
+       308,
+       873
+      ]
+     ],
+     "cause": "found",
+     "longest_piece": {
+      "frames": 566,
+      "why": null
+     }
+    },
+    {
+     "note": 8,
+     "frames": 577,
+     "accepted": 0.9931,
+     "longest_unaccepted": 3,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 574,
+      "why": "begins-unmeasured"
+     }
+    }
+   ]
+  },
+  {
+   "id": "slow-scale-ah",
+   "voice": "tenor",
+   "sigma": 20,
+   "vib": 0,
+   "blocks": 3,
+   "rule2": 6,
+   "notes": [
+    {
+     "note": 4,
+     "frames": 577,
+     "accepted": 0.9948,
+     "longest_unaccepted": 2,
+     "found": [
+      [
+       308,
+       878
+      ]
+     ],
+     "cause": "found",
+     "longest_piece": {
+      "frames": 571,
+      "why": null
+     }
+    },
+    {
+     "note": 8,
+     "frames": 577,
+     "accepted": 0.9931,
+     "longest_unaccepted": 3,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 575,
+      "why": "begins-unmeasured"
+     }
+    }
+   ]
+  },
+  {
+   "id": "slow-scale-ah",
+   "voice": "tenor",
+   "sigma": 20,
+   "vib": 1,
+   "blocks": 3,
+   "rule2": 6,
+   "notes": [
+    {
+     "note": 4,
+     "frames": 577,
+     "accepted": 0.9896,
+     "longest_unaccepted": 3,
+     "found": [
+      [
+       308,
+       875
+      ]
+     ],
+     "cause": "found",
+     "longest_piece": {
+      "frames": 568,
+      "why": null
+     }
+    },
+    {
+     "note": 8,
+     "frames": 577,
+     "accepted": 0.9931,
+     "longest_unaccepted": 3,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 575,
+      "why": "begins-unmeasured"
+     }
+    }
+   ]
+  },
+  {
+   "id": "slow-scale-ah",
+   "voice": "mezzo",
+   "sigma": 20,
+   "vib": 1,
+   "blocks": 3,
+   "rule2": 6,
+   "notes": [
+    {
+     "note": 4,
+     "frames": 577,
+     "accepted": 0.9913,
+     "longest_unaccepted": 3,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 576,
+      "why": "begins-unmeasured"
+     }
+    },
+    {
+     "note": 8,
+     "frames": 577,
+     "accepted": 0.9948,
+     "longest_unaccepted": 2,
+     "found": [
+      [
+       1094,
+       1671
+      ]
+     ],
+     "cause": "found",
+     "longest_piece": {
+      "frames": 578,
+      "why": null
+     }
+    }
+   ]
+  },
+  {
+   "id": "when-the-curtain-falls",
+   "voice": "baritone",
+   "sigma": 0,
+   "vib": 0,
+   "blocks": 2,
+   "rule2": 5,
+   "notes": [
+    {
+     "note": 4,
+     "frames": 455,
+     "accepted": 0.9868,
+     "longest_unaccepted": 4,
+     "found": [
+      [
+       365,
+       802
+      ]
+     ],
+     "cause": "found",
+     "longest_piece": {
+      "frames": 438,
+      "why": null
+     }
+    },
+    {
+     "note": 6,
+     "frames": 568,
+     "accepted": 0.9965,
+     "longest_unaccepted": 1,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 567,
+      "why": "begins-unmeasured"
+     }
+    }
+   ]
+  },
+  {
+   "id": "when-the-curtain-falls",
+   "voice": "baritone",
+   "sigma": 0,
+   "vib": 1,
+   "blocks": 2,
+   "rule2": 5,
+   "notes": [
+    {
+     "note": 4,
+     "frames": 455,
+     "accepted": 0.9868,
+     "longest_unaccepted": 3,
+     "found": [
+      [
+       364,
+       804
+      ]
+     ],
+     "cause": "found",
+     "longest_piece": {
+      "frames": 441,
+      "why": null
+     }
+    },
+    {
+     "note": 6,
+     "frames": 568,
+     "accepted": 0.9965,
+     "longest_unaccepted": 1,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 568,
+      "why": "begins-unmeasured"
+     }
+    }
+   ]
+  },
+  {
+   "id": "when-the-curtain-falls",
+   "voice": "baritone",
+   "sigma": 20,
+   "vib": 1,
+   "blocks": 3,
+   "rule2": 5,
+   "notes": [
+    {
+     "note": 4,
+     "frames": 455,
+     "accepted": 0.9846,
+     "longest_unaccepted": 4,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 444,
+      "why": "ends-unmeasured"
+     }
+    },
+    {
+     "note": 6,
+     "frames": 568,
+     "accepted": 0.993,
+     "longest_unaccepted": 1,
+     "found": [
+      [
+       869,
+       1433
+      ]
+     ],
+     "cause": "found",
+     "longest_piece": {
+      "frames": 565,
+      "why": null
+     }
+    }
+   ]
+  },
+  {
+   "id": "when-the-curtain-falls",
+   "voice": "tenor",
+   "sigma": 0,
+   "vib": 1,
+   "blocks": 2,
+   "rule2": 5,
+   "notes": [
+    {
+     "note": 4,
+     "frames": 455,
+     "accepted": 0.9868,
+     "longest_unaccepted": 3,
+     "found": [
+      [
+       366,
+       805
+      ]
+     ],
+     "cause": "found",
+     "longest_piece": {
+      "frames": 440,
+      "why": null
+     }
+    },
+    {
+     "note": 6,
+     "frames": 568,
+     "accepted": 0.9965,
+     "longest_unaccepted": 1,
+     "found": [],
+     "cause": "cut",
+     "longest_piece": {
+      "frames": 567,
+      "why": "begins-unmeasured"
+     }
+    }
+   ]
+  }
+ ]
+}

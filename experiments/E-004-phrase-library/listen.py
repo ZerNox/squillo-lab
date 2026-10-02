@@ -1,5 +1,6 @@
 """E-004 needs-human: render the phrases whose melody no independent
-transcription confirmed, and the originals, for a listener to check.
+transcription confirmed, and the originals, for a listener to check. Since round 4 (squillo
+iteration 68) also its nine originals written for held notes, from results/r4/items/, after the 25.
 
     uv run python listen.py      # -> data/listen/NN-<id>.wav and results/listen.csv (to fill in)
 
@@ -10,13 +11,14 @@ Crude experiment code.
 
 import csv
 import json
+from fractions import Fraction
 from pathlib import Path
 
 import numpy as np
 import soundfile as sf
 
 import library as L
-from run import parse
+from run import midi as L_midi, parse
 
 HERE = Path(__file__).parent
 SR = 48_000
@@ -35,6 +37,13 @@ def main():
     st = summary["survive"]["per_phrase"]
     items = {c["id"]: c for c in L.CANDIDATES + L.ORIGINALS}
     todo = [i for i in items if st[i] in ("melody-unchecked", "melody-mismatch", "rhythm-differs", "verified-original")]
+    for p in sorted((HERE / "results" / "r4" / "items").glob("*.json")):  # round 4's originals
+        o = json.loads(p.read_text(encoding="utf-8"))
+        m = o["melody"]
+        items[o["phrase_id"]] = dict(id=o["phrase_id"], title=o["title"], text=o["words"], tempo=m["tempo_qpm"],
+                                     notes=[(L_midi(n["pitch"]), float(Fraction(n["quarters"]))) for n in m["notes"]])
+        todo.append(o["phrase_id"])
+    r4 = {p.stem for p in (HERE / "results" / "r4" / "items").glob("*.json")}
     out = HERE / "data" / "listen"
     out.mkdir(parents=True, exist_ok=True)
     rows = []
@@ -43,9 +52,9 @@ def main():
         beat = 60.0 / c["tempo"]
         click = np.concatenate([np.pad(0.3 * np.sin(2 * np.pi * 1500 * np.arange(int(0.03 * SR)) / SR),
                                        (0, int(beat * SR) - int(0.03 * SR)))] * 4)
-        x = np.concatenate([click] + [tone(p, b * beat) for p, b in parse(c["melody"])] + [np.zeros(SR // 2)])
+        x = np.concatenate([click] + [tone(p, b * beat) for p, b in (c["notes"] if i in r4 else parse(c["melody"]))] + [np.zeros(SR // 2)])
         sf.write(out / f"{n:02d}-{i}.wav", x.astype(np.float32), SR)
-        rows.append(dict(n=n, id=i, title=c["title"], kind="original" if i in {o["id"] for o in L.ORIGINALS} else "public-domain",
+        rows.append(dict(n=n, id=i, title=c["title"], kind="original" if i in r4 or i in {o["id"] for o in L.ORIGINALS} else "public-domain",
                          words=c["text"], verdict="", first_wrong_note="", reminds_me_of=""))
     with open(HERE / "results" / "listen.csv", "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(rows[0]))
