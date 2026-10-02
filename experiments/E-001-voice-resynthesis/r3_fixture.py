@@ -20,7 +20,15 @@ from pathlib import Path
 import numpy as np
 
 import f1_fold
+import subprocess
+
 from r3_loudness import blocks, lk
+
+# S15, L-047: the conditions above are rules; refuse to run uncommitted
+_me = Path(__file__).resolve()
+assert subprocess.run(["git", "ls-files", "--error-unmatch", _me.name], cwd=_me.parent, capture_output=True).returncode == 0 \
+    and subprocess.run(["git", "diff", "--quiet", "HEAD", "--", _me.name], cwd=_me.parent).returncode == 0, \
+    f"{_me.name} has uncommitted edits: commit its rules first"
 
 fix = Path(sys.argv[1])
 x = f1_fold.read_wav(fix / "signal" / "silence.wav")
