@@ -78,7 +78,9 @@ a check; a bar's outcome is the result.
   The constructed case of the checks (C1, C3: its conditions asserted on it): 300 frames at 0 cents,
   12 frames not accepted (u infinite), then 330 frames at +200 cents; every accepted frame u = sqrt 3.
   P: the 12 frames sit across the step (frames 300-311), so the 60-cent cut falls on one of them,
-     asserted; the trimmed finder finds 2 held notes and the current finder fewer (must pass: trimming
+     asserted (revision 1, after the first `check` stopped on its own assertion, no data read: the cut
+     forms one-frame pieces across the step, so the assertion reads the last cut, where the piece holding
+     the second note begins); the trimmed finder finds 2 held notes and the current finder fewer (must pass: trimming
      recovers; the current finder may lose both, since the first piece may also end on one of them).
   Q: the same contour with the 12 frames moved 100 frames into the second note, the step clean; the cut
      falls on an accepted frame, asserted; both finders find the same held notes (must fail: trimming
@@ -224,12 +226,13 @@ def constructed(where):
     # C3: the conditions asserted on what was made
     assert np.sum(~np.isfinite(u)) == 12 and len(p) == 642
     c = cuts(p, u)
-    assert len(c) == 1, c
+    # revision 1: across the step the cut forms one-frame pieces (each piece's reference is the median of
+    # its own next 31 frames), so the piece holding the second note begins at the last cut
     if where == "P":
-        assert not np.isfinite(u[c[0]]), ("the cut must fall on a frame not accepted", c)
+        assert not np.isfinite(u[c[-1]]), ("the second note's piece must begin on a frame not accepted", c)
     else:
-        assert np.isfinite(u[c[0]]), ("the cut must fall on an accepted frame", c)
-    return p, u, c[0]
+        assert all(np.isfinite(u[k]) for k in c), ("every cut must fall on an accepted frame", c)
+    return p, u, c[-1]
 
 
 # ------------------------------------------------------------------ bars
