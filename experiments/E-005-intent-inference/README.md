@@ -758,3 +758,69 @@ cents of a 50-cent onset vibrato contour's tuning, P0 not (48.1, J₀(π) =
 synthetic phrases of the extreme conditions (28 notes, σ 20, 60 cents from
 onset; 14 notes, straight) in 8.4 s, 18 real takes in 1.3 s; for 3000 + 117
 takes, 1408 s. The run saves each chunk of 300 and resumes.
+
+**The run.** Driven in three foreground calls of 585 s each, the longest
+one call may take; each resumed from the chunks saved (`data/cache/r4/`),
+so the two chunks a call's limit cut were re-run whole. Every phrase
+passed its own assertions (contour in E2..C6, the vibrato as called), and
+on every take P0's segments equal `infer.segment`'s (asserted per take).
+`results/round4.json`; `checkkeys.py round4.py` with both results files: 0
+flags. Shares below are of 100 phrases a cell, Wilson 95 % intervals in
+the results file.
+
+**A. The provisional tuning (F-040).** A1 to A3 pass for both PM and PL;
+PM is taken (463 against 460 takes measured over A2's cells).
+
+| Rule | Onset 50 and 60 cents, takes measured (A2, of 1200) | Provisional tuning's distance from the truth, median per cell, onset 40–60 | Worst miss of any cell (A1) | Straight cells (A3) | 40 re-syntheses: misses |
+| :--- | ---: | :--- | :--- | :--- | :--- |
+| P0 | 0 | 36.7–48.2 cents | 2 % (14 notes, σ 20, no vibrato) | — | 0 |
+| PM | 463 (McNemar 463 to 0) | 1.9–6.1 cents | 4 % (14 notes, σ 20, onset 40) | none fewer measured | 0 |
+| PL | 460 (460 to 0) | 1.6–5.6 cents | 4 % (the same cell) | none fewer measured | 0 |
+
+Per cell, P0 gives no take measured at 50 or 60 cents from the onset (0
+of 100 in each of the 12 cells: 24–90 % "at least", the rest "intent
+uncertain"), and 0–25 % at 40 cents. PM gives, at σ 0,
+77 % (14 notes) and 72 % (28) measured at 50 cents, 57 % and 41 % at 60;
+at σ 10, 61 % and 56 % at 50 cents; at σ 20 4–16 %, as without
+vibrato (13 % and 9 %). With vibrato faded in (round 2's) and without
+vibrato, PM and P0 give the same states within 6 points. **Real takes.**
+No real take is measured under any rule, as in round 2 (their *u* keeps
+them "at least"). On the 20 vibrato re-syntheses PM leaves 2 intent
+uncertain against P0's 5, and on the 39 vibrato originals 14 against 16;
+no rule misses on the re-syntheses.
+
+**B. A tuning from the first *t* seconds (F-056).** B1 finds **no *t* up
+to 6 s** for P0 or PM: the early tuning's own ± 2*u*ₑ misses the whole
+take's tuning in more than 5 % somewhere at every *t*.
+
+| PM, *t* | Cells failing B1 (of 30, and real) | σ 0 and 10, worst miss | σ 20, worst miss | Re-syntheses: miss; median \|Δ\|, 2*u*ₑ | Originals: miss; median \|Δ\|, 2*u*ₑ |
+| ---: | :--- | ---: | ---: | :--- | :--- |
+| 1 s | 28 | 27.6 % | 50.0 % | 11.8 % (of 17 with a tuning); 8.3, 25.5 cents | 13.0 % (23); 11.8, 26.8 |
+| 2 s | 21 | 12.0 % | 30.0 % | 17.1 % (35); 8.8, 23.2 | 14.0 % (57); 8.7, 21.5 |
+| 3 s | 14 | 6.0 % | 22.0 % | 13.5 % (37); 8.7, 21.0 | 13.0 % (69); 10.2, 19.9 |
+| 4 s | 10 | 4.0 % | 13.0 % | 10.5 % (38); 7.3, 19.9 | 9.6 % (73); 7.8, 20.0 |
+| 6 s | 6 | 4.0 % | 6.0 % | 11.1 % (36); 6.9, 18.3 | 11.6 % (69); 8.1, 17.4 |
+
+Under P0 every *t* fails more cells (19 to 30), and its vibrato cells miss
+up to 45 %. **Post hoc, labelled:** on the synthetic phrases with σ ≤ 10
+under PM, every cell passes from 4 s (worst 4 %), with a median 2*u*ₑ of
+4.2–13.4 cents per cell; it is the σ = 20 cells (median 2*u*ₑ 13.3–19.4
+cents) and the real takes (19.9 and 20.0) that keep the early tuning's ±
+from holding.
+
+**What this says for squillo.** F-040: the provisional tuning taken from
+each run's 200 ms running median removes the turn: at 50 and 60 cents from
+the onset it lies within a median 1.9–6.1 cents of the truth per cell
+instead of 36.7–48.2, and turns no measured take into a miss; squillo's MT-006 may take
+it in place of the circular mean of all frames, and the fold names the
+rule. On real takes the gain is small (3 and 2 fewer intent uncertain),
+because what keeps them "at least" is their spread's *u*, not the turn.
+F-056: no tuning fitted to a take's first seconds, frozen, carries an
+honest ± within 6 s on every condition: real takes miss 9.6–17.1 % at
+every *t*. So the live line keeps no tuning lines, as UI-012 has it; a later
+round could try a ± widened by a factor fitted on one half and checked on
+the other, or a tuning held only once *u*ₑ is small. **Limits.** One
+vibrato rate (5.5 Hz) and sinusoidal vibrato; synthetic voices; real takes
+are 40 re-syntheses and 77 originals of trained singers; *t* only to 6 s;
+B compares two estimates on nested data, so its misses include the whole
+take's own error.
