@@ -71,7 +71,13 @@ principle.
   cannot fail by construction, and never an expectation taken from the
   claim under test (a finding being re-derived is not its own must-fail
   case). A must-fail asserted over runs first asserts that the runs it
-  needs exist and none errored.
+  needs exist and none errored. **The must-fail input is chosen from the
+  formula the check reads, naming the term it moves and why that term
+  decides the outcome** (scaling a term another term dominates cannot
+  fail). **Every check of a check runs, and stops the run if it fails,
+  before any bar's outcome or hypothesis's result is computed, and no
+  assertion message carries one**, so a check revised after a stop is
+  revised unseen (squillo L-061, E-002 round 5's revisions 2 and 3).
 - **C11.** A pass bar or a selection rule written before a run is a check
   too: it is applied first to the reference condition that must pass it
   (such as clean input on the fitting fold) and to one that must fail it.
@@ -125,7 +131,7 @@ principle.
 - **C19.** The README reports the checks' numbers.
 
 (S15's lessons: squillo L-024, L-026, L-028, L-030, L-031, L-032, L-034,
-L-036, L-041, L-046, L-047, L-048, L-049, L-051, L-054 to L-059.)
+L-036, L-041, L-046, L-047, L-048, L-049, L-051, L-054 to L-059, L-061.)
 
 **Name the reference before comparing** (squillo standing instruction S16).
 A check against an outside source names its reference item in advance: the
