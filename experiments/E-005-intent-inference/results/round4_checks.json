@@ -1,0 +1,47 @@
+{
+ "c1_phrase4_is_round2": {
+  "must_pass_fade": true,
+  "must_pass_none": true,
+  "must_fail_onset_differs": true
+ },
+ "c2_assert_vib": {
+  "must_fail": {
+   "fade_called_onset": true,
+   "onset_called_fade": true,
+   "ext60_called_40": true
+  },
+  "must_pass": {
+   "onset_60": true,
+   "fade_50": true
+  }
+ },
+ "c3_segment_r": {
+  "must_pass_equal_infer_segment": true,
+  "must_pass_14_on_own_tuning": true,
+  "must_fail_on_boundary_not_14": true,
+  "n_own": 14,
+  "n_off": 28
+ },
+ "c4_provisional": {
+  "must_pass_PM": true,
+  "must_pass_PL": true,
+  "must_fail_P0": true,
+  "dist": {
+   "P0": 48.11969257126391,
+   "PM": 2.208824728625899,
+   "PL": 0.9167961458365284
+  },
+  "j0_pi": -0.30424217764409384,
+  "half_margin": 25.0,
+  "first_bound_2_cents_PM_failed": true
+ },
+ "c5_covered": {
+  "must_pass_zero": true,
+  "must_fail_beyond": true,
+  "must_pass_wrap": true
+ },
+ "c6_mcnemar": {
+  "must_pass_ten": true,
+  "must_fail_balanced": true
+ }
+}

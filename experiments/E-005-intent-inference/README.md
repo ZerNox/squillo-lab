@@ -706,3 +706,55 @@ moves. What it found, stated here rather than re-run:
 - *The guard* covers `round3.py`, not the modules it imports (`round2.py`,
   `fold_refusal.py`, `run.py`, `infer.py`, `synth.py`, `voice.py`) or
   E-004's items; all were committed and clean at `9083454`.
+
+## Round 4: the provisional tuning, and a tuning from a take's first seconds (squillo iteration 71)
+
+Squillo R-14 §8 scheduled this round for **F-040** (a vibrato wider than
+38.3 cents from each onset turns `infer.segment`'s provisional tuning, the
+circular mean of all voiced frames, and splits the notes) with **F-056**
+(the live pitch line has no tuning lines, since no result says how soon a
+tuning fitted to a take's first seconds settles). Code: `round4.py`, whose
+docstring holds the conditions, candidates, rules and bars; they were
+committed before any run (`122419f`), with two revisions before any run:
+`cae7c8c` (revision 1: `assert_vib` read a note's first sample one early,
+so the fade condition's must-pass refused round 2's own take) and `5c5ae20`
+(revision 2: check c4's bound was 2 cents with no source, and PM failed it
+at 2.21; it is now the quantiser's own, 25 cents, half the 50 cents a
+correct tuning leaves between a note and a cut; squillo L-057).
+
+**Candidates for the provisional tuning.** P0, the present rule; PM, the
+circular mean of each voiced run's 200 ms running median (the smoothing
+`infer.segment` already applies); PL, the circular mean of each run's
+contour low-passed at 2 Hz (MT-009's contour, E-002 `fold2.py:124-126`).
+
+**Inputs.** Round 2's synthetic phrase generator, copied as `phrase4` and
+checked byte-identical to `round2.phrase` (c1), with the vibrato's extent
+and onset as parameters: none; 40, 50 and 60 cents from each note's first
+sample; 50 cents faded in (round 2's). σ 0, 10 and 20 cents; 14 and 28
+notes; 100 phrases a cell, 3000 in all. Round 2's 40 E-002 re-syntheses
+(known f0) and its 77 VocalSet originals. MT-003's refusal on.
+
+**Bars, before the run.** A1 honesty: a candidate's MT-007 statement
+misses in at most 5 % of every cell, or in no more phrases than P0's. A2:
+over the onset cells at 50 and 60 cents, more takes measured than P0, exact
+McNemar p < 0.05. A3: no straight cell with fewer measured (McNemar
+p < 0.05), and no more misses than P0 on the 40 re-syntheses. B1: the
+smallest *t* in {1, 2, 3, 4, 6} s at which the tuning fitted to the first
+*t* seconds, frozen, lies within its own 2*u*ₑ of the whole take's in at
+least 95 % of the takes with a tuning at *t*, in every cell of at least 20
+takes and on the re-syntheses and the originals.
+
+**Checks** (`results/round4_checks.json`), each with a must-pass and a
+must-fail case: c1 `phrase4` is round 2's generator (fade and none
+byte-identical; onset differs); c2 `assert_vib` refuses a take called what
+it is not (three cases) and passes two called rightly; c3 `segment_r` given
+P0's tuning is `infer.segment` on every vibrato condition, and on a frame
+contour with a 1 Hz ±5-cent wobble gives 14 segments on its own tuning and
+28 with every centre on a cut; c4 PM (2.21 cents) and PL (0.92) within 25
+cents of a 50-cent onset vibrato contour's tuning, P0 not (48.1, J₀(π) =
+−0.30); c5 the coverage test; c6 the McNemar test. All pass.
+
+**Estimate (S19)**, `round4.py time` on the pool of 18 processes: 18
+synthetic phrases of the extreme conditions (28 notes, σ 20, 60 cents from
+onset; 14 notes, straight) in 8.4 s, 18 real takes in 1.3 s; for 3000 + 117
+takes, 1408 s. The run saves each chunk of 300 and resumes.
