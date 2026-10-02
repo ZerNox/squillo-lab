@@ -1,0 +1,175 @@
+{
+ "x": 40.0,
+ "fixtures": {
+  "notes-a-major-up-down.json": {
+   "sha256": "c6ae3201af84d84d38048e35fea57603995a625c4e23f56ced5d62840d543bc2",
+   "bytes": 166
+  },
+  "notes-a3.json": {
+   "sha256": "a02fb1ad63b0dd8a5f2dce679970dd939f14b8803f181f8bd893c0bfa98b5beb",
+   "bytes": 30
+  }
+ },
+ "notes": [
+  "A3",
+  "B3",
+  "C#4",
+  "D4",
+  "E4",
+  "F#4",
+  "G#4",
+  "A4",
+  "G#4",
+  "F#4",
+  "E4",
+  "D4",
+  "C#4",
+  "B3"
+ ],
+ "notes_off": [
+  "A3",
+  "B3",
+  "C#4",
+  "D#4",
+  "E4",
+  "F#4",
+  "G#4",
+  "A4",
+  "G#4",
+  "F#4",
+  "E4",
+  "D4",
+  "C#4",
+  "B3"
+ ],
+ "rows": {
+  "take-in-tune.wav": {
+   "state": "measured",
+   "s": 0.0006831041472710056,
+   "uB": 1.0000038986107391,
+   "lower": -1.9993246930742072,
+   "upper": 2.000690901368749,
+   "states": 14,
+   "found": 14,
+   "wrong": 0,
+   "refused": 31,
+   "truth": 0.0
+  },
+  "take-spread-5c.wav": {
+   "state": "measured",
+   "s": 5.188924787967777,
+   "uB": 1.4267593702648846,
+   "lower": 2.335406047438008,
+   "upper": 8.042443528497547,
+   "states": 14,
+   "found": 14,
+   "wrong": 0,
+   "refused": 30,
+   "truth": 5.0
+  },
+  "take-drift-60c.wav": {
+   "state": "measured",
+   "s": 19.280545715784136,
+   "uB": 3.911334116769544,
+   "lower": 11.457877482245049,
+   "upper": 27.103213949323223,
+   "states": 14,
+   "found": 14,
+   "wrong": 0,
+   "refused": 28,
+   "truth": 18.605210188381267
+  },
+  "take-uncertain.wav": {
+   "state": "at least",
+   "s": 35.28248863897065,
+   "uB": 8.70210294335163,
+   "lower": 17.87828275226739,
+   "upper": 52.68669452567391,
+   "states": 14,
+   "found": 13,
+   "wrong": 0,
+   "refused": 27,
+   "truth": 28.793777672494823
+  },
+  "take-spread-15c.wav": {
+   "state": "measured",
+   "s": 15.566630910132515,
+   "uB": 3.2125639813987577,
+   "lower": 9.141502947334999,
+   "upper": 21.99175887293003,
+   "states": 14,
+   "found": 14,
+   "wrong": 0,
+   "refused": 30,
+   "truth": 15.0
+  },
+  "take-vibrato-in-tune.wav": {
+   "state": "measured",
+   "s": 0.05930117995962916,
+   "uB": 1.0047262168257582,
+   "lower": -1.9501512536918872,
+   "upper": 2.0687536136111455,
+   "states": 14,
+   "found": 14,
+   "wrong": 0,
+   "refused": 31,
+   "truth": 0.0
+  },
+  "take-vibrato-onset-50c.wav": {
+   "state": "measured",
+   "s": 0.037054858133370304,
+   "uB": 1.013175352136058,
+   "lower": -1.9892958461387458,
+   "upper": 2.0634055624054866,
+   "states": 14,
+   "found": 14,
+   "wrong": 0,
+   "refused": 31,
+   "truth": 0.0
+  }
+ },
+ "one_note": {
+  "state": "too few",
+  "s": null,
+  "uB": null,
+  "lower": null,
+  "upper": null,
+  "states": 1,
+  "found": 1,
+  "wrong": 0,
+  "refused": 0
+ },
+ "off_note": {
+  "state": "at least",
+  "s": 38.4077023607101,
+  "uB": 14.167018434282564,
+  "lower": 10.073665492144968,
+  "upper": 66.74173922927523,
+  "states": 14,
+  "found": 13,
+  "wrong": 0,
+  "refused": 31
+ },
+ "wrapped_take_uncertain": "uncertain",
+ "checks": {
+  "G1_in_tune": true,
+  "G2_spread_5": true,
+  "G3_spread_15": true,
+  "G4_drift": true,
+  "G5_uncertain_at_least": true,
+  "G6_vibrato_in_tune": true,
+  "G6_vibrato_onset": true,
+  "G7_one_note_no_value": true,
+  "G8_uncertain_to_in_tune_improved": true,
+  "G8_15_to_5_improved": true,
+  "G8_5_to_5_no_change": true,
+  "G8_in_tune_to_drift_worse": true,
+  "G_all_states_found_no_wrong": false
+ },
+ "must_fail": {
+  "M1_off_note_fails_in_tune_rule": true,
+  "M2_wrapped_uncertain_gives_nothing": true,
+  "M3_in_tune_twice_not_improved": true,
+  "M4_off_list_does_not_parse_to_melody": true
+ }
+}

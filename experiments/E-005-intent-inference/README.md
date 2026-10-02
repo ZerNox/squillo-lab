@@ -1001,3 +1001,76 @@ up to 16.5 %); E-004 fold 2's 30 items, not the 39 the slice now ships
 truth is WORLD re-syntheses of trained singers; one vibrato rate. Merging
 repeated written notes into one state is the rule as stated, and the
 spread of a phrase with repeats is measured on fewer notes.
+
+## Fold 5: the known-melody spread into squillo `metrics`, on its take fixtures (squillo iteration 74)
+
+```
+uv run python fold5.py run <dir>   # the two notes fixtures to <dir>; K on squillo's take fixtures -> results/fold5.json
+```
+
+Squillo iteration 74 folds round 5 (F-041): `pitch-spread` of a take given a
+phrase's written notes is K (`round5.py` steps 1–9, `round5.known`), shown
+measured when K + 2*u*_B ≤ 40 cents and as its lower end otherwise (round
+5's candidate *X* = 40, chosen in squillo ADR 0015 over *X* = ∞ because
+real vibrato takes measured under ∞ carry a ± of about 60 cents, beyond the
+40 cents round 2 and round 5 tested). Code: `fold5.py`, whose docstring
+holds the inputs' conditions, rules G1–G8 and the checks of the checks
+M1–M4, committed before any run (`fold5.py`'s first commit).
+`checkkeys.py fold5.py` alone and with `results/fold5.json`: 0 flags. The
+run takes 1.5 s. A first import failed before any rule ran (E-002's
+`fold.py`, on the path through `round2`, shadowed this experiment's; it is
+now loaded by path), and was fixed before the rules commit.
+
+**Inputs.** Squillo's take fixtures, hashes checked against its
+`fixtures/MANIFEST.md`: every note *j* on semitone `MELODY[j]` of a tuning
+23 cents above A4 = 440 Hz (`fold.py:205-219`, `fold_refusal.py:393-401`),
+A3 B3 C♯4 D4 E4 F♯4 G♯4 A4 G♯4 F♯4 E4 D4 C♯4 B3, no two neighbours equal.
+Two notes fixtures written by this script, what squillo `runner` passes
+(EX-010's pitch names, in order): `notes-a-major-up-down.json` (166 bytes,
+SHA-256 `c6ae3201af84d84d38048e35fea57603995a625c4e23f56ced5d62840d543bc2`),
+asserted to parse back to `MELODY`, and `notes-a3.json` (30 bytes,
+`a02fb1ad63b0dd8a5f2dce679970dd939f14b8803f181f8bd893c0bfa98b5beb`). Each
+take's truth is the population sd of its deviations, computed from the
+generators' own lists. MT-003's refusal on.
+
+**Results** (`results/fold5.json`; cents):
+
+| Fixture | Truth | State | K | *u*_B | Lower end | Upper end | States found | Rule |
+| :--- | ---: | :--- | ---: | ---: | ---: | ---: | :--- | :--- |
+| `take-in-tune.wav` | 0 | measured | 0.001 | 1.000 | −1.999 | 2.001 | 14 of 14 | G1 holds |
+| `take-spread-5c.wav` | 5 | measured | 5.189 | 1.427 | 2.335 | 8.042 | 14 of 14 | G2 holds |
+| `take-spread-15c.wav` | 15 | measured | 15.567 | 3.213 | 9.142 | 21.992 | 14 of 14 | G3 holds |
+| `take-drift-60c.wav` | 18.6052 | measured | 19.281 | 3.911 | 11.458 | 27.103 | 14 of 14 | G4 holds |
+| `take-uncertain.wav` | 28.7938 | **at least** | — | — | 17.878 | — | 13 of 14 | G5 holds |
+| `take-vibrato-in-tune.wav` | 0 | measured | 0.059 | 1.005 | −1.950 | 2.069 | 14 of 14 | G6 holds |
+| `take-vibrato-onset-50c.wav` | 0 | measured | 0.037 | 1.013 | −1.989 | 2.063 | 14 of 14 | G6 holds |
+| `held-steady.wav` with `notes-a3.json` | — | no value (one note) | — | — | — | — | 1 of 1 | G7 holds |
+
+G8 holds: `take-uncertain` then `take-in-tune` improved (the wrapped spread
+gives `take-uncertain` no statement, so MT-007's form cannot call it);
+`take-spread-15c` then `take-spread-5c` improved; `take-spread-5c` twice no
+change; `take-in-tune` then `take-drift-60c` worse.
+
+**One rule failed as written:** "every fixture's 14 states found, 0 wrong
+notes" holds on six of the seven takes and fails on `take-uncertain.wav`,
+13 of 14 states found (0 wrong notes). Its deviations reach ±46.4 cents,
+so neighbouring notes a tone apart come within 107 cents of each other and
+the alignment gives one state no cell; round 5 found every state in 1442 of
+1680 of its own phrases (R5-5), so the rule was written against a rate the
+experiment had already measured below 100 % (squillo L-059). A state not
+found leaves the statement honest on fewer notes (R5-1), as here: the lower
+end 17.878 lies below the truth 28.7938. The asserts after it did not run;
+`fold5.json` holds the must-fail values, every one as required.
+
+Checks of the checks (`must_fail`): M1, the notes with D4 written as D♯4 on
+`take-in-tune.wav`, gives at least, lower end 10.074, so the in-tune rule
+fails as it must; M2, `take-uncertain.wav` with no written notes under
+MT-007 (round 4's PM), is intent uncertain; M3, `take-in-tune` twice, is
+not improved; M4, the D♯4 list does not parse to `MELODY`.
+
+**What this says for squillo.** `metrics` can state K as `pitch-spread`'s
+estimate for a take given written notes, with these fixtures as its
+scenarios; the take whose aims cannot be told alone gives a lower end with
+its written notes, and a later take in tune is then an improvement.
+**Limits:** one fixed melody (a major scale up and down) and deterministic
+fixtures; the honesty of K across conditions is round 5's, not this fold's.
