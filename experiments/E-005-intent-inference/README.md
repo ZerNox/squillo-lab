@@ -1054,8 +1054,8 @@ change; `take-in-tune` then `take-drift-60c` worse.
 **One rule failed as written:** "every fixture's 14 states found, 0 wrong
 notes" holds on six of the seven takes and fails on `take-uncertain.wav`,
 13 of 14 states found (0 wrong notes). Its deviations reach ±46.4 cents,
-so neighbouring notes a tone apart come within 107 cents of each other and
-the alignment gives one state no cell; round 5 found every state in 1442 of
+so two neighbouring notes a tone apart can lie 107.2 cents from each other;
+which state went unfound, and why, was not diagnosed. Round 5 found every state in 1442 of
 1680 of its own phrases (R5-5), so the rule was written against a rate the
 experiment had already measured below 100 % (squillo L-059). A state not
 found leaves the statement honest on fewer notes (R5-1), as here: the lower
