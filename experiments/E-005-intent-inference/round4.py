@@ -185,7 +185,8 @@ def assert_vib(vib, truth, ext, onset):
     """S15 on the output: the vibrato added is within +-ext, and its onset is what it is called."""
     assert np.abs(vib).max() <= ext + 1e-9, (np.abs(vib).max(), ext)
     for s in truth["starts"]:
-        a = int(round(s * SR))
+        a = int(math.ceil(s * SR)) + 1  # revision 1: the generator's searchsorted gives a sample at
+        # t just below s to the note before; the first sample past the start belongs to the note
         if onset == "onset":
             first = np.abs(vib[a:a + int(SR / VIB_RATE) + 1]).max()
             assert first >= 0.99 * ext, (first, ext)
