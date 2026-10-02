@@ -1230,3 +1230,56 @@ drift); round 3's 30 library items, not the 39 the slice ships; B2's cells
 small where the gate moves few notes, and the cells where harm gathers
 (σ = 0 with vibrato) are under its 20-note minimum; the real truth is WORLD
 re-syntheses of trained singers; no listener judged a rung.
+
+## Fold 6: a phrase's intent uncertain on many written notes (squillo iteration 77)
+
+```
+uv run python fold6.py run    # -> results/fold6.json
+```
+
+**Question** (squillo F-072). Under squillo MT-014 a take given written
+notes is intent uncertain only when fewer than two notes are kept. Fold 5
+measured that state on one tone given one written note (G7). No shipped
+phrase has fewer than five written notes (39 phrases, 5 to 18, counted by
+the script from squillo `fixtures/slice/phrases/`), so the case a singer
+can meet is a take that sings few of many written notes. Does one held
+tone, given the 14 written notes of `notes-a-major-up-down.json`, reach
+it, so that squillo `ui` may say that too few of the phrase's notes were
+found?
+
+**Rules first** (`8ea2d9e`, before any run). H1: `held-steady.wav` (220 Hz,
+A3, 5 s) given the 14 notes is `too few` with fewer than two notes kept.
+M1, its must-fail case, differing in the take: `take-in-tune.wav` given the
+same notes is not. The rows for `held-wobble.wav`, `held-vibrato.wav` and
+the 39 shipped phrases carry no bar. Applied from the lab's checklist: C1,
+C2 (conditions from the manifest and `fold5.py`, cited in the docstring),
+C5 (the two-note bound and the state's name as named constants with their
+sources), C10 (M1), C13 (H1 is one outcome on one input, resting on fold
+5's G7), C14 to C16 (the guard covers `fold6.py` and `fold5.py`;
+`checkkeys.py fold6.py` 0 flagged before the run), C17 to C19 (below).
+Run: 3 s, one process.
+
+**Checks.** H1 holds and M1 fails as it must (`results/fold6.json`
+`checks`, `must_fail`, both asserted). `checkkeys.py fold6.py
+results/fold6.json`: 0 flagged. *Recorded, not asserted:* `held_others`,
+`shipped`, `shipped_summary`.
+
+**Results** (`results/fold6.json`, MT-003's refusal on, X = 40):
+
+| # | Take, written notes | Result |
+| :--- | :--- | :--- |
+| F6-1 | `held-steady.wav`, the 14 notes (H1) | `too few`: 1 of 14 notes found, 0 wrong, no value |
+| F6-2 | `take-in-tune.wav`, the 14 notes (M1) | measured, 0.001 ± 2.000 cents, 14 of 14 found |
+| F6-3 | `held-vibrato.wav`, the 14 notes | `too few`: 1 of 14 found |
+| F6-4 | `held-wobble.wav`, the 14 notes | **measured, 8.047 ± 27.130 cents on 2 of 14 found**, 0 wrong (*u*_B 13.565): a slow 0.5 Hz wander of one tone, from 20.90 cents below to 20.65 above, is aligned to two written notes and its spread measured |
+| F6-5 | `held-steady.wav`, each shipped phrase's notes (39) | `too few` on 39 of 39 (5 to 18 written notes each) |
+
+**What this says for squillo.** A take that sings one steady note of a
+phrase of many is intent uncertain under MT-014, on the A-major fixture
+list and on every shipped phrase, so `ui` may say for a phrase that too
+few of its written notes were found to measure. F6-4 is a limit MT-014
+does not yet state: one wandering tone can be aligned to two written notes
+and given a measured spread with a wide ± (squillo F-073).
+
+**Limits.** Pure tones, not voices; one held pitch (A3); the shipped
+phrases' notes are measured against that one tone, not sung.
