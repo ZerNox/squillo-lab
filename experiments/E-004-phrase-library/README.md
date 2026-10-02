@@ -1068,6 +1068,28 @@ Recorded, not asserted: `k4_must_fail_cases` and the summary's
 nothing. K1's and K2's must-fail cases are asserted on the one phrase
 that reached them (Hen Wlad, post hoc).
 
+## Folded (squillo iteration 82)
+
+No new run. squillo Q-041 ranked what round 5's post hoc phrase may do,
+and took option D in a revision of ADR 0005 (*A manuscript is not an
+edition*): `published_by` is a year for the form sung, and a composer's
+manuscript is not a publication, so *Hen Wlad Fy Nhadau*'s first line
+is not an item and the library stays at 39. A dated edition exists:
+IMSLP's page *Gems of Welsh Melody (Owen, John)* lists a British Library
+scan of both series, Isaac Clarke, Ruthin, 1860 and 1861, naming Evan
+James among the lyricists, and the Internet Archive holds an item
+`gems-of-welsh-melody` dated 1860 (both read through their APIs on
+2026-10-02, metadata only; no page of either scan read). The next round
+for squillo F-060, rules first: read the first line in that print, its
+year from the print's own title page, and compare it with Mutopia 1017's
+by round 2's measure (pitch and rhythm, a second transcription named in
+advance); a match ships it as a checked phrase under ADR 0005
+unchanged, and its fold re-runs the counts cited for the 39 (CO-005
+rule (2), E-002 round 5 and E-005 fold 6 on the renderings); a mismatch,
+or no such page, closes F-060 with that reason. The same edition's
+Welsh airs with words are a folk route where a second transcription
+exists.
+
 ## Needs a human
 
 15 minutes, headphones, no microphone.
