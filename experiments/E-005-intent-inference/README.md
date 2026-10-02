@@ -1301,3 +1301,107 @@ extremes (28 notes, σ 0 and 30, vibrato; 14 notes, σ 0, straight), each to
 its end, in 6.0 s, 0.213 s of wall time each; for 4000 takes, 14.2 minutes.
 The run is driven in foreground calls of under 600 s, each resuming from
 the rows saved every 100.
+
+**Question** (squillo F-073, R-16 §8 for iteration 83). Squillo MT-014 (round
+5's K, fold 5's *X* = 40) measures a take given a phrase's written notes and
+is intent uncertain only when fewer than two notes are kept. Round 5's
+phrases sang every written note; fold 6 (F6-4) found one wandering tone
+aligned to two of fourteen written notes and measured. Does MT-014's shown
+statement hold the singer's spread when a take sings only part of the
+phrase, or holds one note where two or three are written; does one tone
+get a value; and would a least share of written notes kept, before a value
+is given, be needed?
+
+**Rules first.** Modes, candidates, bars B1 and B5, the selection and checks
+r1–r5 are in `round7.py`'s docstring, committed before any run (`cfdd5ed`).
+Two revisions, each fixing a crash in a recording line, neither changing a
+rule, and neither printing an outcome before it stopped: revision 1 (r4's
+record of the steady tone's state, after r1–r3 had passed) and revision 2
+(the states table read round 5's full rows, after the checks and before
+anything was printed). The estimate followed the rules and revision 1, and
+came before the full run. `round7_posthoc.py` was written after the report
+and committed before it ran: a diagnostic, never a bar or a selection.
+Applied from the lab's checklist: C1–C3 (the generator draws in
+`round2.phrase`'s order, `round2.py:122-160`, and asserts the sung pitches
+equal the subset claimed and the contour inside E2..C6), C5 (every bound a
+named constant with its source), C10 and C11 (r1–r5; B1 on round 5's
+cached full takes, B5 on fold 6's fixtures), C13 (no rule predicts an
+outcome on every input), C14–C16 (the guard covers `round7.py` and every
+module it imports; `checkkeys.py` on each script alone before its first
+run, 0 flagged), C17–C19 (below).
+
+**Inputs.** Round 2's design under its own seeds, the first 40 of each cell
+of 14 and 28 notes, σ 0, 10, 20, 30, straight or vibrato faded in: 640
+base phrases, exactly round 5's R phrases there (r1 reproduces round 5's
+cached K on 4). Each sung six ways against all its written notes: head50
+and head25 (the first half, quarter), tail25, mid50, hold2 and hold3 (each
+group of 2 or 3 written notes sung as one note at its first note's pitch,
+lasting the group); 3840 takes. Tone: one 4 s tone at each σ = 0 phrase's
+first written note with a 20-cent, 0.5 Hz wander (fold 6's
+`held-wobble.wav`), given all the phrase's notes; 160 takes. Mode full is
+round 5's cached rows. MT-003's refusal on. Python 3.13.14, numpy 2.5.3,
+scipy 1.18.1.
+
+**The run.** 4000 takes in two foreground calls (the first stopped by its
+570 s limit at 2900 saved, the chunks in flight re-run), about 15 minutes
+against 14.2 estimated; report and post hoc under a minute each.
+
+**Checks** (`results/round7_checks.json`; re-run inside `report` before any
+bar):
+
+| Check | Must pass | Must fail | Result |
+| :--- | :--- | :--- | :--- |
+| r1 phrase7 in mode full reproduces round 5's cached K (10⁻⁹) | 4 of 4 | the next job's cached values: 0 of 4 | as they must |
+| r2 the subset the generator sings | head25 sings notes[:m] | checked against notes[1:m+1]: unequal | as they must |
+| r3 bar B1 on round 5's cached full takes, *F* = 0 | every one of the 16 cells (worst 14 notes, σ = 30, straight, 1 of 40) | truth moved to σ + 30 cents: fails | as they must |
+| r4 bar B5 | `held-steady.wav` given the 14 notes of `notes-a-major-up-down.json`: too few | round 5's full takes, 14 notes, σ = 0, straight: valued | as they must |
+| r5 the share rule | `take-in-tune.wav`, 14 of 14 kept, valued at *F* = 0.75 | `held-steady.wav`, 1 of 14, refused at *F* = 0.25 | as they must |
+
+`checkkeys.py round7.py results/round7.json results/round7_checks.json`
+flags 9 keys (`checks`, and `must_pass`, `must_fail`, `must_pass_equal`,
+`must_fail_equal` in each file). Read by hand: each must-pass and must-fail
+key is recorded from the local (`p`, `f`, `ok_p`, `ok_f`) asserted on the
+line after it, and `checks` is the dict of those records. *Recorded, not
+asserted:* `B1_passes`, `B5_passes` and the cells' `ok`, the bars'
+outcomes, which are the results. `checkkeys.py round7_posthoc.py
+results/round7_posthoc.json`: 0 flagged.
+
+**Results** (`results/round7.json`, post hoc `results/round7_posthoc.json`;
+40 takes a cell, so one take is 2.5 % and the bar allows 2 of 40):
+
+| # | Question | Result |
+| :--- | :--- | :--- |
+| R7-1 | Does MT-014 as it stands (*F* = 0) hold the singer's spread on partial takes (B1)? | **No.** It fails in 26 of 96 cells. Worst: hold2, 14 notes, σ = 20, straight, 9 of 40 excluded (22.5 %, Wilson 95 % 12.3–37.5). Pooled by mode it excludes in 2.0 % (head50, mid50, 13 of 640 each), 4.4 % (hold2, 28), 4.7 % (head25, 30), 6.6 % (tail25, 42) and 6.7 % (hold3, 43) of takes, against 1 of 40 at worst for the same phrases sung whole (round 5's rows, r3). Every excluding statement is measured, none at least |
+| R7-2 | Does one tone given a phrase get a value (B5)? | **Yes, mostly.** Measured or at least on 26, 33, 35 and 39 of 40 tones (14 notes straight, vibrato; 28 straight, vibrato). Of the 160, 133 kept two notes or more, their K a median 10.2 cents. F6-4 was not an isolated case |
+| R7-3 | Which least share kept passes both bars (selection)? | ***F* = 0.75**, the only one. *F* = 0.25 fails B1 in 25 cells and B5 in 1 (14 notes, vibrato, 9 of 40 valued); *F* = 0.5 passes B5 (no tone valued) but fails B1 in 4 cells (hold2 14 notes σ 10 and 20 straight, 3 and 7 of 40; hold2 28 notes σ 30 straight, 4; head50 14 notes σ 30 straight, 4). *F* = 0.75 excludes in 0 of 3840 and values no tone, because it refuses nearly every partial take: measured or at least on 0 to 4 of 160 per mode and length |
+| R7-4 | What does each rule leave measured on partial takes? | *F* = 0: every partial take but 0–3 per 160 gets a value. *F* = 0.5: head50 keeps a value on 115–125 of 160 and mid50 on 101–113, hold2 112–133, hold3 21–36, head25 and tail25 0–8 |
+| P1 | Post hoc: what *F* = 0.75 costs on takes that sing the whole phrase | Round 5's synthetic takes: valued on 1678 of 1680 R, 240 of 240 O, 120 of 120 L (the share kept a median 1.0, at least 0.67). **Real takes: 102 of 117** against 117 at *F* = 0: re-syntheses 35 of 40 (straight scales 20 of 20, vibrato rounds 15 of 20), VocalSet originals 67 of 77 (straight scales 19 of 19, vibrato scales 19 of 20, straight rows 16 of 19, vibrato rows 13 of 19). The share kept on real takes is a median 0.94 and 1.0, a 5th percentile 0.63 and 0.68, a least 0.44. *F* = 0.5 keeps 116 of 117 |
+| P2 | Post hoc: is the failure the alignment putting a note on the wrong written note? | Not shown. A found segment lies outside a sung note aimed at it in 36–70 % of excluding takes and in 49–79 % of the rest, per mode; the misassignment does not separate them. The mechanism is not established here |
+
+**F-074** (`round6_r64.py`, written in this iteration with round 6's
+definitions stated first, committed before it ran, `checkkeys.py` 0
+flagged): over round 6's 117 real takes, 1766 kept notes, 345 with
+|*d*| > 2*u*, 2 with 4*u* ≤ 15, a median *u* of 14.499 cents, and 0 notes
+moved under *T* = 15 (`results/round6_r64.json`, `A`; the same over the
+takes where K has a value, `B`). Row R6-4's counts are now held by a
+results file and match it.
+
+**What this says for squillo.** MT-014's limit "one written note may go
+unfound" understates: a take that sings part of a phrase, or holds one note
+across two or three written ones, gets a measured spread that excludes the
+singer's own in up to 22.5 % of takes in a cell, and one tone gets a value
+in 65–97.5 %. A least share of written notes kept removes both on these
+inputs only at 0.75, which then refuses nearly every partial take, and 15
+of 117 real takes that sang the whole phrase, most of them vibrato rows;
+at 0.5 the tone is refused and the real takes kept (116 of 117), but four
+cells still fail. The fold (squillo iteration 84) decides between them, or
+a rule this round did not test, on what the bars cannot see: a real take
+told "too few of the phrase's notes were found" when it sang them all,
+against a spread shown that may be false on a partial take.
+
+**Limits.** Synthetic voices and round 2's error model; 40 takes a cell (a
+cell at 3 of 40 is 7.5 %, Wilson 95 % 2.6–19.9 %); the partial modes are
+contiguous blocks and fixed groupings, not what singers do; one tone at
+the first written note only; the 39 shipped phrases are not rendered here;
+the cost on real takes is from round 5's 117, trained singers' scales and
+rows; P2's misassignment is judged by a segment's middle frame only.

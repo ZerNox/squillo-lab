@@ -1,0 +1,34 @@
+{
+ "A": {
+  "takes": 117,
+  "kept": 1766,
+  "off": 345,
+  "small_u": 2,
+  "median_u": 14.499488760924574
+ },
+ "B": {
+  "takes": 117,
+  "kept": 1766,
+  "off": 345,
+  "small_u": 2,
+  "median_u": 14.499488760924574
+ },
+ "moved_T15": 0,
+ "no_path": 0,
+ "by_kind": {
+  "original": {
+   "takes": 77,
+   "kept": 1168,
+   "off": 223,
+   "small_u": 1,
+   "median_u": 14.860895783528857
+  },
+  "resynth": {
+   "takes": 40,
+   "kept": 598,
+   "off": 122,
+   "small_u": 1,
+   "median_u": 13.931183044013517
+  }
+ }
+}

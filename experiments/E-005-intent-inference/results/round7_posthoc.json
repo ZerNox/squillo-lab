@@ -1,0 +1,200 @@
+{
+ "P1": {
+  "R": {
+   "n": 1680,
+   "share_p5": 0.9249038461538462,
+   "share_p50": 1.0,
+   "share_min": 0.6666666666666666,
+   "valued_F0.0": 1680,
+   "valued_F0.25": 1680,
+   "valued_F0.5": 1680,
+   "valued_F0.75": 1678
+  },
+  "O": {
+   "n": 240,
+   "share_p5": 1.0,
+   "share_p50": 1.0,
+   "share_min": 0.9230769230769231,
+   "valued_F0.0": 240,
+   "valued_F0.25": 240,
+   "valued_F0.5": 240,
+   "valued_F0.75": 240
+  },
+  "L": {
+   "n": 120,
+   "share_p5": 1.0,
+   "share_p50": 1.0,
+   "share_min": 0.875,
+   "valued_F0.0": 120,
+   "valued_F0.25": 120,
+   "valued_F0.5": 120,
+   "valued_F0.75": 120
+  },
+  "real_resynth_all": {
+   "n": 40,
+   "share_p5": 0.625,
+   "share_p50": 0.9411764705882353,
+   "share_min": 0.4375,
+   "valued_F0.0": 40,
+   "valued_F0.25": 40,
+   "valued_F0.5": 39,
+   "valued_F0.75": 35
+  },
+  "real_resynth_scales_straight": {
+   "n": 20,
+   "share_p5": 0.9352941176470588,
+   "share_p50": 1.0,
+   "share_min": 0.8235294117647058,
+   "valued_F0.0": 20,
+   "valued_F0.25": 20,
+   "valued_F0.5": 20,
+   "valued_F0.75": 20
+  },
+  "real_resynth_row_vibrato": {
+   "n": 20,
+   "share_p5": 0.615625,
+   "share_p50": 0.875,
+   "share_min": 0.4375,
+   "valued_F0.0": 20,
+   "valued_F0.25": 20,
+   "valued_F0.5": 19,
+   "valued_F0.75": 15
+  },
+  "real_original_all": {
+   "n": 77,
+   "share_p5": 0.675,
+   "share_p50": 1.0,
+   "share_min": 0.5625,
+   "valued_F0.0": 77,
+   "valued_F0.25": 77,
+   "valued_F0.5": 77,
+   "valued_F0.75": 67
+  },
+  "real_original_scales_straight": {
+   "n": 19,
+   "share_p5": 1.0,
+   "share_p50": 1.0,
+   "share_min": 1.0,
+   "valued_F0.0": 19,
+   "valued_F0.25": 19,
+   "valued_F0.5": 19,
+   "valued_F0.75": 19
+  },
+  "real_original_row_vibrato": {
+   "n": 19,
+   "share_p5": 0.5625,
+   "share_p50": 0.8125,
+   "share_min": 0.5625,
+   "valued_F0.0": 19,
+   "valued_F0.25": 19,
+   "valued_F0.5": 19,
+   "valued_F0.75": 13
+  },
+  "real_original_scales_vibrato": {
+   "n": 20,
+   "share_p5": 0.8176470588235294,
+   "share_p50": 0.9705882352941176,
+   "share_min": 0.7058823529411765,
+   "valued_F0.0": 20,
+   "valued_F0.25": 20,
+   "valued_F0.5": 20,
+   "valued_F0.75": 19
+  },
+  "real_original_row_straight": {
+   "n": 19,
+   "share_p5": 0.625,
+   "share_p50": 1.0,
+   "share_min": 0.625,
+   "valued_F0.0": 19,
+   "valued_F0.25": 19,
+   "valued_F0.5": 19,
+   "valued_F0.75": 16
+  }
+ },
+ "P2": {
+  "head50": {
+   "excluded": [
+    6,
+    13
+   ],
+   "not_excluded": [
+    380,
+    627
+   ],
+   "excluded_states": {
+    "measured": 13,
+    "at least": 0
+   }
+  },
+  "head25": {
+   "excluded": [
+    16,
+    30
+   ],
+   "not_excluded": [
+    414,
+    610
+   ],
+   "excluded_states": {
+    "measured": 30,
+    "at least": 0
+   }
+  },
+  "tail25": {
+   "excluded": [
+    23,
+    42
+   ],
+   "not_excluded": [
+    371,
+    598
+   ],
+   "excluded_states": {
+    "measured": 42,
+    "at least": 0
+   }
+  },
+  "mid50": {
+   "excluded": [
+    5,
+    13
+   ],
+   "not_excluded": [
+    346,
+    627
+   ],
+   "excluded_states": {
+    "measured": 13,
+    "at least": 0
+   }
+  },
+  "hold2": {
+   "excluded": [
+    10,
+    28
+   ],
+   "not_excluded": [
+    298,
+    612
+   ],
+   "excluded_states": {
+    "measured": 28,
+    "at least": 0
+   }
+  },
+  "hold3": {
+   "excluded": [
+    30,
+    43
+   ],
+   "not_excluded": [
+    469,
+    597
+   ],
+   "excluded_states": {
+    "measured": 43,
+    "at least": 0
+   }
+  }
+ }
+}

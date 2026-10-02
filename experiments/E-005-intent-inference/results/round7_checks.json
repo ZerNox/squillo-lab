@@ -1,0 +1,26 @@
+{
+ "r1": {
+  "must_pass_equal": 4,
+  "must_fail_equal": 0
+ },
+ "r2": {
+  "must_pass": true,
+  "must_fail": false
+ },
+ "r3": {
+  "must_pass": true,
+  "must_fail": false
+ },
+ "r4": {
+  "must_pass": true,
+  "must_fail": false,
+  "steady_state": "too few"
+ },
+ "r5": {
+  "must_pass": true,
+  "must_fail": false,
+  "intune_kept": 14,
+  "steady_kept": 1,
+  "states": 14
+ }
+}
