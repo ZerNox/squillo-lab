@@ -50,7 +50,11 @@ a check; a bar's outcome is the result.
      take's +- (2u) covers its true value on every take measured, for steadiness, extent and rate, as F4
      did (36 of 36, 36 of 36, 23 of 23; that earlier rate was 100 %, C13). Bar's check (C11): must pass
      on the current finder (T0's reproduction, 100 %); must fail on the trimmed finder's takes with every
-     take u divided by 1000 (the input differs: the u the bar reads).
+     take u divided by 1000 (the input differs: the u the bar reads). Revision 2, after the first
+     `analyse` stopped on this assertion and printed T2's outcome (true) with it: dividing the block u
+     cannot fail the bar, since a take's u is kappa sqrt(s^2/n + u_mean^2) and s dominates; the
+     must-fail input is instead every measured block value moved off its truth (steadiness and extent
+     +5 cents, rate +1 Hz, SHIFT). The bar itself is unchanged.
   T3 Prediction of no change (C12, read first): squillo's fixtures held-steady, held-wobble and
      held-vibrato have every frame accepted (fold2.json fixtures: 622 frames, 622 accepted, one held
      note 0-621), and sine-220hz has no held note, so the trimmed finder gives each the same held notes
@@ -131,6 +135,10 @@ TABLE = np.array([np.inf if x is None else x for x in SPEC["table"]])
 C_SP, K_SP = SPEC["c"], SPEC["kappa"]
 F2.SPEC_TABLE = TABLE
 CURRENT = F2.held_notes
+# revision 2: T2's must-fail shift. 5 cents is MT-010's 2.5 x the median take u for steadiness (2.02 cents,
+# fold 3 L3) rounded up; for extent the same 5 cents; for rate 1 Hz, beyond the rate's tracking c (0.16)
+# times any block's rms u over its extent. A case, not a tolerance: it only has to fail.
+SHIFT = dict(S=5.0, E=5.0, R=1.0)
 
 
 # ------------------------------------------------------------------ the finder
@@ -246,16 +254,18 @@ def bar_T2(ev):
 
 
 # ------------------------------------------------------------------ round 2's takes
-def r2_eval(finder_fn, u_scale=1.0):
+def r2_eval(finder_fn, shift=False):
     F2.held_notes = finder_fn
     try:
         U = {c: A.u_of(A.Z[c + "/dip"], TABLE) for c in A.ALL_CONDS}
         rows = F2.voice_rows(U, lambda k: C_SP, A.ALL_CONDS, True)
-        if u_scale != 1.0:
+        if shift:   # revision 2: T2's must-fail input, every measured block value moved off its truth
             for r in rows:
                 for b in r["blocks"]:
-                    for k in ("uS", "uE", "uR"):
-                        b[k] = b[k] / u_scale
+                    b["S"] += SHIFT["S"]
+                    b["E"] += SHIFT["E"]
+                    if b["R"] is not None:
+                        b["R"] += SHIFT["R"]
         return F2.evaluate(rows, K_SP), rows
     finally:
         F2.held_notes = CURRENT
@@ -272,7 +282,7 @@ def r2_part():
     repro = all(ev_c[m][c][k] == ref[m][c][k] for m in ref for c in ref[m] for k in keys)
     assert repro, "T0: round 2 under the current finder must reproduce fold2.json measures.spec.eval"
     ev_t, rows_t = r2_eval(trimmed)
-    ev_x, _ = r2_eval(trimmed, 1000.0)
+    ev_x, _ = r2_eval(trimmed, True)
     # the superset identity on every take of every condition, and where the finders differ
     diff = []
     for c in A.ALL_CONDS:
@@ -283,8 +293,8 @@ def r2_part():
             cur, tr = both(p, u)
             if len(tr) != len(cur):
                 diff.append(dict(cond=c, file=k, set=str(A.SET[k]), current=len(cur), trimmed=len(tr)))
-    T2 = dict(must_pass_current=bar_T2(ev_c), must_fail_u_divided=bar_T2(ev_x), outcome=bar_T2(ev_t))
-    assert T2["must_pass_current"] and not T2["must_fail_u_divided"], T2
+    T2 = dict(must_pass_current=bar_T2(ev_c), must_fail_shifted=bar_T2(ev_x), outcome=bar_T2(ev_t))
+    assert T2["must_pass_current"] and not T2["must_fail_shifted"], T2
     pick = lambda ev: {m: {c: {k: ev[m][c][k] for k in keys} for c in ev[m]} for m in ev}
     return dict(reproduces_fold2=repro, current=pick(ev_c), trimmed=pick(ev_t), takes_where_finders_differ=diff, T2=T2)
 
