@@ -1,6 +1,6 @@
 # E-002 — Measurement reliability and uncertainty
 
-**Status:** answered (round 1, pitch, answered on synthetic input; round 2, real voices, pitch ± and four aspects, squillo iteration 28; round 3, octave errors and reverberation, squillo iteration 36; fold 3, the steadying ladder, squillo iteration 42; round 4, the ring ratio on repeated material, squillo iteration 49, whose separate-takes step is `needs-human`; a real room is E-003's `needs-human` step, an amateur's voice E-005's) · **Serves:** VISION §5 (what is measured), §6 (honesty), §12.2
+**Status:** answered (round 1, pitch, answered on synthetic input; round 2, real voices, pitch ± and four aspects, squillo iteration 28; round 3, octave errors and reverberation, squillo iteration 36; fold 3, the steadying ladder, squillo iteration 42; round 4, the ring ratio on repeated material, squillo iteration 49, whose separate-takes step is `needs-human`; round 5, held notes trimmed to their measured cells and the next step against blocks, squillo iteration 78; a real room is E-003's `needs-human` step, an amateur's voice E-005's) · **Serves:** VISION §5 (what is measured), §6 (honesty), §12.2
 
 ## Question
 
@@ -739,6 +739,78 @@ pool of 16, so the 936 in about 232 s (`results/r5_sample.json`); round
 2's evaluation under one finder 10.1 s and part B under one finder 14.2 s
 on one process, so `analyse` (three evaluations, the finders compared on
 every take, part B twice, the renderings read) about 2 minutes.
+
+**Revisions, each committed before the run it governs.** (1) `check`
+stopped on its own assertion before any data was read: across the step
+the cut forms one-frame pieces, so the constructed case's cut is read at
+the piece holding the second note. (2) The first `analyse` stopped on
+T2's must-fail case and printed T2's outcome (true) with it: dividing
+the block *u* by 1000 cannot fail the bar, since a take's *u* is
+κ √(*s*²/*n* + *ū*²) and *s* dominates; the must-fail input became every
+block value moved off its truth (`SHIFT`), written after that outcome was
+seen; the bar is unchanged. (3) The next `analyse` stopped on B0 (fold
+3's next step reproduced on 31 of 47 original takes; part B's summaries
+unseen): the steadying moves the cut by a few frames, so a rung's blocks
+rarely start on the take's frames; a rung at *n* is measured on its own
+first *n* blocks in time order, and on all at *n* = *B*, as fold 3.
+
+**Checks (S15; C1, C3, C10 to C19 applied).** P and Q, the constructed
+contours, have their conditions asserted on them: in P the piece holding
+the second note begins on a frame not accepted (frame 310, after one-frame
+pieces from 300; trimmed, it begins at 312), in Q every cut falls on an accepted frame.
+The trimmed finder recovers P's second note (2 held notes against 1,
+must pass) and nothing in Q (2 and 2, must fail). `finder(trim=False)`
+equals `fold2.held_notes` and every current held note is a trimmed one,
+asserted on every take of every condition and every rendering. T0: the
+936 renderings re-made equal their cached held notes and blocks, diag's
+26 renderings match note by note, 26 of 360 lost; round 2's evaluation
+under the current finder equals `fold2.json` `measures.spec.eval`. T1's
+bar passes on P and fails on the current finder's 26. T2's bar passes on
+the current finder and fails on the shifted blocks. T3: squillo's
+`held-steady`, `held-wobble`, `held-vibrato` and `sine-220hz` give the
+same held notes and take values under both finders (must pass); P does
+not (must fail). B0: at *n* = *B*, fold 3's next step on 47 of 47
+original and 43 of 43 clean takes (must pass); against the list rotated
+by one take, not (must fail). `tools/checkkeys.py r5_trim.py
+results/r5_trim.json`: 0 flagged.
+
+**Result** (`results/r5_trim.json`; the 936 renderings in 253 s at a
+pool of 16, inside the estimate; `analyse` 76.3 s). Strengths are
+fractions of the steadying SY-002 allows (fold 3's `next_strength`).
+
+| # | Question | Result |
+| :--- | :--- | :--- |
+| T1 | Written held notes lost, E-004 round 4's 9 new items, 216 renderings | **Trimmed: 1 of 360** (Wilson 95 % 0.0–1.6 %; `halfway-home`, tenor, spread 20, vibrato, which still gives 2 blocks), against 26 of 360 (5.0–10.4 %) now. **Bar T1 passes.** All 39 items, 936 renderings: 2 of 456 lost (0.1–1.6 %) against 50 of 456 (8.4–14.2 %) |
+| T2 | MT-010's coverage on round 2's clean re-syntheses, squillo's constants unchanged | Trimmed: 125 held notes (117 now), 45 takes measured (43); the take's ± covers its true value on **38 of 38** takes for steadiness and extent and **25 of 25** for rate (now 36, 36, 23). **Bar T2 passes.** White 30 dB 31 of 31 (29 now); white and pink 20 dB unchanged in takes; the rooms unchanged in coverage (extent 8 of 11 at 0.4 s, 1 of 2 at 0.8 s, F-030) |
+| T4 | Where the finders differ | 28 take-conditions gain one held note each (clean 8, original 9; original takes measured 50, was 47). Renderings: 58 of 936 gain blocks, none lose any. Every item CO-005 rule (2) gives at least 2 blocks now gives MT-009 at least 2 on all 24 renderings (12 items, against 6): `abide-with-me` 24 of 24 (14 now), `le-pays-des-reves` 24 of 24 (18), the three new one-held-note items 72 of 72 (61 of 72 now, Wilson 94.9–100 %). `apres-un-reve` (rule (2): 1) 2 of 24, `holy-holy-holy` (rule (2): 1) 24 of 24 |
+| B1 | The next step against the blocks, original takes with at least 4 blocks (20) | **More blocks do not make the next step smaller.** A step at 2 blocks on 12, at 4 on 10, at all *B* on 14. On the 6 with a step at both 2 and 4, the median strength 0.70 at 2 and 0.59 at 4 (4 fell, 2 rose). Over all takes per *n*, the median strength stays 0.50 to 0.68 from *n* = 2 (0.566, 47 takes) to 8 (0.679, 2 takes), while the median take *u* falls from 1.97 to 1.13 cents. The prediction (more steps at 4 than at 2, and the paired median falling) **does not hold**. Clean re-syntheses alike: 8 at 2, 6 at 4 of 16; paired 0.67 to 0.60 on 4 |
+| B2 | The floor: the take's *u* with the spread of its blocks dropped (κ *ū*), a model | The least strength improved would be a median **0.115** (0.063–0.245) on 47 of 47 original takes, against 0.627 measured on 28 of 47 with all blocks; median *u* 0.23 against 2.02 cents. Clean: 0.109 on 43 of 43 |
+
+**What this says for squillo.** F-070: trimming each piece to its first
+and last measured cells finds the written held notes MT-009 now loses (25
+of the 26) and costs nothing measured: every held note found now is found
+unchanged, and MT-010's coverage holds on the takes it adds. A `metrics`
+change can state it, with CO-005 rule (2) no longer overstating for a
+phrase with one held note on these renderings. F-046: a take's
+`steadiness` ± is wide because its blocks differ from one another (the
+*s*²/*n* term), not because tracking is coarse (median κ *ū* 0.23 cents);
+adding blocks of the same singing narrows it only as 1/√*n*, and over 2 to
+8 blocks the next step stayed most of the way. So "longer held notes" is
+not a lever on these takes, and the coarse ladder is the honest one under
+MT-008 as it stands. The floor says what is lost: compared with tracking
+alone, the least rung would be a median 0.115 of the steadying, not 0.627. One lever was not
+measured here: a rung is the take itself changed, so the take and its
+rung share their blocks' spread, and a paired comparison (per-block
+differences) would not pay it; whether `metrics` may call a rung improved
+that way, when the singer's next take is compared unpaired, is a
+decision for squillo's fold, not a result.
+
+**Limits.** Twenty trained singers, long tones (round 2's limits); E-004's
+renderings are E-005's synthetic voice. Part B takes the first *n* blocks
+of a take as the shorter take, so a shorter held note's own 2 Hz contour
+and cut are not modelled; 2 to 8 blocks only, few takes at 6 or more. The
+floor is a model's extrapolation, never a measurement. Pooling the blocks
+of several takes is not measured.
 
 ### Beyond round 3
 
