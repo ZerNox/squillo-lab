@@ -1,0 +1,5871 @@
+{
+ "conditions": {
+  "X_cap": 40.0,
+  "gates": [
+   20.0,
+   15.0,
+   10.0
+  ],
+  "grid": 64,
+  "B2_max": 2.5,
+  "min_cell": 20,
+  "bar_miss": 5.0,
+  "phrases": {
+   "selection": 1680,
+   "fresh": 720,
+   "real": 117
+  }
+ },
+ "B2_selection": {
+  "20.0": {
+   "passes": false,
+   "cells": {
+    "('library', 0, 0)": {
+     "harmed": 0,
+     "moved": 21,
+     "share": [
+      0.0,
+      0.0,
+      15.5,
+      21
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('library', 0, 1)": {
+     "harmed": 2,
+     "moved": 11,
+     "share": [
+      18.2,
+      5.1,
+      47.7,
+      11
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 10, 0)": {
+     "harmed": 1,
+     "moved": 118,
+     "share": [
+      0.8,
+      0.1,
+      4.6,
+      118
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('library', 10, 1)": {
+     "harmed": 2,
+     "moved": 53,
+     "share": [
+      3.8,
+      1.0,
+      12.8,
+      53
+     ],
+     "judged": true,
+     "passes": false
+    },
+    "('library', 20, 0)": {
+     "harmed": 1,
+     "moved": 7,
+     "share": [
+      14.3,
+      2.6,
+      51.3,
+      7
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 20, 1)": {
+     "harmed": 0,
+     "moved": 1,
+     "share": [
+      0.0,
+      0.0,
+      79.3,
+      1
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 30, 0)": {
+     "harmed": 0,
+     "moved": 1,
+     "share": [
+      0.0,
+      0.0,
+      79.3,
+      1
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 30, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 0, 0)": {
+     "harmed": 0,
+     "moved": 28,
+     "share": [
+      0.0,
+      0.0,
+      12.1,
+      28
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('random14', 0, 1)": {
+     "harmed": 5,
+     "moved": 15,
+     "share": [
+      33.3,
+      15.2,
+      58.3,
+      15
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 10, 0)": {
+     "harmed": 0,
+     "moved": 110,
+     "share": [
+      0.0,
+      0.0,
+      3.4,
+      110
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('random14', 10, 1)": {
+     "harmed": 0,
+     "moved": 30,
+     "share": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('random14', 20, 0)": {
+     "harmed": 0,
+     "moved": 13,
+     "share": [
+      0.0,
+      0.0,
+      22.8,
+      13
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 20, 1)": {
+     "harmed": 0,
+     "moved": 5,
+     "share": [
+      0.0,
+      -0.0,
+      43.4,
+      5
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 30, 0)": {
+     "harmed": 0,
+     "moved": 2,
+     "share": [
+      0.0,
+      0.0,
+      65.8,
+      2
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 30, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 0, 0)": {
+     "harmed": 0,
+     "moved": 41,
+     "share": [
+      0.0,
+      0.0,
+      8.6,
+      41
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('random28', 0, 1)": {
+     "harmed": 4,
+     "moved": 14,
+     "share": [
+      28.6,
+      11.7,
+      54.6,
+      14
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 10, 0)": {
+     "harmed": 0,
+     "moved": 288,
+     "share": [
+      0.0,
+      0.0,
+      1.3,
+      288
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('random28', 10, 1)": {
+     "harmed": 1,
+     "moved": 99,
+     "share": [
+      1.0,
+      0.2,
+      5.5,
+      99
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('random28', 20, 0)": {
+     "harmed": 0,
+     "moved": 47,
+     "share": [
+      0.0,
+      0.0,
+      7.6,
+      47
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('random28', 20, 1)": {
+     "harmed": 1,
+     "moved": 10,
+     "share": [
+      10.0,
+      1.8,
+      40.4,
+      10
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 30, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 30, 1)": {
+     "harmed": 0,
+     "moved": 3,
+     "share": [
+      0.0,
+      0.0,
+      56.2,
+      3
+     ],
+     "judged": false,
+     "passes": true
+    }
+   }
+  },
+  "15.0": {
+   "passes": true,
+   "cells": {
+    "('library', 0, 0)": {
+     "harmed": 0,
+     "moved": 17,
+     "share": [
+      0.0,
+      0.0,
+      18.4,
+      17
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 0, 1)": {
+     "harmed": 2,
+     "moved": 8,
+     "share": [
+      25.0,
+      7.1,
+      59.1,
+      8
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 10, 0)": {
+     "harmed": 1,
+     "moved": 42,
+     "share": [
+      2.4,
+      0.4,
+      12.3,
+      42
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('library', 10, 1)": {
+     "harmed": 1,
+     "moved": 19,
+     "share": [
+      5.3,
+      0.9,
+      24.6,
+      19
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 20, 0)": {
+     "harmed": 0,
+     "moved": 2,
+     "share": [
+      0.0,
+      0.0,
+      65.8,
+      2
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 20, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 30, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 30, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 0, 0)": {
+     "harmed": 0,
+     "moved": 23,
+     "share": [
+      0.0,
+      -0.0,
+      14.3,
+      23
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('random14', 0, 1)": {
+     "harmed": 5,
+     "moved": 12,
+     "share": [
+      41.7,
+      19.3,
+      68.0,
+      12
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 10, 0)": {
+     "harmed": 0,
+     "moved": 35,
+     "share": [
+      0.0,
+      0.0,
+      9.9,
+      35
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('random14', 10, 1)": {
+     "harmed": 0,
+     "moved": 14,
+     "share": [
+      0.0,
+      0.0,
+      21.5,
+      14
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 20, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 20, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 30, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 30, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 0, 0)": {
+     "harmed": 0,
+     "moved": 25,
+     "share": [
+      0.0,
+      0.0,
+      13.3,
+      25
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('random28', 0, 1)": {
+     "harmed": 4,
+     "moved": 8,
+     "share": [
+      50.0,
+      21.5,
+      78.5,
+      8
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 10, 0)": {
+     "harmed": 0,
+     "moved": 116,
+     "share": [
+      0.0,
+      0.0,
+      3.2,
+      116
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('random28', 10, 1)": {
+     "harmed": 0,
+     "moved": 31,
+     "share": [
+      0.0,
+      -0.0,
+      11.0,
+      31
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('random28', 20, 0)": {
+     "harmed": 0,
+     "moved": 3,
+     "share": [
+      0.0,
+      0.0,
+      56.2,
+      3
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 20, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 30, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 30, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    }
+   }
+  },
+  "10.0": {
+   "passes": true,
+   "cells": {
+    "('library', 0, 0)": {
+     "harmed": 0,
+     "moved": 6,
+     "share": [
+      0.0,
+      0.0,
+      39.0,
+      6
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 0, 1)": {
+     "harmed": 1,
+     "moved": 2,
+     "share": [
+      50.0,
+      9.5,
+      90.5,
+      2
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 10, 0)": {
+     "harmed": 1,
+     "moved": 3,
+     "share": [
+      33.3,
+      6.1,
+      79.2,
+      3
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 10, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 20, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 20, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 30, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 30, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 0, 0)": {
+     "harmed": 0,
+     "moved": 4,
+     "share": [
+      0.0,
+      0.0,
+      49.0,
+      4
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 0, 1)": {
+     "harmed": 1,
+     "moved": 2,
+     "share": [
+      50.0,
+      9.5,
+      90.5,
+      2
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 10, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 10, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 20, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 20, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 30, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 30, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 0, 0)": {
+     "harmed": 0,
+     "moved": 14,
+     "share": [
+      0.0,
+      0.0,
+      21.5,
+      14
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 0, 1)": {
+     "harmed": 2,
+     "moved": 4,
+     "share": [
+      50.0,
+      15.0,
+      85.0,
+      4
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 10, 0)": {
+     "harmed": 0,
+     "moved": 5,
+     "share": [
+      0.0,
+      -0.0,
+      43.4,
+      5
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 10, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 20, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 20, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 30, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 30, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    }
+   }
+  }
+ },
+ "selected_gate": "15.0",
+ "gate_reported": "15.0",
+ "B2_fresh": {
+  "passes": true,
+  "cells": {
+   "('library', 0, 0)": {
+    "harmed": 0,
+    "moved": 6,
+    "share": [
+     0.0,
+     0.0,
+     39.0,
+     6
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('library', 0, 1)": {
+    "harmed": 1,
+    "moved": 4,
+    "share": [
+     25.0,
+     4.6,
+     69.9,
+     4
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('library', 10, 0)": {
+    "harmed": 0,
+    "moved": 16,
+    "share": [
+     0.0,
+     0.0,
+     19.4,
+     16
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('library', 10, 1)": {
+    "harmed": 0,
+    "moved": 10,
+    "share": [
+     0.0,
+     -0.0,
+     27.8,
+     10
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('library', 20, 0)": {
+    "harmed": 0,
+    "moved": 0,
+    "share": [
+     null,
+     null,
+     null,
+     0
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('library', 20, 1)": {
+    "harmed": 0,
+    "moved": 0,
+    "share": [
+     null,
+     null,
+     null,
+     0
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('library', 30, 0)": {
+    "harmed": 0,
+    "moved": 0,
+    "share": [
+     null,
+     null,
+     null,
+     0
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('library', 30, 1)": {
+    "harmed": 0,
+    "moved": 0,
+    "share": [
+     null,
+     null,
+     null,
+     0
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('random14', 0, 0)": {
+    "harmed": 0,
+    "moved": 9,
+    "share": [
+     0.0,
+     0.0,
+     29.9,
+     9
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('random14', 0, 1)": {
+    "harmed": 0,
+    "moved": 3,
+    "share": [
+     0.0,
+     0.0,
+     56.2,
+     3
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('random14', 10, 0)": {
+    "harmed": 0,
+    "moved": 20,
+    "share": [
+     0.0,
+     -0.0,
+     16.1,
+     20
+    ],
+    "judged": true,
+    "passes": true
+   },
+   "('random14', 10, 1)": {
+    "harmed": 0,
+    "moved": 6,
+    "share": [
+     0.0,
+     0.0,
+     39.0,
+     6
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('random14', 20, 0)": {
+    "harmed": 1,
+    "moved": 1,
+    "share": [
+     100.0,
+     20.7,
+     100.0,
+     1
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('random14', 20, 1)": {
+    "harmed": 0,
+    "moved": 1,
+    "share": [
+     0.0,
+     0.0,
+     79.3,
+     1
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('random14', 30, 0)": {
+    "harmed": 0,
+    "moved": 0,
+    "share": [
+     null,
+     null,
+     null,
+     0
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('random14', 30, 1)": {
+    "harmed": 0,
+    "moved": 0,
+    "share": [
+     null,
+     null,
+     null,
+     0
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('random28', 0, 0)": {
+    "harmed": 0,
+    "moved": 13,
+    "share": [
+     0.0,
+     0.0,
+     22.8,
+     13
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('random28', 0, 1)": {
+    "harmed": 2,
+    "moved": 8,
+    "share": [
+     25.0,
+     7.1,
+     59.1,
+     8
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('random28', 10, 0)": {
+    "harmed": 0,
+    "moved": 80,
+    "share": [
+     0.0,
+     -0.0,
+     4.6,
+     80
+    ],
+    "judged": true,
+    "passes": true
+   },
+   "('random28', 10, 1)": {
+    "harmed": 0,
+    "moved": 14,
+    "share": [
+     0.0,
+     0.0,
+     21.5,
+     14
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('random28', 20, 0)": {
+    "harmed": 0,
+    "moved": 1,
+    "share": [
+     0.0,
+     0.0,
+     79.3,
+     1
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('random28', 20, 1)": {
+    "harmed": 0,
+    "moved": 1,
+    "share": [
+     0.0,
+     0.0,
+     79.3,
+     1
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('random28', 30, 0)": {
+    "harmed": 0,
+    "moved": 0,
+    "share": [
+     null,
+     null,
+     null,
+     0
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('random28', 30, 1)": {
+    "harmed": 0,
+    "moved": 0,
+    "share": [
+     null,
+     null,
+     null,
+     0
+    ],
+    "judged": false,
+    "passes": true
+   }
+  }
+ },
+ "B2_real_resynth": {
+  "passes": true,
+  "cells": {
+   "('real', 'row_vibrato')": {
+    "harmed": 0,
+    "moved": 0,
+    "share": [
+     null,
+     null,
+     null,
+     0
+    ],
+    "judged": false,
+    "passes": true
+   },
+   "('real', 'scales_straight')": {
+    "harmed": 0,
+    "moved": 0,
+    "share": [
+     null,
+     null,
+     null,
+     0
+    ],
+    "judged": false,
+    "passes": true
+   }
+  }
+ },
+ "B4_fresh": {
+  "pooled": [
+   null,
+   null,
+   null,
+   0
+  ],
+  "not_true": 0,
+  "called": 0,
+  "passes": true,
+  "cells": {}
+ },
+ "B4_real_resynth_all_found": {
+  "pooled": [
+   null,
+   null,
+   null,
+   0
+  ],
+  "not_true": 0,
+  "called": 0,
+  "passes": true,
+  "cells": {}
+ },
+ "reach_fresh": {
+  "('library', 0, 0)": {
+   "phrases": 30,
+   "with_moves": 6,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 30,
+    "at least": 0,
+    "too few": 0
+   }
+  },
+  "('library', 0, 1)": {
+   "phrases": 30,
+   "with_moves": 4,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 30,
+    "at least": 0,
+    "too few": 0
+   }
+  },
+  "('library', 10, 0)": {
+   "phrases": 30,
+   "with_moves": 7,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 30,
+    "at least": 0,
+    "too few": 0
+   }
+  },
+  "('library', 10, 1)": {
+   "phrases": 30,
+   "with_moves": 7,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 29,
+    "at least": 1,
+    "too few": 0
+   }
+  },
+  "('library', 20, 0)": {
+   "phrases": 30,
+   "with_moves": 0,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 24,
+    "at least": 6,
+    "too few": 0
+   }
+  },
+  "('library', 20, 1)": {
+   "phrases": 30,
+   "with_moves": 0,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 18,
+    "at least": 12,
+    "too few": 0
+   }
+  },
+  "('library', 30, 0)": {
+   "phrases": 30,
+   "with_moves": 0,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 11,
+    "at least": 19,
+    "too few": 0
+   }
+  },
+  "('library', 30, 1)": {
+   "phrases": 30,
+   "with_moves": 0,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 4,
+    "at least": 26,
+    "too few": 0
+   }
+  },
+  "('random14', 0, 0)": {
+   "phrases": 30,
+   "with_moves": 9,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 30,
+    "at least": 0,
+    "too few": 0
+   }
+  },
+  "('random14', 0, 1)": {
+   "phrases": 30,
+   "with_moves": 3,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 29,
+    "at least": 1,
+    "too few": 0
+   }
+  },
+  "('random14', 10, 0)": {
+   "phrases": 30,
+   "with_moves": 10,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 30,
+    "at least": 0,
+    "too few": 0
+   }
+  },
+  "('random14', 10, 1)": {
+   "phrases": 30,
+   "with_moves": 5,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 29,
+    "at least": 1,
+    "too few": 0
+   }
+  },
+  "('random14', 20, 0)": {
+   "phrases": 30,
+   "with_moves": 1,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 28,
+    "at least": 2,
+    "too few": 0
+   }
+  },
+  "('random14', 20, 1)": {
+   "phrases": 30,
+   "with_moves": 1,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 18,
+    "at least": 12,
+    "too few": 0
+   }
+  },
+  "('random14', 30, 0)": {
+   "phrases": 30,
+   "with_moves": 0,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 10,
+    "at least": 20,
+    "too few": 0
+   }
+  },
+  "('random14', 30, 1)": {
+   "phrases": 30,
+   "with_moves": 0,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 4,
+    "at least": 26,
+    "too few": 0
+   }
+  },
+  "('random28', 0, 0)": {
+   "phrases": 30,
+   "with_moves": 12,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 30,
+    "at least": 0,
+    "too few": 0
+   }
+  },
+  "('random28', 0, 1)": {
+   "phrases": 30,
+   "with_moves": 6,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 30,
+    "at least": 0,
+    "too few": 0
+   }
+  },
+  "('random28', 10, 0)": {
+   "phrases": 30,
+   "with_moves": 20,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 1.5,
+   "take_states": {
+    "measured": 30,
+    "at least": 0,
+    "too few": 0
+   }
+  },
+  "('random28', 10, 1)": {
+   "phrases": 30,
+   "with_moves": 10,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 26,
+    "at least": 4,
+    "too few": 0
+   }
+  },
+  "('random28', 20, 0)": {
+   "phrases": 30,
+   "with_moves": 1,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 30,
+    "at least": 0,
+    "too few": 0
+   }
+  },
+  "('random28', 20, 1)": {
+   "phrases": 30,
+   "with_moves": 1,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 18,
+    "at least": 12,
+    "too few": 0
+   }
+  },
+  "('random28', 30, 0)": {
+   "phrases": 30,
+   "with_moves": 0,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 4,
+    "at least": 26,
+    "too few": 0
+   }
+  },
+  "('random28', 30, 1)": {
+   "phrases": 30,
+   "with_moves": 0,
+   "reachable": [
+    0.0,
+    -0.0,
+    11.4,
+    30
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 3,
+    "at least": 27,
+    "too few": 0
+   }
+  }
+ },
+ "reach_real": {
+  "('real', 'row_straight')": {
+   "phrases": 19,
+   "with_moves": 0,
+   "reachable": [
+    0.0,
+    0.0,
+    16.8,
+    19
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 6,
+    "at least": 13,
+    "too few": 0
+   }
+  },
+  "('real', 'row_vibrato')": {
+   "phrases": 39,
+   "with_moves": 0,
+   "reachable": [
+    0.0,
+    0.0,
+    9.0,
+    39
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 0,
+    "at least": 39,
+    "too few": 0
+   }
+  },
+  "('real', 'scales_straight')": {
+   "phrases": 39,
+   "with_moves": 0,
+   "reachable": [
+    0.0,
+    0.0,
+    9.0,
+    39
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 14,
+    "at least": 25,
+    "too few": 0
+   }
+  },
+  "('real', 'scales_vibrato')": {
+   "phrases": 20,
+   "with_moves": 0,
+   "reachable": [
+    0.0,
+    -0.0,
+    16.1,
+    20
+   ],
+   "reachable_n": 0,
+   "next_step_k": null,
+   "far_k": null,
+   "contiguous": 0,
+   "worse_any": 0,
+   "moved_median": 0.0,
+   "take_states": {
+    "measured": 0,
+    "at least": 20,
+    "too few": 0
+   }
+  }
+ },
+ "diagnostic_every_gate": {
+  "20.0": {
+   "reach_selection": {
+    "('library', 0, 0)": {
+     "phrases": 90,
+     "with_moves": 19,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 90,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('library', 0, 1)": {
+     "phrases": 90,
+     "with_moves": 10,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 90,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('library', 10, 0)": {
+     "phrases": 90,
+     "with_moves": 50,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 1.0,
+     "take_states": {
+      "measured": 90,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('library', 10, 1)": {
+     "phrases": 90,
+     "with_moves": 33,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 85,
+      "at least": 5,
+      "too few": 0
+     }
+    },
+    "('library', 20, 0)": {
+     "phrases": 90,
+     "with_moves": 5,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 71,
+      "at least": 19,
+      "too few": 0
+     }
+    },
+    "('library', 20, 1)": {
+     "phrases": 90,
+     "with_moves": 1,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 50,
+      "at least": 40,
+      "too few": 0
+     }
+    },
+    "('library', 30, 0)": {
+     "phrases": 90,
+     "with_moves": 1,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 29,
+      "at least": 61,
+      "too few": 0
+     }
+    },
+    "('library', 30, 1)": {
+     "phrases": 90,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 11,
+      "at least": 79,
+      "too few": 0
+     }
+    },
+    "('random14', 0, 0)": {
+     "phrases": 60,
+     "with_moves": 25,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 60,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random14', 0, 1)": {
+     "phrases": 60,
+     "with_moves": 14,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 59,
+      "at least": 1,
+      "too few": 0
+     }
+    },
+    "('random14', 10, 0)": {
+     "phrases": 60,
+     "with_moves": 40,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 1.5,
+     "take_states": {
+      "measured": 60,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random14', 10, 1)": {
+     "phrases": 60,
+     "with_moves": 19,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 56,
+      "at least": 4,
+      "too few": 0
+     }
+    },
+    "('random14', 20, 0)": {
+     "phrases": 60,
+     "with_moves": 7,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 50,
+      "at least": 10,
+      "too few": 0
+     }
+    },
+    "('random14', 20, 1)": {
+     "phrases": 60,
+     "with_moves": 2,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 43,
+      "at least": 17,
+      "too few": 0
+     }
+    },
+    "('random14', 30, 0)": {
+     "phrases": 60,
+     "with_moves": 1,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 20,
+      "at least": 40,
+      "too few": 0
+     }
+    },
+    "('random14', 30, 1)": {
+     "phrases": 60,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 6,
+      "at least": 54,
+      "too few": 0
+     }
+    },
+    "('random28', 0, 0)": {
+     "phrases": 60,
+     "with_moves": 29,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 60,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 0, 1)": {
+     "phrases": 60,
+     "with_moves": 11,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 58,
+      "at least": 2,
+      "too few": 0
+     }
+    },
+    "('random28', 10, 0)": {
+     "phrases": 60,
+     "with_moves": 52,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 4.5,
+     "take_states": {
+      "measured": 60,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 10, 1)": {
+     "phrases": 60,
+     "with_moves": 44,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 1.0,
+     "take_states": {
+      "measured": 60,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 20, 0)": {
+     "phrases": 60,
+     "with_moves": 21,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 60,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 20, 1)": {
+     "phrases": 60,
+     "with_moves": 8,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 40,
+      "at least": 20,
+      "too few": 0
+     }
+    },
+    "('random28', 30, 0)": {
+     "phrases": 60,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 20,
+      "at least": 40,
+      "too few": 0
+     }
+    },
+    "('random28', 30, 1)": {
+     "phrases": 60,
+     "with_moves": 1,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 5,
+      "at least": 55,
+      "too few": 0
+     }
+    }
+   },
+   "reach_fresh": {
+    "('library', 0, 0)": {
+     "phrases": 30,
+     "with_moves": 6,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('library', 0, 1)": {
+     "phrases": 30,
+     "with_moves": 6,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('library', 10, 0)": {
+     "phrases": 30,
+     "with_moves": 14,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('library', 10, 1)": {
+     "phrases": 30,
+     "with_moves": 10,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 29,
+      "at least": 1,
+      "too few": 0
+     }
+    },
+    "('library', 20, 0)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 24,
+      "at least": 6,
+      "too few": 0
+     }
+    },
+    "('library', 20, 1)": {
+     "phrases": 30,
+     "with_moves": 2,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 18,
+      "at least": 12,
+      "too few": 0
+     }
+    },
+    "('library', 30, 0)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 11,
+      "at least": 19,
+      "too few": 0
+     }
+    },
+    "('library', 30, 1)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 4,
+      "at least": 26,
+      "too few": 0
+     }
+    },
+    "('random14', 0, 0)": {
+     "phrases": 30,
+     "with_moves": 10,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random14', 0, 1)": {
+     "phrases": 30,
+     "with_moves": 9,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 29,
+      "at least": 1,
+      "too few": 0
+     }
+    },
+    "('random14', 10, 0)": {
+     "phrases": 30,
+     "with_moves": 24,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 2.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random14', 10, 1)": {
+     "phrases": 30,
+     "with_moves": 13,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 29,
+      "at least": 1,
+      "too few": 0
+     }
+    },
+    "('random14', 20, 0)": {
+     "phrases": 30,
+     "with_moves": 2,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 28,
+      "at least": 2,
+      "too few": 0
+     }
+    },
+    "('random14', 20, 1)": {
+     "phrases": 30,
+     "with_moves": 1,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 18,
+      "at least": 12,
+      "too few": 0
+     }
+    },
+    "('random14', 30, 0)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 10,
+      "at least": 20,
+      "too few": 0
+     }
+    },
+    "('random14', 30, 1)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 4,
+      "at least": 26,
+      "too few": 0
+     }
+    },
+    "('random28', 0, 0)": {
+     "phrases": 30,
+     "with_moves": 14,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 0, 1)": {
+     "phrases": 30,
+     "with_moves": 11,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 10, 0)": {
+     "phrases": 30,
+     "with_moves": 25,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 5.5,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 10, 1)": {
+     "phrases": 30,
+     "with_moves": 20,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 1.0,
+     "take_states": {
+      "measured": 26,
+      "at least": 4,
+      "too few": 0
+     }
+    },
+    "('random28', 20, 0)": {
+     "phrases": 30,
+     "with_moves": 8,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 20, 1)": {
+     "phrases": 30,
+     "with_moves": 7,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 18,
+      "at least": 12,
+      "too few": 0
+     }
+    },
+    "('random28', 30, 0)": {
+     "phrases": 30,
+     "with_moves": 1,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 4,
+      "at least": 26,
+      "too few": 0
+     }
+    },
+    "('random28', 30, 1)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 3,
+      "at least": 27,
+      "too few": 0
+     }
+    }
+   },
+   "B2_fresh": {
+    "('library', 0, 0)": {
+     "harmed": 0,
+     "moved": 6,
+     "share": [
+      0.0,
+      0.0,
+      39.0,
+      6
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 0, 1)": {
+     "harmed": 1,
+     "moved": 6,
+     "share": [
+      16.7,
+      3.0,
+      56.4,
+      6
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 10, 0)": {
+     "harmed": 0,
+     "moved": 39,
+     "share": [
+      0.0,
+      0.0,
+      9.0,
+      39
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('library', 10, 1)": {
+     "harmed": 0,
+     "moved": 20,
+     "share": [
+      0.0,
+      -0.0,
+      16.1,
+      20
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('library', 20, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 20, 1)": {
+     "harmed": 0,
+     "moved": 2,
+     "share": [
+      0.0,
+      0.0,
+      65.8,
+      2
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 30, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 30, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 0, 0)": {
+     "harmed": 0,
+     "moved": 10,
+     "share": [
+      0.0,
+      -0.0,
+      27.8,
+      10
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 0, 1)": {
+     "harmed": 0,
+     "moved": 9,
+     "share": [
+      0.0,
+      0.0,
+      29.9,
+      9
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 10, 0)": {
+     "harmed": 0,
+     "moved": 66,
+     "share": [
+      0.0,
+      0.0,
+      5.5,
+      66
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('random14', 10, 1)": {
+     "harmed": 0,
+     "moved": 23,
+     "share": [
+      0.0,
+      -0.0,
+      14.3,
+      23
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('random14', 20, 0)": {
+     "harmed": 1,
+     "moved": 4,
+     "share": [
+      25.0,
+      4.6,
+      69.9,
+      4
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 20, 1)": {
+     "harmed": 0,
+     "moved": 1,
+     "share": [
+      0.0,
+      0.0,
+      79.3,
+      1
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 30, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 30, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 0, 0)": {
+     "harmed": 0,
+     "moved": 20,
+     "share": [
+      0.0,
+      -0.0,
+      16.1,
+      20
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('random28', 0, 1)": {
+     "harmed": 2,
+     "moved": 13,
+     "share": [
+      15.4,
+      4.3,
+      42.2,
+      13
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 10, 0)": {
+     "harmed": 0,
+     "moved": 163,
+     "share": [
+      0.0,
+      0.0,
+      2.3,
+      163
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('random28', 10, 1)": {
+     "harmed": 0,
+     "moved": 45,
+     "share": [
+      0.0,
+      0.0,
+      7.9,
+      45
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('random28', 20, 0)": {
+     "harmed": 0,
+     "moved": 21,
+     "share": [
+      0.0,
+      0.0,
+      15.5,
+      21
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('random28', 20, 1)": {
+     "harmed": 0,
+     "moved": 8,
+     "share": [
+      0.0,
+      0.0,
+      32.4,
+      8
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 30, 0)": {
+     "harmed": 0,
+     "moved": 3,
+     "share": [
+      0.0,
+      0.0,
+      56.2,
+      3
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 30, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    }
+   },
+   "B4_fresh": {
+    "pooled": [
+     null,
+     null,
+     null,
+     0
+    ],
+    "not_true": 0,
+    "called": 0,
+    "passes": true,
+    "cells": {}
+   }
+  },
+  "15.0": {
+   "reach_selection": {
+    "('library', 0, 0)": {
+     "phrases": 90,
+     "with_moves": 17,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 90,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('library', 0, 1)": {
+     "phrases": 90,
+     "with_moves": 7,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 90,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('library', 10, 0)": {
+     "phrases": 90,
+     "with_moves": 26,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 90,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('library', 10, 1)": {
+     "phrases": 90,
+     "with_moves": 13,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 85,
+      "at least": 5,
+      "too few": 0
+     }
+    },
+    "('library', 20, 0)": {
+     "phrases": 90,
+     "with_moves": 1,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 71,
+      "at least": 19,
+      "too few": 0
+     }
+    },
+    "('library', 20, 1)": {
+     "phrases": 90,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 50,
+      "at least": 40,
+      "too few": 0
+     }
+    },
+    "('library', 30, 0)": {
+     "phrases": 90,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 29,
+      "at least": 61,
+      "too few": 0
+     }
+    },
+    "('library', 30, 1)": {
+     "phrases": 90,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 11,
+      "at least": 79,
+      "too few": 0
+     }
+    },
+    "('random14', 0, 0)": {
+     "phrases": 60,
+     "with_moves": 22,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 60,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random14', 0, 1)": {
+     "phrases": 60,
+     "with_moves": 11,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 59,
+      "at least": 1,
+      "too few": 0
+     }
+    },
+    "('random14', 10, 0)": {
+     "phrases": 60,
+     "with_moves": 19,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 60,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random14', 10, 1)": {
+     "phrases": 60,
+     "with_moves": 11,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 56,
+      "at least": 4,
+      "too few": 0
+     }
+    },
+    "('random14', 20, 0)": {
+     "phrases": 60,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 50,
+      "at least": 10,
+      "too few": 0
+     }
+    },
+    "('random14', 20, 1)": {
+     "phrases": 60,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 43,
+      "at least": 17,
+      "too few": 0
+     }
+    },
+    "('random14', 30, 0)": {
+     "phrases": 60,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 20,
+      "at least": 40,
+      "too few": 0
+     }
+    },
+    "('random14', 30, 1)": {
+     "phrases": 60,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 6,
+      "at least": 54,
+      "too few": 0
+     }
+    },
+    "('random28', 0, 0)": {
+     "phrases": 60,
+     "with_moves": 21,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 60,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 0, 1)": {
+     "phrases": 60,
+     "with_moves": 6,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 58,
+      "at least": 2,
+      "too few": 0
+     }
+    },
+    "('random28', 10, 0)": {
+     "phrases": 60,
+     "with_moves": 39,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 1.5,
+     "take_states": {
+      "measured": 60,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 10, 1)": {
+     "phrases": 60,
+     "with_moves": 20,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 60,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 20, 0)": {
+     "phrases": 60,
+     "with_moves": 3,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 60,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 20, 1)": {
+     "phrases": 60,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 40,
+      "at least": 20,
+      "too few": 0
+     }
+    },
+    "('random28', 30, 0)": {
+     "phrases": 60,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 20,
+      "at least": 40,
+      "too few": 0
+     }
+    },
+    "('random28', 30, 1)": {
+     "phrases": 60,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 5,
+      "at least": 55,
+      "too few": 0
+     }
+    }
+   },
+   "reach_fresh": {
+    "('library', 0, 0)": {
+     "phrases": 30,
+     "with_moves": 6,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('library', 0, 1)": {
+     "phrases": 30,
+     "with_moves": 4,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('library', 10, 0)": {
+     "phrases": 30,
+     "with_moves": 7,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('library', 10, 1)": {
+     "phrases": 30,
+     "with_moves": 7,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 29,
+      "at least": 1,
+      "too few": 0
+     }
+    },
+    "('library', 20, 0)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 24,
+      "at least": 6,
+      "too few": 0
+     }
+    },
+    "('library', 20, 1)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 18,
+      "at least": 12,
+      "too few": 0
+     }
+    },
+    "('library', 30, 0)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 11,
+      "at least": 19,
+      "too few": 0
+     }
+    },
+    "('library', 30, 1)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 4,
+      "at least": 26,
+      "too few": 0
+     }
+    },
+    "('random14', 0, 0)": {
+     "phrases": 30,
+     "with_moves": 9,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random14', 0, 1)": {
+     "phrases": 30,
+     "with_moves": 3,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 29,
+      "at least": 1,
+      "too few": 0
+     }
+    },
+    "('random14', 10, 0)": {
+     "phrases": 30,
+     "with_moves": 10,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random14', 10, 1)": {
+     "phrases": 30,
+     "with_moves": 5,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 29,
+      "at least": 1,
+      "too few": 0
+     }
+    },
+    "('random14', 20, 0)": {
+     "phrases": 30,
+     "with_moves": 1,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 28,
+      "at least": 2,
+      "too few": 0
+     }
+    },
+    "('random14', 20, 1)": {
+     "phrases": 30,
+     "with_moves": 1,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 18,
+      "at least": 12,
+      "too few": 0
+     }
+    },
+    "('random14', 30, 0)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 10,
+      "at least": 20,
+      "too few": 0
+     }
+    },
+    "('random14', 30, 1)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 4,
+      "at least": 26,
+      "too few": 0
+     }
+    },
+    "('random28', 0, 0)": {
+     "phrases": 30,
+     "with_moves": 12,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 0, 1)": {
+     "phrases": 30,
+     "with_moves": 6,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 10, 0)": {
+     "phrases": 30,
+     "with_moves": 20,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 1.5,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 10, 1)": {
+     "phrases": 30,
+     "with_moves": 10,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 26,
+      "at least": 4,
+      "too few": 0
+     }
+    },
+    "('random28', 20, 0)": {
+     "phrases": 30,
+     "with_moves": 1,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 20, 1)": {
+     "phrases": 30,
+     "with_moves": 1,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 18,
+      "at least": 12,
+      "too few": 0
+     }
+    },
+    "('random28', 30, 0)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 4,
+      "at least": 26,
+      "too few": 0
+     }
+    },
+    "('random28', 30, 1)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 3,
+      "at least": 27,
+      "too few": 0
+     }
+    }
+   },
+   "B2_fresh": {
+    "('library', 0, 0)": {
+     "harmed": 0,
+     "moved": 6,
+     "share": [
+      0.0,
+      0.0,
+      39.0,
+      6
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 0, 1)": {
+     "harmed": 1,
+     "moved": 4,
+     "share": [
+      25.0,
+      4.6,
+      69.9,
+      4
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 10, 0)": {
+     "harmed": 0,
+     "moved": 16,
+     "share": [
+      0.0,
+      0.0,
+      19.4,
+      16
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 10, 1)": {
+     "harmed": 0,
+     "moved": 10,
+     "share": [
+      0.0,
+      -0.0,
+      27.8,
+      10
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 20, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 20, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 30, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 30, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 0, 0)": {
+     "harmed": 0,
+     "moved": 9,
+     "share": [
+      0.0,
+      0.0,
+      29.9,
+      9
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 0, 1)": {
+     "harmed": 0,
+     "moved": 3,
+     "share": [
+      0.0,
+      0.0,
+      56.2,
+      3
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 10, 0)": {
+     "harmed": 0,
+     "moved": 20,
+     "share": [
+      0.0,
+      -0.0,
+      16.1,
+      20
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('random14', 10, 1)": {
+     "harmed": 0,
+     "moved": 6,
+     "share": [
+      0.0,
+      0.0,
+      39.0,
+      6
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 20, 0)": {
+     "harmed": 1,
+     "moved": 1,
+     "share": [
+      100.0,
+      20.7,
+      100.0,
+      1
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 20, 1)": {
+     "harmed": 0,
+     "moved": 1,
+     "share": [
+      0.0,
+      0.0,
+      79.3,
+      1
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 30, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 30, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 0, 0)": {
+     "harmed": 0,
+     "moved": 13,
+     "share": [
+      0.0,
+      0.0,
+      22.8,
+      13
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 0, 1)": {
+     "harmed": 2,
+     "moved": 8,
+     "share": [
+      25.0,
+      7.1,
+      59.1,
+      8
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 10, 0)": {
+     "harmed": 0,
+     "moved": 80,
+     "share": [
+      0.0,
+      -0.0,
+      4.6,
+      80
+     ],
+     "judged": true,
+     "passes": true
+    },
+    "('random28', 10, 1)": {
+     "harmed": 0,
+     "moved": 14,
+     "share": [
+      0.0,
+      0.0,
+      21.5,
+      14
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 20, 0)": {
+     "harmed": 0,
+     "moved": 1,
+     "share": [
+      0.0,
+      0.0,
+      79.3,
+      1
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 20, 1)": {
+     "harmed": 0,
+     "moved": 1,
+     "share": [
+      0.0,
+      0.0,
+      79.3,
+      1
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 30, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 30, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    }
+   },
+   "B4_fresh": {
+    "pooled": [
+     null,
+     null,
+     null,
+     0
+    ],
+    "not_true": 0,
+    "called": 0,
+    "passes": true,
+    "cells": {}
+   }
+  },
+  "10.0": {
+   "reach_selection": {
+    "('library', 0, 0)": {
+     "phrases": 90,
+     "with_moves": 6,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 90,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('library', 0, 1)": {
+     "phrases": 90,
+     "with_moves": 2,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 90,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('library', 10, 0)": {
+     "phrases": 90,
+     "with_moves": 3,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 90,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('library', 10, 1)": {
+     "phrases": 90,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 85,
+      "at least": 5,
+      "too few": 0
+     }
+    },
+    "('library', 20, 0)": {
+     "phrases": 90,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 71,
+      "at least": 19,
+      "too few": 0
+     }
+    },
+    "('library', 20, 1)": {
+     "phrases": 90,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 50,
+      "at least": 40,
+      "too few": 0
+     }
+    },
+    "('library', 30, 0)": {
+     "phrases": 90,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 29,
+      "at least": 61,
+      "too few": 0
+     }
+    },
+    "('library', 30, 1)": {
+     "phrases": 90,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      0.0,
+      4.1,
+      90
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 11,
+      "at least": 79,
+      "too few": 0
+     }
+    },
+    "('random14', 0, 0)": {
+     "phrases": 60,
+     "with_moves": 4,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 60,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random14', 0, 1)": {
+     "phrases": 60,
+     "with_moves": 2,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 59,
+      "at least": 1,
+      "too few": 0
+     }
+    },
+    "('random14', 10, 0)": {
+     "phrases": 60,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 60,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random14', 10, 1)": {
+     "phrases": 60,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 56,
+      "at least": 4,
+      "too few": 0
+     }
+    },
+    "('random14', 20, 0)": {
+     "phrases": 60,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 50,
+      "at least": 10,
+      "too few": 0
+     }
+    },
+    "('random14', 20, 1)": {
+     "phrases": 60,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 43,
+      "at least": 17,
+      "too few": 0
+     }
+    },
+    "('random14', 30, 0)": {
+     "phrases": 60,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 20,
+      "at least": 40,
+      "too few": 0
+     }
+    },
+    "('random14', 30, 1)": {
+     "phrases": 60,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 6,
+      "at least": 54,
+      "too few": 0
+     }
+    },
+    "('random28', 0, 0)": {
+     "phrases": 60,
+     "with_moves": 11,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 60,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 0, 1)": {
+     "phrases": 60,
+     "with_moves": 3,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 58,
+      "at least": 2,
+      "too few": 0
+     }
+    },
+    "('random28', 10, 0)": {
+     "phrases": 60,
+     "with_moves": 3,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 60,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 10, 1)": {
+     "phrases": 60,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 60,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 20, 0)": {
+     "phrases": 60,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 60,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 20, 1)": {
+     "phrases": 60,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 40,
+      "at least": 20,
+      "too few": 0
+     }
+    },
+    "('random28', 30, 0)": {
+     "phrases": 60,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 20,
+      "at least": 40,
+      "too few": 0
+     }
+    },
+    "('random28', 30, 1)": {
+     "phrases": 60,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      6.0,
+      60
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 5,
+      "at least": 55,
+      "too few": 0
+     }
+    }
+   },
+   "reach_fresh": {
+    "('library', 0, 0)": {
+     "phrases": 30,
+     "with_moves": 2,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('library', 0, 1)": {
+     "phrases": 30,
+     "with_moves": 1,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('library', 10, 0)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('library', 10, 1)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 29,
+      "at least": 1,
+      "too few": 0
+     }
+    },
+    "('library', 20, 0)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 24,
+      "at least": 6,
+      "too few": 0
+     }
+    },
+    "('library', 20, 1)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 18,
+      "at least": 12,
+      "too few": 0
+     }
+    },
+    "('library', 30, 0)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 11,
+      "at least": 19,
+      "too few": 0
+     }
+    },
+    "('library', 30, 1)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 4,
+      "at least": 26,
+      "too few": 0
+     }
+    },
+    "('random14', 0, 0)": {
+     "phrases": 30,
+     "with_moves": 2,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random14', 0, 1)": {
+     "phrases": 30,
+     "with_moves": 1,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 29,
+      "at least": 1,
+      "too few": 0
+     }
+    },
+    "('random14', 10, 0)": {
+     "phrases": 30,
+     "with_moves": 3,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random14', 10, 1)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 29,
+      "at least": 1,
+      "too few": 0
+     }
+    },
+    "('random14', 20, 0)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 28,
+      "at least": 2,
+      "too few": 0
+     }
+    },
+    "('random14', 20, 1)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 18,
+      "at least": 12,
+      "too few": 0
+     }
+    },
+    "('random14', 30, 0)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 10,
+      "at least": 20,
+      "too few": 0
+     }
+    },
+    "('random14', 30, 1)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 4,
+      "at least": 26,
+      "too few": 0
+     }
+    },
+    "('random28', 0, 0)": {
+     "phrases": 30,
+     "with_moves": 5,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 0, 1)": {
+     "phrases": 30,
+     "with_moves": 3,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 10, 0)": {
+     "phrases": 30,
+     "with_moves": 4,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 10, 1)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 26,
+      "at least": 4,
+      "too few": 0
+     }
+    },
+    "('random28', 20, 0)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 30,
+      "at least": 0,
+      "too few": 0
+     }
+    },
+    "('random28', 20, 1)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 18,
+      "at least": 12,
+      "too few": 0
+     }
+    },
+    "('random28', 30, 0)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 4,
+      "at least": 26,
+      "too few": 0
+     }
+    },
+    "('random28', 30, 1)": {
+     "phrases": 30,
+     "with_moves": 0,
+     "reachable": [
+      0.0,
+      -0.0,
+      11.4,
+      30
+     ],
+     "reachable_n": 0,
+     "next_step_k": null,
+     "far_k": null,
+     "contiguous": 0,
+     "worse_any": 0,
+     "moved_median": 0.0,
+     "take_states": {
+      "measured": 3,
+      "at least": 27,
+      "too few": 0
+     }
+    }
+   },
+   "B2_fresh": {
+    "('library', 0, 0)": {
+     "harmed": 0,
+     "moved": 2,
+     "share": [
+      0.0,
+      0.0,
+      65.8,
+      2
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 0, 1)": {
+     "harmed": 1,
+     "moved": 1,
+     "share": [
+      100.0,
+      20.7,
+      100.0,
+      1
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 10, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 10, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 20, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 20, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 30, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('library', 30, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 0, 0)": {
+     "harmed": 0,
+     "moved": 2,
+     "share": [
+      0.0,
+      0.0,
+      65.8,
+      2
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 0, 1)": {
+     "harmed": 0,
+     "moved": 1,
+     "share": [
+      0.0,
+      0.0,
+      79.3,
+      1
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 10, 0)": {
+     "harmed": 0,
+     "moved": 5,
+     "share": [
+      0.0,
+      -0.0,
+      43.4,
+      5
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 10, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 20, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 20, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 30, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random14', 30, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 0, 0)": {
+     "harmed": 0,
+     "moved": 6,
+     "share": [
+      0.0,
+      0.0,
+      39.0,
+      6
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 0, 1)": {
+     "harmed": 2,
+     "moved": 5,
+     "share": [
+      40.0,
+      11.8,
+      76.9,
+      5
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 10, 0)": {
+     "harmed": 0,
+     "moved": 9,
+     "share": [
+      0.0,
+      0.0,
+      29.9,
+      9
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 10, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 20, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 20, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 30, 0)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    },
+    "('random28', 30, 1)": {
+     "harmed": 0,
+     "moved": 0,
+     "share": [
+      null,
+      null,
+      null,
+      0
+     ],
+     "judged": false,
+     "passes": true
+    }
+   },
+   "B4_fresh": {
+    "pooled": [
+     null,
+     null,
+     null,
+     0
+    ],
+    "not_true": 0,
+    "called": 0,
+    "passes": true,
+    "cells": {}
+   }
+  }
+ },
+ "totals": {
+  "selection": {
+   "phrases": 1680,
+   "reachable": 0,
+   "moved_notes": 355,
+   "harmed": 13,
+   "worse_any": 0
+  },
+  "fresh": {
+   "phrases": 720,
+   "reachable": 0,
+   "moved_notes": 193,
+   "harmed": 4,
+   "worse_any": 0
+  },
+  "real_resynth": {
+   "phrases": 40,
+   "reachable": 0,
+   "moved_notes": 0,
+   "harmed": 0,
+   "worse_any": 0
+  },
+  "real_original": {
+   "phrases": 77,
+   "reachable": 0,
+   "moved_notes": 0,
+   "harmed": 0,
+   "worse_any": 0
+  }
+ },
+ "W_world": {
+  "gate": "15.0",
+  "fresh": {
+   "pairs": 0,
+   "with_moves": 0,
+   "reached": 0,
+   "K_samples_minus_desc_abs": null,
+   "K_identity_minus_take_abs": null,
+   "achieved_minus_requested": null,
+   "moved_notes_matched": 0,
+   "call_agrees": 0,
+   "improved_desc": 0,
+   "improved_samples": 0
+  },
+  "real_scales_straight": {
+   "pairs": 20,
+   "with_moves": 0,
+   "reached": 0,
+   "K_samples_minus_desc_abs": [
+    1.208,
+    7.844
+   ],
+   "K_identity_minus_take_abs": [
+    1.208,
+    7.844
+   ],
+   "achieved_minus_requested": null,
+   "moved_notes_matched": 0,
+   "call_agrees": 20,
+   "improved_desc": 0,
+   "improved_samples": 0
+  },
+  "real_row_vibrato": {
+   "pairs": 20,
+   "with_moves": 0,
+   "reached": 0,
+   "K_samples_minus_desc_abs": [
+    4.483,
+    17.016
+   ],
+   "K_identity_minus_take_abs": [
+    4.483,
+    17.016
+   ],
+   "achieved_minus_requested": null,
+   "moved_notes_matched": 0,
+   "call_agrees": 20,
+   "improved_desc": 0,
+   "improved_samples": 0
+  }
+ }
+}

@@ -1,0 +1,521 @@
+{
+ "gate": 15.0,
+ "phrases": 720,
+ "with_value": 720,
+ "D1_cells": {
+  "('library', 0, 0)": {
+   "phrases": 30,
+   "settle_share_median": 0.977,
+   "gated": {
+    "with_moves": 6,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 1.74,
+    "bound_median": 5.17,
+    "moved_median": 1.0
+   },
+   "ungated": {
+    "with_moves": 6,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 1.74,
+    "bound_median": 5.17,
+    "moved_median": 1.0
+   }
+  },
+  "('library', 0, 1)": {
+   "phrases": 30,
+   "settle_share_median": 0.98,
+   "gated": {
+    "with_moves": 4,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 0.83,
+    "bound_median": 23.34,
+    "moved_median": 1.0
+   },
+   "ungated": {
+    "with_moves": 7,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 0.85,
+    "bound_median": 17.77,
+    "moved_median": 1.0
+   }
+  },
+  "('library', 10, 0)": {
+   "phrases": 30,
+   "settle_share_median": 0.67,
+   "gated": {
+    "with_moves": 7,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 0.9,
+    "bound_median": 7.44,
+    "moved_median": 2.0
+   },
+   "ungated": {
+    "with_moves": 29,
+    "improved": 3,
+    "worse": 0,
+    "fall_median": 4.39,
+    "bound_median": 11.37,
+    "moved_median": 2.0
+   }
+  },
+  "('library', 10, 1)": {
+   "phrases": 30,
+   "settle_share_median": 0.925,
+   "gated": {
+    "with_moves": 7,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 1.76,
+    "bound_median": 15.35,
+    "moved_median": 1.0
+   },
+   "ungated": {
+    "with_moves": 21,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 4.47,
+    "bound_median": 17.37,
+    "moved_median": 2.0
+   }
+  },
+  "('library', 20, 0)": {
+   "phrases": 30,
+   "settle_share_median": 0.522,
+   "gated": {
+    "with_moves": 0,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": null,
+    "bound_median": null,
+    "moved_median": null
+   },
+   "ungated": {
+    "with_moves": 28,
+    "improved": 7,
+    "worse": 0,
+    "fall_median": 12.06,
+    "bound_median": 16.24,
+    "moved_median": 3.0
+   }
+  },
+  "('library', 20, 1)": {
+   "phrases": 30,
+   "settle_share_median": 0.794,
+   "gated": {
+    "with_moves": 0,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": null,
+    "bound_median": null,
+    "moved_median": null
+   },
+   "ungated": {
+    "with_moves": 28,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 9.92,
+    "bound_median": 25.55,
+    "moved_median": 2.0
+   }
+  },
+  "('library', 30, 0)": {
+   "phrases": 30,
+   "settle_share_median": 0.542,
+   "gated": {
+    "with_moves": 0,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": null,
+    "bound_median": null,
+    "moved_median": null
+   },
+   "ungated": {
+    "with_moves": 28,
+    "improved": 5,
+    "worse": 0,
+    "fall_median": 15.79,
+    "bound_median": 22.39,
+    "moved_median": 3.0
+   }
+  },
+  "('library', 30, 1)": {
+   "phrases": 30,
+   "settle_share_median": 0.654,
+   "gated": {
+    "with_moves": 0,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": null,
+    "bound_median": null,
+    "moved_median": null
+   },
+   "ungated": {
+    "with_moves": 30,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 13.71,
+    "bound_median": 29.45,
+    "moved_median": 3.0
+   }
+  },
+  "('random14', 0, 0)": {
+   "phrases": 30,
+   "settle_share_median": 0.985,
+   "gated": {
+    "with_moves": 9,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 1.0,
+    "bound_median": 10.32,
+    "moved_median": 1.0
+   },
+   "ungated": {
+    "with_moves": 11,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 1.32,
+    "bound_median": 10.24,
+    "moved_median": 1.0
+   }
+  },
+  "('random14', 0, 1)": {
+   "phrases": 30,
+   "settle_share_median": 0.987,
+   "gated": {
+    "with_moves": 3,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 0.55,
+    "bound_median": 19.44,
+    "moved_median": 1.0
+   },
+   "ungated": {
+    "with_moves": 14,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 1.07,
+    "bound_median": 20.07,
+    "moved_median": 1.0
+   }
+  },
+  "('random14', 10, 0)": {
+   "phrases": 30,
+   "settle_share_median": 0.803,
+   "gated": {
+    "with_moves": 10,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 0.68,
+    "bound_median": 9.05,
+    "moved_median": 2.0
+   },
+   "ungated": {
+    "with_moves": 30,
+    "improved": 2,
+    "worse": 0,
+    "fall_median": 5.55,
+    "bound_median": 10.97,
+    "moved_median": 5.0
+   }
+  },
+  "('random14', 10, 1)": {
+   "phrases": 30,
+   "settle_share_median": 0.934,
+   "gated": {
+    "with_moves": 5,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 0.54,
+    "bound_median": 16.7,
+    "moved_median": 1.0
+   },
+   "ungated": {
+    "with_moves": 29,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 4.04,
+    "bound_median": 20.86,
+    "moved_median": 2.0
+   }
+  },
+  "('random14', 20, 0)": {
+   "phrases": 30,
+   "settle_share_median": 0.73,
+   "gated": {
+    "with_moves": 1,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 0.37,
+    "bound_median": 24.16,
+    "moved_median": 1.0
+   },
+   "ungated": {
+    "with_moves": 30,
+    "improved": 8,
+    "worse": 0,
+    "fall_median": 13.57,
+    "bound_median": 17.5,
+    "moved_median": 5.0
+   }
+  },
+  "('random14', 20, 1)": {
+   "phrases": 30,
+   "settle_share_median": 0.825,
+   "gated": {
+    "with_moves": 1,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 0.48,
+    "bound_median": 27.35,
+    "moved_median": 1.0
+   },
+   "ungated": {
+    "with_moves": 27,
+    "improved": 1,
+    "worse": 0,
+    "fall_median": 11.16,
+    "bound_median": 23.52,
+    "moved_median": 4.0
+   }
+  },
+  "('random14', 30, 0)": {
+   "phrases": 30,
+   "settle_share_median": 0.587,
+   "gated": {
+    "with_moves": 0,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": null,
+    "bound_median": null,
+    "moved_median": null
+   },
+   "ungated": {
+    "with_moves": 30,
+    "improved": 7,
+    "worse": 0,
+    "fall_median": 17.51,
+    "bound_median": 21.56,
+    "moved_median": 6.0
+   }
+  },
+  "('random14', 30, 1)": {
+   "phrases": 30,
+   "settle_share_median": 0.734,
+   "gated": {
+    "with_moves": 0,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": null,
+    "bound_median": null,
+    "moved_median": null
+   },
+   "ungated": {
+    "with_moves": 30,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 13.8,
+    "bound_median": 28.28,
+    "moved_median": 4.0
+   }
+  },
+  "('random28', 0, 0)": {
+   "phrases": 30,
+   "settle_share_median": 0.991,
+   "gated": {
+    "with_moves": 12,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 0.2,
+    "bound_median": 9.27,
+    "moved_median": 1.0
+   },
+   "ungated": {
+    "with_moves": 19,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 1.4,
+    "bound_median": 8.69,
+    "moved_median": 1.0
+   }
+  },
+  "('random28', 0, 1)": {
+   "phrases": 30,
+   "settle_share_median": 0.992,
+   "gated": {
+    "with_moves": 6,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 0.19,
+    "bound_median": 21.33,
+    "moved_median": 1.0
+   },
+   "ungated": {
+    "with_moves": 14,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 0.89,
+    "bound_median": 20.7,
+    "moved_median": 2.0
+   }
+  },
+  "('random28', 10, 0)": {
+   "phrases": 30,
+   "settle_share_median": 0.896,
+   "gated": {
+    "with_moves": 20,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 0.39,
+    "bound_median": 10.31,
+    "moved_median": 3.0
+   },
+   "ungated": {
+    "with_moves": 30,
+    "improved": 1,
+    "worse": 0,
+    "fall_median": 5.9,
+    "bound_median": 10.96,
+    "moved_median": 9.5
+   }
+  },
+  "('random28', 10, 1)": {
+   "phrases": 30,
+   "settle_share_median": 0.97,
+   "gated": {
+    "with_moves": 10,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 0.2,
+    "bound_median": 18.6,
+    "moved_median": 1.0
+   },
+   "ungated": {
+    "with_moves": 30,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 3.32,
+    "bound_median": 20.79,
+    "moved_median": 5.0
+   }
+  },
+  "('random28', 20, 0)": {
+   "phrases": 30,
+   "settle_share_median": 0.822,
+   "gated": {
+    "with_moves": 1,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 0.03,
+    "bound_median": 8.7,
+    "moved_median": 1.0
+   },
+   "ungated": {
+    "with_moves": 30,
+    "improved": 7,
+    "worse": 0,
+    "fall_median": 12.43,
+    "bound_median": 14.95,
+    "moved_median": 10.0
+   }
+  },
+  "('random28', 20, 1)": {
+   "phrases": 30,
+   "settle_share_median": 0.918,
+   "gated": {
+    "with_moves": 1,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 0.1,
+    "bound_median": 22.03,
+    "moved_median": 1.0
+   },
+   "ungated": {
+    "with_moves": 30,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 10.31,
+    "bound_median": 23.76,
+    "moved_median": 9.0
+   }
+  },
+  "('random28', 30, 0)": {
+   "phrases": 30,
+   "settle_share_median": 0.795,
+   "gated": {
+    "with_moves": 0,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": null,
+    "bound_median": null,
+    "moved_median": null
+   },
+   "ungated": {
+    "with_moves": 30,
+    "improved": 2,
+    "worse": 0,
+    "fall_median": 19.88,
+    "bound_median": 21.26,
+    "moved_median": 12.0
+   }
+  },
+  "('random28', 30, 1)": {
+   "phrases": 30,
+   "settle_share_median": 0.875,
+   "gated": {
+    "with_moves": 0,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": null,
+    "bound_median": null,
+    "moved_median": null
+   },
+   "ungated": {
+    "with_moves": 30,
+    "improved": 0,
+    "worse": 0,
+    "fall_median": 13.39,
+    "bound_median": 27.53,
+    "moved_median": 8.0
+   }
+  }
+ },
+ "D1_gated": {
+  "with_moves": 103,
+  "improved": 0,
+  "worse": 0,
+  "fall_over_bound_max": 0.535
+ },
+ "D1_ungated": {
+  "with_moves": 591,
+  "improved": 43,
+  "worse": 0,
+  "fall_over_bound_max": 1.981
+ },
+ "D2_world": {
+  "pairs": 28,
+  "cells": 16,
+  "moved_notes_matched": 38,
+  "requested_abs_median": 6.87,
+  "achieved_minus_requested_p5_p50_p95": [
+   -0.12,
+   0.018,
+   0.377
+  ],
+  "achieved_minus_requested_abs_max": 0.732,
+  "K_samples_minus_desc_abs_median_max": [
+   0.098,
+   12.372
+  ],
+  "K_identity_minus_take_abs_median_max": [
+   0.061,
+   11.589
+  ],
+  "call_desc": 0,
+  "call_samples": 0
+ }
+}

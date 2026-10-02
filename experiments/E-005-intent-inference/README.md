@@ -1136,3 +1136,97 @@ straight and vibrato), each generated and analysed to its end, and WORLD on
 6 of them. Generation 0.473 s of wall time each, 5.7 minutes for 720;
 analysis 0.132 s each, 5.5 minutes for 2517 rows; WORLD 1.616 s a pair,
 2.4 minutes for 88. Each step runs in the foreground under 600 s.
+
+**Question** (squillo F-045, R-15 §8 for iteration 76). Round 3 left a
+library phrase with an honest per-note distance from its written note (R3-2)
+but no gate safe in every cell and a centred rung never called improved by
+the take's wrapped spread (R3-3, R3-4). Squillo MT-014 (round 5, fold 5) now
+measures a library phrase by K, two to three times as powerful. Is a
+centring rung for a library phrase, built from MT-014's own deviations and
+measured from its description as squillo CO-003 measures a rung, called
+improved by MT-014 and MT-008; at what harm per cell; at which weakest
+strength; and does WORLD deliver it?
+
+**Rules first.** The rung, the gates, bars B2 and B4, the selection, the
+inputs' conditions and checks k1–k6 are in `round6.py`'s docstring,
+committed before any run (`e63abe2`); the estimate before the full run
+(`aabce42`). No revision. `round6_posthoc.py` was written after the
+report and committed before it ran: a diagnostic, never a bar or a
+selection. Applied from the lab's checklist: C1–C3 (inputs from round 3's
+generator, its E2–C6 assert read from `round3.py:248-250`), C5 (every bound
+a named constant with its source), C10 and C11 (k1–k6, and B2 and B4 on
+reference moves), C13 (no rule predicts an outcome on every input), C14–C16
+(the guard covers `round6.py` and the modules it imports), C17–C19 (below).
+
+**The rung.** On the take's measured pitch (MT-003's refusal on): K and its
+state at 40 cents (`round5.known`, MT-014); per kept note its deviation from
+its written note on the singer's tuning *d* and *u* = settle *u* ⊕ K/√*n*ₑ
+(round 3's P2). A note is moved when |*d*| > 2*u* and |*d*| + 2*u* ≤ *T*, by
+*m* = −clip(*k*/64 · *d*, ±50) cents on its segment, *k* = 1 … 64 (squillo
+ADR 0018's grid, SY-002's bound). The rung is measured from its description:
+K recomputed on the shifted contour, the alignment run again; called
+improved when MT-008's comparison in MT-014's states gives +1. Gates *T* =
+20 (round 3's), 15, 10, each at least as safe as round 3's. Harm: a moved
+note with |δ + *m*| > |δ| at full strength, δ from round 3's truth.
+
+**Inputs.** Selection: round 3's 1680 cached phrases (960 random of 14 and
+28 notes, 720 renderings of E-004 fold 2's 30 items; σ 0, 10, 20, 30;
+straight or vibrato faded in), both halves, since round 3's held-out result
+at *T* = 20 was already known. Fresh held-out: round 3's generator under new
+seeds, 720 phrases (30 per random cell, each library item once per σ ×
+vibrato). Real: round 3's cached E-002 WORLD re-syntheses (20 straight
+scales, 20 vibrato rounds, with truth) and 77 VocalSet originals. Python
+3.13.14, numpy 2.5.3, scipy 1.18.1, pyworld 0.3.5.
+
+**The run.** Fresh generation 4.2 min (estimated 5.7), analysis of 2517 rows
+4.7 min (5.5), WORLD 0.4 min, each a foreground call.
+
+**Checks** (`results/round6_checks.json`):
+
+| Check | Must pass | Must fail | Result |
+| :--- | :--- | :--- | :--- |
+| k1 `round5.known` equals `round3.known_path`'s spread (10⁻⁹) | 4 of 4 phrases | the next phrase's: 0 of 4 | as they must |
+| k2 the rung's description: every kept note moved by −*d* gives K = 0 (10⁻⁶) | K = 1.8 × 10⁻¹⁴ | moved by +*d*: K = 26.15 | as they must |
+| k3 bar B2 on reference moves (12 phrases, random14, σ = 10, straight) | *m* = −δ: 0 of 136 harmed | *m* = +δ: 136 of 136 | as they must |
+| k4 bar B4 on the same | *m* = −δ: 12 of 12 true | *m* = +δ: 0 of 12 | as they must |
+| k5 the generator reproduces round 3's cached contour | round 3's first job, equal | its second job's contour, unequal | as they must |
+| k6 truth matched by state index | 1680 of 1680 | indices shifted by one: 0 of 1680 | as they must |
+
+`checkkeys.py round6.py results/round6.json results/round6_checks.json`:
+0 flagged; `checkkeys.py round6_posthoc.py results/round6_posthoc.json`: 0
+flagged. *Recorded, not asserted:* the `passes` keys of B2 and B4, the bars'
+outcomes, the results themselves.
+
+**Results** (`results/round6.json`; post hoc `results/round6_posthoc.json`;
+Wilson 95 % intervals).
+
+| # | Question | Result |
+| :--- | :--- | :--- |
+| R6-1 | Which gate is safe (B2)? | ***T* = 15 selected.** *T* = 20 fails the selection set again in library, σ = 10, vibrato: 2 of 53 moved notes harmed (3.8 %, 1.0–12.8). *T* = 15 passes every judged cell (worst library, σ = 10, straight, 1 of 42, 2.4 %, 0.4–12.3; 13 of 355 moved notes harmed overall), and held out on the fresh set passes too: its two judged cells 0 of 20 and 0 of 80, 4 of 193 moved notes harmed overall (2.1 %). Unjudged cells under 20 moved notes are where harm gathers: σ = 0 with vibrato, 5 of 15 (selection, random14) and 2 of 8 (fresh, random28), where the true deviation is near zero and any move is a harm |
+| R6-2 | Is the centred rung called improved (MT-014, MT-008)? | **No, never.** Under *T* = 15: 0 of 720 fresh phrases (0–0.53 %), 0 of 1680 selection phrases, 0 of 40 re-syntheses and 0 of 77 originals, at any of the 64 strengths. Under *T* = 20 and *T* = 10 too (0 everywhere). No rung was called worse. B4 has nothing to judge (0 phrases called improved) |
+| R6-3 | The weakest strength called improved | **None exists**: no strength of any gate is reachable on any input |
+| R6-4 | Real takes | No note is moved under any gate: of 1766 kept notes in the 117 takes, 345 are measurably off (\|*d*\| > 2*u*) but the gate needs *u* < 3.75 cents and only 2 notes have 4*u* ≤ 15; median *u* 14.5 cents |
+| R6-5 | WORLD (no move to deliver under the gate on the fresh set's reachable phrases, so only the 40 re-syntheses ran, as identities) | WORLD's own effect on K: \|K(identity) − K(take)\| median 1.21, max 7.84 cents (straight scales), median 4.48, max 17.02 (vibrato rounds); the call agreed (no change) in 40 of 40 |
+| P1 | Post hoc: why (D1, fresh set) | Under *T* = 15 K's fall at full strength reaches at most 0.535 of MT-008's bound 2√(*u*_B,take² + *u*_B,rung²): the gate moves only notes already near their written note (median 1–3 per phrase), and the bound is mostly the notes' settle term, which a rung measured from its description keeps (median share of *u*_B 0.52–0.99 per cell). Ungated (every measurably-off note moved, unsafe by round 3's R3-3) the rung is improved in 43 of 591 phrases with moves (7.3 %): 2–8 of 30 per straight cell at σ ≥ 10, 0–1 under vibrato, never at σ = 0 |
+| P2 | Post hoc: WORLD delivery of the gated moves at full strength (D2) | 28 fresh phrases in 16 cells, 38 moved notes matched (requested median \|*m*\| 6.87 cents): achieved minus requested −0.12 / 0.02 / 0.38 cents (5th / 50th / 95th percentile), at most 0.73 in magnitude; K from the samples against the description, median 0.10, max 12.37 cents, where the identity against the take is median 0.06, max 11.59: WORLD's own effect, not the move. No call improved, from samples or description |
+
+**What this says for squillo.** F-045's route, a centring rung for a
+library phrase measured by the spread about its written notes (MT-014),
+fails: with a gate safe in every judged cell, held out (*T* = 15), no
+centred rung is ever called improved, on synthetic phrases or real takes,
+at any strength; and real takes move no note at all. The bound is set by
+the settle uncertainty of the notes, which centring does not reduce, so no
+gate that keeps moves safe can make the spread fall far enough; only moving
+every measurably-off note does, on 7.3 % of phrases, and that gate is not
+safe (R3-3). WORLD itself delivers such moves within 0.73 cents. So the far
+vision stays steadying-only (squillo CO-003, CO-004), and the take with no
+held note keeps its honest refusal and the step to a phrase with held notes
+(CO-005 (2)). A step measured per note (each moved note's own *d* ± 2*u*)
+is a different claim, which squillo's `metrics` does not make and no bar
+here tested.
+
+**Limits.** Synthetic voices and round 2's error model (normal per note, no
+drift); round 3's 30 library items, not the 39 the slice ships; B2's cells
+small where the gate moves few notes, and the cells where harm gathers
+(σ = 0 with vibrato) are under its 20-note minimum; the real truth is WORLD
+re-syntheses of trained singers; no listener judged a rung.

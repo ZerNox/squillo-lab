@@ -1,0 +1,43 @@
+{
+ "k1_measure": {
+  "must_pass": [
+   4,
+   4
+  ],
+  "must_fail_next_phrase": [
+   0,
+   4
+  ]
+ },
+ "k2_description": {
+  "seed": 20261001716,
+  "must_pass_K": 1.770496577404877e-14,
+  "must_fail_K": 26.150812025370808,
+  "take_K": 13.176331971033132,
+  "tol": 1e-06
+ },
+ "k3_B2_reference": {
+  "must_pass_harmed": 0,
+  "must_fail_harmed": 136,
+  "moved": 136
+ },
+ "k4_B4_reference": {
+  "must_pass_true": 12,
+  "must_fail_true": 0,
+  "phrases": 12
+ },
+ "k5_generator": {
+  "must_pass": true,
+  "must_fail_next_job": false
+ },
+ "k6_truth_by_state": {
+  "must_pass": [
+   1680,
+   1680
+  ],
+  "must_fail_shifted": [
+   0,
+   1680
+  ]
+ }
+}
