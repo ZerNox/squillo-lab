@@ -1074,3 +1074,40 @@ scenarios; the take whose aims cannot be told alone gives a lower end with
 its written notes, and a later take in tune is then an improvement.
 **Limits:** one fixed melody (a major scale up and down) and deterministic
 fixtures; the honesty of K across conditions is round 5's, not this fold's.
+
+### Fold 5, part 2: round 5's B2 and B3 at the 40-cent cap
+
+```
+uv run python fold5_x40.py run     # round 5's cached rows -> results/fold5_x40.json
+```
+
+Round 5 applied B2 and B3 only to its selected candidate, *X* = ∞. Squillo
+chooses *X* = 40 (ADR 0015, Q-040 part 2), which passed B1 (worst cell R,
+14 notes, straight, σ = 25, 2 of 40, 5.0 %, 1.4–16.5; 1356 of 2040
+measured, 684 at least; `results/round5.json` `B1["40.0"]`), so B2 and B3
+are read at *X* = 40 on round 5's cached rows, with rules and checks
+committed before the run (`fold5_x40.py`'s first commit). `checkkeys.py
+fold5_x40.py` alone and with `results/fold5_x40.json`: 0 flags. Seconds.
+
+Checks: C1, this script's code at *X* = ∞ reproduces `round5.json`'s B2
+cells and B3 counts exactly (true); C2 (must fail), the B2 rule applied
+across cells (σ 40 then σ 0, straight, 56 notes) calls a change in 32 of
+40 (80.0 %, 65.2–89.5), above the bar, as it must.
+
+**Results at *X* = 40** (`results/fold5_x40.json`):
+
+| # | Result |
+| :--- | :--- |
+| B2@40 | **Passes:** 0 of 140 pairs in each of the six length × vibrato conditions (0–2.7 %); the originals' halves 0 of 19, 19, 20 and 19 |
+| B3@40 | **Passes:** re-syntheses whose truth found every state excluded in 0 of 20 straight scales (0–16.1 %) and 0 of 15 vibrato rounds (0–20.4 %) |
+| Real states | Re-synthesized straight scales 6 measured, 14 at least; vibrato rounds 0 and 20; originals: straight scales 8 and 11, straight rounds 6 and 13, vibrato scales 0 and 20, vibrato rounds 0 and 19; none too few |
+| Lower end | holds in 2040 of 2040 (99.8–100) |
+| Power | Straight, 20 → 0 cents: 55.0 / 72.5 / 62.5 % (14, 28, 56 notes) against the wrapped spread's 25.0 / 42.5 / 27.5 %; 40 → 10: 15.0 / 40.0 / 32.5 % against 0 / 10.0 / 22.5 %. Vibrato faded in: 0 in both directions for both. Never worse |
+
+**What the cap costs.** Against *X* = ∞ (round 5, R5-3), the cap loses
+power where the earlier take's spread is large: straight 40 → 10 falls
+from 50.0 / 67.5 / 82.5 % to 15.0 / 40.0 / 32.5 %, vibrato 40 → 10 from
+17.5–22.5 % to 0, and straight 20 → 0 at 14 notes from 57.5 to 55.0 %. It
+gains no honesty on B1–B3, which ∞ passed too; what it buys is that no
+interval shown reaches beyond the 40 cents tested (real vibrato takes
+under ∞: *u*_B median 58.7–66.1 cents).
