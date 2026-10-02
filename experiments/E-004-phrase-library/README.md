@@ -816,7 +816,7 @@ all 24 of its renderings. **Predictions**: B holds for all nine; on the
 for every phrase rule (2) gives none; measured blocks differ from rule
 (2)'s count both ways.
 
-**Revision 1** (`r4_held.py`, before any rendering). The first `write`
+**Revision 1** (`r4_held.py`, `43fcb8b`, before any rendering). The first `write`
 stopped on W4's must-fail case: at twice its tempo an item with two held
 notes keeps one block on each, two in all (`held-ah`: 576 frames halved
 to 288), so the case could not fail as written. It is now three times
@@ -853,9 +853,9 @@ run took 267 s wall at the pool of 18, the analysis under 1 s).
 | W6 | Novelty screen (recorded) | Longest run of shared pitch intervals with the 30: 2 to 6. `let-the-morning-wait` shares all 6 of its intervals with `blue-umbrella`, squillo's own round 1 original (a rising pentatonic run and its turn), `dusty-road` 5 with Greensleeves, `slow-scale-ah` 4 with Joy to the World (a scale), `held-ah` 2; among the nine, 2 to 4. Not a rights test (round 1's limit) |
 | M0 | The finder, checked first | `held-steady.wav`: one held note, frames 3 to 624, 3 blocks; `sine-220hz.wav`: none; bar B passes the first and fails the second |
 | M1 | Range | Every true contour within −2708.4 to +1124.1 cents of A4, inside E2–C6 |
-| B | **Bar B, the nine** | **6 of 9 pass**: every item with two held notes (`held-ah`, `slow-scale-ah`, `halfway-home`, `let-the-morning-wait`, `fence-line-home`, `when-the-curtain-falls`) gives at least 2 blocks on all 24 renderings, 144 of 144 (Wilson 95 % 0.974–1); the three with one held note fail, `dusty-road` 21, `engine-roar` 18, `late-train` 22 of 24, together 61 of 72 (0.747–0.913), losing it on 11 renderings |
+| B | **Bar B, the nine** | **6 of 9 pass**: every item with two held notes (`held-ah`, `slow-scale-ah`, `halfway-home`, `let-the-morning-wait`, `fence-line-home`, `when-the-curtain-falls`) gives at least 2 blocks on all 24 renderings, 144 of 144 (Wilson 95 % 0.974–1); the three with one held note fail, `dusty-road` 21, `engine-roar` 18, `late-train` 22 of 24, together 61 of 72 (0.746–0.913), losing it on 11 renderings |
 | B | **Bar B, the 30** | **None pass.** `abide-with-me` (rule (2): 2) gives 2 or more on 14 of 24, `le-pays-des-reves` (3) on 18 of 24, `holy-holy-holy` (1) on 23 of 24, `apres-un-reve` (1) on 1; every phrase rule (2) gives none gives at most 1 (`einsamkeit`, `hark-the-herald`, `row-your-boat` 1, from repeated written pitches merging), so none reaches 2 |
-| D | **Why a held note is lost** (`r4_diag.py`, post hoc) | Of the 360 held notes written into the nine's 216 renderings, MT-009 lost **26** (7.2 %, Wilson 95 % 5.0–10.4 %), none to refusal or to a short piece: each lies in one long piece, **443 to 703 frames**, which MT-009 rejects because the 60-cent cut put its first frame (23), or its last (2), on a frame not measured, or (1) more than a quarter of it filled. The cut falls inside the glide between notes, where YIN's aperiodicity refuses frames, and MT-009 rejects the piece rather than starting it at its first measured frame. `pieces`, the copy of `held_notes` that lists rejected pieces, gives exactly its held notes on all 26 renderings |
+| D | **Why a held note is lost** (`r4_diag.py`, post hoc) | Of the 360 held notes written into the nine's 216 renderings, MT-009 lost **26** (7.2 %, Wilson 95 % 4.9–10.4 %), none to refusal or to a short piece: each lies in one long piece, **443 to 703 frames**, which MT-009 rejects because the 60-cent cut put its first frame (23), or its last (2), on a frame not measured, or (1) more than a quarter of it filled. The cut falls inside the glide between notes, where YIN's aperiodicity refuses frames, and MT-009 rejects the piece rather than starting it at its first measured frame. `pieces`, the copy of `held_notes` that lists rejected pieces, gives exactly its held notes on all 26 renderings |
 | E | E-005's intent (recorded, as round 1) | Aimed notes found on 1590 of 1728 notes of the nine (92.0 %) and 7205 of 7416 of the 30 (97.2 %) |
 
 **Predictions.** B for all nine: **no** (6 of 9). B for exactly the two
