@@ -883,3 +883,22 @@ iteration 72 searched every spec). The asserts after F3 did not run;
 note's onset does not turn the tuning, with this fixture as its scenario,
 and ADR 0015 step 1 names PM; `held-vibrato.wav`'s `pitch-spread` is
 intent uncertain under the new rule, which no scenario contradicts.
+
+## Round 5: the known-melody spread under MT-003's refusal (squillo iteration 73)
+
+```
+uv run python round5.py check          # the checks, each checked (S15) -> results/round5_checks.json
+uv run python round5.py time 36 18     # S19 sample on the pool
+uv run python round5.py synth 18       # 2040 phrases -> data/cache/r5_synth.pkl (saves every 100, resumes)
+uv run python round5.py real           # 40 E-002 re-syntheses, 77 VocalSet originals -> data/cache/r5_real.pkl
+uv run python round5.py report         # -> results/round5.json
+```
+
+**Estimate (S19)**, committed before the full run: `round5.py time 36 18`,
+after the rules commit (`65910cb`), on the pool of 18 processes: 12 of
+round 2's slowest phrases (56 notes, σ 0 and 40, straight and vibrato,
+three each), 12 onset phrases and 12 library renderings, each to its end,
+in 30.0 s, 0.833 s of wall time each; for 2040 phrases, 28.3 minutes (an
+upper bound, since most of round 2's phrases are 14 or 28 notes). The run
+is driven in foreground calls of under 600 s, each resuming from the rows
+saved every 100 phrases.
