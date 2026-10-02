@@ -896,6 +896,98 @@ run (`999e02d`) wrote `diag.json` byte for byte as the last unguarded one.
 Recorded, not asserted: `W6_novelty_screen` (a screen, not a check);
 `predictions` and `bar_B` (the result itself).
 
+## Round 5 (squillo iteration 81): an anthem from its edition, and folk
+
+**Question.** squillo F-060: no national anthem is in the library, though
+`VISION.md` §7 names anthems, because round 1's three wrote later forms
+than the early editions they cite (round 2, result 4); and folk rests on
+one public-domain phrase (Greensleeves). By round 3's route (a), notes and
+words taken from a named public-domain edition as Mutopia's Public Domain
+transcription gives them, so that the melody is the cited edition by
+construction: how many national anthems, and how many folk phrases, pass
+round 3's rights rules, squillo's shipping rule (`us` and `life100`) and
+round 3's conditions?
+
+**Rules, written and committed before the survey ran** (`round5.py`).
+Everything not named here is round 3's, run by round 3's own functions
+(`round5.py` imports `round3.py` and calls them; its guard refuses to run
+if `round3.py`, `round2.py` or `run.py` is uncommitted).
+
+1. *Survey, metadata only* (`survey`). (a) Mutopia's search, every
+   instrument and style, for each of 31 fixed terms (`QUERIES`: the word
+   "anthem" and its French, Spanish and Italian forms, "national", and the
+   titles of 26 national anthems whose words and tune could be out of
+   copyright), every page followed; (b) Mutopia's listing for style Folk,
+   every instrument. Per piece, round 3's cells, parsed by round 3's
+   parser (`round3.py` lines 113–138), and the queries that found it. No
+   file is downloaded.
+2. *Naming the anthems* (`ANTHEM_OF`). From the survey's metadata alone
+   (title, source, instrument), the agent names each piece that sets a
+   national anthem's words and tune, and which anthem; a piece that sets
+   the tune to other words, or arranges it with no words, is not named.
+   Committed before `screen` runs. A folk piece is one Mutopia's own
+   style cell lists as Folk (rule 1b).
+3. *Screen, from the metadata* (`screen`): round 3's rule 2 (`round3.py`
+   `screen_one`, lines 187–217: Public Domain licence; every named
+   composer, lyricist and arranger with a death year; the source cell's
+   latest year as the edition's; `us` and `life100` on it; a MIDI and a
+   LilyPond file), with two changes. (a) *Words:* where the lyricist cell
+   is empty and every composer segment is anonymous (Traditional), the
+   words are taken as traditional too, an anonymous part published by the
+   edition; a piece with a named composer and no lyricist still fails, as
+   in round 3. Checked on a case it must pass (a Traditional piece, empty
+   lyricist) and one it must fail (a named composer, empty lyricist),
+   differing in the composer cell the rule reads (`words_probe`). An
+   arranger is a contributor, as ADR 0005 and round 3 have it: whether
+   one changed the tune is not known from the metadata, so the stricter
+   reading holds. (b) *Not already shipped:* the piece's title, letters
+   only, neither holds nor is held in one of the 39 titles the first slice
+   ships (`results/items`, `results/r4/items`); round 3's rule 2g, which
+   read round 2's 20, is replaced by it.
+4. *Order.* Anthems first, by lower Mutopia id; once one piece of an
+   anthem is taken, its other pieces are excluded. Then folk, by lower id.
+   Every eligible piece is tried: no count is targeted.
+5. *People* (`PEOPLE5`). Before any Wikidata, MIDI or LilyPond file is
+   read, the agent names, from the screen's metadata alone, the English
+   Wikipedia article of every named person of the eligible pieces, and
+   commits it. Death years are cross-checked against Wikidata (P570),
+   the later used (round 3 rule 4). (c) The LilyPond header's translator
+   and arranger, and, where rule 3a took the words as traditional, a poet
+   the header names, are contributors who need a death year, or the piece
+   is excluded.
+6. *Extraction*: round 3's rule 5 unchanged (`round3.py` `read_midi`,
+   `phrase_from`, `conditions`, `ly_words`, `compile_ly`): (a) Mutopia's
+   MIDI, or the one-file source compiled, with lyric events; (b)–(d) verse
+   1's first line, its melody, durations, key, meter and tempo; (e) 5 to
+   20 notes, range at most 16 semitones, at most 15 s, no note under
+   0.1 s, every pitch E2–C6; (f) the words.
+7. *Checks*, round 3's: K1 (round trip; must-fail on pitch and rhythm,
+   asserted), K2 (words; must-fail shifted one tick, asserted), K3 (the
+   rights probe, asserted), K4 (Wikidata; the wrong-entry must-fail
+   pairings asserted to disagree), K6 (the source compiled again;
+   reported, decides nothing). K5, new and reported only: an anthem taken
+   is compared with round 1's from-memory melody of the same anthem
+   (`library.py`) by round 1's `compare`, to show where the edition's form
+   differs from the form round 1 wrote; it decides nothing.
+8. *Measurability* (`measure`): round 1's `measure` as round 3 ran it
+   (six voice types, per-note error sd 0 or 20 cents, vibrato off or on).
+9. *Count* (`report`): taken by genre; the library would be 39 plus
+   those taken. Whether they ship is the fold's (squillo iteration 82).
+
+*Time (S19).* The survey: 31 searches and the Folk listing, at least one
+page each, 1 s apart and cached, so about a minute per 50 pages.
+`extract`: two downloads and up to two compiles of 2–10 s per eligible
+piece. `measure`: 24 renderings per phrase, round 3's 240 took 63 s on 18
+processes.
+
+```
+uv run python round5.py survey    # -> results/r5-survey.json
+uv run python round5.py screen    # -> results/r5-screen.json
+uv run python round5.py extract   # -> results/r5-extract.json
+uv run python round5.py measure   # -> results/r5-measure.json
+uv run python round5.py report    # -> results/r5-summary.json, results/r5-library.json
+```
+
 ## Needs a human
 
 15 minutes, headphones, no microphone.
