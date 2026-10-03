@@ -1,0 +1,20 @@
+{
+ "rule": "round 6 rule 2: OCR named no page (r6-fetch.json song_pages_by_ocr is empty: the PDF has no text layer), so the agent found it by eye and records it here before any reading",
+ "scan_page": 20,
+ "printed_page": 18,
+ "how_found": "the contents (scan page 6) lists 'Hen Wlad fy Nhadau. Land of my Fathers.' at page 18 under 'Songs, with English and Welsh words'; scan page 22 bears The Bard's Visit, which the contents lists at page 20; scan page 20's printed title is 'HEN WLAD FY NHADAU. LAND OF MY FATHERS.'",
+ "also_rendered": [21],
+ "title_page": {
+  "scan_page": 3,
+  "year_printed": null,
+  "as_printed": "Gems of Welsh Melody ... First Series. Ruthin: printed and published by Isaac Clarke. [Second Edition.]",
+  "shelfmark_written": "G.374 / 1. (handwritten, top right; the British Library shelfmark IMSLP gives for its scan)",
+  "introduction_dated": "Chester, July, 1860 (scan page 5, signed J. O.)",
+  "verso": "Entered at Stationers' Hall. (scan page 4)"
+ },
+ "rendered_at_dpi": 200,
+ "page_png_sha256": {
+  "page-020.png": "c9b1176423f3f51d3e55a9ab5f956256c850d8ae29a95f99ed15d8014cbb6b66",
+  "page-021.png": "ad61f668d98779981330a51cedecef77d2833ea2ee4657d32458c70b22bb5a04"
+ }
+}

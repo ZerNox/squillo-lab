@@ -1,0 +1,64 @@
+{
+ "read_on": null,
+ "imslp": {
+  "url": "https://imslp.org/images/5/5f/PMLP1075353-Digital_Store_G.374.-1.-_Gems_of_Welsh_Melody._A_Selection_of_popular_Welsh_Songs-_with_English_and_Welsh_words.pdf",
+  "content_type": "text/html",
+  "bytes": 1410,
+  "sha1": "b489389dea6d776437f2f323aefb3d7d67eb9f4b",
+  "served": false
+ },
+ "reference": {
+  "source": "internet archive",
+  "item": "gems-of-welsh-melody",
+  "file": "Gems of Welsh Melody.pdf",
+  "md5": "4b40691880af0a6be9f92c412b1e5f70",
+  "bytes": 66438192,
+  "sha256": "6eb825f0a90531fbf769baf6d800743662975a9ddd9d61d588f5506b92b1a6d2",
+  "item_meta": {
+   "title": "Gems Of Welsh Melody",
+   "date": "1860",
+   "creator": "John Owen (\"Owain Alaw\")",
+   "uploader": "edward@grabczewski.uk",
+   "publicdate": "2026-06-07 18:17:51",
+   "scanner": "Internet Archive HTML5 Uploader 1.7.0",
+   "contributor": null
+  }
+ },
+ "pages": 86,
+ "song_pages_by_ocr": [],
+ "rendered": [
+  {
+   "page": 1,
+   "png": "/tmp/r6-read/page-001.png",
+   "sha256": "7747a3b15d1b68d81c5d9cac9a100ab8b345e099e7b89ef97aa04dd996f6479a"
+  },
+  {
+   "page": 2,
+   "png": "/tmp/r6-read/page-002.png",
+   "sha256": "2dc89c6983528c5e000395328da8b05b8b7a45ec31f33b8dbefb1e45d20f7fe5"
+  },
+  {
+   "page": 3,
+   "png": "/tmp/r6-read/page-003.png",
+   "sha256": "963735c71f3c2d61d299cc9d1775e5c18e41f8e06b84ce0236793fc3b595e901"
+  },
+  {
+   "page": 4,
+   "png": "/tmp/r6-read/page-004.png",
+   "sha256": "43f9b4e77eb5381dbb817b25299503435e0cdb3a7d98037394d008c61745bb29"
+  },
+  {
+   "page": 5,
+   "png": "/tmp/r6-read/page-005.png",
+   "sha256": "1b5a322a8a9e76244fc712e8186111094793797add5927c0fada933ae27b30e3"
+  },
+  {
+   "page": 6,
+   "png": "/tmp/r6-read/page-006.png",
+   "sha256": "980b3cdfd47c13d8d020a50227ca395c2c563649ce6833979cf957508637d51e"
+  }
+ ],
+ "tools": {
+  "pdfinfo": "pdfinfo version 26.01.0"
+ }
+}
