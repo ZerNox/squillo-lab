@@ -28,7 +28,7 @@ Rules, written and committed before the run (S15, C14 to C16):
      arranger is a contributor of the part they changed); his death year is recorded (I2) and would not
      change a verdict.
   I2 The people (round 3's rule 4). Each death year written is Wikidata's P570 for the person's English
-     Wikipedia article ("Evan James", "James James", "John Owen (Owain Alaw)"), and Mutopia's header years
+     Wikipedia article ("Evan James (poet)", revision 1 below; "James James"; "John Owen (Owain Alaw)"), and Mutopia's header years
      (r5-posthoc-anthem.json `ly_header`: Ieuan ap Iago 1809-1878, Iago ap Ieuan 1833-1902) agree with it,
      asserted. Must fail (round 3's K4): each person's year against the next person's Wikidata entry
      disagrees, the three years being different.
@@ -74,6 +74,10 @@ EDITION = ("John Owen (Owain Alaw), Gems of Welsh Melody, first series, [Second 
 PEOPLE = {"Evan James": ("words", "Ieuan ap Iago (1809-1878)"),
           "James James": ("music", "Iago ap Ieuan (1833-1902)")}
 OTHERS = {"John Owen (Owain Alaw)": "English words and accompaniment, not sung in the phrase"}
+# Revision 1: the first run stopped on I2, "Evan James" being a disambiguation page (Wikidata Q5415432, no
+# P570); its link for the poet is "Evan James (poet)". The person is unchanged; only the article is named.
+ARTICLE = {"Evan James": "Evan James (poet)", "James James": "James James",
+           "John Owen (Owain Alaw)": "John Owen (Owain Alaw)"}
 PUBLISHED_BY = 1861      # squillo Q-042: the later catalogue year of the copy read
 
 
@@ -92,10 +96,10 @@ def sha(b):
 
 def people():
     names = list(PEOPLE) + list(OTHERS)
-    q = R.qids(names)
+    q = R.qids([ARTICLE[n] for n in names])
     wd = R.claims_years([x for x in q.values() if x], ["P570"])
-    return {n: dict(qid=q.get(n), wd_label=wd.get(q.get(n), {}).get("label"),
-                    wd_died=wd.get(q.get(n), {}).get("P570", [])) for n in names}
+    return {n: dict(article=ARTICLE[n], qid=q.get(ARTICLE[n]), wd_label=wd.get(q.get(ARTICLE[n]), {}).get("label"),
+                    wd_died=wd.get(q.get(ARTICLE[n]), {}).get("P570", [])) for n in names}
 
 
 def item(wd):
