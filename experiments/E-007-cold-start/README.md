@@ -248,3 +248,28 @@ three folders up from a crate such as `test2/`. F-089 is settled in
 squillo's `fixtures/MANIFEST.md` (*Path*: one row per fixture) and ADR
 0023 step 1 (none or several fail the fixture check). Test 2's own
 choices match all three; test 3 (squillo iteration 99) reads them.
+
+## Rules for test 3 (squillo iteration 99, committed before the run)
+
+Test 3 is test 2's rules, unchanged, with these differences only (squillo
+R-19 §8, row 99: "If 98 was a fold: test 3"):
+
+- **Snapshot.** `run/snapshot.sh 5da7e4e 58c9aca test3`: squillo at
+  `iteration-98` (`5da7e4e`, after test 2's fold into ADR 0023 and the
+  manifest) and this repository at `58c9aca` (its *Where squillo is*
+  fold), the commit before test 3's rules. The E-007 folder is removed,
+  `INDEX.md`'s E-007 row stays, as for test 2.
+- **Prompt.** [`run/prompt-test3.md`](run/prompt-test3.md): test 2's
+  prompt with `test2/` replaced by `test3/` in step 2, nothing else.
+- **Fresh session.** A new subagent, started in the foreground with no
+  context but the prompt; not the session that ran test 1 or test 2, and
+  not one that has seen this README.
+- **What a pass counts for.** If test 3 passes (no guess after reading
+  each logged point against the snapshot and tracing every value, test
+  2's *Pass* rule), it is the first of the two passes squillo `PLAN.md`
+  §11 needs; test 1 and test 2 did not pass, so they count for nothing
+  there.
+
+Checklist items applied (squillo-lab `README.md`): C14 (these rules
+committed before the run), and *A test that measures nothing* for what
+binds the subagent's test.
