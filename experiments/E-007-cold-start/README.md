@@ -123,3 +123,13 @@ prompt. A guess list is a model's self-report: another session may
 notice more or fewer points, so a second test (§11) is needed whatever
 this one found. The snapshot left out `.git`, so history was not
 readable; nothing in the task needs it.
+
+## Review note (squillo R-19, iteration 95)
+
+For test 2 (squillo R-19 §8, iteration 97): squillo `PLAN.md` rev 40
+defines a guess as a point the repositories neither settle nor state as
+the implementer's free choice, and keeps rule 4's trace of every value
+in the test. R-19 fixed F-083 to F-086 (this repository's `README.md`
+`a7d1417`; squillo's `fixtures/MANIFEST.md`, the offsets); F-077 to
+F-082 are folded into squillo ADR 0023 in iteration 96, before test 2's
+snapshot is made.
