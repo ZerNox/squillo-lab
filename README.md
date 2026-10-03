@@ -291,6 +291,10 @@ from here or from cited literature, never from nowhere.
   <results.json>...` flags a missing committed-first guard and check keys
   neither asserted nor listed as recorded (S15, checklist C16 to C18; squillo L-051),
   and a `json.dump` with no `default=` (squillo L-066).
+  `python3 tools/counts.py <squillo>` compares the findings and lessons
+  counts under `STATUS.md` *Process* with the rows of `findings.md` and
+  `lessons.md`; an iteration runs it before its last commit (squillo
+  S4, L-068); `--self-test` runs its must-pass and must-fail cases.
   `python3 tools/s4hits.py <base-rev> <term>...` makes S4's hit list from
   the search's own output in both repos: each hit `IN DIFF`, `NOT IN DIFF`
   or a `RECORD` (ledger rows, reviews); every `NOT IN DIFF` hit is fixed or
