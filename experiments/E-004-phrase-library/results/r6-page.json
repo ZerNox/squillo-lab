@@ -3,7 +3,9 @@
  "scan_page": 20,
  "printed_page": 18,
  "how_found": "the contents (scan page 6) lists 'Hen Wlad fy Nhadau. Land of my Fathers.' at page 18 under 'Songs, with English and Welsh words'; scan page 22 bears The Bard's Visit, which the contents lists at page 20; scan page 20's printed title is 'HEN WLAD FY NHADAU. LAND OF MY FATHERS.'",
- "also_rendered": [21],
+ "also_rendered": [
+  21
+ ],
  "title_page": {
   "scan_page": 3,
   "year_printed": null,
@@ -16,5 +18,10 @@
  "page_png_sha256": {
   "page-020.png": "c9b1176423f3f51d3e55a9ab5f956256c850d8ae29a95f99ed15d8014cbb6b66",
   "page-021.png": "ad61f668d98779981330a51cedecef77d2833ea2ee4657d32458c70b22bb5a04"
+ },
+ "header_as_printed": {
+  "left": "The Welsh words written by Mr. Evan James, Pontypridd. Melody by his son Mr. James James, (By permission.)",
+  "right": "English words, with Symphonies, Accompaniments, and Chorus, by Owain Alaw.",
+  "tempo": "Moderato."
  }
 }

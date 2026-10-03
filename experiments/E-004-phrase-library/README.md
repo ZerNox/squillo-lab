@@ -1174,6 +1174,66 @@ uv run python round6.py render    # the reader check's two scores -> /tmp/r6-che
 uv run python round6.py compare   # -> results/r6-compare.json
 ```
 
+## Round 6 result
+
+| # | Question | Result (conditions; uncertainty) |
+| ---: | :--- | :--- |
+| 1 | Is the named reference served? | **IMSLP's British Library scan: not served.** The download with IMSLP's disclaimer cookie returned a 1410-byte HTML page, not the PDF of sha1 `5d0165ca…` (`r6-fetch.json` `imslp`), recorded as its outcome. **The Internet Archive item `gems-of-welsh-melody`: served**, 86 pages, md5 `4b40691880af0a6be9f92c412b1e5f70` as the item lists it, uploaded 2026-06-07 by a private uploader. Its title page carries the handwritten shelfmark "G.374 / 1.", the one IMSLP gives for its British Library scan, so it is very likely a copy of the same exemplar. The two were not compared |
+| 2 | Which page? | OCR named none: the PDF has no text layer (`song_pages_by_ocr` is empty). Found by eye under rule 2: the contents (scan page 6) list *Hên Wlad fy Nhadau. Land of my Fathers.* at page 18, and **scan page 20** prints that title, with, on the left, "The Welsh words written by Mr. Evan James, Pontypridd. Melody by his son Mr. James James, (By permission.)" and, on the right, "English words, with Symphonies, Accompaniments, and Chorus, by Owain Alaw" (John Owen, the editor), and the tempo mark *Moderato* (`r6-page.json`) |
+| 3 | The year (rule 6) | **The title page prints no year.** It reads "First Series … Ruthin: printed and published by Isaac Clarke. [Second Edition.]" The introduction is signed "J. O., Chester, July, 1860", and the verso reads "Entered at Stationers' Hall". So this print is the first series' **second edition**, after July 1860, of no printed year. The catalogues' 1860 (IMSLP, the Archive) is the first series' date, not this print's |
+| 4 | The readings (rule 4) | The blind reading (a fresh subagent that never saw Mutopia's notes) and the agent's (not blind) **differ at notes 5 and 6**: the blind reader read C5 B♭4 under *nhad-au*, the agent B♭4 A♭4. The third reading, a second fresh blind subagent that gave each note's staff position, read B♭4 (middle line) and A♭4 (second space), agreeing with the agent's. **The reading of record**, two of three: E♭4, G4, F4, E♭4, B♭4, A♭4, G4, E♭5, E♭5, C5 (eighth), D5 (eighth), E♭5 (half), the eighths beamed and slurred on *i*. The clef is treble, the key E♭ (three flats), the time 3/4 (printed on the opening piano system). The words are *Mae hên wlad fy nhadau yn anwyl i mi,* / *Oh! land of my fathers, the land of the free,* |
+| 5 | The reader check (rule 5) | **Holds.** The checking subagent read both scores exactly: (i), Mutopia's 12 notes, and (ii), the altered score, its moved pitch and changed bar included (`must_pass_i`, `must_read_ii`, `must_fail_ii_vs_mutopia`: true) |
+| 6 | The comparison (rule 7) | Its own checks held and were asserted before any reading was compared: `self_check` passes, one pitch moved fails, one duration doubled fails; the agreement test passes on Mutopia against itself and fails against score (ii). **The record matches Mutopia 1017: exact in pitch (11 of 11 intervals, no transposition), exact in rhythm (11 of 11 inter-onset intervals, scale 1), 12 notes each; `note_diff` empty.** The blind reading alone misses 2 of 11 intervals |
+| 7 | Verdict | **`match`** (`r6-compare.json`) |
+
+**Answer.** The first line of *Hen Wlad Fy Nhadau* as printed in the
+first series of Owen's *Gems of Welsh Melody* (Isaac Clarke, Ruthin;
+the copy is marked [Second Edition.], and its introduction is dated July
+1860) is note for note the line Mutopia 1017 transcribes from the
+composer's manuscript: same pitches, same key, plain quarters, and the
+same eighth-note pair on *i*. A dated print now stands behind the form
+sung. It is dated by its introduction, since the title page prints no
+year. Whether that is enough for ADR 0005's `published_by`, and whether
+the phrase ships, is the fold's (squillo iteration 87). For `us`
+(published by 1930), any reading of this print's date passes.
+
+**Limits.**
+
+- The reading is by eye, not by an optical music recognition tool. Of
+  the three readers, one (the agent) had seen Mutopia's notes. The record
+  rests on the agent and one blind reader agreeing. The other blind
+  reader misread two adjacent notes a step high, which shows that a single
+  blind reading is not reliable to the note at this scan's quality. The
+  reader check used clean LilyPond engraving, not the 1860 print, so it
+  shows that readers read the page rather than memory, not how well they
+  read old engraving.
+- The print is a second edition, with no year printed, so 1860 is a
+  bound from its introduction and the catalogues (no later than the
+  copy's own date). The first edition was not read.
+- The words read here differ in spelling from Mutopia's (*hên*, *anwyl*
+  in the print; *hen*, *annwyl* in Mutopia's LilyPond source). Which the
+  item prints is the fold's choice.
+- Only verse 1's first line was compared, as the phrase is that line.
+- The print names a third contributor, Owain Alaw (John Owen), for the
+  English words and the accompaniment. The Welsh line and its melody are
+  credited to the two Jameses. Whether Owen counts as a contributor to
+  the phrase, and his death year for `life100`, are the fold's to check
+  (round 3's rule 4, Wikidata), not this round's.
+
+**S15 by hand.** `tools/checkkeys.py round6.py` on the script alone: 0
+flags before its first run (`b5c2f8b`). With `r6-compare.json` and
+`r6-fetch.json`: 6 flags, each read by hand. `self_check`'s keys are
+asserted in `compare` (`assert sc["must_pass"] and sc["must_fail_pitch"]
+and sc["must_fail_rhythm"]`), and `must_fail_inputs_differ` inside
+`round2.py` `self_check` (`assert differs or n < 2`). Recorded, not
+asserted, by design: `reader_check` and its keys `must_pass_i`,
+`must_read_ii` and `must_fail_ii_vs_mutopia`. A failing reader check is
+a verdict (`reader check failed`), not an error, as in round 2's
+`pending-check-failed`. The agreement test (`agree_check`) is asserted.
+Order in git: rules `b5c2f8b`; fetch and page `c0e369d`; the agent's
+reading `40cd45c`, before the blind reading was made; the blind reading
+and the reader check `e2217b5`; the third reading before `compare` ran.
+
 ## Needs a human
 
 15 minutes, headphones, no microphone.

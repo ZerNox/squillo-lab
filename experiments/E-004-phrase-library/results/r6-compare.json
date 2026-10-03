@@ -1,0 +1,263 @@
+{
+ "self_check": {
+  "notes": 8,
+  "too_short": false,
+  "must_fail_inputs_differ": true,
+  "moved_index": 3,
+  "doubled_index": 2,
+  "must_pass": true,
+  "must_fail_pitch": true,
+  "must_fail_rhythm": true
+ },
+ "agree_check": {
+  "must_pass": true,
+  "must_fail": true
+ },
+ "reader_check": {
+  "must_pass_i": true,
+  "must_read_ii": true,
+  "must_fail_ii_vs_mutopia": true,
+  "holds": true
+ },
+ "readings_agree": false,
+ "reading_of_record": "third reading agrees with the agent reading",
+ "reference": {
+  "source": "Mutopia 1017 as extracted in round 5",
+  "notes": [
+   {
+    "pitch": "Eb4",
+    "beats": 1.0
+   },
+   {
+    "pitch": "G4",
+    "beats": 1.0
+   },
+   {
+    "pitch": "F4",
+    "beats": 1.0
+   },
+   {
+    "pitch": "Eb4",
+    "beats": 1.0
+   },
+   {
+    "pitch": "Bb4",
+    "beats": 1.0
+   },
+   {
+    "pitch": "Ab4",
+    "beats": 1.0
+   },
+   {
+    "pitch": "G4",
+    "beats": 1.0
+   },
+   {
+    "pitch": "Eb5",
+    "beats": 1.0
+   },
+   {
+    "pitch": "Eb5",
+    "beats": 1.0
+   },
+   {
+    "pitch": "C5",
+    "beats": 0.5
+   },
+   {
+    "pitch": "D5",
+    "beats": 0.5
+   },
+   {
+    "pitch": "Eb5",
+    "beats": 2.0
+   }
+  ]
+ },
+ "per_reading": {
+  "blind": {
+   "compare": {
+    "track": 0,
+    "start": 0,
+    "transpose": 0,
+    "interval_miss": 2,
+    "intervals": 11,
+    "pitch_edit": 2,
+    "exact_pitch": false,
+    "rhythm": null,
+    "context": [
+     63,
+     67,
+     65,
+     63,
+     70,
+     68,
+     67,
+     75,
+     75,
+     72,
+     74,
+     75
+    ]
+   },
+   "exact_pitch": false,
+   "exact_rhythm": false,
+   "same_count": true,
+   "match": false
+  },
+  "agent": {
+   "compare": {
+    "track": 0,
+    "start": 0,
+    "transpose": 0,
+    "interval_miss": 0,
+    "intervals": 11,
+    "pitch_edit": 0,
+    "exact_pitch": true,
+    "rhythm": {
+     "scale": 1.0,
+     "ioi_match": 11,
+     "ioi_total": 11
+    },
+    "context": [
+     63,
+     67,
+     65,
+     63,
+     70,
+     68,
+     67,
+     75,
+     75,
+     72,
+     74,
+     75
+    ]
+   },
+   "exact_pitch": true,
+   "exact_rhythm": true,
+   "same_count": true,
+   "match": true
+  },
+  "third": {
+   "compare": {
+    "track": 0,
+    "start": 0,
+    "transpose": 0,
+    "interval_miss": 0,
+    "intervals": 11,
+    "pitch_edit": 0,
+    "exact_pitch": true,
+    "rhythm": {
+     "scale": 1.0,
+     "ioi_match": 11,
+     "ioi_total": 11
+    },
+    "context": [
+     63,
+     67,
+     65,
+     63,
+     70,
+     68,
+     67,
+     75,
+     75,
+     72,
+     74,
+     75
+    ]
+   },
+   "exact_pitch": true,
+   "exact_rhythm": true,
+   "same_count": true,
+   "match": true
+  }
+ },
+ "record": {
+  "notes": [
+   {
+    "pitch": "Eb4",
+    "beats": 1
+   },
+   {
+    "pitch": "G4",
+    "beats": 1
+   },
+   {
+    "pitch": "F4",
+    "beats": 1
+   },
+   {
+    "pitch": "Eb4",
+    "beats": 1
+   },
+   {
+    "pitch": "Bb4",
+    "beats": 1
+   },
+   {
+    "pitch": "Ab4",
+    "beats": 1
+   },
+   {
+    "pitch": "G4",
+    "beats": 1
+   },
+   {
+    "pitch": "Eb5",
+    "beats": 1
+   },
+   {
+    "pitch": "Eb5",
+    "beats": 1
+   },
+   {
+    "pitch": "C5",
+    "beats": 0.5
+   },
+   {
+    "pitch": "D5",
+    "beats": 0.5
+   },
+   {
+    "pitch": "Eb5",
+    "beats": 2
+   }
+  ],
+  "compare": {
+   "track": 0,
+   "start": 0,
+   "transpose": 0,
+   "interval_miss": 0,
+   "intervals": 11,
+   "pitch_edit": 0,
+   "exact_pitch": true,
+   "rhythm": {
+    "scale": 1.0,
+    "ioi_match": 11,
+    "ioi_total": 11
+   },
+   "context": [
+    63,
+    67,
+    65,
+    63,
+    70,
+    68,
+    67,
+    75,
+    75,
+    72,
+    74,
+    75
+   ]
+  },
+  "exact_pitch": true,
+  "exact_rhythm": true,
+  "same_count": true,
+  "match": true
+ },
+ "note_diff": [],
+ "verdict": "match"
+}
