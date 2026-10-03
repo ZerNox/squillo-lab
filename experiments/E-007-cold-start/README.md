@@ -1,6 +1,6 @@
 # E-007 — Cold-start test: can a fresh agent name what to build first and write its failing test?
 
-**Status:** running (tests 1 and 2 run: neither passed) · **Serves:** `squillo/VISION.md` §9 (the first slice,
+**Status:** running (tests 1 to 3 run: none passed) · **Serves:** `squillo/VISION.md` §9 (the first slice,
 specified end to end so it can be built) · **For:** squillo `PLAN.md` §1
 (Phase 0's end), §10 Stage E (the cold-start test), §11 (two passes in
 independent fresh sessions); review R-18 §8, iteration 94
@@ -273,3 +273,86 @@ R-19 §8, row 99: "If 98 was a fold: test 3"):
 Checklist items applied (squillo-lab `README.md`): C14 (these rules
 committed before the run), and *A test that measures nothing* for what
 binds the subagent's test.
+
+## Result (test 3, squillo iteration 99)
+
+**Not passed: the subagent logged 2 points; read against the snapshot,
+1 is a guess and 1 is settled; tracing its test (rule 4) added none.**
+It named what ADR 0023 names, and its test fails as rule 3 and ADR 0023
+(*Which failure counts*) ask. None of test 1's ten or test 2's three
+guesses recurred. Since it did not pass, §11's two passes are still
+both to come.
+
+*Run.* Snapshot by `run/snapshot.sh 5da7e4e 58c9aca test3`, the squillo
+part checked byte for byte against `git archive 5da7e4e` after the run
+(unchanged); subagent (general-purpose, foreground, fresh context, the
+iteration's own model, Opus 5.5) given `run/prompt-test3.md` verbatim
+(sha256 `8b78ef0e…d9b1e9d` of the file as committed in `b06153a`); 13
+tool uses, 196 s. This time the harness let it write
+`/tmp/e007/report.md`, saved unchanged as
+[`results/report-test3.md`](results/report-test3.md).
+
+*What to build first* (rule 6): `signal` SG-002's *One second gives 125
+frames* on `fixtures/signal/sine-220hz.wav`, then ADR 0023's order. It
+read it in ADR 0023 (*Decision outcome*, *The first failing test*, the
+order table, *The first test's frame*), `PLAN.md` §1, §3 and §10,
+`docs/architecture.md` §4, the `signal` spec, the manifest and the lab's
+`README.md` (*Tooling*, *Where squillo is*, *A test that measures
+nothing*). Same as ADR 0023.
+
+*The failing test* (rule 3): [`test3/`](test3/), a Rust package
+`signal` whose `src/lib.rs` has ADR 0023's interface shape with nothing
+behind it (`Stream::new`, `push_block(&[f32; 128])`, `frames() ->
+Vec<Frame>`, `Frame`'s index, first and last sample and start in ms as
+`u64`), and one integration test, `tests/sg_002.rs`,
+`sg_002_one_second_gives_125_frames`; `cd test3 && cargo test`. Checks
+of its checks run first (C10): the fixture check on the manifest as
+committed (pass), with the row removed and written twice (fail), and
+with one bit of sample 0 flipped (fail); the layout check on the file
+(pass), with format tag 1 and one sample short (fail); the block split
+on 48 000 samples (pass) and 47 999 (fail). The layout's offsets are
+computed from the manifest's sizes, and a compile-time assertion holds
+them to the manifest's stated 192 058, 192 050, 12, 38, 50 and 58. Then
+`assertion left == right failed: SG-002 THEN: exactly 125 frames, left:
+0, right: 125` at `tests/sg_002.rs:259`. Re-run here against the real
+repositories (rule 7, `cargo test --offline`): the same failure, exit
+101. With a throwaway framing (frame *i* holding samples 384*i* to
+384*i* + 383 and starting at 8*i* ms, frames counted from the samples
+pushed) in a `/tmp` copy, it passes, 1 of 1, so it fails only for want
+of the product code; the copy was deleted.
+
+*Rule 4 trace.* Every constant in the test traces to a line of the
+snapshot: the fixture's path, 48 000, 125, 124, 47 616, 47 999 and 992
+to SG-002 and its scenario (`openspec/specs/signal/spec.md` lines 16 to
+23); 128 to SG-001; the manifest's path and the one-row rule to ADR 0023
+step 1 and *A fixture's one row*; the layout's values (192 058, 192 050,
+`RIFF`, `WAVE`, 18, 3, 1, 48 000, 192 000, 4, 32, 0, the `fact` chunk's
+4 and 48 000, the `data` chunk's 192 000, 4-byte names and lengths, no
+padding, little-endian, the four offsets) to `fixtures/MANIFEST.md`
+*Signal fixtures* (lines 87 to 97); the digest read from the manifest
+row at run time, its first column read as the path and its second as
+the hash (ADR 0023, F-082, F-089); the depth 3 and `../squillo` to the
+lab's *Where squillo is*; `sha2 = "0.11"`, edition 2021, the
+interface's names, `u64`, `Vec` returned, an integration test and its
+file name stated free by ADR 0023 (*The first test's frame*); the
+must-fail edits the experiment's own choice (C10). What traces to none
+is its logged point 1. **No unlogged guess.**
+
+*The logged points*, read against the snapshot (test 2's *Pass* rule):
+
+| # | Point (`results/report-test3.md`) | Reading | squillo finding |
+| ---: | :--- | :--- | :--- |
+| 1 | What a relative `SQUILLO_ROOT` is relative to; it used the value as given, so the working directory | **Guess.** *Where squillo is* (lab `README.md` lines 259 to 274) names the variable and says "the root is found from the code's own path, never from git ... or the working directory", but does not say whether that covers the variable's value; a relative value used as given resolves against the working directory, which the same sentence rules out for the default. No line settles it or says it is free. It changes nothing this run did (the default and an absolute value) | F-090 |
+| 2 | Where its must-fail inputs are recorded | **Settled, over-logged**, as test 2's point 3: C10 (lines 81 to 82) records them in the experiment's README, and *A test that measures nothing* (lines 143 to 146) gives that README to the iteration that runs the session; the subagent recorded them in comments and its report, which is all that falls to it. It noted the snapshot has no E-007 README, which the snapshot removes by design (rule 2) | none |
+
+The one guess is again in the lab's *Where squillo is*, at a case (a
+relative variable) the iteration-98 fold did not cover; none concerns
+a requirement or the engine. Twice now a session has logged where its
+must-fail inputs go, though the lines settle it; that is recorded, not
+counted.
+
+*Limits.* One session, one model (Opus 5.5, as tests 1 and 2), one
+prompt; a guess list is a self-report, checked by the trace and by
+reading each point against the snapshot. The snapshot's squillo names
+tests 1 and 2 and their guesses (findings F-077 to F-089, ADR 0023's
+fold notes), which the subagent cited as background.
