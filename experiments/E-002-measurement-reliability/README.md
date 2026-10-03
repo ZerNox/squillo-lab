@@ -990,7 +990,15 @@ another).
 
 **Run:** `uv run python r7_inputs.py <squillo>`, `./r7_build.sh`,
 `wasm/target/release/native`, `node r7_run.mjs`, `uv run python
-r7_analyse.py` -> `results/r7.json`. The timing estimate follows (S19).
+r7_analyse.py` -> `results/r7.json`. **Estimate (S19),**
+committed before the full run: a sample of six inputs spread over the
+conditions (silence, C7 out of range, E2 pure, `saw12` at 10 dB on C6 and
+at 20 dB, one VocalSet take; 13.27 s of audio) ran to its end in every
+target: native 0.88 s for all four variants, each browser build 1.3 to
+2.0 s. The full run is 350.9 s of audio, 26.4 times the sample: native
+about 25 s, each of the four browser builds about 55 s with launch, the
+inputs step 19 s (run), and the analysis, vectorised per input over
+195 inputs and 22 outputs, under a minute.
 
 ### Beyond round 3
 
