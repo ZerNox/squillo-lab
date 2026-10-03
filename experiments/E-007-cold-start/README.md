@@ -239,3 +239,12 @@ guesses (`docs/process/findings.md`, F-077 to F-086), which the subagent
 read as background; a real implementer would read them too. The
 snapshot has no `.git` (guess 2 depends on it: in a clone, git could
 name the root).
+
+*Fold* (squillo iteration 98, Q-046 option A). F-087 and F-088 are
+settled in this repository's `README.md`, *Where squillo is*: the
+variable is `SQUILLO_ROOT`, an argument still allowed for a script, and
+the lab's root is found from the code's own path by a stated depth,
+three folders up from a crate such as `test2/`. F-089 is settled in
+squillo's `fixtures/MANIFEST.md` (*Path*: one row per fixture) and ADR
+0023 step 1 (none or several fail the fixture check). Test 2's own
+choices match all three; test 3 (squillo iteration 99) reads them.

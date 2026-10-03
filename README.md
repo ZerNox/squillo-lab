@@ -259,11 +259,19 @@ from here or from cited literature, never from nowhere.
 - **Where squillo is**: the two repositories are checked out side by side,
   `squillo/` and `squillo-lab/` in one parent folder, so squillo is
   `../squillo` from this repository's root. An experiment that reads
-  squillo's files (fixtures, specs) takes squillo's root as an argument
-  or environment variable, defaulting to that path resolved from the
-  repository's root, never from the experiment's own folder, and states
-  the default in its README (squillo F-083, R-19; E-002's `r7_inputs.py`
-  takes it as an argument).
+  squillo's files (fixtures, specs) takes squillo's root from the
+  environment variable `SQUILLO_ROOT` when it is set; a script may also
+  take it as an argument, which wins over the variable (E-002's
+  `r7_inputs.py`). Neither given, the default is `../squillo` from this
+  repository's root, never `../squillo` from the experiment's own folder.
+  The root is found from the code's own path, never from git (a snapshot
+  has no `.git`) or the working directory: a script from its own file, a
+  compiled test from its crate's folder (`CARGO_MANIFEST_DIR` for cargo).
+  An experiment's folder is `experiments/E-nnn-name/`, two folders below
+  the root, so a crate in its own folder under it, such as a cold-start
+  test's `test2/`, is three below (`CARGO_MANIFEST_DIR/../../..`). The
+  experiment's README states the depth and the default (squillo F-083,
+  R-19; F-087, F-088, iteration 98, squillo ADR 0023).
 - **Prerequisites**: [`prereqs.sh`](prereqs.sh) installs everything the lab
   needs for the current user only, never with sudo, and skips what is present
   (`--check` only reports). An experiment that needs a new tool adds a step
