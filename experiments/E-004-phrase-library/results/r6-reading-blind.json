@@ -1,0 +1,66 @@
+{
+ "title_printed": "HEN WLAD FY NHADAU. / LAND OF MY FATHERS.",
+ "clef": "treble (G clef)",
+ "key_signature": "3 flats (Bb, Eb, Ab) - E-flat major",
+ "time_signature": "3/4 (printed only at the opening Pianoforte system; the voice staff, which first appears on system 2, carries no time signature of its own)",
+ "words_welsh": "Mae hên-wlad fy nhadau yn anwyl i mi,",
+ "words_english": "Oh! land of my fathers, the land of the free,",
+ "notes": [
+  {
+   "pitch": "Eb4",
+   "beats": 1
+  },
+  {
+   "pitch": "G4",
+   "beats": 1
+  },
+  {
+   "pitch": "F4",
+   "beats": 1
+  },
+  {
+   "pitch": "Eb4",
+   "beats": 1
+  },
+  {
+   "pitch": "C5",
+   "beats": 1
+  },
+  {
+   "pitch": "Bb4",
+   "beats": 1
+  },
+  {
+   "pitch": "G4",
+   "beats": 1
+  },
+  {
+   "pitch": "Eb5",
+   "beats": 1
+  },
+  {
+   "pitch": "Eb5",
+   "beats": 1
+  },
+  {
+   "pitch": "C5",
+   "beats": 0.5
+  },
+  {
+   "pitch": "D5",
+   "beats": 0.5
+  },
+  {
+   "pitch": "Eb5",
+   "beats": 2
+  }
+ ],
+ "title_page_year": null,
+ "title_page_edition_statement": "[SECOND EDITION.] (also 'FIRST SERIES.'; Ruthin: Printed and published by Isaac Clarke)",
+ "uncertain": [
+  "Final note on 'mi,'/'free,' (first note of system 3): read as an undotted half note Eb5 in the top space; no dot visible, and half + the following quarter (Gwlad) fill the 3/4 bar",
+  "The two beamed eighths C5-D5 under a slur are both sung on 'i' / 'the' (one syllable)"
+ ],
+ "reader": "fresh subagent, given only /tmp/r6-read/ (pages 1-6, 20, 21); its file /tmp/r6-blind/reading.json copied verbatim with this key and 'reader_prompt' added",
+ "reader_prompt": "round 6 rule 4: read the voice's first line of verse 1 on page-020.png, note by note, not from memory"
+}
