@@ -1060,6 +1060,15 @@ another FFT library or summation order gives another `float32`
 difference, of the same kind but not these exact numbers. Inputs at 48
 kHz `float32`; noise is white.
 
+**Fold** (squillo iteration 93, Q-044). ADR 0007's *Numeric epsilon*
+records the table above and decides: `signal`'s pitch and aperiodicity
+and `metrics`' cells in `f64`; one module's outputs compared bit for bit
+across browsers (H1); a native build no test's reference; an
+uncertainty a scenario derives from another (MT-004, MT-013) within a
+float bound derived from IEEE 754's correct rounding, not from these
+maxima. No requirement changed, and SG-005's ±3 cents keeps its
+perceptual reason. No code or result here changed.
+
 ### Beyond round 3
 
 Amateur voices and other vowels (E-005's `needs-human` step); a real room
