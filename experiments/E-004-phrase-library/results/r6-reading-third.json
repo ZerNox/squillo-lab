@@ -1,0 +1,75 @@
+{
+ "title_printed": "HEN WLAD FY NHADAU. / LAND OF MY FATHERS.",
+ "clef": "treble (G clef)",
+ "key_signature": "3 flats (Bb, Eb, Ab) - Eb major",
+ "time_signature": "3/4",
+ "words_welsh": "Mae hên-wlad fy nhad-au yn an-wyl i mi,",
+ "words_english": "Oh! land of my fa-thers, the land of the free,",
+ "notes": [
+  {
+   "pitch": "Eb4",
+   "beats": 1,
+   "staff_position": "bottom line (line 1); pickup, stem up - Mae / Oh!"
+  },
+  {
+   "pitch": "G4",
+   "beats": 1,
+   "staff_position": "line 2 - hen / land"
+  },
+  {
+   "pitch": "F4",
+   "beats": 1,
+   "staff_position": "space 1 (between lines 1 and 2) - wlad / of"
+  },
+  {
+   "pitch": "Eb4",
+   "beats": 1,
+   "staff_position": "bottom line (line 1) - fy / my"
+  },
+  {
+   "pitch": "Bb4",
+   "beats": 1,
+   "staff_position": "line 3 (middle line) - nhad / fa"
+  },
+  {
+   "pitch": "Ab4",
+   "beats": 1,
+   "staff_position": "space 2 (between lines 2 and 3) - au / thers"
+  },
+  {
+   "pitch": "G4",
+   "beats": 1,
+   "staff_position": "line 2 - yn / the"
+  },
+  {
+   "pitch": "Eb5",
+   "beats": 1,
+   "staff_position": "space 4 (top space), stem down - an / land"
+  },
+  {
+   "pitch": "Eb5",
+   "beats": 1,
+   "staff_position": "space 4 (top space), stem down - wyl / of"
+  },
+  {
+   "pitch": "C5",
+   "beats": 0.5,
+   "staff_position": "space 3 (between lines 3 and 4); eighth, beamed, under slur - i / the"
+  },
+  {
+   "pitch": "D5",
+   "beats": 0.5,
+   "staff_position": "line 4; eighth, beamed, under slur - i / the"
+  },
+  {
+   "pitch": "Eb5",
+   "beats": 2,
+   "staff_position": "space 4 (top space), open half note, stem down, no dot - mi, / free,"
+  }
+ ],
+ "uncertain": [
+  "Time signature and key signature read from the opening Pianoforte system; the voice systems show the same 3 flats with no time signature repeated.",
+  "Slur over the two eighths on 'i' is faint but visible; the beamed pair falls on one syllable."
+ ],
+ "reader": "second fresh subagent (rule 4's third reading), given only /tmp/r6-read/, asked to state each note's staff position; file copied verbatim with this key added"
+}
