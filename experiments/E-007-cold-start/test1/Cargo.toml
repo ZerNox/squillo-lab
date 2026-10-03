@@ -1,0 +1,14 @@
+# E-007 cold-start test 1: squillo ADR 0023's first failing test, signal
+# SG-002 "One second gives 125 frames". An experiment, never built on
+# (squillo PLAN.md rule 1, rule 11). The library is an empty stand-in for
+# the `signal` crate so that the test compiles and fails on its assertion.
+[package]
+name = "signal"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+
+[dev-dependencies]
+sha2 = "=0.11.0"
