@@ -1,0 +1,64 @@
+{
+ "reader": "the agent (this session; not blind: it had read Mutopia 1017's notes in r5-posthoc-anthem.json)",
+ "written_before": "the blind reading was made or opened (round 6 rule 4)",
+ "scan_page": 20,
+ "printed_page": 18,
+ "clef": "treble",
+ "key_signature": "3 flats",
+ "time_signature": "3/4",
+ "where": "voice staff, second system: after three bars' rest and a double bar, a one-beat upbeat on 'Mae'; the line ends on 'mi,' at the start of the third system",
+ "words_welsh": "Mae hên wlad fy nhadau yn anwyl i mi,",
+ "words_english": "Oh! land of my fathers, the land of the free.",
+ "notes": [
+  {
+   "pitch": "Eb4",
+   "beats": 1
+  },
+  {
+   "pitch": "G4",
+   "beats": 1
+  },
+  {
+   "pitch": "F4",
+   "beats": 1
+  },
+  {
+   "pitch": "Eb4",
+   "beats": 1
+  },
+  {
+   "pitch": "Bb4",
+   "beats": 1
+  },
+  {
+   "pitch": "Ab4",
+   "beats": 1
+  },
+  {
+   "pitch": "G4",
+   "beats": 1
+  },
+  {
+   "pitch": "Eb5",
+   "beats": 1
+  },
+  {
+   "pitch": "Eb5",
+   "beats": 1
+  },
+  {
+   "pitch": "C5",
+   "beats": 0.5
+  },
+  {
+   "pitch": "D5",
+   "beats": 0.5
+  },
+  {
+   "pitch": "Eb5",
+   "beats": 2
+  }
+ ],
+ "notes_detail": "C5 and D5 are two eighth notes beamed and slurred under 'i'; 'mi,' is a half note; every other note a quarter",
+ "uncertain": []
+}

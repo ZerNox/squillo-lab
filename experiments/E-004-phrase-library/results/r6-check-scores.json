@@ -1,0 +1,110 @@
+{
+ "A": {
+  "is_": "ii",
+  "notes": [
+   {
+    "pitch": "Eb4",
+    "beats": 1.0
+   },
+   {
+    "pitch": "G4",
+    "beats": 0.5
+   },
+   {
+    "pitch": "F4",
+    "beats": 0.5
+   },
+   {
+    "pitch": "Eb4",
+    "beats": 2.0
+   },
+   {
+    "pitch": "Bb4",
+    "beats": 1.0
+   },
+   {
+    "pitch": "Bb4",
+    "beats": 1.0
+   },
+   {
+    "pitch": "G4",
+    "beats": 1.0
+   },
+   {
+    "pitch": "Eb5",
+    "beats": 1.0
+   },
+   {
+    "pitch": "Eb5",
+    "beats": 1.0
+   },
+   {
+    "pitch": "C5",
+    "beats": 0.5
+   },
+   {
+    "pitch": "D5",
+    "beats": 0.5
+   },
+   {
+    "pitch": "Eb5",
+    "beats": 2.0
+   }
+  ],
+  "png": "/tmp/r6-check/score-A.png"
+ },
+ "B": {
+  "is_": "i",
+  "notes": [
+   {
+    "pitch": "Eb4",
+    "beats": 1.0
+   },
+   {
+    "pitch": "G4",
+    "beats": 1.0
+   },
+   {
+    "pitch": "F4",
+    "beats": 1.0
+   },
+   {
+    "pitch": "Eb4",
+    "beats": 1.0
+   },
+   {
+    "pitch": "Bb4",
+    "beats": 1.0
+   },
+   {
+    "pitch": "Ab4",
+    "beats": 1.0
+   },
+   {
+    "pitch": "G4",
+    "beats": 1.0
+   },
+   {
+    "pitch": "Eb5",
+    "beats": 1.0
+   },
+   {
+    "pitch": "Eb5",
+    "beats": 1.0
+   },
+   {
+    "pitch": "C5",
+    "beats": 0.5
+   },
+   {
+    "pitch": "D5",
+    "beats": 0.5
+   },
+   {
+    "pitch": "Eb5",
+    "beats": 2.0
+   }
+  ],
+  "png": "/tmp/r6-check/score-B.png"
+ }
+}
