@@ -1,0 +1,16 @@
+# E-007 cold-start test 2: squillo ADR 0023's first failing test,
+# `signal` SG-002 *One second gives 125 frames*. An experiment, never built
+# on (squillo PLAN.md rule 1, rule 11). The crate is named for its domain
+# (ADR 0023, *The first test's frame*, F-078).
+[package]
+name = "signal"
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+
+[dev-dependencies]
+# Any FIPS 180-4 SHA-256 is free (ADR 0023, F-081); a test dependency is
+# never served (ADR 0022, ADR 0010 requirement 3).
+sha2 = "=0.11.0"

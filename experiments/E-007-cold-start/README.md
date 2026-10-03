@@ -1,6 +1,6 @@
 # E-007 — Cold-start test: can a fresh agent name what to build first and write its failing test?
 
-**Status:** running (test 1 run: not passed; test 2: rules committed, squillo iteration 97) · **Serves:** `squillo/VISION.md` §9 (the first slice,
+**Status:** running (tests 1 and 2 run: neither passed) · **Serves:** `squillo/VISION.md` §9 (the first slice,
 specified end to end so it can be built) · **For:** squillo `PLAN.md` §1
 (Phase 0's end), §10 Stage E (the cold-start test), §11 (two passes in
 independent fresh sessions); review R-18 §8, iteration 94
@@ -164,3 +164,78 @@ included"):
 Checklist items applied (squillo-lab `README.md`): C14 (these rules
 committed before the run), and *A test that measures nothing* for what
 binds the subagent's test.
+
+## Result (test 2, squillo iteration 97)
+
+**Not passed: the subagent logged 4 points; read against the snapshot,
+3 are guesses and 1 is settled; tracing its test (rule 4) added none.**
+It named what ADR 0023 names, and its test fails as rule 3 and ADR 0023
+(*Which failure counts*) ask. Test 1's ten guesses did not recur.
+
+*Run.* Snapshot by `run/snapshot.sh a0ffea5 34500bb test2`; subagent
+(general-purpose, foreground, fresh context, the iteration's own model,
+Opus 5.5) given `run/prompt-test2.md` verbatim (sha256 `b804231c…58a18`
+of the file as committed in `0afe183`); 21 tool uses, 263 s. Its write
+to `/tmp/e007/report.md` was refused by the harness again, as in test 1,
+so its reply's report text is saved unchanged as
+[`results/report-test2.md`](results/report-test2.md).
+
+*What to build first* (rule 6): `signal` SG-002's *One second gives 125
+frames* on `fixtures/signal/sine-220hz.wav`, then ADR 0023's order. It
+read it in ADR 0023 (*Decision outcome*, the step table, *The first
+test's frame*), `PLAN.md` §10, the `signal` spec, the manifest and the
+lab's `README.md`. Same as ADR 0023.
+
+*The failing test* (rule 3): [`test2/`](test2/), a Rust package
+`signal` whose `src/lib.rs` has the interface ADR 0023 shapes with
+nothing behind it (`Stream::new`, `push_block(&[f32; 128])`,
+`frames() -> &[Frame]`), and one integration test,
+`tests/sg_002.rs`, `sg_002_one_second_gives_125_frames`; `cd test2 &&
+cargo test --offline`. Three checks of its inputs run first, each on a
+must-pass and a must-fail input (C10): one manifest row names the
+fixture (must-fail: the row written twice), the SHA-256 against that row
+(must-fail: the last byte's lowest bit flipped), and the layout from the
+manifest's stated sizes (must-fail: format tag 1). Then `assertion left
+== right failed: THEN exactly 125 frames result, frame 0 to frame 124,
+left: 0, right: 125` at `tests/sg_002.rs:192`. Re-run here against the
+real repositories (rule 7): the same failure, exit 101. With a throwaway
+framing (a frame appended once 384 more samples have arrived) in a
+`/tmp` copy, it passes, 1 of 1, so it fails only for want of the product
+code; the copy was deleted.
+
+*Rule 4 trace.* Every constant in the test traces to a line of the
+snapshot: the fixture's path and 125, 124, 47 616, 47 999 and 992 to
+SG-002's scenario (`openspec/specs/signal/spec.md` lines 19 to 23); 128
+to SG-001 (line 9); the layout's values (18, 3, 1, 48 000, 32, 0, 4,
+48 000, the 4-byte name and length, `RIFF`, `WAVE`, little-endian) to
+`fixtures/MANIFEST.md` *Signal fixtures* (lines 84 to 94), the offsets
+computed from them; the digest read from the manifest row at run time
+(ADR 0023, F-082); `sha2 =0.11.0`, edition 2021, the interface's names
+and `u64`, the integration test and its file name stated free by ADR
+0023 (*The first test's frame*); the must-fail edits the experiment's
+own choice (lab `README.md` C10, lines 81 to 82). What traces to none is
+among its logged points (`SQUILLO_ROOT`, the `../../..` anchor, the
+one-row check). **No unlogged guess.**
+
+*The logged points*, read against the snapshot (test 2's *Pass* rule):
+
+| # | Point (`results/report-test2.md`) | Reading | squillo finding |
+| ---: | :--- | :--- | :--- |
+| 1 | An environment variable, named `SQUILLO_ROOT` | **Guess.** *Where squillo is* (lab `README.md` lines 259 to 266) allows "an argument or environment variable" but names neither and does not say the name is free; `cargo test` passes no argument to a test naturally | F-087 |
+| 2 | The lab's root found as `CARGO_MANIFEST_DIR/../../..` | **Guess.** The same lines say the default is "resolved from the repository's root, never from the experiment's own folder"; a compiled test with no `.git` has no other anchor than its own folder or the working directory, and the README says neither. The rule as written cannot be met literally by a cargo test | F-088 |
+| 3 | Where the must-fail inputs are recorded | **Settled, over-logged.** C10 (lines 81 to 82) records them in the experiment's README, and *A test that measures nothing* (lines 143 to 146) gives that README to the iteration, not the test; the subagent reported them, which is all that falls to it | none |
+| 4 | Exactly one manifest row names the fixture, checked with a must-fail | **Guess.** ADR 0023 step 1 says "its row", and no line says a fixture has one row; the guard workflow checks every row's hash and that every file is listed, not that a path is listed once | F-089 |
+
+Guesses 1 and 2 are one paragraph of this repository's `README.md`
+written for a script (E-002's `r7_inputs.py`) and read by a compiled
+test; 4 is the manifest's. None concerns what a requirement says, and
+none is about the engine: the interface, harness, crate, failure and
+hash that test 1 had to guess were all read as settled or free.
+
+*Limits.* One session, one model (Opus 5.5, as test 1), one prompt; a
+guess list is a self-report, checked by the trace and by reading each
+point against the snapshot. The snapshot's squillo names test 1's
+guesses (`docs/process/findings.md`, F-077 to F-086), which the subagent
+read as background; a real implementer would read them too. The
+snapshot has no `.git` (guess 2 depends on it: in a clone, git could
+name the root).
