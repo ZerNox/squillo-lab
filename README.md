@@ -238,6 +238,11 @@ from here or from cited literature, never from nowhere.
 - **Rust / WASM**: Rust stable with the `wasm32-unknown-unknown` target and
   `wasm-bindgen-cli`, in `~/.cargo`. Installed by [`prereqs.sh`](prereqs.sh),
   which the squillo runner runs before every iteration.
+  A cargo or npm folder's build output is never committed: `.gitignore`
+  covers `experiments/*/wasm/target*/`, `experiments/*/test*/target/` and
+  `node_modules/`; a new folder of either kind is covered there before its
+  first build, and `git status --short` is read before `git add` (squillo
+  L-067).
 - **Prerequisites**: [`prereqs.sh`](prereqs.sh) installs everything the lab
   needs for the current user only, never with sudo, and skips what is present
   (`--check` only reports). An experiment that needs a new tool adds a step
