@@ -288,7 +288,8 @@ def main():
         "across_targets_vs_native": across,
         "timing": timing,
     }
-    OUT.write_text(json.dumps(res, indent=1))
+    # revision 1: numpy scalars (a numpy bool from a check) written as Python values
+    OUT.write_text(json.dumps(res, indent=1, default=lambda o: o.item()))
     print("checks", checks)
     print("H1", res["H1"]["holds"], "H2", res["H2"]["holds"])
     for k, v in epsilon.items():
