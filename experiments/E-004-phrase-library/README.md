@@ -1090,6 +1090,90 @@ or no such page, closes F-060 with that reason. The same edition's
 Welsh airs with words are a folk route where a second transcription
 exists.
 
+## Round 6 (squillo iteration 86): the anthem read in a dated edition
+
+**Question.** squillo F-060, after round 5 and its fold (ADR 0005, *A
+manuscript is not an edition*): does the first line of *Hen Wlad Fy
+Nhadau* as printed in John Owen's *Gems of Welsh Melody* (Isaac Clarke,
+Ruthin, first series 1860) match Mutopia 1017's 12 notes, in pitch and in
+rhythm? A match lets the phrase ship with a dated edition behind the form
+sung; a mismatch, or no readable page, closes F-060 with that reason.
+
+**Rules, written and committed before anything is fetched** (`round6.py`).
+
+1. *The reference, named first* (S16). The scan IMSLP lists for *Gems of
+   Welsh Melody (Owen, John)* (British Library, shelfmark G.374, both
+   series, "Isaac Clarke, Ruthen, 1860, 1861"; IMSLP page revision
+   4109419; the file's sha1 `5d0165ca…` as IMSLP's API gives it, read
+   2026-10-03). It is served if the download is a PDF with that sha1. If
+   it is not, that is recorded as its outcome (S16: a file listed and not
+   served is an outcome, not an error retried), and the reference is the
+   Internet Archive item `gems-of-welsh-melody` (dated 1860, "First and
+   Second Series", its file `Gems of Welsh Melody.pdf`, checked against
+   the item's own md5). Only one is read; the two are never compared and
+   the better never chosen.
+2. *The page.* The first page, in the scan's order, whose OCR text
+   (`pdftotext`, page by page) matches `hen wlad` or `land of my fathers`,
+   rendered at 200 dpi with the page after it; the reader confirms the
+   printed title. If the OCR names no page, the agent finds it by eye
+   among the rendered pages and records its number before any reading.
+3. *What is compared.* The voice part of verse 1's first line, from its
+   first syllable to the syllable that ends the line as printed, with
+   every note under those syllables (a slur's notes included), read as
+   pitch names with octave (C4 middle C) and durations in quarter notes;
+   with the clef, key signature and time signature as printed. Against
+   round 5's extraction of Mutopia 1017 (`r5-posthoc-anthem.json`: 12
+   notes, E♭4 G4 F4 E♭4 B♭4 A♭4 G4 E♭5 E♭5 C5 D5 E♭5).
+4. *How the reading stays blind.* This session has read Mutopia's notes
+   (round 5's results), so its own reading is not blind. The **reading
+   of record** is made by a fresh subagent (S20: in the foreground) that
+   is given only the rendered page images under `/tmp/r6-read/` and these
+   instructions, and is told to read no other file; it does not see
+   Mutopia's notes. It writes `results/r6-reading-blind.json`. The
+   agent's own reading is written to `results/r6-reading-agent.json`
+   before the blind reading is opened. Both, and the reader check (rule
+   5), are committed before `compare` runs. If the two readings differ in
+   any note, a second fresh subagent reads the same page
+   (`r6-reading-third.json`), and the reading two of the three agree on
+   is the record; if no two agree, there is no reading of record. A
+   reader may still know the familiar modern form of the anthem from
+   memory: that is what rule 5 checks.
+5. *The reader check* (S15, C10). A third fresh subagent is given two
+   scores LilyPond renders under `/tmp/r6-check/` (never beside the pages),
+   with no title or words, labelled A and B: (i) Mutopia 1017's 12 notes, and (ii) the same with one pitch
+   moved (index 5, A♭4 to B♭4) and one bar's rhythm changed (indices 1–3,
+   quarters to eighth, eighth, half). It must read both exactly
+   (`same`: count, sounding pitch, duration). (ii) is the case a reader
+   who reads from memory, not from the page, fails. If the check does
+   not hold, the verdict is `reader check failed`, and nothing ships.
+6. *The year.* Read from the scan's title page as printed (the first six
+   pages are rendered for it); none printed is recorded, and the year is
+   then the catalogues' (IMSLP's and the Archive's 1860), said to be so.
+7. *The comparison:* round 1's `compare` (`run.py` line 348), as round
+   2 used it: pitch exact (every interval, transposition removed), rhythm
+   exact (every inter-onset interval within 2 % after one overall scale),
+   and the same note count. Its own check runs and is asserted before any
+   reading is compared: round 2's `self_check` on Mutopia's notes (must
+   pass; one pitch moved fails; one duration doubled fails), and rule
+   4's agreement test (Mutopia's notes against themselves pass, against
+   score (ii) fail).
+8. *Verdict.* `match`: a reading of record, the reader check holds, and
+   the record matches in pitch, rhythm and count. Otherwise `mismatch`,
+   `no reading of record` or `reader check failed`. The notes that differ
+   are listed (`note_diff`), which decides nothing. Whether the phrase
+   ships is the fold's (squillo iteration 87).
+
+*Time (S19).* A run of requests: IMSLP's file (one request), the
+Archive's metadata and its 66 MB PDF (two requests), each cached;
+`pdftotext` on each page and `pdftoppm` on about eight, seconds each. The
+readers are three subagents of a few minutes each.
+
+```
+uv run python round6.py fetch     # -> results/r6-fetch.json, page images in /tmp/r6-read/
+uv run python round6.py render    # the reader check's two scores -> /tmp/r6-check/score-{A,B}.png, results/r6-check-scores.json
+uv run python round6.py compare   # -> results/r6-compare.json
+```
+
 ## Needs a human
 
 15 minutes, headphones, no microphone.
