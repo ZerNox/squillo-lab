@@ -1022,9 +1022,6 @@ hold.
 The check `checkkeys.py` gained after this round (squillo L-066) flags
 `r7_inputs.py`'s `json.dumps` of `sets.json` (line 211), which has no
 `default=`; that write completed, and the script is left as it ran.
-The check `checkkeys.py` gained after this round (squillo L-066) flags
-`r7_inputs.py`'s `json.dumps` of `sets.json` (line 211), which has no
-`default=`; that write completed, and the script is left as it ran.
 
 **Result** (`results/r7.json`; 195 inputs, 350.9 s of audio, **43 268
 frames**: fixtures 1342, tones 20 008, VocalSet 21 918; 38 015 of them
