@@ -1,6 +1,6 @@
 # E-007 — Cold-start test: can a fresh agent name what to build first and write its failing test?
 
-**Status:** running (test 1 of 2 run: not passed) · **Serves:** `squillo/VISION.md` §9 (the first slice,
+**Status:** running (test 1 run: not passed; test 2: rules committed, squillo iteration 97) · **Serves:** `squillo/VISION.md` §9 (the first slice,
 specified end to end so it can be built) · **For:** squillo `PLAN.md` §1
 (Phase 0's end), §10 Stage E (the cold-start test), §11 (two passes in
 independent fresh sessions); review R-18 §8, iteration 94
@@ -133,3 +133,34 @@ in the test. R-19 fixed F-083 to F-086 (this repository's `README.md`
 `a7d1417`; squillo's `fixtures/MANIFEST.md`, the offsets); F-077 to
 F-082 are folded into squillo ADR 0023 in iteration 96, before test 2's
 snapshot is made.
+
+## Rules for test 2 (squillo iteration 97, committed before the run)
+
+Test 2 is test 1's rules 1 to 7, unchanged, with these differences only
+(squillo R-19 §8: "the same prompt and rules as test 1, rule 4's trace
+included"):
+
+- **Snapshot.** `run/snapshot.sh a0ffea5 34500bb test2`: squillo at
+  `iteration-96` (`a0ffea5`, after test 1's fold into ADR 0023) and this
+  repository at `34500bb`, the commit before test 2's rules. The E-007
+  folder is still removed. `INDEX.md`'s E-007 row is not: squillo's
+  `STATUS.md` and `docs/process/findings.md` name test 1 and its guesses
+  at that revision anyway, and hiding one copy of a fact the other
+  repository states would hide nothing. The script's old check that the
+  INDEX names no E-007 is replaced by a check that the folder is gone.
+- **Prompt.** [`run/prompt-test2.md`](run/prompt-test2.md): test 1's
+  prompt with `test1/` replaced by `test2/` in step 2, nothing else.
+- **Pass** (test 1's rule 5, as squillo `PLAN.md` rev 40 reads it): a
+  logged point is a guess unless a line of the snapshot settles it or
+  states it as the implementer's free choice. The iteration reads each
+  logged point against the snapshot and records which it is, with the
+  line; a point that one of them answers is not counted, and is recorded
+  as the subagent's over-logging. Every value in the test is still traced
+  (rule 4).
+- **Fresh session.** A new subagent, started in the foreground with no
+  context but the prompt; not the session that ran test 1, and not one
+  that has seen this README.
+
+Checklist items applied (squillo-lab `README.md`): C14 (these rules
+committed before the run), and *A test that measures nothing* for what
+binds the subagent's test.
