@@ -75,10 +75,23 @@ def current_state_texts(root):
     yield root / "STATUS.md", t[:m.start()] if m else t
 
 
+def awaiting(p, text):
+    """The span of STATUS.md's *Awaiting Joakim's final review*, where every list of the iterations
+    an ADR was revised in restates its status (squillo L-064, R-17), whatever its sentence says."""
+    if p.name != "STATUS.md":
+        return (0, 0)
+    m = re.search(r"^## Awaiting.*$", text, re.M)
+    if not m:
+        return (0, 0)
+    e = re.search(r"^## ", text[m.end():], re.M)
+    return (m.start(), m.end() + e.start() if e else len(text))
+
+
 def s4(root, adrs):
     flags = []
     for p, text in current_state_texts(root):
         own = re.match(r"(\d{4})-", p.name)
+        span = awaiting(p, text)
         for m in ADR_REF.finditer(text):
             n = m.group(1)
             if n not in adrs or (own and own.group(1) == n):
@@ -90,6 +103,7 @@ def s4(root, adrs):
                 flags.append((p, line, f"ADR {n} is proposed; this calls it accepted: {w!r}"))
             r = iters(w)
             states = re.search(r"\b(accepted|proposed|back to|so back)\b", w)  # a status restated, not a citation
+            states = states or span[0] <= m.start() < span[1]
             if last and r and max(r) < last and states:
                 flags.append((p, line, f"ADR {n} was last revised in iteration {last}; this lists {r}: {w!r}"))
     return flags
@@ -168,17 +182,21 @@ def self_test():
             "Another's status: ADR 0009 (new, amending accepted ADR 0013).\n"
             "Listed in two phrases: ADR 0009 (proposed: revised in iteration 48, and in iteration 53).\n"
             "Across a line: ADR 0009 (proposed: revised in iterations 48 and\n  53).\n")
-        (r / "STATUS.md").write_text("# S\n")
+        (r / "STATUS.md").write_text(
+            "# S\n\nCitation above it: ADR 0009, revised in iteration 48.\n\n## Awaiting Joakim's final review\n\n"
+            "Listed here again: ADR 0009, revised in iterations 48 and 53; ADR 0009, revised in iteration 48.\n\n## Process\n")
         (r / "docs/questions/Q-032.md").write_text(
             "# Q\n\n## Constraint check\n\n| row | options |\n| :- | :- |\n| r1 | none |\n\n## Other\n")
         adrs = {"0009": status((r / "docs/decisions/0009-x.md").read_text())}
         assert adrs["0009"] == ("proposed", 53), adrs
         f4 = s4(r, adrs)
-        lines = sorted(l for _, l, _ in f4)
+        lines = sorted(l for p, l, _ in f4 if p.name == "glossary.md")
         assert lines == [2, 3], ("S4 must pass line 1 and fail lines 2 and 3", f4)
+        st = [(l, msg) for p, l, msg in f4 if p.name == "STATUS.md"]
+        assert len(st) == 1 and st[0][0] == 7 and "lists [48]" in st[0][1], ("STATUS: flag the stale list under Awaiting only", st)
         f6 = s6(r, lambda q: (r / "docs/architecture.md").read_text())
         assert len(f6) == 2 and "1 rows" in f6[0][2] and "none" in f6[1][2], f6
-    print("self-test: S4 passes the good line and the citation and flags both stale ones; S6 flags the short table and the bare 'none'")
+    print("self-test: S4 passes the good line and the citation and flags both stale ones, and under STATUS's Awaiting the stale list alone; S6 flags the short table and the bare 'none'")
 
 
 if __name__ == "__main__":

@@ -196,7 +196,13 @@ no results file holds is written to one or not stated (squillo L-038,
 L-040). A round that reports a quantity under more than one rule (the rule
 in force and the one it proposes) names the rule in every result row that
 gives it, and a fold that adopts a rule cites only the entries computed
-under that rule (squillo L-062).
+under that rule (squillo L-062). An interval, rate or other figure derived
+from counts a results file holds is written to a results file by a
+committed script before it is cited, never computed by hand into a row.
+Before the results commit, and before a squillo commit that carries a lab
+number, the rows that give numbers are piped through `python3
+tools/numbers.py - <results.json>...`, and each flag is fixed or read and
+listed (squillo L-063).
 
 **A result is a number with its conditions.** State what was measured, on what
 input, with which tool versions, and the uncertainty. "Works well" is not a
@@ -235,12 +241,18 @@ from here or from cited literature, never from nowhere.
   (`--check` only reports). An experiment that needs a new tool adds a step
   there and commits it with the experiment.
 - **squillo's own checks**: `python3 tools/restatements.py <squillo>` flags
-  restatements of an ADR's status that disagree with its header (S4) and
+  restatements of an ADR's status that disagree with its header, among them
+  every revision list under `STATUS.md`'s *Awaiting Joakim's final review*
+  (S4; squillo L-064), and
   constraint tables that miss a `docs/architecture.md` §2 row or say "none"
   with no reason (S6); `--self-test` runs its must-pass and must-fail cases.
   A lead, not proof (squillo L-049). `python3 tools/checkkeys.py <script>
   <results.json>...` flags a missing committed-first guard and check keys
   neither asserted nor listed as recorded (S15, checklist C16 to C18; squillo L-051).
+  `python3 tools/numbers.py <text or -> <results.json>...` flags each decimal
+  number in a text that no results file given holds, as written, as a
+  percentage or rounded either way; integers are not read (S18; squillo
+  L-063). A lead, not proof: a number can match another value by chance.
 - **GPU**: an Intel Arc A770M, which stands in for the remote tier and not for
   a singer's device. Read [`COMPUTE.md`](COMPUTE.md) before timing anything on
   it.
