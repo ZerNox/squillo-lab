@@ -356,3 +356,18 @@ prompt; a guess list is a self-report, checked by the trace and by
 reading each point against the snapshot. The snapshot's squillo names
 tests 1 and 2 and their guesses (findings F-077 to F-089, ADR 0023's
 fold notes), which the subagent cited as background.
+
+## Review note (squillo R-20, iteration 100)
+
+For test 4 (squillo R-20 §8, iteration 101): R-20 fixed F-090 in this
+repository's `README.md`, *Where squillo is*: the rule against the
+working directory is for the default only; a relative value of
+`SQUILLO_ROOT` or a script's argument is read as given, against the
+working directory of the process that reads it, and an experiment that
+must not depend on where it runs gives an absolute value. R-20 re-ran
+test 3's crate against the repositories (`cargo test`, its target in
+`/tmp`): it fails on SG-002's THEN, 0 frames of 125, exit 101, as
+recorded. Test 4 runs on a new snapshot after R-20, with test 3's
+prompt and rules and `test4/` for `test3/`; it is the first of the two
+passes `PLAN.md` §11 needs if it logs no guess the snapshot does not
+settle or state as free.

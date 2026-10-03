@@ -267,6 +267,11 @@ from here or from cited literature, never from nowhere.
   The root is found from the code's own path, never from git (a snapshot
   has no `.git`) or the working directory: a script from its own file, a
   compiled test from its crate's folder (`CARGO_MANIFEST_DIR` for cargo).
+  That rule is for the default only. A relative value of the variable or
+  the argument is read as given, as any path is, against the working
+  directory of the process that reads it; an experiment that must not
+  depend on where it runs gives an absolute value, and its README says
+  which it used (squillo F-090, R-20).
   An experiment's folder is `experiments/E-nnn-name/`, two folders below
   the root, so a crate in its own folder under it, such as a cold-start
   test's `test2/`, is three below (`CARGO_MANIFEST_DIR/../../..`). The
