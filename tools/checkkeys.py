@@ -13,6 +13,9 @@ For one experiment script and the results files it writes:
    "recorded, not asserted" in a line that names the key.
 3. Keys named `pass`/`passes`/`ok` are listed, not flagged: they may be a check or a bar's
    outcome, which is the result itself; the README says which.
+4. Every `json.dump`/`json.dumps` call names a `default=`, so a numpy scalar among the results
+   cannot stop the write after the run has passed its checks (squillo L-066: E-002 rounds 6
+   and 7 each needed a second run for a numpy bool).
 
 Crude lab tooling, stdlib only. A clean run means the names are there, not that each assert
 asserts the right thing: it is a lead, never a substitute for reading the check (S15). It reads
@@ -74,12 +77,27 @@ def readme_recorded(script):
                      if re.search(r"recorded,? not asserted", l, re.I))
 
 
+def bare_json_dumps(src):
+    """Each json.dump(s) call whose parentheses hold no `default=`, by line number."""
+    out = []
+    for m in re.finditer(r"json\.dumps?\(", src):
+        i, depth = m.end(), 1
+        while depth and i < len(src):
+            depth += {"(": 1, ")": -1}.get(src[i], 0)
+            i += 1
+        if "default=" not in src[m.end():i]:
+            out.append(src.count("\n", 0, m.start()) + 1)
+    return out
+
+
 def audit(script, results, src=None, readme=None):
     src = Path(script).read_text(encoding="utf-8") if src is None else src
     readme = readme_recorded(script) if readme is None else readme
     flags, info = [], []
     if not ("ls-files" in src and "--error-unmatch" in src and "diff" in src and "--quiet" in src):
         flags.append("no committed-first guard (git ls-files --error-unmatch and git diff --quiet)")
+    for ln in bare_json_dumps(src):
+        flags.append(f"json.dump without default= at line {ln}: a numpy scalar stops the write (L-066)")
     names = asserted_names(src)
     for r in results:
         for k in sorted(keys(r)):
@@ -120,7 +138,13 @@ for k in ("a_must_fail", "b_must_fail"):
     assert not f, f
     f, _ = audit("x.py", [r5], sub.replace('assert out["c5"]["passes"]', 'print(out)'), "")
     assert f == ["check key not asserted and not listed as recorded: must_pass_harm"], f
-    print("self-test: 7 of 7 cases as expected")
+    # must pass: a json.dumps naming default=; must fail: the same call without it
+    js = good + 'out.write_text(json.dumps(res, indent=1, default=lambda o: o.item()))\n'
+    f, _ = audit("x.py", [res], js, "")
+    assert not f, f
+    f, _ = audit("x.py", [res], js.replace(", default=lambda o: o.item()", ""), "")
+    assert len(f) == 1 and "json.dump without default=" in f[0], f
+    print("self-test: 9 of 9 cases as expected")
 
 
 if __name__ == "__main__":

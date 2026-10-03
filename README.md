@@ -125,13 +125,15 @@ principle.
   <results.json>...`** in a command of its own, and read its output
   before the README's check paragraph is written and before the results
   commit; never chain it to the commit (squillo L-059). It flags a script
-  with no committed-first guard and a check key neither asserted by name
-  nor listed as recorded; each flag is fixed, or read by hand and listed
+  with no committed-first guard, a check key neither asserted by name
+  nor listed as recorded, and a `json.dump` with no `default=`, which
+  lets a numpy scalar stop the results write after the run (squillo
+  L-066); each flag is fixed, or read by hand and listed
   in the README with why (it reads names, not data flow).
 - **C19.** The README reports the checks' numbers.
 
 (S15's lessons: squillo L-024, L-026, L-028, L-030, L-031, L-032, L-034,
-L-036, L-041, L-046, L-047, L-048, L-049, L-051, L-054 to L-059, L-061.)
+L-036, L-041, L-046, L-047, L-048, L-049, L-051, L-054 to L-059, L-061, L-066.)
 
 **Name the reference before comparing** (squillo standing instruction S16).
 A check against an outside source names its reference item in advance: the
@@ -248,7 +250,8 @@ from here or from cited literature, never from nowhere.
   with no reason (S6); `--self-test` runs its must-pass and must-fail cases.
   A lead, not proof (squillo L-049). `python3 tools/checkkeys.py <script>
   <results.json>...` flags a missing committed-first guard and check keys
-  neither asserted nor listed as recorded (S15, checklist C16 to C18; squillo L-051).
+  neither asserted nor listed as recorded (S15, checklist C16 to C18; squillo L-051),
+  and a `json.dump` with no `default=` (squillo L-066).
   `python3 tools/s4hits.py <base-rev> <term>...` makes S4's hit list from
   the search's own output in both repos: each hit `IN DIFF`, `NOT IN DIFF`
   or a `RECORD` (ledger rows, reviews); every `NOT IN DIFF` hit is fixed or
