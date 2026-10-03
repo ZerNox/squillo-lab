@@ -1,6 +1,6 @@
 # E-002 — Measurement reliability and uncertainty
 
-**Status:** answered (round 1, pitch, answered on synthetic input; round 2, real voices, pitch ± and four aspects, squillo iteration 28; round 3, octave errors and reverberation, squillo iteration 36; fold 3, the steadying ladder, squillo iteration 42; round 4, the ring ratio on repeated material, squillo iteration 49, whose separate-takes step is `needs-human`; round 5, held notes trimmed to their measured cells and the next step against blocks, squillo iteration 78; round 6, a fixture that tells trimmed pieces from untrimmed ones, squillo iteration 88; a real room is E-003's `needs-human` step, an amateur's voice E-005's) · **Serves:** VISION §5 (what is measured), §6 (honesty), §12.2
+**Status:** answered (round 1, pitch, answered on synthetic input; round 2, real voices, pitch ± and four aspects, squillo iteration 28; round 3, octave errors and reverberation, squillo iteration 36; fold 3, the steadying ladder, squillo iteration 42; round 4, the ring ratio on repeated material, squillo iteration 49, whose separate-takes step is `needs-human`; round 5, held notes trimmed to their measured cells and the next step against blocks, squillo iteration 78; round 6, a fixture that tells trimmed pieces from untrimmed ones, squillo iteration 88, folded in 89; a real room is E-003's `needs-human` step, an amateur's voice E-005's) · **Serves:** VISION §5 (what is measured), §6 (honesty), §12.2
 
 ## Question
 
@@ -916,8 +916,10 @@ the two rules apart in a way a test sees, two held notes against one and
 would name (held notes 3 to 324 and 337 to 658, blocks 65 to 189 and 399
 to 523) did not move under offsets up to 1 cent per cell, against a
 float32 tracking that differs by at most 0.0020 cents (D3) and ADR
-0007's host epsilon of 0.0082. A squillo fold can add it under
-`fixtures/metrics/` with an MT-009 scenario (squillo iteration 89).
+0007's host epsilon of 0.0082. Folded in squillo iteration 89
+(change `fold-two-notes-gap`): the file, byte for byte and regenerated
+identical at `1c8f7f0`, is `fixtures/metrics/two-notes-gap.wav`, and
+MT-009's scenario on it names those frames and `steadiness` measured.
 
 **Limits.** One tracker (numpy YIN at squillo's frame axis); the WASM
 targets' epsilon is unmeasured (squillo Stage E, iterations 92 and 93),
