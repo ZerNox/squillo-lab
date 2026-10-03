@@ -1400,7 +1400,7 @@ told "too few of the phrase's notes were found" when it sang them all,
 against a spread shown that may be false on a partial take.
 
 **Limits.** Synthetic voices and round 2's error model; 40 takes a cell (a
-cell at 3 of 40 is 7.5 %, Wilson 95 % 2.6–19.9 %); the partial modes are
+cell at 3 of 40 is 7.5 %); the partial modes are
 contiguous blocks and fixed groupings, not what singers do; one tone at
 the first written note only; the 39 shipped phrases are not rendered here;
 the cost on real takes is from round 5's 117, trained singers' scales and
