@@ -78,6 +78,9 @@ principle.
   before any bar's outcome or hypothesis's result is computed, and no
   assertion message carries one**, so a check revised after a stop is
   revised unseen (squillo L-061, E-002 round 5's revisions 2 and 3).
+  Which must-fail input meets this is the experiment's own choice, made
+  by these rules and recorded in its README with the term it moves; no
+  list fixes it (squillo F-086, R-19).
 - **C11.** A pass bar or a selection rule written before a run is a check
   too: it is applied first to the reference condition that must pass it
   (such as clean input on the fitting fold) and to one that must fail it.
@@ -131,6 +134,16 @@ principle.
   L-066); each flag is fixed, or read by hand and listed
   in the README with why (it reads names, not data flow).
 - **C19.** The README reports the checks' numbers.
+
+*A test that measures nothing.* A cold-start test's failing test (squillo
+`PLAN.md` §10 Stage E, E-007) measures no number and writes no results
+file. Inside the test, C5, C7 and C10 bind each check it makes of its own
+inputs (a fixture's hash, a file's layout): each runs on a must-pass and a
+must-fail input before the scenario's assertion. C1 to C4, C11 to C13 and
+C15 to C19 do not apply to it. C14 binds the experiment, not the test:
+the iteration that runs the cold-start session commits its rules before
+the run and writes the README; the test itself needs no guard, README or
+results of its own (squillo F-084, R-19).
 
 (S15's lessons: squillo L-024, L-026, L-028, L-030, L-031, L-032, L-034,
 L-036, L-041, L-046, L-047, L-048, L-049, L-051, L-054 to L-059, L-061, L-066.)
@@ -243,6 +256,14 @@ from here or from cited literature, never from nowhere.
   `node_modules/`; a new folder of either kind is covered there before its
   first build, and `git status --short` is read before `git add` (squillo
   L-067).
+- **Where squillo is**: the two repositories are checked out side by side,
+  `squillo/` and `squillo-lab/` in one parent folder, so squillo is
+  `../squillo` from this repository's root. An experiment that reads
+  squillo's files (fixtures, specs) takes squillo's root as an argument
+  or environment variable, defaulting to that path resolved from the
+  repository's root, never from the experiment's own folder, and states
+  the default in its README (squillo F-083, R-19; E-002's `r7_inputs.py`
+  takes it as an argument).
 - **Prerequisites**: [`prereqs.sh`](prereqs.sh) installs everything the lab
   needs for the current user only, never with sudo, and skips what is present
   (`--check` only reports). An experiment that needs a new tool adds a step
