@@ -1,6 +1,6 @@
 # E-002 — Measurement reliability and uncertainty
 
-**Status:** answered (round 1, pitch, answered on synthetic input; round 2, real voices, pitch ± and four aspects, squillo iteration 28; round 3, octave errors and reverberation, squillo iteration 36; fold 3, the steadying ladder, squillo iteration 42; round 4, the ring ratio on repeated material, squillo iteration 49, whose separate-takes step is `needs-human`; round 5, held notes trimmed to their measured cells and the next step against blocks, squillo iteration 78; a real room is E-003's `needs-human` step, an amateur's voice E-005's) · **Serves:** VISION §5 (what is measured), §6 (honesty), §12.2
+**Status:** answered (round 1, pitch, answered on synthetic input; round 2, real voices, pitch ± and four aspects, squillo iteration 28; round 3, octave errors and reverberation, squillo iteration 36; fold 3, the steadying ladder, squillo iteration 42; round 4, the ring ratio on repeated material, squillo iteration 49, whose separate-takes step is `needs-human`; round 5, held notes trimmed to their measured cells and the next step against blocks, squillo iteration 78; round 6, a fixture that tells trimmed pieces from untrimmed ones, squillo iteration 88; a real room is E-003's `needs-human` step, an amateur's voice E-005's) · **Serves:** VISION §5 (what is measured), §6 (honesty), §12.2
 
 ## Question
 
@@ -843,6 +843,88 @@ arithmetic, not a measured cause.
 alone before its run, and 0 with `results/r5_add.json`. `A0_must_pass`
 and `A0_must_fail` are asserted; `prediction_no_two_blocks` is a
 prediction, recorded, true.
+
+### Round 6: a fixture that tells trimmed pieces from untrimmed ones (squillo iteration 88, F-075)
+
+**Question.** Round 5's T3 found no squillo fixture on which MT-009's
+trimmed pieces (squillo iteration 79) and the untrimmed ones give
+different held notes, so an implementer who kept the old rule would pass
+every MT-009 scenario. Is there a short generated tone, round 5's
+constructed case P made into samples, that tells them apart, robustly to
+the tracker's arithmetic?
+
+**Run:** `uv run python r6_fixture.py <squillo>` ->
+`results/r6_fixture.json` and `results/r6/two-notes-gap.wav`, in a few
+seconds; then `uv run python r6_posthoc.py <squillo>` (4 s) -> `results/r6_posthoc.json`.
+The fixture's formula, conditions K1 to K4, the selection rule for the
+silence's length, the hypothesis H, the robustness check R1 and the
+checks' must-fail inputs are in the script's docstring, committed before
+any run (`ec38f04`). **Revision 1** (`7a94e25`): the first run stopped
+writing the results file on a numpy bool after every assertion had
+passed and before anything was printed; no rule changed. The post hoc
+script was written after the results were read and committed before it
+ran (`378075f`); it is counted apart.
+
+**The fixture.** Mono, 48 kHz, IEEE float 32-bit (fold 2's writer):
+0.5 sin(2π · 220 · *n* / 48000) for 124 800 samples (2.6 s), then 384 *m*
+samples of 0, then 0.5 sin(2π · 220 · 2^(2/12) · *n* / 48000), *n* from
+0 again, for 124 800 samples: A3, silence, B3, 200 cents apart. The
+selection rule takes the least *m* in 1 to 16 for which K1 to K4 hold:
+both tones inside E2 to C6 and peak at most 1 (K1); every frame whose
+pitch window holds one tone only measured (K2); the frames not measured
+one stretch of at most 12, so the take is one run (K3); the last cut,
+where the piece holding the second tone begins, on a frame not measured
+with a frame not measured either side (K4). *m* = 1 to 8 met K1 to K3 but
+not K4; **m = 9** met all four: 3456 samples of silence, 253 056
+samples (5.272 s) in all, sha256
+`2c00ad4d861ef889dbdef6e489fcf553a3cb73b988a43c642376f6125e5678fd`.
+
+**Checks (S15; C1, C3, C10, C11, C14 to C18 applied).** K1 to K4 are
+asserted on the file as written and read back. Each check ran on the
+fixture (must pass) and on an input that differs in what it reads (must
+fail), all before H was computed: K3 fails at *m* = 20 (one stretch, frames
+326 to 347); K4 and the finders' difference fail on Q, the same
+silence moved 100 frames into the second tone (the last cut, frame 331,
+is measured; both finders give the same two held notes, 3 to 320 and 331
+to 658; Q also fails K3, since its clean step refuses frames 326 and 327,
+whose windows hold both tones, a second stretch beside the silence's 426
+to 436); R1 (float32 tracking gives every cell the same state and both
+finders the same held notes' first and last frames and measured cells,
+from which the blocks' frames follow) fails when the fixture's float64
+states are compared with Q's float32 ones. Round 5's identities
+(untrimmed equals `fold2.held_notes`; every untrimmed held note is a
+trimmed one) are asserted on all three inputs. `tools/checkkeys.py`:
+0 flags on each script alone before its run; with the results, 1 flag on
+each, `checks`, the object that holds the asserted keys (each of its
+members is asserted by name), read by hand.
+
+**Result** (`results/r6_fixture.json`; numpy YIN, the MT-003 table of
+`fold2.json`, MT-009 to MT-011's constants as squillo states them).
+
+| # | Question | Result (conditions; uncertainty) |
+| :--- | :--- | :--- |
+| K | The cells | Frames 3 to 658; not measured: frames **326 to 336**, one stretch, every other frame measured. The cut across the step forms one-frame pieces, cut at frames 325 to 335; the last, where the second tone's piece begins, is frame 335, not measured |
+| H | Trimmed against untrimmed (MT-009 as stated, and as before iteration 79) | **H holds.** Trimmed: **two held notes, frames 3 to 324 and 337 to 658**, one block each (**65 to 189** and **399 to 523**), so `steadiness` is measured (2.2 × 10⁻⁶ cents, standard *u* 0.18, 2 blocks) and `vibrato-extent` too (0.00024 cents, *u* 1.11); `vibrato-rate` unmeasurable. Untrimmed: **one held note, frames 3 to 324**, one block (65 to 189), so `steadiness`, `vibrato-extent` and `vibrato-rate` are each unmeasurable |
+| R1 | float32 tracking | Same cell states, same held notes under both finders |
+| D1 | Post hoc: how near a cut is to moving | The pieces' least distance from the 60-cent threshold is 1.0 cents for the first piece (cut at 325) and 3.9 to 28.7 cents for the one-frame pieces; 0.037 cents for the last piece, which is never cut. That figure includes each piece's first frame, which the cut loop never tests, so it is a lower bound, and no cut lies within it |
+| D2 | Post hoc: every measured cell moved by an independent uniform offset in ±*e* cents, 200 seeds per *e* | *e* = 0.0082 (ADR 0007's host epsilon), 0.037, 0.1, 0.3 and 1.0: H holds and every held note's and block's frames equal the fixture's on **200 of 200** under both finders. *e* = 3.0: H holds on 200 of 200, the frames equal on 186 of 200 |
+| D3 | Post hoc: float32 against float64 tracking | Largest difference on the measured cells 0.0020 cents (0.0019993) |
+
+**What this says for squillo.** F-075 can be settled: the fixture tells
+the two rules apart in a way a test sees, two held notes against one and
+`steadiness` measured against unmeasurable, and the frames a scenario
+would name (held notes 3 to 324 and 337 to 658, blocks 65 to 189 and 399
+to 523) did not move under offsets up to 1 cent per cell, against a
+float32 tracking that differs by at most 0.0020 cents (D3) and ADR
+0007's host epsilon of 0.0082. A squillo fold can add it under
+`fixtures/metrics/` with an MT-009 scenario (squillo iteration 89).
+
+**Limits.** One tracker (numpy YIN at squillo's frame axis); the WASM
+targets' epsilon is unmeasured (squillo Stage E, iterations 92 and 93),
+and D2's offsets are independent per cell, not the correlated error an
+arithmetic change gives. Silence is the only refusal used; a real glide
+refused for aperiodicity (E-004 round 4's lost notes) is not modelled
+here, round 5 measured that on renderings.
 
 ### Beyond round 3
 

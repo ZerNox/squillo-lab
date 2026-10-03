@@ -1,0 +1,299 @@
+{
+ "rules": "see the docstring",
+ "fixture": {
+  "NA": 124800,
+  "NB": 124800,
+  "FA": 220.0,
+  "FB": 246.94165062806206,
+  "amp": 0.5,
+  "sr": 48000
+ },
+ "selection": {
+  "tried": {
+   "1": {
+    "K1": true,
+    "K2": true,
+    "K3": true,
+    "K4": false
+   },
+   "2": {
+    "K1": true,
+    "K2": true,
+    "K3": true,
+    "K4": false
+   },
+   "3": {
+    "K1": true,
+    "K2": true,
+    "K3": true,
+    "K4": false
+   },
+   "4": {
+    "K1": true,
+    "K2": true,
+    "K3": true,
+    "K4": false
+   },
+   "5": {
+    "K1": true,
+    "K2": true,
+    "K3": true,
+    "K4": false
+   },
+   "6": {
+    "K1": true,
+    "K2": true,
+    "K3": true,
+    "K4": false
+   },
+   "7": {
+    "K1": true,
+    "K2": true,
+    "K3": true,
+    "K4": false
+   },
+   "8": {
+    "K1": true,
+    "K2": true,
+    "K3": true,
+    "K4": false
+   },
+   "9": {
+    "K1": true,
+    "K2": true,
+    "K3": true,
+    "K4": true
+   }
+  },
+  "m": 9
+ },
+ "checks": {
+  "K3_must_pass": true,
+  "K3_must_fail_m20": false,
+  "K4_must_pass": true,
+  "K4_must_fail_Q": false,
+  "differ_must_pass": true,
+  "differ_must_fail_Q": false,
+  "R1_must_pass": true,
+  "R1_must_fail_Q": false
+ },
+ "K": {
+  "K1": true,
+  "K2": true,
+  "K3": true,
+  "K4": true,
+  "unmeasured": [
+   [
+    326,
+    336
+   ]
+  ],
+  "cuts": [
+   325,
+   326,
+   327,
+   328,
+   329,
+   330,
+   331,
+   332,
+   333,
+   334,
+   335
+  ]
+ },
+ "K_m20": {
+  "K1": true,
+  "K2": true,
+  "K3": false,
+  "K4": true,
+  "unmeasured": [
+   [
+    326,
+    347
+   ]
+  ],
+  "cuts": [
+   330,
+   331,
+   332,
+   333,
+   334,
+   335,
+   336,
+   337,
+   338,
+   339,
+   340,
+   341
+  ]
+ },
+ "K_Q": {
+  "K1": true,
+  "K2": false,
+  "K3": false,
+  "K4": false,
+  "unmeasured": [
+   [
+    326,
+    327
+   ],
+   [
+    426,
+    436
+   ]
+  ],
+  "cuts": [
+   321,
+   322,
+   323,
+   324,
+   325,
+   326,
+   327,
+   328,
+   329,
+   330,
+   331
+  ]
+ },
+ "H": {
+  "trimmed_two_notes": true,
+  "untrimmed_one_note": true,
+  "steadiness_measured_trimmed": true,
+  "steadiness_unmeasurable_untrimmed": true,
+  "holds": true
+ },
+ "trimmed": {
+  "held": [
+   {
+    "frames": [
+     3,
+     324
+    ],
+    "blocks": [
+     [
+      65,
+      189
+     ]
+    ]
+   },
+   {
+    "frames": [
+     337,
+     658
+    ],
+    "blocks": [
+     [
+      399,
+      523
+     ]
+    ]
+   }
+  ],
+  "take": {
+   "S": [
+    2.238578353479037e-06,
+    0.17968295078771268,
+    2
+   ],
+   "E": [
+    0.00024216359875772032,
+    1.114921165700867,
+    2
+   ],
+   "R": null
+  }
+ },
+ "untrimmed": {
+  "held": [
+   {
+    "frames": [
+     3,
+     324
+    ],
+    "blocks": [
+     [
+      65,
+      189
+     ]
+    ]
+   }
+  ],
+  "take": {
+   "S": null,
+   "E": null,
+   "R": null
+  }
+ },
+ "Q": {
+  "trimmed": [
+   {
+    "frames": [
+     3,
+     320
+    ],
+    "blocks": [
+     [
+      65,
+      189
+     ]
+    ]
+   },
+   {
+    "frames": [
+     331,
+     658
+    ],
+    "blocks": [
+     [
+      393,
+      517
+     ]
+    ]
+   }
+  ],
+  "untrimmed": [
+   {
+    "frames": [
+     3,
+     320
+    ],
+    "blocks": [
+     [
+      65,
+      189
+     ]
+    ]
+   },
+   {
+    "frames": [
+     331,
+     658
+    ],
+    "blocks": [
+     [
+      393,
+      517
+     ]
+    ]
+   }
+  ]
+ },
+ "margin_cents": 0.03729403102943252,
+ "frames": {
+  "first": 3,
+  "last": 658
+ },
+ "wav": {
+  "path": "results/r6/two-notes-gap.wav",
+  "sha256": "2c00ad4d861ef889dbdef6e489fcf553a3cb73b988a43c642376f6125e5678fd",
+  "samples": 253056,
+  "seconds": 5.272,
+  "gap_samples": 3456,
+  "gap_at": [
+   124800,
+   128256
+  ]
+ }
+}
