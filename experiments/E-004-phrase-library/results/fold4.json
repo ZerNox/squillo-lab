@@ -1,0 +1,303 @@
+{
+ "I2_people": {
+  "Evan James": {
+   "article": "Evan James (poet)",
+   "qid": "Q3061325",
+   "wd_label": "Evan James",
+   "wd_died": [
+    1878
+   ]
+  },
+  "James James": {
+   "article": "James James",
+   "qid": "Q3161184",
+   "wd_label": "James James",
+   "wd_died": [
+    1902,
+    1902
+   ]
+  },
+  "John Owen (Owain Alaw)": {
+   "article": "John Owen (Owain Alaw)",
+   "qid": "Q15486265",
+   "wd_label": "John Owen",
+   "wd_died": [
+    1883
+   ]
+  }
+ },
+ "I2_agree": true,
+ "I2_must_fail_next_person": true,
+ "I2_others": {
+  "John Owen (Owain Alaw)": {
+   "role": "English words and accompaniment, not sung in the phrase",
+   "wd_died": [
+    1883
+   ]
+  }
+ },
+ "I1_item": {
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "hen-wlad-fy-nhadau",
+  "title": "Hên Wlad fy Nhadau",
+  "instructions": "Sing the first line of the song, unaccompanied, at a steady pace.",
+  "genre": "anthem",
+  "language": "cy",
+  "words": "Mae hên wlad fy nhadau yn anwyl i mi,",
+  "melody": {
+   "key": "Eb",
+   "meter": "3/4",
+   "tempo_qpm": 60,
+   "notes": [
+    {
+     "pitch": "Eb4",
+     "quarters": "1"
+    },
+    {
+     "pitch": "G4",
+     "quarters": "1"
+    },
+    {
+     "pitch": "F4",
+     "quarters": "1"
+    },
+    {
+     "pitch": "Eb4",
+     "quarters": "1"
+    },
+    {
+     "pitch": "Bb4",
+     "quarters": "1"
+    },
+    {
+     "pitch": "Ab4",
+     "quarters": "1"
+    },
+    {
+     "pitch": "G4",
+     "quarters": "1"
+    },
+    {
+     "pitch": "Eb5",
+     "quarters": "1"
+    },
+    {
+     "pitch": "Eb5",
+     "quarters": "1"
+    },
+    {
+     "pitch": "C5",
+     "quarters": "1/2"
+    },
+    {
+     "pitch": "D5",
+     "quarters": "1/2"
+    },
+    {
+     "pitch": "Eb5",
+     "quarters": "2"
+    }
+   ]
+  },
+  "content": {
+   "licence": "CC-PDM-1.0",
+   "source": "The first line of verse 1, notes and words, as printed in the edition: John Owen (Owain Alaw), Gems of Welsh Melody, first series, [Second Edition.] (Ruthin: Isaac Clarke), page 18; no year printed, introduction dated July 1860; 1860, 1861 in IMSLP's listing of the British Library copy G.374.(1.), the copy read. Its notes match the Mutopia Project's Public Domain transcription of the composer's manuscript (https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1017) note for note, squillo-lab E-004 rounds 5 and 6. The edition gives no metronome mark (Moderato): the tempo is the transcription's MIDI default. The words keep the print's spelling.",
+   "origin": "public-domain",
+   "provenance": {
+    "words": {
+     "contributors": [
+      {
+       "name": "Evan James",
+       "role": "words",
+       "died": 1878
+      }
+     ],
+     "published_by": 1861,
+     "edition": "John Owen (Owain Alaw), Gems of Welsh Melody, first series, [Second Edition.] (Ruthin: Isaac Clarke), page 18; no year printed, introduction dated July 1860; 1860, 1861 in IMSLP's listing of the British Library copy G.374.(1.), the copy read"
+    },
+    "tune": {
+     "contributors": [
+      {
+       "name": "James James",
+       "role": "music",
+       "died": 1902
+      }
+     ],
+     "published_by": 1861,
+     "edition": "John Owen (Owain Alaw), Gems of Welsh Melody, first series, [Second Edition.] (Ruthin: Isaac Clarke), page 18; no year printed, introduction dated July 1860; 1860, 1861 in IMSLP's listing of the British Library copy G.374.(1.), the copy read"
+    }
+   },
+   "melody_checked_against": "checked against the first line as printed in the edition named in provenance, read in squillo-lab E-004 round 6 (two of three readings agreeing, one of them blind, a reader check holding), matched in pitch and rhythm; the notes are Mutopia 1017's transcription of the composer's manuscript"
+  }
+ },
+ "I3_fixtures": true,
+ "I3_ships": true,
+ "I3_must_fail": true,
+ "I4_block_cases": true,
+ "I4_with": {
+  "files": 44,
+  "accepted": 44,
+  "refused": {},
+  "exercises": 4,
+  "phrases": 40,
+  "origin": {
+   "public-domain": 24,
+   "original": 16
+  },
+  "genres": {
+   "anthem": 1,
+   "blues": 2,
+   "carol": 5,
+   "children": 3,
+   "classical": 8,
+   "country": 2,
+   "folk": 1,
+   "hymn": 4,
+   "jazz": 2,
+   "musical-theatre": 2,
+   "pop": 2,
+   "rock": 2,
+   "song": 2,
+   "soul": 2,
+   "vocalise": 2
+  },
+  "genre_labels": 15,
+  "ship": 40,
+  "rights_fail": {},
+  "offers": 82,
+  "step_exercise": {
+   "own-song": "steadier-own-song",
+   "phrase": "steadier-phrase"
+  },
+  "phrases_with_two_blocks": 11,
+  "rule2_phrase": "fence-line-home",
+  "blocks": {
+   "abide-with-me": 2,
+   "amazing-grace": 0,
+   "apres-un-reve": 1,
+   "blue-umbrella": 0,
+   "dusty-road": 4,
+   "einsamkeit": 0,
+   "engine-roar": 3,
+   "fence-line-home": 6,
+   "frere-jacques": 0,
+   "god-rest-ye-merry": 0,
+   "good-king-wenceslas": 0,
+   "greensleeves": 0,
+   "halfway-home": 4,
+   "hark-the-herald": 0,
+   "held-ah": 6,
+   "hen-wlad-fy-nhadau": 1,
+   "holy-holy-holy": 1,
+   "joy-to-the-world": 0,
+   "kettles-cold": 0,
+   "l-esclave": 0,
+   "lamplighter": 0,
+   "late-train": 3,
+   "le-pays-des-reves": 3,
+   "les-matelots": 0,
+   "les-roses-d-ispahan": 0,
+   "let-the-morning-wait": 4,
+   "o-come-all-ye-faithful": 0,
+   "ode-to-joy": 0,
+   "paper-lanterns": 0,
+   "porch-light": 0,
+   "river-at-dawn": 0,
+   "row-your-boat": 0,
+   "rust-on-the-gate": 0,
+   "sapphische-ode": 0,
+   "silent-night": 0,
+   "slow-scale-ah": 6,
+   "the-spirit-of-god": 0,
+   "the-storm": 0,
+   "twinkle": 0,
+   "when-the-curtain-falls": 5
+  }
+ },
+ "I4_without": {
+  "files": 43,
+  "accepted": 43,
+  "refused": {},
+  "exercises": 4,
+  "phrases": 39,
+  "origin": {
+   "public-domain": 23,
+   "original": 16
+  },
+  "genres": {
+   "blues": 2,
+   "carol": 5,
+   "children": 3,
+   "classical": 8,
+   "country": 2,
+   "folk": 1,
+   "hymn": 4,
+   "jazz": 2,
+   "musical-theatre": 2,
+   "pop": 2,
+   "rock": 2,
+   "song": 2,
+   "soul": 2,
+   "vocalise": 2
+  },
+  "genre_labels": 14,
+  "ship": 39,
+  "rights_fail": {},
+  "offers": 80,
+  "step_exercise": {
+   "own-song": "steadier-own-song",
+   "phrase": "steadier-phrase"
+  },
+  "phrases_with_two_blocks": 11,
+  "rule2_phrase": "fence-line-home",
+  "blocks": {
+   "abide-with-me": 2,
+   "amazing-grace": 0,
+   "apres-un-reve": 1,
+   "blue-umbrella": 0,
+   "dusty-road": 4,
+   "einsamkeit": 0,
+   "engine-roar": 3,
+   "fence-line-home": 6,
+   "frere-jacques": 0,
+   "god-rest-ye-merry": 0,
+   "good-king-wenceslas": 0,
+   "greensleeves": 0,
+   "halfway-home": 4,
+   "hark-the-herald": 0,
+   "held-ah": 6,
+   "holy-holy-holy": 1,
+   "joy-to-the-world": 0,
+   "kettles-cold": 0,
+   "l-esclave": 0,
+   "lamplighter": 0,
+   "late-train": 3,
+   "le-pays-des-reves": 3,
+   "les-matelots": 0,
+   "les-roses-d-ispahan": 0,
+   "let-the-morning-wait": 4,
+   "o-come-all-ye-faithful": 0,
+   "ode-to-joy": 0,
+   "paper-lanterns": 0,
+   "porch-light": 0,
+   "river-at-dawn": 0,
+   "row-your-boat": 0,
+   "rust-on-the-gate": 0,
+   "sapphische-ode": 0,
+   "silent-night": 0,
+   "slow-scale-ah": 6,
+   "the-spirit-of-god": 0,
+   "the-storm": 0,
+   "twinkle": 0,
+   "when-the-curtain-falls": 5
+  }
+ },
+ "I4_item_blocks": 1,
+ "I4_prediction_rule2_unchanged": true,
+ "I5_sha256": {
+  "item": "2182d6fd575e6b9354d7f92532dd9b3b0ad217d3cffcd39df66e84eb1f044074",
+  "squillo": "2182d6fd575e6b9354d7f92532dd9b3b0ad217d3cffcd39df66e84eb1f044074"
+ },
+ "I5_equal": true
+}

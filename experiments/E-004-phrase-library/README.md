@@ -1234,6 +1234,53 @@ Order in git: rules `b5c2f8b`; fetch and page `c0e369d`; the agent's
 reading `40cd45c`, before the blind reading was made; the blind reading
 and the reader check `e2217b5`; the third reading before `compare` ran.
 
+## Fold 4 (squillo iteration 87): the anthem ships
+
+squillo Q-042 ranked what round 6's `match` lets the phrase do, since the
+print it was read in states no year, and took option A in a revision of
+ADR 0005: the phrase ships, `published_by` 1861 for both parts, the later
+of the two years IMSLP's listing gives the British Library copy read in
+round 6 (its file name carries the copy's shelfmark, G.374.(1.):
+"Isaac Clarke, Ruthen, 1860, 1861"); the introduction (July 1860) bounds
+the print from below only. `fold4.py` writes the item and checks ADR
+0005's rules and the set; it decides nothing else. Rules `0ed5788`,
+revision 1 before any data was judged (below).
+
+| # | Question | Result (conditions; uncertainty) |
+| ---: | :--- | :--- |
+| F4-1 | The item (I1) | `results/items/hen-wlad-fy-nhadau.json`, written byte for byte into squillo `fixtures/slice/phrases/` (SHA-256 `2182d6fd…`, I5). 12 notes, round 6's record, equal to round 5's extraction of Mutopia 1017 (asserted); words the print's, *Mae hên wlad fy nhadau yn anwyl i mi,*, the three readings agreeing once their hyphens are normalised (asserted); E♭, 3/4, 60 quarters a minute, the transcription's MIDI default (the print says *Moderato*), as `source` states; genre `anthem`, language `cy` |
+| F4-2 | The people (I2) | Wikidata P570 agrees with Mutopia's header for Evan James (1878, article *Evan James (poet)*) and James James (1902); the must-fail, each year against the next person's entry, disagrees. John Owen (Owain Alaw), credited for the English words and the accompaniment, none of them sung in the phrase, is not a contributor; Wikidata gives 1883, which would not change a verdict (`fold4.json` `I2_others`) |
+| F4-3 | Loader and rights (I3) | BU-008's fixture cases re-run first and hold; the item loads and ships; with the tune's `published_by` 1931 it is refused at `/content/provenance/tune/published_by`, with the poet's death 1926 at `/content/provenance/words/contributors/0/died` |
+| F4-4 | The set (I4) | **44 of 44** files load together, none refused; **40 of 40** phrases ship; 24 public-domain and 16 original, **15 genre labels** (`anthem` 1 new; classical 8 of 40); the runner offers 82 exercise-subject pairs; CO-005's step exercises unchanged (`steadier-own-song`, `steadier-phrase`) |
+| F4-5 | CO-005 rule (2) (I4, prediction) | The anthem's written notes give **1 block** (its final half note, 250 frames); **11 of 40** give two blocks or more and rule (2) picks `fence-line-home`, the same with and without the item (`I4_prediction_rule2_unchanged`: true) |
+
+**Also run for this fold**, each in its own experiment: E-002 `r5_add.py`
+(the anthem's 24 renderings under round 5's method: under MT-009's trim
+**9 of its 24 written held notes lost**, 11 of 480 on the 40, against 2
+of 456 on the 39) and E-005 `fold6.py` re-run on the 40 (one tone given
+each shipped phrase's notes: intent uncertain on **40 of 40**).
+
+**Limits.**
+
+- `published_by` 1861 rests on a catalogue, not on the print: the copy
+  read is the first series' second edition and prints no year. Any year
+  up to 1930 gives the same `us` verdict, and the people's death years
+  decide `life100`. Q-042 records the residual risk for Joakim.
+- The tempo is not the print's (it gives none); the item says so.
+- Round 6's reading is by eye; this fold adds no new reading.
+
+**S15 by hand.** Revision 1: the first run stopped on I2's own assertion
+before any check judged data: "Evan James" on the English Wikipedia is a
+disambiguation page (Wikidata Q5415432, no P570); the rule now names
+the poet's article, *Evan James (poet)* (Q3061325), committed before the
+second run. `tools/checkkeys.py fold4.py`: 0 flags on the script alone,
+before each run. With `results/fold4.json`: 1 flag,
+`melody_checked_against`, a member of the item `fold4.json` records
+(`I1_item`), not a check key. Every `I*` key that names a check is
+asserted in `main` (`I2_agree`, `I2_must_fail_next_person`,
+`I3_fixtures`, `I3_ships`, `I3_must_fail`, `I4_block_cases`, `I5_equal`);
+`I4_prediction_rule2_unchanged` is a prediction, recorded, true.
+
 ## Needs a human
 
 15 minutes, headphones, no microphone.

@@ -1,0 +1,38 @@
+{
+ "A0_must_pass": true,
+ "A0_must_fail": true,
+ "seconds": 10.0,
+ "cur": {
+  "written": 24,
+  "lost": 9,
+  "two_blocks": 0,
+  "renderings": 24,
+  "min_blocks": 0,
+  "max_blocks": 1,
+  "forty": {
+   "written": 480,
+   "lost": 59,
+   "lost_wilson95": [
+    9.7,
+    15.5
+   ]
+  }
+ },
+ "tr": {
+  "written": 24,
+  "lost": 9,
+  "two_blocks": 0,
+  "renderings": 24,
+  "min_blocks": 0,
+  "max_blocks": 1,
+  "forty": {
+   "written": 480,
+   "lost": 11,
+   "lost_wilson95": [
+    1.3,
+    4.1
+   ]
+  }
+ },
+ "prediction_no_two_blocks": true
+}

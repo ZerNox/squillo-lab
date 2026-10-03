@@ -819,6 +819,31 @@ as MT-008 compares two takes, never by pairing their blocks, so the
 coarse ladder stays (ADR 0018, F-046 closed with its reason). No `metrics`
 fixture tells the two finders apart (T3), so squillo logs F-075 for one.
 
+### Round 5, the 40th phrase (squillo iteration 87, F-060's fold)
+
+E-004 fold 4 ships a 40th phrase, *Hên Wlad fy Nhadau*, so round 5's T4
+counts on the shipped phrases' renderings, which squillo cites (MT-009's
+reason, ADR 0004, ADR 0022), are extended by its 24 renderings, made and
+measured exactly as round 5's. `r5_add.py`, rules committed before the
+run (`0ed5788`); `uv run python r5_add.py run <squillo>` (10 s at a pool
+of 12) -> `results/r5_add.json`, rows in `data/cache/r5_add/`.
+
+| # | Question | Result (conditions; uncertainty) |
+| ---: | :--- | :--- |
+| A0 | Does `measure` reproduce round 5? | Yes: on round 5's first two jobs it equals the saved rows under both finders (must pass); against the other seed's row it differs (must fail) |
+| A2 | The anthem's 24 renderings (4 voices, σ 0 and 20 cents, vibrato off and on) | Its one written held note, the final half note, is exactly 250 frames, MT-009's least. **Lost on 9 of 24** renderings under the trimmed finder and on 9 of 24 under the current one; no rendering gives two blocks (0 to 1), as predicted |
+| A2 | The 40 shipped phrases (round 5's 39 plus these) | Trimmed finder: **11 of 480** written held notes lost, Wilson 95 % 1.3–4.1 % (39: 2 of 456); current finder: 59 of 480, 9.7–15.5 % |
+
+Not diagnosed: why each of the 9 is lost. A note of exactly 250 frames is
+held only if every one of its frames is measured and inside one piece, so
+any frame refused or cut at either end loses it; that is the bound's
+arithmetic, not a measured cause.
+
+**S15 by hand.** `tools/checkkeys.py r5_add.py`: 0 flags on the script
+alone before its run, and 0 with `results/r5_add.json`. `A0_must_pass`
+and `A0_must_fail` are asserted; `prediction_no_two_blocks` is a
+prediction, recorded, true.
+
 ### Beyond round 3
 
 Amateur voices and other vowels (E-005's `needs-human` step); a real room

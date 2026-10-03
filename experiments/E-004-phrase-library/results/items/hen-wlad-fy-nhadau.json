@@ -1,0 +1,95 @@
+{
+  "format_version": 3,
+  "kind": "phrase",
+  "phrase_id": "hen-wlad-fy-nhadau",
+  "title": "Hên Wlad fy Nhadau",
+  "instructions": "Sing the first line of the song, unaccompanied, at a steady pace.",
+  "genre": "anthem",
+  "language": "cy",
+  "words": "Mae hên wlad fy nhadau yn anwyl i mi,",
+  "melody": {
+    "key": "Eb",
+    "meter": "3/4",
+    "tempo_qpm": 60,
+    "notes": [
+      {
+        "pitch": "Eb4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "F4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "Eb4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "Bb4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "Ab4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "G4",
+        "quarters": "1"
+      },
+      {
+        "pitch": "Eb5",
+        "quarters": "1"
+      },
+      {
+        "pitch": "Eb5",
+        "quarters": "1"
+      },
+      {
+        "pitch": "C5",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "D5",
+        "quarters": "1/2"
+      },
+      {
+        "pitch": "Eb5",
+        "quarters": "2"
+      }
+    ]
+  },
+  "content": {
+    "licence": "CC-PDM-1.0",
+    "source": "The first line of verse 1, notes and words, as printed in the edition: John Owen (Owain Alaw), Gems of Welsh Melody, first series, [Second Edition.] (Ruthin: Isaac Clarke), page 18; no year printed, introduction dated July 1860; 1860, 1861 in IMSLP's listing of the British Library copy G.374.(1.), the copy read. Its notes match the Mutopia Project's Public Domain transcription of the composer's manuscript (https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=1017) note for note, squillo-lab E-004 rounds 5 and 6. The edition gives no metronome mark (Moderato): the tempo is the transcription's MIDI default. The words keep the print's spelling.",
+    "origin": "public-domain",
+    "provenance": {
+      "words": {
+        "contributors": [
+          {
+            "name": "Evan James",
+            "role": "words",
+            "died": 1878
+          }
+        ],
+        "published_by": 1861,
+        "edition": "John Owen (Owain Alaw), Gems of Welsh Melody, first series, [Second Edition.] (Ruthin: Isaac Clarke), page 18; no year printed, introduction dated July 1860; 1860, 1861 in IMSLP's listing of the British Library copy G.374.(1.), the copy read"
+      },
+      "tune": {
+        "contributors": [
+          {
+            "name": "James James",
+            "role": "music",
+            "died": 1902
+          }
+        ],
+        "published_by": 1861,
+        "edition": "John Owen (Owain Alaw), Gems of Welsh Melody, first series, [Second Edition.] (Ruthin: Isaac Clarke), page 18; no year printed, introduction dated July 1860; 1860, 1861 in IMSLP's listing of the British Library copy G.374.(1.), the copy read"
+      }
+    },
+    "melody_checked_against": "checked against the first line as printed in the edition named in provenance, read in squillo-lab E-004 round 6 (two of three readings agreeing, one of them blind, a reader check holding), matched in pitch and rhythm; the notes are Mutopia 1017's transcription of the composer's manuscript"
+  }
+}

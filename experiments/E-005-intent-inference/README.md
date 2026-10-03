@@ -1284,6 +1284,16 @@ and given a measured spread with a wide ± (squillo F-073).
 **Limits.** Pure tones, not voices; one held pitch (A3); the shipped
 phrases' notes are measured against that one tone, not sung.
 
+**Re-run on 40 phrases (squillo iteration 87, F-060's fold).** E-004
+fold 4 ships a 40th phrase, *Hên Wlad fy Nhadau* (12 written notes), so
+`fold6.py run` was re-run unchanged on squillo's 40: every key equal to
+the first run but the shipped rows, which gain the anthem (`too few`, 1
+of 12 found), and the summary: one tone given each shipped phrase's notes
+is intent uncertain on **40 of 40** (`results/fold6.json`; 39 of 39 at
+the first run). Under fold 7's three quarters a take is refused at least
+as often, so the state holds there too. `tools/checkkeys.py` with the
+results: 0 flags.
+
 ## Round 7: part of a phrase, a note held across written notes, one tone (squillo iteration 83)
 
 ```
