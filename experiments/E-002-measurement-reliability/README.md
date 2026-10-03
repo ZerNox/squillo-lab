@@ -928,6 +928,70 @@ arithmetic change gives. Silence is the only refusal used; a real glide
 refused for aperiodicity (E-004 round 4's lost notes) is not modelled
 here, round 5 measured that on renderings.
 
+### Round 7: the numeric epsilon across WASM targets (squillo iteration 92, S-004)
+
+**Question.** S-004 above: how far apart are the pitches the same tracker
+reports in each target browser's WASM, in a native build and in numpy,
+in `f32` and in `f64` arithmetic? The spread is squillo ADR 0007's
+*Numeric epsilon*, whose host part (`f32` against `f64` in numpy,
+0.0082 cents, result 9) is all that was measured. Serves VISION §5, §6,
+§12.2.
+
+**What runs.** `wasm/` is ADR 0007's YIN, as `yin.py` runs it (frame
+axis, lags 16 to 763, *W* = 773, CMND threshold 0.1, first dip then down
+it, parabolic interpolation on *d*), in Rust, in four variants: the
+difference function as a sum of squared differences (`direct`, de
+Cheveigné and Kawahara 2002, eq. 6) or as `yin.py` computes it, *e*₀ +
+*e*_τ − 2*r* with *r* by FFT (`fft`, realfft 3.5.0 over rustfft 6.4.1),
+each in `f64` or `f32` throughout. Input samples are `f32` everywhere,
+as ADR 0002 delivers them. Targets: native x86-64 (rustfft's run-time
+AVX/SSE paths), and WASM plain and with `simd128` (rustfft's
+`wasm_simd`), each in the installed Chrome and Firefox, headless, in a
+module worker (E-001 round 2's harness). numpy's `yin.py` in `float64`
+is the reference; numpy in `float32` is result 9's host path.
+
+**Inputs** (`r7_inputs.py`): squillo's eleven `fixtures/signal/` files,
+byte for byte, SHA-256 checked against squillo's `fixtures/MANIFEST.md`;
+round 1's generator (`run.py` `tone`, `add_noise`), seed 20261003, the 41
+semitones E2 to C6 pure and `saw12` clean (result 9's design) and `saw12`
+at 20 and 10 dB SNR (result 4: frames near the threshold); and one
+original take per VocalSet singer, 20, as round 2 resampled them
+(`r2_truth.py` line 72, saved `float32` line 112), the first in sorted
+order.
+
+**Hypotheses** (`r7_analyse.py` `HYPOTHESES`, committed before any
+output existed). **H1:** for each build and variant, Chrome's and
+Firefox's outputs are bit-identical on every frame (WebAssembly's
+numeric operations are deterministic IEEE 754 except NaN payloads;
+E-001 round 2 found its outputs identical across both browsers). **H2:**
+for the direct variants, every browser build equals the native build
+bit for bit (only +, −, ×, ÷ and comparisons; Rust neither fuses nor
+reassociates; no libm, no run-time SIMD dispatch). **H3,** no bar: per
+target and variant, the largest difference in cents from numpy's
+`float64` on frames where both chose the same lag, and the counts of
+frames whose decisions differ: a period found or not, the lag chosen,
+`metrics`' acceptance (inside E2 to C6 widened by 3 cents, and
+aperiodicity under 0.02, MT-003). No earlier rate exists for noisy or
+real input, so no bar is set (C13).
+
+**Checks (S15; C1, C3, C5, C10, C14 to C18 applied).** Inputs: each
+fixture's hash (must fail: one byte changed); each tone's f0 inside E2
+to C6, its peak 0.5 and its SNR read from the output, not the parameter;
+every input `float32` and finite; `r7_inputs.py`'s lag-returning copy of
+`yin.yin` equal to it bit for bit on every input (must fail: one input
+against another). Analysis, every check before any outcome: every output
+present and well formed (must fail: one value dropped); `compare` gives
+0 on the reference against itself, 1 cent within float64's rounding
+(`CENTS_F64_TOL`, from its definition) when every f0 is raised by 1 cent,
+and one found mismatch when one frame is made NaN; `same_bits` detects a
+one-ulp change; the Rust port chooses `yin.py`'s lag on every fixture
+frame in both `f64` variants natively (must fail: one fixture against
+another).
+
+**Run:** `uv run python r7_inputs.py <squillo>`, `./r7_build.sh`,
+`wasm/target/release/native`, `node r7_run.mjs`, `uv run python
+r7_analyse.py` -> `results/r7.json`. The timing estimate follows (S19).
+
 ### Beyond round 3
 
 Amateur voices and other vowels (E-005's `needs-human` step); a real room

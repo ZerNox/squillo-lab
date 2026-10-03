@@ -1,0 +1,22 @@
+# E-002 round 7 (squillo iteration 92): squillo ADR 0007's YIN in Rust, built
+# natively and for wasm32-unknown-unknown (plain and simd128), to measure the
+# numeric epsilon across targets and arithmetics (S-004). Crude experiment
+# code, never built on.
+[package]
+name = "e002"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+realfft = "=3.5.0"
+rustfft = { version = "=6.4.1", features = ["wasm_simd"] }
+wasm-bindgen = "=0.2.129"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1

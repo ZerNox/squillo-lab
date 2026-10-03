@@ -1,0 +1,8 @@
+{
+  "name": "e-002-measurement-reliability",
+  "private": true,
+  "description": "E-002 round 7: squillo's YIN in WASM in Chrome and Firefox, for the numeric epsilon across targets",
+  "dependencies": {
+    "playwright": "1.63.0"
+  }
+}

@@ -1,0 +1,15 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>E-002 round 7</title>
+<script type="module">
+// Runs YIN in a dedicated module worker, as squillo's engine would run (ADR 0006).
+window.e002 = {
+  run: (cfg) => new Promise((resolve, reject) => {
+    const w = new Worker('/r7_page/worker.js', { type: 'module' });
+    w.onmessage = (e) => { if (e.data.log) console.log(e.data.log); else { resolve(e.data); w.terminate(); } };
+    w.onerror = (e) => reject(new Error(e.message));
+    w.postMessage(cfg);
+  }),
+};
+window.e002ready = true;
+</script>
