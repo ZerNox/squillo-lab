@@ -249,6 +249,10 @@ from here or from cited literature, never from nowhere.
   A lead, not proof (squillo L-049). `python3 tools/checkkeys.py <script>
   <results.json>...` flags a missing committed-first guard and check keys
   neither asserted nor listed as recorded (S15, checklist C16 to C18; squillo L-051).
+  `python3 tools/s4hits.py <base-rev> <term>...` makes S4's hit list from
+  the search's own output in both repos: each hit `IN DIFF`, `NOT IN DIFF`
+  or a `RECORD` (ledger rows, reviews); every `NOT IN DIFF` hit is fixed or
+  listed in the commit message with why (squillo L-065); `--self-test`.
   `python3 tools/numbers.py <text or -> <results.json>...` flags each decimal
   number in a text that no results file given holds, as written, as a
   percentage or rounded either way; integers are not read (S18; squillo
