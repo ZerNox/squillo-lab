@@ -1,6 +1,6 @@
 # E-002 — Measurement reliability and uncertainty
 
-**Status:** answered (round 1, pitch, answered on synthetic input; round 2, real voices, pitch ± and four aspects, squillo iteration 28; round 3, octave errors and reverberation, squillo iteration 36; fold 3, the steadying ladder, squillo iteration 42; round 4, the ring ratio on repeated material, squillo iteration 49, whose separate-takes step is `needs-human`; round 5, held notes trimmed to their measured cells and the next step against blocks, squillo iteration 78; round 6, a fixture that tells trimmed pieces from untrimmed ones, squillo iteration 88, folded in 89; a real room is E-003's `needs-human` step, an amateur's voice E-005's) · **Serves:** VISION §5 (what is measured), §6 (honesty), §12.2
+**Status:** answered (round 1, pitch, answered on synthetic input; round 2, real voices, pitch ± and four aspects, squillo iteration 28; round 3, octave errors and reverberation, squillo iteration 36; fold 3, the steadying ladder, squillo iteration 42; round 4, the ring ratio on repeated material, squillo iteration 49, whose separate-takes step is `needs-human`; round 5, held notes trimmed to their measured cells and the next step against blocks, squillo iteration 78; round 6, a fixture that tells trimmed pieces from untrimmed ones, squillo iteration 88, folded in 89; round 7, the numeric epsilon across WASM targets, squillo iteration 92; a real room is E-003's `needs-human` step, an amateur's voice E-005's) · **Serves:** VISION §5 (what is measured), §6 (honesty), §12.2
 
 ## Question
 
@@ -48,8 +48,8 @@ Migrated from squillo's retired candidate spike S-004 in review R-04
   cents, are the pitches the same tracker reports in each target browser's
   WASM and in a native build, and in `f32` against `f64` arithmetic? The
   spread is the numeric epsilon squillo ADR 0007 records. Round 1 measured
-  `f32` against `f64` on the host (numpy, not WASM; result row 9); the WASM
-  targets wait for the lab's Rust / WASM toolchain.
+  `f32` against `f64` on the host (numpy, not WASM; result row 9); round 7
+  (squillo iteration 92) measured the WASM targets in Chrome and Firefox.
 
 ## Result
 
@@ -922,7 +922,8 @@ identical at `1c8f7f0`, is `fixtures/metrics/two-notes-gap.wav`, and
 MT-009's scenario on it names those frames and `steadiness` measured.
 
 **Limits.** One tracker (numpy YIN at squillo's frame axis); the WASM
-targets' epsilon is unmeasured (squillo Stage E, iterations 92 and 93),
+targets' epsilon is unmeasured (squillo Stage E, iterations 92 and 93;
+measured since, round 7),
 and D2's offsets are independent per cell, not the correlated error an
 arithmetic change gives. Silence is the only refusal used; a real glide
 refused for aperiodicity (E-004 round 4's lost notes) is not modelled
@@ -999,6 +1000,68 @@ target: native 0.88 s for all four variants, each browser build 1.3 to
 about 25 s, each of the four browser builds about 55 s with launch, the
 inputs step 19 s (run), and the analysis, vectorised per input over
 195 inputs and 22 outputs, under a minute.
+
+**Revision 1** (`r7_analyse.py`, committed before the second run): the
+first analysis passed every check and stopped on `json.dumps` of a numpy
+bool before writing or printing any outcome, as round 6's revision 1
+did; numpy scalars are now written as Python values. No rule changed.
+
+**Checks, their numbers.** Inputs: 11 fixture hashes equal to
+`MANIFEST.md`'s (each must-fail detected); 164 tones inside E2 to C6,
+peak 0.5, SNR as set; the lag-returning copy equal to `yin.yin` bit for
+bit on all 195 inputs in both arithmetics (86 536 frames; must-fail
+detected). Analysis: all nine checks true (`results/r7.json` `checks`),
+among them the Rust port choosing `yin.py`'s lag on every frame of the
+eleven fixtures in both `f64` variants. `tools/checkkeys.py`: 0 flags on
+each script alone before its first run; with `results/r7.json`, 2 on
+`r7_analyse.py`, read by hand: `inputs_checks` is the container that
+carries `r7_inputs.py`'s checks, and `reference_must_fail_detected` is
+asserted in `r7_inputs.py` (line 202) before it is set. With the results,
+`r7_inputs.py` is flagged for `r7_analyse.py`'s keys, which it does not
+hold.
+The check `checkkeys.py` gained after this round (squillo L-066) flags
+`r7_inputs.py`'s `json.dumps` of `sets.json` (line 211), which has no
+`default=`; that write completed, and the script is left as it ran.
+The check `checkkeys.py` gained after this round (squillo L-066) flags
+`r7_inputs.py`'s `json.dumps` of `sets.json` (line 211), which has no
+`default=`; that write completed, and the script is left as it ran.
+
+**Result** (`results/r7.json`; 195 inputs, 350.9 s of audio, **43 268
+frames**: fixtures 1342, tones 20 008, VocalSet 21 918; 38 015 of them
+with a period found by both sides; Rust 1.98.1, wasm-bindgen 0.2.129,
+Chrome 154.0.8037.57, Firefox 156.0, numpy 2.5.3, one i7-12700H; maxima
+are observed maxima over these frames, not bounds).
+
+| # | Question | Result (conditions; uncertainty) |
+| :--- | :--- | :--- |
+| H1 | Chrome against Firefox, same build and variant | **Holds**, 8 of 8 (two builds, four variants): bit-identical f0, aperiodicity and lag on every frame |
+| H2 | Direct variants, each browser build against native | **Holds**, 8 of 8: bit-identical. Beyond H2, the four WASM builds (plain and `simd128`, both browsers) are bit-identical to one another in all four variants, the FFT ones included; only the FFT variants differ between native and WASM (`identical_pairs`) |
+| H3 | Largest difference from numpy `float64`, frames with the same lag, every target | `f64-direct` **3.6 × 10⁻¹¹ cents**; `f64-fft` **1.8 × 10⁻¹⁰**; `f32-direct` **0.0058** (p99 0.00017); `f32-fft` **0.0671** in WASM (p99 0.0021) and **0.0417** native (p99 0.0020); numpy `float32` 0.0667 (p99 0.0021). The largest are on the synthetic tones; on VocalSet `f32-fft` reaches 0.0054 (WASM) and `f32-direct` 0.0014 |
+| H3 | Decisions | **None differ**, in any target or variant: 0 of 43 268 frames with a period found on one side only, 0 with another lag, 0 with `metrics`' acceptance changed (range widened by 3 cents, aperiodicity under 0.02) |
+| H3 | Aperiodicity | Largest difference from numpy `float64`: 1.9 × 10⁻⁶ in `f32`, 5.7 × 10⁻¹⁵ in `f64`, against MT-003's refusal at 0.02 |
+| X | Across targets, same variant: each WASM build against native | `direct`: 0 (identical). `f64-fft`: 1.1 × 10⁻¹⁰ cents. `f32-fft`: **0.0595 cents**, aperiodicity 3.6 × 10⁻⁷; no decision differs |
+| T | Cost, seconds per second of audio, one thread | `direct`: native 0.030 to 0.031, WASM 0.034 to 0.036. `fft`: native 0.0019 (`f32`) and 0.0024 (`f64`); WASM `simd128` 0.0032 to 0.0034 (`f32`) and 0.0046 (`f64`); WASM plain 0.0064 to 0.0125 (`f32`) and 0.0095 to 0.0195 (`f64`) |
+
+**What this says for squillo.** ADR 0007's numeric epsilon is a
+property of the arithmetic and of how the difference function is
+computed, not of the browser: one WASM module gives the same bits in
+Chrome and Firefox, plain or `simd128`, and the direct sum gives the
+same bits natively too. Against `float64`, the largest pitch difference
+is 0.0671 cents, in `float32` by FFT, inside SG-005's ±3 cents, and
+the host's 0.0082 (result 9), measured on clean tones, was not the
+worst case: the noisy tones gave the larger. No frame's decision changed in 43 268, but
+that is a count, not a guarantee: a frame whose CMND or aperiodicity
+lies nearer 0.1 or 0.02 than the differences measured (1.9 × 10⁻⁶ in
+`float32`) can flip. The
+fold is squillo's (iteration 93): ADR 0007's *Numeric epsilon* records
+these numbers, and SG-005's measurement tolerance stays apart from them.
+
+**Limits.** One machine (x86-64, i7-12700H) and one browser version
+each; no ARM device and no mobile browser, so a native ARM build with
+fused multiply-add was not measured. One implementation per variant:
+another FFT library or summation order gives another `float32`
+difference, of the same kind but not these exact numbers. Inputs at 48
+kHz `float32`; noise is white.
 
 ### Beyond round 3
 
