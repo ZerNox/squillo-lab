@@ -62,6 +62,10 @@ in what the check reads (must fail), all before H's outcome is computed:
   The finder identities round 5 asserted (trim=False equals fold2.held_notes; every untrimmed held note
   is a trimmed one) are asserted again here on each input, by r5_trim.both.
 
+Revision 1, before the second run: the first stopped writing results/r6_fixture.json on a numpy bool,
+after every assertion had passed and before anything was printed; `plain` serialises numpy scalars. No
+rule changed.
+
 Crude, disposable lab code: never product code (squillo PLAN.md rule 11).
 """
 import hashlib
@@ -204,6 +208,18 @@ def keys(notes):
     return [(int(f[0]), int(f[-1]), tuple(map(bool, acc))) for f, _, acc in notes]
 
 
+def plain(o):
+    """Revision 1: numpy scalars to JSON (the first run stopped writing the results, every assertion passed,
+    no outcome printed)."""
+    if isinstance(o, np.bool_):
+        return bool(o)
+    if isinstance(o, np.integer):
+        return int(o)
+    if isinstance(o, np.floating):
+        return float(o)
+    raise TypeError(type(o))
+
+
 def main():
     rep = dict(rules="see the docstring", fixture=dict(NA=NA, NB=NB, FA=FA, FB=FB, amp=AMP, sr=SR))
     # selection: the least m for which K1..K4 hold on float64
@@ -219,7 +235,7 @@ def main():
             break
     rep["selection"] = dict(tried=tried, m=chosen)
     if chosen is None:
-        OUT.write_text(json.dumps(rep, indent=1) + "\n")
+        OUT.write_text(json.dumps(rep, indent=1, default=plain) + "\n")
         sys.exit("no m in 1..16 meets K1 to K4: the round's answer is no")
     m = chosen
     x0, gap = samples(m)
@@ -276,8 +292,8 @@ def main():
     OUT_WAV.write_bytes(raw)
     rep["wav"] = dict(path=str(OUT_WAV.relative_to(HERE)), sha256=hashlib.sha256(raw).hexdigest(), samples=len(x),
                       seconds=len(x) / SR, gap_samples=gap[1] - gap[0], gap_at=list(gap))
-    OUT.write_text(json.dumps(rep, indent=1) + "\n")
-    print(json.dumps(rep, indent=1))
+    OUT.write_text(json.dumps(rep, indent=1, default=plain) + "\n")
+    print(json.dumps(rep, indent=1, default=plain))
 
 
 if __name__ == "__main__":
