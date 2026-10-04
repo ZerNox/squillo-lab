@@ -2,10 +2,12 @@
 (squillo iteration 49). VocalSet holds no second take of the same material, so round 4's
 rendition term tau came from the halves of one take. Crude experiment code.
 
-    uv run python r4_own.py same1.wav same2.wav ring1.wav ring2.wav
+    uv run python r4_own.py same1.wav same2.wav ring1.wav
 
-same1, same2: the same one-octave scale on "ah", sung the same way twice. ring1, ring2: the
-same scale again, twice, with a brighter, more ringing tone. Any sample rate; channels are
+same1, same2: the same one-octave scale on "ah", sung the same way twice. ring1: the same
+scale again with a brighter, more ringing tone. Three takes since 2026-10-04 (four, with a
+second ringing take, was too repetitive to sing; Joakim): one no-change pair and two change
+pairs. Any sample rate; channels are
 averaged. Writes results/own_r4.json (numbers only, never audio). Each pair is compared as
 r4_ring.compare does, on whole takes, with the ± fitted on round 4's clean no-change pairs,
 both folds pooled (r4_ring.fit over every pair): called changed beyond 2 u.
@@ -44,21 +46,25 @@ def model():
 
 
 def main(paths, out=R.OUT / "own_r4.json"):
-    names = ["same1", "same2", "ring1", "ring2"]
+    names = ["same1", "same2", "ring1"]
     takes = {n: R.analyse_signal(load(p)) for n, p in zip(names, paths)}
     m = model()
     res = dict(model=dict(sigma_w_dB=m[0], tau_dB=m[1]),
                takes={n: dict(occurrences=len(t["occ"]), notes=sorted({o["note"] for o in t["occ"]})) for n, t in takes.items()})
-    for a, b, kind in (("same1", "same2", "no change"), ("ring1", "ring2", "no change"),
-                       ("same1", "ring1", "change"), ("same2", "ring2", "change")):
+    for a, b, kind in (("same1", "same2", "no change"), ("same1", "ring1", "change"),
+                       ("same2", "ring1", "change")):
         p = R.compare(R.side(takes[a]), R.side(takes[b]))
         res[f"{b} - {a}"] = (dict(kind=kind, comparable=False) if p is None else
                              dict(kind=kind, comparable=True, k=p["k"], D_dB=p["D"],
                                   two_u_dB=float(2 * np.sqrt(m[1] ** 2 + m[0] ** 2 / p["k"])),
                                   called_changed=bool(R.called(p, m))))
+        r = res[f"{b} - {a}"]  # in plain words, for the page
+        r["says"] = ("could not compare these two" if not r["comparable"] else
+                     ("measured a change in tone" if r["called_changed"] else "measured no change in tone") +
+                     (", as expected" if r["called_changed"] == (kind == "change") else ", not what was expected"))
     out.write_text(json.dumps(res, indent=1))
     print(json.dumps(res, indent=1))
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:5])
+    main(sys.argv[1:4])

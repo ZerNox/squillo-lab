@@ -1,18 +1,27 @@
-"""E-001 needs-human step: build a blind listening set from your own takes.
+"""E-001 needs-human step: build a blind A/B listening set from your own takes.
 
     uv run python listen.py take1.wav take2.wav take3.wav
 
-Each take (mono or stereo WAV, any rate, about 10 s) gives six clips: the
-original, WORLD (Harvest) with no change, with 100 % note-centre correction,
-with the correction exaggerated to 300 % (every note pushed past its centre,
-so the change is audible), and WORLD and PSOLA transposed up 200 cents. The
-first set used 50 % and 100 % correction and steadying: on a singer already
-within about 10 to 30 cents of the notes those changes were below what a
-listener hears, so every clip sounded the same.
-Two originals are repeated as a consistency check: 20 clips for three takes.
-Clips go to data/cache/listening/ in shuffled order, with ratings.csv to fill
-in and key.json (do not open it until the ratings are done). Nothing here is
-committed: data/cache/ is ignored, and the takes stay on this machine.
+Eight pairs. Each pair is one take's original and one processed version of
+it, in random order; the listener answers only "which is the untouched
+recording: A, B or can't tell". Rating one's own voice 1-5 for *same person*
+and *natural* over 20 clips proved close to impossible (Joakim, 2026-10-04),
+and a forced choice is the easier and stronger question: if the singer
+cannot pick the original, the processing is convincing (VISION 12.1).
+
+The pairs (PAIRS below): WORLD (Harvest) with no change and with 100 %
+note-centre correction on all three takes, PSOLA with 100 % correction on
+take 2, and WORLD with the correction exaggerated to 300 % on take 2 (every
+note pushed past its centre). The last is the control: it should be heard,
+so a listener who also "can't tell" it was not hearing differences at all.
+The first set (2026-09-29) used 50 % and 100 % correction and steadying as
+1-5 ratings; on a singer within about 10 to 30 cents of the notes those
+changes were below what one hears.
+
+Clips go to data/cache/listening/ as pairNN-a.wav and pairNN-b.wav, with
+ratings.csv to fill in and key.json (do not open it until the answers are
+done). Nothing here is committed: data/cache/ is ignored, and the takes stay
+on this machine.
 
 Every clip is levelled to its take's integrated loudness (ITU-R BS.1770-4, round 3's
 `r3_loudness.bs1770`), since round 3 found WORLD's output 1.1-4.8 LU louder than its input
@@ -37,9 +46,10 @@ import resynth
 import run
 from r3_loudness import bs1770
 
-VARIANTS = [("original", None, None), ("world_harvest", "id", "world id"),
-            ("world_harvest", "c100", "world c100"), ("world_harvest", "c300", "world c300"),
-            ("world_harvest", "up200", "world up200"), ("psola", "up200", "psola up200")]
+# (take index, method, mod, label): the processed side of each pair
+PAIRS = [(i, "world_harvest", "id", "world id") for i in range(3)] + \
+        [(i, "world_harvest", "c100", "world c100") for i in range(3)] + \
+        [(1, "psola", "c100", "psola c100"), (1, "world_harvest", "c300", "world c300 (control)")]
 
 
 def request(grid, mod):
@@ -57,7 +67,9 @@ def request(grid, mod):
 def main(paths):
     out = run.CACHE / "listening"
     out.mkdir(parents=True, exist_ok=True)
-    clips = []
+    for old in list(out.glob("clip*.wav")) + list(out.glob("pair*.wav")):
+        old.unlink()
+    takes, grids, analyses = [], [], {}
     for p in paths:
         x, sr = sf.read(p, dtype="float64", always_2d=True)
         x = x.mean(axis=1)
@@ -67,33 +79,33 @@ def main(paths):
         tmp = run.CACHE / "listen_input.wav"
         sf.write(tmp, x, run.SR)
         _, grid = run.load(dict(kind="vocalset", path=str(tmp)))
-        analyses = {}
-        for method, mod, label in VARIANTS:
-            if method == "original":
-                y = x
-            else:
-                a = analyses.setdefault(method, resynth.analyse(method, x))
-                y = resynth.synthesize(a, request(grid, mod))
-            for _ in range(4):  # the -70 LKFS gate is absolute, so one gain step can move blocks across it
-                y = y * 10 ** ((bs1770(x) - bs1770(y)) / 20)
-            assert abs(bs1770(y) - bs1770(x)) < 0.001, (p, label)
-            clips.append((Path(p).name, "original" if mod is None else label, y))
-    clips += [c for c in clips if c[1] == "original"][:2]
-    top = max(1.0, max(np.abs(c[2]).max() for c in clips))
-    clips = [(t, lab, y / top) for t, lab, y in clips]
-    order = np.random.default_rng().permutation(len(clips))
+        takes.append(x)
+        grids.append(grid)
+    pairs = []
+    for i, method, mod, label in PAIRS:
+        x = takes[i]
+        a = analyses.setdefault((i, method), resynth.analyse(method, x))
+        y = resynth.synthesize(a, request(grids[i], mod))
+        for _ in range(4):  # the -70 LKFS gate is absolute, so one gain step can move blocks across it
+            y = y * 10 ** ((bs1770(x) - bs1770(y)) / 20)
+        assert abs(bs1770(y) - bs1770(x)) < 0.001, (paths[i], label)
+        pairs.append((Path(paths[i]).name, label, x, y))
+    top = max(1.0, max(max(np.abs(x).max(), np.abs(y).max()) for _, _, x, y in pairs))
+    rng = np.random.default_rng()
     key = {}
     with open(out / "ratings.csv", "w", newline="") as f:
         w = csv.writer(f)
-        w.writerow(["clip", "same_person_as_you_1to5", "natural_1to5", "notes"])
-        for k, i in enumerate(order, 1):
-            name = f"clip{k:02d}.wav"
-            take, label, y = clips[i]
-            sf.write(out / name, y, run.SR)
-            key[name] = dict(take=take, variant=label)
-            w.writerow([name, "", "", ""])
+        w.writerow(["pair", "untouched_is", "notes"])
+        for k, i in enumerate(rng.permutation(len(pairs)), 1):
+            take, label, x, y = pairs[i]
+            real = "A" if rng.random() < 0.5 else "B"
+            a, b = (x, y) if real == "A" else (y, x)
+            sf.write(out / f"pair{k:02d}-a.wav", a / top, run.SR)
+            sf.write(out / f"pair{k:02d}-b.wav", b / top, run.SR)
+            key[f"pair{k:02d}"] = dict(take=take, variant=label, untouched_is=real)
+            w.writerow([f"pair{k:02d}", "", ""])
     (out / "key.json").write_text(json.dumps(key, indent=1))
-    print(f"{len(clips)} clips in {out}")
+    print(f"{len(pairs)} pairs in {out}")
 
 
 if __name__ == "__main__":

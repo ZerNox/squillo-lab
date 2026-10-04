@@ -44,6 +44,9 @@ SIGMAS = (0, 10, 20, 30, 40)
 # F major, but every take holds the C-major bar only (5.9-12.9 s).
 # Row: the traditional round "Row, row, row your boat" (19th century, public
 # domain), notes only.
+# the round's words per merged note of SCORES["row"] (repeats merged, as one_real does)
+ROW_WORDS = ["Row, row, row", "your", "boat, gent-", "-ly", "down", "the", "stream",
+             "merrily (high)", "merrily", "merrily", "merrily (low)", "life", "is", "but", "a", "dream"]
 SCORES = {
     "scales": [0, 2, 4, 5, 7, 9, 11, 12, 14, 12, 11, 9, 7, 5, 4, 2, 0],
     "row": [0, 0, 0, 2, 4, 4, 2, 4, 5, 7, 12, 12, 12, 7, 7, 7, 4, 4, 4, 0, 0, 0,
@@ -232,7 +235,24 @@ def run_own(paths):
         sh = infer.circ_sigma(o["dev"][keep], o["dur"][keep])
         pp = infer.p_attrib(o["dev"], sh)
         flagged = [bool(pp[c[1]] < 0.95) for c in calls if c[1] is not None]
-        out[Path(it["name"]).name] = dict(
+        # per sung word, for the ear check: its span in the take (to play it), and
+        # whether intent inference marks it: a different note than the round's,
+        # attribution below 95 % (flagged), or no note found
+        words = []
+        for j, (c, right) in enumerate(zip(calls, ok)):
+            fr = np.flatnonzero(it["nof"] == j)
+            w = dict(words=ROW_WORDS[j], start_s=round(float(it["t"][fr[0]]), 2) if len(fr) else None,
+                     end_s=round(float(it["t"][fr[-1]]), 2) if len(fr) else None)
+            if c[1] is None:
+                w.update(measured="no note found", marked=True)
+            else:
+                dev = float(o["dev"][c[1]])
+                w.update(dev_cents=round(dev, 1), attributed_right=bool(right), flagged=bool(pp[c[1]] < 0.95),
+                         measured="a different note" if not right else
+                         "unsure which note" if pp[c[1]] < 0.95 else "fine")
+                w["marked"] = not right or w["flagged"]
+            words.append(w)
+        out[Path(it["name"]).name] = dict(per_word=words,
             notes=len(ok), attributed_right=int(ok.sum()), circ_sigma=None if not np.isfinite(sh) else round(float(sh), 1),
             flagged=int(sum(flagged)), dtw_bad_pct=round(100 * it["dtw_bad"], 1),
             abs_dev_median=round(float(np.median(np.abs(o["dev"][keep]))), 1) if keep.any() else None)

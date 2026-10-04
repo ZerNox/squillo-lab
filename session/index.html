@@ -62,7 +62,7 @@ th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: upp
 select, input[type=text], input[type=number] { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 3px 6px; }
 input[type=number] { width: 8.5em; }
 .scale { display: inline-flex; gap: 2px; }
-.scale label { border: 1px solid var(--line); border-radius: 5px; padding: 1px 7px; cursor: pointer; font-variant-numeric: tabular-nums; }
+.scale label { white-space: nowrap; border: 1px solid var(--line); border-radius: 5px; padding: 1px 7px; cursor: pointer; font-variant-numeric: tabular-nums; }
 .scale input { display: none; }
 .scale input:checked + span { color: var(--accent); font-weight: 700; }
 .note { font-size: 13px; color: var(--ink2); }
@@ -209,9 +209,9 @@ function recorder(exp, name, what, detail, hintSeconds) {
 
 // ---------- commit ----------
 function commitStep(exp) {
-  const files = { "E-001": ["results/human/ratings.csv", "results/human/key.json"], "E-002": ["results/own_r4.json", "results/own_r4.md"],
+  const files = { "E-001": ["results/human/ratings.csv", "results/human/key.json"], "E-002": ["results/own_r4.json", "results/own_r4_ear.json", "results/own_r4.md"],
     "E-003": ["results/human-chrome.json", "results/human-firefox.json"], "E-004": ["results/listen.csv"],
-    "E-005": ["results/own.json", "results/own.md"] }[exp];
+    "E-005": ["results/own.json", "results/own_ear.json", "results/own.md"] }[exp];
   const pre = h("pre", { hidden: true });
   const st = h("span", { class: "note" });
   const b = h("button", { class: "b p", onclick: async () => {
@@ -238,6 +238,18 @@ function notesStep(exp, rel, prompt) {
 async function showJSON(exp, rel, el) {
   const r = await fetch(fileUrl(exp, rel)); el.textContent = r.ok ? JSON.stringify(await r.json(), null, 1) : "not yet produced";
 }
+
+// ---------- ear checks ----------
+// Play [start, end] s of a take (padded a little, so a word is not clipped).
+function playSpan(exp, rel, start, end) {
+  stopAll();
+  const a = new Audio(fileUrl(exp, rel)); singer = a;
+  a.addEventListener("loadedmetadata", () => { a.currentTime = Math.max(0, start - 0.1); a.play().catch(() => {}); });
+  a.addEventListener("timeupdate", () => { if (a.currentTime > end + 0.15) a.pause(); });
+}
+const choice = (name, value, opts, set) => h("span", { class: "scale" }, opts.map(([lab, v]) => h("label", {},
+  h("input", { type: "radio", name, checked: value === v, onchange: () => set(v) }), h("span", {}, lab))));
+async function readJSON(exp, rel) { const r = await fetch(fileUrl(exp, rel)); return r.ok ? r.json() : null; }
 
 // ---------- listen-first guides ----------
 // A tune is [semitones above the key note, length in eighths]. Played before a take,
@@ -337,7 +349,7 @@ const TESTS = [
   done: () => has("E-001", "results/human/ratings.csv"),
   started: () => has("E-001", "data/cache/human/take1.wav"),
   render(root) {
-    root.append(h("p", { class: "lead" }, "Does squillo's re-synthesis still sound like you, and natural? Record three takes, then rate 20 shuffled clips without knowing which is which (VISION §12.1)."));
+    root.append(h("p", { class: "lead" }, "Can you tell your own untouched voice from squillo's re-synthesis of it? Record three takes, then for 8 pairs pick which one is the real recording (VISION §12.1). If you often can't tell, the re-synthesis is convincing."));
     root.append(h("div", { class: "step" }, h("h3", {}, "1 · Record"),
       tips("For the few lines, the round below is fine; it is public domain and you'll sing it again in E-005."),
       guide("scale", "Scale"),
@@ -347,43 +359,46 @@ const TESTS = [
       guide("hold", ""),
       recorder("E-001", "take3.wav", "One sustained note", "comfortable pitch, steady", 10)));
     const ready = ["take1", "take2", "take3"].every(t => has("E-001", `data/cache/human/${t}.wav`));
-    root.append(h("div", { class: "step" }, h("h3", {}, "2 · Build 20 clips"),
-      h("p", { class: "note" }, "WORLD with no change, 100 % correction and correction exaggerated to 300 %; WORLD and PSOLA two semitones up; plus repeated originals. About a minute."),
-      taskButton("Build clips", "e001-build", () => show(), { disabled: !ready })));
-    const rate = h("div", { class: "step" }, h("h3", {}, "3 · Rate blind"));
+    root.append(h("div", { class: "step" }, h("h3", {}, "2 · Build 8 pairs"),
+      h("p", { class: "note" }, "Each pair is one of your takes untouched and the same take re-synthesized, in random order. About half a minute. Rebuilding starts the answers over."),
+      taskButton("Build pairs", "e001-build", () => show(), { disabled: !ready })));
+    const rate = h("div", { class: "step" });
     root.append(rate);
     const show = async () => {
-      rate.replaceChildren(h("h3", {}, "3 · Rate blind"));
+      rate.replaceChildren(h("h3", {}, "3 · Which is real?"));
       const r = await fetch(fileUrl("E-001", "data/cache/listening/ratings.csv"));
-      if (!r.ok) { rate.append(h("p", { class: "note" }, "Build the clips first.")); return; }
-      const { head, rows } = parseCSV(await r.text());
-      const scale = (row, key) => h("span", { class: "scale" }, [1, 2, 3, 4, 5].map(n => h("label", {},
-        h("input", { type: "radio", name: row.clip + key, checked: row[key] === String(n), onchange: () => row[key] = String(n) }), h("span", {}, n))));
-      rate.append(h("p", { class: "note" }, "Listen to each clip once. 1 = not at all, 5 = completely."),
-        h("div", { class: "tbl" }, h("table", {}, h("tr", {}, h("th", {}, "Clip"), h("th", {}, "Play"), h("th", {}, "Same person as you"), h("th", {}, "Natural"), h("th", {}, "Notes")),
-          rows.map(row => h("tr", {}, h("td", {}, row.clip.replace(".wav", "")),
-            h("td", {}, h("audio", { controls: true, preload: "none", src: fileUrl("E-001", "data/cache/listening/" + row.clip) })),
-            h("td", {}, scale(row, "same_person_as_you_1to5")), h("td", {}, scale(row, "natural_1to5")),
-            h("td", {}, h("input", { type: "text", value: row.notes, oninput: (e) => row.notes = e.target.value })))))));
+      const csv = r.ok ? parseCSV(await r.text()) : null;
+      if (!csv || !csv.head.includes("untouched_is")) { rate.append(h("p", { class: "note" }, "Build the pairs first.")); return; }
+      const { head, rows } = csv;
+      const clip = (row, ab) => h("audio", { controls: true, preload: "none", src: fileUrl("E-001", `data/cache/listening/${row.pair}-${ab}.wav`) });
+      const pick = row => h("span", { class: "scale" }, [["A", "A"], ["B", "B"], ["can't tell", "cant_tell"]].map(([lab, v]) => h("label", {},
+        h("input", { type: "radio", name: row.pair, checked: row.untouched_is === v, onchange: () => row.untouched_is = v }), h("span", {}, lab))));
+      rate.append(h("p", { class: "note" }, "Play A and B, as often as you like. Which one is your untouched recording? Guessing is fine; pick “can't tell” when it is a coin toss."),
+        h("div", { class: "tbl" }, h("table", {}, h("tr", {}, h("th", {}, "Pair"), h("th", {}, "A"), h("th", {}, "B"), h("th", {}, "Untouched is"), h("th", {}, "Notes")),
+          rows.map(row => h("tr", {}, h("td", {}, row.pair.replace("pair", "")), h("td", {}, clip(row, "a")), h("td", {}, clip(row, "b")),
+            h("td", {}, pick(row)),
+            h("td", {}, h("input", { type: "text", value: row.notes, placeholder: "optional", oninput: (e) => row.notes = e.target.value })))))));
       const st = h("span", { class: "note" });
       const key = h("pre", { hidden: true });
       const save = h("button", { class: "b p", onclick: async () => {
-        const missing = rows.filter(r => !r.same_person_as_you_1to5 || !r.natural_1to5).length;
+        const missing = rows.filter(r => !r.untouched_is).length;
         await api("/api/write/E-001/data/cache/listening/ratings.csv", { method: "POST", body: toCSV(head, rows) });
-        st.textContent = missing ? `saved; ${missing} clips still unrated` : "saved, all rated"; st.className = missing ? "note warn" : "note ok";
+        st.textContent = missing ? `saved; ${missing} pairs still open` : "saved, all answered"; st.className = missing ? "note warn" : "note ok";
         reveal.disabled = !!missing;
-      } }, "Save ratings");
+      } }, "Save answers");
       const reveal = h("button", { class: "b", disabled: true, onclick: async () => {
         await api("/api/e001-finish", { method: "POST" }); key.hidden = false;
-        key.textContent = await (await fetch(fileUrl("E-001", "results/human/key.json"))).text(); await refresh(); renderMain();
-      } }, "Done: reveal the key");
+        const k = await (await fetch(fileUrl("E-001", "results/human/key.json"))).json();
+        key.textContent = rows.map(r => `${r.pair}: real was ${k[r.pair].untouched_is}, you said ${r.untouched_is.replace("cant_tell", "can't tell")} · ${k[r.pair].variant}, ${k[r.pair].take}`).join("\n");
+        await refresh(); renderNav();
+      } }, "Done: reveal the answers");
       rate.append(h("div", { class: "row" }, save, reveal, st), key);
     };
     show();
     root.append(commitStep("E-001"));
   } },
 { id: "E-005", title: "An amateur's round", time: "15 min · mic",
-  done: () => has("E-005", "results/own.md"), started: () => has("E-005", "data/cache/human/row1.wav"),
+  done: () => has("E-005", "results/own_ear.json"), started: () => has("E-005", "data/cache/human/row1.wav"),
   render(root) {
     root.append(h("p", { class: "lead" }, 'Can the note you aimed for be inferred from an untrained voice? Sing the traditional round "Row, row, row your boat" once through, twice. Any pitch and pace, unaccompanied, no vibrato on purpose (VISION §12.4).'));
     root.append(h("div", { class: "step" }, h("h3", {}, "1 · Record"),
@@ -391,36 +406,76 @@ const TESTS = [
       guide("row", "Row, row, row your boat"),
       recorder("E-005", "row1.wav", "Row, row, row your boat", "first time through", 20),
       recorder("E-005", "row2.wav", "Row, row, row your boat", "second time through", 20)));
-    const out = h("pre", {});
+    const ear = h("div", {});
     root.append(h("div", { class: "step" }, h("h3", {}, "2 · Measure"),
-      taskButton("Run intent inference", "e005-run", () => showJSON("E-005", "results/own.json", out),
-        { disabled: !(has("E-005", "data/cache/human/row1.wav") && has("E-005", "data/cache/human/row2.wav")) }), out));
-    showJSON("E-005", "results/own.json", out);
-    root.append(h("div", { class: "step" }, h("h3", {}, "3 · Does it match your ear?"),
-      h("p", { class: "note" }, "Listen to each take once. Say whether σ̂ (the spread) and the flagged notes match what you hear."),
-      notesStep("E-005", "results/own.md", "e.g. Take 1: the flagged 'gently' was flat, I hear it too. Spread feels right. Take 2: …")));
+      h("p", { class: "note" }, "Squillo guesses, word by word, which note you were aiming for. Takes a few seconds."),
+      taskButton("Run intent inference", "e005-run", () => showEar(),
+        { disabled: !(has("E-005", "data/cache/human/row1.wav") && has("E-005", "data/cache/human/row2.wav")) })));
+    root.append(h("div", { class: "step" }, h("h3", {}, "3 · Does it match your ear?"), ear));
+    const showEar = async () => {
+      const m = await readJSON("E-005", "results/own.json");
+      if (!m?.row1?.per_word) { ear.replaceChildren(h("p", { class: "note" }, "Run intent inference first.")); return; }
+      const saved = await readJSON("E-005", "results/own_ear.json") || {};
+      const ans = Object.fromEntries(Object.entries(m).map(([take, r]) => [take, r.per_word.map((w, i) => saved[take]?.[i]?.heard ?? (w.marked ? "" : "fine"))]));
+      const st = h("span", { class: "note" });
+      ear.replaceChildren(h("p", { class: "note" }, "Don't judge the numbers: you judge the words. Words marked ⚑ are the ones squillo thinks went off, or could not place. Play each ⚑ word and say whether ",
+          h("i", {}, "you"), " heard it as off. If an unmarked word sounded off to you, switch it to “off”."),
+        ...Object.entries(m).map(([take, r]) => h("div", {}, h("p", {}, h("b", {}, take === "row1" ? "First time through" : "Second time through")),
+          h("div", { class: "tbl" }, h("table", {}, h("tr", {}, h("th", {}, ""), h("th", {}, "Words"), h("th", {}, "Squillo"), h("th", {}, "To your ear")),
+            r.per_word.map((w, i) => h("tr", {},
+              h("td", {}, w.start_s != null && w.end_s > w.start_s ? h("button", { class: "b", onclick: () => playSpan("E-005", `data/cache/human/${take}.wav`, w.start_s, w.end_s) }, "▶") : ""),
+              h("td", {}, w.marked ? h("b", {}, "⚑ " + w.words) : w.words),
+              h("td", { class: "note" }, w.measured),
+              h("td", {}, choice(`${take}-${i}`, ans[take][i], [["off", "off"], ["fine", "fine"], ["can't tell", "cant_tell"]], v => ans[take][i] = v)))))))),
+        h("div", { class: "row" }, h("button", { class: "b p", onclick: async () => {
+          const out = Object.fromEntries(Object.entries(m).map(([take, r]) => [take, r.per_word.map((w, i) => ({ words: w.words, squillo: w.measured, marked: w.marked, heard: ans[take][i] }))]));
+          await api("/api/write/E-005/results/own_ear.json", { method: "POST", body: JSON.stringify(out, null, 1) });
+          const open = Object.values(ans).flat().filter(v => !v).length;
+          st.textContent = open ? `saved; ${open} ⚑ words still open` : "saved"; st.className = open ? "note warn" : "note ok"; await refresh(); renderNav();
+        } }, "Save"), st),
+        h("p", { class: "note" }, "Anything else (optional):"), notesStep("E-005", "results/own.md", "e.g. I rushed the merrilys on the second take …"));
+    };
+    showEar();
     root.append(commitStep("E-005"));
   } },
-{ id: "E-002", title: "One scale, four takes", time: "15 min · mic, quiet room",
-  done: () => has("E-002", "results/own_r4.md"), started: () => has("E-002", "data/cache/human/same1.wav"),
+{ id: "E-002", title: "One scale, three takes", time: "15 min · mic, quiet room",
+  done: () => has("E-002", "results/own_r4_ear.json"), started: () => has("E-002", "data/cache/human/same1.wav"),
   render(root) {
-    root.append(h("p", { class: "lead" }, 'Are separate takes of the same scale measured the same, and is a brighter, ringing tone seen as a change? Sing a one-octave major scale on "ah", up and down, at a comfortable pitch.'));
+    root.append(h("p", { class: "lead" }, 'Does squillo measure two takes sung the same way as the same, and a brighter, ringing take as a change? Sing a one-octave major scale on "ah", up and down, at a comfortable pitch: twice normally, once ringing.'));
     root.append(h("div", { class: "step" }, h("h3", {}, "1 · Record"),
-      tips("For the ringing takes, think bright and forward, as if calling across a room, not louder. If you can't tell the difference, say so in the notes."),
+      tips("For the ringing take, think bright and forward, as if calling across a room, not louder. If you can't tell the difference yourself, say so below."),
       guide("scale", "Scale"),
       recorder("E-002", "same1.wav", "Scale, your normal tone", "take 1", 15),
       recorder("E-002", "same2.wav", "Scale, your normal tone", "take 2, sung the same way", 15),
-      recorder("E-002", "ring1.wav", "Scale, brighter and ringing", "take 1", 15),
-      recorder("E-002", "ring2.wav", "Scale, brighter and ringing", "take 2", 15)));
-    const all = ["same1", "same2", "ring1", "ring2"].every(t => has("E-002", `data/cache/human/${t}.wav`));
-    const out = h("pre", {});
+      recorder("E-002", "ring1.wav", "Scale, brighter and ringing", "one take", 15)));
+    const all = ["same1", "same2", "ring1"].every(t => has("E-002", `data/cache/human/${t}.wav`));
+    const ear = h("div", {});
     root.append(h("div", { class: "step" }, h("h3", {}, "2 · Measure"),
-      h("p", { class: "note" }, S["E-002"].occ ? "Reference fit ready." : "First prepares round 4's reference fit (copied from the runner's worktree if it has one; otherwise it runs, which can take a while)."),
+      h("p", { class: "note" }, S["E-002"].occ ? "Reference ready." : "First prepares the reference (copied from the runner's worktree if it has one; otherwise it runs, which can take a while)."),
       taskButton("Prepare reference", "e002-prep", null, { disabled: S["E-002"].occ }),
-      taskButton("Compare the four takes", "e002-run", () => showJSON("E-002", "results/own_r4.json", out), { disabled: !all }), out));
-    showJSON("E-002", "results/own_r4.json", out);
-    root.append(h("div", { class: "step" }, h("h3", {}, "3 · Did you hear it?"),
-      notesStep("E-002", "results/own_r4.md", "e.g. same1 vs same2: no change called, agreed. ring vs same: called, and I did sing brighter …")));
+      taskButton("Compare the three takes", "e002-run", () => showEar(), { disabled: !all })));
+    root.append(h("div", { class: "step" }, h("h3", {}, "3 · Did you hear it too?"), ear));
+    const showEar = async () => {
+      const m = await readJSON("E-002", "results/own_r4.json");
+      if (!m?.["ring1 - same1"]?.says) { ear.replaceChildren(h("p", { class: "note" }, "Compare the takes first.")); return; }
+      const saved = await readJSON("E-002", "results/own_r4_ear.json") || {};
+      const pairs = ["same2 - same1", "ring1 - same1", "ring1 - same2"], ans = {}, st = h("span", { class: "note" });
+      const name = { same1: "normal 1", same2: "normal 2", ring1: "ringing" };
+      const play = t => h("button", { class: "b", onclick: () => playSpan("E-002", `data/cache/human/${t}.wav`, 0, 1e9) }, `▶ ${name[t]}`);
+      ear.replaceChildren(h("p", { class: "note" }, "For each pair, play both takes. Did you hear a change in tone between them?"),
+        h("div", { class: "tbl" }, h("table", {}, h("tr", {}, h("th", {}, "Pair"), h("th", {}, "Squillo"), h("th", {}, "To your ear")),
+          pairs.map(k => { const [b, a] = k.split(" - "); ans[k] = saved[k]?.heard ?? "";
+            return h("tr", {}, h("td", {}, h("div", { class: "row" }, play(a), play(b))), h("td", {}, m[k].says),
+              h("td", {}, choice(k, ans[k], [["a change", "change"], ["no change", "no_change"], ["can't tell", "cant_tell"]], v => ans[k] = v))); }))),
+        h("div", { class: "row" }, h("button", { class: "b p", onclick: async () => {
+          const out = Object.fromEntries(pairs.map(k => [k, { squillo: m[k].says, heard: ans[k] }]));
+          await api("/api/write/E-002/results/own_r4_ear.json", { method: "POST", body: JSON.stringify(out, null, 1) });
+          const open = pairs.filter(k => !ans[k]).length;
+          st.textContent = open ? `saved; ${open} still open` : "saved"; st.className = open ? "note warn" : "note ok"; await refresh(); renderNav();
+        } }, "Save"), st),
+        h("p", { class: "note" }, "Anything else (optional):"), notesStep("E-002", "results/own_r4.md", "e.g. the ringing take came out louder, not brighter …"));
+    };
+    showEar();
     root.append(commitStep("E-002"));
   } },
 { id: "E-003", title: "A real microphone", time: "15 min · laptop mic + phone · Chrome and Firefox",

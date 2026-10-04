@@ -386,11 +386,19 @@ first singer is not.
    pace, unaccompanied, no vibrato on purpose; save `row1.wav`, `row2.wav`
    (5 minutes).
 2. `uv run python run.py own row1.wav row2.wav` writes `results/own.json`:
-   notes, notes attributed right, σ̂, notes flagged, median |deviation|
-   (1 minute).
-3. Listen to each take once and write in `results/own.md` whether σ̂ and
-   the flagged notes match what you hear (5 minutes).
-4. Commit `results/own.json` and `results/own.md`, never the audio.
+   notes, notes attributed right, σ̂, notes flagged, median |deviation|,
+   and per sung word (the 16 merged notes, `ROW_WORDS`) its span in the
+   take and what inference says: fine, a different note than the round's,
+   unsure which note (attribution below 95 %), or no note found; the last
+   three are *marked* (1 minute).
+3. Ear check, word by word (since 2026-10-04): play each marked word on its
+   own and answer *off*, *fine* or *can't tell*; switch any unmarked word
+   that sounded off to *off*. The answers go to `results/own_ear.json`,
+   anything else to `results/own.md` (5 minutes). The first wording, "write
+   whether σ̂ and the flagged notes match what you hear", could not be
+   answered: it named no word (Joakim, 2026-10-04).
+4. Commit `results/own.json`, `results/own_ear.json` and `results/own.md`,
+   never the audio. The session page (`session/`) does steps 2 to 4.
 
 ## Fold with MT-003's refusal (squillo iteration 38)
 

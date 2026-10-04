@@ -661,16 +661,21 @@ renditions are the halves of one take (a scale's ascent and descent), so τ
 may differ between separate takes. Twenty trained singers, /a/ except in
 the round. Noise is stationary and added. The rooms were not run.
 
-**Needs a human** (15 minutes, any microphone, a quiet room): record four
+**Needs a human** (10 minutes, any microphone, a quiet room): record three
 takes of the same one-octave major scale on "ah", up and down, at a
 comfortable pitch: `same1.wav` and `same2.wav` sung the same way, then
-`ring1.wav` and `ring2.wav` with a brighter, more ringing tone. Run
+`ring1.wav` with a brighter, more ringing tone. Run
 `uv run python r4_ring.py run` first if `data/cache/r4_occ.pkl` is missing,
-then `uv run python r4_own.py same1.wav same2.wav ring1.wav ring2.wav`. It
-writes `results/own_r4.json`: each pair's D, *k*, 2*u* and whether a change
-is called. The ± is fitted on all of round 4's no-change pairs, both folds.
-Note in `results/own_r4.md` whether you heard the difference the numbers
-report. Commit the two results files, never the audio. A smoke run on
+then `uv run python r4_own.py same1.wav same2.wav ring1.wav`. It writes
+`results/own_r4.json`: for same1–same2 (no change) and same1–ring1 and
+same2–ring1 (change), D, *k*, 2*u*, whether a change is called, and that in
+plain words. The ± is fitted on all of round 4's no-change pairs, both
+folds. Play each pair and answer whether you hear a change: *a change*, *no
+change* or *can't tell*, into `results/own_r4_ear.json`; anything else into
+`results/own_r4.md`. Commit the three results files, never the audio. Until
+2026-10-04 the step asked for a second ringing take and a free-text note on
+the numbers: too repetitive, and the numbers unclear to the singer
+(Joakim). A smoke run on
 VocalSet's f1 scales passed (the same file twice gives D = 0, not called;
 breathy against straight gives D = −13.03 dB, called).
 

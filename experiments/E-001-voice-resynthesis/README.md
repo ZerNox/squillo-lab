@@ -26,8 +26,9 @@ vocoders sound better but may not fit in a browser.
 3. Measure: the modification actually achieved (re-measure with E-002's
    tracker), artefact indicators, processing time per second of audio on this
    machine's CPU.
-4. Listening check: `needs-human` step. Joakim rates identity and naturalness
-   for a blind set of 20 clips (15 minutes).
+4. Listening check: `needs-human` step. Joakim picks the untouched take in 8
+   blind A/B pairs, original against re-synthesis (10 minutes; until
+   2026-10-04, 1–5 ratings of identity and naturalness for 20 clips).
 
 ## Result
 
@@ -134,19 +135,27 @@ needs a listener, and the listener should be the singer.
 1. Record three takes of about 10 s each on any microphone, in a quiet room:
    a slow scale on "ah"; a few lines of a public-domain or self-written
    melody; one sustained note (5 minutes).
-2. `uv run python listen.py take1.wav take2.wav take3.wav` builds 20 shuffled
-   clips in `data/cache/listening/`: for each take the original, WORLD with
-   no change, 100 % correction, correction exaggerated to 300 %, and WORLD
-   and PSOLA transposed up 200 cents, plus two repeated originals, every
-   clip levelled to its take's integrated loudness (since round 3) (1 minute).
-   The first build (2026-09-29) used 50 % and 100 % correction and
-   steadying: on Joakim's takes the note-centre offsets were 9 to 29 cents
-   (median per take) and the wobble 3 to 8 cents, so the changes were at or
-   below what one hears, and every clip sounded the same. The larger
-   changes give *same person* something to hold against.
-3. Listen once to each clip and fill in `ratings.csv`: *same person as you*
-   1–5 and *natural* 1–5 (8 minutes). Only then open `key.json`.
+2. `uv run python listen.py take1.wav take2.wav take3.wav` builds 8 blind
+   A/B pairs in `data/cache/listening/`, each a take's original against a
+   re-synthesis of it in random order: WORLD with no change and with 100 %
+   correction on all three takes, PSOLA with 100 % correction on take 2,
+   and, as the control that should be heard, WORLD with the correction
+   exaggerated to 300 % on take 2. Every clip is levelled to its take's
+   integrated loudness (since round 3) (half a minute).
+3. For each pair, answer which is the untouched recording: A, B or *can't
+   tell*, in `ratings.csv` (5 minutes). Only then open `key.json`. Reading:
+   a pair passes for the singer when they cannot pick the original (wrong
+   or *can't tell*); the control must be picked right, or the answers say
+   nothing.
 4. Commit `ratings.csv` and `key.json` only, never the audio (1 minute).
+
+   History. The first build (2026-09-29) asked for 1–5 ratings of *same
+   person* and *natural* on 20 clips with 50 % and 100 % correction and
+   steadying: on Joakim's takes the note-centre offsets were 9 to 29 cents
+   (median per take) and the wobble 3 to 8 cents, so every clip sounded the
+   same; larger changes followed, and on 2026-10-04 Joakim found rating his
+   own voice on a scale over 20 clips close to impossible, so the check
+   became a forced choice over 8 pairs.
 
 ### Round 2: WORLD and a PSOLA in WASM, in Chrome and Firefox (squillo iteration 33, 2026-09-28)
 

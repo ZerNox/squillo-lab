@@ -39,7 +39,7 @@ HUMAN = "data/cache/human"
 # recordings the page may save, per experiment
 RECORDINGS = {
     "E-001": {"take1.wav", "take2.wav", "take3.wav"},
-    "E-002": {"same1.wav", "same2.wav", "ring1.wav", "ring2.wav"},
+    "E-002": {"same1.wav", "same2.wav", "ring1.wav"},
     "E-003": {"e003-human-chrome.json", "e003-human-chrome.f32",
               "e003-human-firefox.json", "e003-human-firefox.f32"},
     "E-005": {"row1.wav", "row2.wav"},
@@ -47,19 +47,19 @@ RECORDINGS = {
 # text files the page may write
 WRITABLE = {
     "E-001": {"data/cache/listening/ratings.csv"},
-    "E-002": {"results/own_r4.md"},
+    "E-002": {"results/own_r4.md", "results/own_r4_ear.json"},
     "E-004": {"results/listen.csv"},
-    "E-005": {"results/own.md"},
+    "E-005": {"results/own.md", "results/own_ear.json"},
 }
 # files the page may read
 READABLE_PREFIXES = ("data/cache/listening/", "data/listen/", "results/", HUMAN + "/", "data/cache/tone440.wav")
 # what each protocol commits, never audio
 COMMIT = {
     "E-001": ["results/human/ratings.csv", "results/human/key.json"],
-    "E-002": ["results/own_r4.json", "results/own_r4.md"],
+    "E-002": ["results/own_r4.json", "results/own_r4_ear.json", "results/own_r4.md"],
     "E-003": ["results/human-chrome.json", "results/human-firefox.json"],
     "E-004": ["results/listen.csv"],
-    "E-005": ["results/own.json", "results/own.md"],
+    "E-005": ["results/own.json", "results/own_ear.json", "results/own.md"],
 }
 
 
@@ -89,7 +89,7 @@ UV = ["uv", "run", "python"]
 TASKS = {  # name -> (experiment, argv factory)
     "e001-build": ("E-001", lambda: UV + ["listen.py"] + [h("E-001", f"take{i}.wav") for i in (1, 2, 3)]),
     "e002-prep": ("E-002", e002_prep),
-    "e002-run": ("E-002", lambda: UV + ["r4_own.py"] + [h("E-002", n) for n in ("same1.wav", "same2.wav", "ring1.wav", "ring2.wav")]),
+    "e002-run": ("E-002", lambda: UV + ["r4_own.py"] + [h("E-002", n) for n in ("same1.wav", "same2.wav", "ring1.wav")]),
     "e003-gen": ("E-003", lambda: UV + ["gen.py"]),
     "e003-analyse": ("E-003", lambda: UV + ["human.py"] + e003_inputs()),
     "e004-build": ("E-004", lambda: UV + ["listen.py"]),
