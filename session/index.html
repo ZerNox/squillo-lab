@@ -21,7 +21,13 @@
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; padding-inline: 16px; }
 .wrap { max-width: 980px; margin: 0 auto; padding-block: 24px 64px; }
+header { display: flex; flex-wrap: wrap; gap: 12px 20px; justify-content: space-between; align-items: flex-start; }
 header h1 { font-size: 22px; margin: 0 0 4px; }
+.svc { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--panel); }
+.svc button { font: inherit; font-size: 13px; border: 0; background: none; color: var(--ink2); padding: 6px 10px; cursor: pointer; }
+.svc button + button { border-left: 1px solid var(--line); }
+.svc button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+a.b { text-decoration: none; display: inline-block; }
 header p { margin: 0; color: var(--ink2); max-width: 70ch; }
 nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
 nav button { border: 1px solid var(--line); background: var(--panel); color: var(--ink); border-radius: 8px; padding: 8px 12px; cursor: pointer; font: inherit; display: flex; gap: 8px; align-items: center; }
@@ -34,7 +40,7 @@ section h2 { margin: 0 0 4px; font-size: 18px; }
 .step { border-top: 1px solid var(--line); padding-top: 14px; margin-top: 14px; }
 .step h3 { font-size: 14px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 8px; }
 .row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-button.b { font: inherit; border-radius: 8px; padding: 7px 14px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer; }
+button.b, a.b { font: inherit; border-radius: 8px; padding: 7px 14px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer; }
 button.p { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 button.r { background: var(--rec); color: #fff; border-color: var(--rec); }
 button:disabled { opacity: .45; cursor: default; }
@@ -70,10 +76,13 @@ code { background: var(--code); border-radius: 4px; padding: 0 4px; font-size: 1
 
 <div class="wrap">
 <header>
+  <div>
   <h1>Squillo lab session</h1>
   <p>Five 15-minute human steps for <code>squillo-lab</code>. Recordings stay on this laptop in each experiment's
   <code>data/cache/human/</code>, which git ignores. <b>Commit</b> publishes only the listed numbers and notes, to a
   public repo, and only when you press it.</p>
+  </div>
+  <div class="svc" id="svc" role="group" aria-label="Listen on"></div>
 </header>
 <nav id="nav"></nav>
 <main id="main"></main>
@@ -241,9 +250,48 @@ const TUNES = {
 };
 const KEYS = [["A2", 45, "deep voice"], ["C3", 48, "most men"], ["E3", 52, "higher men / low women"], ["A3", 57, "most women"], ["C4", 60, "higher women"]];
 let keyMidi = +(localStorageGet("key") || 48);
-let playing = null;
-function playTune(tune, onlyFirst) {
+let playing = null, singer = null;
+function stopAll() {
   if (playing) { playing.close(); playing = null; }
+  if (singer) { singer.pause(); singer = null; }
+}
+// A real singer from VocalSet (CC BY 4.0), always in C: the men on C3, the women on C4.
+// The voice follows the chosen key: A2 to E3 a man, A3 and C4 a woman.
+function playSinger(tuneName, st) {
+  stopAll();
+  const a = new Audio(`/examples/${tuneName}-${keyMidi < 55 ? "m" : "f"}.wav`); singer = a;
+  a.onerror = () => { st.textContent = "no example yet: run python3 session/examples.py once"; st.className = "note warn"; };
+  a.play().catch(() => {});
+}
+// Listen elsewhere: a search on the chosen service for a recording of the guide in a voice
+// near the chosen key. Searches, not fixed tracks, so no link rots and nothing is shipped.
+const SERVICES = {
+  youtube: ["YouTube", q => `https://www.youtube.com/results?search_query=${encodeURIComponent(q)}`],
+  spotify: ["Spotify", q => `https://open.spotify.com/search/${encodeURIComponent(q)}`],
+  apple: ["Apple Music", q => `https://music.apple.com/search?term=${encodeURIComponent(q)}`],
+};
+const VOICE = { 45: "bass", 48: "baritone", 52: "tenor", 57: "alto", 60: "soprano" };
+const QUERIES = {
+  row: v => `Row Row Row Your Boat ${v} a cappella`,
+  scale: v => `major scale ah vocal warm up ${v}`,
+  hold: v => `sustained note vocal exercise ${v}`,
+};
+let service = SERVICES[localStorageGet("service")] ? localStorageGet("service") : "youtube";
+function renderServices() {
+  $("#svc").replaceChildren(...Object.entries(SERVICES).map(([k, [name]]) => h("button", { "aria-pressed": String(k === service),
+    onclick: () => { service = k; localStorageSet("service", k); renderServices(); updateLinks(); } }, name)));
+}
+// Updated in place, so changing key or service never re-renders unsaved ratings or notes.
+function updateLinks() {
+  const [name, url] = SERVICES[service], voice = VOICE[keyMidi] || "";
+  for (const a of document.querySelectorAll("a[data-tune]")) {
+    a.href = url(QUERIES[a.dataset.tune](voice)); a.textContent = `↗ ${name} · ${voice}`;
+    a.title = `Search ${name} for a ${voice} recording; close it before you record`;
+  }
+}
+const serviceLink = tuneName => h("a", { class: "b", target: "_blank", rel: "noopener", "data-tune": tuneName });
+function playTune(tune, onlyFirst) {
+  stopAll();
   const ctx = new AudioContext(); playing = ctx;
   const beat = 60 / tune.tempo / 2; let t = ctx.currentTime + 0.1;
   const notes = onlyFirst ? [[tune.notes[0][0], 8]] : tune.notes;
@@ -257,14 +305,17 @@ function playTune(tune, onlyFirst) {
   setTimeout(() => { if (playing === ctx) { ctx.close(); playing = null; } }, (t - ctx.currentTime + 0.3) * 1000);
 }
 function keyPicker() {
-  return h("label", { class: "note" }, "Your key: ", h("select", { onchange: e => { keyMidi = +e.target.value; localStorageSet("key", e.target.value); } },
+  return h("label", { class: "note" }, "Your key: ", h("select", { onchange: e => { keyMidi = +e.target.value; localStorageSet("key", e.target.value);
+    for (const s of document.querySelectorAll(".tips select")) s.value = e.target.value; updateLinks(); } },
     KEYS.map(([n, m, who]) => h("option", { value: m, selected: m === keyMidi }, `${n} · ${who}`))));
 }
 function guide(tuneName, label) {
-  const tune = TUNES[tuneName];
+  const tune = TUNES[tuneName], st = h("span", { class: "note" });
   return h("div", { class: "row guide" }, h("span", { class: "note" }, "Listen first:"),
+    h("button", { class: "b", onclick: () => playSinger(tuneName, st) }, "▶ A real singer"),
     h("button", { class: "b", onclick: () => playTune(tune, true) }, "▶ Starting note"),
-    tune.notes.length > 1 ? h("button", { class: "b", onclick: () => playTune(tune) }, `▶ ${label}`) : null);
+    tune.notes.length > 1 ? h("button", { class: "b", onclick: () => playTune(tune) }, `▶ ${label}`) : null,
+    h("button", { class: "b", onclick: stopAll }, "■"), serviceLink(tuneName), st);
 }
 function tips(extra) {
   return h("div", { class: "tips" },
@@ -274,6 +325,8 @@ function tips(extra) {
       h("li", {}, "Pick a key where the starting note feels easy to hum. Try another if it's too high or low."),
       h("li", {}, "Play the guide two or three times, humming along. Then stop it, play the starting note once, and sing on your own."),
       h("li", {}, "Headphones help, but never sing along with the guide: the takes must be you alone."),
+      h("li", {}, "The ↗ link searches the service chosen top right for the same tune in a voice like your key (bass to soprano). Pick any version you like, listen, then close it before you press Record."),
+      h("li", {}, "“A real singer” is a trained singer from the VocalSet recordings (Wilkins et al. 2018, CC BY 4.0), always in C, so not always your key: copy the shape and the sound, then take your pitch from “Starting note”. Their scale goes one note past the octave; yours can stop at the octave."),
       extra ? h("li", {}, extra) : null),
     keyPicker());
 }
@@ -295,7 +348,7 @@ const TESTS = [
       recorder("E-001", "take3.wav", "One sustained note", "comfortable pitch, steady", 10)));
     const ready = ["take1", "take2", "take3"].every(t => has("E-001", `data/cache/human/${t}.wav`));
     root.append(h("div", { class: "step" }, h("h3", {}, "2 · Build 20 clips"),
-      h("p", { class: "note" }, "WORLD and PSOLA at 0/50/100 % correction and steadying, plus repeated originals. About a minute."),
+      h("p", { class: "note" }, "WORLD with no change, 100 % correction and correction exaggerated to 300 %; WORLD and PSOLA two semitones up; plus repeated originals. About a minute."),
       taskButton("Build clips", "e001-build", () => show(), { disabled: !ready })));
     const rate = h("div", { class: "step" }, h("h3", {}, "3 · Rate blind"));
     root.append(rate);
@@ -469,7 +522,9 @@ function renderMain() {
   const sec = h("section", {}, h("h2", {}, `${t.id} · ${t.title}`), h("p", { class: "note" }, t.time));
   t.render(sec);
   $("#main").replaceChildren(sec);
+  updateLinks();
 }
+renderServices();
 refresh().then(renderMain).catch(e => $("#main").textContent = "server not reachable: " + e.message);
 </script>
 </html>

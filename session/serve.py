@@ -3,6 +3,7 @@
 
     python3 session/serve.py            # then open http://localhost:8010/
     python3 session/serve.py --phone    # also serve tone440.wav read-only on the LAN, port 8011
+    python3 session/examples.py         # once: the real-singer examples the guides play
 
 The page records takes in the browser and posts them here; they are written to
 each experiment's data/cache/human/, which git ignores. It runs only the fixed
@@ -160,6 +161,8 @@ class H(BaseHTTPRequestHandler):
             return self.file(HERE / "index.html")
         if u.startswith("/page/"):  # E-003's probe, worklet and engine, as its own serve.mjs maps them
             return self.file(EXP["E-003"] / "page" / Path(u[6:]).name)
+        if u.startswith("/examples/"):  # real-singer guides, cut by session/examples.py
+            return self.file(HERE / "cache/examples" / Path(u[10:]).name)
         if u.startswith("/data/"):
             return self.file(EXP["E-003"] / "data/cache" / Path(u[6:]).name)
         if u == "/api/state":

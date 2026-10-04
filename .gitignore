@@ -7,3 +7,4 @@ experiments/*/data/listen/
 experiments/*/wasm/target*/
 experiments/*/wasm/pkg*/
 experiments/*/test*/target/
+session/cache/
