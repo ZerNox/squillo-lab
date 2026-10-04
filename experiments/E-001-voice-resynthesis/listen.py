@@ -3,8 +3,12 @@
     uv run python listen.py take1.wav take2.wav take3.wav
 
 Each take (mono or stereo WAV, any rate, about 10 s) gives six clips: the
-original, WORLD (Harvest) with no change, with 50 % and 100 % note-centre
-correction and with the wobble removed, and PSOLA with 100 % correction.
+original, WORLD (Harvest) with no change, with 100 % note-centre correction,
+with the correction exaggerated to 300 % (every note pushed past its centre,
+so the change is audible), and WORLD and PSOLA transposed up 200 cents. The
+first set used 50 % and 100 % correction and steadying: on a singer already
+within about 10 to 30 cents of the notes those changes were below what a
+listener hears, so every clip sounded the same.
 Two originals are repeated as a consistency check: 20 clips for three takes.
 Clips go to data/cache/listening/ in shuffled order, with ratings.csv to fill
 in and key.json (do not open it until the ratings are done). Nothing here is
@@ -34,8 +38,20 @@ import run
 from r3_loudness import bs1770
 
 VARIANTS = [("original", None, None), ("world_harvest", "id", "world id"),
-            ("world_harvest", "c50", "world c50"), ("world_harvest", "c100", "world c100"),
-            ("world_harvest", "s100", "world s100"), ("psola", "c100", "psola c100")]
+            ("world_harvest", "c100", "world c100"), ("world_harvest", "c300", "world c300"),
+            ("world_harvest", "up200", "world up200"), ("psola", "up200", "psola up200")]
+
+
+def request(grid, mod):
+    """run.request, plus the listening set's large changes: c300 is -3 times
+    the note-centre offset, up200 a constant +200 cents."""
+    if mod == "c300":
+        s = -3.0 * grid["offset"]
+    elif mod == "up200":
+        s = np.full_like(grid["t"], 200.0)
+    else:
+        return run.request(grid, mod)
+    return lambda tt: np.interp(tt, grid["t"], s)
 
 
 def main(paths):
@@ -57,7 +73,7 @@ def main(paths):
                 y = x
             else:
                 a = analyses.setdefault(method, resynth.analyse(method, x))
-                y = resynth.synthesize(a, run.request(grid, mod))
+                y = resynth.synthesize(a, request(grid, mod))
             for _ in range(4):  # the -70 LKFS gate is absolute, so one gain step can move blocks across it
                 y = y * 10 ** ((bs1770(x) - bs1770(y)) / 20)
             assert abs(bs1770(y) - bs1770(x)) < 0.001, (p, label)

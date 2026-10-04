@@ -136,9 +136,14 @@ needs a listener, and the listener should be the singer.
    melody; one sustained note (5 minutes).
 2. `uv run python listen.py take1.wav take2.wav take3.wav` builds 20 shuffled
    clips in `data/cache/listening/`: for each take the original, WORLD with
-   no change, 50 % and 100 % correction and steadying, and PSOLA with 100 %
-   correction, plus two repeated originals, every clip levelled to its
-   take's integrated loudness (since round 3) (1 minute).
+   no change, 100 % correction, correction exaggerated to 300 %, and WORLD
+   and PSOLA transposed up 200 cents, plus two repeated originals, every
+   clip levelled to its take's integrated loudness (since round 3) (1 minute).
+   The first build (2026-09-29) used 50 % and 100 % correction and
+   steadying: on Joakim's takes the note-centre offsets were 9 to 29 cents
+   (median per take) and the wobble 3 to 8 cents, so the changes were at or
+   below what one hears, and every clip sounded the same. The larger
+   changes give *same person* something to hold against.
 3. Listen once to each clip and fill in `ratings.csv`: *same person as you*
    1–5 and *natural* 1–5 (8 minutes). Only then open `key.json`.
 4. Commit `ratings.csv` and `key.json` only, never the audio (1 minute).
