@@ -40,16 +40,25 @@ with the singer's last 30 s. The published pair is the first verse of
 "Amazing Grace" from two public-domain recordings (`page/ref/SOURCES.md`).
 
 Takes and the coach: "record take" keeps up to 60 s of whatever feeds the
-analysis (mic, a recording, a demo). The take is scanned offline for spots
-where a flaw held (scoops one by one), marked on a bar. "Improved you" is the
-same take resynthesised by pitch-synchronous overlap-add: pitch steadied with
-a 250 ms running median, each note's first 300 ms held at its settled pitch,
-then pulled half way to the nearest semitone; tone, words and timing stay the
-singer's. On playback of either version the coaching panel switches to the
-flaw 1.5 s before each spot and shows its exercise. The drawn figure is the coach.
-A filmed coach is a feature toggle, off by default: with `?coach=video` in
-the URL it plays `page/coach/<pose>.mp4` silently for each exercise that has a
-clip (prompts and the import script in `coach/`).
+analysis (mic, a demo); "Recording" loads a file of up to 6 min as the take.
+The take is cut where the singing stops (silence before and after, pauses
+over 2 s shortened to 0.8 s), then scanned offline: spots where a flaw held
+(scoops one by one, a scoop being a continuous slide up, not a short note),
+marked on a bar, and a summary over the whole take (intonation on the take's
+own semitone grid, steadiness inside held notes, slides into notes, tone
+clarity), each set against the median conservatory-trained singer, with what
+went well and one or two things to work on. Two resyntheses by
+pitch-synchronous overlap-add, tone, words and timing untouched: "spotless"
+(250 ms running median inside each voiced run, the start of each note held
+at its settled pitch, snapped to the grid) and "halfway" (half way from the
+take to spotless). On playback of any version the coaching panel switches to
+the flaw 1.5 s before each spot. The drawn figure is the coach. A filmed
+coach is a feature toggle, off by default: with `?coach=video` in the URL it
+plays `page/coach/<pose>.mp4` silently for each exercise that has a clip
+(prompts and the import script in `coach/`). An Elo rating against a
+reference pool is a second toggle, `?rating=1`, experimental: see
+`rating/README.md` for why it is off. To analyse a song with music, remove the
+music first with `tools/separate-vocals.sh` (Demucs).
 
 Real-voice demos: 14 VocalSet clips (CC BY 4.0, `page/demo/SOURCES.md`),
 one woman and one man each singing the same scale straight, breathy, in vocal
@@ -57,7 +66,7 @@ fry, belted and with vibrato, plus "Caro mio ben" straight and with vibrato.
 
 Measured on the rough "Amazing Grace" reference recorded as a 20 s take
 (Chrome / Firefox / WebKit, 2026-10-24): scooped onsets per 10 s 2.0 / 2.0 /
-2.5 in the take, 0 / 0.5 / 0 in the improved version; pitch roughness 63 /
+2.5 in the take, 0 / 0.5 / 0 in the first "improved you" (since replaced by halfway and spotless); pitch roughness 63 /
 70 / 64 ¢ against 40 / 65 / 58 ¢; time flagged shaky 35 / 39 / 39 % against
 30 / 26 / 32 %. The resynthesis costs about 2.5 dB of harmonics-to-noise
 (18.6 to 16.3 dB in Chrome): it adds a little roughness of its own.
