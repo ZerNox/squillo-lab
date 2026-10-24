@@ -1113,6 +1113,30 @@ interpolation. Limits: re-syntheses, not recordings (WORLD's aperiodicity
 is not a real voice's breath); CREPE-class trackers not yet run (need torch,
 weights licence to check).
 
+### Round 9: keeping frames past the refusal (squillo Phase 1, 2026-10-24)
+
+`r9_extend.py`, `results/r9_extend.json`. Round 8's 159 re-syntheses; YIN at
+its threshold 0.1, MT-003's refusal cut moved from 0.02 upward. Bins fitted on
+10 singers (clean and white 20 dB), tested on the other 10.
+
+| aperiodicity bin (fit) | frames | gross | U95 of the rest |
+| :--- | ---: | ---: | ---: |
+| < 0.02 (today) | 88 069 | 0.11 % | 4.7 cents |
+| 0.02–0.03 | 13 694 | 3.5 % | 7.4 |
+| 0.03–0.045 | 13 402 | 4.5 % | 8.7 |
+| 0.045–0.065 | 12 175 | 8.1 % | 10.4 |
+| 0.065–0.1 | 14 795 | 17.9 % | 13.7 |
+
+Held-out singers, coverage / gross of shown: clean 72.9 % / 0.97 % at today's
+cut, 78.9 % / 1.8 % at 0.03, 93.3 % / 6.0 % at 0.1; white 20 dB 29.5 % / 1.4 %
+at 0.02, 71.3 % / 6.5 % at 0.1. The bin U95s hold (93–99 % of non-gross frames
+within them), so the ± is not the problem: **no bin past 0.02 keeps gross
+errors at or under 1 %**, so widening the refusal buys coverage only with
+wrong notes shown. Frames past 0.02 need a second witness of their period
+(continuity with neighbours: pYIN-style multiple candidates and a Viterbi
+path), which round 10 measures. A first run with YIN's threshold at 0.35 was
+discarded: it changed which dip YIN picks, so it measured another tracker.
+
 ### Beyond round 3
 
 Amateur voices and other vowels (E-005's `needs-human` step); a real room
