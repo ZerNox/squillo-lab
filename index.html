@@ -554,8 +554,9 @@ async function loadRef(slot,ab,name){try{const octx=new OfflineAudioContext(1,1,
 document.getElementById('refLoad').onclick=()=>document.getElementById('refFile').click();
 document.getElementById('refFile').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;await loadRef(refSlot.value,await f.arrayBuffer(),f.name);e.target.value='';});
 // Slots whose clip is published as ref/<slot>.mp3 next to this page; empty until clips are supplied.
-const PUBLISHED_REFS=[];
-if(/^https?:/.test(location.protocol))for(const slot of PUBLISHED_REFS)fetch('ref/'+slot+'.mp3').then(r=>r.ok?r.arrayBuffer():null).then(ab=>{if(ab)loadRef(slot,ab,slot+'.mp3');}).catch(()=>{});
+// Public-domain recordings from Wikimedia Commons; sources in ref/SOURCES.md.
+const PUBLISHED_REFS=[['polished','Amazing Grace, USAF Reserve Band soloist'],['rough','Amazing Grace, amateur duo live']];
+if(/^https?:/.test(location.protocol))for(const [slot,name] of PUBLISHED_REFS)fetch('ref/'+slot+'.mp3').then(r=>r.ok?r.arrayBuffer():null).then(ab=>{if(ab)loadRef(slot,ab,name);}).catch(()=>{});
 async function useRef(){const slot=refSlot.value;if(!REF[slot].buf){setStatus(`No ${slot} take loaded. Press “load clip…” with a recording of the song (the first 30 s of singing are kept).`);return;}
   stopSource();const ctx=await ensureCtx();await ctx.resume();const s=ctx.createBufferSource();s.buffer=REF[slot].buf;s.loop=true;s.connect(AU.cap);s.connect(ctx.destination);s.start();AU.source=s;AU.kind='ref';markSrc('ref');setStatus(`Reference: ${slot} take (${REF[slot].name}), looped.`);goLive();}
 srcBtns.ref=document.getElementById('bRef');srcBtns.ref.onclick=useRef;refSlot.onchange=()=>{if(AU.kind==='ref')useRef();};
