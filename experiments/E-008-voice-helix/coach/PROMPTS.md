@@ -21,24 +21,34 @@ figure for any pose without a clip.
    them in the page.
 
 Any other generator works the same way (Sora, Runway, Kling): starting image
-plus prompt, 9:16 or 3:4, 5 to 8 seconds.
+plus prompt, 16:9 with the coach centred (or 9:16 if offered), 5 to 8 seconds.
 
 ## Coach (the still)
 
 > Photorealistic portrait of a warm, confident female voice coach in her late
 > thirties, standing in a calm, softly lit rehearsal room with a plain
 > warm-grey wall. Shoulder-length dark hair tied back, simple charcoal
-> long-sleeve top, no jewellery, no text or logos. Framed from mid-thigh up,
-> centred, facing the camera, arms relaxed at her sides, gentle closed-mouth
-> smile. Vertical 9:16, natural skin texture, shallow depth of field.
+> long-sleeve top, no jewellery, no text or logos. Medium shot from the waist
+> up, centred in the frame, with clear empty space above her head and both
+> hands and elbows fully visible. Facing the camera, arms relaxed, gentle
+> closed-mouth smile. Horizontal 16:9, natural skin texture, shallow depth of
+> field.
+
+Landscape on purpose: the video tool makes 16:9 clips and crops a portrait
+still, which cuts off her head. `add-clips.sh` cuts a centred 3:4 portrait out
+of the landscape clip, so keep her centred with room above her head.
 
 ## Shared style (start every clip prompt with this)
 
-> Same woman, same room, same clothes and framing as the image. Locked-off
-> camera, no cuts, no zoom. She demonstrates a singing exercise silently: no
-> sound, no singing, no speech, no music, no captions. Slow, clear, calm
-> movements, as if showing a student. The clip starts and ends in the same
-> relaxed pose so it loops seamlessly. 6 to 8 seconds, vertical 9:16.
+> Same woman, same room, same clothes and framing as the image. Medium shot
+> from the waist up, her whole head and hair always in frame with space
+> above, hands always visible. Locked-off camera, no cuts, no zoom, no
+> reframing. She demonstrates a singing exercise silently: no sound, no
+> singing, no speech, no music, no captions. Slow, clear, calm movements, as
+> if showing a student. The clip starts and ends in the same relaxed pose so
+> it loops seamlessly. Horizontal 16:9.
+
+Copy the prompt text without the leading `>` (that is only Markdown quoting).
 
 ## Poses
 
