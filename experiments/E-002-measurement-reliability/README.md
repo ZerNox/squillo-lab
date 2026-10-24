@@ -1,6 +1,6 @@
 # E-002 — Measurement reliability and uncertainty
 
-**Status:** answered (round 1, pitch, answered on synthetic input; round 2, real voices, pitch ± and four aspects, squillo iteration 28; round 3, octave errors and reverberation, squillo iteration 36; fold 3, the steadying ladder, squillo iteration 42; round 4, the ring ratio on repeated material, squillo iteration 49, whose separate-takes step is `needs-human`; round 5, held notes trimmed to their measured cells and the next step against blocks, squillo iteration 78; round 6, a fixture that tells trimmed pieces from untrimmed ones, squillo iteration 88, folded in 89; round 7, the numeric epsilon across WASM targets, squillo iteration 92; a real room is E-003's `needs-human` step, an amateur's voice E-005's) · **Serves:** VISION §5 (what is measured), §6 (honesty), §12.2
+**Status:** answered (round 1, pitch, answered on synthetic input; round 2, real voices, pitch ± and four aspects, squillo iteration 28; round 3, octave errors and reverberation, squillo iteration 36; fold 3, the steadying ladder, squillo iteration 42; round 4, the ring ratio on repeated material, squillo iteration 49; round 5, held notes trimmed to their measured cells and the next step against blocks, squillo iteration 78; round 6, a fixture that tells trimmed pieces from untrimmed ones, squillo iteration 88, folded in 89; round 7, the numeric epsilon across WASM targets, squillo iteration 92; round 11, the take measures on the shipped Rust crate, squillo Phase 1) · **Serves:** VISION §5 (what is measured), §6 (honesty), §12.2
 
 ## Question
 
@@ -448,7 +448,7 @@ clean. VISION §6 then needs squillo to state the condition rather than
 detect it: the pitch ± is honest for close, dry capture, and the singer is
 told so. The original VocalSet takes, recorded in a real treated room,
 cover 98.3 % against Harvest, which is two trackers agreeing, not a truth.
-A real room is E-003's `needs-human` step.
+A real room is not measured here (E-003).
 
 **Limits.** Modelled rooms (an exponential Gaussian tail, no early
 reflections, no frequency dependence), one estimate family per idea and
@@ -1149,10 +1149,31 @@ today's gross (for example, no more than +0.5 points) is a different
 question and would need its own committed round, or a witness that also
 checks the octave below and above (where round 3 found the gross errors).
 
+### Round 11: the take measures on the shipped Rust crate (squillo Phase 1, 2026-10-24)
+
+**Question.** Does `squillo`'s Rust `metrics::take::measure` (MT-009 to MT-011)
+give what the lab's reference gives (`r5_trim.finder` with trim, `fold2.blocks`,
+`fold2.take`), so the lab's figures for these measures may be cited for the
+product? **Bar, stated before the run:** on every take, the same held notes,
+blocks and rate presence, and every block value, take value and u within
+1e-6 relative.
+
+**Method.** `r11_rust_take.py`: the 159 WORLD re-syntheses, clean and at 20 dB
+white noise; the Rust example `take_json` gives the cells and its measures;
+the Python reference runs on the very same cells.
+
+**Result** (`results/r11_rust_take.json`). 159 of 159 takes agree in both
+conditions. Clean: 125 held notes (the count MT-009 cites), 183 blocks;
+steadiness and extent measured on 45 takes, rate on 33. At 20 dB: 51 held
+notes, 63 blocks, 15/15/8 takes. The crate is equivalent to the reference
+within 1e-6; the coverage figures of fold 2 and round 5 carry to it as far
+as the cells are the same (cells from the crate's YIN, not round 2's Python
+YIN, were used here).
+
 ### Beyond round 3
 
-Amateur voices and other vowels (E-005's `needs-human` step); a real room
-(E-003's); the ring ratio on repeated material (F-036, round 4: separate takes of one scale, the `needs-human` step above); a reverberation
+Amateur voices and other vowels (openly licensed data); a real room
+(E-003); the ring ratio on repeated material (F-036, round 4: separate takes of one scale); a reverberation
 estimate of another kind (spectral smearing of the partials, or a blind
 RT60 method with its own evidence) if squillo ever needs detection rather
 than a stated condition.

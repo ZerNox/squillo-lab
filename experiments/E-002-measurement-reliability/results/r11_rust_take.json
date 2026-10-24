@@ -1,0 +1,26 @@
+{
+ "clean": {
+  "takes": 159,
+  "agree": 159,
+  "notes": 125,
+  "blocks": 183,
+  "measured": {
+   "S": 45,
+   "E": 45,
+   "R": 33
+  },
+  "disagree": {}
+ },
+ "white-20": {
+  "takes": 159,
+  "agree": 159,
+  "notes": 51,
+  "blocks": 63,
+  "measured": {
+   "S": 15,
+   "E": 15,
+   "R": 8
+  },
+  "disagree": {}
+ }
+}
