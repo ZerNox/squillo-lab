@@ -178,7 +178,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
       <option value="vs:m2_caro_vibrato">Man: “Caro mio ben”, vibrato</option>
     </optgroup>
   </select>
-  <input type="file" id="file" accept="audio/*">
+  <input type="file" id="file" accept="audio/*,video/*,.m4a,.mp3,.wav,.aac,.ogg,.opus,.flac,.mp4,.mov">
   <select id="refSlot" aria-label="Reference slot"><option value="polished">polished take</option><option value="rough">rough take</option></select>
   <button class="btn" id="refLoad">load clip…</button>
   <input type="file" id="refFile" accept="audio/*" hidden>
@@ -510,7 +510,10 @@ function updateFlaws(st,dt){let top=null,topE=0;FLAWS.forEach((fl,i)=>{const hit
 // ───────────────────────── audio plumbing ─────────────────────────
 const AU={ctx:null,cap:null,sink:null,source:null,kind:null,demo:null,sr:48000};
 let calibrating=false;
-async function ensureCtx(){if(AU.ctx)return AU.ctx;const ctx=new (window.AudioContext||window.webkitAudioContext)();AU.ctx=ctx;AU.sr=ctx.sampleRate;
+let ctxReady=null;
+// One setup shared by every caller: the context exists synchronously (so a tap can resume it), the worklet follows.
+function ensureCtx(){if(!ctxReady)ctxReady=setupCtx();return ctxReady;}
+async function setupCtx(){const ctx=new (window.AudioContext||window.webkitAudioContext)();AU.ctx=ctx;AU.sr=ctx.sampleRate;
   dsp=makeDsp(onDspMsg);dsp.post({type:'init',sr:AU.sr,hop:0.02});
   AU.sink=ctx.createGain();AU.sink.gain.value=0;AU.sink.connect(ctx.destination);
   try{await ctx.audioWorklet.addModule(URL.createObjectURL(new Blob([CAP_SRC],{type:'text/javascript'})));const node=new AudioWorkletNode(ctx,'cap',{numberOfInputs:1,numberOfOutputs:1,outputChannelCount:[1]});node.port.onmessage=e=>{takeTap(e.data);dsp.post({type:'audio',buf:e.data},[e.data.buffer]);};node.connect(AU.sink);AU.cap=node;AU.capKind='worklet';}
@@ -568,9 +571,13 @@ async function useMic(){stopSource();const ctx=await ensureCtx();await ctx.resum
   try{const stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}});const s=ctx.createMediaStreamSource(stream);s.connect(AU.cap);AU.source=s;AU.kind='mic';markSrc('mic');
     calibrating=true;dsp.post({type:'calib',seconds:2});setStatus('Calibrating the room: stay quiet for 2 seconds…');goLive();}
   catch(e){markSrc(null);const why=location.protocol==='file:'?'this browser does not allow the microphone on a file opened from disk':/claude\.ai|claudeusercontent/.test(location.hostname)?'the claude.ai viewer blocks the microphone':`${e&&e.name||'error'}: check the lock icon for this site's microphone permission and that no other app holds the mic`;setStatus(`Microphone refused: ${why}. Use the hosted page, or load a recording.`);}}
-document.getElementById('file').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;stopSource();const ctx=await ensureCtx();await ctx.resume();
-  try{const ab=await f.arrayBuffer();const buf=await ctx.decodeAudioData(ab);const s=ctx.createBufferSource();s.buffer=buf;s.loop=true;s.connect(AU.cap);s.connect(ctx.destination);s.start();AU.source=s;AU.kind='file';markSrc('file');setStatus(`Playing ${f.name} (${buf.duration.toFixed(1)} s, looped).`);goLive();}
-  catch(err){setStatus('Could not decode that file. Try WAV, MP3, M4A or OGG.');}});
+// A loaded recording becomes the take (first 60 s): scanned for spots, then played with the coach.
+document.getElementById('file').addEventListener('change',async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;stopSource();const ctx=await ensureCtx();
+  let buf;try{buf=await ctx.decodeAudioData(await f.arrayBuffer());}catch(err){setStatus(`Could not decode ${f.name}. Try M4A, MP3, WAV or OGG.`);return;}
+  const n=Math.min(buf.length,Math.floor(MAXTAKE*buf.sampleRate)),x=new Float32Array(n);for(let c=0;c<buf.numberOfChannels;c++){const d=buf.getChannelData(c);for(let i=0;i<n;i++)x[i]+=d[i]/buf.numberOfChannels;}
+  const mono=ctx.createBuffer(1,n,buf.sampleRate);mono.getChannelData(0).set(x);markSrc('file');
+  setStatus(`${f.name}: ${(n/buf.sampleRate).toFixed(1)} s${buf.duration>MAXTAKE?` (first ${MAXTAKE} s)`:''} loaded as your take.`);
+  await setTake(mono);if(ctx.state==='running')playTake('take');else takeInfo.textContent+=' Tap ▶ your take to hear it.';});
 // Real-voice demos: VocalSet clips (CC BY 4.0) in demo/, sources in demo/SOURCES.md.
 const demoBufs={};
 async function useDemo(){stopSource();const ctx=await ensureCtx();await ctx.resume();const name=document.getElementById('preset').value;
@@ -724,6 +731,9 @@ function updateComb(f){if(f.voiced){const P_=[],C_=[];for(let k=1;k<=14;k++){con
 function drawTerrain(view,proj){gl.useProgram(PT.p);gl.uniformMatrix4fv(PT.u.uProj,false,proj);gl.uniformMatrix4fv(PT.u.uView,false,view);gl.uniform1i(PT.u.uHead,terHead);gl.uniform2i(PT.u.uDim,TD.T,TD.F);gl.uniform3fv(PT.u.uOrigin,ZX);gl.uniform3fv(PT.u.uSize,TD.size);gl.uniform1f(PT.u.uFloor,noiseFloor);gl.uniform3fv(PT.u.uFog,C.fog);
   gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,terTex);gl.uniform1i(PT.u.uH,0);gl.bindVertexArray(terVAO);gl.drawElements(gl.TRIANGLES,terIdxCount,gl.UNSIGNED_INT,0);gl.bindVertexArray(null);}
 
+// iOS runs audio only for a context created and resumed inside a tap, before any await; prime on every tap.
+const primeAudio=()=>{ensureCtx();if(AU.ctx&&AU.ctx.state!=='running')AU.ctx.resume().catch(()=>{});};
+document.addEventListener('click',primeAudio,true);document.addEventListener('touchend',primeAudio,true);
 // ───────────────────────── takes: record, scan, improve, coach ─────────────────────────
 // A take is whatever flows into the analysis while recording (mic, a recording, a demo), up to 60 s.
 // Scanning it offline gives the spots where a flaw held; "improved you" is the same take with its
@@ -738,7 +748,8 @@ bRec.onclick=()=>{if(TAKE.rec){finishTake();return;}if(TAKE.busy)return;
 async function finishTake(){if(!TAKE.rec)return;const chunks=TAKE.rec;TAKE.rec=null;bRec.textContent='● record take';bRec.setAttribute('aria-pressed','false');
   const n=chunks.reduce((a,c)=>a+c.length,0);if(n<AU.sr){takeInfo.textContent='Too short: record at least a second.';return;}
   const x=new Float32Array(n);let o=0;for(const c of chunks){x.set(c,o);o+=c.length;}
-  const buf=AU.ctx.createBuffer(1,n,AU.sr);buf.getChannelData(0).set(x);TAKE.busy=true;takeInfo.textContent=`Scanning your ${(n/AU.sr).toFixed(1)} s take…`;
+  const buf=AU.ctx.createBuffer(1,n,AU.sr);buf.getChannelData(0).set(x);await setTake(buf);}
+async function setTake(buf){TAKE.busy=true;takeInfo.textContent=`Scanning your ${buf.duration.toFixed(1)} s take…`;
   const sc=await scanTake(buf);TAKE.buf=buf;TAKE.segs=sc.segs;TAKE.better=improveTake(buf,sc.frames);TAKE.busy=false;renderTakebar();
   bPlayTake.disabled=false;bPlayBetter.disabled=false;
   const names=[...new Set(TAKE.segs.map(g=>FLAWS[g.i].name))];
