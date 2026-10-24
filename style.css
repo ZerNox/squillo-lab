@@ -1,0 +1,24 @@
+:root { color-scheme: light dark; --bg: #0f1419; --fg: #e6e1d6; --mute: #8b949e; --line: #7dd3c0; --band: rgba(125, 211, 192, 0.22); --mark: rgba(230, 225, 214, 0.85); --note: rgba(230, 225, 214, 0.35); }
+@media (prefers-color-scheme: light) { :root { --bg: #fbfaf7; --fg: #1f2328; --mute: #59636e; --line: #0f766e; --band: rgba(15, 118, 110, 0.18); --mark: rgba(31, 35, 40, 0.8); --note: rgba(31, 35, 40, 0.3); } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.5 system-ui, sans-serif; }
+main { max-width: 1200px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+h1 { margin: 0; font-weight: 600; letter-spacing: 0.02em; }
+.sub { margin: 0.2rem 0 1.2rem; color: var(--mute); }
+.controls { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+button { font: inherit; padding: 0.6rem 1.6rem; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--fg); cursor: pointer; }
+button:not(:disabled):hover, button:focus-visible { background: var(--band); outline: none; }
+button:disabled { opacity: 0.4; cursor: default; }
+button[aria-pressed="true"] { background: var(--line); color: var(--bg); }
+#start:not(:disabled) { background: var(--line); color: var(--bg); }
+#state { color: var(--mute); font-size: 0.9rem; flex: 1 1 20rem; }
+.note { color: var(--mute); font-size: 0.9rem; }
+figure { margin: 1rem 0 0; }
+canvas { width: 100%; height: auto; display: block; border-radius: 12px; background: rgba(127, 127, 127, 0.06); }
+figcaption { color: var(--mute); font-size: 0.85rem; margin-top: 0.5rem; }
+.after { margin-top: 1.5rem; padding: 1rem 1.25rem; border-radius: 12px; background: rgba(127, 127, 127, 0.06); }
+h2 { margin: 0 0 0.4rem; font-size: 1.15rem; font-weight: 600; }
+[hidden] { display: none !important; }
+.measures { padding-left: 1.2rem; line-height: 1.5; } .measures li { margin: 0.3rem 0; }
+#takeline { cursor: pointer; touch-action: manipulation; }
+#takeline:focus-visible { outline: 2px solid var(--line); outline-offset: 2px; }
