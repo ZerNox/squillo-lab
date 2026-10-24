@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval' blob:; worker-src blob:; style-src 'self'; img-src 'self'; connect-src 'none'; media-src 'none'; form-action 'none'; base-uri 'none'">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Squillo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header>
+    <h1>Squillo</h1>
+    <p class="sub">Sing anything. Watch how your pitch moves.</p>
+  </header>
+  <section class="controls">
+    <button id="start" type="button">Start</button>
+    <button id="stop" type="button" disabled>Stop</button>
+    <span id="state" role="status" aria-live="polite">Nothing is recorded or sent anywhere: the microphone opens only when you press Start, and your voice is analysed on this device.</span>
+  </section>
+  <p id="condition" class="note" hidden></p>
+  <figure id="live">
+    <canvas id="line" width="1200" height="480" aria-label="Live pitch line: your pitch over the last eight seconds, higher is higher, with its uncertainty as a band"></canvas>
+    <figcaption>The line shows how your pitch moves, frame by frame, every 8 ms. The band around it is its ± (twice the standard uncertainty); a gap is a moment with no measurable pitch. How close you came to the notes you aimed for is measured from the whole take, never from this line, and is not built yet.</figcaption>
+  </figure>
+  <section id="after" class="after" hidden aria-labelledby="after-h">
+    <h2 id="after-h">Your take</h2>
+    <p id="summary"></p>
+    <div class="controls">
+      <button id="play" type="button">Hear your take</button>
+      <button id="stopplay" type="button" disabled>Stop playback</button>
+    </div>
+    <p class="note">This is your own recording as the browser delivered it, with nothing re-synthesized or changed by Squillo. It is held in this page's memory only until you start the next run or close the page, and is never kept or sent.</p>
+    <p id="processednote" class="note" hidden></p>
+    <p id="gainnote" class="note" hidden>Your take reached beyond full scale, so it plays quieter so that nothing clips.</p>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
