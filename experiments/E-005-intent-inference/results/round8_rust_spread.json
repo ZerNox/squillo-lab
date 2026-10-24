@@ -1,0 +1,200 @@
+{
+ "fixtures": {
+  "takes": 26,
+  "agree": 26,
+  "states": {
+   "measured": 6,
+   "at least": 2,
+   "uncertain": 18
+  },
+  "disagree": {}
+ },
+ "synthetic": {
+  "takes": 300,
+  "agree": 300,
+  "states": {
+   "measured": 197,
+   "at least": 77,
+   "uncertain": 26
+  },
+  "disagree": {}
+ },
+ "clean": {
+  "takes": 159,
+  "agree": 159,
+  "states": {
+   "measured": 9,
+   "at least": 113,
+   "uncertain": 37
+  },
+  "disagree": {}
+ },
+ "white20": {
+  "takes": 159,
+  "agree": 159,
+  "states": {
+   "measured": 12,
+   "at least": 81,
+   "uncertain": 66
+  },
+  "disagree": {}
+ },
+ "fixtures_rows": {
+  "held-steady.wav": {
+   "state": "uncertain",
+   "segments": 1,
+   "bad": [],
+   "s": null
+  },
+  "held-vibrato.wav": {
+   "state": "uncertain",
+   "segments": 1,
+   "bad": [],
+   "s": null
+  },
+  "held-wobble.wav": {
+   "state": "uncertain",
+   "segments": 1,
+   "bad": [],
+   "s": null
+  },
+  "take-drift-60c.wav": {
+   "state": "at least",
+   "segments": 14,
+   "bad": [],
+   "s": 22.483931076705982
+  },
+  "take-in-tune.wav": {
+   "state": "measured",
+   "segments": 14,
+   "bad": [],
+   "s": 0.0006831043263965991
+  },
+  "take-spread-15c.wav": {
+   "state": "measured",
+   "segments": 14,
+   "bad": [],
+   "s": 16.89714930264991
+  },
+  "take-spread-5c.wav": {
+   "state": "measured",
+   "segments": 14,
+   "bad": [],
+   "s": 5.226390497801477
+  },
+  "take-uncertain.wav": {
+   "state": "uncertain",
+   "segments": 14,
+   "bad": [],
+   "s": null
+  },
+  "take-vibrato-in-tune.wav": {
+   "state": "measured",
+   "segments": 14,
+   "bad": [],
+   "s": 0.059301179362059434
+  },
+  "take-vibrato-onset-50c.wav": {
+   "state": "measured",
+   "segments": 14,
+   "bad": [],
+   "s": 0.03705487287883071
+  },
+  "tone-aperiodic.wav": {
+   "state": "uncertain",
+   "segments": 1,
+   "bad": [],
+   "s": null
+  },
+  "tone-weak-odd.wav": {
+   "state": "uncertain",
+   "segments": 0,
+   "bad": [],
+   "s": null
+  },
+  "two-notes-gap.wav": {
+   "state": "measured",
+   "segments": 2,
+   "bad": [],
+   "s": 2.008166982098553e-05
+  },
+  "glide-220hz-600c.wav": {
+   "state": "at least",
+   "segments": 6,
+   "bad": [],
+   "s": 1.9836191473675533
+  },
+  "silence.wav": {
+   "state": "uncertain",
+   "segments": 0,
+   "bad": [],
+   "s": null
+  },
+  "sine-220hz-overshoot.wav": {
+   "state": "uncertain",
+   "segments": 1,
+   "bad": [],
+   "s": null
+  },
+  "sine-220hz.wav": {
+   "state": "uncertain",
+   "segments": 1,
+   "bad": [],
+   "s": null
+  },
+  "sine-c2.wav": {
+   "state": "uncertain",
+   "segments": 0,
+   "bad": [],
+   "s": null
+  },
+  "sine-c6-plus-7c.wav": {
+   "state": "uncertain",
+   "segments": 0,
+   "bad": [],
+   "s": null
+  },
+  "sine-c6.wav": {
+   "state": "uncertain",
+   "segments": 1,
+   "bad": [],
+   "s": null
+  },
+  "sine-c7.wav": {
+   "state": "uncertain",
+   "segments": 0,
+   "bad": [],
+   "s": null
+  },
+  "sine-e2-minus-7c.wav": {
+   "state": "uncertain",
+   "segments": 0,
+   "bad": [],
+   "s": null
+  },
+  "sine-e2.wav": {
+   "state": "uncertain",
+   "segments": 1,
+   "bad": [],
+   "s": null
+  },
+  "vibrato-220hz-5p5hz.wav": {
+   "state": "uncertain",
+   "segments": 1,
+   "bad": [],
+   "s": null
+  },
+  "silence-30s-plus.wav": {
+   "state": "uncertain",
+   "segments": 0,
+   "bad": [],
+   "s": null
+  },
+  "voice-220hz-wobble.wav": {
+   "state": "uncertain",
+   "segments": 1,
+   "bad": [],
+   "s": null
+  }
+ }
+}

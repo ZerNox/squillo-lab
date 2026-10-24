@@ -1466,3 +1466,37 @@ candidate, 0.5.
 list exactly in tune, the simplest partial take; the 0.70 share lies
 between 0.5 and 0.75, so the fixtures pin *F* only to (0.70, 0.93], the
 share of `take-uncertain.wav`.
+
+## Round 8: `pitch-spread` on the shipped Rust crate (squillo Phase 1, 2026-10-24)
+
+**Question.** Does squillo's Rust `metrics::spread::measure` (MT-006, MT-007,
+no written notes) give what this lab's reference gives (`round4.measure`, rule
+`PM`, as fold 4 ships it), fed the very same pitch cells?
+
+**Method** (`round8_rust_spread.py`, committed before the run, `094cc5c`).
+`take_json` (squillo `crates/metrics/examples`) prints the Rust cells and
+spread; the reference measures those cells with frame times *k* · 384/48 000.
+Inputs: squillo's 26 wav fixtures; 300 synthetic 14-note takes
+(`fold_refusal.take_sample`, deviations N(0, σ), σ ∈ {0, 5, 10, 15, 20, 30}
+cents, straight or 5.5 Hz vibrato); E-002's 159 WORLD re-syntheses of
+VocalSet (CC BY 4.0), clean and with white noise at 20 dB against the take's
+mean power, seeded per take. Bar, before the run: same state and segments on
+every take, value, *u* and lower end within 1e-6 relative.
+
+**Result** (`results/round8_rust_spread.json`). The first run agreed on
+26/26 fixtures, 300/300 synthetic takes, 152/159 clean and 156/159 noisy
+re-syntheses: on 10 takes one short note's vibrato fit chose a different rate,
+because NumPy's `arange(3.5, 8.0001, 0.05)` steps by (3.5 + 0.05) − 3.5, not
+0.05, so its rates differ in the last bits and 6.25 Hz × 0.16 s falls under
+one cycle. With the Rust rates built the NumPy way, **all 644 takes agree**
+(26, 300, 159, 159). States: fixtures 6 measured, 2 at least, 18 uncertain;
+synthetic 197 / 77 / 26; re-syntheses clean 9 / 113 / 37, at 20 dB 12 / 81 / 66.
+
+**What this says for squillo.** The shipped crate equals the reference, so
+E-005's coverage figures (rounds 2, fold refusal, round 4) stand for it.
+On real VocalSet exercises the spread is mostly given as a lower end only
+(113 of 159 clean): the honest statement for takes whose spread exceeds what
+the take can bound to 25 cents.
+
+**Limits.** Equivalence only, no new accuracy figure; MT-014 (written notes)
+is not ported.
