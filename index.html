@@ -21,11 +21,17 @@
   <p id="condition" class="note" hidden></p>
   <figure id="live">
     <canvas id="line" width="1200" height="480" aria-label="Live pitch line: your pitch over the last eight seconds, higher is higher, with its uncertainty as a band"></canvas>
-    <figcaption>The line shows how your pitch moves, frame by frame, every 8 ms. The band around it is its ± (twice the standard uncertainty); a gap is a moment with no measurable pitch. From your second take on, the height fits the range of your previous take, fixed for the whole take; a pitch beyond it shows as a mark at the edge. How close you came to the notes you aimed for is measured from the whole take, never from this line, and is not built yet.</figcaption>
+    <figcaption>The line shows how your pitch moves, frame by frame, every 8 ms. The band around it is its ± (twice the standard uncertainty); a gap is a moment with no measurable pitch. From your second take on, the height fits the range of your previous take, fixed for the whole take; a pitch beyond it shows as a mark at the edge. Steadiness and vibrato are measured from the whole take when you stop, never from this line.</figcaption>
   </figure>
   <section id="after" class="after" hidden aria-labelledby="after-h">
     <h2 id="after-h">Your take</h2>
     <p id="summary"></p>
+    <ul id="measures" class="measures" hidden></ul>
+    <figure id="take" hidden>
+      <canvas id="takeline" width="1200" height="320" tabindex="0" aria-label="Your take's pitch line, the whole take from left to right, with its uncertainty as a band. A mark shows the moment you are hearing. Tap, click, or use the left and right arrow keys to play from another moment."></canvas>
+      <figcaption>Your whole take, start to end, drawn like the live line with its ±. The upright mark is the moment you hear; tap or click the line to play from there, or use the arrow keys to move a second back or on.</figcaption>
+    </figure>
+    <p class="note">Each ± is twice the standard uncertainty. How close you came to the notes you aimed for is not measured yet.</p>
     <div class="controls">
       <button id="play" type="button">Hear your take</button>
       <button id="stopplay" type="button" disabled>Stop playback</button>
