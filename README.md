@@ -1,4 +1,5 @@
-# squillo web app (built)
+# squillo-lab pages
 
-Auto-published from `squillo` @ 7b52e45 by `squillo-publish`. Do not edit by hand.
-Served at https://zernox.github.io/squillo-lab/
+Serves `squillo-lab/experiments/E-008-voice-helix/page/` (Voice Helix) at
+https://zernox.github.io/squillo-lab/. The squillo app that was published
+here by `squillo-publish` is no longer kept (Joakim, 2026-10-24).
