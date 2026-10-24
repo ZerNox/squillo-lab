@@ -1,0 +1,1036 @@
+{
+ "pool": "101 VocalSet song excerpts by 20 conservatory-trained singers (Wilkins et al. 2018, CC BY 4.0) and 2 other recordings",
+ "built": "2026-10-24",
+ "anchors": [
+  {
+   "id": "vocalset/f8_caro_straight",
+   "group": "trained",
+   "r": 2192,
+   "a": {
+    "inton": 8.329,
+    "stab": 1.506,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f7_dona_straight",
+   "group": "trained",
+   "r": 2188,
+   "a": {
+    "inton": 7.579,
+    "stab": 1.721,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m8_dona_straight",
+   "group": "trained",
+   "r": 2174,
+   "a": {
+    "inton": 7.347,
+    "stab": 2.235,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f5_dona_straight",
+   "group": "trained",
+   "r": 2171,
+   "a": {
+    "inton": 9.808,
+    "stab": 1.576,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f8_dona_straight",
+   "group": "trained",
+   "r": 2171,
+   "a": {
+    "inton": 9.979,
+    "stab": 1.598,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f3_dona_straight",
+   "group": "trained",
+   "r": 2170,
+   "a": {
+    "inton": 8.633,
+    "stab": 1.901,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f6_caro_straight",
+   "group": "trained",
+   "r": 2165,
+   "a": {
+    "inton": 9.695,
+    "stab": 1.695,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m8_caro_straight",
+   "group": "trained",
+   "r": 2158,
+   "a": {
+    "inton": 8.276,
+    "stab": 2.446,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f3_caro_straight",
+   "group": "trained",
+   "r": 2152,
+   "a": {
+    "inton": 9.929,
+    "stab": 1.907,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f4_caro_straight",
+   "group": "trained",
+   "r": 2152,
+   "a": {
+    "inton": 10.033,
+    "stab": 1.943,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f6_dona_straight",
+   "group": "trained",
+   "r": 2149,
+   "a": {
+    "inton": 9.884,
+    "stab": 2.004,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f3_dona_vibrato",
+   "group": "trained",
+   "r": 2138,
+   "a": {
+    "inton": 7.441,
+    "stab": 3.684,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m1_dona_straight",
+   "group": "trained",
+   "r": 2134,
+   "a": {
+    "inton": 11.117,
+    "stab": 1.727,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f7_row_straight",
+   "group": "trained",
+   "r": 2128,
+   "a": {
+    "inton": 9.858,
+    "stab": 3.043,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f6_caro_vibrato",
+   "group": "trained",
+   "r": 2125,
+   "a": {
+    "inton": 10.751,
+    "stab": 2.307,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m6_dona_straight",
+   "group": "trained",
+   "r": 2124,
+   "a": {
+    "inton": 11.718,
+    "stab": 1.621,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f6_row_straight",
+   "group": "trained",
+   "r": 2122,
+   "a": {
+    "inton": 10.318,
+    "stab": 2.548,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f7_caro_straight",
+   "group": "trained",
+   "r": 2122,
+   "a": {
+    "inton": 10.951,
+    "stab": 2.157,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f5_row_straight",
+   "group": "trained",
+   "r": 2121,
+   "a": {
+    "inton": 11.102,
+    "stab": 2.142,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m10_caro_straight",
+   "group": "trained",
+   "r": 2113,
+   "a": {
+    "inton": 10.685,
+    "stab": 2.791,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f4_dona_straight",
+   "group": "trained",
+   "r": 2107,
+   "a": {
+    "inton": 12.074,
+    "stab": 1.696,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f5_caro_straight",
+   "group": "trained",
+   "r": 2101,
+   "a": {
+    "inton": 12.434,
+    "stab": 1.756,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f1_dona_straight",
+   "group": "trained",
+   "r": 2088,
+   "a": {
+    "inton": 10.563,
+    "stab": 3.723,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m3_dona_straight",
+   "group": "trained",
+   "r": 2088,
+   "a": {
+    "inton": 12.31,
+    "stab": 2.134,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f2_dona_straight",
+   "group": "trained",
+   "r": 2086,
+   "a": {
+    "inton": 12.551,
+    "stab": 2.246,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m9_row_straight",
+   "group": "trained",
+   "r": 2085,
+   "a": {
+    "inton": 10.613,
+    "stab": 3.771,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m4_dona_straight",
+   "group": "trained",
+   "r": 2075,
+   "a": {
+    "inton": 13.102,
+    "stab": 1.91,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m9_caro_straight",
+   "group": "trained",
+   "r": 2073,
+   "a": {
+    "inton": 13.104,
+    "stab": 2.02,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m6_caro_straight",
+   "group": "trained",
+   "r": 2071,
+   "a": {
+    "inton": 14.671,
+    "stab": 1.477,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m4_caro_straight",
+   "group": "trained",
+   "r": 2069,
+   "a": {
+    "inton": 14.129,
+    "stab": 1.716,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f8_row_straight",
+   "group": "trained",
+   "r": 2068,
+   "a": {
+    "inton": 13.738,
+    "stab": 1.793,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m6_row_straight",
+   "group": "trained",
+   "r": 2068,
+   "a": {
+    "inton": 14.659,
+    "stab": 1.664,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f2_row_straight",
+   "group": "trained",
+   "r": 2066,
+   "a": {
+    "inton": 12.8,
+    "stab": 2.804,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f9_dona_straight",
+   "group": "trained",
+   "r": 2065,
+   "a": {
+    "inton": 13.479,
+    "stab": 2.218,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m4_row_straight",
+   "group": "trained",
+   "r": 2062,
+   "a": {
+    "inton": 14.932,
+    "stab": 1.672,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f3_caro_vibrato",
+   "group": "trained",
+   "r": 2051,
+   "a": {
+    "inton": 13.052,
+    "stab": 3.177,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m9_dona_straight",
+   "group": "trained",
+   "r": 2044,
+   "a": {
+    "inton": 14.932,
+    "stab": 2.16,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f1_caro_vibrato",
+   "group": "trained",
+   "r": 2037,
+   "a": {
+    "inton": 14.002,
+    "stab": 0,
+    "onset": 0.045
+   }
+  },
+  {
+   "id": "vocalset/f3_row_straight",
+   "group": "trained",
+   "r": 2035,
+   "a": {
+    "inton": 14.49,
+    "stab": 3.017,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m7_caro_straight",
+   "group": "trained",
+   "r": 2035,
+   "a": {
+    "inton": 13.451,
+    "stab": 3.631,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m5_row_straight",
+   "group": "trained",
+   "r": 2032,
+   "a": {
+    "inton": 14.573,
+    "stab": 3.127,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f4_caro_vibrato",
+   "group": "trained",
+   "r": 2025,
+   "a": {
+    "inton": 15.219,
+    "stab": 3.002,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f9_row_straight",
+   "group": "trained",
+   "r": 2024,
+   "a": {
+    "inton": 8.168,
+    "stab": 2.394,
+    "onset": 0.125
+   }
+  },
+  {
+   "id": "vocalset/m10_dona_straight",
+   "group": "trained",
+   "r": 2020,
+   "a": {
+    "inton": 16.277,
+    "stab": 1.951,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f7_dona_vibrato",
+   "group": "trained",
+   "r": 2019,
+   "a": {
+    "inton": 14.603,
+    "stab": 3.679,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m9_dona_vibrato",
+   "group": "trained",
+   "r": 2016,
+   "a": {
+    "inton": 14.259,
+    "stab": 3.717,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f6_row_vibrato",
+   "group": "trained",
+   "r": 2014,
+   "a": {
+    "inton": 15.683,
+    "stab": 2.991,
+    "onset": 0
+   }
+  },
+  {
+   "id": "amazing-grace/usaf-soloist",
+   "group": "other",
+   "r": 2006,
+   "a": {
+    "inton": 7.838,
+    "stab": 3.199,
+    "onset": 0.158
+   }
+  },
+  {
+   "id": "vocalset/f2_caro_straight",
+   "group": "trained",
+   "r": 2005,
+   "a": {
+    "inton": 15.89,
+    "stab": 3.197,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m11_caro_straight",
+   "group": "trained",
+   "r": 2003,
+   "a": {
+    "inton": 15.667,
+    "stab": 3.664,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m7_row_straight",
+   "group": "trained",
+   "r": 2003,
+   "a": {
+    "inton": 8.704,
+    "stab": 3.456,
+    "onset": 0.143
+   }
+  },
+  {
+   "id": "vocalset/f2_caro_vibrato",
+   "group": "trained",
+   "r": 2000,
+   "a": {
+    "inton": 13.308,
+    "stab": 4.417,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m1_row_straight",
+   "group": "trained",
+   "r": 2000,
+   "a": {
+    "inton": 17.364,
+    "stab": 2.117,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f6_dona_vibrato",
+   "group": "trained",
+   "r": 1996,
+   "a": {
+    "inton": 12.265,
+    "stab": 5.103,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f7_caro_vibrato",
+   "group": "trained",
+   "r": 1996,
+   "a": {
+    "inton": 11.666,
+    "stab": 5.584,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f1_row_straight",
+   "group": "trained",
+   "r": 1992,
+   "a": {
+    "inton": 13.943,
+    "stab": 4.393,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f1_caro_straight",
+   "group": "trained",
+   "r": 1987,
+   "a": {
+    "inton": 14.484,
+    "stab": 4.251,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f4_row_straight",
+   "group": "trained",
+   "r": 1984,
+   "a": {
+    "inton": 8.182,
+    "stab": 2.75,
+    "onset": 0.286
+   }
+  },
+  {
+   "id": "vocalset/m1_caro_straight",
+   "group": "trained",
+   "r": 1981,
+   "a": {
+    "inton": 18.842,
+    "stab": 1.706,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m8_dona_vibrato",
+   "group": "trained",
+   "r": 1980,
+   "a": {
+    "inton": 14.751,
+    "stab": 4.384,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f8_caro_vibrato",
+   "group": "trained",
+   "r": 1971,
+   "a": {
+    "inton": 15.175,
+    "stab": 4.53,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m1_caro_vibrato",
+   "group": "trained",
+   "r": 1965,
+   "a": {
+    "inton": 17.69,
+    "stab": 3.453,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m2_row_straight",
+   "group": "trained",
+   "r": 1965,
+   "a": {
+    "inton": 17.56,
+    "stab": 3.657,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f9_caro_straight",
+   "group": "trained",
+   "r": 1961,
+   "a": {
+    "inton": 12.761,
+    "stab": 1.987,
+    "onset": 0.111
+   }
+  },
+  {
+   "id": "vocalset/f2_dona_vibrato",
+   "group": "trained",
+   "r": 1953,
+   "a": {
+    "inton": 18.853,
+    "stab": 2.888,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m6_dona_vibrato",
+   "group": "trained",
+   "r": 1953,
+   "a": {
+    "inton": 15.12,
+    "stab": 5.079,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m7_dona_straight",
+   "group": "trained",
+   "r": 1952,
+   "a": {
+    "inton": 11.906,
+    "stab": 3.15,
+    "onset": 0.111
+   }
+  },
+  {
+   "id": "vocalset/m11_row_straight",
+   "group": "trained",
+   "r": 1948,
+   "a": {
+    "inton": 18.719,
+    "stab": 3.307,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m2_caro_straight",
+   "group": "trained",
+   "r": 1945,
+   "a": {
+    "inton": 16.112,
+    "stab": 4.569,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m2_dona_straight",
+   "group": "trained",
+   "r": 1945,
+   "a": {
+    "inton": 19.849,
+    "stab": 2.649,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m5_caro_straight",
+   "group": "trained",
+   "r": 1942,
+   "a": {
+    "inton": 14.719,
+    "stab": 2.433,
+    "onset": 0.059
+   }
+  },
+  {
+   "id": "vocalset/m11_dona_straight",
+   "group": "trained",
+   "r": 1940,
+   "a": {
+    "inton": 20.616,
+    "stab": 2.647,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m8_row_vibrato",
+   "group": "trained",
+   "r": 1939,
+   "a": {
+    "inton": 8.707,
+    "stab": 4.051,
+    "onset": 0.333
+   }
+  },
+  {
+   "id": "vocalset/dona_vibrato",
+   "group": "trained",
+   "r": 1936,
+   "a": {
+    "inton": 18.324,
+    "stab": 0,
+    "onset": 0.091
+   }
+  },
+  {
+   "id": "vocalset/f8_dona_vibrato",
+   "group": "trained",
+   "r": 1936,
+   "a": {
+    "inton": 12.388,
+    "stab": 7.873,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m4_caro_vibrato",
+   "group": "trained",
+   "r": 1927,
+   "a": {
+    "inton": 15.019,
+    "stab": 3.098,
+    "onset": 0.059
+   }
+  },
+  {
+   "id": "vocalset/row_straight",
+   "group": "trained",
+   "r": 1927,
+   "a": {
+    "inton": 13.067,
+    "stab": 2.925,
+    "onset": 0.125
+   }
+  },
+  {
+   "id": "vocalset/f5_caro_vibrato",
+   "group": "trained",
+   "r": 1918,
+   "a": {
+    "inton": 19.407,
+    "stab": 3.758,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m6_caro_vibrato",
+   "group": "trained",
+   "r": 1910,
+   "a": {
+    "inton": 13.04,
+    "stab": 3.524,
+    "onset": 0.154
+   }
+  },
+  {
+   "id": "vocalset/m3_caro_vibrato",
+   "group": "trained",
+   "r": 1904,
+   "a": {
+    "inton": 15.76,
+    "stab": 3.413,
+    "onset": 0.071
+   }
+  },
+  {
+   "id": "amazing-grace/amateur-duo",
+   "group": "other",
+   "r": 1897,
+   "a": {
+    "inton": 13.239,
+    "stab": 2.076,
+    "onset": 0.444
+   }
+  },
+  {
+   "id": "vocalset/m3_row_vibrato",
+   "group": "trained",
+   "r": 1894,
+   "a": {
+    "inton": 13.114,
+    "stab": 3.123,
+    "onset": 0.2
+   }
+  },
+  {
+   "id": "vocalset/m2_row_vibrato",
+   "group": "trained",
+   "r": 1889,
+   "a": {
+    "inton": 18.413,
+    "stab": 4.932,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m9_caro_vibrato",
+   "group": "trained",
+   "r": 1886,
+   "a": {
+    "inton": 12.152,
+    "stab": 4.504,
+    "onset": 0.133
+   }
+  },
+  {
+   "id": "vocalset/f2_row_vibrato",
+   "group": "trained",
+   "r": 1881,
+   "a": {
+    "inton": 20.377,
+    "stab": 4.509,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/m2_caro_vibrato",
+   "group": "trained",
+   "r": 1878,
+   "a": {
+    "inton": 20.665,
+    "stab": 4.466,
+    "onset": 0
+   }
+  },
+  {
+   "id": "vocalset/f3_row_vibrato",
+   "group": "trained",
+   "r": 1860,
+   "a": {
+    "inton": 15.542,
+    "stab": 3.782,
+    "onset": 0.125
+   }
+  },
+  {
+   "id": "vocalset/m5_dona_straight",
+   "group": "trained",
+   "r": 1860,
+   "a": {
+    "inton": 15.461,
+    "stab": 2.866,
+    "onset": 0.222
+   }
+  },
+  {
+   "id": "vocalset/m3_row_straight",
+   "group": "trained",
+   "r": 1851,
+   "a": {
+    "inton": 17.634,
+    "stab": 2.461,
+    "onset": 0.125
+   }
+  },
+  {
+   "id": "vocalset/m10_row_straight",
+   "group": "trained",
+   "r": 1844,
+   "a": {
+    "inton": 16.311,
+    "stab": 3.677,
+    "onset": 0.143
+   }
+  },
+  {
+   "id": "vocalset/m3_caro_straight",
+   "group": "trained",
+   "r": 1844,
+   "a": {
+    "inton": 18.676,
+    "stab": 3.338,
+    "onset": 0.067
+   }
+  },
+  {
+   "id": "vocalset/caro_vibrato",
+   "group": "trained",
+   "r": 1841,
+   "a": {
+    "inton": 14.852,
+    "stab": 5.341,
+    "onset": 0.045
+   }
+  },
+  {
+   "id": "vocalset/f9_caro_vibrato",
+   "group": "trained",
+   "r": 1823,
+   "a": {
+    "inton": 13.922,
+    "stab": 6.11,
+    "onset": 0.059
+   }
+  },
+  {
+   "id": "vocalset/m11_caro_vibrato",
+   "group": "trained",
+   "r": 1806,
+   "a": {
+    "inton": 18.222,
+    "stab": 3.868,
+    "onset": 0.091
+   }
+  },
+  {
+   "id": "vocalset/m9_row_vibrato",
+   "group": "trained",
+   "r": 1806,
+   "a": {
+    "inton": 15.881,
+    "stab": 4.703,
+    "onset": 0.143
+   }
+  },
+  {
+   "id": "vocalset/m6_row_vibrato",
+   "group": "trained",
+   "r": 1751,
+   "a": {
+    "inton": 17.141,
+    "stab": 5.283,
+    "onset": 0.111
+   }
+  },
+  {
+   "id": "vocalset/m5_dona_vibrato",
+   "group": "trained",
+   "r": 1748,
+   "a": {
+    "inton": 19.287,
+    "stab": 2.982,
+    "onset": 0.444
+   }
+  },
+  {
+   "id": "vocalset/m3_dona_vibrato",
+   "group": "trained",
+   "r": 1703,
+   "a": {
+    "inton": 20.121,
+    "stab": 4.962,
+    "onset": 0.143
+   }
+  },
+  {
+   "id": "vocalset/m11_dona_vibrato",
+   "group": "trained",
+   "r": 1697,
+   "a": {
+    "inton": 22.339,
+    "stab": 3.811,
+    "onset": 0.25
+   }
+  },
+  {
+   "id": "vocalset/m5_caro_vibrato",
+   "group": "trained",
+   "r": 1684,
+   "a": {
+    "inton": 20.532,
+    "stab": 4.123,
+    "onset": 0.357
+   }
+  },
+  {
+   "id": "vocalset/f8_row_vibrato",
+   "group": "trained",
+   "r": 1678,
+   "a": {
+    "inton": 16.524,
+    "stab": 7.979,
+    "onset": 0.125
+   }
+  },
+  {
+   "id": "vocalset/m5_row_vibrato",
+   "group": "trained",
+   "r": 1619,
+   "a": {
+    "inton": 23.145,
+    "stab": 4.483,
+    "onset": 0.375
+   }
+  },
+  {
+   "id": "vocalset/f4_dona_vibrato",
+   "group": "trained",
+   "r": 1567,
+   "a": {
+    "inton": 20.811,
+    "stab": 7.018,
+    "onset": 0.125
+   }
+  }
+ ]
+}

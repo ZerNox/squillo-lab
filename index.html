@@ -57,6 +57,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
 .chip .v.good{color:var(--pitch)} .chip .v.warn{color:var(--warn)} .chip .v.bad{color:var(--bad)}
 #coach{left:max(16px,env(safe-area-inset-left,0px));right:max(16px,env(safe-area-inset-right,0px));bottom:0;
   padding:0 0 max(14px,env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+#coach{max-height:calc(100% - 96px);overflow-y:auto;scrollbar-width:thin}
 #flaws{display:flex;gap:6px;flex-wrap:wrap}
 #tl{display:flex;gap:8px;align-items:center;width:100%;max-width:620px;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);backdrop-filter:blur(8px)}
 #tl input[type=range]{flex:1;min-width:0;accent-color:var(--pitch);height:18px;margin:0}
@@ -77,6 +78,17 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
 #coachVid{width:96px;height:128px;object-fit:cover;border-radius:6px;flex:0 0 auto;background:var(--bg-2)}
 #advice.coach-on{border-left-color:var(--pitch)}
 #advice.coach-on #coachVid,#advice.coach-on #fig{width:150px;height:200px}
+#rating{max-width:620px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);backdrop-filter:blur(8px);font-size:13px}
+#rating .elo{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+#rating .elo b{font:700 34px/1 var(--f-display);color:var(--pitch);font-variant-numeric:tabular-nums}
+#rating .elo span{color:var(--fg-2)}
+#rating table{border-collapse:collapse;margin:8px 0;width:100%;font:12px/1.4 var(--f-mono)}
+#rating td{padding:2px 6px 2px 0;white-space:nowrap}
+#rating td.bar{width:40%}
+#rating td.bar i{display:block;height:6px;border-radius:3px;background:var(--pitch);min-width:2px}
+#rating h3{font:600 12px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);margin:8px 0 2px}
+#rating ul{margin:0;padding-left:18px;color:var(--fg-2)}
+#rating .fine{font:11px/1.35 var(--f-mono);color:var(--fg-3);margin-top:8px}
 #score{max-width:62ch;overflow-x:auto;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);backdrop-filter:blur(8px)}
 #score table{border-collapse:collapse;font:11px/1.5 var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
 #score th{font-weight:500;color:var(--fg-3);text-align:left;padding:1px 10px 1px 0;letter-spacing:.04em}
@@ -132,7 +144,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
   .ui{position:relative}
   #top{padding-inline:0}
   #rail{position:relative;top:auto;bottom:auto;left:auto;right:auto;margin-top:42vh;max-height:none}
-  #coach{position:relative;left:auto;right:auto;padding-top:10px;align-items:stretch}
+  #coach{position:relative;left:auto;right:auto;padding-top:10px;align-items:stretch;max-height:none;overflow:visible}
   #coach>*{max-width:100%;min-width:0}
   #advice.coach-on #coachVid,#advice.coach-on #fig{width:120px;height:160px}
 }
@@ -220,10 +232,12 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
   <div id="takeRow">
     <button class="btn" id="bRec" aria-pressed="false">● record take</button>
     <button class="btn" id="bPlayTake" disabled>▶ your take</button>
-    <button class="btn" id="bPlayBetter" disabled>▶ improved you</button>
+    <button class="btn" id="bPlayHalf" disabled title="Half way between your take and spotless">▶ halfway</button>
+    <button class="btn" id="bPlaySpot" disabled title="Every note tuned, steadied and started cleanly">▶ spotless</button>
     <span id="takeInfo">Sing (or play any source) and record up to 60 s. Then play it back: the coach shows the exercise just before each spot that can improve.</span>
   </div>
   <div id="takebar" hidden><b id="playhead"></b></div>
+  <section id="rating" hidden aria-live="polite"></section>
   <div id="flaws"></div>
   <div id="score" hidden></div>
   <div id="advice" class="pose-idle">
@@ -456,7 +470,10 @@ function ingest(st,m,src){const now=m.t;st.at=now;const FT=st.ft,HIST=st.HIST;co
   if(voiced&&!st.lastVoiced){st.onsetT=now;st.onsetMidi=null;st.onsetList.push(now);}
   if(!voiced&&st.lastVoiced){st.segList.push([now,now-st.onsetT]);}
   if(voiced&&st.onsetMidi===null&&now-st.onsetT>0.05)st.onsetMidi=FT.midi;
-  if(voiced&&st.onsetMidi!==null&&st.onsetMidi!==-999&&now-st.onsetT>0.3){if(FT.midi-st.onsetMidi>1.5){st.scoopList.push(now);st.rec.events.push({t:now,type:'scoop'});}st.onsetMidi=-999;}
+  // A scoop is a continuous slide up into the note; a start pitch held for 100 ms or more is a note of its own
+  // (a fast line or an ornament), not a scoop.
+  if(voiced&&st.onsetMidi!==null&&st.onsetMidi!==-999&&now-st.onsetT>0.3){if(FT.midi-st.onsetMidi>1.5){const seg=HIST.filter(h=>h.voiced&&h.t>=st.onsetT);let k=0;while(k<seg.length&&Math.abs(seg[k].midi-seg[0].midi)<0.3)k++;
+      if(k*0.02<0.1){st.scoopList.push(now);st.rec.events.push({t:now,type:'scoop'});}}st.onsetMidi=-999;}
   FT.sustain=voiced?now-st.onsetT:0;e.st=FT.sustain;st.lastVoiced=voiced;
   // roughness: residual vs local quadratic fit over ±50 ms, in cents (even vibrato fits; random wobble does not)
   {const n=HIST.length;let ci=n-1;while(ci>0&&now-HIST[ci].t<0.05)ci--;const c=HIST[ci];
@@ -574,9 +591,9 @@ async function useMic(){stopSource();const ctx=await ensureCtx();await ctx.resum
 // A loaded recording becomes the take (first 60 s): scanned for spots, then played with the coach.
 document.getElementById('file').addEventListener('change',async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;stopSource();const ctx=await ensureCtx();
   let buf;try{buf=await ctx.decodeAudioData(await f.arrayBuffer());}catch(err){setStatus(`Could not decode ${f.name}. Try M4A, MP3, WAV or OGG.`);return;}
-  const n=Math.min(buf.length,Math.floor(MAXTAKE*buf.sampleRate)),x=new Float32Array(n);for(let c=0;c<buf.numberOfChannels;c++){const d=buf.getChannelData(c);for(let i=0;i<n;i++)x[i]+=d[i]/buf.numberOfChannels;}
-  const mono=ctx.createBuffer(1,n,buf.sampleRate);mono.getChannelData(0).set(x);markSrc('file');
-  setStatus(`${f.name}: ${(n/buf.sampleRate).toFixed(1)} s${buf.duration>MAXTAKE?` (first ${MAXTAKE} s)`:''} loaded as your take.`);
+  const n=Math.min(buf.length,Math.floor(MAXFILE*buf.sampleRate)),x=new Float32Array(n);for(let c=0;c<buf.numberOfChannels;c++){const d=buf.getChannelData(c);for(let i=0;i<n;i++)x[i]+=d[i]/buf.numberOfChannels;}
+  const mono=new AudioBuffer({length:n,numberOfChannels:1,sampleRate:buf.sampleRate});mono.getChannelData(0).set(x);markSrc('file');
+  setStatus(`${f.name}: ${(n/buf.sampleRate).toFixed(1)} s${buf.duration>MAXFILE?` (first ${MAXFILE/60} min)`:''} loaded as your take.`);
   await setTake(mono);if(ctx.state==='running')playTake('take');else takeInfo.textContent+=' Tap ▶ your take to hear it.';});
 // Real-voice demos: VocalSet clips (CC BY 4.0) in demo/, sources in demo/SOURCES.md.
 const demoBufs={};
@@ -731,16 +748,20 @@ function updateComb(f){if(f.voiced){const P_=[],C_=[];for(let k=1;k<=14;k++){con
 function drawTerrain(view,proj){gl.useProgram(PT.p);gl.uniformMatrix4fv(PT.u.uProj,false,proj);gl.uniformMatrix4fv(PT.u.uView,false,view);gl.uniform1i(PT.u.uHead,terHead);gl.uniform2i(PT.u.uDim,TD.T,TD.F);gl.uniform3fv(PT.u.uOrigin,ZX);gl.uniform3fv(PT.u.uSize,TD.size);gl.uniform1f(PT.u.uFloor,noiseFloor);gl.uniform3fv(PT.u.uFog,C.fog);
   gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,terTex);gl.uniform1i(PT.u.uH,0);gl.bindVertexArray(terVAO);gl.drawElements(gl.TRIANGLES,terIdxCount,gl.UNSIGNED_INT,0);gl.bindVertexArray(null);}
 
-// iOS runs audio only for a context created and resumed inside a tap, before any await; prime on every tap.
+// iOS runs audio only for a context created and resumed inside a tap, before any await; prime on every
+// click (a tap fires one). Not on touchend: creating the context there crashed WebKit's page process.
 const primeAudio=()=>{ensureCtx();if(AU.ctx&&AU.ctx.state!=='running')AU.ctx.resume().catch(()=>{});};
-document.addEventListener('click',primeAudio,true);document.addEventListener('touchend',primeAudio,true);
+document.addEventListener('click',primeAudio,true);
 // ───────────────────────── takes: record, scan, improve, coach ─────────────────────────
-// A take is whatever flows into the analysis while recording (mic, a recording, a demo), up to 60 s.
-// Scanning it offline gives the spots where a flaw held; "improved you" is the same take with its
-// pitch steadied and its onsets landed on the note (TD-PSOLA, timbre untouched). On playback the coach
+// A take is whatever flows into the analysis while recording (mic, a demo; up to 60 s) or a loaded
+// recording (up to 6 min). It is cut where the singing stops, then scanned offline: spots where a
+// flaw held, aspects over the whole take, and a rating against the reference pool. Two resyntheses
+// (TD-PSOLA, timbre untouched): "spotless" (every note steadied, started on pitch and tuned to the
+// take's own semitone grid) and "halfway" (half way from the take to spotless). On playback the coach
 // appears LEAD seconds before each spot and shows the exercise without sound.
-const TAKE={rec:null,recN:0,buf:null,better:null,segs:[],busy:false},MAXTAKE=60,LEAD=1.5;
-const bRec=$('bRec'),bPlayTake=$('bPlayTake'),bPlayBetter=$('bPlayBetter'),takeInfo=$('takeInfo'),takebar=$('takebar'),playhead=$('playhead');
+const TAKE={rec:null,recN:0,buf:null,half:null,spot:null,segs:[],busy:false,aspects:null,rating:null},MAXTAKE=60,MAXFILE=360,LEAD=1.5;
+const bRec=$('bRec'),bPlayTake=$('bPlayTake'),bPlayHalf=$('bPlayHalf'),bPlaySpot=$('bPlaySpot'),takeInfo=$('takeInfo'),takebar=$('takebar'),playhead=$('playhead'),ratingEl=$('rating');
+const mkBuf=(n,sr)=>new AudioBuffer({length:Math.max(1,n),numberOfChannels:1,sampleRate:sr});
 function takeTap(b){if(!TAKE.rec)return;TAKE.rec.push(b.slice());TAKE.recN+=b.length;if(TAKE.recN>=MAXTAKE*AU.sr)setTimeout(finishTake,0);}
 bRec.onclick=()=>{if(TAKE.rec){finishTake();return;}if(TAKE.busy)return;
   if(!AU.kind||AU.kind==='take'){takeInfo.textContent='Pick a source first: Mic to sing, or a demo or recording to try it out.';return;}
@@ -748,12 +769,31 @@ bRec.onclick=()=>{if(TAKE.rec){finishTake();return;}if(TAKE.busy)return;
 async function finishTake(){if(!TAKE.rec)return;const chunks=TAKE.rec;TAKE.rec=null;bRec.textContent='● record take';bRec.setAttribute('aria-pressed','false');
   const n=chunks.reduce((a,c)=>a+c.length,0);if(n<AU.sr){takeInfo.textContent='Too short: record at least a second.';return;}
   const x=new Float32Array(n);let o=0;for(const c of chunks){x.set(c,o);o+=c.length;}
-  const buf=AU.ctx.createBuffer(1,n,AU.sr);buf.getChannelData(0).set(x);await setTake(buf);}
-async function setTake(buf){TAKE.busy=true;takeInfo.textContent=`Scanning your ${buf.duration.toFixed(1)} s take…`;
-  const sc=await scanTake(buf);TAKE.buf=buf;TAKE.segs=sc.segs;TAKE.better=improveTake(buf,sc.frames);TAKE.busy=false;renderTakebar();
-  bPlayTake.disabled=false;bPlayBetter.disabled=false;
+  const buf=mkBuf(n,AU.sr);buf.getChannelData(0).set(x);await setTake(buf);}
+// Cut where the singing stops: drop silence before the first and after the last sound, and shorten
+// every pause longer than 2 s to 0.8 s (10 ms fades at each cut).
+function trimSilence(buf){const sr=buf.sampleRate,x=buf.getChannelData(0),n=x.length,W=Math.floor(sr*0.05),r=[];
+  for(let i=0;i+W<=n;i+=W){let a=0;for(let k=i;k<i+W;k++)a+=x[k]*x[k];r.push(Math.sqrt(a/W));}
+  if(!r.length)return {buf,cut:0};const srt=r.slice().sort((a,b)=>a-b);const th=Math.max(0.006,srt[Math.floor(r.length*0.1)]*3,srt[Math.floor(r.length*0.98)]*0.04);
+  const on=r.map(v=>v>th);const first=on.indexOf(true),last=on.lastIndexOf(true);if(first<0)return {buf,cut:0};
+  const keep=[];let a=Math.max(0,first-4);for(let w=first;w<=last;){if(on[w]){w++;continue;}let e=w;while(e<=last&&!on[e])e++;if((e-w)*0.05>2){keep.push([a,w+8]);a=e-8;}w=e;}
+  keep.push([a,Math.min(r.length,last+7)]);const parts=keep.map(([p,q])=>[p*W,Math.min(n,q*W)]);const len=parts.reduce((t,[p,q])=>t+q-p,0);
+  const out=mkBuf(len,sr),y=out.getChannelData(0),F=Math.floor(sr*0.01);let o=0;
+  for(const [p,q] of parts){for(let i=p;i<q;i++){const g=Math.min(1,(i-p)/F,(q-1-i)/F);y[o++]=x[i]*g;}}
+  return {buf:out,cut:(n-len)/sr};}
+// The Elo rating is a feature toggle (?rating=1), experimental: on the 2026-10-24 check it ranked an Idol
+// finalist's live pop vocal below an amateur hymn take. The pool is classical only and the aspects do not
+// yet separate singing level across styles (see ../rating/README.md).
+const RATING_ON=new URLSearchParams(location.search).get('rating')==='1';
+let ANCHORS=null;if(RATING_ON)fetch('rating/anchors.json').then(r=>r.ok?r.json():null).then(j=>{ANCHORS=j;}).catch(()=>{});
+async function setTake(buf){TAKE.busy=true;const tr=trimSilence(buf);buf=tr.buf;
+  takeInfo.textContent=`Scanning your ${buf.duration.toFixed(1)} s take${tr.cut>0.5?` (${tr.cut.toFixed(1)} s of silence cut)`:''}…`;
+  const sc=await scanTake(buf);TAKE.buf=buf;TAKE.segs=sc.segs;TAKE.aspects=sc.aspects;
+  TAKE.spot=improveTake(buf,sc.frames,1,sc.aspects.off);TAKE.half=improveTake(buf,sc.frames,0.5,sc.aspects.off);
+  TAKE.rating=ANCHORS&&sc.aspects.ok?rateAspects(sc.aspects,ANCHORS):null;TAKE.busy=false;renderTakebar();renderRating();
+  bPlayTake.disabled=bPlayHalf.disabled=bPlaySpot.disabled=false;
   const names=[...new Set(TAKE.segs.map(g=>FLAWS[g.i].name))];
-  takeInfo.textContent=TAKE.segs.length?`${TAKE.segs.length} spot${TAKE.segs.length>1?'s':''} to work on (${names.join(', ')}), marked on the bar. Play your take, or the improved you.`:`Clean take: no flaw held long enough to coach. ${(sc.voiced*100).toFixed(0)} % of it was voiced.`;}
+  takeInfo.textContent=(tr.cut>0.5?`Cut ${tr.cut.toFixed(1)} s where you were not singing. `:'')+(TAKE.segs.length?`${TAKE.segs.length} spot${TAKE.segs.length>1?'s':''} to work on (${names.join(', ')}), marked on the bar. Play your take, halfway or spotless.`:`Clean take: no flaw held long enough to coach. ${(sc.voiced*100).toFixed(0)} % of it was voiced.`);}
 function scanTake(buf){return new Promise(res=>{const st=new Stats();const d=makeDsp(m=>{if(m.type==='feat')ingest(st,m,'take');else if(m.type==='pong'){d.kill();res(takeSpots(st));}});
   d.post({type:'init',sr:buf.sampleRate,hop:0.02});const ch=buf.getChannelData(0);for(let i=0;i<ch.length;i+=2048){const b=ch.slice(i,i+2048);d.post({type:'audio',buf:b},[b.buffer]);}d.post({type:'ping'});});}
 // Frame times mark the end of the analysis window; the pitch belongs ~20 ms earlier. A flaw's
@@ -768,16 +808,72 @@ function takeSpots(st){const fr=st.rec.frames,sn=st.rec.snaps;const frames=fr.ma
   const out=segs.filter(g=>g.i!==SI).map(g=>({i:g.i,t0:Math.max(0,g.t0-0.6),t1:g.t1})).filter(g=>g.t1-g.t0>=0.8);
   for(const e of st.rec.events)if(e.type==='scoop'){const t0=Math.max(0,e.t-0.6),t1=e.t;if(!out.some(g=>t0<g.t1&&g.t0<t1))out.push({i:SI,t0,t1});}
   out.sort((a,b)=>a.t0-b.t0);
-  const nv=fr.filter(f=>f.voiced).length;return {frames,segs:out,voiced:fr.length?nv/fr.length:0};}
-// Target pitch per frame: a 250 ms running median inside each voiced run (keeps the melody, drops
-// wobble), the first 300 ms of a note held at the note's settled pitch (no scoop), then pulled half
-// way to the nearest semitone. Resynthesis is pitch-synchronous overlap-add with Hann grains.
-function improveTake(buf,frames){const sr=buf.sampleRate,x=buf.getChannelData(0),n=x.length,hop=0.02,F=frames.length;
+  const nv=fr.filter(f=>f.voiced).length;return {frames,segs:out,voiced:fr.length?nv/fr.length:0,aspects:takeAspects(st)};}
+// Aspects over the whole take. Held notes: stretches of at least 200 ms within half a semitone of
+// their running mean. The take's own tuning (its offset from A440, a circular mean over the notes)
+// sets the semitone grid, so a song pitched between keys is not marked out of tune.
+const ASPECTS=[
+ {k:'inton',name:'intonation',unit:'¢ off the note',lower:true,tol:3,dec:0},
+ {k:'stab',name:'steadiness',unit:'¢ wobble',lower:true,tol:2,dec:1},
+ {k:'onset',name:'clean onsets',unit:'scoops per note',lower:true,tol:0.04,dec:2},
+ {k:'tone',name:'tone clarity',unit:'dB harmonics/noise',lower:false,tol:0.7,dec:1,info:true},
+];
+// Tone clarity depends as much on the microphone, room and any music separation as on the voice, so it
+// is shown but not rated until the pool spans recording conditions.
+const RATED=ASPECTS.filter(x=>!x.info);
+// Steadiness is the median wobble (residual after a local quadratic fit, so even vibrato passes) over
+// the inside of held notes of at least 300 ms: runs, slides and ornaments between notes do not count.
+function takeAspects(st){const fr=st.rec.frames,sn=st.rec.snaps,notes=[],res=[];let cur=null;
+  const close=()=>{if(cur&&cur.n*0.02>=0.2){const m=cur.ms.slice().sort((a,b)=>a-b);notes.push({med:m[m.length>>1],dur:cur.n*0.02});
+      if(cur.n*0.02>=0.3)for(let k=3;k<cur.fs.length-3;k++)if(cur.fs[k].fit)res.push(cur.fs[k].res);}cur=null;};
+  for(const f of fr){if(!f.voiced||!f.ok){close();continue;}if(cur&&Math.abs(f.midi-cur.sum/cur.n)<0.5){cur.n++;cur.sum+=f.midi;cur.ms.push(f.midi);cur.fs.push(f);}else{close();cur={n:1,sum:f.midi,ms:[f.midi],fs:[f]};}}close();
+  let cx=0,cy=0;for(const nt of notes){const a=2*Math.PI*(nt.med-Math.round(nt.med));cx+=nt.dur*Math.cos(a);cy+=nt.dur*Math.sin(a);}const off=Math.atan2(cy,cx)/(2*Math.PI);
+  let iw=0,ia=0;for(const nt of notes){const d=nt.med-off;ia+=nt.dur*Math.abs(d-Math.round(d))*100;iw+=nt.dur;}
+  let hs=0,hn=0;fr.forEach((f,i)=>{if(!f.voiced)return;hs+=sn[i].hnr;hn++;});res.sort((a,b)=>a-b);
+  let onsets=0;for(let i=0;i<fr.length;i++)if(fr[i].voiced&&(i===0||!fr[i-1].voiced)){let k=i;while(k<fr.length&&fr[k].voiced)k++;if((k-i)*0.02>=0.3)onsets++;}
+  const scoops=st.rec.events.filter(e=>e.type==='scoop').length;const sung=hn*0.02;
+  const meds=notes.map(n=>n.med).sort((a,b)=>a-b);
+  return {inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:onsets?scoops/onsets:0,tone:hn?hs/hn:0,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,ok:notes.length>=6&&sung>=4};}
+// Elo against the reference pool: each anchor is one game, scored per aspect (win 1, draw 0.5 within
+// the aspect's tolerance, loss 0) and averaged. The rating is the one whose expected score over all
+// games equals the actual score (bisection). Anchors' own ratings come from the same games played
+// round robin, set so the median conservatory-trained singer is 2000 (rating/build-anchors.mjs).
+function aspectGame(a,b){let s=0;for(const x of RATED){const d=a[x.k]-b[x.k];s+=Math.abs(d)<=x.tol?0.5:(x.lower?d<0:d>0)?1:0;}return s/RATED.length;}
+function rateAspects(a,A){const an=A.anchors,S=an.reduce((t,b)=>t+aspectGame(a,b.a),0);const E=R=>an.reduce((t,b)=>t+1/(1+Math.pow(10,(b.r-R)/400)),0);
+  let lo=0,hi=3600;for(let i=0;i<60;i++){const m=(lo+hi)/2;if(E(m)<S)lo=m;else hi=m;}const R=Math.round((lo+hi)/2);
+  const pct=an.filter(b=>b.r<R).length/an.length;const per={};for(const x of RATED)per[x.k]=an.filter(b=>{const d=a[x.k]-b.a[x.k];return x.lower?d<-x.tol:d>x.tol;}).length/an.length;
+  return {R,pct,per,n:an.length,pool:A.pool};}
+// Medians of the 101 trained VocalSet excerpts in rating/anchors.json (2026-10-24): the yardstick for
+// "went well" and "to work on" when the rating is off.
+const TRAINED_MED={inton:14.1,stab:3.0,onset:0};
+const BANDS=[[2400,'Grandmaster'],[2200,'Master'],[1900,'Trained'],[1600,'Strong amateur'],[1200,'Club singer'],[0,'Novice']];
+const ASPECT_WORK={inton:{fl:'scoop',ex:'Pitch matching: play or hum the note first, then sing it and hold it on the copper target line of the helix.'},stab:{fl:'shaky',ex:'Hum “ng” on one pitch for 8 s, hands on the belly, and keep the ribbon straight.'},onset:{fl:'scoop',ex:'Hear each note before you sing it, then start right on it: no slide up.'},tone:{fl:'breathy',ex:'Start each note with a gentle “uh-oh” onset and hold it; watch the haze sink below the ridges.'}};
+function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;}ratingEl.hidden=false;const R=TAKE.rating;
+  const fmt=(x,v)=>v.toFixed(x.dec);let h='';
+  if(!RATING_ON)h+=`<div class="elo"><span>Your take over ${a.sung.toFixed(0)} s of singing</span></div>`;
+  else if(R){const band=BANDS.find(b=>R.R>=b[0])[1];h+=`<div class="elo"><b>${R.R}</b><span>Experimental · ${band} · better than ${Math.round(R.pct*100)} % of ${R.n} reference voices</span></div>`;}
+  else h+=`<div class="elo"><span>${a.ok?'Rating needs the reference pool (rating/anchors.json).':'Sing at least 6 held notes (about 5 s of singing) for a rating.'}</span></div>`;
+  h+='<table>'+ASPECTS.map(x=>`<tr><td>${x.name}</td><td>${fmt(x,a[x.k])} ${x.unit}</td>${R&&!x.info?`<td class="bar"><i style="width:${Math.round(R.per[x.k]*100)}%"></i></td><td>beats ${Math.round(R.per[x.k]*100)} %</td>`:R?'<td colspan="2">not rated</td>':''}</tr>`).join('')+'</table>';
+  // Without the rating, each aspect is set against the median trained singer: how far better (+) or worse.
+  const vsMed=x=>{const m=TRAINED_MED[x.k],d=x.lower?m-a[x.k]:a[x.k]-m;return d/(x.tol*3);};
+  const order=RATED.slice().sort((p,q)=>R?R.per[q.k]-R.per[p.k]:vsMed(q)-vsMed(p));
+  const good=R?order.slice(0,2).filter(x=>R.per[x.k]>=0.25):order.filter(x=>vsMed(x)>=-0.34);
+  h+='<h3>Went well</h3><ul>'+[`You sang ${a.notes} held notes over ${a.sung.toFixed(0)} s, across ${a.range.toFixed(0)} semitones.`,...good.map(x=>`Your ${x.name}: ${fmt(x,a[x.k])} ${x.unit}${R?`, better than ${Math.round(R.per[x.k]*100)} % of the pool`:`, on a par with or better than the median conservatory-trained singer (${TRAINED_MED[x.k]})`}.`)].map(t=>`<li>${t}</li>`).join('')+'</ul>';
+  const work=R?order.slice(-2).reverse().filter(x=>R.per[x.k]<0.75).slice(0,R.R>=2200?1:2):order.filter(x=>vsMed(x)<-0.34).reverse().slice(0,2);
+  if(work.length)h+='<h3>To work on</h3><ul>'+work.map(x=>`<li>${x.name} (${fmt(x,a[x.k])} ${x.unit}): ${ASPECT_WORK[x.k].ex}${x.k==='onset'?' Slides into notes are a style in pop and soul: work on them only where you did not mean them.':''}</li>`).join('')+'</ul>';
+  h+=`<p class="fine">${R?`Provisional Elo: each reference voice is one game on intonation, steadiness and clean onsets (tone clarity depends on the microphone and room, so it is not rated). 2000 is the median conservatory-trained singer in ${R.pool}. It ranks you within this pool, not the world.`:''} The take's tuning is ${a.off>=0?'+':''}${(a.off*100).toFixed(0)} ¢ from A440; notes are measured on that grid.</p>`;
+  ratingEl.innerHTML=h;}
+// Target pitch per frame for "spotless": a 250 ms running median inside each voiced run (keeps the
+// melody, drops wobble), the start of each note (up to 300 ms, a third of notes from 200 ms) held at its
+// settled pitch (no scoop), then snapped
+// to the take's semitone grid. amount 1 is spotless, 0.5 is half way from the take to spotless.
+// Resynthesis is pitch-synchronous overlap-add with Hann grains.
+function improveTake(buf,frames,amount,off){const sr=buf.sampleRate,x=buf.getChannelData(0),n=x.length,hop=0.02,F=frames.length;
   const m=frames.map(f=>f.f0?midiOf(f.f0):0),tg=new Float64Array(F);
   for(let a=0;a<F;){if(!m[a]){a++;continue;}let b=a;while(b+1<F&&m[b+1])b++;
     for(let i=a;i<=b;i++){const w=[];for(let k=Math.max(a,i-6);k<=Math.min(b,i+6);k++)w.push(m[k]);w.sort((p,q)=>p-q);tg[i]=w[w.length>>1];}
-    if(b-a>25){const k0=a+15;for(let i=a;i<k0;i++)if(Math.abs(tg[i]-tg[k0])>0.4)tg[i]=tg[k0];}
-    for(let i=a;i<=b;i++)tg[i]+=0.5*(Math.round(tg[i])-tg[i]);a=b+1;}
+    if(b-a>=10){const k0=a+Math.min(15,Math.floor((b-a)/3));for(let i=a;i<k0;i++)if(Math.abs(tg[i]-tg[k0])>0.4)tg[i]=tg[k0];}
+    for(let i=a;i<=b;i++){const g=Math.round(tg[i]-off)+off;tg[i]=m[i]+amount*(g-m[i]);}a=b+1;}
   const ratio=new Float64Array(F);for(let i=0;i<F;i++)ratio[i]=m[i]?clamp(Math.pow(2,(tg[i]-m[i])/12),0.8,1.25):1;
   const fi=t=>clamp(Math.round(t/hop),0,F-1),per=smp=>{const i=fi(smp/sr);return frames[i]&&frames[i].f0?sr/frames[i].f0:sr*0.005;},rat=smp=>{const i=fi(smp/sr);let a=0,c=0;for(let k=Math.max(0,i-2);k<=Math.min(F-1,i+2);k++){a+=ratio[k];c++;}return a/c;};
   // Analysis marks one period apart, each snapped to the waveform peak within a quarter period, so
@@ -790,21 +886,27 @@ function improveTake(buf,frames){const sr=buf.sampleRate,x=buf.getChannelData(0)
     for(let j=-L;j<=L;j++){const si=am+j,di=ds+j;if(si<0||si>=n||di<0||di>=n)continue;const h=0.5+0.5*Math.cos(Math.PI*j/L);y[di]+=x[si]*h;w[di]+=h;}
     s+=P/rat(s);}
   for(let i=0;i<n;i++)y[i]=w[i]>0.05?y[i]/w[i]:0;
-  const out=AU.ctx.createBuffer(1,n,sr);out.getChannelData(0).set(y);return out;}
+  const out=mkBuf(n,sr);out.getChannelData(0).set(y);return out;}
 function renderTakebar(){takebar.querySelectorAll('i').forEach(e=>e.remove());const d=TAKE.buf.duration;takebar.hidden=false;
   for(const g of TAKE.segs){const e=document.createElement('i');e.style.left=(g.t0/d*100)+'%';e.style.width=Math.max(0.8,(g.t1-g.t0)/d*100)+'%';e.title=FLAWS[g.i].name;e.onclick=()=>showAdvice(FLAWS[g.i]);takebar.insertBefore(e,playhead);}}
-async function playTake(which){const buf=which==='better'?TAKE.better:TAKE.buf;if(!buf)return;stopSource();const ctx=await ensureCtx();await ctx.resume();
+const VERSION={take:{title:'Your take',body:'Listen back. The coach steps in just before each spot that can improve.',status:'Your take, as recorded.'},
+  half:{title:'Halfway',body:'You, half way to spotless: the coach steps in just before each spot you struggled with.',status:'Halfway: your take moved half way to spotless. Tone, words and timing are yours.'},
+  spot:{title:'Spotless',body:'Every note tuned, steadied and started cleanly: what this take sounds like with nothing to fix.',status:'Spotless: every note on the take’s semitone grid, steadied, no scoops. Tone, words and timing are yours.'}};
+async function playTake(which){const buf=which==='take'?TAKE.buf:TAKE[which];if(!buf)return;stopSource();const ctx=await ensureCtx();await ctx.resume();
   const s=ctx.createBufferSource();s.buffer=buf;s.connect(AU.cap);s.connect(ctx.destination);AU.source=s;AU.kind='take';markSrc(null);
-  const play={t0:ctx.currentTime,which,dur:buf.duration,seg:undefined,phase:''};AU.play=play;s.onended=()=>{if(AU.play===play){AU.play=null;playhead.style.left='0';setAdvice('Take finished','Play it again, or the improved you, and watch the coach just before each marked spot.','','idle');}};s.start();
-  setStatus(which==='better'?'Improved you: your take with steadier pitch and clean onsets. Tone, words and timing are yours.':'Your take, as recorded.');goLive();}
-bPlayTake.onclick=()=>playTake('take');bPlayBetter.onclick=()=>playTake('better');
+  const play={t0:ctx.currentTime,which,dur:buf.duration,seg:undefined,phase:''};AU.play=play;s.onended=()=>{if(AU.play===play){AU.play=null;playhead.style.left='0';setAdvice('Take finished','Play it again, halfway or spotless, and watch the coach just before each marked spot.','','idle');}};s.start();
+  setStatus(VERSION[which].status);goLive();}
+bPlayTake.onclick=()=>playTake('take');bPlayHalf.onclick=()=>playTake('half');bPlaySpot.onclick=()=>playTake('spot');
 function coachTick(){const p=AU.play;if(!p||AU.kind!=='take')return;const pos=AU.ctx.currentTime-p.t0;playhead.style.left=clamp(pos/p.dur*100,0,100)+'%';
   const seg=TAKE.segs.find(g=>pos>=g.t0-LEAD&&pos<=g.t1+0.3)||null;const phase=seg?(pos<seg.t0?'soon':'now'):'';
   if(seg===p.seg&&phase===p.phase)return;p.seg=seg;p.phase=phase;
-  if(seg){const fl=FLAWS[seg.i];const was=p.which==='better'?'This is where your take had ':'';
+  if(seg){const fl=FLAWS[seg.i];const was=p.which!=='take'?'This is where your take had ':'';
     setAdvice(phase==='soon'?`Coming up: ${fl.name}`:`${was}${fl.name}`,phase==='soon'?'Get ready. Do what the coach shows as you sing into this part.':fl.advice[1],fl.cue,fl.pose,'coach-on');
     if(autoFly&&fl!==lastFlyFlaw){lastFlyFlaw=fl;setView(fl.view);}}
-  else setAdvice(p.which==='better'?'Improved you':'Your take',p.which==='better'?'Listen to yourself with steadier pitch. The coach steps in just before each spot you struggled with.':'Listen back. The coach steps in just before each spot that can improve.','','idle');}
+  else setAdvice(VERSION[p.which].title,VERSION[p.which].body,'','idle');}
+// For the lab: aspects of a decoded clip, exactly as the page measures a take (rating/build-anchors.mjs).
+window.helixAspects=async ab=>{const o=new OfflineAudioContext(1,1,48000);const b=await o.decodeAudioData(ab);const x=new Float32Array(b.length);for(let c=0;c<b.numberOfChannels;c++){const d=b.getChannelData(c);for(let i=0;i<b.length;i++)x[i]+=d[i]/b.numberOfChannels;}
+  const m=mkBuf(b.length,b.sampleRate);m.getChannelData(0).set(x);const t=trimSilence(m);return (await scanTake(t.buf)).aspects;};
 
 // ───────────────────────── main loop ─────────────────────────
 let lastWall=performance.now()/1000;
