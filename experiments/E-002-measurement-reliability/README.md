@@ -1121,6 +1121,34 @@ wrong notes shown. Frames past 0.02 need a second witness of their period
 path), which round 10 measures. A first run with YIN's threshold at 0.35 was
 discarded: it changed which dip YIN picks, so it measured another tracker.
 
+### Round 10: continuity as a second witness (squillo Phase 1, 2026-10-24)
+
+`r10_continuity.py`, rule and bar committed before running (`results/r10_continuity.json`).
+A frame MT-003 refuses is shown if the frame before it is shown, a CMND
+minimum under θ lies within J cents of that pitch, and an accepted frame is
+at most L frames back; causal, no delay. Grid θ {0.1, 0.2, 0.35} × J {50, 100}
+× L {25, 125}; chosen on the fit singers (largest coverage with gross ≤ 1 %):
+θ 0.35, J 100, L 125 (fit: coverage 49.3 → 73.9 %, gross 0.11 → 0.48 %).
+
+Held out (10 singers, 95 % CI by bootstrap over takes):
+
+| Condition | Today: coverage, gross of shown | With witness: coverage, gross of shown |
+| :--- | :--- | :--- |
+| clean | 72.9 % (68.0–77.7), 0.97 % (0.22–2.09) | 94.7 % (93.3–96.0), 1.40 % (0.44–2.57) |
+| white 20 dB | 29.5 % (25.6–33.7), 1.41 % (0.35–2.88) | 55.5 % (51.0–60.5), 1.82 % (0.59–3.41) |
+| white 10 dB | 1.1 %, 1.5 % | 7.7 %, 3.2 % |
+| pink 10 dB | 1.8 %, 2.6 % | 11.7 %, 3.7 % |
+
+**Fails its bar** (gross ≤ 1 % held out): coverage passes by far, gross does
+not. Witnessed frames are 23 % of shown clean, 2.8 % of them gross; their
+fit ± (p95 of non-gross, 12.3 cents) covers 94.4 % clean, 96.7 % at 20 dB.
+Today's own refusal already exceeds 1 % on these test singers at 20 dB, so
+the bar was stricter than the product it compares with; that is noted, not
+used to pass it. Not carried into the product. Next: a bar stated against
+today's gross (for example, no more than +0.5 points) is a different
+question and would need its own committed round, or a witness that also
+checks the octave below and above (where round 3 found the gross errors).
+
 ### Beyond round 3
 
 Amateur voices and other vowels (E-005's `needs-human` step); a real room
