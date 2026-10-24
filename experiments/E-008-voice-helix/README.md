@@ -36,7 +36,31 @@ FFT with a 2 s room profile subtracted). Eight flaw detectors with
 hysteresis, each paired with one exercise. Session replay with a scrubber.
 Two reference-clip slots (`page/ref/polished.mp3`, `page/ref/rough.mp3`,
 loaded if present; else chosen by the singer) scored offline and compared
-with the singer's last 30 s.
+with the singer's last 30 s. The published pair is the first verse of
+"Amazing Grace" from two public-domain recordings (`page/ref/SOURCES.md`).
+
+Takes and the coach: "record take" keeps up to 60 s of whatever feeds the
+analysis (mic, a recording, a demo). The take is scanned offline for spots
+where a flaw held (scoops one by one), marked on a bar. "Improved you" is the
+same take resynthesised by pitch-synchronous overlap-add: pitch steadied with
+a 250 ms running median, each note's first 300 ms held at its settled pitch,
+then pulled half way to the nearest semitone; tone, words and timing stay the
+singer's. On playback of either version the coaching panel switches to the
+flaw 1.5 s before each spot and shows its exercise. The drawn figure is the coach.
+A filmed coach is a feature toggle, off by default: with `?coach=video` in
+the URL it plays `page/coach/<pose>.mp4` silently for each exercise that has a
+clip (prompts and the import script in `coach/`).
+
+Real-voice demos: 14 VocalSet clips (CC BY 4.0, `page/demo/SOURCES.md`),
+one woman and one man each singing the same scale straight, breathy, in vocal
+fry, belted and with vibrato, plus "Caro mio ben" straight and with vibrato.
+
+Measured on the rough "Amazing Grace" reference recorded as a 20 s take
+(Chrome / Firefox / WebKit, 2026-10-24): scooped onsets per 10 s 2.0 / 2.0 /
+2.5 in the take, 0 / 0.5 / 0 in the improved version; pitch roughness 63 /
+70 / 64 ¢ against 40 / 65 / 58 ¢; time flagged shaky 35 / 39 / 39 % against
+30 / 26 / 32 %. The resynthesis costs about 2.5 dB of harmonics-to-noise
+(18.6 to 16.3 dB in Chrome): it adds a little roughness of its own.
 
 ## Hypothesis
 
