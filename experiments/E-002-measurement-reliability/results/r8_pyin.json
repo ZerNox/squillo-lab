@@ -1,0 +1,950 @@
+{
+ "meta": {
+  "takes": 159,
+  "singers": 20,
+  "librosa": "1.0.0",
+  "groups": {
+   "all": 159,
+   "female": 71,
+   "male": 88
+  }
+ },
+ "summary": {
+  "clean/yin/all": {
+   "rpa": {
+    "value": 0.87732,
+    "ci95": [
+     0.85665,
+     0.89719
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.04633,
+    "ci95": [
+     0.03092,
+     0.06363
+    ]
+   },
+   "no_estimate": {
+    "value": 0.08006,
+    "ci95": [
+     0.06589,
+     0.09536
+    ]
+   },
+   "valid_frames": 184685,
+   "hit_abs_cents_p50": 1.134,
+   "hit_abs_cents_p95": 6.916
+  },
+  "clean/yin/female": {
+   "rpa": {
+    "value": 0.93156,
+    "ci95": [
+     0.91799,
+     0.94295
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.00762,
+    "ci95": [
+     0.00411,
+     0.01236
+    ]
+   },
+   "no_estimate": {
+    "value": 0.06129,
+    "ci95": [
+     0.05142,
+     0.07262
+    ]
+   },
+   "valid_frames": 79865,
+   "hit_abs_cents_p50": 1.112,
+   "hit_abs_cents_p95": 6.856
+  },
+  "clean/yin/male": {
+   "rpa": {
+    "value": 0.836,
+    "ci95": [
+     0.80293,
+     0.86787
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.07691,
+    "ci95": [
+     0.04955,
+     0.10786
+    ]
+   },
+   "no_estimate": {
+    "value": 0.09435,
+    "ci95": [
+     0.06983,
+     0.12056
+    ]
+   },
+   "valid_frames": 104820,
+   "hit_abs_cents_p50": 1.152,
+   "hit_abs_cents_p95": 6.95
+  },
+  "clean/squillo/all": {
+   "rpa": {
+    "value": 0.71273,
+    "ci95": [
+     0.67684,
+     0.74746
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.00561,
+    "ci95": [
+     0.0015,
+     0.01171
+    ]
+   },
+   "no_estimate": {
+    "value": 0.28325,
+    "ci95": [
+     0.24848,
+     0.31899
+    ]
+   },
+   "valid_frames": 184685,
+   "hit_abs_cents_p50": 0.951,
+   "hit_abs_cents_p95": 4.959
+  },
+  "clean/squillo/female": {
+   "rpa": {
+    "value": 0.81814,
+    "ci95": [
+     0.78421,
+     0.84992
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.00049,
+    "ci95": [
+     5e-05,
+     0.00117
+    ]
+   },
+   "no_estimate": {
+    "value": 0.18146,
+    "ci95": [
+     0.14974,
+     0.21518
+    ]
+   },
+   "valid_frames": 79865,
+   "hit_abs_cents_p50": 0.993,
+   "hit_abs_cents_p95": 5.312
+  },
+  "clean/squillo/male": {
+   "rpa": {
+    "value": 0.63241,
+    "ci95": [
+     0.58028,
+     0.68543
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.01061,
+    "ci95": [
+     0.00274,
+     0.02258
+    ]
+   },
+   "no_estimate": {
+    "value": 0.36081,
+    "ci95": [
+     0.30854,
+     0.41302
+    ]
+   },
+   "valid_frames": 104820,
+   "hit_abs_cents_p50": 0.909,
+   "hit_abs_cents_p95": 4.627
+  },
+  "clean/pyin/all": {
+   "rpa": {
+    "value": 0.94401,
+    "ci95": [
+     0.92566,
+     0.95973
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.03027,
+    "ci95": [
+     0.01731,
+     0.04476
+    ]
+   },
+   "no_estimate": {
+    "value": 0.02652,
+    "ci95": [
+     0.02037,
+     0.03359
+    ]
+   },
+   "valid_frames": 184685,
+   "hit_abs_cents_p50": 3.313,
+   "hit_abs_cents_p95": 14.126
+  },
+  "clean/pyin/female": {
+   "rpa": {
+    "value": 0.97061,
+    "ci95": [
+     0.96119,
+     0.97734
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.00757,
+    "ci95": [
+     0.00596,
+     0.00952
+    ]
+   },
+   "no_estimate": {
+    "value": 0.02199,
+    "ci95": [
+     0.01621,
+     0.03032
+    ]
+   },
+   "valid_frames": 79865,
+   "hit_abs_cents_p50": 3.475,
+   "hit_abs_cents_p95": 15.052
+  },
+  "clean/pyin/male": {
+   "rpa": {
+    "value": 0.92375,
+    "ci95": [
+     0.89211,
+     0.95247
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.04771,
+    "ci95": [
+     0.02438,
+     0.0757
+    ]
+   },
+   "no_estimate": {
+    "value": 0.02998,
+    "ci95": [
+     0.02057,
+     0.04128
+    ]
+   },
+   "valid_frames": 104820,
+   "hit_abs_cents_p50": 3.194,
+   "hit_abs_cents_p95": 13.247
+  },
+  "white-20/yin/all": {
+   "rpa": {
+    "value": 0.6637,
+    "ci95": [
+     0.62718,
+     0.70108
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.0517,
+    "ci95": [
+     0.03401,
+     0.07179
+    ]
+   },
+   "no_estimate": {
+    "value": 0.30012,
+    "ci95": [
+     0.26751,
+     0.33088
+    ]
+   },
+   "valid_frames": 184685,
+   "hit_abs_cents_p50": 1.245,
+   "hit_abs_cents_p95": 6.643
+  },
+  "white-20/yin/female": {
+   "rpa": {
+    "value": 0.68877,
+    "ci95": [
+     0.64294,
+     0.7325
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.00835,
+    "ci95": [
+     0.00382,
+     0.01401
+    ]
+   },
+   "no_estimate": {
+    "value": 0.30543,
+    "ci95": [
+     0.26164,
+     0.3517
+    ]
+   },
+   "valid_frames": 79865,
+   "hit_abs_cents_p50": 1.344,
+   "hit_abs_cents_p95": 7.186
+  },
+  "white-20/yin/male": {
+   "rpa": {
+    "value": 0.6446,
+    "ci95": [
+     0.59071,
+     0.69621
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.08428,
+    "ci95": [
+     0.05335,
+     0.11979
+    ]
+   },
+   "no_estimate": {
+    "value": 0.29607,
+    "ci95": [
+     0.25447,
+     0.33882
+    ]
+   },
+   "valid_frames": 104820,
+   "hit_abs_cents_p50": 1.165,
+   "hit_abs_cents_p95": 6.224
+  },
+  "white-20/squillo/all": {
+   "rpa": {
+    "value": 0.28662,
+    "ci95": [
+     0.26008,
+     0.31571
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.00795,
+    "ci95": [
+     0.00195,
+     0.01639
+    ]
+   },
+   "no_estimate": {
+    "value": 0.71109,
+    "ci95": [
+     0.68306,
+     0.73706
+    ]
+   },
+   "valid_frames": 184685,
+   "hit_abs_cents_p50": 0.872,
+   "hit_abs_cents_p95": 4.327
+  },
+  "white-20/squillo/female": {
+   "rpa": {
+    "value": 0.31536,
+    "ci95": [
+     0.28624,
+     0.34502
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.00032,
+    "ci95": [
+     0.0,
+     0.00102
+    ]
+   },
+   "no_estimate": {
+    "value": 0.68454,
+    "ci95": [
+     0.65487,
+     0.71356
+    ]
+   },
+   "valid_frames": 79865,
+   "hit_abs_cents_p50": 1.025,
+   "hit_abs_cents_p95": 5.003
+  },
+  "white-20/squillo/male": {
+   "rpa": {
+    "value": 0.26472,
+    "ci95": [
+     0.22204,
+     0.30782
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.01477,
+    "ci95": [
+     0.00375,
+     0.03136
+    ]
+   },
+   "no_estimate": {
+    "value": 0.73131,
+    "ci95": [
+     0.68899,
+     0.77313
+    ]
+   },
+   "valid_frames": 104820,
+   "hit_abs_cents_p50": 0.762,
+   "hit_abs_cents_p95": 3.596
+  },
+  "white-20/pyin/all": {
+   "rpa": {
+    "value": 0.88727,
+    "ci95": [
+     0.85385,
+     0.91541
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.02984,
+    "ci95": [
+     0.0164,
+     0.04528
+    ]
+   },
+   "no_estimate": {
+    "value": 0.08544,
+    "ci95": [
+     0.06566,
+     0.10927
+    ]
+   },
+   "valid_frames": 184685,
+   "hit_abs_cents_p50": 3.55,
+   "hit_abs_cents_p95": 16.081
+  },
+  "white-20/pyin/female": {
+   "rpa": {
+    "value": 0.90281,
+    "ci95": [
+     0.87155,
+     0.93052
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.00664,
+    "ci95": [
+     0.0046,
+     0.00893
+    ]
+   },
+   "no_estimate": {
+    "value": 0.09115,
+    "ci95": [
+     0.06288,
+     0.12261
+    ]
+   },
+   "valid_frames": 79865,
+   "hit_abs_cents_p50": 3.889,
+   "hit_abs_cents_p95": 17.741
+  },
+  "white-20/pyin/male": {
+   "rpa": {
+    "value": 0.87542,
+    "ci95": [
+     0.82024,
+     0.92056
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.04732,
+    "ci95": [
+     0.02328,
+     0.07719
+    ]
+   },
+   "no_estimate": {
+    "value": 0.08109,
+    "ci95": [
+     0.0526,
+     0.11615
+    ]
+   },
+   "valid_frames": 104820,
+   "hit_abs_cents_p50": 3.333,
+   "hit_abs_cents_p95": 14.478
+  },
+  "white-10/yin/all": {
+   "rpa": {
+    "value": 0.27729,
+    "ci95": [
+     0.25773,
+     0.29723
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.07277,
+    "ci95": [
+     0.04753,
+     0.10053
+    ]
+   },
+   "no_estimate": {
+    "value": 0.70094,
+    "ci95": [
+     0.68288,
+     0.71843
+    ]
+   },
+   "valid_frames": 184685,
+   "hit_abs_cents_p50": 1.572,
+   "hit_abs_cents_p95": 7.588
+  },
+  "white-10/yin/female": {
+   "rpa": {
+    "value": 0.28736,
+    "ci95": [
+     0.26692,
+     0.30981
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.01713,
+    "ci95": [
+     0.00954,
+     0.02662
+    ]
+   },
+   "no_estimate": {
+    "value": 0.70763,
+    "ci95": [
+     0.68504,
+     0.72804
+    ]
+   },
+   "valid_frames": 79865,
+   "hit_abs_cents_p50": 1.808,
+   "hit_abs_cents_p95": 8.083
+  },
+  "white-10/yin/male": {
+   "rpa": {
+    "value": 0.26962,
+    "ci95": [
+     0.24072,
+     0.29965
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.11352,
+    "ci95": [
+     0.07101,
+     0.16604
+    ]
+   },
+   "no_estimate": {
+    "value": 0.69585,
+    "ci95": [
+     0.66976,
+     0.72016
+    ]
+   },
+   "valid_frames": 104820,
+   "hit_abs_cents_p50": 1.415,
+   "hit_abs_cents_p95": 7.006
+  },
+  "white-10/squillo/all": {
+   "rpa": {
+    "value": 0.01154,
+    "ci95": [
+     0.00887,
+     0.01467
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.00745,
+    "ci95": [
+     0.0,
+     0.0222
+    ]
+   },
+   "no_estimate": {
+    "value": 0.98837,
+    "ci95": [
+     0.98528,
+     0.99106
+    ]
+   },
+   "valid_frames": 184685,
+   "hit_abs_cents_p50": 0.976,
+   "hit_abs_cents_p95": 4.163
+  },
+  "white-10/squillo/female": {
+   "rpa": {
+    "value": 0.02002,
+    "ci95": [
+     0.01494,
+     0.02521
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ]
+   },
+   "no_estimate": {
+    "value": 0.97998,
+    "ci95": [
+     0.97479,
+     0.98506
+    ]
+   },
+   "valid_frames": 79865,
+   "hit_abs_cents_p50": 1.074,
+   "hit_abs_cents_p95": 4.496
+  },
+  "white-10/squillo/male": {
+   "rpa": {
+    "value": 0.00508,
+    "ci95": [
+     0.00299,
+     0.00774
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.0292,
+    "ci95": [
+     0.0,
+     0.09498
+    ]
+   },
+   "no_estimate": {
+    "value": 0.99477,
+    "ci95": [
+     0.99214,
+     0.99683
+    ]
+   },
+   "valid_frames": 104820,
+   "hit_abs_cents_p50": 0.729,
+   "hit_abs_cents_p95": 2.847
+  },
+  "white-10/pyin/all": {
+   "rpa": {
+    "value": 0.74673,
+    "ci95": [
+     0.70528,
+     0.78524
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.03109,
+    "ci95": [
+     0.01773,
+     0.0473
+    ]
+   },
+   "no_estimate": {
+    "value": 0.22931,
+    "ci95": [
+     0.19526,
+     0.26475
+    ]
+   },
+   "valid_frames": 184685,
+   "hit_abs_cents_p50": 4.305,
+   "hit_abs_cents_p95": 20.089
+  },
+  "white-10/pyin/female": {
+   "rpa": {
+    "value": 0.73768,
+    "ci95": [
+     0.68996,
+     0.78429
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.009,
+    "ci95": [
+     0.00545,
+     0.0127
+    ]
+   },
+   "no_estimate": {
+    "value": 0.25562,
+    "ci95": [
+     0.20861,
+     0.30573
+    ]
+   },
+   "valid_frames": 79865,
+   "hit_abs_cents_p50": 5.005,
+   "hit_abs_cents_p95": 22.598
+  },
+  "white-10/pyin/male": {
+   "rpa": {
+    "value": 0.75362,
+    "ci95": [
+     0.6893,
+     0.81361
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.04693,
+    "ci95": [
+     0.02199,
+     0.07672
+    ]
+   },
+   "no_estimate": {
+    "value": 0.20927,
+    "ci95": [
+     0.16401,
+     0.25906
+    ]
+   },
+   "valid_frames": 104820,
+   "hit_abs_cents_p50": 3.893,
+   "hit_abs_cents_p95": 17.749
+  },
+  "pink-10/yin/all": {
+   "rpa": {
+    "value": 0.28617,
+    "ci95": [
+     0.26591,
+     0.3071
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.0915,
+    "ci95": [
+     0.06549,
+     0.12061
+    ]
+   },
+   "no_estimate": {
+    "value": 0.68501,
+    "ci95": [
+     0.66616,
+     0.7033
+    ]
+   },
+   "valid_frames": 184685,
+   "hit_abs_cents_p50": 1.335,
+   "hit_abs_cents_p95": 6.185
+  },
+  "pink-10/yin/female": {
+   "rpa": {
+    "value": 0.30479,
+    "ci95": [
+     0.28362,
+     0.32816
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.03086,
+    "ci95": [
+     0.02102,
+     0.04227
+    ]
+   },
+   "no_estimate": {
+    "value": 0.68551,
+    "ci95": [
+     0.66159,
+     0.70721
+    ]
+   },
+   "valid_frames": 79865,
+   "hit_abs_cents_p50": 1.503,
+   "hit_abs_cents_p95": 6.59
+  },
+  "pink-10/yin/male": {
+   "rpa": {
+    "value": 0.27198,
+    "ci95": [
+     0.24272,
+     0.30228
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.13758,
+    "ci95": [
+     0.09322,
+     0.19102
+    ]
+   },
+   "no_estimate": {
+    "value": 0.68463,
+    "ci95": [
+     0.65842,
+     0.70979
+    ]
+   },
+   "valid_frames": 104820,
+   "hit_abs_cents_p50": 1.21,
+   "hit_abs_cents_p95": 5.739
+  },
+  "pink-10/squillo/all": {
+   "rpa": {
+    "value": 0.01795,
+    "ci95": [
+     0.01434,
+     0.02191
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.0131,
+    "ci95": [
+     0.00216,
+     0.03077
+    ]
+   },
+   "no_estimate": {
+    "value": 0.98181,
+    "ci95": [
+     0.97784,
+     0.98542
+    ]
+   },
+   "valid_frames": 184685,
+   "hit_abs_cents_p50": 0.982,
+   "hit_abs_cents_p95": 4.245
+  },
+  "pink-10/squillo/female": {
+   "rpa": {
+    "value": 0.03173,
+    "ci95": [
+     0.02513,
+     0.03841
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ]
+   },
+   "no_estimate": {
+    "value": 0.96827,
+    "ci95": [
+     0.96159,
+     0.97487
+    ]
+   },
+   "valid_frames": 79865,
+   "hit_abs_cents_p50": 1.089,
+   "hit_abs_cents_p95": 4.556
+  },
+  "pink-10/squillo/male": {
+   "rpa": {
+    "value": 0.00746,
+    "ci95": [
+     0.00502,
+     0.01049
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.05327,
+    "ci95": [
+     0.00824,
+     0.13002
+    ]
+   },
+   "no_estimate": {
+    "value": 0.99212,
+    "ci95": [
+     0.9892,
+     0.99455
+    ]
+   },
+   "valid_frames": 104820,
+   "hit_abs_cents_p50": 0.768,
+   "hit_abs_cents_p95": 2.937
+  },
+  "pink-10/pyin/all": {
+   "rpa": {
+    "value": 0.66441,
+    "ci95": [
+     0.62363,
+     0.7034
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.03632,
+    "ci95": [
+     0.01916,
+     0.05651
+    ]
+   },
+   "no_estimate": {
+    "value": 0.31054,
+    "ci95": [
+     0.27821,
+     0.345
+    ]
+   },
+   "valid_frames": 184685,
+   "hit_abs_cents_p50": 3.701,
+   "hit_abs_cents_p95": 15.797
+  },
+  "pink-10/pyin/female": {
+   "rpa": {
+    "value": 0.65876,
+    "ci95": [
+     0.61372,
+     0.70199
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.00814,
+    "ci95": [
+     0.00368,
+     0.01485
+    ]
+   },
+   "no_estimate": {
+    "value": 0.33583,
+    "ci95": [
+     0.29252,
+     0.3822
+    ]
+   },
+   "valid_frames": 79865,
+   "hit_abs_cents_p50": 4.193,
+   "hit_abs_cents_p95": 17.783
+  },
+  "pink-10/pyin/male": {
+   "rpa": {
+    "value": 0.66872,
+    "ci95": [
+     0.6035,
+     0.7297
+    ]
+   },
+   "gross_of_estimates": {
+    "value": 0.05644,
+    "ci95": [
+     0.02686,
+     0.09381
+    ]
+   },
+   "no_estimate": {
+    "value": 0.29128,
+    "ci95": [
+     0.24568,
+     0.33996
+    ]
+   },
+   "valid_frames": 104820,
+   "hit_abs_cents_p50": 3.407,
+   "hit_abs_cents_p95": 13.86
+  }
+ }
+}

@@ -1074,6 +1074,45 @@ float bound derived from IEEE 754's correct rounding, not from these
 maxima. No requirement changed, and SG-005's ±3 cents keeps its
 perceptual reason. No code or result here changed.
 
+### Round 8: squillo's YIN against pYIN on known-f0 voices (squillo Phase 1, 2026-10-24)
+
+`r8_pyin.py`, `results/r8_pyin.json`. The 159 WORLD re-syntheses of round 2
+(20 VocalSet singers, CC BY 4.0; 9 female, 11 male; 72 and 87 takes), f0 known.
+Three trackers on the same 1536-sample windows: YIN as `signal` computes it
+(*yin*), the product's cell after MT-003's refusal at aperiodicity 0.02
+(*squillo*), and librosa 0.11's pYIN (Mauch & Dixon 2014; fmin 63, fmax 1200 Hz,
+defaults otherwise, including its 10-cent pitch grid). Per valid frame: hit
+(within 50 cents), gross, or no estimate. 95 % CIs bootstrap over takes.
+
+| condition | tracker | RPA (CI) | gross of estimates | no estimate | hit p50 / p95 cents |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| clean | yin | 0.877 (0.857–0.897) | 4.6 % | 8.0 % | 1.13 / 6.9 |
+| clean | squillo | 0.713 (0.677–0.747) | 0.56 % | 28.3 % | 0.95 / 5.0 |
+| clean | pyin | 0.944 (0.926–0.960) | 3.0 % | 2.7 % | 3.31 / 14.1 |
+| white 20 dB | squillo | 0.287 (0.260–0.316) | 0.80 % | 71.1 % | 0.87 / 4.3 |
+| white 20 dB | pyin | 0.887 (0.854–0.915) | 3.0 % | 8.5 % | 3.55 / 16.1 |
+| white 10 dB | squillo | 0.012 (0.009–0.015) | 0.75 % | 98.8 % | 0.98 / 4.2 |
+| white 10 dB | pyin | 0.747 (0.705–0.785) | 3.1 % | 22.9 % | 4.31 / 20.1 |
+| pink 10 dB | squillo | 0.018 (0.014–0.022) | 1.3 % | 98.2 % | 0.98 / 4.2 |
+| pink 10 dB | pyin | 0.664 (0.624–0.703) | 3.6 % | 31.1 % | 3.70 / 15.8 |
+
+By sex, clean: squillo 0.818 female, 0.632 male (CI 0.580–0.685); pYIN 0.971
+and 0.924. Every row and group in the JSON.
+
+**Reading.** squillo's cell is the most precise and most honest of the three
+(hit p95 5.0 cents, gross 0.56 % of what it shows, against pYIN's 14.1 and 3.0 %),
+but it shows a pitch for only 71 % of clean voiced frames (63 % for men) and
+29 % at 20 dB SNR, where pYIN shows 94 % and 89 %. Most of squillo's misses
+are MT-003's refusal (yin alone: 88 %), not YIN's search. pYIN's p95 is
+mostly its 10-cent grid; its gross rate is 5 times squillo's. No tracker
+dominates: the gap to close is coverage, keeping squillo's ± and gross rate.
+Candidates for round 9: a per-frame *u* that grows with aperiodicity past 0.02
+instead of refusing (round 2's table extended, coverage re-measured), and
+pYIN-style multiple thresholds with a Viterbi path, keeping `signal`'s lag
+interpolation. Limits: re-syntheses, not recordings (WORLD's aperiodicity
+is not a real voice's breath); CREPE-class trackers not yet run (need torch,
+weights licence to check).
+
 ### Beyond round 3
 
 Amateur voices and other vowels (E-005's `needs-human` step); a real room
