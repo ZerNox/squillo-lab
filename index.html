@@ -29,12 +29,15 @@
     <ul id="measures" class="measures" hidden></ul>
     <figure id="take" hidden>
       <canvas id="takeline" width="1200" height="320" tabindex="0" aria-label="Your take's pitch line, the whole take from left to right, with its uncertainty as a band. A mark shows the moment you are hearing. Tap, click, or use the left and right arrow keys to play from another moment."></canvas>
-      <figcaption>Your whole take, start to end, drawn like the live line with its ±. The upright mark is the moment you hear; tap or click the line to play from there, or use the arrow keys to move a second back or on.</figcaption>
+      <figcaption>Your whole take, start to end, drawn like the live line with its ±. The upright mark is the moment you hear; tap or click the line to play from there, or use the arrow keys to move a second back or on. The bars under the line are the notes you held; Next and Previous note play from one, and Loop repeats the note you are on (or the two seconds from there) until you stop it.</figcaption>
     </figure>
     <p class="note">Each ± is twice the standard uncertainty. How close you came to the notes you aimed for is not measured yet.</p>
     <div class="controls">
       <button id="play" type="button">Hear your take</button>
       <button id="stopplay" type="button" disabled>Stop playback</button>
+      <button id="prevnote" type="button" disabled>Previous note</button>
+      <button id="nextnote" type="button" disabled>Next note</button>
+      <button id="loop" type="button" aria-pressed="false">Loop</button>
     </div>
     <p class="note">This is your own recording as the browser delivered it, with nothing re-synthesized or changed by Squillo. It is held in this page's memory only until you start the next run or close the page, and is never kept or sent.</p>
     <p id="processednote" class="note" hidden></p>

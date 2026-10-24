@@ -1,5 +1,5 @@
-:root { color-scheme: light dark; --bg: #0f1419; --fg: #e6e1d6; --mute: #8b949e; --line: #7dd3c0; --band: rgba(125, 211, 192, 0.22); --mark: rgba(230, 225, 214, 0.85); }
-@media (prefers-color-scheme: light) { :root { --bg: #fbfaf7; --fg: #1f2328; --mute: #59636e; --line: #0f766e; --band: rgba(15, 118, 110, 0.18); --mark: rgba(31, 35, 40, 0.8); } }
+:root { color-scheme: light dark; --bg: #0f1419; --fg: #e6e1d6; --mute: #8b949e; --line: #7dd3c0; --band: rgba(125, 211, 192, 0.22); --mark: rgba(230, 225, 214, 0.85); --note: rgba(230, 225, 214, 0.35); }
+@media (prefers-color-scheme: light) { :root { --bg: #fbfaf7; --fg: #1f2328; --mute: #59636e; --line: #0f766e; --band: rgba(15, 118, 110, 0.18); --mark: rgba(31, 35, 40, 0.8); --note: rgba(31, 35, 40, 0.3); } }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.5 system-ui, sans-serif; }
 main { max-width: 1200px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
@@ -9,6 +9,7 @@ h1 { margin: 0; font-weight: 600; letter-spacing: 0.02em; }
 button { font: inherit; padding: 0.6rem 1.6rem; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--fg); cursor: pointer; }
 button:not(:disabled):hover, button:focus-visible { background: var(--band); outline: none; }
 button:disabled { opacity: 0.4; cursor: default; }
+button[aria-pressed="true"] { background: var(--line); color: var(--bg); }
 #start:not(:disabled) { background: var(--line); color: var(--bg); }
 #state { color: var(--mute); font-size: 0.9rem; flex: 1 1 20rem; }
 .note { color: var(--mute); font-size: 0.9rem; }
