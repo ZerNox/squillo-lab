@@ -1,5 +1,3 @@
-# squillo web app (built)
+# Voice Helix (served copy)
 
-Auto-published from `squillo` @ bf3630e by `squillo-publish`. Do not edit by hand.
-Served at https://zernox.github.io/squillo-lab/
-`voice-helix/` is squillo-lab's E-008 page @ da10847 (https://zernox.github.io/squillo-lab/voice-helix/).
+Copy of squillo-lab main experiments/E-008-voice-helix/page/ (da10847). Stop-gap until Pages deploys from main via GitHub Actions; then this branch is deleted.
