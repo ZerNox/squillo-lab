@@ -1,0 +1,49 @@
+name: Publish E-008 page to gh-pages
+
+# GitHub Pages on this repository serves the gh-pages branch (Settings → Pages
+# → Deploy from a branch). This workflow keeps that branch equal to the E-008
+# Voice Helix page on main, served at the site root
+# (https://zernox.github.io/squillo-lab/). Edit the page on main only; never
+# edit gh-pages by hand.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "experiments/E-008-voice-helix/page/**"
+      - ".github/workflows/voice-helix-publish.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gh-pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: site
+      - name: Copy the page to the site root
+        run: |
+          find site -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -r experiments/E-008-voice-helix/page/. site/
+          touch site/.nojekyll
+          printf '# Voice Helix (served copy)\n\nPublished from squillo-lab main experiments/E-008-voice-helix/page/ by .github/workflows/voice-helix-publish.yml. Do not edit by hand.\n' > site/README.md
+      - name: Commit and push when changed
+        run: |
+          cd site
+          git add -A
+          if git diff --cached --quiet; then echo "gh-pages already matches main"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "publish: E-008 Voice Helix from main ${GITHUB_SHA::7}"
+          git push origin HEAD:gh-pages

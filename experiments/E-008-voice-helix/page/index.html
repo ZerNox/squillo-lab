@@ -115,6 +115,14 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
   .chip{min-width:92px;flex:0 0 auto}
   #status{display:none}
   #advice{max-width:none}
+  /* Phone: the panels stack in the page's flow and scroll, with the 3D view
+     showing through a gap between the controls and the readouts. */
+  html,body{height:auto;min-height:100%}
+  body{overflow-y:auto}
+  .ui{position:relative}
+  #top{padding-inline:0}
+  #rail{position:relative;top:auto;bottom:auto;left:auto;right:auto;margin-top:42vh;max-height:none}
+  #coach{position:relative;left:auto;right:auto;padding-top:10px}
 }
 @media (prefers-reduced-motion:reduce){.flaw.on i{box-shadow:none}}
 </style>
@@ -545,7 +553,9 @@ async function loadRef(slot,ab,name){try{const octx=new OfflineAudioContext(1,1,
   catch(e){setStatus('Could not decode that clip. Try WAV, MP3, M4A or OGG.');}}
 document.getElementById('refLoad').onclick=()=>document.getElementById('refFile').click();
 document.getElementById('refFile').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;await loadRef(refSlot.value,await f.arrayBuffer(),f.name);e.target.value='';});
-if(/^https?:/.test(location.protocol))for(const slot of ['polished','rough'])fetch('ref/'+slot+'.mp3').then(r=>r.ok?r.arrayBuffer():null).then(ab=>{if(ab)loadRef(slot,ab,slot+'.mp3');}).catch(()=>{});
+// Slots whose clip is published as ref/<slot>.mp3 next to this page; empty until clips are supplied.
+const PUBLISHED_REFS=[];
+if(/^https?:/.test(location.protocol))for(const slot of PUBLISHED_REFS)fetch('ref/'+slot+'.mp3').then(r=>r.ok?r.arrayBuffer():null).then(ab=>{if(ab)loadRef(slot,ab,slot+'.mp3');}).catch(()=>{});
 async function useRef(){const slot=refSlot.value;if(!REF[slot].buf){setStatus(`No ${slot} take loaded. Press “load clip…” with a recording of the song (the first 30 s of singing are kept).`);return;}
   stopSource();const ctx=await ensureCtx();await ctx.resume();const s=ctx.createBufferSource();s.buffer=REF[slot].buf;s.loop=true;s.connect(AU.cap);s.connect(ctx.destination);s.start();AU.source=s;AU.kind='ref';markSrc('ref');setStatus(`Reference: ${slot} take (${REF[slot].name}), looped.`);goLive();}
 srcBtns.ref=document.getElementById('bRef');srcBtns.ref.onclick=useRef;refSlot.onchange=()=>{if(AU.kind==='ref')useRef();};
@@ -662,7 +672,7 @@ function drawTerrain(view,proj){gl.useProgram(PT.p);gl.uniformMatrix4fv(PT.u.uPr
 
 // ───────────────────────── main loop ─────────────────────────
 let lastWall=performance.now()/1000;
-function resize(){if(window.innerWidth<=720)document.getElementById('rail').style.bottom=(document.getElementById('coach').offsetHeight+10)+'px';else document.getElementById('rail').style.bottom='';const dpr=Math.min(window.devicePixelRatio||1,2);const w=Math.floor(canvas.clientWidth*dpr),h=Math.floor(canvas.clientHeight*dpr);if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}}
+function resize(){const dpr=Math.min(window.devicePixelRatio||1,2);const w=Math.floor(canvas.clientWidth*dpr),h=Math.floor(canvas.clientHeight*dpr);if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}}
 function frame(){const wall=performance.now()/1000;const dt=Math.min(0.1,wall-lastWall);lastWall=wall;
   if(AU.demo)AU.demo.tick(AU.ctx.currentTime,dt);
   if(!paused){viewHist=LIVE.HIST;viewFT=LIVE.ft;viewNow=LIVE.at;}

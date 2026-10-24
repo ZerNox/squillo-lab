@@ -16,10 +16,9 @@ page? And which of the measures that drive it survive contact with real voices?
 One HTML file, no dependencies, WebGL2 and Web Audio. Served at
 <https://zernox.github.io/squillo-lab/> so that `getUserMedia` runs under
 HTTPS (browsers refuse it, or ask differently, on `file://`).
-`.github/workflows/pages.yml` deploys `page/` on every push to `main`; it
-needs the repository's Pages source set to "GitHub Actions". Until that is
-set, the `gh-pages` branch holds a copy at the root, which the host-side
-`squillo-publish` overwrites whenever squillo changes.
+Pages serves the `gh-pages` branch; `.github/workflows/voice-helix-publish.yml`
+copies `page/` to its root on every push to `main` that changes the page.
+Edit the page on `main` only.
 
 Three stations in one scene, the camera flies between them:
 
@@ -80,4 +79,4 @@ python3 -m http.server --directory page 8000
 
 then open <http://localhost:8000/>. Chrome and Firefox allow the microphone
 on `localhost` without HTTPS. Or push to `main`: the workflow
-`.github/workflows/pages.yml` deploys `page/` to GitHub Pages.
+`.github/workflows/voice-helix-publish.yml` publishes `page/` to GitHub Pages.
