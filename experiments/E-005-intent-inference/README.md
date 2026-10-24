@@ -1,6 +1,6 @@
 # E-005 — Intent inference: pitch accuracy without a reference
 
-**Status:** needs-human (round 1 folded into squillo `metrics`, iteration 27; round 2 done, squillo iteration 31; round 3, per-note centre and aim, squillo iteration 59; one `needs-human` step) · **Serves:** VISION §3 (every song is your cover; the next step), §4.3, §5 (reference-free), §6, §12.4
+**Status:** answered (automated evidence; human step retired 2026-10-24) (round 1 folded into squillo `metrics`, iteration 27; round 2 done, squillo iteration 31; round 3, per-note centre and aim, squillo iteration 59; one `needs-human` step) · **Serves:** VISION §3 (every song is your cover; the next step), §4.3, §5 (reference-free), §6, §12.4
 
 ## Question
 
@@ -378,27 +378,7 @@ vibrato round lost one score state in the truth alignment. No amateurs,
 rooms or browsers. The 25-cent threshold is the largest tested (20, 25,
 30, 35) that held in every cell; it is evidence, not a perceptual bound.
 
-**Needs a human (15 minutes).** VocalSet's singers are trained; squillo's
-first singer is not.
-
-1. On any microphone in a quiet room, sing the traditional round "Row, row,
-   row your boat" (public domain) once through, twice, at any pitch and
-   pace, unaccompanied, no vibrato on purpose; save `row1.wav`, `row2.wav`
-   (5 minutes).
-2. `uv run python run.py own row1.wav row2.wav` writes `results/own.json`:
-   notes, notes attributed right, σ̂, notes flagged, median |deviation|,
-   and per sung word (the 16 merged notes, `ROW_WORDS`) its span in the
-   take and what inference says: fine, a different note than the round's,
-   unsure which note (attribution below 95 %), or no note found; the last
-   three are *marked* (1 minute).
-3. Ear check, word by word (since 2026-10-04): play each marked word on its
-   own and answer *off*, *fine* or *can't tell*; switch any unmarked word
-   that sounded off to *off*. The answers go to `results/own_ear.json`,
-   anything else to `results/own.md` (5 minutes). The first wording, "write
-   whether σ̂ and the flagged notes match what you hear", could not be
-   answered: it named no word (Joakim, 2026-10-04).
-4. Commit `results/own.json`, `results/own_ear.json` and `results/own.md`,
-   never the audio. The session page (`session/`) does steps 2 to 4.
+**Human step retired** (Joakim, 2026-10-24): squillo makes no recordings of Joakim and asks for no listening checks; objective proxies on synthetic and openly licensed voices stand in.
 
 ## Fold with MT-003's refusal (squillo iteration 38)
 

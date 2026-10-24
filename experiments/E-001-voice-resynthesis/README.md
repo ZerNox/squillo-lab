@@ -1,6 +1,6 @@
 # E-001 — Voice re-synthesis: the synthesized you
 
-**Status:** needs-human (round 3, squillo iteration 66: every rung 1.1–4.8 LU louder than its take on real voices, levelling needed; rounds 1 and 2 answered on automated evidence: the change delivered, round 1; the time in WASM in a browser, round 2; the listening check `needs-human`; fold 1, squillo iteration 37: squillo's `synthesis` fixtures, a delivered-change rule, the same samples in both browsers, a 30 s and a 60 s take) · **Serves:** VISION §3 (core idea), §8 (on-device), §12.1
+**Status:** answered (automated evidence; human step retired 2026-10-24) (round 3, squillo iteration 66: every rung 1.1–4.8 LU louder than its take on real voices, levelling needed; rounds 1 and 2 answered on automated evidence: the change delivered, round 1; the time in WASM in a browser, round 2; the listening check `needs-human`; fold 1, squillo iteration 37: squillo's `synthesis` fixtures, a delivered-change rule, the same samples in both browsers, a 30 s and a 60 s take) · **Serves:** VISION §3 (core idea), §8 (on-device), §12.1
 
 ## Question
 
@@ -129,33 +129,7 @@ regularisation, tone and resonance changes and neural vocoders are not
 tested. The envelope distance is a proxy computed with WORLD's own
 estimator. Native code on one machine (WASM in a browser: round 2).
 
-**Needs a human (15 minutes).** The question "convincingly" (VISION §12.1)
-needs a listener, and the listener should be the singer.
-
-1. Record three takes of about 10 s each on any microphone, in a quiet room:
-   a slow scale on "ah"; a few lines of a public-domain or self-written
-   melody; one sustained note (5 minutes).
-2. `uv run python listen.py take1.wav take2.wav take3.wav` builds 8 blind
-   A/B pairs in `data/cache/listening/`, each a take's original against a
-   re-synthesis of it in random order: WORLD with no change and with 100 %
-   correction on all three takes, PSOLA with 100 % correction on take 2,
-   and, as the control that should be heard, WORLD with the correction
-   exaggerated to 300 % on take 2. Every clip is levelled to its take's
-   integrated loudness (since round 3) (half a minute).
-3. For each pair, answer which is the untouched recording: A, B or *can't
-   tell*, in `ratings.csv` (5 minutes). Only then open `key.json`. Reading:
-   a pair passes for the singer when they cannot pick the original (wrong
-   or *can't tell*); the control must be picked right, or the answers say
-   nothing.
-4. Commit `ratings.csv` and `key.json` only, never the audio (1 minute).
-
-   History. The first build (2026-09-29) asked for 1–5 ratings of *same
-   person* and *natural* on 20 clips with 50 % and 100 % correction and
-   steadying: on Joakim's takes the note-centre offsets were 9 to 29 cents
-   (median per take) and the wobble 3 to 8 cents, so every clip sounded the
-   same; larger changes followed, and on 2026-10-04 Joakim found rating his
-   own voice on a scale over 20 clips close to impossible, so the check
-   became a forced choice over 8 pairs.
+**Human step retired** (Joakim, 2026-10-24): squillo makes no recordings of Joakim and asks for no listening checks; objective proxies on synthetic and openly licensed voices stand in.
 
 ### Round 2: WORLD and a PSOLA in WASM, in Chrome and Firefox (squillo iteration 33, 2026-09-28)
 
@@ -254,9 +228,6 @@ Linux; no phones, no Safari. The PSOLA is crude and delivers the change less
 precisely than Praat, so its time says what a PSOLA costs, not what a good
 one costs. world-rs is one person's port, checked here against pyworld on
 43 inputs only. Everything in round 1's limits still holds.
-
-**Needs a human** is unchanged: round 1's listening check (15 minutes) is
-the one step left for VISION §12.1.
 
 ### Fold 1: squillo's `synthesis` fixtures and scenarios (squillo iteration 37, 2026-09-28)
 

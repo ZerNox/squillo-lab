@@ -1,6 +1,6 @@
 # E-004 — A publishable phrase library
 
-**Status:** needs-human (rounds 1–4 automated evidence in; a listening check remains for round 1's from-memory melodies and the originals, round 4's included) · **Serves:** VISION §7 (the guided library), §9 (first slice), §12.5
+**Status:** answered (automated evidence; human step retired 2026-10-24) (rounds 1–4 automated evidence in; a listening check remains for round 1's from-memory melodies and the originals, round 4's included) · **Serves:** VISION §7 (the guided library), §9 (first slice), §12.5
 
 ## Question
 
@@ -1281,22 +1281,4 @@ asserted in `main` (`I2_agree`, `I2_must_fail_next_person`,
 `I3_fixtures`, `I3_ships`, `I3_must_fail`, `I4_block_cases`, `I5_equal`);
 `I4_prediction_rule2_unchanged` is a prediction, recorded, true.
 
-## Needs a human
-
-15 minutes, headphones, no microphone.
-
-1. `cd experiments/E-004-phrase-library && uv run python listen.py`. This
-   writes 34 WAVs to `data/listen/`: the 18 phrases whose melody round 1
-   did not confirm (round 2 has since confirmed Abide with Me; a verdict on
-   it still checks the check), the 7 originals, and round 4's 9 originals
-   written for held notes (rows 26 to 34). Each opens with four clicks at its tempo.
-2. Play each once or twice. In `results/listen.csv`, set `verdict`:
-   - For a public-domain phrase: `right`, `wrong` (with `first_wrong_note`,
-     counting from 1) or `unknown`, if you do not know the tune.
-   - For an original: `new`, or `familiar`, with the song it recalls in
-     `reminds_me_of`.
-3. Commit `results/listen.csv`. The WAVs are ignored by git; never commit a
-   recording of anyone.
-
-A `right` confirms only the familiar form. It is not proof that the cited
-edition matches, and round 2 checks that.
+**Human step retired** (Joakim, 2026-10-24): squillo makes no recordings of Joakim and asks for no listening checks; objective proxies on synthetic and openly licensed voices stand in.

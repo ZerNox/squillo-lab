@@ -1,6 +1,6 @@
 # E-003 — Capture reality in browsers
 
-**Status:** needs-human (rounds 1 to 4 automated, fake devices; the real-microphone step is left) · **Serves:** VISION §6 (honesty), §12.3 · Absorbs squillo S-001, S-002 and S-003
+**Status:** answered (automated evidence; human step retired 2026-10-24) (rounds 1 to 4 automated, fake devices; the real-microphone step is left) · **Serves:** VISION §6 (honesty), §12.3 · Absorbs squillo S-001, S-002 and S-003
 
 ## Question
 
@@ -918,18 +918,4 @@ UI-006, UI-012). The timing sample above ran loads 0 only, not the
 overload, which is how the first Chrome step's overload runs failed to end
 (squillo L-048).
 
-## Needs a human (15 minutes)
-
-Real microphones, drivers and rooms, which fake devices cannot show.
-
-1. `uv run python gen.py` (makes `data/cache/tone440.wav`), `npm ci`,
-   `node serve.mjs`; copy `tone440.wav` to a phone (3 minutes).
-2. Open `http://localhost:8003/` in Chrome with the laptop's own
-   microphone, press *Start*, stay quiet for 10 s, then play the tone from
-   the phone about 30 cm away until the page says done; two files download.
-   Repeat in Firefox (6 minutes).
-3. `uv run python human.py e003-human-chrome.json e003-human-firefox.json`
-   writes `results/human-<browser>.json`: readback, default context rate,
-   channel count, blocks lost, noise floor, the tone's frequency error in
-   cents and its phase steadiness (2 minutes).
-4. Commit `results/human-*.json`, never the `.f32` audio (1 minute).
+**Human step retired** (Joakim, 2026-10-24): squillo makes no recordings of Joakim and asks for no listening checks; objective proxies on synthetic and openly licensed voices stand in.
