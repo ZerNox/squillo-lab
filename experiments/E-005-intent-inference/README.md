@@ -1473,7 +1473,7 @@ share of `take-uncertain.wav`.
 no written notes) give what this lab's reference gives (`round4.measure`, rule
 `PM`, as fold 4 ships it), fed the very same pitch cells?
 
-**Method** (`round8_rust_spread.py`, committed before the run, `094cc5c`).
+**Method** (`round8_rust_spread.py`, committed before the run, `8bd0b76`).
 `take_json` (squillo `crates/metrics/examples`) prints the Rust cells and
 spread; the reference measures those cells with frame times *k* · 384/48 000.
 Inputs: squillo's 26 wav fixtures; 300 synthetic 14-note takes
