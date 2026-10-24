@@ -67,6 +67,16 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
 .flaw i{width:7px;height:7px;border-radius:50%;background:var(--fg-3);display:inline-block}
 .flaw.on{color:var(--fg);border-color:rgba(232,90,90,.5)} .flaw.on i{background:var(--bad);box-shadow:0 0 8px var(--bad)}
 .flaw.warn i{background:var(--warn)} .flaw.ok i{background:var(--ok)}
+#takeRow{display:flex;gap:6px;flex-wrap:wrap;align-items:center;max-width:620px}
+#takeRow .btn[disabled]{opacity:.4;cursor:default}
+#bRec[aria-pressed="true"]{color:var(--bg);background:var(--bad);border-color:var(--bad)}
+#takeInfo{font:11px/1.35 var(--f-mono);color:var(--fg-3);flex:1 1 220px}
+#takebar{position:relative;height:16px;width:100%;max-width:620px;border:1px solid var(--line);border-radius:4px;background:var(--panel);overflow:hidden}
+#takebar i{position:absolute;top:0;bottom:0;background:rgba(232,90,90,.5);border-left:2px solid var(--bad);cursor:pointer}
+#playhead{position:absolute;top:0;bottom:0;width:2px;background:var(--pitch);left:0}
+#coachVid{width:96px;height:128px;object-fit:cover;border-radius:6px;flex:0 0 auto;background:var(--bg-2)}
+#advice.coach-on{border-left-color:var(--pitch)}
+#advice.coach-on #coachVid,#advice.coach-on #fig{width:150px;height:200px}
 #score{max-width:62ch;overflow-x:auto;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);backdrop-filter:blur(8px)}
 #score table{border-collapse:collapse;font:11px/1.5 var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
 #score th{font-weight:500;color:var(--fg-3);text-align:left;padding:1px 10px 1px 0;letter-spacing:.04em}
@@ -122,7 +132,9 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
   .ui{position:relative}
   #top{padding-inline:0}
   #rail{position:relative;top:auto;bottom:auto;left:auto;right:auto;margin-top:42vh;max-height:none}
-  #coach{position:relative;left:auto;right:auto;padding-top:10px}
+  #coach{position:relative;left:auto;right:auto;padding-top:10px;align-items:stretch}
+  #coach>*{max-width:100%;min-width:0}
+  #advice.coach-on #coachVid,#advice.coach-on #fig{width:120px;height:160px}
 }
 @media (prefers-reduced-motion:reduce){.flaw.on i{box-shadow:none}}
 </style>
@@ -149,6 +161,22 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
     <option value="nasal">Nasal speech</option>
     <option value="mumble">Mumbled speech</option>
     <option value="expressive">Expressive speech (healthy)</option>
+    <optgroup label="Real voices · VocalSet, CC BY 4.0">
+      <option value="vs:f2_straight">Woman: scale, clean (straight)</option>
+      <option value="vs:f2_breathy">Woman: same scale, breathy</option>
+      <option value="vs:f2_vocal_fry">Woman: same scale, vocal fry</option>
+      <option value="vs:f2_belt">Woman: same scale, belted</option>
+      <option value="vs:f2_vibrato">Woman: same scale, vibrato</option>
+      <option value="vs:f2_caro_straight">Woman: “Caro mio ben”, straight</option>
+      <option value="vs:f2_caro_vibrato">Woman: “Caro mio ben”, vibrato</option>
+      <option value="vs:m2_straight">Man: scale, clean (straight)</option>
+      <option value="vs:m2_breathy">Man: same scale, breathy</option>
+      <option value="vs:m2_vocal_fry">Man: same scale, vocal fry</option>
+      <option value="vs:m2_belt">Man: same scale, belted</option>
+      <option value="vs:m2_vibrato">Man: same scale, vibrato</option>
+      <option value="vs:m2_caro_straight">Man: “Caro mio ben”, straight</option>
+      <option value="vs:m2_caro_vibrato">Man: “Caro mio ben”, vibrato</option>
+    </optgroup>
   </select>
   <input type="file" id="file" accept="audio/*">
   <select id="refSlot" aria-label="Reference slot"><option value="polished">polished take</option><option value="rough">rough take</option></select>
@@ -189,9 +217,17 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
     <input type="range" id="scrub" min="0" max="0" step="0.02" value="0" aria-label="Session timeline">
     <span class="t" id="tlT">0.0 s</span>
   </div>
+  <div id="takeRow">
+    <button class="btn" id="bRec" aria-pressed="false">● record take</button>
+    <button class="btn" id="bPlayTake" disabled>▶ your take</button>
+    <button class="btn" id="bPlayBetter" disabled>▶ improved you</button>
+    <span id="takeInfo">Sing (or play any source) and record up to 60 s. Then play it back: the coach shows the exercise just before each spot that can improve.</span>
+  </div>
+  <div id="takebar" hidden><b id="playhead"></b></div>
   <div id="flaws"></div>
   <div id="score" hidden></div>
   <div id="advice" class="pose-idle">
+    <video id="coachVid" muted loop playsinline preload="auto" aria-hidden="true" hidden></video>
     <svg id="fig" viewBox="0 0 120 160" aria-hidden="true">
       <g id="head"><circle class="body" cx="60" cy="28" r="14"/><ellipse class="mouth" cx="60" cy="37" rx="4" ry="1.5"/></g>
       <line class="skin" x1="60" y1="42" x2="60" y2="52"/>
@@ -477,10 +513,10 @@ let calibrating=false;
 async function ensureCtx(){if(AU.ctx)return AU.ctx;const ctx=new (window.AudioContext||window.webkitAudioContext)();AU.ctx=ctx;AU.sr=ctx.sampleRate;
   dsp=makeDsp(onDspMsg);dsp.post({type:'init',sr:AU.sr,hop:0.02});
   AU.sink=ctx.createGain();AU.sink.gain.value=0;AU.sink.connect(ctx.destination);
-  try{await ctx.audioWorklet.addModule(URL.createObjectURL(new Blob([CAP_SRC],{type:'text/javascript'})));const node=new AudioWorkletNode(ctx,'cap',{numberOfInputs:1,numberOfOutputs:1,outputChannelCount:[1]});node.port.onmessage=e=>dsp.post({type:'audio',buf:e.data},[e.data.buffer]);node.connect(AU.sink);AU.cap=node;AU.capKind='worklet';}
-  catch(e){const sp=ctx.createScriptProcessor(1024,1,1);sp.onaudioprocess=ev=>{const b=new Float32Array(ev.inputBuffer.getChannelData(0));dsp.post({type:'audio',buf:b},[b.buffer]);};sp.connect(AU.sink);AU.cap=sp;AU.capKind='scriptprocessor';}
+  try{await ctx.audioWorklet.addModule(URL.createObjectURL(new Blob([CAP_SRC],{type:'text/javascript'})));const node=new AudioWorkletNode(ctx,'cap',{numberOfInputs:1,numberOfOutputs:1,outputChannelCount:[1]});node.port.onmessage=e=>{takeTap(e.data);dsp.post({type:'audio',buf:e.data},[e.data.buffer]);};node.connect(AU.sink);AU.cap=node;AU.capKind='worklet';}
+  catch(e){const sp=ctx.createScriptProcessor(1024,1,1);sp.onaudioprocess=ev=>{const b=new Float32Array(ev.inputBuffer.getChannelData(0));takeTap(b);dsp.post({type:'audio',buf:b},[b.buffer]);};sp.connect(AU.sink);AU.cap=sp;AU.capKind='scriptprocessor';}
   return ctx;}
-function stopSource(){resetStats();if(AU.source){try{AU.source.disconnect();}catch(e){}if(AU.source.stop)try{AU.source.stop();}catch(e){}if(AU.source.mediaStream)AU.source.mediaStream.getTracks().forEach(t=>t.stop());AU.source=null;}if(AU.demo){AU.demo.stop();AU.demo=null;}AU.kind=null;if(dsp)dsp.post({type:'uncalib'});calibrating=false;}
+function stopSource(){resetStats();AU.play=null;if(typeof playhead!=='undefined')playhead.style.left='0';if(AU.source){try{AU.source.disconnect();}catch(e){}if(AU.source.stop)try{AU.source.stop();}catch(e){}if(AU.source.mediaStream)AU.source.mediaStream.getTracks().forEach(t=>t.stop());AU.source=null;}if(AU.demo){AU.demo.stop();AU.demo=null;}AU.kind=null;if(dsp)dsp.post({type:'uncalib'});calibrating=false;}
 function writeColumn(col){terHead=(terHead+1)%TD.T;gl.bindTexture(gl.TEXTURE_2D,terTex);gl.texSubImage2D(gl.TEXTURE_2D,0,terHead,0,1,TD.F,gl.RED,gl.FLOAT,col);}
 
 // ───────────────────────── demo voice synth ─────────────────────────
@@ -535,7 +571,16 @@ async function useMic(){stopSource();const ctx=await ensureCtx();await ctx.resum
 document.getElementById('file').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;stopSource();const ctx=await ensureCtx();await ctx.resume();
   try{const ab=await f.arrayBuffer();const buf=await ctx.decodeAudioData(ab);const s=ctx.createBufferSource();s.buffer=buf;s.loop=true;s.connect(AU.cap);s.connect(ctx.destination);s.start();AU.source=s;AU.kind='file';markSrc('file');setStatus(`Playing ${f.name} (${buf.duration.toFixed(1)} s, looped).`);goLive();}
   catch(err){setStatus('Could not decode that file. Try WAV, MP3, M4A or OGG.');}});
-async function useDemo(){stopSource();const ctx=await ensureCtx();await ctx.resume();const name=document.getElementById('preset').value;AU.demo=startDemo(name);AU.kind='demo';markSrc('demo');
+// Real-voice demos: VocalSet clips (CC BY 4.0) in demo/, sources in demo/SOURCES.md.
+const demoBufs={};
+async function useDemo(){stopSource();const ctx=await ensureCtx();await ctx.resume();const name=document.getElementById('preset').value;
+  if(name.startsWith('vs:')){const id=name.slice(3),o=document.getElementById('preset').selectedOptions[0].textContent;
+    try{if(!demoBufs[id]){const r=await fetch('demo/'+id+'.mp3');if(!r.ok)throw new Error(r.status);demoBufs[id]=await ctx.decodeAudioData(await r.arrayBuffer());}}
+    catch(e){setStatus(location.protocol==='file:'?'Real-voice demos need the hosted page or a local server (python3 -m http.server).':'Could not load that clip.');return;}
+    if(document.getElementById('preset').value!==name)return;
+    const s=ctx.createBufferSource();s.buffer=demoBufs[id];s.loop=true;s.connect(AU.cap);s.connect(ctx.destination);s.start();AU.source=s;AU.kind='demo';markSrc('demo');
+    setStatus(`Demo: ${o}. Real singer from VocalSet (Wilkins et al., 2018), CC BY 4.0, looped.`);goLive();return;}
+  AU.demo=startDemo(name);AU.kind='demo';markSrc('demo');
   const o=document.getElementById('preset').selectedOptions[0].textContent;setStatus(`Demo: ${o}. Synthetic voice, formant-filtered sawtooth. DSP in ${dsp.where}, capture via ${AU.capKind}.`);goLive();}
 srcBtns.mic.onclick=useMic;srcBtns.file.onclick=()=>document.getElementById('file').click();srcBtns.demo.onclick=useDemo;
 document.getElementById('preset').onchange=()=>{if(AU.kind==='demo')useDemo();};
@@ -621,7 +666,15 @@ const $=id=>document.getElementById(id);
 const flawsEl=$('flaws');for(const fl of FLAWS){const b=document.createElement('button');b.className='flaw';b.innerHTML=`<i></i>${fl.name}`;b.onclick=()=>{setView(fl.view,true);showAdvice(fl);};fl.el=b;flawsEl.appendChild(b);}
 const adviceEl=$('advice');let shownAdvice=null;
 const adviceTxt=adviceEl.querySelector('.txt');
-function setAdvice(title,body,cue,pose){adviceTxt.innerHTML=`<b>${title}</b><span>${body}</span><em>${cue||''}</em>`;adviceEl.className='pose-'+(pose||'idle');}
+function setAdvice(title,body,cue,pose,extra){adviceTxt.innerHTML=`<b>${title}</b><span>${body}</span><em>${cue||''}</em>`;adviceEl.className='pose-'+(pose||'idle')+(extra?' '+extra:'');showCoachClip(pose||'idle');}
+// Coach clips (feature toggle, off by default: the drawn figure is the coach). With ?coach=video in
+// the URL, a filmed coach performs each exercise without sound from coach/<pose>.mp4 (prompts in
+// ../coach/PROMPTS.md); poses without a clip still use the drawn figure.
+const COACH_CLIPS=[];
+const COACH_VIDEO=new URLSearchParams(location.search).get('coach')==='video';
+const coachVid=$('coachVid'),figEl=$('fig');
+function showCoachClip(pose){const has=COACH_VIDEO&&COACH_CLIPS.includes(pose);coachVid.hidden=!has;figEl.style.display=has?'none':'';
+  if(has){if(coachVid.dataset.pose!==pose){coachVid.dataset.pose=pose;coachVid.innerHTML=`<source src="coach/${pose}.mp4" type="video/mp4"><source src="coach/${pose}.webm" type="video/webm">`;coachVid.load();}coachVid.play().catch(()=>{});}else if(!coachVid.paused)coachVid.pause();}
 function showAdvice(fl){shownAdvice=fl;setAdvice(fl.name,fl.advice[0]+' '+fl.advice[1],fl.cue,fl.pose);}
 const tNote=$('tNote');tNote.innerHTML='<option value="">no note target</option>'+Array.from({length:37},(_,i)=>{const m=i+41;return `<option value="${m}">target: ${noteName(m)} · ${hzOf(m).toFixed(0)} Hz</option>`;}).join('');
 function cls(v,good,bad,inv=false){const a=inv?v<good:v>good,b=inv?v>bad:v<bad;return a?'good':b?'bad':'warn';}
@@ -640,7 +693,7 @@ function updateHUD(wall){if(wall-hudT<0.1)return;hudT=wall;const f=viewFT;const 
   set('mNas',v&&f.nasOk?(f.a1p0>0?'+':'')+f.a1p0.toFixed(1):'—',v&&f.nasOk?cls(f.a1p0,6,NASAL_TH):'');
   const emas=paused&&f.flaws?f.flaws:LIVE.ema;
   FLAWS.forEach((fl,i)=>{const em=emas[i];const st=em>0.6?'on':em>0.3?'warn':(v?'ok':'');fl.el.className='flaw'+(st?' '+st:'');});
-  if(!paused){if(activeFlaw&&activeFlaw!==shownAdvice)showAdvice(activeFlaw);
+  if(!paused&&AU.kind!=='take'){if(activeFlaw&&activeFlaw!==shownAdvice)showAdvice(activeFlaw);
     else if(!activeFlaw&&shownAdvice&&LIVE.ema[FLAWS.indexOf(shownAdvice)]<0.2){shownAdvice=null;if(v)setAdvice('Clean so far','No flaw above threshold. Hold a note for the helix, speak for the vowel chart, and watch the terrain ridges stay sharp.','Keep the belly engaged; that is what held it clean.','belly');else setAdvice('Listening','No voiced sound yet.','','idle');}
     if(autoFly&&activeFlaw&&activeFlaw!==lastFlyFlaw){lastFlyFlaw=activeFlaw;setView(activeFlaw.view);}}
   // timeline
@@ -671,11 +724,83 @@ function updateComb(f){if(f.voiced){const P_=[],C_=[];for(let k=1;k<=14;k++){con
 function drawTerrain(view,proj){gl.useProgram(PT.p);gl.uniformMatrix4fv(PT.u.uProj,false,proj);gl.uniformMatrix4fv(PT.u.uView,false,view);gl.uniform1i(PT.u.uHead,terHead);gl.uniform2i(PT.u.uDim,TD.T,TD.F);gl.uniform3fv(PT.u.uOrigin,ZX);gl.uniform3fv(PT.u.uSize,TD.size);gl.uniform1f(PT.u.uFloor,noiseFloor);gl.uniform3fv(PT.u.uFog,C.fog);
   gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,terTex);gl.uniform1i(PT.u.uH,0);gl.bindVertexArray(terVAO);gl.drawElements(gl.TRIANGLES,terIdxCount,gl.UNSIGNED_INT,0);gl.bindVertexArray(null);}
 
+// ───────────────────────── takes: record, scan, improve, coach ─────────────────────────
+// A take is whatever flows into the analysis while recording (mic, a recording, a demo), up to 60 s.
+// Scanning it offline gives the spots where a flaw held; "improved you" is the same take with its
+// pitch steadied and its onsets landed on the note (TD-PSOLA, timbre untouched). On playback the coach
+// appears LEAD seconds before each spot and shows the exercise without sound.
+const TAKE={rec:null,recN:0,buf:null,better:null,segs:[],busy:false},MAXTAKE=60,LEAD=1.5;
+const bRec=$('bRec'),bPlayTake=$('bPlayTake'),bPlayBetter=$('bPlayBetter'),takeInfo=$('takeInfo'),takebar=$('takebar'),playhead=$('playhead');
+function takeTap(b){if(!TAKE.rec)return;TAKE.rec.push(b.slice());TAKE.recN+=b.length;if(TAKE.recN>=MAXTAKE*AU.sr)setTimeout(finishTake,0);}
+bRec.onclick=()=>{if(TAKE.rec){finishTake();return;}if(TAKE.busy)return;
+  if(!AU.kind||AU.kind==='take'){takeInfo.textContent='Pick a source first: Mic to sing, or a demo or recording to try it out.';return;}
+  TAKE.rec=[];TAKE.recN=0;bRec.textContent='■ stop take';bRec.setAttribute('aria-pressed','true');takeInfo.textContent='Recording… press stop when you are done (60 s at most).';};
+async function finishTake(){if(!TAKE.rec)return;const chunks=TAKE.rec;TAKE.rec=null;bRec.textContent='● record take';bRec.setAttribute('aria-pressed','false');
+  const n=chunks.reduce((a,c)=>a+c.length,0);if(n<AU.sr){takeInfo.textContent='Too short: record at least a second.';return;}
+  const x=new Float32Array(n);let o=0;for(const c of chunks){x.set(c,o);o+=c.length;}
+  const buf=AU.ctx.createBuffer(1,n,AU.sr);buf.getChannelData(0).set(x);TAKE.busy=true;takeInfo.textContent=`Scanning your ${(n/AU.sr).toFixed(1)} s take…`;
+  const sc=await scanTake(buf);TAKE.buf=buf;TAKE.segs=sc.segs;TAKE.better=improveTake(buf,sc.frames);TAKE.busy=false;renderTakebar();
+  bPlayTake.disabled=false;bPlayBetter.disabled=false;
+  const names=[...new Set(TAKE.segs.map(g=>FLAWS[g.i].name))];
+  takeInfo.textContent=TAKE.segs.length?`${TAKE.segs.length} spot${TAKE.segs.length>1?'s':''} to work on (${names.join(', ')}), marked on the bar. Play your take, or the improved you.`:`Clean take: no flaw held long enough to coach. ${(sc.voiced*100).toFixed(0)} % of it was voiced.`;}
+function scanTake(buf){return new Promise(res=>{const st=new Stats();const d=makeDsp(m=>{if(m.type==='feat')ingest(st,m,'take');else if(m.type==='pong'){d.kill();res(takeSpots(st));}});
+  d.post({type:'init',sr:buf.sampleRate,hop:0.02});const ch=buf.getChannelData(0);for(let i=0;i<ch.length;i+=2048){const b=ch.slice(i,i+2048);d.post({type:'audio',buf:b},[b.buffer]);}d.post({type:'ping'});});}
+// Frame times mark the end of the analysis window; the pitch belongs ~20 ms earlier. A flaw's
+// smoothed level lags its onset by about 0.6 s, so each spot starts that much earlier.
+function takeSpots(st){const fr=st.rec.frames,sn=st.rec.snaps;const frames=fr.map((f,i)=>({t:Math.max(0,f.t-0.02),f0:f.voiced?f.f0:0}));
+  const segs=[];let cur=null;
+  fr.forEach((f,i)=>{let bi=-1,bv=0.6;sn[i].flaws.forEach((v,j)=>{if(v>bv){bv=v;bi=j;}});
+    if(bi>=0){if(cur&&cur.i===bi&&f.t-cur.t1<0.4)cur.t1=f.t;else{if(cur)segs.push(cur);cur={i:bi,t0:f.t,t1:f.t};}}});
+  if(cur)segs.push(cur);
+  // Scoops are coached one by one at each slide into a note, not across the 10 s window the chip uses.
+  const SI=FLAWS.findIndex(f=>f.id==='scoop');
+  const out=segs.filter(g=>g.i!==SI).map(g=>({i:g.i,t0:Math.max(0,g.t0-0.6),t1:g.t1})).filter(g=>g.t1-g.t0>=0.8);
+  for(const e of st.rec.events)if(e.type==='scoop'){const t0=Math.max(0,e.t-0.6),t1=e.t;if(!out.some(g=>t0<g.t1&&g.t0<t1))out.push({i:SI,t0,t1});}
+  out.sort((a,b)=>a.t0-b.t0);
+  const nv=fr.filter(f=>f.voiced).length;return {frames,segs:out,voiced:fr.length?nv/fr.length:0};}
+// Target pitch per frame: a 250 ms running median inside each voiced run (keeps the melody, drops
+// wobble), the first 300 ms of a note held at the note's settled pitch (no scoop), then pulled half
+// way to the nearest semitone. Resynthesis is pitch-synchronous overlap-add with Hann grains.
+function improveTake(buf,frames){const sr=buf.sampleRate,x=buf.getChannelData(0),n=x.length,hop=0.02,F=frames.length;
+  const m=frames.map(f=>f.f0?midiOf(f.f0):0),tg=new Float64Array(F);
+  for(let a=0;a<F;){if(!m[a]){a++;continue;}let b=a;while(b+1<F&&m[b+1])b++;
+    for(let i=a;i<=b;i++){const w=[];for(let k=Math.max(a,i-6);k<=Math.min(b,i+6);k++)w.push(m[k]);w.sort((p,q)=>p-q);tg[i]=w[w.length>>1];}
+    if(b-a>25){const k0=a+15;for(let i=a;i<k0;i++)if(Math.abs(tg[i]-tg[k0])>0.4)tg[i]=tg[k0];}
+    for(let i=a;i<=b;i++)tg[i]+=0.5*(Math.round(tg[i])-tg[i]);a=b+1;}
+  const ratio=new Float64Array(F);for(let i=0;i<F;i++)ratio[i]=m[i]?clamp(Math.pow(2,(tg[i]-m[i])/12),0.8,1.25):1;
+  const fi=t=>clamp(Math.round(t/hop),0,F-1),per=smp=>{const i=fi(smp/sr);return frames[i]&&frames[i].f0?sr/frames[i].f0:sr*0.005;},rat=smp=>{const i=fi(smp/sr);let a=0,c=0;for(let k=Math.max(0,i-2);k<=Math.min(F-1,i+2);k++){a+=ratio[k];c++;}return a/c;};
+  // Analysis marks one period apart, each snapped to the waveform peak within a quarter period, so
+  // successive grains start at the same point of the cycle (pitch-synchronous).
+  const vo=smp=>{const f=frames[fi(smp/sr)];return !!(f&&f.f0);};const marks=[];
+  for(let a=0;a<n;){let c=Math.round(a);if(vo(a)){const P=per(a),q=Math.round(P/4);let bi=c,bv=-Infinity;for(let j=Math.max(0,c-q);j<=Math.min(n-1,c+q);j++)if(x[j]>bv){bv=x[j];bi=j;}if(marks.length&&bi<=marks[marks.length-1])bi=c;c=bi;}
+    marks.push(c);a=c+per(c);}
+  const y=new Float32Array(n),w=new Float32Array(n);let k=0;
+  for(let s=0;s<n;){while(k+1<marks.length&&Math.abs(marks[k+1]-s)<=Math.abs(marks[k]-s))k++;const P=per(s),L=Math.max(8,Math.round(P)),am=marks[k],ds=Math.round(s);
+    for(let j=-L;j<=L;j++){const si=am+j,di=ds+j;if(si<0||si>=n||di<0||di>=n)continue;const h=0.5+0.5*Math.cos(Math.PI*j/L);y[di]+=x[si]*h;w[di]+=h;}
+    s+=P/rat(s);}
+  for(let i=0;i<n;i++)y[i]=w[i]>0.05?y[i]/w[i]:0;
+  const out=AU.ctx.createBuffer(1,n,sr);out.getChannelData(0).set(y);return out;}
+function renderTakebar(){takebar.querySelectorAll('i').forEach(e=>e.remove());const d=TAKE.buf.duration;takebar.hidden=false;
+  for(const g of TAKE.segs){const e=document.createElement('i');e.style.left=(g.t0/d*100)+'%';e.style.width=Math.max(0.8,(g.t1-g.t0)/d*100)+'%';e.title=FLAWS[g.i].name;e.onclick=()=>showAdvice(FLAWS[g.i]);takebar.insertBefore(e,playhead);}}
+async function playTake(which){const buf=which==='better'?TAKE.better:TAKE.buf;if(!buf)return;stopSource();const ctx=await ensureCtx();await ctx.resume();
+  const s=ctx.createBufferSource();s.buffer=buf;s.connect(AU.cap);s.connect(ctx.destination);AU.source=s;AU.kind='take';markSrc(null);
+  const play={t0:ctx.currentTime,which,dur:buf.duration,seg:undefined,phase:''};AU.play=play;s.onended=()=>{if(AU.play===play){AU.play=null;playhead.style.left='0';setAdvice('Take finished','Play it again, or the improved you, and watch the coach just before each marked spot.','','idle');}};s.start();
+  setStatus(which==='better'?'Improved you: your take with steadier pitch and clean onsets. Tone, words and timing are yours.':'Your take, as recorded.');goLive();}
+bPlayTake.onclick=()=>playTake('take');bPlayBetter.onclick=()=>playTake('better');
+function coachTick(){const p=AU.play;if(!p||AU.kind!=='take')return;const pos=AU.ctx.currentTime-p.t0;playhead.style.left=clamp(pos/p.dur*100,0,100)+'%';
+  const seg=TAKE.segs.find(g=>pos>=g.t0-LEAD&&pos<=g.t1+0.3)||null;const phase=seg?(pos<seg.t0?'soon':'now'):'';
+  if(seg===p.seg&&phase===p.phase)return;p.seg=seg;p.phase=phase;
+  if(seg){const fl=FLAWS[seg.i];const was=p.which==='better'?'This is where your take had ':'';
+    setAdvice(phase==='soon'?`Coming up: ${fl.name}`:`${was}${fl.name}`,phase==='soon'?'Get ready. Do what the coach shows as you sing into this part.':fl.advice[1],fl.cue,fl.pose,'coach-on');
+    if(autoFly&&fl!==lastFlyFlaw){lastFlyFlaw=fl;setView(fl.view);}}
+  else setAdvice(p.which==='better'?'Improved you':'Your take',p.which==='better'?'Listen to yourself with steadier pitch. The coach steps in just before each spot you struggled with.':'Listen back. The coach steps in just before each spot that can improve.','','idle');}
+
 // ───────────────────────── main loop ─────────────────────────
 let lastWall=performance.now()/1000;
 function resize(){const dpr=Math.min(window.devicePixelRatio||1,2);const w=Math.floor(canvas.clientWidth*dpr),h=Math.floor(canvas.clientHeight*dpr);if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}}
 function frame(){const wall=performance.now()/1000;const dt=Math.min(0.1,wall-lastWall);lastWall=wall;
   if(AU.demo)AU.demo.tick(AU.ctx.currentTime,dt);
+  coachTick();
   if(!paused){viewHist=LIVE.HIST;viewFT=LIVE.ft;viewNow=LIVE.at;}
   updateHUD(wall);renderScore(false);
   const g=cam.goal,k=1-Math.exp(-dt*3.2);for(let i=0;i<3;i++)cam.target[i]=lerp(cam.target[i],g.target[i],k);cam.dist=lerp(cam.dist,g.dist*cam.dDist,k);cam.theta=lerp(cam.theta,g.theta+cam.dTheta,k);cam.phi=lerp(cam.phi,clamp(g.phi+cam.dPhi,0.2,1.5),k);
