@@ -18,3 +18,4 @@ figcaption { color: var(--mute); font-size: 0.85rem; margin-top: 0.5rem; }
 .after { margin-top: 1.5rem; padding: 1rem 1.25rem; border-radius: 12px; background: rgba(127, 127, 127, 0.06); }
 h2 { margin: 0 0 0.4rem; font-size: 1.15rem; font-weight: 600; }
 [hidden] { display: none !important; }
+.measures { padding-left: 1.2rem; line-height: 1.5; } .measures li { margin: 0.3rem 0; }
