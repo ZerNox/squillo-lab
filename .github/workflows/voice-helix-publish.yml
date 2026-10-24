@@ -1,0 +1,45 @@
+name: Publish E-008 page into gh-pages
+
+# GitHub Pages on this repository serves the gh-pages branch (the squillo app,
+# auto-published by squillo-publish). This workflow keeps the E-008 page
+# alongside it at /voice-helix/. It runs on pushes to main (new page source)
+# and on pushes to gh-pages (a publish that may have dropped the folder), and
+# commits only when the served copy differs from main.
+
+on:
+  push:
+    branches: [main, gh-pages]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gh-pages-voice-helix
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: site
+      - name: Copy the page into voice-helix/
+        run: |
+          rm -rf site/voice-helix
+          mkdir -p site/voice-helix
+          cp -r experiments/E-008-voice-helix/page/. site/voice-helix/
+      - name: Commit and push when changed
+        run: |
+          cd site
+          git add -A voice-helix
+          if git diff --cached --quiet; then echo "voice-helix/ already matches main"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "publish: E-008 voice-helix from main ${GITHUB_SHA::7}"
+          git push origin HEAD:gh-pages
