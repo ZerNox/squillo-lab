@@ -7,12 +7,28 @@ const WASM_B64 = "AGFzbQEAAAABYQ9gAn9/AGADf39/AX9gAn9/AX9gAX8AYAR/f39/AGAAAX9gA3
 const LOW = 1200 * Math.log2(82.4068892282175 / 440); // E2, cents from A4
 const HIGH = 1200 * Math.log2(1046.5022612023945 / 440); // C6
 const SPAN_FRAMES = 1000; // 8 s
+// UI-012: one scale per run, fixed at Start from the previous run's measured
+// frames; only these two bounds outlive a run.
+let nextScale = [LOW, HIGH];
+let scale = nextScale;
+
+function scaleFrom(cents) {
+  if (cents.length < 125) return null;
+  const v = cents.slice().sort((a, b) => a - b);
+  const q = (p) => v[Math.min(v.length - 1, Math.floor(p * v.length))];
+  let lo = q(0.02) - 400, hi = q(0.98) + 400;
+  if (hi - lo < 1800) { const m = (lo + hi) / 2; lo = m - 900; hi = m + 900; }
+  if (lo < LOW) { hi += LOW - lo; lo = LOW; }
+  if (hi > HIGH) { lo = Math.max(LOW, lo - (hi - HIGH)); hi = HIGH; }
+  return [lo, hi];
+}
 
 const $ = (id) => document.getElementById(id);
 const canvas = $('line');
 const ctx2d = canvas.getContext('2d');
 let frames = []; // [index, state, cents, U]
 let run = null;
+let tally = null; // the whole run's counts, kept past the line's trimming (UI-015)
 let computeMs = [];
 let take = null; // the stopped run's blocks, in memory only (UI-015)
 let blocks = [];
@@ -24,13 +40,20 @@ const ready = new Promise((res) => {
   worker.onmessage = (e) => { if (e.data.type === 'ready') res(); };
 });
 worker.postMessage({ type: 'init', wasm });
-window.squillo = { frames: () => frames, computeMs: () => computeMs, take: () => take, playInfo: () => playInfo };
+window.squillo = { scale: () => scale, frames: () => frames, computeMs: () => computeMs, take: () => take, playInfo: () => playInfo };
 
 function onFrames(e) {
   // Frames still in flight when Stop is pressed belong to no line (UI-012).
   if (e.data.type !== 'frames' || !run) return;
   const o = e.data.out;
-  for (let i = 0; i < o.length; i += 4) frames.push([o[i], o[i + 1], o[i + 2], o[i + 3]]);
+  for (let i = 0; i < o.length; i += 4) {
+    frames.push([o[i], o[i + 1], o[i + 2], o[i + 3]]);
+    tally.all++;
+    if (o[i + 1] === 2) {
+      tally.measured++; tally.cents.push(o[i + 2]);
+      tally.stretch++; tally.longest = Math.max(tally.longest, tally.stretch);
+    } else tally.stretch = 0;
+  }
   computeMs.push(e.data.ms);
   if (frames.length > 4 * SPAN_FRAMES) frames = frames.slice(-SPAN_FRAMES);
 }
@@ -40,7 +63,8 @@ function css(name) { return getComputedStyle(document.documentElement).getProper
 function draw() {
   const w = canvas.width, h = canvas.height, pad = 12;
   ctx2d.clearRect(0, 0, w, h);
-  const y = (c) => pad + (h - 2 * pad) * (1 - (c - LOW) / (HIGH - LOW));
+  const [lo, hi] = scale;
+  const y = (c) => pad + (h - 2 * pad) * (1 - (c - lo) / (hi - lo));
   const last = frames.length ? frames[frames.length - 1][0] : 0;
   const x = (i) => w - (last - i) * (w / SPAN_FRAMES);
   const view = frames.filter((f) => last - f[0] < SPAN_FRAMES);
@@ -63,6 +87,15 @@ function draw() {
     prev = f[0];
   }
   ctx2d.stroke();
+  // A measured frame beyond the scale is marked at the edge it passed.
+  ctx2d.fillStyle = css('--line');
+  for (const f of view) {
+    if (f[1] !== 2 || (f[2] >= lo && f[2] <= hi)) continue;
+    const up = f[2] > hi, e = up ? 2 : h - 2, t = up ? 8 : -8;
+    ctx2d.beginPath();
+    ctx2d.moveTo(x(f[0]) - 4, e + t); ctx2d.lineTo(x(f[0]) + 4, e + t); ctx2d.lineTo(x(f[0]), e);
+    ctx2d.fill();
+  }
   if (run) requestAnimationFrame(draw);
 }
 
@@ -111,6 +144,8 @@ async function start() {
     ac.createMediaStreamSource(stream).connect(node);
     frames = [];
     computeMs = [];
+    scale = nextScale;
+    tally = { all: 0, measured: 0, stretch: 0, longest: 0, cents: [] };
     const processed = ['echoCancellation', 'noiseSuppression', 'autoGainControl'].filter((k) => s[k] !== false);
     run = { stream, ac, node, processed };
     const parts = [];
@@ -138,11 +173,9 @@ function stop() {
   $('stop').disabled = true;
   $('start').disabled = false;
   // UI-012: the line is not shown once the run ends, and nothing of it kept.
-  const all = frames.length;
-  let measured = 0, longest = 0, runLen = 0;
-  for (const f of frames) {
-    if (f[1] === 2) { measured++; runLen++; longest = Math.max(longest, runLen); } else runLen = 0;
-  }
+  nextScale = scaleFrom(tally.cents) ?? nextScale;
+  const { all, measured, longest } = tally;
+  tally = null;
   frames = [];
   draw();
   $('live').hidden = true;
