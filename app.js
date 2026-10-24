@@ -27,7 +27,8 @@ worker.postMessage({ type: 'init', wasm });
 window.squillo = { frames: () => frames, computeMs: () => computeMs, take: () => take, playInfo: () => playInfo };
 
 function onFrames(e) {
-  if (e.data.type !== 'frames') return;
+  // Frames still in flight when Stop is pressed belong to no line (UI-012).
+  if (e.data.type !== 'frames' || !run) return;
   const o = e.data.out;
   for (let i = 0; i < o.length; i += 4) frames.push([o[i], o[i + 1], o[i + 2], o[i + 3]]);
   computeMs.push(e.data.ms);
@@ -72,12 +73,18 @@ function rawFrom(s) {
 
 async function start() {
   $('start').disabled = true;
+  // iOS (Safari and every iOS browser, all WebKit) runs audio only for a
+  // context created and resumed within the tap itself, before any await;
+  // one created after getUserMedia stays suspended and no block ever arrives.
+  const ac = new AudioContext({ sampleRate: 48000 });
+  const resumed = ac.resume();
   try {
     await ready;
     const stream = await navigator.mediaDevices.getUserMedia({
       audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false, channelCount: 1 },
     });
-    const ac = new AudioContext({ sampleRate: 48000 });
+    await resumed;
+    if (ac.state !== 'running') throw new Error('the browser did not start audio. Tap Start again.');
     if (ac.sampleRate !== 48000) throw new Error('This browser cannot run audio at 48 000 Hz, so the measure would not be the one tested.');
     const track = stream.getAudioTracks()[0];
     const s = track.getSettings();
@@ -85,7 +92,12 @@ async function start() {
     const rateMatched = s.sampleRate === ac.sampleRate;
     const url = URL.createObjectURL(new Blob([WORKLET_SRC], { type: 'text/javascript' }));
     await ac.audioWorklet.addModule(url);
-    const node = new AudioWorkletNode(ac, 'squillo-capture', { numberOfInputs: 1, numberOfOutputs: 0 });
+    // WebKit renders only nodes the destination pulls: the capture node feeds
+    // the destination through a gain of 0, so nothing is heard.
+    const node = new AudioWorkletNode(ac, 'squillo-capture', { numberOfInputs: 1, numberOfOutputs: 1 });
+    const mute = ac.createGain();
+    mute.gain.value = 0;
+    node.connect(mute).connect(ac.destination);
     const ch = new MessageChannel();
     worker.onmessage = onFrames;
     worker.postMessage({ type: 'start', raw, rateMatched, port: ch.port2 }, [ch.port2]);
@@ -111,6 +123,7 @@ async function start() {
     $('stop').disabled = false;
     requestAnimationFrame(draw);
   } catch (err) {
+    ac.close();
     $('state').textContent = 'Could not start: ' + err.message;
     $('start').disabled = false;
   }
@@ -168,6 +181,7 @@ function playTake() {
   stopPlay();
   // UI-013: the context is created only now, at the singer's own action.
   const ac = new AudioContext({ sampleRate: take.rate });
+  ac.resume(); // iOS starts a context suspended unless resumed within the tap
   playInfo.contexts++;
   const buf = ac.createBuffer(1, take.samples.length, take.rate);
   buf.copyToChannel(take.samples, 0);
