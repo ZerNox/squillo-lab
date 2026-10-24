@@ -28,21 +28,23 @@ plus prompt, 16:9 with the coach centred (or 9:16 if offered), 5 to 8 seconds.
 > Photorealistic portrait of a warm, confident female voice coach in her late
 > thirties, standing in a calm, softly lit rehearsal room with a plain
 > warm-grey wall. Shoulder-length dark hair tied back, simple charcoal
-> long-sleeve top, no jewellery, no text or logos. Medium shot from the waist
-> up, centred in the frame, with clear empty space above her head and both
-> hands and elbows fully visible. Facing the camera, arms relaxed, gentle
+> long-sleeve top, no jewellery, no text or logos. Wide medium shot from the
+> knees up, camera pulled back, she fills only the middle half of the frame
+> height, with a large empty wall area above her head and both hands and
+> elbows fully visible. Facing the camera, arms relaxed, gentle
 > closed-mouth smile. Horizontal 16:9, natural skin texture, shallow depth of
 > field.
 
 Landscape on purpose: the video tool makes 16:9 clips and crops a portrait
 still, which cuts off her head. `add-clips.sh` cuts a centred 3:4 portrait out
-of the landscape clip, so keep her centred with room above her head.
+of the landscape clip, so keep her centred with room above her head. The video tool zooms in a little
+on the still, so leave more room than looks necessary.
 
 ## Shared style (start every clip prompt with this)
 
-> Same woman, same room, same clothes and framing as the image. Medium shot
-> from the waist up, her whole head and hair always in frame with space
-> above, hands always visible. Locked-off camera, no cuts, no zoom, no
+> Same woman, same room, same clothes and framing as the image. Wide medium shot
+> from the knees up, camera pulled back; her whole head and hair always well
+> inside the frame with a large margin above, hands always visible. Locked-off camera, no cuts, no zoom, no
 > reframing. She demonstrates a singing exercise silently: no sound, no
 > singing, no speech, no music, no captions. Slow, clear, calm movements, as
 > if showing a student. The clip starts and ends in the same relaxed pose so
