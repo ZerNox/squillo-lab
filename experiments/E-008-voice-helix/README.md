@@ -111,7 +111,9 @@ None yet.
 
 ## Status
 
-`open`.
+`running`: the main product track since 2026-10-25 (Joakim: "helix is the main
+thing right now and what we want to evolve"). Plan in `ROADMAP.md`, log in
+`LOG.md`.
 
 ## Run
 
@@ -122,3 +124,17 @@ python3 -m http.server --directory page 8000
 then open <http://localhost:8000/>. Chrome and Firefox allow the microphone
 on `localhost` without HTTPS. Or push to `main`: the workflow
 `.github/workflows/voice-helix-publish.yml` publishes `page/` to GitHub Pages.
+
+## Check
+
+```
+cd check && npm install && node check.mjs http://localhost:8000/
+```
+
+Chrome, Firefox and WebKit at an iPhone 15's size and touch: the page loads
+without errors, the public-domain reference clip loads as the take, the
+timeline and summary appear, a tap on the timeline plays from there and
+"spotless" plays. After a push, `node check.mjs https://zernox.github.io/squillo-lab/
+--wait $(sha256sum ../page/index.html | cut -d' ' -f1)` waits for the deploy
+and checks the live site. Screenshots land in `--out` (default
+`/tmp/voice-helix-check`).
