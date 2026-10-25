@@ -251,6 +251,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
     <button class="btn" id="bPlayTake" disabled>▶ your take</button>
     <button class="btn" id="bPlayHalf" disabled title="Half way between your take and spotless">▶ halfway</button>
     <button class="btn" id="bPlaySpot" disabled title="Every note tuned, steadied and started cleanly">▶ spotless</button>
+    <select id="speed" aria-label="Playback speed" title="Slow down without changing pitch"><option value="1">1×</option><option value="0.75">0.75×</option><option value="0.5">0.5×</option></select>
     <span id="takeInfo">Sing (or play any source) and record up to 60 s. Then play it back: the coach shows the exercise just before each spot that can improve.</span>
   </div>
   <div id="takebar" hidden title="Click to play from here"><b id="playhead"></b></div>
@@ -990,20 +991,33 @@ function renderTakebar(){takebar.querySelectorAll('i,u,s,svg').forEach(e=>e.remo
 // it again or play anything else. The spot is padded by 0.4 s each side and capped at 4 s.
 async function abLoop(t0,t1,label){const key=label+'@'+t0;if(AU.kind==='ab'&&AU.ab===key){stopSource();takeInfo.textContent='A/B stopped.';return;}
   if(!TAKE.spot)return;stopSource();const ctx=await ensureCtx();await ctx.resume();const sr=TAKE.buf.sampleRate,d=TAKE.buf.duration;
-  const a=Math.max(0,t0-0.4),b=Math.min(d,Math.max(t1+0.4,a+0.6),a+4),i0=Math.round(a*sr),n=Math.round((b-a)*sr),g1=Math.round(0.5*sr),g2=Math.round(sr);
-  const out=mkBuf(n*2+g1+g2,sr),o=out.getChannelData(0);o.set(TAKE.buf.getChannelData(0).subarray(i0,i0+n),0);o.set(TAKE.spot.getChannelData(0).subarray(i0,i0+n),n+g1);
+  const k=+speedSel.value,a=Math.max(0,t0-0.4),b=Math.min(d,Math.max(t1+0.4,a+0.6),a+4),i0=Math.round(a/k*sr),n=Math.round((b-a)/k*sr),g1=Math.round(0.5*sr),g2=Math.round(sr);
+  const out=mkBuf(n*2+g1+g2,sr),o=out.getChannelData(0);const A=versionBuf('take').getChannelData(0),B=versionBuf('spot').getChannelData(0);o.set(A.subarray(i0,i0+n),0);o.set(B.subarray(i0,i0+n),n+g1);
   const s=ctx.createBufferSource();s.buffer=out;s.loop=true;s.connect(AU.cap);s.connect(ctx.destination);AU.source=s;AU.kind='ab';AU.ab=key;markSrc(null);s.start();
   playhead.style.left=(a/d*100)+'%';goLive();takeInfo.textContent=`A/B at ${mmss(a)}: your ${label}, then the same moment spotless, looping. Click it again to stop.`;}
 takebar.onclick=ev=>{if(!TAKE.buf)return;const r=takebar.getBoundingClientRect();playTake(AU.play?AU.play.which:'take',clamp((ev.clientX-r.left)/r.width,0,1)*TAKE.buf.duration);};
 const VERSION={take:{title:'Your take',body:'Listen back. The coach steps in just before each spot that can improve.',status:'Your take, as recorded.'},
   half:{title:'Halfway',body:'You, half way to spotless: the coach steps in just before each spot you struggled with.',status:'Halfway: your take moved half way to spotless. Tone, words and timing are yours.'},
   spot:{title:'Spotless',body:'Every note tuned, steadied and started cleanly: what this take sounds like with nothing to fix.',status:'Spotless: every note on the take’s semitone grid, steadied, no scoops. Tone, words and timing are yours.'}};
-async function playTake(which,from=0){const buf=which==='take'?TAKE.buf:TAKE[which];if(!buf)return;stopSource();const ctx=await ensureCtx();await ctx.resume();
+// Slow down without changing pitch: WSOLA (Verhelst & Roelands 1993). 40 ms Hann grains at a 10 ms
+// synthesis hop; each grain is taken up to ±8 ms off its nominal place where it best continues the last
+// one (cross-correlation on every 4th sample, lags in 2-sample steps). Cached per version and speed.
+function wsola(src,k){const sr=src.sampleRate,x=src.getChannelData(0),n=x.length,W=Math.round(0.04*sr),Hs=W>>1,D=Math.round(0.008*sr);
+  const m=Math.ceil(n/k)+W,y=new Float32Array(m),wsum=new Float32Array(m),win=new Float32Array(W);for(let i=0;i<W;i++)win[i]=0.5-0.5*Math.cos(2*Math.PI*i/W);
+  let prev=0;for(let o=0;o+W<m;o+=Hs){const nom=Math.round(o*k);if(nom+W+D>=n)break;let best=0;
+    if(o>0){const nat=prev+Hs;let bc=-Infinity;for(let d=-D;d<=D;d+=2){const p=nom+d;if(p<0)continue;let c=0;for(let i=0;i<W;i+=4)c+=x[nat+i]*x[p+i];if(c>bc){bc=c;best=d;}}}
+    const p=Math.max(0,nom+best);for(let i=0;i<W;i++){y[o+i]+=x[p+i]*win[i];wsum[o+i]+=win[i];}prev=p;}
+  const out=mkBuf(Math.ceil(n/k),sr),od=out.getChannelData(0);for(let i=0;i<od.length;i++)od[i]=wsum[i]>1e-3?y[i]/wsum[i]:0;return out;}
+const speedSel=$('speed');
+function versionBuf(which){const b=which==='take'?TAKE.buf:TAKE[which],k=+speedSel.value;if(!b||k===1)return b;
+  TAKE.slow=TAKE.slow||{};const key=which+k;if(!TAKE.slow[key]||TAKE.slow[key].src!==b)TAKE.slow[key]={src:b,buf:wsola(b,k)};return TAKE.slow[key].buf;}
+async function playTake(which,from=0){if(!(which==='take'?TAKE.buf:TAKE[which]))return;stopSource();const ctx=await ensureCtx();await ctx.resume();const k=+speedSel.value,buf=versionBuf(which);
   const s=ctx.createBufferSource();s.buffer=buf;s.connect(AU.cap);s.connect(ctx.destination);AU.source=s;AU.kind='take';markSrc(null);
-  const play={t0:ctx.currentTime-from,which,dur:buf.duration,seg:undefined,phase:''};AU.play=play;s.onended=()=>{if(AU.play===play){AU.play=null;playhead.style.left='0';setAdvice('Take finished','Play it again, halfway or spotless, and watch the coach just before each marked spot.','','idle');}};s.start(0,from);
+  const play={t0:ctx.currentTime-from/k,k,which,dur:buf.duration*k,seg:undefined,phase:''};AU.play=play;s.onended=()=>{if(AU.play===play){AU.play=null;playhead.style.left='0';setAdvice('Take finished','Play it again, halfway or spotless, and watch the coach just before each marked spot.','','idle');}};s.start(0,from/k);
   setStatus(VERSION[which].status);goLive();}
+speedSel.onchange=()=>{const p=AU.play;if(p&&AU.kind==='take')playTake(p.which,clamp((AU.ctx.currentTime-p.t0)*p.k,0,p.dur-0.1));};
 bPlayTake.onclick=()=>playTake('take');bPlayHalf.onclick=()=>playTake('half');bPlaySpot.onclick=()=>playTake('spot');
-function coachTick(){const p=AU.play;if(!p||AU.kind!=='take')return;const pos=AU.ctx.currentTime-p.t0;playhead.style.left=clamp(pos/p.dur*100,0,100)+'%';
+function coachTick(){const p=AU.play;if(!p||AU.kind!=='take')return;const pos=(AU.ctx.currentTime-p.t0)*p.k;playhead.style.left=clamp(pos/p.dur*100,0,100)+'%';
   const seg=TAKE.segs.find(g=>pos>=g.t0-LEAD&&pos<=g.t1+0.3)||null;const star=seg?null:(TAKE.best||[]).find(n=>pos>=n.t0&&pos<=n.t1+1.5)||null;
   const phase=seg?(pos<seg.t0?'soon':'now'):star?'star':'';
   if((seg||star)===p.seg&&phase===p.phase)return;p.seg=seg||star;p.phase=phase;

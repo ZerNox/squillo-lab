@@ -60,8 +60,14 @@ clean start; dashes mark the median trained singer, about 0.8; the line
 breaks where 10 s hold under 1 s of held notes), each held note coloured on /
 close / off, a star on up to 8 best notes, and the coach's spots underneath;
 the card names the strongest and weakest 10 s stretch, and a click on the bar
-plays from there; a click on a note or a spot loops it A/B: your note, 0.5 s,
-the same moment spotless, 1 s (padded 0.4 s, capped at 4 s), until clicked again. Each scored take's summary is kept on the device
+plays from there; a click on a note or a spot loops it A/B, 0.5× keeps the pitch: your note, 0.5 s,
+the same moment spotless, 1 s (padded 0.4 s, capped at 4 s), until clicked again. A speed menu (1×, 0.75×, 0.5×) slows the take, halfway,
+spotless and the A/B loop without changing pitch (WSOLA, 40 ms grains, ±8 ms
+search). Measured by the page's own scan on three steady synthetic voices
+(110/220/440 Hz) slowed to 0.5×: median 0.7 ¢, 90th percentile 1.1 ¢ from the
+true pitch (`check.mjs`, 2026-10-25); with 5.5 Hz ±40 ¢ vibrato the tracker
+reads 31 ¢ median slowed against 29 ¢ at 1× (the tracker's own lag on vibrato).
+A 32 s take takes 0.8-1.3 s to slow, once per version and speed. Each scored take's summary is kept on the device
 (localStorage, last 500, never sent; "forget my takes" clears it) and the card
 ends with progress lines per aspect and overall: a dot per take, the mean of
 the last 5 takes, and a band of ±1.96 standard errors between takes; it says

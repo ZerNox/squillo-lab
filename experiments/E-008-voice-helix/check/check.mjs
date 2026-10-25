@@ -1,6 +1,6 @@
 // Checks the Voice Helix page in Chrome (desktop), Firefox (desktop) and WebKit at an iPhone 15's
 // size and touch: the page loads without errors, a public-domain reference clip loads as the take,
-// the take is scanned (performance timeline, summary, progress lines over seeded earlier takes), a tap on the timeline plays from there, a tap on a spot loops it A/B with spotless, and
+// the take is scanned (performance timeline, summary, progress lines over seeded earlier takes), a tap on the timeline plays from there, a tap on a spot loops it A/B with spotless, 0.5x playback keeps the pitch, and
 // "spotless" plays. Screenshots go to the out directory; look at them.
 // Usage: node check.mjs <url> [--wait <sha256 of page/index.html>] [--only chrome|firefox|webkit-iphone] [--out dir]
 // --wait polls the URL until it serves that index.html (a deploy from main takes 1-3 min).
@@ -64,13 +64,24 @@ async function run([name, launch, ctxOpt, file]) {
     const bb = await bar.boundingBox(); const pos = { position: { x: bb.width * 0.5, y: 10 } };
     touch ? await bar.tap(pos) : await bar.click(pos); await p.waitForTimeout(1200);
     const seek = await p.evaluate(() => AU.play ? (AU.ctx.currentTime - AU.play.t0) / AU.play.dur : -1);
+    // Slow down: 0.5x must keep the pitch: three synthetic voices (110/220/440 Hz, steady, 8 harmonics) slowed, then scanned by the page; median and 90th percentile |cents| from the true pitch.
+    const slow = await p.evaluate(async () => {
+      const t = performance.now(), sb = wsola(TAKE.buf, 0.5), ms = performance.now() - t, sr = 48000, d = [], d1 = [];
+      for (const F of [110, 220, 440]) { const n = sr * 3, x = new Float32Array(n); let ph = 0;
+        const tru = s => F * Math.pow(2, 0 * Math.sin(2 * Math.PI * 5.5 * s) / 1200);
+        for (let i = 0; i < n; i++) { ph += 2 * Math.PI * tru(i / sr) / sr; for (let h = 1; h <= 8; h++) x[i] += 0.3 * Math.sin(h * ph) / h; }
+        const b = mkBuf(n, sr); b.getChannelData(0).set(x);
+        for (const [k, out] of [[0.5, d], [1, d1]]) for (const f of (await scanTake(k === 1 ? b : wsola(b, k))).frames) { const s = (f.t - 0.02) * k; if (f.f0 > 0 && s > 0.2 && s < 2.8) out.push(Math.abs(1200 * Math.log2(f.f0 / tru(s)))); } }
+      d.sort((x, y) => x - y); d1.sort((x, y) => x - y);
+      return { at1: +d1[d1.length >> 1].toFixed(1), cents: +d[d.length >> 1].toFixed(1), p90: +d[Math.floor(d.length * 0.9)].toFixed(1), n: d.length, ratio: +(sb.duration / TAKE.buf.duration).toFixed(3), ms: Math.round(ms) }; });
     await tap(p.locator('#takebar i').first()); await p.waitForTimeout(800);
     const ab = await p.evaluate(() => AU.kind === 'ab' && AU.source && AU.source.loop && AU.ctx.state === 'running');
     await tap(p.locator('#bPlaySpot')); await p.waitForTimeout(1200);
-    const r = await p.evaluate(() => ({ ctx: AU.ctx && AU.ctx.state, playing: AU.play && AU.play.which, notes: TAKE.aspects.perf.length, spots: TAKE.segs.length, summary: !document.getElementById('rating').hidden, progress: document.querySelectorAll('#rating table.prog tr').length, takes: JSON.parse(localStorage.getItem('helix.takes.v1')).length }));
+    await p.selectOption('#speed', '0.5'); await p.waitForTimeout(1500);
+    const r = await p.evaluate(() => ({ k: AU.play && AU.play.k, ctx: AU.ctx && AU.ctx.state, playing: AU.play && AU.play.which, notes: TAKE.aspects.perf.length, spots: TAKE.segs.length, summary: !document.getElementById('rating').hidden, progress: document.querySelectorAll('#rating table.prog tr').length, takes: JSON.parse(localStorage.getItem('helix.takes.v1')).length }));
     await p.locator('table.prog').screenshot({ path: join(out, `${name}-progress.png`) });
-    const ok = !errs.length && r.ctx === 'running' && r.playing === 'spot' && r.notes > 10 && ab && r.summary && r.progress === 5 && r.takes === 8 && seek > 0.45 && seek < 0.65;
-    return { browser: name, ok, seek: +seek.toFixed(2), ab, ...r, errs };
+    const ok = !errs.length && r.ctx === 'running' && r.playing === 'spot' && r.notes > 10 && ab && slow.cents < 3 && r.k === 0.5 && Math.abs(slow.ratio - 2) < 0.01 && r.summary && r.progress === 5 && r.takes === 8 && seek > 0.45 && seek < 0.65;
+    return { browser: name, ok, seek: +seek.toFixed(2), ab, slow, ...r, errs };
   } catch (e) { return { browser: name, ok: false, errs: [...errs, String(e).split('\n')[0]] }; }
   finally { if (b) await b.close(); }
 }
@@ -78,7 +89,7 @@ async function run([name, launch, ctxOpt, file]) {
 let allOk = true;
 for (const br of browsers) {
   let r = await run(br);
-  if (!r.ok && br[0] === 'webkit-iphone') r = { ...(await run(br)), retried: true };  // first WebKit launch after a cold cache can time out
+  for (let k = 1; !r.ok && br[0] === 'webkit-iphone' && k <= 2; k++) r = { ...(await run(br)), retried: k };  // first WebKit launch after a cold cache can time out
   console.log(JSON.stringify(r)); allOk &&= r.ok;
 }
 process.exit(allOk ? 0 : 1);

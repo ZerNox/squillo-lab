@@ -2,6 +2,15 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-25 · slow down without changing pitch
+
+Built: speed menu 1×/0.75×/0.5× for take, halfway, spotless and A/B (WSOLA).
+A singer can now hear a fast run or a scoop at half speed, same pitch.
+Measured with the page's code: 0.5× keeps steady pitch to 0.7 ¢ median,
+1.1 ¢ p90 (3 synthetic voices); 0.8-1.3 s to slow a 32 s take. iOS risk:
+the stretch runs on the main thread (UI pauses ~1 s on a phone). check.mjs
+now retries WebKit twice. Next: style-aware onsets.
+
 ## 2026-10-25 · A/B at a spot
 
 Built: a click on any note or coach spot on the timeline loops your note,
