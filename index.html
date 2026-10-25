@@ -97,6 +97,14 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
 #rating td.bar i{display:block;height:6px;border-radius:3px;background:var(--pitch);min-width:2px}
 #rating h3{font:600 12px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);margin:8px 0 2px}
 #rating ul{margin:0;padding-left:18px;color:var(--fg-2)}
+#rating table.prog td{vertical-align:middle}
+#rating table.prog td:nth-child(2){width:45%;min-width:110px}
+#rating table.prog td:nth-child(3){white-space:normal}
+#rating table.prog svg{display:block;width:100%;height:36px}
+#rating .prog .bd{fill:var(--pitch);opacity:.18}
+#rating .prog .sl{fill:none;stroke:var(--pitch);stroke-width:1.6}
+#rating .prog circle{fill:var(--fg-2)}
+#rating .prog em{color:var(--fg-3);font-style:normal}
 #rating .fine{font:11px/1.35 var(--f-mono);color:var(--fg-3);margin-top:8px}
 #score{max-width:62ch;overflow-x:auto;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);backdrop-filter:blur(8px)}
 #score table{border-collapse:collapse;font:11px/1.5 var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -823,7 +831,7 @@ async function setTake(buf){TAKE.busy=true;
   takeInfo.textContent=`Scanning your ${buf.duration.toFixed(1)} s take…`;
   const tr=await prepTake(buf),sc=tr.sc;buf=tr.buf;TAKE.buf=buf;TAKE.segs=sc.segs;TAKE.aspects=sc.aspects;
   TAKE.spot=improveTake(buf,sc.frames,1,sc.aspects.off);TAKE.half=improveTake(buf,sc.frames,0.5,sc.aspects.off);
-  TAKE.rating=ANCHORS&&sc.aspects.ok?rateAspects(sc.aspects,ANCHORS):null;TAKE.busy=false;renderTakebar();renderRating();
+  TAKE.rating=ANCHORS&&sc.aspects.ok?rateAspects(sc.aspects,ANCHORS):null;if(sc.aspects.ok)saveTake(sc.aspects);TAKE.busy=false;renderTakebar();renderRating();
   bPlayTake.disabled=bPlayHalf.disabled=bPlaySpot.disabled=false;
   const names=[...new Set(TAKE.segs.map(g=>FLAWS[g.i].name))];
   takeInfo.textContent=(tr.cut>0.5||tr.talk>0?`Cut ${tr.cut>0.5?`${tr.cut.toFixed(1)} s of silence`:''}${tr.cut>0.5&&tr.talk>0?' and ':''}${tr.talk>0?`${tr.talk.toFixed(0)} s of talk or noise`:''}: only the singing is scored. `:'')+(TAKE.segs.length?`${TAKE.segs.length} spot${TAKE.segs.length>1?'s':''} to work on (${names.join(', ')}), marked on the bar. Play your take, halfway or spotless.`:`Clean take: no flaw held long enough to coach. ${(sc.voiced*100).toFixed(0)} % of it was voiced.`);}
@@ -901,6 +909,31 @@ function rateAspects(a,A){const an=A.anchors,S=an.reduce((t,b)=>t+aspectGame(a,b
 const TRAINED_MED={inton:14.1,stab:3.0,onset:0};
 const BANDS=[[2400,'Grandmaster'],[2200,'Master'],[1900,'Trained'],[1600,'Strong amateur'],[1200,'Club singer'],[0,'Novice']];
 const ASPECT_WORK={inton:{fl:'scoop',ex:'Pitch matching: play or hum the note first, then sing it and hold it on the copper target line of the helix.'},stab:{fl:'shaky',ex:'Hum “ng” on one pitch for 8 s, hands on the belly, and keep the ribbon straight.'},onset:{fl:'scoop',ex:'Hear each note before you sing it, then start right on it: no slide up.'},tone:{fl:'breathy',ex:'Start each note with a gentle “uh-oh” onset and hold it; watch the haze sink below the ridges.'}};
+// Progress across takes, kept on this device only (localStorage, never sent anywhere). One record per
+// scored take. The sliding line is the mean of the last 5 takes at each take; its band is ±1.96 standard
+// errors of that mean (the spread between takes), so it narrows as you sing more and widens when takes vary.
+const HIST_KEY='helix.takes.v1',HIST_MAX=500,HIST_WIN=5;
+const PROG=[{k:'score',name:'overall',unit:'note score',lower:false,dec:2},...ASPECTS];
+function loadHist(){try{const h=JSON.parse(localStorage.getItem(HIST_KEY)||'[]');return Array.isArray(h)?h:[];}catch(e){return [];}}
+function saveTake(a){const P=a.perf;let s=0,w=0;for(const n of P){const d=n.t1-n.t0;s+=n.q*d;w+=d;}
+  const r={d:Date.now(),sung:+a.sung.toFixed(1),score:w?+(s/w).toFixed(3):0};for(const x of ASPECTS)r[x.k]=+a[x.k].toFixed(3);
+  const h=loadHist();h.push(r);try{localStorage.setItem(HIST_KEY,JSON.stringify(h.slice(-HIST_MAX)));}catch(e){}return h;}
+function slide(v,i){const w=v.slice(Math.max(0,i-HIST_WIN+1),i+1),n=w.length,m=w.reduce((t,x)=>t+x,0)/n;
+  const sd=n>1?Math.sqrt(w.reduce((t,x)=>t+(x-m)**2,0)/(n-1)):null;return {m,ci:sd===null?null:1.96*sd/Math.sqrt(n),n};}
+// Trend in words only when the last 5 takes differ from the 5 before by more than both bands together.
+function trend(x,v){if(v.length<HIST_WIN+2)return '';const a=slide(v,v.length-1),b=slide(v,v.length-1-HIST_WIN);if(b.n<2)return '';
+  const d=a.m-b.m,lim=Math.hypot(a.ci,b.ci);if(Math.abs(d)<=lim)return 'level within the noise';return (x.lower?d<0:d>0)?'better than the takes before':'worse than the takes before';}
+function renderProgress(){const h=loadHist();if(!h.length)return '';
+  const W=220,H=36,n=h.length,X=i=>(n>1?4+i/(n-1)*(W-8):W/2).toFixed(1);
+  let o=`<h3>Progress · ${n} take${n>1?'s':''} on this device</h3><table class="prog">`;
+  for(const x of PROG){const v=h.map(r=>r[x.k]).filter(Number.isFinite);if(v.length!==n)continue;const S=v.map((_,i)=>slide(v,i));
+    let lo=Math.min(...S.map(s=>s.m-(s.ci||0)),...v),hi=Math.max(...S.map(s=>s.m+(s.ci||0)),...v);if(hi-lo<1e-6){hi+=1;lo-=1;}
+    const Y=q=>{const f=(q-lo)/(hi-lo);return ((x.lower?f:1-f)*(H-4)+2).toFixed(1);};
+    const band=S.map((s,i)=>`${X(i)},${Y(s.m+(s.ci||0))}`).join(' ')+' '+S.map((s,i)=>`${X(i)},${Y(s.m-(s.ci||0))}`).reverse().join(' ');
+    const last=S[n-1],tr=trend(x,v);
+    o+=`<tr><td>${x.name}</td><td><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="${x.name}: ${n} takes, now ${last.m.toFixed(x.dec)}${last.ci!==null?` ± ${last.ci.toFixed(x.dec)}`:''}"><polygon class="bd" points="${band}"/><polyline class="sl" vector-effect="non-scaling-stroke" points="${S.map((s,i)=>`${X(i)},${Y(s.m)}`).join(' ')}"/>${v.map((q,i)=>`<circle cx="${X(i)}" cy="${Y(q)}" r="1.8"/>`).join('')}</svg></td>`+
+      `<td>${last.m.toFixed(x.dec)}${last.ci!==null?` ± ${last.ci.toFixed(x.dec)}`:''} ${x.unit}${tr?`<br><em>${tr}</em>`:''}</td></tr>`;}
+  return o+`</table><p class="fine">Dots: each take. Line: mean of your last ${HIST_WIN} takes; band: its 95 % interval. Up is better on every line. Kept only in this browser. <button class="btn" id="forget">forget my takes</button></p>`;}
 function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;}ratingEl.hidden=false;const R=TAKE.rating;
   const fmt=(x,v)=>v.toFixed(x.dec);let h='';
   if(!RATING_ON)h+=`<div class="elo"><span>Your take over ${a.sung.toFixed(0)} s of singing</span></div>`;
@@ -917,7 +950,7 @@ function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;
   if(TAKE.stretch)wl.push(`The line dips lowest in the 10 s before ${mmss(TAKE.stretch.lo[0])}: click the bar there to listen back.`);
   if(wl.length)h+='<h3>To work on</h3><ul>'+wl.map(t=>`<li>${t}</li>`).join('')+'</ul>';
   h+=`<p class="fine">${R?`Provisional Elo: each reference voice is one game on intonation, steadiness and clean onsets (tone clarity depends on the microphone and room, so it is not rated). 2000 is the median conservatory-trained singer in ${R.pool}. It ranks you within this pool, not the world.`:''} The take's tuning is ${a.off>=0?'+':''}${(a.off*100).toFixed(0)} ¢ from A440; notes are measured on that grid.</p>`;
-  ratingEl.innerHTML=h;}
+  ratingEl.innerHTML=h+renderProgress();const fg=$('forget');if(fg)fg.onclick=()=>{try{localStorage.removeItem(HIST_KEY);}catch(e){}renderRating();};}
 // Target pitch per frame for "spotless": a 250 ms running median inside each voiced run (keeps the
 // melody, drops wobble), the start of each note (up to 300 ms, a third of notes from 200 ms) held at its
 // settled pitch (no scoop), then snapped
