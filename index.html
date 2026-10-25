@@ -898,6 +898,20 @@ const ASPECTS=[
 const RATED=ASPECTS.filter(x=>!x.info);
 // Steadiness is the median wobble (residual after a local quadratic fit, so even vibrato passes) over
 // the inside of held notes of at least 300 ms: runs, slides and ornaments between notes do not count.
+// Register breaks: on a glide (siren, slide), a yodel-like jump in pitch in the direction of travel. A line is
+// fitted to the 200 ms before and after each moment (20 ms left out each side); a break is where the two
+// lines, both sloping the same way at 3 st/s or more and each within 0.25 st RMS (a smooth glide, not vibrato), disagree at that moment by 1.2 st or more. Legato
+// steps between held notes have flat lines either side, so they are not breaks. Returns the break pitches
+// (MIDI, middle of the jump) and the direction. Measured on synthetic sirens in check/break-bench.mjs.
+function registerBreaks(fr){const v=fr.filter(f=>f.voiced&&f.f0>0).map(f=>({t:f.t,m:69+12*Math.log2(f.f0/440)})),out=[];
+  const fit=(a,b)=>{const w=v.filter(q=>q.t>=a&&q.t<=b);if(w.length<6||w[w.length-1].t-w[0].t<0.12)return null;let st=0,sm=0;for(const q of w){st+=q.t;sm+=q.m;}st/=w.length;sm/=w.length;
+    let n=0,d=0;for(const q of w){n+=(q.t-st)*(q.m-sm);d+=(q.t-st)**2;}const k=n/d;for(let i=1;i<w.length;i++)if(w[i].t-w[i-1].t>0.05)return null;let e=0;for(const q of w)e+=(q.m-sm-k*(q.t-st))**2;return {k,rms:Math.sqrt(e/w.length),at:t=>sm+k*(t-st)};};
+  let best=null;const flush=()=>{if(best){out.push(best);best=null;}};
+  for(let i=1;i<v.length;i++){if(v[i].t-v[i-1].t>0.05){flush();continue;}const tc=(v[i].t+v[i-1].t)/2,A=fit(tc-0.22,tc-0.02),B=fit(tc+0.02,tc+0.22);
+    if(!A||!B){continue;}const j=B.at(tc)-A.at(tc);
+    if(Math.abs(j)>=1.2&&Math.sign(A.k)===Math.sign(j)&&Math.sign(B.k)===Math.sign(j)&&Math.abs(A.k)>=3&&Math.abs(B.k)>=3&&A.rms<0.25&&B.rms<0.25){
+      if(!best||Math.abs(j)>Math.abs(best.j)){if(best&&tc-best.t>0.1)flush();best={t:tc,j,m:(A.at(tc)+B.at(tc))/2};}}else if(best&&tc-best.t>0.1)flush();}
+  flush();return out.map(b=>({t:+b.t.toFixed(2),m:+b.m.toFixed(2),j:+b.j.toFixed(2)}));}
 function takeAspects(st){const fr=st.rec.frames,sn=st.rec.snaps,notes=[],res=[];let cur=null;
   const close=()=>{if(cur&&cur.n*0.02>=0.2){const m=cur.ms.slice().sort((a,b)=>a-b),nr=[];
       if(cur.n*0.02>=0.3)for(let k=3;k<cur.fs.length-3;k++)if(cur.fs[k].fit){res.push(cur.fs[k].res);nr.push(cur.fs[k].res);}
@@ -918,7 +932,7 @@ function takeAspects(st){const fr=st.rec.frames,sn=st.rec.snaps,notes=[],res=[];
   const dm=dp.length?dp.reduce((t,x)=>t+x,0)/dp.length:0,dsd=dp.length>1?Math.sqrt(dp.reduce((t,x)=>t+(x-dm)**2,0)/(dp.length-1)):0;
   const slide={n:dp.length,of:ons,depth:dm,sd:dsd,style:dp.length>=4&&dp.length/ons>=2/3&&dsd<=0.2*dm};
   const meds=notes.map(n=>n.med).sort((a,b)=>a-b);
-  return {slide,perf:notePerf(notes,off,slide.style?[]:st.rec.events),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,tone:hn?hs/hn:0,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,mn:meds.length>4?Math.min(...meds):0,mx:meds.length>4?Math.max(...meds):0,ok:notes.length>=6&&sung>=4};}
+  return {slide,perf:notePerf(notes,off,slide.style?[]:st.rec.events),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,tone:hn?hs/hn:0,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,breaks:registerBreaks(fr),mn:meds.length>4?Math.min(...meds):0,mx:meds.length>4?Math.max(...meds):0,ok:notes.length>=6&&sung>=4};}
 // Per held note, for the timeline: cents off the take's grid, wobble inside the note, and whether it
 // was scooped into, folded into a 0..1 score weighted 60/25/15. The median trained singer (14 ¢, 3 ¢
 // wobble, no scoop) scores about 0.8; 25 ¢ off scores about 0.55.
@@ -959,7 +973,7 @@ const HIST_KEY='helix.takes.v1',HIST_MAX=500,HIST_WIN=5;
 const PROG=[{k:'score',name:'overall',unit:'note score',lower:false,dec:2},...ASPECTS];
 function loadHist(){try{const h=JSON.parse(localStorage.getItem(HIST_KEY)||'[]');return Array.isArray(h)?h:[];}catch(e){return [];}}
 function saveTake(a){const P=a.perf;let s=0,w=0;for(const n of P){const d=n.t1-n.t0;s+=n.q*d;w+=d;}
-  const r={d:Date.now(),sung:+a.sung.toFixed(1),score:w?+(s/w).toFixed(3):0};for(const x of ASPECTS)r[x.k]=+a[x.k].toFixed(3);if(a.hi>a.lo){r.lo=+(a.lo+a.off).toFixed(2);r.hi=+(a.hi+a.off).toFixed(2);r.mn=+(a.mn+a.off).toFixed(2);r.mx=+(a.mx+a.off).toFixed(2);}
+  const r={d:Date.now(),sung:+a.sung.toFixed(1),score:w?+(s/w).toFixed(3):0};for(const x of ASPECTS)r[x.k]=+a[x.k].toFixed(3);if(a.hi>a.lo){r.lo=+(a.lo+a.off).toFixed(2);r.hi=+(a.hi+a.off).toFixed(2);r.mn=+(a.mn+a.off).toFixed(2);r.mx=+(a.mx+a.off).toFixed(2);}if(a.breaks&&a.breaks.length)r.br=a.breaks.map(b=>b.m);
   const h=loadHist();h.push(r);try{localStorage.setItem(HIST_KEY,JSON.stringify(h.slice(-HIST_MAX)));}catch(e){}return h;}
 function slide(v,i){const w=v.slice(Math.max(0,i-HIST_WIN+1),i+1),n=w.length,m=w.reduce((t,x)=>t+x,0)/n;
   const sd=n>1?Math.sqrt(w.reduce((t,x)=>t+(x-m)**2,0)/(n-1)):null;return {m,ci:sd===null?null:1.96*sd/Math.sqrt(n),n};}
@@ -1029,20 +1043,20 @@ function voiceProfile(h){const r=h.filter(x=>x.hi>x.lo);if(!r.length)return null
   const ci=v=>{if(v.length<2)return null;const m=v.reduce((a,b)=>a+b,0)/v.length;return 1.96*Math.sqrt(v.reduce((a,b)=>a+(b-m)**2,0)/(v.length-1)/v.length);};
   const L=r.map(x=>x.lo),H=r.map(x=>x.hi),F=r.filter(x=>Number.isFinite(x.mn));
   const P={n:r.length,lo:med(L),hi:med(H),loCi:ci(L),hiCi:ci(H),mn:F.length?Math.min(...F.map(x=>x.mn)):Math.min(...L),mx:F.length?Math.max(...F.map(x=>x.mx)):Math.max(...H)};
-  P.mid=(P.lo+P.hi)/2;P.type=VTYPE.slice().sort((a,b)=>Math.abs(a[1]-P.mid)-Math.abs(b[1]-P.mid))[0][0];return P;}
+  const BR=h.flatMap(x=>x.br||[]);P.br=BR.length?{m:med(BR),n:BR.length,lo:Math.min(...BR),hi:Math.max(...BR)}:null;P.mid=(P.lo+P.hi)/2;P.type=VTYPE.slice().sort((a,b)=>Math.abs(a[1]-P.mid)-Math.abs(b[1]-P.mid))[0][0];return P;}
 function suggestKey(P,lo,hi,key){if(lo===null||hi===null||hi<lo)return null;const sh=Math.round(P.mid-(lo+hi)/2),a=lo+sh,b=hi+sh;
   const fit=a>=Math.round(P.lo)&&b<=Math.round(P.hi)?'inside your comfortable range':a>=Math.round(P.mn)&&b<=Math.round(P.mx)?'inside your full range, past the comfortable part':'wider than any range you have sung yet: expect a stretch at '+(a<P.mn?'the bottom':'the top');
-  return {sh,a,b,fit,key:key===null?null:KEYS[((key+sh)%12+12)%12]};}
+  const cross=P.br&&a<P.br.m&&b>P.br.m;return {sh,a,b,cross,fit,key:key===null?null:KEYS[((key+sh)%12+12)%12]};}
 function renderProfile(){const el=$('profile'),P=voiceProfile(loadHist());el.hidden=false;
   if(!P){el.innerHTML='<h3>Voice profile</h3><p>No takes with held notes on this device yet. Record or load a take and your range shows here.</p>';return;}
   const W=600,x0=Math.floor(P.mn)-2,x1=Math.ceil(P.mx)+2,X=m=>((m-x0)/(x1-x0)*W).toFixed(1),pm=v=>v===null?'':` ± ${v.toFixed(1)}`;
   let svg=`<svg viewBox="0 0 ${W} 46" preserveAspectRatio="none" role="img" aria-label="Full range ${nn(Math.round(P.mn))} to ${nn(Math.round(P.mx))}, comfortable ${nn(Math.round(P.lo))} to ${nn(Math.round(P.hi))}"><rect class="full" x="${X(P.mn)}" y="10" width="${X(P.mx)-X(P.mn)}" height="16" rx="3"/><rect class="comf" x="${X(P.lo)}" y="13" width="${X(P.hi)-X(P.lo)}" height="10" rx="2"/>`;
-  for(let m=Math.ceil(x0);m<=x1;m++)if(m%12===0)svg+=`<text x="${X(m)}" y="40">${nn(m)}</text>`;svg+='</svg>';
+  for(let m=Math.ceil(x0);m<=x1;m++)if(m%12===0)svg+=`<text x="${X(m)}" y="40">${nn(m)}</text>`;if(P.br)svg+=`<line x1="${X(P.br.m)}" x2="${X(P.br.m)}" y1="6" y2="30" stroke="var(--warn)" stroke-width="2"/><text x="${X(P.br.m)}" y="6">break</text>`;svg+='</svg>';
   el.innerHTML=`<h3>Voice profile · from ${P.n} take${P.n>1?'s':''} on this device</h3>${svg}`+
-   `<p>Comfortable range <b>${nn(Math.round(P.lo))}–${nn(Math.round(P.hi))}</b> (where most of your notes sit: ${P.lo.toFixed(1)}${pm(P.loCi)} to ${P.hi.toFixed(1)}${pm(P.hiCi)} semitones on MIDI). Full range sung so far <b>${nn(Math.round(P.mn))}–${nn(Math.round(P.mx))}</b> (${Math.round(P.mx-P.mn)} semitones). Range centre fits a <b>${P.type}</b>: a guess from range alone, not timbre or register breaks.${P.n<3?' Sing a few more takes for a firmer range.':''}</p>`+
+   `<p>Comfortable range <b>${nn(Math.round(P.lo))}–${nn(Math.round(P.hi))}</b> (where most of your notes sit: ${P.lo.toFixed(1)}${pm(P.loCi)} to ${P.hi.toFixed(1)}${pm(P.hiCi)} semitones on MIDI). Full range sung so far <b>${nn(Math.round(P.mn))}–${nn(Math.round(P.mx))}</b> (${Math.round(P.mx-P.mn)} semitones). Range centre fits a <b>${P.type}</b>: a guess from range alone, not timbre or register breaks.${P.n<3?' Sing a few more takes for a firmer range.':''}</p><p>${P.br?`Register break${P.br.n>1?'s':''} heard on glides: <b>around ${nn(Math.round(P.br.m))}</b> (${P.br.n} time${P.br.n>1?'s':''}${Math.round(P.br.lo)<Math.round(P.br.hi)?`, ${nn(Math.round(P.br.lo))}–${nn(Math.round(P.br.hi))}`:''}). Sirens on “ng” across it smooth it out (Titze 2006).`:'No register break heard yet. To find yours, sing a slow siren on “ng” from low to high and back as a take.'}</p>`+
    `<p><b>Key for a song</b>: type the melody's lowest and highest note in the key you know it in (e.g. G3, D5).</p><div class="row"><label>lowest <input id="pLo" value="G3"></label><label>highest <input id="pHi" value="D5"></label><label>key <input id="pKey" placeholder="e.g. G"></label><button class="btn" id="pGo">suggest key</button></div><p id="pOut"></p><p class="fine">Kept only in this browser. Use the notes the voice sings, not the backing.</p>`;
   const go=()=>{const lo=parseNote($('pLo').value),hi=parseNote($('pHi').value),k=$('pKey').value.trim(),ki=k?KEYS.findIndex(q=>q.toLowerCase()===k.toLowerCase().replace('♯','#').replace('♭','b').replace(/^(.)db$/,'$1#')):-1;
-    const S=suggestKey(P,lo,hi,ki>=0?ki:null);$('pOut').innerHTML=S?`Move it <b>${S.sh===0?'nowhere: it already suits you':S.sh>0?`up ${S.sh} semitone${S.sh>1?'s':''}`:`down ${-S.sh} semitone${S.sh<-1?'s':''}`}</b>${S.key?` (to the key of <b>${S.key}</b>)`:''}: the melody then runs ${nn(S.a)}–${nn(S.b)}, ${S.fit}.`:'Type notes like G3 or Bb4, lowest first.';};
+    const S=suggestKey(P,lo,hi,ki>=0?ki:null);$('pOut').innerHTML=S?`Move it <b>${S.sh===0?'nowhere: it already suits you':S.sh>0?`up ${S.sh} semitone${S.sh>1?'s':''}`:`down ${-S.sh} semitone${S.sh<-1?'s':''}`}</b>${S.key?` (to the key of <b>${S.key}</b>)`:''}: the melody then runs ${nn(S.a)}–${nn(S.b)}, ${S.fit}${S.cross?`; it crosses your break around ${nn(Math.round(P.br.m))}`:''}.`:'Type notes like G3 or Bb4, lowest first.';};
   $('pGo').onclick=go;go();}
 $('bProf').onclick=()=>{const el=$('profile');if(!el.hidden){el.hidden=true;return;}renderProfile();el.scrollIntoView({block:'nearest'});};
 function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;}ratingEl.hidden=false;const R=TAKE.rating;
@@ -1058,7 +1072,7 @@ function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;
   h+='<h3>Went well</h3><ul>'+[`You sang ${a.notes} held notes over ${a.sung.toFixed(0)} s, across ${a.range.toFixed(0)} semitones.`,...(TAKE.stretch?[`Your strongest stretch ended around ${mmss(TAKE.stretch.hi[0])}: the line on the bar peaks there.`]:[]),...(TAKE.best&&TAKE.best.length?[`${TAKE.best.length} standout note${TAKE.best.length>1?'s':''} (★ on the bar): on the note, steady, started cleanly.`]:[]),...(a.slide&&a.slide.style?[`Your slides into notes are a style, not a flaw: ${a.slide.n} of ${a.slide.of} notes, each about ${a.slide.depth.toFixed(1)} ± ${a.slide.sd.toFixed(1)} semitones, the same every time. They are not marked down.`]:[]),...good.map(x=>`Your ${x.name}: ${fmt(x,a[x.k])} ${x.unit}${R?`, better than ${Math.round(R.per[x.k]*100)} % of the pool`:`, on a par with or better than the median conservatory-trained singer (${TRAINED_MED[x.k]})`}.`)].map(t=>`<li>${t}</li>`).join('')+'</ul>';
   const work=R?order.slice(-2).reverse().filter(x=>R.per[x.k]<0.75).slice(0,R.R>=2200?1:2):order.filter(x=>vsMed(x)<-0.34).reverse().slice(0,2);
   const wl=work.map(x=>`${x.name} (${fmt(x,a[x.k])} ${x.unit}): ${ASPECT_WORK[x.k].ex}${x.k==='onset'?' Slides into notes are a style in pop and soul: work on them only where you did not mean them.':''}`);
-  if(TAKE.stretch)wl.push(`The line dips lowest in the 10 s before ${mmss(TAKE.stretch.lo[0])}: click the bar there to listen back.`);
+  if(a.breaks&&a.breaks.length)wl.push(`Your voice flipped register on a glide ${a.breaks.length>1?a.breaks.length+' times, ':''}around ${a.breaks.map(b=>nn(Math.round(b.m))+' at '+mmss(b.t)).join(', ')}: sirens on “ng” through that spot, slowly and lightly, help the two registers meet (Titze 2006).`);if(TAKE.stretch)wl.push(`The line dips lowest in the 10 s before ${mmss(TAKE.stretch.lo[0])}: click the bar there to listen back.`);
   if(wl.length)h+='<h3>To work on</h3><ul>'+wl.map(t=>`<li>${t}</li>`).join('')+'</ul>';
   h+=`<p class="fine">${R?`Provisional Elo: each reference voice is one game on intonation, steadiness and clean onsets (tone clarity depends on the microphone and room, so it is not rated). 2000 is the median conservatory-trained singer in ${R.pool}. It ranks you within this pool, not the world.`:''} The take's tuning is ${a.off>=0?'+':''}${(a.off*100).toFixed(0)} ¢ from A440; notes are measured on that grid.</p>`;
   ratingEl.innerHTML=h+renderProgress();const fg=$('forget');if(fg)fg.onclick=()=>{try{localStorage.removeItem(HIST_KEY);}catch(e){}renderRating();};}
