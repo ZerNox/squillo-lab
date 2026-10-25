@@ -868,7 +868,7 @@ async function setTake(buf){TAKE.busy=true;
 // first-dip rule, against sub-octaves) + J per semitone jumped between frames
 // + VS to enter or leave voicing; unvoiced costs VU. Removes octave flips and stray frames that
 // the live tracker, which cannot wait, lets through. Measured in check/pitch-bench.mjs.
-const VIT={J:0.035,U:0.45,S:0.25,O:0.3};
+const VIT={J:0.035,U:0.45,S:0.25,O:0.15};
 function viterbiF0(feats){const L=feats.length;if(!L)return;const C=feats.map(m=>m.cs||[]);let prev=null;const back=[];
   for(let i=0;i<L;i++){const c=C[i],n=c.length,fmax=n?Math.max(...c.map(q=>q[0])):0,cost=new Float64Array(n+1),bp=new Int32Array(n+1);
     for(let k=0;k<=n;k++){const em=k<n?c[k][1]+VIT.O*Math.log2(fmax/c[k][0]):VIT.U;let bc=0,bk=n;
@@ -1115,7 +1115,7 @@ function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;
   const wl=work.map(x=>`${x.name} (${fmt(x,a[x.k])} ${x.unit}): ${ASPECT_WORK[x.k].ex}${x.k==='onset'?' Slides into notes are a style in pop and soul: work on them only where you did not mean them.':''}`);
   if(a.breaks&&a.breaks.length)wl.push(`Your voice flipped register on a glide ${a.breaks.length>1?a.breaks.length+' times, ':''}around ${a.breaks.map(b=>nn(Math.round(b.m))+' at '+mmss(b.t)).join(', ')}: sirens on “ng” through that spot, slowly and lightly, help the two registers meet (Titze 2006).`);if(TAKE.stretch)wl.push(`The line dips lowest in the 10 s before ${mmss(TAKE.stretch.lo[0])}: click the bar there to listen back.`);
   if(wl.length)h+='<h3>To work on</h3><ul>'+wl.map(t=>`<li>${t}</li>`).join('')+'</ul>';
-  h+=`<p class="fine">${R?`Provisional Elo: each reference voice is one game on intonation, steadiness and clean onsets (tone clarity depends on the microphone and room, so it is not rated). 2000 is the median conservatory-trained singer in ${R.pool}. It ranks you within this pool, not the world.`:''} The take's tuning is ${a.off>=0?'+':''}${(a.off*100).toFixed(0)} ¢ from A440; notes are measured on that grid. <span id="pitchAcc">How sure the pitch is: on 40 real a cappella excerpts by 29 singers (vocadito, CC BY 4.0) this tracker puts 94.8 ± 2.4 % of sung moments within half a semitone of hand-checked pitch; lower voices 91.8 ± 5.1 %, higher 97.0 ± 1.5 %; about 1 in 6 breaths or consonants is read as a note.</span></p>`;
+  h+=`<p class="fine">${R?`Provisional Elo: each reference voice is one game on intonation, steadiness and clean onsets (tone clarity depends on the microphone and room, so it is not rated). 2000 is the median conservatory-trained singer in ${R.pool}. It ranks you within this pool, not the world.`:''} The take's tuning is ${a.off>=0?'+':''}${(a.off*100).toFixed(0)} ¢ from A440; notes are measured on that grid. <span id="pitchAcc">How sure the pitch is: on 40 real a cappella excerpts by 29 singers (vocadito, CC BY 4.0) this tracker puts 98.1 ± 0.7 % of sung moments within half a semitone of hand-checked pitch; lower voices 97.8 ± 1.4 %, higher 98.4 ± 0.7 %; about 1 in 6 breaths or consonants is read as a note.</span></p>`;
   ratingEl.innerHTML=h+renderProgress();const fg=$('forget');if(fg)fg.onclick=()=>{try{localStorage.removeItem(HIST_KEY);}catch(e){}renderRating();};}
 // Target pitch per frame for "spotless": a 250 ms running median inside each voiced run (keeps the
 // melody, drops wobble), the start of each note (up to 300 ms, a third of notes from 200 ms) held at its
