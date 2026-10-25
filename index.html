@@ -72,8 +72,17 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
 #takeRow .btn[disabled]{opacity:.4;cursor:default}
 #bRec[aria-pressed="true"]{color:var(--bg);background:var(--bad);border-color:var(--bad)}
 #takeInfo{font:11px/1.35 var(--f-mono);color:var(--fg-3);flex:1 1 220px}
-#takebar{position:relative;height:16px;width:100%;max-width:620px;border:1px solid var(--line);border-radius:4px;background:var(--panel);overflow:hidden}
-#takebar i{position:absolute;top:0;bottom:0;background:rgba(232,90,90,.5);border-left:2px solid var(--bad);cursor:pointer}
+#takebar{flex:none;position:relative;height:52px;width:100%;max-width:620px;border:1px solid var(--line);border-radius:4px;background:var(--panel);overflow:hidden;cursor:pointer}
+#takebar svg{position:absolute;left:0;top:2px;width:100%;height:30px;pointer-events:none}
+#takebar svg .ln{fill:none;stroke:var(--pitch);stroke-width:2;vector-effect:non-scaling-stroke}
+#takebar svg .ar{fill:var(--pitch);opacity:.14}
+#takebar svg .md{stroke:var(--fg-3);stroke-dasharray:3 4;stroke-width:1;vector-effect:non-scaling-stroke}
+#takebar u{position:absolute;bottom:11px;height:7px;border-radius:2px;text-decoration:none}
+#takebar u.g{background:var(--ok)} #takebar u.w{background:var(--warn)} #takebar u.b{background:var(--bad)}
+#takebar s{position:absolute;top:1px;transform:translateX(-50%);font:12px/1 var(--f-mono);color:var(--ok);text-decoration:none;pointer-events:none}
+#takebar i{position:absolute;bottom:2px;height:6px;background:rgba(232,90,90,.6);border-left:2px solid var(--bad);cursor:pointer}
+#takeKey{flex:none;max-width:620px;font:11px/1.35 var(--f-mono);color:var(--fg-3)}
+#takeKey b{font-weight:400;padding:0 3px;border-radius:2px;color:var(--bg)}
 #playhead{position:absolute;top:0;bottom:0;width:2px;background:var(--pitch);left:0}
 #coachVid{width:96px;height:128px;object-fit:cover;border-radius:6px;flex:0 0 auto;background:var(--bg-2)}
 #advice.coach-on{border-left-color:var(--pitch)}
@@ -236,7 +245,8 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
     <button class="btn" id="bPlaySpot" disabled title="Every note tuned, steadied and started cleanly">▶ spotless</button>
     <span id="takeInfo">Sing (or play any source) and record up to 60 s. Then play it back: the coach shows the exercise just before each spot that can improve.</span>
   </div>
-  <div id="takebar" hidden><b id="playhead"></b></div>
+  <div id="takebar" hidden title="Click to play from here"><b id="playhead"></b></div>
+  <div id="takeKey" hidden>line: how well you sang over the last 10 s (dashes: median trained singer) · notes: <b style="background:var(--ok)">on</b> <b style="background:var(--warn)">close</b> <b style="background:var(--bad)">off</b> · ★ best notes · red: spot the coach works on</div>
   <section id="rating" hidden aria-live="polite"></section>
   <div id="flaws"></div>
   <div id="score" hidden></div>
@@ -824,8 +834,9 @@ const RATED=ASPECTS.filter(x=>!x.info);
 // Steadiness is the median wobble (residual after a local quadratic fit, so even vibrato passes) over
 // the inside of held notes of at least 300 ms: runs, slides and ornaments between notes do not count.
 function takeAspects(st){const fr=st.rec.frames,sn=st.rec.snaps,notes=[],res=[];let cur=null;
-  const close=()=>{if(cur&&cur.n*0.02>=0.2){const m=cur.ms.slice().sort((a,b)=>a-b);notes.push({med:m[m.length>>1],dur:cur.n*0.02});
-      if(cur.n*0.02>=0.3)for(let k=3;k<cur.fs.length-3;k++)if(cur.fs[k].fit)res.push(cur.fs[k].res);}cur=null;};
+  const close=()=>{if(cur&&cur.n*0.02>=0.2){const m=cur.ms.slice().sort((a,b)=>a-b),nr=[];
+      if(cur.n*0.02>=0.3)for(let k=3;k<cur.fs.length-3;k++)if(cur.fs[k].fit){res.push(cur.fs[k].res);nr.push(cur.fs[k].res);}
+      nr.sort((a,b)=>a-b);notes.push({med:m[m.length>>1],dur:cur.n*0.02,t0:Math.max(0,cur.fs[0].t-0.02),t1:cur.fs[cur.fs.length-1].t-0.02,wob:nr.length?nr[nr.length>>1]:null});}cur=null;};
   for(const f of fr){if(!f.voiced||!f.ok){close();continue;}if(cur&&Math.abs(f.midi-cur.sum/cur.n)<0.5){cur.n++;cur.sum+=f.midi;cur.ms.push(f.midi);cur.fs.push(f);}else{close();cur={n:1,sum:f.midi,ms:[f.midi],fs:[f]};}}close();
   let cx=0,cy=0;for(const nt of notes){const a=2*Math.PI*(nt.med-Math.round(nt.med));cx+=nt.dur*Math.cos(a);cy+=nt.dur*Math.sin(a);}const off=Math.atan2(cy,cx)/(2*Math.PI);
   let iw=0,ia=0;for(const nt of notes){const d=nt.med-off;ia+=nt.dur*Math.abs(d-Math.round(d))*100;iw+=nt.dur;}
@@ -833,7 +844,26 @@ function takeAspects(st){const fr=st.rec.frames,sn=st.rec.snaps,notes=[],res=[];
   let onsets=0;for(let i=0;i<fr.length;i++)if(fr[i].voiced&&(i===0||!fr[i-1].voiced)){let k=i;while(k<fr.length&&fr[k].voiced)k++;if((k-i)*0.02>=0.3)onsets++;}
   const scoops=st.rec.events.filter(e=>e.type==='scoop').length;const sung=hn*0.02;
   const meds=notes.map(n=>n.med).sort((a,b)=>a-b);
-  return {inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:onsets?scoops/onsets:0,tone:hn?hs/hn:0,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,ok:notes.length>=6&&sung>=4};}
+  return {perf:notePerf(notes,off,st.rec.events),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:onsets?scoops/onsets:0,tone:hn?hs/hn:0,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,ok:notes.length>=6&&sung>=4};}
+// Per held note, for the timeline: cents off the take's grid, wobble inside the note, and whether it
+// was scooped into, folded into a 0..1 score weighted 60/25/15. The median trained singer (14 ¢, 3 ¢
+// wobble, no scoop) scores about 0.8; 25 ¢ off scores about 0.55.
+const PERF_MED=0.79;
+function notePerf(notes,off,events){const sc=events.filter(e=>e.type==='scoop').map(e=>e.t);
+  return notes.map(n=>{const d=n.med-off,c=Math.abs(d-Math.round(d))*100,scoop=sc.some(t=>n.t0>=t-0.5&&n.t0<=t+0.3);
+    const q=0.6*clamp(1-(c-5)/30,0,1)+0.25*(n.wob===null?0.7:clamp(1-(n.wob-2)/8,0,1))+0.15*(scoop?0:1);
+    return {t0:n.t0,t1:n.t1,c,wob:n.wob,scoop,q,g:q>=0.75?'g':q>=0.5?'w':'b'};});}
+// The sliding line: duration-weighted mean note score over the previous 10 s, every 0.25 s. It breaks
+// where those 10 s hold less than 1 s of held notes (runs, speech, pauses), rather than let one note speak for them.
+function perfLine(P,d){const out=[];for(let t=0;t<=d;t+=0.25){let a=0,w=0;for(const n of P){const o=Math.min(n.t1,t)-Math.max(n.t0,t-10);if(o>0){a+=n.q*o;w+=o;}}
+  out.push([t,w>=1?a/w:null]);}return out;}
+// Best notes: the highest-scoring held notes of at least 0.6 s, at most one per 8 s and 8 in all.
+function bestNotes(P){const c=P.filter(n=>n.t1-n.t0>=0.6&&n.q>=0.85).sort((a,b)=>b.q-a.q||(b.t1-b.t0)-(a.t1-a.t0)),out=[];
+  for(const n of c){if(out.length>=8)break;if(out.every(o=>Math.abs(o.t0-n.t0)>=8))out.push(n);}return out.sort((a,b)=>a.t0-b.t0);}
+// Strongest and weakest 10 s stretch of the line (only when the take is long enough to compare).
+function stretches(L){const v=L.filter(p=>p[1]!==null&&p[0]>=10);if(v.length<2)return null;let hi=v[0],lo=v[0];for(const p of v){if(p[1]>hi[1])hi=p;if(p[1]<lo[1])lo=p;}
+  return hi[1]-lo[1]>=0.08?{hi,lo}:null;}
+const mmss=t=>`${Math.floor(t/60)}:${String(Math.floor(t%60)).padStart(2,'0')}`;
 // Elo against the reference pool: each anchor is one game, scored per aspect (win 1, draw 0.5 within
 // the aspect's tolerance, loss 0) and averaged. The rating is the one whose expected score over all
 // games equals the actual score (bisection). Anchors' own ratings come from the same games played
@@ -858,9 +888,11 @@ function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;
   const vsMed=x=>{const m=TRAINED_MED[x.k],d=x.lower?m-a[x.k]:a[x.k]-m;return d/(x.tol*3);};
   const order=RATED.slice().sort((p,q)=>R?R.per[q.k]-R.per[p.k]:vsMed(q)-vsMed(p));
   const good=R?order.slice(0,2).filter(x=>R.per[x.k]>=0.25):order.filter(x=>vsMed(x)>=-0.34);
-  h+='<h3>Went well</h3><ul>'+[`You sang ${a.notes} held notes over ${a.sung.toFixed(0)} s, across ${a.range.toFixed(0)} semitones.`,...good.map(x=>`Your ${x.name}: ${fmt(x,a[x.k])} ${x.unit}${R?`, better than ${Math.round(R.per[x.k]*100)} % of the pool`:`, on a par with or better than the median conservatory-trained singer (${TRAINED_MED[x.k]})`}.`)].map(t=>`<li>${t}</li>`).join('')+'</ul>';
+  h+='<h3>Went well</h3><ul>'+[`You sang ${a.notes} held notes over ${a.sung.toFixed(0)} s, across ${a.range.toFixed(0)} semitones.`,...(TAKE.stretch?[`Your strongest stretch ended around ${mmss(TAKE.stretch.hi[0])}: the line on the bar peaks there.`]:[]),...(TAKE.best&&TAKE.best.length?[`${TAKE.best.length} standout note${TAKE.best.length>1?'s':''} (★ on the bar): on the note, steady, started cleanly.`]:[]),...good.map(x=>`Your ${x.name}: ${fmt(x,a[x.k])} ${x.unit}${R?`, better than ${Math.round(R.per[x.k]*100)} % of the pool`:`, on a par with or better than the median conservatory-trained singer (${TRAINED_MED[x.k]})`}.`)].map(t=>`<li>${t}</li>`).join('')+'</ul>';
   const work=R?order.slice(-2).reverse().filter(x=>R.per[x.k]<0.75).slice(0,R.R>=2200?1:2):order.filter(x=>vsMed(x)<-0.34).reverse().slice(0,2);
-  if(work.length)h+='<h3>To work on</h3><ul>'+work.map(x=>`<li>${x.name} (${fmt(x,a[x.k])} ${x.unit}): ${ASPECT_WORK[x.k].ex}${x.k==='onset'?' Slides into notes are a style in pop and soul: work on them only where you did not mean them.':''}</li>`).join('')+'</ul>';
+  const wl=work.map(x=>`${x.name} (${fmt(x,a[x.k])} ${x.unit}): ${ASPECT_WORK[x.k].ex}${x.k==='onset'?' Slides into notes are a style in pop and soul: work on them only where you did not mean them.':''}`);
+  if(TAKE.stretch)wl.push(`The line dips lowest in the 10 s before ${mmss(TAKE.stretch.lo[0])}: click the bar there to listen back.`);
+  if(wl.length)h+='<h3>To work on</h3><ul>'+wl.map(t=>`<li>${t}</li>`).join('')+'</ul>';
   h+=`<p class="fine">${R?`Provisional Elo: each reference voice is one game on intonation, steadiness and clean onsets (tone clarity depends on the microphone and room, so it is not rated). 2000 is the median conservatory-trained singer in ${R.pool}. It ranks you within this pool, not the world.`:''} The take's tuning is ${a.off>=0?'+':''}${(a.off*100).toFixed(0)} ¢ from A440; notes are measured on that grid.</p>`;
   ratingEl.innerHTML=h;}
 // Target pitch per frame for "spotless": a 250 ms running median inside each voiced run (keeps the
@@ -887,19 +919,31 @@ function improveTake(buf,frames,amount,off){const sr=buf.sampleRate,x=buf.getCha
     s+=P/rat(s);}
   for(let i=0;i<n;i++)y[i]=w[i]>0.05?y[i]/w[i]:0;
   const out=mkBuf(n,sr);out.getChannelData(0).set(y);return out;}
-function renderTakebar(){takebar.querySelectorAll('i').forEach(e=>e.remove());const d=TAKE.buf.duration;takebar.hidden=false;
-  for(const g of TAKE.segs){const e=document.createElement('i');e.style.left=(g.t0/d*100)+'%';e.style.width=Math.max(0.8,(g.t1-g.t0)/d*100)+'%';e.title=FLAWS[g.i].name;e.onclick=()=>showAdvice(FLAWS[g.i]);takebar.insertBefore(e,playhead);}}
+function renderTakebar(){takebar.querySelectorAll('i,u,s,svg').forEach(e=>e.remove());const d=TAKE.buf.duration;takebar.hidden=false;$('takeKey').hidden=false;
+  const P=TAKE.aspects.perf,L=perfLine(P,d),pc=t=>(t/d*100)+'%',y=q=>(100-clamp((q-0.3)/0.7,0,1)*92).toFixed(1);
+  let svg=`<svg viewBox="0 0 ${d.toFixed(2)} 100" preserveAspectRatio="none" aria-hidden="true"><line class="md" x1="0" x2="${d}" y1="${y(PERF_MED)}" y2="${y(PERF_MED)}"/>`;
+  const runs=[[]];for(const p of L){if(p[1]===null){if(runs[runs.length-1].length)runs.push([]);}else runs[runs.length-1].push(p);}
+  for(const pts of runs.filter(r=>r.length>1)){const ln=pts.map(p=>`${p[0].toFixed(2)},${y(p[1])}`).join(' ');svg+=`<polygon class="ar" points="${pts[0][0].toFixed(2)},100 ${ln} ${pts[pts.length-1][0].toFixed(2)},100"/><polyline class="ln" points="${ln}"/>`;}
+  takebar.insertAdjacentHTML('afterbegin',svg+'</svg>');
+  const add=(tag,cls,l,w,title)=>{const e=document.createElement(tag);if(cls)e.className=cls;e.style.left=l;if(w)e.style.width=w;if(title)e.title=title;takebar.insertBefore(e,playhead);return e;};
+  for(const n of P)add('u',n.g,pc(n.t0),Math.max(0.3,(n.t1-n.t0)/d*100)+'%',`${mmss(n.t0)} · ${n.c.toFixed(0)} ¢ off${n.wob!==null?`, ${n.wob.toFixed(1)} ¢ wobble`:''}${n.scoop?', scooped':''}`);
+  TAKE.best=bestNotes(P);for(const n of TAKE.best)add('s','',pc((n.t0+n.t1)/2)).textContent='★';
+  for(const g of TAKE.segs){const e=add('i','',pc(g.t0),Math.max(0.8,(g.t1-g.t0)/d*100)+'%',FLAWS[g.i].name);e.onclick=ev=>{ev.stopPropagation();showAdvice(FLAWS[g.i]);};}
+  TAKE.stretch=stretches(L);}
+takebar.onclick=ev=>{if(!TAKE.buf)return;const r=takebar.getBoundingClientRect();playTake(AU.play?AU.play.which:'take',clamp((ev.clientX-r.left)/r.width,0,1)*TAKE.buf.duration);};
 const VERSION={take:{title:'Your take',body:'Listen back. The coach steps in just before each spot that can improve.',status:'Your take, as recorded.'},
   half:{title:'Halfway',body:'You, half way to spotless: the coach steps in just before each spot you struggled with.',status:'Halfway: your take moved half way to spotless. Tone, words and timing are yours.'},
   spot:{title:'Spotless',body:'Every note tuned, steadied and started cleanly: what this take sounds like with nothing to fix.',status:'Spotless: every note on the take’s semitone grid, steadied, no scoops. Tone, words and timing are yours.'}};
-async function playTake(which){const buf=which==='take'?TAKE.buf:TAKE[which];if(!buf)return;stopSource();const ctx=await ensureCtx();await ctx.resume();
+async function playTake(which,from=0){const buf=which==='take'?TAKE.buf:TAKE[which];if(!buf)return;stopSource();const ctx=await ensureCtx();await ctx.resume();
   const s=ctx.createBufferSource();s.buffer=buf;s.connect(AU.cap);s.connect(ctx.destination);AU.source=s;AU.kind='take';markSrc(null);
-  const play={t0:ctx.currentTime,which,dur:buf.duration,seg:undefined,phase:''};AU.play=play;s.onended=()=>{if(AU.play===play){AU.play=null;playhead.style.left='0';setAdvice('Take finished','Play it again, halfway or spotless, and watch the coach just before each marked spot.','','idle');}};s.start();
+  const play={t0:ctx.currentTime-from,which,dur:buf.duration,seg:undefined,phase:''};AU.play=play;s.onended=()=>{if(AU.play===play){AU.play=null;playhead.style.left='0';setAdvice('Take finished','Play it again, halfway or spotless, and watch the coach just before each marked spot.','','idle');}};s.start(0,from);
   setStatus(VERSION[which].status);goLive();}
 bPlayTake.onclick=()=>playTake('take');bPlayHalf.onclick=()=>playTake('half');bPlaySpot.onclick=()=>playTake('spot');
 function coachTick(){const p=AU.play;if(!p||AU.kind!=='take')return;const pos=AU.ctx.currentTime-p.t0;playhead.style.left=clamp(pos/p.dur*100,0,100)+'%';
-  const seg=TAKE.segs.find(g=>pos>=g.t0-LEAD&&pos<=g.t1+0.3)||null;const phase=seg?(pos<seg.t0?'soon':'now'):'';
-  if(seg===p.seg&&phase===p.phase)return;p.seg=seg;p.phase=phase;
+  const seg=TAKE.segs.find(g=>pos>=g.t0-LEAD&&pos<=g.t1+0.3)||null;const star=seg?null:(TAKE.best||[]).find(n=>pos>=n.t0&&pos<=n.t1+1.5)||null;
+  const phase=seg?(pos<seg.t0?'soon':'now'):star?'star':'';
+  if((seg||star)===p.seg&&phase===p.phase)return;p.seg=seg||star;p.phase=phase;
+  if(star){setAdvice('★ Great note',`That ${(star.t1-star.t0).toFixed(1)} s note sat ${star.c.toFixed(0)} ¢ from the centre${star.wob!==null?` with ${star.wob.toFixed(1)} ¢ wobble`:''}${star.scoop?'':', started right on it'}. Remember how it felt.`,'','idle');return;}
   if(seg){const fl=FLAWS[seg.i];const was=p.which!=='take'?'This is where your take had ':'';
     setAdvice(phase==='soon'?`Coming up: ${fl.name}`:`${was}${fl.name}`,phase==='soon'?'Get ready. Do what the coach shows as you sing into this part.':fl.advice[1],fl.cue,fl.pose,'coach-on');
     if(autoFly&&fl!==lastFlyFlaw){lastFlyFlaw=fl;setView(fl.view);}}
