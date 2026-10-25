@@ -309,12 +309,14 @@ function yin(buf,sr,prevF0){const tauMax=Math.min(Math.floor(sr/60),buf.length-Y
   const off=buf.length-YW-tauMax;let run=0,best=-1;
   for(let tau=1;tau<=tauMax;tau++){let s=0;for(let j=0;j<YW;j++){const d=buf[off+j]-buf[off+j+tau];s+=d*d;}run+=s;yinD[tau]=run>0?s*tau/run:1;}
   const cands=[];for(let tau=tauMin+1;tau<tauMax;tau++)if(yinD[tau]<0.5&&yinD[tau]<=yinD[tau-1]&&yinD[tau]<yinD[tau+1])cands.push(tau);
-  if(!cands.length)return {f0:0,cmnd:1};
+  if(!cands.length)return {f0:0,cmnd:1,cs:[]};
+  // Offline takes keep every candidate (period, dip) for a Viterbi pass over the whole take (pYIN-style).
+  let cs=[];if(S.offline){const ref=t=>{const a=yinD[t-1],b=yinD[t],c=yinD[t+1],den=a-2*b+c;return sr/(t+(den!==0?0.5*(a-c)/den:0));};cs=cands.slice().sort((x,y)=>yinD[x]-yinD[y]).slice(0,8).map(t=>[ref(t),yinD[t]]);}
   const under=cands.filter(t=>yinD[t]<0.12);best=under.length?under[0]:cands.reduce((x,y)=>yinD[y]<yinD[x]?y:x);
   if(prevF0){const pt=sr/prevF0;let nb=null;for(const t of cands)if(Math.abs(t-pt)/pt<0.12&&(nb===null||yinD[t]<yinD[nb]))nb=t;if(nb!==null&&yinD[nb]<yinD[best]+0.2)best=nb;}
   if(best<2||best>=tauMax)return {f0:0,cmnd:1};
   const a=yinD[best-1],b=yinD[best],c=yinD[best+1];const den=a-2*b+c;const sh=den!==0?0.5*(a-c)/den:0;
-  return {f0:sr/(best+sh),cmnd:yinD[best]};}
+  return {f0:sr/(best+sh),cmnd:yinD[best],cs};}
 function lpc(buf,sr){const dec=Math.max(2,Math.round(sr/12000)),fs=sr/dec,n=Math.floor(Math.min(buf.length,0.035*sr)/dec);const x=new Float64Array(n);const o0=buf.length-n*dec;
   let prev=0;for(let i=0;i<n;i++){let s=0;for(let k=0;k<dec;k++)s+=buf[o0+i*dec+k];s/=dec;const w=0.54-0.46*Math.cos(2*Math.PI*i/(n-1));x[i]=(s-0.97*prev)*w;prev=s;}
   const p=Math.round(2+fs/1000);const R=new Float64Array(p+1);for(let k=0;k<=p;k++){let s=0;for(let i=k;i<n;i++)s+=x[i]*x[i-k];R[k]=s;}if(R[0]<1e-7)return null;
@@ -340,7 +342,7 @@ function analyse(t){const sr=S.sr;const buf=new Float32Array(N);const st=(S.w-N+
   spectrum(buf);const binHz=sr/N;
   if(S.calib){S.calib.n++;S.calib.rms+=rms;for(let b=0;b<db.length;b++)S.calib.acc[b]+=Math.pow(10,db[b]/10);if(t>=S.calib.until){S.prof=new Float32Array(db.length);for(let b=0;b<db.length;b++)S.prof[b]=10*Math.log10(S.calib.acc[b]/S.calib.n+1e-12);S.noiseRms=S.calib.rms/S.calib.n;let fl=0;for(let b=Math.floor(100/binHz);b<4000/binHz;b++)fl+=S.prof[b];S.floorDb=fl/(4000/binHz-Math.floor(100/binHz));S.calib=null;postMessage({type:'calib',done:true,floorDb:S.floorDb,noiseRms:S.noiseRms});}
     postMessage({type:'feat',t,rms,voiced:false,f0:0,cmnd:1,hnr:0,h12:0,tilt:0,a1p0:0,F:null,col:new Float32Array(FB)});return;}
-  const thr=Math.max(0.004,S.noiseRms*3);let f0=0,cmnd=1;if(rms>thr){const y=yin(buf,sr,(S.prevT>=0&&t-S.prevT<0.12)?S.prevF0:0);f0=y.f0;cmnd=y.cmnd;}
+  const thr=Math.max(0.004,S.noiseRms*3);let f0=0,cmnd=1,cs=null;if(rms>thr){const y=yin(buf,sr,(S.prevT>=0&&t-S.prevT<0.12)?S.prevF0:0);f0=y.f0;cmnd=y.cmnd;cs=y.cs;}
   const voiced=rms>thr&&cmnd<0.65&&f0>50&&f0<1100;
   let hnr=0,h12=0,tilt=0,a1p0=0,F=null,nasOk=false;
   if(voiced){S.prevF0=f0;S.prevT=t;const r=Math.min(0.999,Math.max(0.001,1-cmnd/2));hnr=10*Math.log10(r/(1-r));
@@ -351,8 +353,8 @@ function analyse(t){const sr=S.sr;const buf=new Float32Array(N);const st=(S.w-N+
       const oral=L.peaks.find(f=>f>=400&&f<=1100);let P0=-200;for(let k=1;k*f0<=340;k++){if(k*f0>=180)P0=Math.max(P0,pk(k*f0-0.25*f0,k*f0+0.25*f0,binHz));}
       if(oral&&P0>-150){const k1=Math.max(1,Math.round(oral/f0));a1p0=pk(k1*f0-0.3*f0,k1*f0+0.3*f0,binHz)-P0;nasOk=true;}}}
   for(let j=0;j<FB;j++){const fa=TD_FMIN*Math.pow(TD_FMAX/TD_FMIN,j/FB),fb=TD_FMIN*Math.pow(TD_FMAX/TD_FMIN,(j+1)/FB);let m=-120;for(let b=Math.floor(fa/binHz);b<=Math.max(Math.floor(fa/binHz),Math.floor(fb/binHz))&&b<db.length;b++)if(db[b]>m)m=db[b];col[j]=Math.min(1,Math.max(0,(m+92)/86));}
-  postMessage({type:'feat',t,rms,voiced,f0,cmnd,hnr,h12,tilt,a1p0,nasOk,F,col:col.slice()});}
-function onmsg(m){if(m.type==='init'){S.sr=m.sr;S.hop=m.hop||0.02;}
+  postMessage({type:'feat',t,rms,voiced,f0,cmnd,hnr,h12,tilt,a1p0,nasOk,F,col:col.slice(),cs:S.offline&&rms>thr?cs:null});}
+function onmsg(m){if(m.type==='init'){S.sr=m.sr;S.hop=m.hop||0.02;S.offline=!!m.offline;}
   else if(m.type==='audio'){const a=m.buf;for(let i=0;i<a.length;i++){S.ring[S.w]=a[i];S.w=(S.w+1)%S.ring.length;}S.count+=a.length;const t=S.count/S.sr;while(t>=S.next){S.next+=S.hop;if(S.count>=N)analyse(S.next-S.hop);}}
   else if(m.type==='calib'){S.prof=null;S.noiseRms=0;S.calib={until:S.count/S.sr+m.seconds,n:0,rms:0,acc:new Float64Array(N/2+1)};}
   else if(m.type==='uncalib'){S.prof=null;S.noiseRms=0;S.calib=null;}
@@ -836,8 +838,23 @@ async function setTake(buf){TAKE.busy=true;
   bPlayTake.disabled=bPlayHalf.disabled=bPlaySpot.disabled=false;
   const names=[...new Set(TAKE.segs.map(g=>FLAWS[g.i].name))];
   takeInfo.textContent=(tr.cut>0.5||tr.talk>0?`Cut ${tr.cut>0.5?`${tr.cut.toFixed(1)} s of silence`:''}${tr.cut>0.5&&tr.talk>0?' and ':''}${tr.talk>0?`${tr.talk.toFixed(0)} s of talk or noise`:''}: only the singing is scored. `:'')+(TAKE.segs.length?`${TAKE.segs.length} spot${TAKE.segs.length>1?'s':''} to work on (${names.join(', ')}), marked on the bar. Play your take, halfway or spotless.`:`Clean take: no flaw held long enough to coach. ${(sc.voiced*100).toFixed(0)} % of it was voiced.`);}
-function scanTake(buf){return new Promise(res=>{const st=new Stats();const d=makeDsp(m=>{if(m.type==='feat')ingest(st,m,'take');else if(m.type==='pong'){d.kill();res(takeSpots(st));}});
-  d.post({type:'init',sr:buf.sampleRate,hop:0.02});const ch=buf.getChannelData(0);for(let i=0;i<ch.length;i+=2048){const b=ch.slice(i,i+2048);d.post({type:'audio',buf:b},[b.buffer]);}d.post({type:'ping'});});}
+// Pitch of a take, decided over the whole take: a Viterbi path through each frame's YIN candidates
+// (pYIN, Mauch & Dixon 2014, simplified): cost = candidate dip + O per octave below the highest candidate (YIN's
+// first-dip rule, against sub-octaves) + J per semitone jumped between frames
+// + VS to enter or leave voicing; unvoiced costs VU. Removes octave flips and stray frames that
+// the live tracker, which cannot wait, lets through. Measured in check/pitch-bench.mjs.
+const VIT={J:0.035,U:0.45,S:0.25,O:0.3};
+function viterbiF0(feats){const L=feats.length;if(!L)return;const C=feats.map(m=>m.cs||[]);let prev=null;const back=[];
+  for(let i=0;i<L;i++){const c=C[i],n=c.length,fmax=n?Math.max(...c.map(q=>q[0])):0,cost=new Float64Array(n+1),bp=new Int32Array(n+1);
+    for(let k=0;k<=n;k++){const em=k<n?c[k][1]+VIT.O*Math.log2(fmax/c[k][0]):VIT.U;let bc=0,bk=n;
+      if(prev){bc=Infinity;const pc=C[i-1];for(let j=0;j<prev.length;j++){const uk=k===n,uj=j===pc.length;const tr=uk||uj?(uk&&uj?0:VIT.S):VIT.J*Math.min(24,Math.abs(12*Math.log2(c[k][0]/pc[j][0])));const v=prev[j]+tr;if(v<bc){bc=v;bk=j;}}}
+      cost[k]=bc+em;bp[k]=bk;}prev=cost;back.push(bp);}
+  let k=0;for(let j=1;j<prev.length;j++)if(prev[j]<prev[k])k=j;
+  for(let i=L-1;i>=0;i--){const m=feats[i],c=C[i];if(m.cs){if(k<c.length){m.f0=c[k][0];m.cmnd=c[k][1];m.voiced=m.f0>50&&m.f0<1100;}else m.voiced=false;}k=back[i][k];}}
+function trackTake(buf){return new Promise(res=>{const fs=[];const d=makeDsp(m=>{if(m.type==='feat')fs.push(m);else if(m.type==='pong'){d.kill();res(fs);}});
+  d.post({type:'init',sr:buf.sampleRate,hop:0.02,offline:true});const ch=buf.getChannelData(0),Q=Math.round(buf.sampleRate/200);// 5 ms chunks: each frame sees audio up to its own time
+  for(let i=0;i<ch.length;i+=Q){const b=ch.slice(i,i+Q);d.post({type:'audio',buf:b},[b.buffer]);}d.post({type:'ping'});});}
+async function scanTake(buf){const fs=await trackTake(buf);viterbiF0(fs);const st=new Stats();for(const m of fs)ingest(st,m,'take');return takeSpots(st);}
 // Frame times mark the end of the analysis window; the pitch belongs ~20 ms earlier. A flaw's
 // smoothed level lags its onset by about 0.6 s, so each spot starts that much earlier.
 function takeSpots(st){const fr=st.rec.frames,sn=st.rec.snaps;const frames=fr.map((f,i)=>({t:Math.max(0,f.t-0.02),f0:f.voiced?f.f0:0}));

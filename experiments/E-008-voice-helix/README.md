@@ -32,7 +32,19 @@ Capture: AudioWorklet (ScriptProcessor fallback) at raw settings
 (`echoCancellation`, `noiseSuppression`, `autoGainControl` all false, as
 E-003 found browsers honour). Analysis: a Web Worker at a fixed 20 ms hop
 (YIN with a continuity witness, LPC order 2+fs/1000 at 12 kHz, 4096-point
-FFT with a 2 s room profile subtracted). Eight flaw detectors with
+FFT with a 2 s room profile subtracted). Takes get their own pitch track:
+every frame keeps up to 8 YIN candidates and a Viterbi path over the whole
+take picks one (pYIN, Mauch & Dixon 2014, simplified: dip + 0.3 per octave
+below the highest candidate + 0.035 per semitone jumped, unvoiced 0.45,
+voicing switch 0.25). Measured with the page's code (`check/pitch-bench.mjs`,
+held-out seed 4242, 29 328 voiced frames, 5 voice types from bass 82 Hz to
+soprano 880 Hz × clean, breathy, weak fundamental, ±100 ¢ vibrato,
+untrained drift): gross error (>50 ¢) 1.4 % live → 0.1 % take, octave
+errors 0.8 % → 0.1 %, missed voiced frames 0.0 % → 0.3 %, median error
+1.5-7.4 ¢ per cell; worst cell after: soprano breathy, 5.2 % missed.
+Before this, takes were fed in 43 ms chunks, so pairs of frames saw the
+same audio: 10.9 % gross error on the same benchmark (seed 11). Synthetic
+voices only; real-voice ground truth (VocalSet has none for f0) is open. Eight flaw detectors with
 hysteresis, each paired with one exercise. Session replay with a scrubber.
 Two reference-clip slots (`page/ref/polished.mp3`, `page/ref/rough.mp3`,
 loaded if present; else chosen by the singer) scored offline and compared

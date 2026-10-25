@@ -2,6 +2,18 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-25 · pitch tracker for takes (pYIN-style Viterbi)
+
+Built: takes are tracked with YIN candidates per frame and a Viterbi path over
+the whole take; take audio now reaches the worker in 5 ms chunks (it was
+43 ms, so frame pairs saw the same audio). A singer's notes, scoops and
+spots now come from a pitch track that does not flip octaves on a breathy
+voice. Measured (`check/pitch-bench.mjs`, page code, held-out seed, 29 328
+frames, 25 voice×condition cells): gross error 10.9 % (old chunking) →
+1.4 % (live tracker) → 0.1 % (Viterbi); octave 0.8 → 0.1 %; missed voiced
+0.3 %. Noisy 600 Hz tone in check.mjs: live 0 %, take 81 % right. Slide bench
+unchanged (120/120). iOS risk: none (offline maths). Next: phone layout.
+
 ## 2026-10-25 · slide style vs unwanted scoop
 
 Built: each onset's slide is measured from the take (settled pitch less the
