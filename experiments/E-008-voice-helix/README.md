@@ -86,7 +86,7 @@ A 32 s take takes 0.8-1.3 s to slow, once per version and speed. Each scored tak
 ends with progress lines per aspect and overall: a dot per take, the mean of
 the last 5 takes, and a band of ±1.96 standard errors between takes; it says
 "better" or "worse" only when the last 5 differ from the 5 before by more
-than both bands together (`squillo` ADR 0025). On playback of any version the coaching panel switches to
+than both bands together (`squillo` ADR 0025). "☀ warm-up" builds an about 4 min routine from those takes: lip trill or straw glides (Titze 2006), one or two steps for the aspects furthest from the median trained singer over the last 5 takes (pitch matching, Hutchins & Peretz 2012; messa di voce, Titze et al. 1999; clean starts; easy onsets), then a siren, each with a guide tone in the singer's own range (10th-90th percentile of their notes); with no takes, a general routine at A3-E4. On playback of any version the coaching panel switches to
 the flaw 1.5 s before each spot and praises each starred note as it passes. The drawn figure is the coach. A filmed
 coach is a feature toggle, off by default: with `?coach=video` in the URL it
 plays `page/coach/<pose>.mp4` silently for each exercise that has a clip

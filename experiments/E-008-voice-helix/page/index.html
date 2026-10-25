@@ -87,6 +87,9 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
 #coachVid{width:96px;height:128px;object-fit:cover;border-radius:6px;flex:0 0 auto;background:var(--bg-2)}
 #advice.coach-on{border-left-color:var(--pitch)}
 #advice.coach-on #coachVid,#advice.coach-on #fig{width:150px;height:200px}
+#warmup{max-width:620px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);backdrop-filter:blur(8px);font-size:13px;color:var(--fg-2)}
+#warmup h3{font:600 12px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);margin:0 0 4px}
+#warmup b{color:var(--fg)}#warmup .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px}#warmup cite{color:var(--fg-3);font-size:11px}
 #rating{max-width:620px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);backdrop-filter:blur(8px);font-size:13px}
 #rating .elo{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 #rating .elo b{font:700 34px/1 var(--f-display);color:var(--pitch);font-variant-numeric:tabular-nums}
@@ -258,9 +261,11 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
     <button class="btn" id="bPlayTake" disabled>▶ your take</button>
     <button class="btn" id="bPlayHalf" disabled title="Half way between your take and spotless">▶ halfway</button>
     <button class="btn" id="bPlaySpot" disabled title="Every note tuned, steadied and started cleanly">▶ spotless</button>
+    <button class="btn" id="bWarm" title="A short routine for what your recent takes need most">☀ warm-up</button>
     <select id="speed" aria-label="Playback speed" title="Slow down without changing pitch"><option value="1">1×</option><option value="0.75">0.75×</option><option value="0.5">0.5×</option></select>
     <span id="takeInfo">Sing (or play any source) and record up to 60 s. Then play it back: the coach shows the exercise just before each spot that can improve.</span>
   </div>
+  <section id="warmup" hidden aria-live="polite"></section>
   <div id="takebar" hidden title="Click to play from here"><b id="playhead"></b></div>
   <div id="takeKey" hidden>line: how well you sang over the last 10 s (dashes: median trained singer) · notes: <b style="background:var(--ok)">on</b> <b style="background:var(--warn)">close</b> <b style="background:var(--bad)">off</b> · ★ best notes · red: spot the coach works on · click a note or spot to hear it A/B with spotless</div>
   <section id="rating" hidden aria-live="polite"></section>
@@ -911,7 +916,7 @@ function takeAspects(st){const fr=st.rec.frames,sn=st.rec.snaps,notes=[],res=[];
   const dm=dp.length?dp.reduce((t,x)=>t+x,0)/dp.length:0,dsd=dp.length>1?Math.sqrt(dp.reduce((t,x)=>t+(x-dm)**2,0)/(dp.length-1)):0;
   const slide={n:dp.length,of:ons,depth:dm,sd:dsd,style:dp.length>=4&&dp.length/ons>=2/3&&dsd<=0.2*dm};
   const meds=notes.map(n=>n.med).sort((a,b)=>a-b);
-  return {slide,perf:notePerf(notes,off,slide.style?[]:st.rec.events),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,tone:hn?hs/hn:0,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,ok:notes.length>=6&&sung>=4};}
+  return {slide,perf:notePerf(notes,off,slide.style?[]:st.rec.events),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,tone:hn?hs/hn:0,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,ok:notes.length>=6&&sung>=4};}
 // Per held note, for the timeline: cents off the take's grid, wobble inside the note, and whether it
 // was scooped into, folded into a 0..1 score weighted 60/25/15. The median trained singer (14 ¢, 3 ¢
 // wobble, no scoop) scores about 0.8; 25 ¢ off scores about 0.55.
@@ -952,7 +957,7 @@ const HIST_KEY='helix.takes.v1',HIST_MAX=500,HIST_WIN=5;
 const PROG=[{k:'score',name:'overall',unit:'note score',lower:false,dec:2},...ASPECTS];
 function loadHist(){try{const h=JSON.parse(localStorage.getItem(HIST_KEY)||'[]');return Array.isArray(h)?h:[];}catch(e){return [];}}
 function saveTake(a){const P=a.perf;let s=0,w=0;for(const n of P){const d=n.t1-n.t0;s+=n.q*d;w+=d;}
-  const r={d:Date.now(),sung:+a.sung.toFixed(1),score:w?+(s/w).toFixed(3):0};for(const x of ASPECTS)r[x.k]=+a[x.k].toFixed(3);
+  const r={d:Date.now(),sung:+a.sung.toFixed(1),score:w?+(s/w).toFixed(3):0};for(const x of ASPECTS)r[x.k]=+a[x.k].toFixed(3);if(a.hi>a.lo){r.lo=+(a.lo+a.off).toFixed(2);r.hi=+(a.hi+a.off).toFixed(2);}
   const h=loadHist();h.push(r);try{localStorage.setItem(HIST_KEY,JSON.stringify(h.slice(-HIST_MAX)));}catch(e){}return h;}
 function slide(v,i){const w=v.slice(Math.max(0,i-HIST_WIN+1),i+1),n=w.length,m=w.reduce((t,x)=>t+x,0)/n;
   const sd=n>1?Math.sqrt(w.reduce((t,x)=>t+(x-m)**2,0)/(n-1)):null;return {m,ci:sd===null?null:1.96*sd/Math.sqrt(n),n};}
@@ -970,6 +975,44 @@ function renderProgress(){const h=loadHist();if(!h.length)return '';
     o+=`<tr><td>${x.name}</td><td><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="${x.name}: ${n} takes, now ${last.m.toFixed(x.dec)}${last.ci!==null?` ± ${last.ci.toFixed(x.dec)}`:''}"><polygon class="bd" points="${band}"/><polyline class="sl" vector-effect="non-scaling-stroke" points="${S.map((s,i)=>`${X(i)},${Y(s.m)}`).join(' ')}"/>${v.map((q,i)=>`<circle cx="${X(i)}" cy="${Y(q)}" r="1.8"/>`).join('')}</svg></td>`+
       `<td>${last.m.toFixed(x.dec)}${last.ci!==null?` ± ${last.ci.toFixed(x.dec)}`:''} ${x.unit}${tr?`<br><em>${tr}</em>`:''}</td></tr>`;}
   return o+`</table><p class="fine">Dots: each take. Line: mean of your last ${HIST_WIN} takes; band: its 95 % interval. Up is better on every line. Kept only in this browser. <button class="btn" id="forget">forget my takes</button></p>`;}
+// Warm-up: a five-minute routine for today, chosen from the takes kept on this device. Each aspect's mean
+// over the last 5 takes is set against the median trained singer (as in "to work on"); the one or two
+// furthest behind get a targeted step between a semi-occluded warm-up and a siren. Guide tones sit in the
+// singer's own range (10th-90th percentile of their notes); without takes, a general routine at A3-E4.
+const WARM_SRC={sovt:'Titze 2006, J Speech Lang Hear Res 49:448',pm:'Hutchins & Peretz 2012, J Exp Psychol Gen 141:76',mdv:'Titze et al. 1999, J Acoust Soc Am 105:2933'};
+const WARM_STEP={
+ start:{name:'Lip trill or straw glides',sec:60,src:'sovt',txt:'Bubble your lips (or hum through a drinking straw) and glide gently up and down with the tone. Easy, no push: this warms the folds with little effort.',tone:'glide'},
+ inton:{name:'Pitch matching',sec:60,src:'pm',txt:'Listen to each tone, then sing it on “la” and hold it. Aim to land on it at once, then stay there.',tone:'steps'},
+ stab:{name:'Messa di voce',sec:75,src:'mdv',txt:'On one comfortable note, swell from soft to loud and back over 8 s on “ah”. Keep the pitch dead still while the volume moves.',tone:'hold'},
+ onset:{name:'Clean starts',sec:60,src:'pm',txt:'Hear the tone, then start right on it with a short, light “ha” (no slide up from below). Five starts per tone.',tone:'steps'},
+ tone:{name:'Easy onsets on “uh-oh”',sec:45,src:'sovt',txt:'Start each note with a gentle “uh-oh” and hold the vowel clear. Then sing it through a straw once, and again without.',tone:'hold'},
+ end:{name:'Siren',sec:45,src:'sovt',txt:'Slide on “ng” from your lowest comfortable note to your highest and back, slowly, without breaks or pushing.',tone:'glide'}};
+function planWarmup(h){const r=h.slice(-HIST_WIN),lo=r.filter(x=>x.hi>x.lo),M=k=>{const v=r.map(x=>x[k]).filter(Number.isFinite);return v.length?v.reduce((a,b)=>a+b,0)/v.length:null;};
+  let low=57,high=64;if(lo.length){low=Math.round(lo.reduce((a,x)=>a+x.lo,0)/lo.length);high=Math.max(low+4,Math.round(lo.reduce((a,x)=>a+x.hi,0)/lo.length));}
+  const gap=RATED.map(x=>{const m=M(x.k);return m===null?null:{x,m,v:(x.lower?TRAINED_MED[x.k]-m:m-TRAINED_MED[x.k])/(x.tol*3)};}).filter(Boolean).sort((a,b)=>a.v-b.v);
+  const pick=gap.filter(g=>g.v<-0.34).slice(0,2);if(r.length&&!pick.length&&gap.length)pick.push(gap[0]);
+  const why=pick.map(g=>`${g.x.name} (${g.m.toFixed(g.x.dec)} ${g.x.unit}; median trained singer ${TRAINED_MED[g.x.k]})`);
+  return {n:r.length,low,high,why,steps:[WARM_STEP.start,...pick.map(g=>WARM_STEP[g.x.k]),...(r.length?[]:[WARM_STEP.inton,WARM_STEP.stab]),WARM_STEP.end]};}
+const nn=m=>NOTE[(m%12+12)%12]+(Math.floor(m/12)-1);
+// Guide tones: a soft sine with two overtones, scheduled on the take's audio context (created in the click).
+function warmTone(ctx,st,W){const t0=ctx.currentTime+0.05,g=ctx.createGain(),o=ctx.createOscillator(),f=m=>440*Math.pow(2,(m-69)/12);
+  const w=ctx.createPeriodicWave(new Float32Array([0,0,0,0]),new Float32Array([0,1,0.3,0.1]));o.setPeriodicWave(w);g.gain.value=0;o.connect(g);g.connect(ctx.destination);
+  let end;if(st.tone==='glide'){o.frequency.setValueAtTime(f(W.low),t0);for(let k=0;k<2;k++){o.frequency.exponentialRampToValueAtTime(f(W.high),t0+3+k*6);o.frequency.exponentialRampToValueAtTime(f(W.low),t0+6+k*6);}end=t0+12;}
+  else if(st.tone==='hold'){o.frequency.setValueAtTime(f(Math.round((W.low+W.high)/2)),t0);end=t0+8;}
+  else{const ms=[0,2,4,2,0].map(d=>Math.min(W.high,W.low+Math.round((W.high-W.low)/4)+d));ms.forEach((m,i)=>o.frequency.setValueAtTime(f(m),t0+i*2.5));end=t0+ms.length*2.5;}
+  g.gain.setValueAtTime(0,t0);g.gain.linearRampToValueAtTime(0.15,t0+0.08);g.gain.setValueAtTime(0.15,end-0.15);g.gain.linearRampToValueAtTime(0,end);o.start(t0);o.stop(end+0.05);
+  if(WARM.osc)try{WARM.osc.stop();}catch(e){}WARM.osc=o;return end-t0;}
+const WARM={plan:null,i:0,osc:null,timer:0};
+function renderWarm(){const W=WARM.plan,el=$('warmup');if(!W){el.hidden=true;return;}el.hidden=false;const st=W.steps[WARM.i],last=WARM.i===W.steps.length-1;
+  el.innerHTML=`<h3>Warm-up · step ${WARM.i+1} of ${W.steps.length} · about ${Math.round(W.steps.reduce((a,s)=>a+s.sec,0)/60)} min</h3>`+
+   (WARM.i===0?`<p>${W.n?`Chosen from your last ${W.n} take${W.n>1?'s':''} on this device${W.why.length?`: most to gain in ${W.why.join(' and ')}.`:'.'}`:'No takes on this device yet: a general routine. Record a take and the next warm-up targets what it needs.'} Guide tones ${nn(W.low)}–${nn(W.high)}.</p>`:'')+
+   `<p><b>${st.name}</b> · ${st.sec} s<br>${st.txt}<br><cite>${WARM_SRC[st.src]}</cite></p>`+
+   `<div class="row"><button class="btn" id="wTone">▶ guide tone</button><span id="wLeft">${st.sec} s</span>${last?'':'<button class="btn" id="wNext">next step →</button>'}<button class="btn" id="wDone">${last?'done':'stop'}</button></div>`;
+  clearInterval(WARM.timer);let left=st.sec;WARM.timer=setInterval(()=>{left--;const e=$('wLeft');if(e)e.textContent=left>0?`${left} s`:'time: move on when ready';if(left<=0)clearInterval(WARM.timer);},1000);
+  $('wTone').onclick=()=>{const ctx=AU.ctx||WARM.ctx||(WARM.ctx=new (window.AudioContext||window.webkitAudioContext)());if(ctx.state!=='running')ctx.resume();warmTone(ctx,st,W);};
+  if(!last)$('wNext').onclick=()=>{WARM.i++;renderWarm();$('wTone').onclick();};
+  $('wDone').onclick=()=>{WARM.plan=null;clearInterval(WARM.timer);if(WARM.osc)try{WARM.osc.stop();}catch(e){}renderWarm();};}
+$('bWarm').onclick=()=>{WARM.plan=planWarmup(loadHist());WARM.i=0;renderWarm();$('wTone').onclick();$('warmup').scrollIntoView({block:'nearest'});};
 function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;}ratingEl.hidden=false;const R=TAKE.rating;
   const fmt=(x,v)=>v.toFixed(x.dec);let h='';
   if(!RATING_ON)h+=`<div class="elo"><span>Your take over ${a.sung.toFixed(0)} s of singing</span></div>`;

@@ -2,6 +2,18 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-25 · warm-up from your recent takes
+
+Built: a ☀ warm-up button: a 4-5 step, about 4 min routine (lip trill/straw,
+one or two targeted steps, siren) whose middle steps go to the aspects
+furthest from the median trained singer over the last 5 takes on the device
+(pitch matching, messa di voce, clean starts, easy onsets), each with its
+source and a guide tone in the singer's own range (notes' 10th-90th
+percentile, now kept per take). A singer can now warm up on what they need
+today. Numbers: none new (choice rule reuses the "to work on" yardstick).
+check.mjs: seeded takes give onsets then intonation, tone plays (3 browsers).
+iOS risk: tone context made in the tap. Next: range and voice profile.
+
 ## 2026-10-25 · take first on a phone
 
 Built: at phone width a scanned take moves its play row, timeline, summary

@@ -1,6 +1,6 @@
 // Checks the Voice Helix page in Chrome (desktop), Firefox (desktop) and WebKit at an iPhone 15's
 // size and touch: the page loads without errors, a public-domain reference clip loads as the take,
-// the take is scanned (performance timeline, summary, progress lines over seeded earlier takes), a tap on the timeline plays from there, a tap on a spot loops it A/B with spotless, 0.5x playback keeps the pitch, the reference's scoops are not taken for a slide style, the take pitch tracker holds a breathy tone, and
+// the take is scanned (performance timeline, summary, progress lines over seeded earlier takes), a tap on the timeline plays from there, a tap on a spot loops it A/B with spotless, 0.5x playback keeps the pitch, the reference's scoops are not taken for a slide style, the take pitch tracker holds a breathy tone, the warm-up targets the seeded takes' weakest aspects and plays a guide tone, and
 // "spotless" plays. Screenshots go to the out directory; look at them.
 // Usage: node check.mjs <url> [--wait <sha256 of page/index.html>] [--only chrome|firefox|webkit-iphone] [--out dir] [--headed] [--slow ms] [--hold s]
 // --headed opens visible, maximized browser windows (menu bar and dock stay) on this machine's display (default headless, as
@@ -116,7 +116,11 @@ async function run([name, launch, ctxOpt, file]) {
       for (let i = 0; i < n; i++) { s = (s * 16807) % 2147483647; const ph = 2 * Math.PI * 600 * i / sr; x[i] = 0.2 * (Math.sin(ph) + 0.5 * Math.sin(2 * ph) + 0.3 * Math.sin(3 * ph)) + 0.25 * (s / 2147483647 - 0.5); }
       const fs = await trackTake(b); viterbiF0(fs); const v = fs.filter(m => m.t > 0.2 && m.voiced); return v.filter(m => Math.abs(1200 * Math.log2(m.f0 / 600)) < 50).length / Math.max(1, fs.filter(m => m.t > 0.2).length); });
     r.pitch = +pitch.toFixed(3); r.inView = inView;
-    const ok = (!touch || r.inView) && r.pitch > 0.75 && !errs.length && r.ctx === 'running' && r.playing === 'spot' && r.notes > 10 && r.slide === false && ab && slow.cents < 3 && r.k === 0.5 && Math.abs(slow.ratio - 2) < 0.01 && r.summary && r.progress === 5 && r.takes === 8 && seek > 0.45 && seek < 0.65;
+    // Warm-up from the seeded takes: onsets (0.2 scoops/note) and intonation (~21 ¢) are furthest from the trained median, so they are the targeted steps; guide tone plays.
+    await tap(p.locator('#bWarm')); await p.waitForTimeout(600); await p.locator('#warmup').screenshot({ path: join(out, `${name}-warmup.png`) });
+    await tap(p.locator('#wNext')); await p.waitForTimeout(400);
+    r.warm = await p.evaluate(() => ({ steps: WARM.plan.steps.map(s => s.name).join('|'), why: WARM.plan.why.length, osc: !!WARM.osc, ctx: (AU.ctx || WARM.ctx).state, text: /Clean starts/.test(document.getElementById('warmup').textContent) }));
+    const ok = (!touch || r.inView) && r.pitch > 0.75 && !errs.length && r.ctx === 'running' && r.playing === 'spot' && r.notes > 10 && r.slide === false && ab && slow.cents < 3 && r.k === 0.5 && Math.abs(slow.ratio - 2) < 0.01 && r.summary && r.warm.steps === 'Lip trill or straw glides|Clean starts|Pitch matching|Siren' && r.warm.text && r.warm.osc && r.warm.ctx === 'running' && r.progress === 5 && r.takes === 8 && seek > 0.45 && seek < 0.65;
     return { browser: name, ok, seek: +seek.toFixed(2), ab, slow, ...r, errs };
   } catch (e) { return { browser: name, ok: false, errs: [...errs, String(e).split('\n')[0]] }; }
   finally { if (b) { if (hold) await new Promise(r => setTimeout(r, hold * 1000)); await b.close(); open.delete(b); } }
