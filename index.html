@@ -87,9 +87,9 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
 #coachVid{width:96px;height:128px;object-fit:cover;border-radius:6px;flex:0 0 auto;background:var(--bg-2)}
 #advice.coach-on{border-left-color:var(--pitch)}
 #advice.coach-on #coachVid,#advice.coach-on #fig{width:150px;height:200px}
-#warmup{max-width:620px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);backdrop-filter:blur(8px);font-size:13px;color:var(--fg-2)}
-#warmup h3{font:600 12px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);margin:0 0 4px}
-#warmup b{color:var(--fg)}#warmup .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px}#warmup cite{color:var(--fg-3);font-size:11px}
+#warmup,#profile{max-width:620px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);backdrop-filter:blur(8px);font-size:13px;color:var(--fg-2)}
+#warmup h3,#profile h3{font:600 12px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);margin:0 0 4px}
+#warmup b,#profile b{color:var(--fg)}#profile .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:6px}#profile input{width:4.5em;font:inherit;background:transparent;color:var(--fg);border:1px solid var(--line);border-radius:4px;padding:2px 4px}#profile svg{width:100%;height:46px;display:block;margin:6px 0}#profile svg .full{fill:var(--line)}#profile svg .comf{fill:var(--ok)}#profile svg text{font:9px var(--f-mono);fill:var(--fg-3)}#warmup .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px}#warmup cite{color:var(--fg-3);font-size:11px}
 #rating{max-width:620px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);backdrop-filter:blur(8px);font-size:13px}
 #rating .elo{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 #rating .elo b{font:700 34px/1 var(--f-display);color:var(--pitch);font-variant-numeric:tabular-nums}
@@ -262,10 +262,12 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
     <button class="btn" id="bPlayHalf" disabled title="Half way between your take and spotless">▶ halfway</button>
     <button class="btn" id="bPlaySpot" disabled title="Every note tuned, steadied and started cleanly">▶ spotless</button>
     <button class="btn" id="bWarm" title="A short routine for what your recent takes need most">☀ warm-up</button>
+    <button class="btn" id="bProf" title="Your range, voice type and a key for any song, from your takes">♪ voice profile</button>
     <select id="speed" aria-label="Playback speed" title="Slow down without changing pitch"><option value="1">1×</option><option value="0.75">0.75×</option><option value="0.5">0.5×</option></select>
     <span id="takeInfo">Sing (or play any source) and record up to 60 s. Then play it back: the coach shows the exercise just before each spot that can improve.</span>
   </div>
   <section id="warmup" hidden aria-live="polite"></section>
+  <section id="profile" hidden aria-live="polite"></section>
   <div id="takebar" hidden title="Click to play from here"><b id="playhead"></b></div>
   <div id="takeKey" hidden>line: how well you sang over the last 10 s (dashes: median trained singer) · notes: <b style="background:var(--ok)">on</b> <b style="background:var(--warn)">close</b> <b style="background:var(--bad)">off</b> · ★ best notes · red: spot the coach works on · click a note or spot to hear it A/B with spotless</div>
   <section id="rating" hidden aria-live="polite"></section>
@@ -916,7 +918,7 @@ function takeAspects(st){const fr=st.rec.frames,sn=st.rec.snaps,notes=[],res=[];
   const dm=dp.length?dp.reduce((t,x)=>t+x,0)/dp.length:0,dsd=dp.length>1?Math.sqrt(dp.reduce((t,x)=>t+(x-dm)**2,0)/(dp.length-1)):0;
   const slide={n:dp.length,of:ons,depth:dm,sd:dsd,style:dp.length>=4&&dp.length/ons>=2/3&&dsd<=0.2*dm};
   const meds=notes.map(n=>n.med).sort((a,b)=>a-b);
-  return {slide,perf:notePerf(notes,off,slide.style?[]:st.rec.events),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,tone:hn?hs/hn:0,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,ok:notes.length>=6&&sung>=4};}
+  return {slide,perf:notePerf(notes,off,slide.style?[]:st.rec.events),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,tone:hn?hs/hn:0,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,mn:meds.length>4?Math.min(...meds):0,mx:meds.length>4?Math.max(...meds):0,ok:notes.length>=6&&sung>=4};}
 // Per held note, for the timeline: cents off the take's grid, wobble inside the note, and whether it
 // was scooped into, folded into a 0..1 score weighted 60/25/15. The median trained singer (14 ¢, 3 ¢
 // wobble, no scoop) scores about 0.8; 25 ¢ off scores about 0.55.
@@ -957,7 +959,7 @@ const HIST_KEY='helix.takes.v1',HIST_MAX=500,HIST_WIN=5;
 const PROG=[{k:'score',name:'overall',unit:'note score',lower:false,dec:2},...ASPECTS];
 function loadHist(){try{const h=JSON.parse(localStorage.getItem(HIST_KEY)||'[]');return Array.isArray(h)?h:[];}catch(e){return [];}}
 function saveTake(a){const P=a.perf;let s=0,w=0;for(const n of P){const d=n.t1-n.t0;s+=n.q*d;w+=d;}
-  const r={d:Date.now(),sung:+a.sung.toFixed(1),score:w?+(s/w).toFixed(3):0};for(const x of ASPECTS)r[x.k]=+a[x.k].toFixed(3);if(a.hi>a.lo){r.lo=+(a.lo+a.off).toFixed(2);r.hi=+(a.hi+a.off).toFixed(2);}
+  const r={d:Date.now(),sung:+a.sung.toFixed(1),score:w?+(s/w).toFixed(3):0};for(const x of ASPECTS)r[x.k]=+a[x.k].toFixed(3);if(a.hi>a.lo){r.lo=+(a.lo+a.off).toFixed(2);r.hi=+(a.hi+a.off).toFixed(2);r.mn=+(a.mn+a.off).toFixed(2);r.mx=+(a.mx+a.off).toFixed(2);}
   const h=loadHist();h.push(r);try{localStorage.setItem(HIST_KEY,JSON.stringify(h.slice(-HIST_MAX)));}catch(e){}return h;}
 function slide(v,i){const w=v.slice(Math.max(0,i-HIST_WIN+1),i+1),n=w.length,m=w.reduce((t,x)=>t+x,0)/n;
   const sd=n>1?Math.sqrt(w.reduce((t,x)=>t+(x-m)**2,0)/(n-1)):null;return {m,ci:sd===null?null:1.96*sd/Math.sqrt(n),n};}
@@ -1013,6 +1015,36 @@ function renderWarm(){const W=WARM.plan,el=$('warmup');if(!W){el.hidden=true;ret
   if(!last)$('wNext').onclick=()=>{WARM.i++;renderWarm();$('wTone').onclick();};
   $('wDone').onclick=()=>{WARM.plan=null;clearInterval(WARM.timer);if(WARM.osc)try{WARM.osc.stop();}catch(e){}renderWarm();};}
 $('bWarm').onclick=()=>{WARM.plan=planWarmup(loadHist());WARM.i=0;renderWarm();$('wTone').onclick();$('warmup').scrollIntoView({block:'nearest'});};
+// Voice profile from the takes kept on this device. Comfortable range: median over takes of each take's
+// 10th and 90th percentile note (± the spread between takes, 1.96 SE); full range: lowest and highest held
+// note in any take. Voice type is a guess from the comfortable range's centre alone (typical tessitura
+// centres after McKinney 1994, The Diagnosis and Correction of Vocal Faults); timbre and register breaks
+// also decide it. Key for a song: shift the melody's lowest-highest span so its centre sits on the
+// comfortable centre, then say whether it fits.
+const VTYPE=[['bass',48],['baritone',52],['tenor',57],['alto',62],['mezzo-soprano',65],['soprano',69]];
+const KEYS=['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B'];
+function parseNote(t){const m=/^\s*([A-Ga-g])\s*([#b♯♭]?)\s*(-?\d)\s*$/.exec(t||'');if(!m)return null;
+  return 12*(+m[3]+1)+{C:0,D:2,E:4,F:5,G:7,A:9,B:11}[m[1].toUpperCase()]+(m[2]==='#'||m[2]==='♯'?1:m[2]?-1:0);}
+function voiceProfile(h){const r=h.filter(x=>x.hi>x.lo);if(!r.length)return null;const med=v=>{const s=v.slice().sort((a,b)=>a-b),n=s.length;return n%2?s[n>>1]:(s[n/2-1]+s[n/2])/2;};
+  const ci=v=>{if(v.length<2)return null;const m=v.reduce((a,b)=>a+b,0)/v.length;return 1.96*Math.sqrt(v.reduce((a,b)=>a+(b-m)**2,0)/(v.length-1)/v.length);};
+  const L=r.map(x=>x.lo),H=r.map(x=>x.hi),F=r.filter(x=>Number.isFinite(x.mn));
+  const P={n:r.length,lo:med(L),hi:med(H),loCi:ci(L),hiCi:ci(H),mn:F.length?Math.min(...F.map(x=>x.mn)):Math.min(...L),mx:F.length?Math.max(...F.map(x=>x.mx)):Math.max(...H)};
+  P.mid=(P.lo+P.hi)/2;P.type=VTYPE.slice().sort((a,b)=>Math.abs(a[1]-P.mid)-Math.abs(b[1]-P.mid))[0][0];return P;}
+function suggestKey(P,lo,hi,key){if(lo===null||hi===null||hi<lo)return null;const sh=Math.round(P.mid-(lo+hi)/2),a=lo+sh,b=hi+sh;
+  const fit=a>=Math.round(P.lo)&&b<=Math.round(P.hi)?'inside your comfortable range':a>=Math.round(P.mn)&&b<=Math.round(P.mx)?'inside your full range, past the comfortable part':'wider than any range you have sung yet: expect a stretch at '+(a<P.mn?'the bottom':'the top');
+  return {sh,a,b,fit,key:key===null?null:KEYS[((key+sh)%12+12)%12]};}
+function renderProfile(){const el=$('profile'),P=voiceProfile(loadHist());el.hidden=false;
+  if(!P){el.innerHTML='<h3>Voice profile</h3><p>No takes with held notes on this device yet. Record or load a take and your range shows here.</p>';return;}
+  const W=600,x0=Math.floor(P.mn)-2,x1=Math.ceil(P.mx)+2,X=m=>((m-x0)/(x1-x0)*W).toFixed(1),pm=v=>v===null?'':` ± ${v.toFixed(1)}`;
+  let svg=`<svg viewBox="0 0 ${W} 46" preserveAspectRatio="none" role="img" aria-label="Full range ${nn(Math.round(P.mn))} to ${nn(Math.round(P.mx))}, comfortable ${nn(Math.round(P.lo))} to ${nn(Math.round(P.hi))}"><rect class="full" x="${X(P.mn)}" y="10" width="${X(P.mx)-X(P.mn)}" height="16" rx="3"/><rect class="comf" x="${X(P.lo)}" y="13" width="${X(P.hi)-X(P.lo)}" height="10" rx="2"/>`;
+  for(let m=Math.ceil(x0);m<=x1;m++)if(m%12===0)svg+=`<text x="${X(m)}" y="40">${nn(m)}</text>`;svg+='</svg>';
+  el.innerHTML=`<h3>Voice profile · from ${P.n} take${P.n>1?'s':''} on this device</h3>${svg}`+
+   `<p>Comfortable range <b>${nn(Math.round(P.lo))}–${nn(Math.round(P.hi))}</b> (where most of your notes sit: ${P.lo.toFixed(1)}${pm(P.loCi)} to ${P.hi.toFixed(1)}${pm(P.hiCi)} semitones on MIDI). Full range sung so far <b>${nn(Math.round(P.mn))}–${nn(Math.round(P.mx))}</b> (${Math.round(P.mx-P.mn)} semitones). Range centre fits a <b>${P.type}</b>: a guess from range alone, not timbre or register breaks.${P.n<3?' Sing a few more takes for a firmer range.':''}</p>`+
+   `<p><b>Key for a song</b>: type the melody's lowest and highest note in the key you know it in (e.g. G3, D5).</p><div class="row"><label>lowest <input id="pLo" value="G3"></label><label>highest <input id="pHi" value="D5"></label><label>key <input id="pKey" placeholder="e.g. G"></label><button class="btn" id="pGo">suggest key</button></div><p id="pOut"></p><p class="fine">Kept only in this browser. Use the notes the voice sings, not the backing.</p>`;
+  const go=()=>{const lo=parseNote($('pLo').value),hi=parseNote($('pHi').value),k=$('pKey').value.trim(),ki=k?KEYS.findIndex(q=>q.toLowerCase()===k.toLowerCase().replace('♯','#').replace('♭','b').replace(/^(.)db$/,'$1#')):-1;
+    const S=suggestKey(P,lo,hi,ki>=0?ki:null);$('pOut').innerHTML=S?`Move it <b>${S.sh===0?'nowhere: it already suits you':S.sh>0?`up ${S.sh} semitone${S.sh>1?'s':''}`:`down ${-S.sh} semitone${S.sh<-1?'s':''}`}</b>${S.key?` (to the key of <b>${S.key}</b>)`:''}: the melody then runs ${nn(S.a)}–${nn(S.b)}, ${S.fit}.`:'Type notes like G3 or Bb4, lowest first.';};
+  $('pGo').onclick=go;go();}
+$('bProf').onclick=()=>{const el=$('profile');if(!el.hidden){el.hidden=true;return;}renderProfile();el.scrollIntoView({block:'nearest'});};
 function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;}ratingEl.hidden=false;const R=TAKE.rating;
   const fmt=(x,v)=>v.toFixed(x.dec);let h='';
   if(!RATING_ON)h+=`<div class="elo"><span>Your take over ${a.sung.toFixed(0)} s of singing</span></div>`;
