@@ -2,6 +2,19 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-25 · guided range finder
+
+Built: a range finder in the ♪ voice profile: three mic steps (slide to the
+lowest note and hold, slide to the highest and hold, a siren on “ng”), each
+tracked like a take; lowest/highest = extreme medians of 0.3 s voiced windows
+within 2 st; breaks from the siren. Kept apart from takes (progress untouched);
+the profile works from range finds alone. A singer can map their range in a
+minute without waiting for takes. Measured (`check/range-bench.mjs`, page code,
+30 synthetic voices with vibrato, breath, fry tail): lowest error median 0.11 st
+(p90 0.16), highest 0.19 st (p90 1.36: tops over 1100 Hz are cut by the
+tracker), 95 % within 1 st, breaks 60/60. iOS risk: mic opened from the tap as
+the Mic button does. Next: rating ground truth or compare takes.
+
 ## 2026-10-25 · register breaks on glides
 
 Built: a break detector (two 200 ms line fits either side of each moment,

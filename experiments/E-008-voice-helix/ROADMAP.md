@@ -23,19 +23,18 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Phone: the take comes first after a scan, progress lines full width.
 - Take pitch: YIN candidates + Viterbi (0.1 % gross error, synthetic).
 - Slide style told from unwanted scoops (consistent depth on most notes).
-- Voice profile: comfortable and full range, voice-type guess, key for a song, register breaks on glides.
+- Voice profile: comfortable and full range, voice-type guess, key for a song, register breaks on glides; a guided range finder (lowest, highest, siren) in about a minute.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
 ## Next
 
-1. **Guided range finder**: a siren and a slide-to-lowest / slide-to-highest routine that fills the
-   profile in one minute, instead of waiting for takes.
-2. **Rating with ground truth**: human-judged takes across styles from openly
+1. **Rating with ground truth**: human-judged takes across styles from openly
    licensed sources only, then a rating that ranks them correctly (see
    `rating/README.md`).
-3. **Real-voice pitch truth**: an openly licensed singing set with f0
+2. **Real-voice pitch truth**: an openly licensed singing set with f0
    annotations (licence to be verified before use) to
    run `check/pitch-bench.mjs` style on real voices.
-4. **On-device vocal separation** (ONNX in WASM) so songs with music load
+3. **On-device vocal separation** (ONNX in WASM) so songs with music load
     without Demucs on a desktop.
+4. **Compare takes**: today's take next to last week's, the same phrase, A/B.
