@@ -28,6 +28,10 @@ Checked on a separated live vocal by an Idol finalist (pop, "Girl on Fire",
   Her intonation (16 ¢) and steadiness (2.0 ¢) are on a par with the trained
   pool; she loses on slides into notes (0.27 per note), which are a pop style,
   and the faster line costs some intonation.
+- The clip's last 140 s were applause, the jury and an interview, not
+  singing. With those cut (the page now cuts talk and noise itself): 1861, 110 s
+  of singing, still below the amateur take. The talk was not what held her
+  down; the slides into notes are (0.36 per note on the sung part).
 
 So the aspects describe a take but do not yet rank singers across styles. The
 summary without the rating sets each aspect against the trained median and

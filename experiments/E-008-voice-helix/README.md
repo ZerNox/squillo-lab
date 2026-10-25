@@ -42,7 +42,10 @@ with the singer's last 30 s. The published pair is the first verse of
 Takes and the coach: "record take" keeps up to 60 s of whatever feeds the
 analysis (mic, a demo); "Recording" loads a file of up to 6 min as the take.
 The take is cut where the singing stops (silence before and after, pauses
-over 2 s shortened to 0.8 s), then scanned offline: spots where a flaw held
+over 2 s shortened to 0.8 s) and where it is not singing (talk, applause, a
+jury: 5 s windows whose voiced stretches are short syllables, not held
+notes; leading, trailing and inner stretches of 15 s or more are cut), then
+scanned offline: spots where a flaw held
 (scoops one by one, a scoop being a continuous slide up, not a short note),
 marked on a bar, and a summary over the whole take (intonation on the take's
 own semitone grid, steadiness inside held notes, slides into notes, tone
