@@ -148,5 +148,7 @@ without errors, the public-domain reference clip loads as the take, the
 timeline, summary and progress lines (over seven seeded earlier takes) appear, a tap on the timeline plays from there, a tap on a spot loops it A/B and
 "spotless" plays. After a push, `node check.mjs https://zernox.github.io/squillo-lab/
 --wait $(sha256sum ../page/index.html | cut -d' ' -f1)` waits for the deploy
-and checks the live site. Screenshots land in `--out` (default
+and checks the live site. Add `--headed` to watch it in maximized windows on this machine's
+display (with sound; `--slow 300` slows each step, `--hold 10` keeps each window
+open 10 s at the end). Headless runs are muted. Screenshots land in `--out` (default
 `/tmp/voice-helix-check`).
