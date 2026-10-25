@@ -164,6 +164,13 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
   #coach{position:relative;left:auto;right:auto;padding-top:10px;align-items:stretch;max-height:none;overflow:visible}
   #coach>*{max-width:100%;min-width:0}
   #advice.coach-on #coachVid,#advice.coach-on #fig{width:120px;height:160px}
+  /* Phone with a take: the take (play row, timeline, summary, progress) comes first, the live
+     readouts after it, and the 3D gap shrinks, so the singer reads the take without scrolling past the helix. */
+  body.has-take #rail{margin-top:22vh}
+  body.has-take #takeRow{order:-4} body.has-take #takebar{order:-3} body.has-take #takeKey{order:-2} body.has-take #rating{order:-1}
+  #rating table.prog tr{display:grid;grid-template-columns:auto 1fr;column-gap:8px;align-items:center;padding:3px 0}
+  #rating table.prog td:nth-child(1){grid-row:1} #rating table.prog td:nth-child(3){grid-row:1;text-align:right}
+  #rating table.prog td:nth-child(2){grid-column:1/-1;width:auto;min-width:0}
 }
 @media (prefers-reduced-motion:reduce){.flaw.on i{box-shadow:none}}
 </style>
@@ -834,7 +841,8 @@ async function setTake(buf){TAKE.busy=true;
   takeInfo.textContent=`Scanning your ${buf.duration.toFixed(1)} s take…`;
   const tr=await prepTake(buf),sc=tr.sc;buf=tr.buf;TAKE.buf=buf;TAKE.segs=sc.segs;TAKE.aspects=sc.aspects;
   TAKE.spot=improveTake(buf,sc.frames,1,sc.aspects.off);TAKE.half=improveTake(buf,sc.frames,0.5,sc.aspects.off);
-  TAKE.rating=ANCHORS&&sc.aspects.ok?rateAspects(sc.aspects,ANCHORS):null;if(sc.aspects.ok)saveTake(sc.aspects);TAKE.busy=false;renderTakebar();renderRating();
+  TAKE.rating=ANCHORS&&sc.aspects.ok?rateAspects(sc.aspects,ANCHORS):null;if(sc.aspects.ok)saveTake(sc.aspects);TAKE.busy=false;renderTakebar();renderRating();document.body.classList.add('has-take');
+  if(matchMedia('(max-width:720px)').matches)$('takeRow').scrollIntoView({block:'start',behavior:'smooth'});
   bPlayTake.disabled=bPlayHalf.disabled=bPlaySpot.disabled=false;
   const names=[...new Set(TAKE.segs.map(g=>FLAWS[g.i].name))];
   takeInfo.textContent=(tr.cut>0.5||tr.talk>0?`Cut ${tr.cut>0.5?`${tr.cut.toFixed(1)} s of silence`:''}${tr.cut>0.5&&tr.talk>0?' and ':''}${tr.talk>0?`${tr.talk.toFixed(0)} s of talk or noise`:''}: only the singing is scored. `:'')+(TAKE.segs.length?`${TAKE.segs.length} spot${TAKE.segs.length>1?'s':''} to work on (${names.join(', ')}), marked on the bar. Play your take, halfway or spotless.`:`Clean take: no flaw held long enough to coach. ${(sc.voiced*100).toFixed(0)} % of it was voiced.`);}
