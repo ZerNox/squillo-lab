@@ -24,6 +24,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Take pitch: YIN candidates + Viterbi (0.1 % gross error, synthetic).
 - Slide style told from unwanted scoops (consistent depth on most notes).
 - Voice profile: comfortable and full range, voice-type guess, key for a song, register breaks on glides; a guided range finder (lowest, highest, siren) in about a minute.
+- Compare: the last 10 takes' audio kept on the device; play an earlier take, then yours.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
@@ -37,4 +38,4 @@ run-sized increment; reorder freely and say why in `LOG.md`.
    run `check/pitch-bench.mjs` style on real voices.
 3. **On-device vocal separation** (ONNX in WASM) so songs with music load
     without Demucs on a desktop.
-4. **Compare takes**: today's take next to last week's, the same phrase, A/B.
+4. **Compare the same phrase**: align today's take with an earlier one and A/B phrase by phrase.

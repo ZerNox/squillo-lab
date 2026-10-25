@@ -2,6 +2,15 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-25 · compare with an earlier take
+
+Built: each scored take's audio is kept in IndexedDB (22.05 kHz 16-bit, last
+10, never sent); a picker with date and note score and "▶ earlier take" plays
+one, then ▶ your take gives today's. A singer can hear last week next to
+today. Numbers: none (storage and playback). check.mjs: a stored take plays in
+3 browsers. iOS risk: Safari may evict IndexedDB after 7 days unused (picker
+then just shrinks). Next: align the same phrase across takes.
+
 ## 2026-10-25 · guided range finder
 
 Built: a range finder in the ♪ voice profile: three mic steps (slide to the
