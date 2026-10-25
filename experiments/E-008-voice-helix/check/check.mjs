@@ -86,6 +86,9 @@ async function run([name, launch, ctxOpt, file]) {
     if (touch) { await tap(p.getByRole('button', { name: 'Recording' })); await p.waitForTimeout(300); await p.setInputFiles('#file', file); }
     else { const [fc] = await Promise.all([p.waitForEvent('filechooser'), p.getByRole('button', { name: 'Recording' }).click()]); await fc.setFiles(file); }
     await p.waitForFunction(() => !document.getElementById('bPlaySpot').disabled, null, { timeout: 120000 });
+    // Phone: the scanned take comes into view by itself (play row and timeline on screen, no scrolling by hand).
+    await p.waitForTimeout(900); const inView = await p.evaluate(() => { const r = document.getElementById('takebar').getBoundingClientRect(); return r.top >= 0 && r.bottom <= innerHeight; });
+    await p.screenshot({ path: join(out, `${name}-take-first.png`) });
     const bar = p.locator('#takebar'); await bar.scrollIntoViewIfNeeded(); await bar.screenshot({ path: join(out, `${name}-timeline.png`) });
     await p.screenshot({ path: join(out, `${name}-take.png`) });
     const bb = await bar.boundingBox(); const pos = { position: { x: bb.width * 0.5, y: 10 } };
@@ -112,8 +115,8 @@ async function run([name, launch, ctxOpt, file]) {
     const pitch = await p.evaluate(async () => { const sr = 48000, n = sr * 2, b = mkBuf(n, sr), x = b.getChannelData(0); let s = 5;
       for (let i = 0; i < n; i++) { s = (s * 16807) % 2147483647; const ph = 2 * Math.PI * 600 * i / sr; x[i] = 0.2 * (Math.sin(ph) + 0.5 * Math.sin(2 * ph) + 0.3 * Math.sin(3 * ph)) + 0.25 * (s / 2147483647 - 0.5); }
       const fs = await trackTake(b); viterbiF0(fs); const v = fs.filter(m => m.t > 0.2 && m.voiced); return v.filter(m => Math.abs(1200 * Math.log2(m.f0 / 600)) < 50).length / Math.max(1, fs.filter(m => m.t > 0.2).length); });
-    r.pitch = +pitch.toFixed(3);
-    const ok = r.pitch > 0.75 && !errs.length && r.ctx === 'running' && r.playing === 'spot' && r.notes > 10 && r.slide === false && ab && slow.cents < 3 && r.k === 0.5 && Math.abs(slow.ratio - 2) < 0.01 && r.summary && r.progress === 5 && r.takes === 8 && seek > 0.45 && seek < 0.65;
+    r.pitch = +pitch.toFixed(3); r.inView = inView;
+    const ok = (!touch || r.inView) && r.pitch > 0.75 && !errs.length && r.ctx === 'running' && r.playing === 'spot' && r.notes > 10 && r.slide === false && ab && slow.cents < 3 && r.k === 0.5 && Math.abs(slow.ratio - 2) < 0.01 && r.summary && r.progress === 5 && r.takes === 8 && seek > 0.45 && seek < 0.65;
     return { browser: name, ok, seek: +seek.toFixed(2), ab, slow, ...r, errs };
   } catch (e) { return { browser: name, ok: false, errs: [...errs, String(e).split('\n')[0]] }; }
   finally { if (b) { if (hold) await new Promise(r => setTimeout(r, hold * 1000)); await b.close(); open.delete(b); } }

@@ -63,7 +63,8 @@ marked on a bar, and a summary over the whole take (intonation on the take's
 own semitone grid, steadiness inside held notes, slides into notes, tone
 clarity), each set against the median conservatory-trained singer, with what
 went well (a slide style, two thirds or more of the notes slid into by the
-same depth within 20 %, is praised as a style and not marked down) and one or two things to work on. Two resyntheses by
+same depth within 20 %, is praised as a style and not marked down) and one or two things to work on. On a phone the scanned take comes first (play row, bar,
+summary, progress) and the page scrolls to it. Two resyntheses by
 pitch-synchronous overlap-add, tone, words and timing untouched: "spotless"
 (250 ms running median inside each voiced run, the start of each note held
 at its settled pitch, snapped to the grid) and "halfway" (half way from the

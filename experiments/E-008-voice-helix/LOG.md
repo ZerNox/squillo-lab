@@ -2,6 +2,16 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-25 · take first on a phone
+
+Built: at phone width a scanned take moves its play row, timeline, summary
+and progress above the live readouts, the 3D gap shrinks from 42 to 22 % of
+the screen, the page scrolls to the take, and progress lines span the full
+width with the value above. A singer on an iPhone reads their take without
+scrolling past the helix. check.mjs asserts the timeline is on screen after
+the scan (WebKit iPhone, touch). Numbers: none new. iOS risk: smooth scroll
+only. Next: warm-up from the flaws seen most.
+
 ## 2026-10-25 · pitch tracker for takes (pYIN-style Viterbi)
 
 Built: takes are tracked with YIN candidates per frame and a Viterbi path over
