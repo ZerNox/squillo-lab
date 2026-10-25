@@ -2,6 +2,17 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-25 · voice profile and a key for any song
+
+Built: ♪ voice profile: comfortable range (median of each take's 10th-90th
+percentile note, ± between takes), full range sung so far, a voice-type guess
+from the range centre (said to be a guess), and a key for any song from its
+lowest/highest note and key. Each take now also keeps its lowest and highest
+held note. A singer can now see their range and pick a key that suits them.
+Numbers: none measured (bookkeeping on the take's notes; voice type not
+validated). check.mjs: seeded takes read E3-D4, tenor, G3-D5 in G → C (3
+browsers). iOS risk: none (no audio). Next: register transitions.
+
 ## 2026-10-25 · warm-up from your recent takes
 
 Built: a ☀ warm-up button: a 4-5 step, about 4 min routine (lip trill/straw,
