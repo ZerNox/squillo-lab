@@ -797,7 +797,7 @@ document.addEventListener('click',primeAudio,true);
 const TAKE={rec:null,recN:0,buf:null,half:null,spot:null,segs:[],busy:false,aspects:null,rating:null},MAXTAKE=60,MAXFILE=360,LEAD=1.5;
 const bRec=$('bRec'),bPlayTake=$('bPlayTake'),bPlayHalf=$('bPlayHalf'),bPlaySpot=$('bPlaySpot'),takeInfo=$('takeInfo'),takebar=$('takebar'),playhead=$('playhead'),ratingEl=$('rating');
 const mkBuf=(n,sr)=>new AudioBuffer({length:Math.max(1,n),numberOfChannels:1,sampleRate:sr});
-function takeTap(b){if(!TAKE.rec)return;TAKE.rec.push(b.slice());TAKE.recN+=b.length;if(TAKE.recN>=MAXTAKE*AU.sr)setTimeout(finishTake,0);}
+function takeTap(b){rfTap(b);if(!TAKE.rec)return;TAKE.rec.push(b.slice());TAKE.recN+=b.length;if(TAKE.recN>=MAXTAKE*AU.sr)setTimeout(finishTake,0);}
 bRec.onclick=()=>{if(TAKE.rec){finishTake();return;}if(TAKE.busy)return;
   if(!AU.kind||AU.kind==='take'){takeInfo.textContent='Pick a source first: Mic to sing, or a demo or recording to try it out.';return;}
   TAKE.rec=[];TAKE.recN=0;bRec.textContent='■ stop take';bRec.setAttribute('aria-pressed','true');takeInfo.textContent='Recording… press stop when you are done (60 s at most).';};
@@ -1039,26 +1039,57 @@ const VTYPE=[['bass',48],['baritone',52],['tenor',57],['alto',62],['mezzo-sopran
 const KEYS=['C','C#','D','Eb','E','F','F#','G','Ab','A','Bb','B'];
 function parseNote(t){const m=/^\s*([A-Ga-g])\s*([#b♯♭]?)\s*(-?\d)\s*$/.exec(t||'');if(!m)return null;
   return 12*(+m[3]+1)+{C:0,D:2,E:4,F:5,G:7,A:9,B:11}[m[1].toUpperCase()]+(m[2]==='#'||m[2]==='♯'?1:m[2]?-1:0);}
-function voiceProfile(h){const r=h.filter(x=>x.hi>x.lo);if(!r.length)return null;const med=v=>{const s=v.slice().sort((a,b)=>a-b),n=s.length;return n%2?s[n>>1]:(s[n/2-1]+s[n/2])/2;};
+function voiceProfile(h,rg=loadRange()){const r=h.filter(x=>x.hi>x.lo);if(!r.length&&!rg.length)return null;const med=v=>{const s=v.slice().sort((a,b)=>a-b),n=s.length;return n%2?s[n>>1]:(s[n/2-1]+s[n/2])/2;};
   const ci=v=>{if(v.length<2)return null;const m=v.reduce((a,b)=>a+b,0)/v.length;return 1.96*Math.sqrt(v.reduce((a,b)=>a+(b-m)**2,0)/(v.length-1)/v.length);};
   const L=r.map(x=>x.lo),H=r.map(x=>x.hi),F=r.filter(x=>Number.isFinite(x.mn));
-  const P={n:r.length,lo:med(L),hi:med(H),loCi:ci(L),hiCi:ci(H),mn:F.length?Math.min(...F.map(x=>x.mn)):Math.min(...L),mx:F.length?Math.max(...F.map(x=>x.mx)):Math.max(...H)};
-  const BR=h.flatMap(x=>x.br||[]);P.br=BR.length?{m:med(BR),n:BR.length,lo:Math.min(...BR),hi:Math.max(...BR)}:null;P.mid=(P.lo+P.hi)/2;P.type=VTYPE.slice().sort((a,b)=>Math.abs(a[1]-P.mid)-Math.abs(b[1]-P.mid))[0][0];return P;}
+  const P={n:r.length,lo:r.length?med(L):0,hi:med(H),loCi:ci(L),hiCi:ci(H),mn:F.length?Math.min(...F.map(x=>x.mn)):Math.min(...L),mx:F.length?Math.max(...F.map(x=>x.mx)):Math.max(...H)};
+  if(!r.length){P.n=0;P.lo=P.mn=Math.min(...rg.map(x=>x.mn));P.hi=P.mx=Math.max(...rg.map(x=>x.mx));P.loCi=P.hiCi=null;}
+  if(rg.length){P.rf=rg.length;P.mn=Math.min(P.mn,...rg.map(x=>x.mn));P.mx=Math.max(P.mx,...rg.map(x=>x.mx));}
+  const BR=h.concat(rg).flatMap(x=>x.br||[]);P.br=BR.length?{m:med(BR),n:BR.length,lo:Math.min(...BR),hi:Math.max(...BR)}:null;P.mid=(P.lo+P.hi)/2;P.type=VTYPE.slice().sort((a,b)=>Math.abs(a[1]-P.mid)-Math.abs(b[1]-P.mid))[0][0];return P;}
 function suggestKey(P,lo,hi,key){if(lo===null||hi===null||hi<lo)return null;const sh=Math.round(P.mid-(lo+hi)/2),a=lo+sh,b=hi+sh;
   const fit=a>=Math.round(P.lo)&&b<=Math.round(P.hi)?'inside your comfortable range':a>=Math.round(P.mn)&&b<=Math.round(P.mx)?'inside your full range, past the comfortable part':'wider than any range you have sung yet: expect a stretch at '+(a<P.mn?'the bottom':'the top');
   const cross=P.br&&a<P.br.m&&b>P.br.m;return {sh,a,b,cross,fit,key:key===null?null:KEYS[((key+sh)%12+12)%12]};}
-function renderProfile(){const el=$('profile'),P=voiceProfile(loadHist());el.hidden=false;
-  if(!P){el.innerHTML='<h3>Voice profile</h3><p>No takes with held notes on this device yet. Record or load a take and your range shows here.</p>';return;}
+function renderProfile(msg){const el=$('profile'),P=voiceProfile(loadHist());el.hidden=false;const rf=`<h3>Range finder</h3><div id="rfBox"></div>`;
+  if(!P){el.innerHTML='<h3>Voice profile</h3><p>No takes with held notes on this device yet. Run the range finder below, or record or load a take, and your range shows here.</p>'+rf;RF.step=-1;renderRF(msg);return;}
   const W=600,x0=Math.floor(P.mn)-2,x1=Math.ceil(P.mx)+2,X=m=>((m-x0)/(x1-x0)*W).toFixed(1),pm=v=>v===null?'':` ± ${v.toFixed(1)}`;
   let svg=`<svg viewBox="0 0 ${W} 46" preserveAspectRatio="none" role="img" aria-label="Full range ${nn(Math.round(P.mn))} to ${nn(Math.round(P.mx))}, comfortable ${nn(Math.round(P.lo))} to ${nn(Math.round(P.hi))}"><rect class="full" x="${X(P.mn)}" y="10" width="${X(P.mx)-X(P.mn)}" height="16" rx="3"/><rect class="comf" x="${X(P.lo)}" y="13" width="${X(P.hi)-X(P.lo)}" height="10" rx="2"/>`;
   for(let m=Math.ceil(x0);m<=x1;m++)if(m%12===0)svg+=`<text x="${X(m)}" y="40">${nn(m)}</text>`;if(P.br)svg+=`<line x1="${X(P.br.m)}" x2="${X(P.br.m)}" y1="6" y2="30" stroke="var(--warn)" stroke-width="2"/><text x="${X(P.br.m)}" y="6">break</text>`;svg+='</svg>';
-  el.innerHTML=`<h3>Voice profile · from ${P.n} take${P.n>1?'s':''} on this device</h3>${svg}`+
-   `<p>Comfortable range <b>${nn(Math.round(P.lo))}–${nn(Math.round(P.hi))}</b> (where most of your notes sit: ${P.lo.toFixed(1)}${pm(P.loCi)} to ${P.hi.toFixed(1)}${pm(P.hiCi)} semitones on MIDI). Full range sung so far <b>${nn(Math.round(P.mn))}–${nn(Math.round(P.mx))}</b> (${Math.round(P.mx-P.mn)} semitones). Range centre fits a <b>${P.type}</b>: a guess from range alone, not timbre or register breaks.${P.n<3?' Sing a few more takes for a firmer range.':''}</p><p>${P.br?`Register break${P.br.n>1?'s':''} heard on glides: <b>around ${nn(Math.round(P.br.m))}</b> (${P.br.n} time${P.br.n>1?'s':''}${Math.round(P.br.lo)<Math.round(P.br.hi)?`, ${nn(Math.round(P.br.lo))}–${nn(Math.round(P.br.hi))}`:''}). Sirens on “ng” across it smooth it out (Titze 2006).`:'No register break heard yet. To find yours, sing a slow siren on “ng” from low to high and back as a take.'}</p>`+
-   `<p><b>Key for a song</b>: type the melody's lowest and highest note in the key you know it in (e.g. G3, D5).</p><div class="row"><label>lowest <input id="pLo" value="G3"></label><label>highest <input id="pHi" value="D5"></label><label>key <input id="pKey" placeholder="e.g. G"></label><button class="btn" id="pGo">suggest key</button></div><p id="pOut"></p><p class="fine">Kept only in this browser. Use the notes the voice sings, not the backing.</p>`;
+  el.innerHTML=`<h3>Voice profile · from ${P.n?`${P.n} take${P.n>1?'s':''}`:''}${P.n&&P.rf?' and ':''}${P.rf?`${P.rf} range find${P.rf>1?'s':''}`:''} on this device</h3>${msg?`<p>${msg}</p>`:''}${svg}`+
+   `<p>${P.n?`Comfortable range <b>${nn(Math.round(P.lo))}–${nn(Math.round(P.hi))}</b> (where most of your notes sit: ${P.lo.toFixed(1)}${pm(P.loCi)} to ${P.hi.toFixed(1)}${pm(P.hiCi)} semitones on MIDI).`:'Comfortable range: not known until you record a take with songs or scales; keys below use your full range.'} Full range sung so far <b>${nn(Math.round(P.mn))}–${nn(Math.round(P.mx))}</b> (${Math.round(P.mx-P.mn)} semitones). Range centre fits a <b>${P.type}</b>: a guess from range alone${P.n?'':' (your full range here)'}, not timbre or register breaks.${P.n<3?' Sing a few more takes for a firmer range.':''}</p><p>${P.br?`Register break${P.br.n>1?'s':''} heard on glides: <b>around ${nn(Math.round(P.br.m))}</b> (${P.br.n} time${P.br.n>1?'s':''}${Math.round(P.br.lo)<Math.round(P.br.hi)?`, ${nn(Math.round(P.br.lo))}–${nn(Math.round(P.br.hi))}`:''}). Sirens on “ng” across it smooth it out (Titze 2006).`:'No register break heard yet. To find yours, sing a slow siren on “ng” from low to high and back as a take.'}</p>`+
+   `<p><b>Key for a song</b>: type the melody's lowest and highest note in the key you know it in (e.g. G3, D5).</p><div class="row"><label>lowest <input id="pLo" value="G3"></label><label>highest <input id="pHi" value="D5"></label><label>key <input id="pKey" placeholder="e.g. G"></label><button class="btn" id="pGo">suggest key</button></div><p id="pOut"></p><p class="fine">Kept only in this browser. Use the notes the voice sings, not the backing.</p>`+rf;
   const go=()=>{const lo=parseNote($('pLo').value),hi=parseNote($('pHi').value),k=$('pKey').value.trim(),ki=k?KEYS.findIndex(q=>q.toLowerCase()===k.toLowerCase().replace('♯','#').replace('♭','b').replace(/^(.)db$/,'$1#')):-1;
     const S=suggestKey(P,lo,hi,ki>=0?ki:null);$('pOut').innerHTML=S?`Move it <b>${S.sh===0?'nowhere: it already suits you':S.sh>0?`up ${S.sh} semitone${S.sh>1?'s':''}`:`down ${-S.sh} semitone${S.sh<-1?'s':''}`}</b>${S.key?` (to the key of <b>${S.key}</b>)`:''}: the melody then runs ${nn(S.a)}–${nn(S.b)}, ${S.fit}${S.cross?`; it crosses your break around ${nn(Math.round(P.br.m))}`:''}.`:'Type notes like G3 or Bb4, lowest first.';};
-  $('pGo').onclick=go;go();}
+  $('pGo').onclick=go;go();renderRF();}
 $('bProf').onclick=()=>{const el=$('profile');if(!el.hidden){el.hidden=true;return;}renderProfile();el.scrollIntoView({block:'nearest'});};
+// Guided range finder: three short steps sung into the mic (slide down to the lowest note and hold it, slide up to
+// the highest and hold it, a siren low-high-low), each up to 20 s. Each step is tracked like a take (YIN + Viterbi);
+// the lowest and highest held notes are the extreme medians of 0.3 s voiced windows that stay within 2 st (a held
+// note with vibrato, not a passing frame); register breaks come from the siren. Kept on this device only, apart
+// from the takes, so progress lines are untouched. Measured on synthetic voices in check/range-bench.mjs.
+const RANGE_KEY='helix.range.v1',RF={step:-1,rec:null,res:[],timer:0},RF_MAX=20;
+const RF_STEPS=[{name:'Lowest note',txt:'Sing “ah” on a comfortable note, slide slowly down to the lowest note you can make, and hold it for a second. Vocal fry does not count: stop where the note still sounds.'},
+ {name:'Highest note',txt:'Sing “ah” on a comfortable note, slide slowly up to the highest note you can make, light falsetto or head voice is fine, and hold it for a second. Never push or strain.'},
+ {name:'Siren',txt:'On “ng” (as in sing), glide slowly from low to high and back down, twice. Where your voice flips is your register break.'}];
+function loadRange(){try{const h=JSON.parse(localStorage.getItem(RANGE_KEY)||'[]');return Array.isArray(h)?h:[];}catch(e){return [];}}
+function heldExtremes(fr){const v=fr.map(f=>f.voiced&&f.f0>0?69+12*Math.log2(f.f0/440):null);let mn=Infinity,mx=-Infinity;const W=15;
+  for(let i=0;i+W<=v.length;i++){const w=v.slice(i,i+W);if(w.some(q=>q===null))continue;const s=w.slice().sort((a,b)=>a-b);if(s[W-1]-s[0]>2)continue;const m=s[W>>1];if(m<mn)mn=m;if(m>mx)mx=m;}
+  return mn<=mx?{mn,mx}:null;}
+async function rangeAnalyse(bufs){const out={mn:null,mx:null,br:[]};
+  for(let k=0;k<bufs.length;k++){if(!bufs[k])continue;const fs=await trackTake(bufs[k]);viterbiF0(fs);const st=new Stats();for(const m of fs)ingest(st,m,'take');const fr=st.rec.frames,e=heldExtremes(fr);
+    if(e){if(k!==1&&(out.mn===null||e.mn<out.mn))out.mn=e.mn;if(k!==0&&(out.mx===null||e.mx>out.mx))out.mx=e.mx;}if(k===2)out.br=registerBreaks(fr).map(b=>b.m);}
+  if(out.mn===null||out.mx===null||out.mx<=out.mn)return null;const r={d:Date.now(),mn:+out.mn.toFixed(2),mx:+out.mx.toFixed(2)};if(out.br.length)r.br=out.br;
+  const h=loadRange();h.push(r);try{localStorage.setItem(RANGE_KEY,JSON.stringify(h.slice(-20)));}catch(e){}return r;}
+function rfTap(b){if(RF.rec){RF.rec.push(b.slice());if(RF.rec.reduce((a,c)=>a+c.length,0)>=RF_MAX*AU.sr)setTimeout(rfNext,0);}}
+function rfBuf(){const ch=RF.rec;RF.rec=null;const n=ch.reduce((a,c)=>a+c.length,0);if(n<AU.sr)return null;const b=mkBuf(n,AU.sr),x=b.getChannelData(0);let o=0;for(const c of ch){x.set(c,o);o+=c.length;}return b;}
+function renderRF(msg){const el=$('rfBox');if(!el)return;const S=RF_STEPS[RF.step];
+  el.innerHTML=RF.step<0?`<p>${msg||'Find your range in about a minute: three short steps into the microphone. Audio stays on this device.'}</p><div class="row"><button class="btn" id="rfGo">● start range finder</button></div>`:
+   `<p><b>Step ${RF.step+1} of 3 · ${S.name}</b>: ${S.txt}</p><div class="row"><button class="btn" id="rfNext">${RF.step<2?'next step ›':'done ✓'}</button><button class="btn" id="rfStop">cancel</button><span class="fine">${RF_MAX} s at most</span></div>`;
+  if($('rfGo'))$('rfGo').onclick=rfStart;if($('rfNext'))$('rfNext').onclick=rfNext;if($('rfStop'))$('rfStop').onclick=()=>{RF.rec=null;RF.step=-1;renderRF('Range finder cancelled.');};}
+function rfStart(){const go=()=>{RF.res=[];RF.step=0;RF.rec=[];renderRF();};if(AU.kind==='mic'){go();return;}
+  useMic().then(()=>{if(AU.kind==='mic')go();else renderRF('The microphone is needed for the range finder: '+statusEl.textContent);});}
+async function rfNext(){if(RF.step<0)return;RF.res[RF.step]=RF.rec?rfBuf():null;if(RF.step<2){RF.step++;RF.rec=[];renderRF();return;}
+  RF.step=-1;renderRF('Listening back to your three steps…');const r=await rangeAnalyse(RF.res);RF.res=[];
+  renderProfile(r?`Range finder: lowest held <b>${nn(Math.round(r.mn))}</b>, highest held <b>${nn(Math.round(r.mx))}</b>${r.br?`, break around <b>${r.br.map(m=>nn(Math.round(m))).join(', ')}</b>`:''}. Added to your profile.`:'No held low and high note found: sing louder or closer to the mic, hold each end for a second, and try again.');}
 function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;}ratingEl.hidden=false;const R=TAKE.rating;
   const fmt=(x,v)=>v.toFixed(x.dec);let h='';
   if(!RATING_ON)h+=`<div class="elo"><span>Your take over ${a.sung.toFixed(0)} s of singing</span></div>`;
