@@ -1,6 +1,6 @@
 // Checks the Voice Helix page in Chrome (desktop), Firefox (desktop) and WebKit at an iPhone 15's
 // size and touch: the page loads without errors, a public-domain reference clip loads as the take,
-// the take is scanned (performance timeline, summary, progress lines over seeded earlier takes), a tap on the timeline plays from there, and
+// the take is scanned (performance timeline, summary, progress lines over seeded earlier takes), a tap on the timeline plays from there, a tap on a spot loops it A/B with spotless, and
 // "spotless" plays. Screenshots go to the out directory; look at them.
 // Usage: node check.mjs <url> [--wait <sha256 of page/index.html>] [--only chrome|firefox|webkit-iphone] [--out dir]
 // --wait polls the URL until it serves that index.html (a deploy from main takes 1-3 min).
@@ -64,11 +64,13 @@ async function run([name, launch, ctxOpt, file]) {
     const bb = await bar.boundingBox(); const pos = { position: { x: bb.width * 0.5, y: 10 } };
     touch ? await bar.tap(pos) : await bar.click(pos); await p.waitForTimeout(1200);
     const seek = await p.evaluate(() => AU.play ? (AU.ctx.currentTime - AU.play.t0) / AU.play.dur : -1);
+    await tap(p.locator('#takebar i').first()); await p.waitForTimeout(800);
+    const ab = await p.evaluate(() => AU.kind === 'ab' && AU.source && AU.source.loop && AU.ctx.state === 'running');
     await tap(p.locator('#bPlaySpot')); await p.waitForTimeout(1200);
     const r = await p.evaluate(() => ({ ctx: AU.ctx && AU.ctx.state, playing: AU.play && AU.play.which, notes: TAKE.aspects.perf.length, spots: TAKE.segs.length, summary: !document.getElementById('rating').hidden, progress: document.querySelectorAll('#rating table.prog tr').length, takes: JSON.parse(localStorage.getItem('helix.takes.v1')).length }));
     await p.locator('table.prog').screenshot({ path: join(out, `${name}-progress.png`) });
-    const ok = !errs.length && r.ctx === 'running' && r.playing === 'spot' && r.notes > 10 && r.summary && r.progress === 5 && r.takes === 8 && seek > 0.45 && seek < 0.65;
-    return { browser: name, ok, seek: +seek.toFixed(2), ...r, errs };
+    const ok = !errs.length && r.ctx === 'running' && r.playing === 'spot' && r.notes > 10 && ab && r.summary && r.progress === 5 && r.takes === 8 && seek > 0.45 && seek < 0.65;
+    return { browser: name, ok, seek: +seek.toFixed(2), ab, ...r, errs };
   } catch (e) { return { browser: name, ok: false, errs: [...errs, String(e).split('\n')[0]] }; }
   finally { if (b) await b.close(); }
 }

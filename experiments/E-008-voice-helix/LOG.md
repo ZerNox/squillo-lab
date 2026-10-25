@@ -2,6 +2,14 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-25 · A/B at a spot
+
+Built: a click on any note or coach spot on the timeline loops your note,
+then the same moment spotless. A singer can now hear exactly what the fix
+sounds like, back to back. Checked in three browsers (loop running after a
+tap). iOS risk: none new (same context path as take playback). Next: slow
+down without changing pitch.
+
 ## 2026-10-25 · progress across takes
 
 Built: each scored take's summary is kept on the device; the take card ends
