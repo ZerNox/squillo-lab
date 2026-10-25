@@ -7,6 +7,14 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' blob:; worker-src blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self'; media-src 'self' blob:; img-src 'self' data:; frame-src 'none'; object-src 'none'">
 <style>body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Voice Helix</title>
+<script>
+/* Show script errors on the page itself: a phone has no console, so a singer (or a screenshot) can tell what broke. */
+(function(){var n=0;function show(m){if(++n>5)return;var b=document.getElementById('errbox');if(!b){b=document.createElement('pre');b.id='errbox';b.setAttribute('role','alert');b.style.cssText='position:fixed;left:8px;right:8px;bottom:8px;z-index:99999;margin:0;padding:10px;max-height:45vh;overflow:auto;background:#3a0d10;color:#ffd9d9;border:1px solid #e85a5a;border-radius:8px;font:12px/1.4 ui-monospace,Menlo,monospace;white-space:pre-wrap';b.textContent='Something broke. A screenshot of this box helps fix it.\n'+navigator.userAgent+'\n';(document.body||document.documentElement).appendChild(b);}b.textContent+='\n'+m;}
+window.addEventListener('error',function(e){show((e.message||'error')+(e.filename?' @'+String(e.filename).split('/').pop()+':'+e.lineno+':'+e.colno:'')+(e.error&&e.error.stack?'\n'+e.error.stack:''));});
+window.addEventListener('unhandledrejection',function(e){var r=e.reason;show('promise: '+(r&&(r.stack||r.message)||String(r)));});
+window.helixShowError=show;})();
+</script>
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap">
 </head>
 <body>
@@ -386,6 +394,7 @@ const CAP_SRC=`class Cap extends AudioWorkletProcessor{constructor(){super();thi
 const canvas=document.getElementById('gl');
 const gl=canvas.getContext('webgl2',{antialias:true,alpha:false,powerPreference:'high-performance'});
 if(!gl){document.getElementById('nogl').hidden=false;}
+if(gl)canvas.addEventListener('webglcontextlost',()=>helixShowError('WebGL context lost: the phone ran short of graphics memory. Reload the page.'));
 function prog(vs,fs){const p=gl.createProgram();for(const [t,s] of [[gl.VERTEX_SHADER,vs],[gl.FRAGMENT_SHADER,fs]]){const sh=gl.createShader(t);gl.shaderSource(sh,s);gl.compileShader(sh);if(!gl.getShaderParameter(sh,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(sh));gl.attachShader(p,sh);}gl.linkProgram(p);if(!gl.getProgramParameter(p,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(p));
   const u={},n=gl.getProgramParameter(p,gl.ACTIVE_UNIFORMS);for(let i=0;i<n;i++){const inf=gl.getActiveUniform(p,i);u[inf.name]=gl.getUniformLocation(p,inf.name);}return {p,u};}
 const SH_V=`#version 300 es
