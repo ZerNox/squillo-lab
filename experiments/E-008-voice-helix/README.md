@@ -50,7 +50,8 @@ scanned offline: spots where a flaw held
 marked on a bar, and a summary over the whole take (intonation on the take's
 own semitone grid, steadiness inside held notes, slides into notes, tone
 clarity), each set against the median conservatory-trained singer, with what
-went well and one or two things to work on. Two resyntheses by
+went well (a slide style, two thirds or more of the notes slid into by the
+same depth within 20 %, is praised as a style and not marked down) and one or two things to work on. Two resyntheses by
 pitch-synchronous overlap-add, tone, words and timing untouched: "spotless"
 (250 ms running median inside each voiced run, the start of each note held
 at its settled pitch, snapped to the grid) and "halfway" (half way from the
@@ -91,6 +92,16 @@ Measured on the rough "Amazing Grace" reference recorded as a 20 s take
 70 / 64 ¢ against 40 / 65 / 58 ¢; time flagged shaky 35 / 39 / 39 % against
 30 / 26 / 32 %. The resynthesis costs about 2.5 dB of harmonics-to-noise
 (18.6 to 16.3 dB in Chrome): it adds a little roughness of its own.
+
+Slide style vs unwanted scoop, measured with the page's own code
+(`check/slide-bench.mjs`, headless Chrome, 2026-10-25): synthetic 12-note
+phrases at 110, 196 and 330 Hz, 10 per class and voice. Classified right:
+style (every note slid into by one depth, ±10 %) 30/30, unwanted (2-5 random
+scoops) 30/30, many (6-9 scoops of random depth) 29/30, clean 30/30;
+slides found 359/360, 103/103, 228/229. None of the 14 VocalSet clips or
+the two references is called a style (they hold 0-9 slides each, a weak
+test of false alarms). Real pop or soul slides vary more than ±10 % in
+depth; recall on them is unmeasured (no openly licensed annotated set).
 
 ## Hypothesis
 

@@ -492,7 +492,7 @@ function ingest(st,m,src){const now=m.t;st.at=now;const FT=st.ft,HIST=st.HIST;co
   // A scoop is a continuous slide up into the note; a start pitch held for 100 ms or more is a note of its own
   // (a fast line or an ornament), not a scoop.
   if(voiced&&st.onsetMidi!==null&&st.onsetMidi!==-999&&now-st.onsetT>0.3){if(FT.midi-st.onsetMidi>1.5){const seg=HIST.filter(h=>h.voiced&&h.t>=st.onsetT);let k=0;while(k<seg.length&&Math.abs(seg[k].midi-seg[0].midi)<0.3)k++;
-      if(k*0.02<0.1){st.scoopList.push(now);st.rec.events.push({t:now,type:'scoop'});}}st.onsetMidi=-999;}
+      if(k*0.02<0.1){st.scoopList.push(now);st.rec.events.push({t:now,type:'scoop',depth:FT.midi-seg[0].midi});}}st.onsetMidi=-999;}
   FT.sustain=voiced?now-st.onsetT:0;e.st=FT.sustain;st.lastVoiced=voiced;
   // roughness: residual vs local quadratic fit over ±50 ms, in cents (even vibrato fits; random wobble does not)
   {const n=HIST.length;let ci=n-1;while(ci>0&&now-HIST[ci].t<0.05)ci--;const c=HIST[ci];
@@ -848,9 +848,10 @@ function takeSpots(st){const fr=st.rec.frames,sn=st.rec.snaps;const frames=fr.ma
   // Scoops are coached one by one at each slide into a note, not across the 10 s window the chip uses.
   const SI=FLAWS.findIndex(f=>f.id==='scoop');
   const out=segs.filter(g=>g.i!==SI).map(g=>({i:g.i,t0:Math.max(0,g.t0-0.6),t1:g.t1})).filter(g=>g.t1-g.t0>=0.8);
-  for(const e of st.rec.events)if(e.type==='scoop'){const t0=Math.max(0,e.t-0.6),t1=e.t;if(!out.some(g=>t0<g.t1&&g.t0<t1))out.push({i:SI,t0,t1});}
+  const aspects=takeAspects(st);
+  if(!aspects.slide.style)for(const e of st.rec.events)if(e.type==='scoop'){const t0=Math.max(0,e.t-0.6),t1=e.t;if(!out.some(g=>t0<g.t1&&g.t0<t1))out.push({i:SI,t0,t1});}
   out.sort((a,b)=>a.t0-b.t0);
-  const nv=fr.filter(f=>f.voiced).length;return {frames,segs:out,voiced:fr.length?nv/fr.length:0,aspects:takeAspects(st)};}
+  const nv=fr.filter(f=>f.voiced).length;return {frames,segs:out,voiced:fr.length?nv/fr.length:0,aspects};}
 // Aspects over the whole take. Held notes: stretches of at least 200 ms within half a semitone of
 // their running mean. The take's own tuning (its offset from A440, a circular mean over the notes)
 // sets the semitone grid, so a song pitched between keys is not marked out of tune.
@@ -874,9 +875,18 @@ function takeAspects(st){const fr=st.rec.frames,sn=st.rec.snaps,notes=[],res=[];
   let iw=0,ia=0;for(const nt of notes){const d=nt.med-off;ia+=nt.dur*Math.abs(d-Math.round(d))*100;iw+=nt.dur;}
   let hs=0,hn=0;fr.forEach((f,i)=>{if(!f.voiced)return;hs+=sn[i].hnr;hn++;});res.sort((a,b)=>a-b);
   let onsets=0;for(let i=0;i<fr.length;i++)if(fr[i].voiced&&(i===0||!fr[i-1].voiced)){let k=i;while(k<fr.length&&fr[k].voiced)k++;if((k-i)*0.02>=0.3)onsets++;}
-  const scoops=st.rec.events.filter(e=>e.type==='scoop').length;const sung=hn*0.02;
+  const sev=st.rec.events.filter(e=>e.type==='scoop'),scoops=sev.length;const sung=hn*0.02;
+  // A slide style: most notes (two thirds or more) slid into by much the same depth (spread under 20 % of the
+  // mean), at least 4 times. A deliberate pop or soul slide repeats; an unwanted scoop comes and goes.
+  // Each onset's slide, from the take itself: settled pitch (median 0.3-0.6 s in) less the pitch in the
+  // first 60 ms. The live detector misses shallow slides; this does not.
+  const dp=[];let ons=0;for(let i=0;i<fr.length;i++)if(fr[i].voiced&&(i===0||!fr[i-1].voiced)){let k=i;while(k<fr.length&&fr[k].voiced)k++;if((k-i)*0.02<0.6)continue;ons++;
+    const md=a=>{const v=a.filter(f=>f.ok).map(f=>f.midi).sort((x,y)=>x-y);return v.length?v[v.length>>1]:null;},s0=md(fr.slice(i,i+3)),s1=md(fr.slice(i+15,i+30));
+    if(s0!==null&&s1!==null&&s1-s0>=0.8)dp.push(s1-s0);}
+  const dm=dp.length?dp.reduce((t,x)=>t+x,0)/dp.length:0,dsd=dp.length>1?Math.sqrt(dp.reduce((t,x)=>t+(x-dm)**2,0)/(dp.length-1)):0;
+  const slide={n:dp.length,of:ons,depth:dm,sd:dsd,style:dp.length>=4&&dp.length/ons>=2/3&&dsd<=0.2*dm};
   const meds=notes.map(n=>n.med).sort((a,b)=>a-b);
-  return {perf:notePerf(notes,off,st.rec.events),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:onsets?scoops/onsets:0,tone:hn?hs/hn:0,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,ok:notes.length>=6&&sung>=4};}
+  return {slide,perf:notePerf(notes,off,slide.style?[]:st.rec.events),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,tone:hn?hs/hn:0,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,ok:notes.length>=6&&sung>=4};}
 // Per held note, for the timeline: cents off the take's grid, wobble inside the note, and whether it
 // was scooped into, folded into a 0..1 score weighted 60/25/15. The median trained singer (14 ¢, 3 ¢
 // wobble, no scoop) scores about 0.8; 25 ¢ off scores about 0.55.
@@ -940,12 +950,12 @@ function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;
   if(!RATING_ON)h+=`<div class="elo"><span>Your take over ${a.sung.toFixed(0)} s of singing</span></div>`;
   else if(R){const band=BANDS.find(b=>R.R>=b[0])[1];h+=`<div class="elo"><b>${R.R}</b><span>Experimental · ${band} · better than ${Math.round(R.pct*100)} % of ${R.n} reference voices</span></div>`;}
   else h+=`<div class="elo"><span>${a.ok?'Rating needs the reference pool (rating/anchors.json).':'Sing at least 6 held notes (about 5 s of singing) for a rating.'}</span></div>`;
-  h+='<table>'+ASPECTS.map(x=>`<tr><td>${x.name}</td><td>${fmt(x,a[x.k])} ${x.unit}</td>${R&&!x.info?`<td class="bar"><i style="width:${Math.round(R.per[x.k]*100)}%"></i></td><td>beats ${Math.round(R.per[x.k]*100)} %</td>`:R?'<td colspan="2">not rated</td>':''}</tr>`).join('')+'</table>';
+  h+='<table>'+ASPECTS.map(x=>`<tr><td>${x.name}</td><td>${x.k==='onset'&&a.slide&&a.slide.style?`slide style, ${a.slide.n} of ${a.slide.of} notes, not counted`:`${fmt(x,a[x.k])} ${x.unit}`}</td>${R&&!x.info?`<td class="bar"><i style="width:${Math.round(R.per[x.k]*100)}%"></i></td><td>beats ${Math.round(R.per[x.k]*100)} %</td>`:R?'<td colspan="2">not rated</td>':''}</tr>`).join('')+'</table>';
   // Without the rating, each aspect is set against the median trained singer: how far better (+) or worse.
   const vsMed=x=>{const m=TRAINED_MED[x.k],d=x.lower?m-a[x.k]:a[x.k]-m;return d/(x.tol*3);};
   const order=RATED.slice().sort((p,q)=>R?R.per[q.k]-R.per[p.k]:vsMed(q)-vsMed(p));
-  const good=R?order.slice(0,2).filter(x=>R.per[x.k]>=0.25):order.filter(x=>vsMed(x)>=-0.34);
-  h+='<h3>Went well</h3><ul>'+[`You sang ${a.notes} held notes over ${a.sung.toFixed(0)} s, across ${a.range.toFixed(0)} semitones.`,...(TAKE.stretch?[`Your strongest stretch ended around ${mmss(TAKE.stretch.hi[0])}: the line on the bar peaks there.`]:[]),...(TAKE.best&&TAKE.best.length?[`${TAKE.best.length} standout note${TAKE.best.length>1?'s':''} (★ on the bar): on the note, steady, started cleanly.`]:[]),...good.map(x=>`Your ${x.name}: ${fmt(x,a[x.k])} ${x.unit}${R?`, better than ${Math.round(R.per[x.k]*100)} % of the pool`:`, on a par with or better than the median conservatory-trained singer (${TRAINED_MED[x.k]})`}.`)].map(t=>`<li>${t}</li>`).join('')+'</ul>';
+  const good=R?order.slice(0,2).filter(x=>R.per[x.k]>=0.25):order.filter(x=>vsMed(x)>=-0.34).filter(x=>!(a.slide&&a.slide.style&&x.k==='onset'));
+  h+='<h3>Went well</h3><ul>'+[`You sang ${a.notes} held notes over ${a.sung.toFixed(0)} s, across ${a.range.toFixed(0)} semitones.`,...(TAKE.stretch?[`Your strongest stretch ended around ${mmss(TAKE.stretch.hi[0])}: the line on the bar peaks there.`]:[]),...(TAKE.best&&TAKE.best.length?[`${TAKE.best.length} standout note${TAKE.best.length>1?'s':''} (★ on the bar): on the note, steady, started cleanly.`]:[]),...(a.slide&&a.slide.style?[`Your slides into notes are a style, not a flaw: ${a.slide.n} of ${a.slide.of} notes, each about ${a.slide.depth.toFixed(1)} ± ${a.slide.sd.toFixed(1)} semitones, the same every time. They are not marked down.`]:[]),...good.map(x=>`Your ${x.name}: ${fmt(x,a[x.k])} ${x.unit}${R?`, better than ${Math.round(R.per[x.k]*100)} % of the pool`:`, on a par with or better than the median conservatory-trained singer (${TRAINED_MED[x.k]})`}.`)].map(t=>`<li>${t}</li>`).join('')+'</ul>';
   const work=R?order.slice(-2).reverse().filter(x=>R.per[x.k]<0.75).slice(0,R.R>=2200?1:2):order.filter(x=>vsMed(x)<-0.34).reverse().slice(0,2);
   const wl=work.map(x=>`${x.name} (${fmt(x,a[x.k])} ${x.unit}): ${ASPECT_WORK[x.k].ex}${x.k==='onset'?' Slides into notes are a style in pop and soul: work on them only where you did not mean them.':''}`);
   if(TAKE.stretch)wl.push(`The line dips lowest in the 10 s before ${mmss(TAKE.stretch.lo[0])}: click the bar there to listen back.`);

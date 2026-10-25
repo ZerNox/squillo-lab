@@ -2,6 +2,15 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-25 · slide style vs unwanted scoop
+
+Built: each onset's slide is measured from the take (settled pitch less the
+first 60 ms); two thirds or more of notes slid into by the same depth (±20 %)
+is a style: praised, not marked down, no scoop spots. A pop or soul singer is
+no longer told to fix their style. Measured (`check/slide-bench.mjs`, page
+code): 119/120 synthetic phrases classified right; 0/16 real clips called a
+style. iOS risk: none (offline maths only). Next: pitch tracker (pYIN+Viterbi).
+
 ## 2026-10-25 · slow down without changing pitch
 
 Built: speed menu 1×/0.75×/0.5× for take, halfway, spotless and A/B (WSOLA).

@@ -1,6 +1,6 @@
 // Checks the Voice Helix page in Chrome (desktop), Firefox (desktop) and WebKit at an iPhone 15's
 // size and touch: the page loads without errors, a public-domain reference clip loads as the take,
-// the take is scanned (performance timeline, summary, progress lines over seeded earlier takes), a tap on the timeline plays from there, a tap on a spot loops it A/B with spotless, 0.5x playback keeps the pitch, and
+// the take is scanned (performance timeline, summary, progress lines over seeded earlier takes), a tap on the timeline plays from there, a tap on a spot loops it A/B with spotless, 0.5x playback keeps the pitch, the reference's scoops are not taken for a slide style, and
 // "spotless" plays. Screenshots go to the out directory; look at them.
 // Usage: node check.mjs <url> [--wait <sha256 of page/index.html>] [--only chrome|firefox|webkit-iphone] [--out dir] [--headed] [--slow ms] [--hold s]
 // --headed opens visible, maximized browser windows (menu bar and dock stay) on this machine's display (default headless, as
@@ -105,9 +105,9 @@ async function run([name, launch, ctxOpt, file]) {
     const ab = await p.evaluate(() => AU.kind === 'ab' && AU.source && AU.source.loop && AU.ctx.state === 'running');
     await tap(p.locator('#bPlaySpot')); await p.waitForTimeout(1200);
     await p.selectOption('#speed', '0.5'); await p.waitForTimeout(1500);
-    const r = await p.evaluate(() => ({ k: AU.play && AU.play.k, ctx: AU.ctx && AU.ctx.state, playing: AU.play && AU.play.which, notes: TAKE.aspects.perf.length, spots: TAKE.segs.length, summary: !document.getElementById('rating').hidden, progress: document.querySelectorAll('#rating table.prog tr').length, takes: JSON.parse(localStorage.getItem('helix.takes.v1')).length }));
+    const r = await p.evaluate(() => ({ k: AU.play && AU.play.k, ctx: AU.ctx && AU.ctx.state, playing: AU.play && AU.play.which, notes: TAKE.aspects.perf.length, slide: TAKE.aspects.slide && TAKE.aspects.slide.style, spots: TAKE.segs.length, summary: !document.getElementById('rating').hidden, progress: document.querySelectorAll('#rating table.prog tr').length, takes: JSON.parse(localStorage.getItem('helix.takes.v1')).length }));
     await p.locator('table.prog').screenshot({ path: join(out, `${name}-progress.png`) });
-    const ok = !errs.length && r.ctx === 'running' && r.playing === 'spot' && r.notes > 10 && ab && slow.cents < 3 && r.k === 0.5 && Math.abs(slow.ratio - 2) < 0.01 && r.summary && r.progress === 5 && r.takes === 8 && seek > 0.45 && seek < 0.65;
+    const ok = !errs.length && r.ctx === 'running' && r.playing === 'spot' && r.notes > 10 && r.slide === false && ab && slow.cents < 3 && r.k === 0.5 && Math.abs(slow.ratio - 2) < 0.01 && r.summary && r.progress === 5 && r.takes === 8 && seek > 0.45 && seek < 0.65;
     return { browser: name, ok, seek: +seek.toFixed(2), ab, slow, ...r, errs };
   } catch (e) { return { browser: name, ok: false, errs: [...errs, String(e).split('\n')[0]] }; }
   finally { if (b) { if (hold) await new Promise(r => setTimeout(r, hold * 1000)); await b.close(); open.delete(b); } }
