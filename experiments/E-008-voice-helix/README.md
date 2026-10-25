@@ -51,8 +51,14 @@ went well and one or two things to work on. Two resyntheses by
 pitch-synchronous overlap-add, tone, words and timing untouched: "spotless"
 (250 ms running median inside each voiced run, the start of each note held
 at its settled pitch, snapped to the grid) and "halfway" (half way from the
-take to spotless). On playback of any version the coaching panel switches to
-the flaw 1.5 s before each spot. The drawn figure is the coach. A filmed
+take to spotless). The bar is a performance timeline: a sliding line of the
+note score over the last 10 s (60 % cents off the grid, 25 % wobble, 15 %
+clean start; dashes mark the median trained singer, about 0.8; the line
+breaks where 10 s hold under 1 s of held notes), each held note coloured on /
+close / off, a star on up to 8 best notes, and the coach's spots underneath;
+the card names the strongest and weakest 10 s stretch, and a click on the bar
+plays from there. On playback of any version the coaching panel switches to
+the flaw 1.5 s before each spot and praises each starred note as it passes. The drawn figure is the coach. A filmed
 coach is a feature toggle, off by default: with `?coach=video` in the URL it
 plays `page/coach/<pose>.mp4` silently for each exercise that has a clip
 (prompts and the import script in `coach/`). An Elo rating against a
