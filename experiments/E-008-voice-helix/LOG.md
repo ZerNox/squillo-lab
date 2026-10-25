@@ -2,6 +2,18 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-25 · register breaks on glides
+
+Built: a break detector (two 200 ms line fits either side of each moment,
+same slope sign ≥ 3 st/s, smooth, ≥ 1.2 st apart) run on every take; breaks
+are kept per take, drawn on the profile bar, named in "to work on" with
+sirens (Titze 2006), and a suggested key says if the melody crosses one.
+A singer who sings a siren now sees where their voice flips. Measured
+(`check/break-bench.mjs`, page code): 64/64 synthetic breaks, error median
+0.06 st, p90 0.11; 0 false on 96 clean sirens, legato and vibrato takes;
+1 in 274 s of real clips. Synthetic only: real passaggi are subtler. iOS
+risk: none. Next: guided range finder.
+
 ## 2026-10-25 · voice profile and a key for any song
 
 Built: ♪ voice profile: comfortable range (median of each take's 10th-90th

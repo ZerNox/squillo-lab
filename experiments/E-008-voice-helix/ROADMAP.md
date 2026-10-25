@@ -23,14 +23,14 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Phone: the take comes first after a scan, progress lines full width.
 - Take pitch: YIN candidates + Viterbi (0.1 % gross error, synthetic).
 - Slide style told from unwanted scoops (consistent depth on most notes).
-- Voice profile: comfortable and full range from the takes, voice-type guess, key for a song.
+- Voice profile: comfortable and full range, voice-type guess, key for a song, register breaks on glides.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
 ## Next
 
-1. **Register transitions** in the profile: find breaks on sirens (synthetic voices with a
-   modelled passaggio first), then best keys around them.
+1. **Guided range finder**: a siren and a slide-to-lowest / slide-to-highest routine that fills the
+   profile in one minute, instead of waiting for takes.
 2. **Rating with ground truth**: human-judged takes across styles from openly
    licensed sources only, then a rating that ranks them correctly (see
    `rating/README.md`).

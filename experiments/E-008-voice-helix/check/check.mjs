@@ -1,6 +1,6 @@
 // Checks the Voice Helix page in Chrome (desktop), Firefox (desktop) and WebKit at an iPhone 15's
 // size and touch: the page loads without errors, a public-domain reference clip loads as the take,
-// the take is scanned (performance timeline, summary, progress lines over seeded earlier takes), a tap on the timeline plays from there, a tap on a spot loops it A/B with spotless, 0.5x playback keeps the pitch, the reference's scoops are not taken for a slide style, the take pitch tracker holds a breathy tone, the warm-up targets the seeded takes' weakest aspects and plays a guide tone, the voice profile reads the seeded range and suggests a key, and
+// the take is scanned (performance timeline, summary, progress lines over seeded earlier takes), a tap on the timeline plays from there, a tap on a spot loops it A/B with spotless, 0.5x playback keeps the pitch, the reference's scoops are not taken for a slide style, the take pitch tracker holds a breathy tone, the warm-up targets the seeded takes' weakest aspects and plays a guide tone, the voice profile reads the seeded range and suggests a key around the seeded register break, and
 // "spotless" plays. Screenshots go to the out directory; look at them.
 // Usage: node check.mjs <url> [--wait <sha256 of page/index.html>] [--only chrome|firefox|webkit-iphone] [--out dir] [--headed] [--slow ms] [--hold s]
 // --headed opens visible, maximized browser windows (menu bar and dock stay) on this machine's display (default headless, as
@@ -75,7 +75,7 @@ async function run([name, launch, ctxOpt, file]) {
     const c = await b.newContext(ctxOpt);
     if (mute) await c.addInitScript(MUTE);
     // Seven earlier takes on the device, so the progress lines have a history to slide over.
-    await c.addInitScript(() => { try { if (!localStorage.getItem('helix.takes.v1')) localStorage.setItem('helix.takes.v1', JSON.stringify(Array.from({ length: 7 }, (_, i) => ({ d: Date.now() - (7 - i) * 864e5, sung: 30, score: 0.6 + 0.02 * i, inton: 25 - i, stab: 5 - 0.2 * i, onset: 0.2, tone: 12, lo: 52, hi: 62, mn: 48, mx: 67 })))); } catch (e) {} });
+    await c.addInitScript(() => { try { if (!localStorage.getItem('helix.takes.v1')) localStorage.setItem('helix.takes.v1', JSON.stringify(Array.from({ length: 7 }, (_, i) => ({ d: Date.now() - (7 - i) * 864e5, sung: 30, score: 0.6 + 0.02 * i, inton: 25 - i, stab: 5 - 0.2 * i, onset: 0.2, tone: 12, lo: 52, hi: 62, mn: 48, mx: 67, br: [60.2] })))); } catch (e) {} });
     const p = await c.newPage();
     if (headed) console.error(name, 'window', await p.evaluate(() => [outerWidth, outerHeight, screen.availWidth, screen.availHeight].join(' ')));
     p.on('pageerror', e => errs.push(String(e)));
@@ -122,9 +122,9 @@ async function run([name, launch, ctxOpt, file]) {
     r.warm = await p.evaluate(() => ({ steps: WARM.plan.steps.map(s => s.name).join('|'), why: WARM.plan.why.length, osc: !!WARM.osc, ctx: (AU.ctx || WARM.ctx).state, text: /Clean starts/.test(document.getElementById('warmup').textContent) }));
     // Voice profile from the seeded takes (comfortable E3-D4, centre 57: tenor); a G3-D5 melody in G moves down 7 to C.
     await tap(p.locator('#bProf')); await p.waitForTimeout(400); await p.locator('#profile').screenshot({ path: join(out, `${name}-profile.png`) });
-    r.prof = await p.evaluate(() => { const t = document.getElementById('profile').textContent; return { tenor: /fits a tenor/.test(t), key: /down 7 semitones/.test(t) }; });
+    r.prof = await p.evaluate(() => { const t = document.getElementById('profile').textContent; return { tenor: /fits a tenor/.test(t), key: /down 7 semitones/.test(t), br: /around C4/.test(t) && /crosses your break/.test(t) }; });
     await p.fill('#pKey', 'G'); await tap(p.locator('#pGo')); r.prof.toC = await p.evaluate(() => /key of C/.test(document.getElementById('pOut').textContent));
-    const ok = r.prof.tenor && r.prof.key && r.prof.toC && (!touch || r.inView) && r.pitch > 0.75 && !errs.length && r.ctx === 'running' && r.playing === 'spot' && r.notes > 10 && r.slide === false && ab && slow.cents < 3 && r.k === 0.5 && Math.abs(slow.ratio - 2) < 0.01 && r.summary && r.warm.steps === 'Lip trill or straw glides|Clean starts|Pitch matching|Siren' && r.warm.text && r.warm.osc && r.warm.ctx === 'running' && r.progress === 5 && r.takes === 8 && seek > 0.45 && seek < 0.65;
+    const ok = r.prof.tenor && r.prof.key && r.prof.br && r.prof.toC && (!touch || r.inView) && r.pitch > 0.75 && !errs.length && r.ctx === 'running' && r.playing === 'spot' && r.notes > 10 && r.slide === false && ab && slow.cents < 3 && r.k === 0.5 && Math.abs(slow.ratio - 2) < 0.01 && r.summary && r.warm.steps === 'Lip trill or straw glides|Clean starts|Pitch matching|Siren' && r.warm.text && r.warm.osc && r.warm.ctx === 'running' && r.progress === 5 && r.takes === 8 && seek > 0.45 && seek < 0.65;
     return { browser: name, ok, seek: +seek.toFixed(2), ab, slow, ...r, errs };
   } catch (e) { return { browser: name, ok: false, errs: [...errs, String(e).split('\n')[0]] }; }
   finally { if (b) { if (hold) await new Promise(r => setTimeout(r, hold * 1000)); await b.close(); open.delete(b); } }
