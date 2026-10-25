@@ -51,4 +51,12 @@ step "wasm-bindgen-cli" "command -v wasm-bindgen" \
 step "playwright chromium" "ls -d $HOME/.cache/ms-playwright/chromium-* | grep -q ." \
   "npx --yes playwright install chromium"
 
+# Voice Helix check (E-008): Playwright 1.63.0 for Chrome, Firefox and WebKit at iPhone size.
+# WebKit's system libraries come from squillo's scripts/prereqs.sh (user space).
+HC="$(cd "$(dirname "$0")" && pwd)/experiments/E-008-voice-helix/check"
+step "voice helix check deps" "[ -d '$HC/node_modules/playwright' ]" \
+  "cd '$HC' && npm ci --silent"
+step "playwright webkit + firefox" "ls -d $HOME/.cache/ms-playwright/webkit-* $HOME/.cache/ms-playwright/firefox-* | grep -q firefox" \
+  "cd '$HC' && npx playwright install webkit firefox"
+
 [ "$missing" = 0 ] || exit 1
