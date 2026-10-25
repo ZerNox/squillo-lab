@@ -1,6 +1,6 @@
 // Checks the Voice Helix page in Chrome (desktop), Firefox (desktop) and WebKit at an iPhone 15's
 // size and touch: the page loads without errors, a public-domain reference clip loads as the take,
-// the take is scanned (performance timeline, summary), a tap on the timeline plays from there, and
+// the take is scanned (performance timeline, summary, progress lines over seeded earlier takes), a tap on the timeline plays from there, and
 // "spotless" plays. Screenshots go to the out directory; look at them.
 // Usage: node check.mjs <url> [--wait <sha256 of page/index.html>] [--only chrome|firefox|webkit-iphone] [--out dir]
 // --wait polls the URL until it serves that index.html (a deploy from main takes 1-3 min).
@@ -47,7 +47,10 @@ async function run([name, launch, ctxOpt, file]) {
   const errs = []; let b;
   try {
     b = await launch();
-    const p = await (await b.newContext(ctxOpt)).newPage();
+    const c = await b.newContext(ctxOpt);
+    // Seven earlier takes on the device, so the progress lines have a history to slide over.
+    await c.addInitScript(() => { try { if (!localStorage.getItem('helix.takes.v1')) localStorage.setItem('helix.takes.v1', JSON.stringify(Array.from({ length: 7 }, (_, i) => ({ d: Date.now() - (7 - i) * 864e5, sung: 30, score: 0.6 + 0.02 * i, inton: 25 - i, stab: 5 - 0.2 * i, onset: 0.2, tone: 12 })))); } catch (e) {} });
+    const p = await c.newPage();
     p.on('pageerror', e => errs.push(String(e)));
     p.on('console', m => { if (m.type() === 'error' && !/favicon/.test(m.location().url)) errs.push(m.text()); });
     await p.goto(url, { waitUntil: 'load' }); await p.waitForTimeout(1500);
@@ -62,8 +65,9 @@ async function run([name, launch, ctxOpt, file]) {
     touch ? await bar.tap(pos) : await bar.click(pos); await p.waitForTimeout(1200);
     const seek = await p.evaluate(() => AU.play ? (AU.ctx.currentTime - AU.play.t0) / AU.play.dur : -1);
     await tap(p.locator('#bPlaySpot')); await p.waitForTimeout(1200);
-    const r = await p.evaluate(() => ({ ctx: AU.ctx && AU.ctx.state, playing: AU.play && AU.play.which, notes: TAKE.aspects.perf.length, spots: TAKE.segs.length, summary: !document.getElementById('rating').hidden }));
-    const ok = !errs.length && r.ctx === 'running' && r.playing === 'spot' && r.notes > 10 && r.summary && seek > 0.45 && seek < 0.65;
+    const r = await p.evaluate(() => ({ ctx: AU.ctx && AU.ctx.state, playing: AU.play && AU.play.which, notes: TAKE.aspects.perf.length, spots: TAKE.segs.length, summary: !document.getElementById('rating').hidden, progress: document.querySelectorAll('#rating table.prog tr').length, takes: JSON.parse(localStorage.getItem('helix.takes.v1')).length }));
+    await p.locator('table.prog').screenshot({ path: join(out, `${name}-progress.png`) });
+    const ok = !errs.length && r.ctx === 'running' && r.playing === 'spot' && r.notes > 10 && r.summary && r.progress === 5 && r.takes === 8 && seek > 0.45 && seek < 0.65;
     return { browser: name, ok, seek: +seek.toFixed(2), ...r, errs };
   } catch (e) { return { browser: name, ok: false, errs: [...errs, String(e).split('\n')[0]] }; }
   finally { if (b) await b.close(); }

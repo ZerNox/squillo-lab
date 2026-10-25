@@ -60,7 +60,12 @@ clean start; dashes mark the median trained singer, about 0.8; the line
 breaks where 10 s hold under 1 s of held notes), each held note coloured on /
 close / off, a star on up to 8 best notes, and the coach's spots underneath;
 the card names the strongest and weakest 10 s stretch, and a click on the bar
-plays from there. On playback of any version the coaching panel switches to
+plays from there. Each scored take's summary is kept on the device
+(localStorage, last 500, never sent; "forget my takes" clears it) and the card
+ends with progress lines per aspect and overall: a dot per take, the mean of
+the last 5 takes, and a band of ±1.96 standard errors between takes; it says
+"better" or "worse" only when the last 5 differ from the 5 before by more
+than both bands together (`squillo` ADR 0025). On playback of any version the coaching panel switches to
 the flaw 1.5 s before each spot and praises each starred note as it passes. The drawn figure is the coach. A filmed
 coach is a feature toggle, off by default: with `?coach=video` in the URL it
 plays `page/coach/<pose>.mp4` silently for each exercise that has a clip
@@ -133,7 +138,7 @@ cd check && npm install && node check.mjs http://localhost:8000/
 
 Chrome, Firefox and WebKit at an iPhone 15's size and touch: the page loads
 without errors, the public-domain reference clip loads as the take, the
-timeline and summary appear, a tap on the timeline plays from there and
+timeline, summary and progress lines (over seven seeded earlier takes) appear, a tap on the timeline plays from there and
 "spotless" plays. After a push, `node check.mjs https://zernox.github.io/squillo-lab/
 --wait $(sha256sum ../page/index.html | cut -d' ' -f1)` waits for the deploy
 and checks the live site. Screenshots land in `--out` (default
