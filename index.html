@@ -261,6 +261,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
     <button class="btn" id="bPlayTake" disabled>▶ your take</button>
     <button class="btn" id="bPlayHalf" disabled title="Half way between your take and spotless">▶ halfway</button>
     <button class="btn" id="bPlaySpot" disabled title="Every note tuned, steadied and started cleanly">▶ spotless</button>
+    <select id="cmpSel" hidden aria-label="Earlier take to compare" title="An earlier take kept on this device"></select><button class="btn" id="bPlayCmp" hidden title="Play an earlier take, then yours, to hear the change">▶ earlier take</button>
     <button class="btn" id="bWarm" title="A short routine for what your recent takes need most">☀ warm-up</button>
     <button class="btn" id="bProf" title="Your range, voice type and a key for any song, from your takes">♪ voice profile</button>
     <select id="speed" aria-label="Playback speed" title="Slow down without changing pitch"><option value="1">1×</option><option value="0.75">0.75×</option><option value="0.5">0.5×</option></select>
@@ -848,7 +849,7 @@ async function setTake(buf){TAKE.busy=true;
   takeInfo.textContent=`Scanning your ${buf.duration.toFixed(1)} s take…`;
   const tr=await prepTake(buf),sc=tr.sc;buf=tr.buf;TAKE.buf=buf;TAKE.segs=sc.segs;TAKE.aspects=sc.aspects;
   TAKE.spot=improveTake(buf,sc.frames,1,sc.aspects.off);TAKE.half=improveTake(buf,sc.frames,0.5,sc.aspects.off);
-  TAKE.rating=ANCHORS&&sc.aspects.ok?rateAspects(sc.aspects,ANCHORS):null;if(sc.aspects.ok)saveTake(sc.aspects);TAKE.busy=false;renderTakebar();renderRating();document.body.classList.add('has-take');
+  TAKE.rating=ANCHORS&&sc.aspects.ok?rateAspects(sc.aspects,ANCHORS):null;TAKE.d=null;if(sc.aspects.ok){const h=saveTake(sc.aspects);TAKE.d=h[h.length-1].d;storeAudio(TAKE.d,buf);}TAKE.busy=false;renderTakebar();renderRating();document.body.classList.add('has-take');
   if(matchMedia('(max-width:720px)').matches)$('takeRow').scrollIntoView({block:'start',behavior:'smooth'});
   bPlayTake.disabled=bPlayHalf.disabled=bPlaySpot.disabled=false;
   const names=[...new Set(TAKE.segs.map(g=>FLAWS[g.i].name))];
@@ -1172,6 +1173,28 @@ async function playTake(which,from=0){if(!(which==='take'?TAKE.buf:TAKE[which]))
   setStatus(VERSION[which].status);goLive();}
 speedSel.onchange=()=>{const p=AU.play;if(p&&AU.kind==='take')playTake(p.which,clamp((AU.ctx.currentTime-p.t0)*p.k,0,p.dur-0.1));};
 bPlayTake.onclick=()=>playTake('take');bPlayHalf.onclick=()=>playTake('half');bPlaySpot.onclick=()=>playTake('spot');
+// Compare with an earlier take: the audio of the last 10 scored takes is kept in this browser (IndexedDB,
+// 22.05 kHz 16-bit, about 2.6 MB a minute; never sent anywhere), keyed by the take's date in the progress history.
+// Pick an earlier take and play it, then your take, to hear the change; its score sits next to today's.
+const ADB={name:'helix.audio.v1',max:10};
+function adb(){return new Promise((res,rej)=>{if(!window.indexedDB){rej(new Error('no IndexedDB'));return;}const q=indexedDB.open(ADB.name,1);q.onupgradeneeded=()=>q.result.createObjectStore('takes');q.onsuccess=()=>res(q.result);q.onerror=()=>rej(q.error);});}
+const adbDo=(mode,fn)=>adb().then(db=>new Promise((res,rej)=>{const tx=db.transaction('takes',mode),st=tx.objectStore('takes');const r=fn(st);tx.oncomplete=()=>{db.close();res(r&&r.result);};tx.onerror=()=>{db.close();rej(tx.error);};}));
+async function toPcm(buf){const SR=22050;let y;try{const oc=new OfflineAudioContext(1,Math.ceil(buf.duration*SR),SR),s=oc.createBufferSource();s.buffer=buf;s.connect(oc.destination);s.start();y=(await oc.startRendering()).getChannelData(0);}
+  catch(e){const x=buf.getChannelData(0),r=buf.sampleRate/SR;y=new Float32Array(Math.floor(x.length/r));for(let i=0;i<y.length;i++)y[i]=x[Math.floor(i*r)];}
+  const p=new Int16Array(y.length);for(let i=0;i<y.length;i++)p[i]=Math.max(-32767,Math.min(32767,Math.round(y[i]*32767)));return {sr:SR,pcm:p};}
+async function storeAudio(d,buf){try{const a=await toPcm(buf);const keys=await adbDo('readonly',st=>st.getAllKeys());
+    await adbDo('readwrite',st=>{st.put(a,d);const old=(keys||[]).filter(k=>k!==d).sort((x,y)=>x-y);for(const k of old.slice(0,Math.max(0,old.length+1-ADB.max)))st.delete(k);});}catch(e){}fillCompare();}
+async function fillCompare(){const sel=$('cmpSel'),b=$('bPlayCmp');let keys=[];try{keys=(await adbDo('readonly',st=>st.getAllKeys()))||[];}catch(e){}
+  keys=keys.filter(k=>k!==TAKE.d).sort((x,y)=>y-x);const H=loadHist();sel.innerHTML=keys.map(k=>{const r=H.find(x=>x.d===k);const dt=new Date(k);
+    return `<option value="${k}">${dt.toLocaleDateString(undefined,{day:'numeric',month:'short'})} ${dt.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'})}${r?` · ${Math.round(r.score*100)}`:''}</option>`;}).join('');
+  sel.hidden=b.hidden=!keys.length;}
+async function playCompare(){const k=+$('cmpSel').value;if(!k)return;stopSource();const ctx=await ensureCtx();await ctx.resume();let a=null;try{a=await adbDo('readonly',st=>st.get(k));}catch(e){}
+  if(!a){takeInfo.textContent='That earlier take is no longer on this device.';fillCompare();return;}
+  const b=mkBuf(a.pcm.length,a.sr),x=b.getChannelData(0);for(let i=0;i<x.length;i++)x[i]=a.pcm[i]/32767;
+  const s=ctx.createBufferSource();s.buffer=b;s.connect(AU.cap);s.connect(ctx.destination);s.start();AU.source=s;AU.kind='cmp';markSrc(null);goLive();
+  const H=loadHist(),then=H.find(r=>r.d===k),now=H.find(r=>r.d===TAKE.d);
+  takeInfo.textContent=`Playing your take from ${new Date(k).toLocaleDateString(undefined,{day:'numeric',month:'short'})}${then?` (note score ${Math.round(then.score*100)})`:''}. Then press ▶ your take${now&&then?` (${Math.round(now.score*100)} today)`:''} to hear the change.`;}
+$('bPlayCmp').onclick=playCompare;fillCompare();
 function coachTick(){const p=AU.play;if(!p||AU.kind!=='take')return;const pos=(AU.ctx.currentTime-p.t0)*p.k;playhead.style.left=clamp(pos/p.dur*100,0,100)+'%';
   const seg=TAKE.segs.find(g=>pos>=g.t0-LEAD&&pos<=g.t1+0.3)||null;const star=seg?null:(TAKE.best||[]).find(n=>pos>=n.t0&&pos<=n.t1+1.5)||null;
   const phase=seg?(pos<seg.t0?'soon':'now'):star?'star':'';
