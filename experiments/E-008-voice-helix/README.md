@@ -41,7 +41,7 @@ held-out seed 4242, 29 328 voiced frames, 5 voice types from bass 82 Hz to
 soprano 880 Hz × clean, breathy, weak fundamental, ±100 ¢ vibrato,
 untrained drift): gross error (>50 ¢) 1.4 % live → 0.1 % take, octave
 errors 0.8 % → 0.1 %, missed voiced frames 0.0 % → 0.3 %, median error
-1.5-7.4 ¢ per cell; worst cell after: soprano breathy, 5.2 % missed.
+1.5-7.4 ¢ per cell; worst cell after: soprano breathy, 5.2 % missed. On real voices (`check/vocadito-bench.mjs`, page code, vocadito: Bittner et al. 2021, 40 a cappella excerpts, 29 singers, 7 languages, hand-corrected f0, CC BY 4.0, https://zenodo.org/records/5578807, not shipped): raw pitch accuracy (voiced, within 50 ¢) 94.8 ± 2.4 % (± 1.96 SE over clips; pooled 94.6 %), chroma 96.1 %, voicing recall 97.5 %, false alarm 16.6 ± 3.4 %, overall 91.1 %; voices centred below A3 91.8 ± 5.1 %, above 97.0 ± 1.5 %; worst clip 58 % (a low male voice). A lag sweep peaks at 0 ms, so frame times line up. Unvoiced cost 0.3 / 0.45 / 0.6 / 0.8 gives overall 90.0 / 91.1 / 90.8 / 90.3 %: 0.45 stays. The take summary states this figure.
 Before this, takes were fed in 43 ms chunks, so pairs of frames saw the
 same audio: 10.9 % gross error on the same benchmark (seed 11). Synthetic
 voices only; real-voice ground truth (VocalSet has none for f0) is open. Eight flaw detectors with

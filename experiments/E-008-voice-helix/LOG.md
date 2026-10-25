@@ -2,6 +2,16 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-25 · pitch measured on real singers
+
+Built: `check/vocadito-bench.mjs` runs the page's take tracker on vocadito
+(40 a cappella excerpts, 29 singers, f0 hand-corrected, CC BY 4.0), and the
+take summary now says how sure the pitch is. Measured: RPA 94.8 ± 2.4 %,
+voicing recall 97.5 %, false alarm 16.6 ± 3.4 %, overall 91.1 %; low voices
+91.8 ± 5.1 %, high 97.0 ± 1.5 %. Unvoiced-cost sweep kept 0.45. A singer
+can now read how far to trust the pitch on a real voice. iOS risk: none.
+Next: cut false alarms (breaths, consonants) and fix low male voices.
+
 ## 2026-10-25 · compare with an earlier take
 
 Built: each scored take's audio is kept in IndexedDB (22.05 kHz 16-bit, last

@@ -21,7 +21,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Slow down to 0.75× or 0.5× without changing pitch (WSOLA), A/B included.
 - Warm-up: about 4 min, steps chosen from the last 5 takes, cited, guide tones.
 - Phone: the take comes first after a scan, progress lines full width.
-- Take pitch: YIN candidates + Viterbi (0.1 % gross error, synthetic).
+- Take pitch: YIN candidates + Viterbi (0.1 % gross error, synthetic; 94.8 ± 2.4 % RPA on 40 real singers, vocadito).
 - Slide style told from unwanted scoops (consistent depth on most notes).
 - Voice profile: comfortable and full range, voice-type guess, key for a song, register breaks on glides; a guided range finder (lowest, highest, siren) in about a minute.
 - Compare: the last 10 takes' audio kept on the device; play an earlier take, then yours.
@@ -33,9 +33,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 1. **Rating with ground truth**: human-judged takes across styles from openly
    licensed sources only, then a rating that ranks them correctly (see
    `rating/README.md`).
-2. **Real-voice pitch truth**: an openly licensed singing set with f0
-   annotations (licence to be verified before use) to
-   run `check/pitch-bench.mjs` style on real voices.
+2. **Fewer false notes and better low voices**: false alarm 16.6 % and low male voices 91.8 % on vocadito (`check/vocadito-bench.mjs`); a voicing gate on HNR or energy, a lower f0 floor.
 3. **On-device vocal separation** (ONNX in WASM) so songs with music load
     without Demucs on a desktop.
 4. **Compare the same phrase**: align today's take with an earlier one and A/B phrase by phrase.
