@@ -8,6 +8,7 @@
 import { chromium } from 'playwright';
 const url = process.argv[2], N = +(process.argv[3] || 4), SEED = +(process.argv[4] || 11);
 const b = await chromium.launch({ channel: 'chrome' }).catch(() => chromium.launch()); const p = await b.newPage(); await p.goto(url); await p.waitForTimeout(1000);
+if (process.env.VIT) await p.evaluate(v => Object.assign(VIT, JSON.parse(v)), process.env.VIT); // VIT='{"O":0.1}': try other Viterbi costs
 const r = await p.evaluate(async ([N, SEED]) => {
   let seed = SEED; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
   const voices = { bass: [82, 165], tenor: [130, 330], alto: [175, 525], soprano: [262, 880], child: [250, 700] };

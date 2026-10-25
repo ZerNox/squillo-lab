@@ -2,6 +2,18 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-25 · pitch on real low voices: 94.8 → 98.1 %
+
+Built: the take tracker's octave prior halved (0.3 → 0.15 per octave below
+the highest candidate): on vocadito low voices were read an octave or a
+twelfth high. Measured (page code): vocadito RPA 98.1 ± 0.7 % (was 94.8 ±
+2.4), low voices 97.8 ± 1.4 (was 91.8 ± 5.1), overall 93.2 %; synthetic
+99.4 % (was 99.6; breathy soprano 4.8 % octave-low). Range, break, slide
+benches unchanged. False alarms (17 %) sit at note edges; gates did not
+help. On the VocalSet m2 demos the old prior took a spurious 632 Hz candidate
+over a clean 164 Hz one; restricting the prior to good candidates added only
+0.1 pt, not kept. A low voice's take now shows its real notes. Next: edges.
+
 ## 2026-10-25 · pitch measured on real singers
 
 Built: `check/vocadito-bench.mjs` runs the page's take tracker on vocadito

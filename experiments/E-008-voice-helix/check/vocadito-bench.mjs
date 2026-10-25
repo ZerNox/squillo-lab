@@ -11,7 +11,7 @@ const meta = fs.readFileSync(path.join(dir, 'vocadito_metadata.csv'), 'utf8').tr
 const b = await chromium.launch({ channel: 'chrome' }).catch(() => chromium.launch()); const p = await b.newPage();
 await p.route('**/vocadito/**', r => r.fulfill({ body: fs.readFileSync(path.join(dir, 'Audio', path.basename(new URL(r.request().url()).pathname))) }));
 await p.goto(url); await p.waitForTimeout(1000);
-const lags = [-60, -40, -20, -10, 0, 10, 20, 40, 60]; const VU = process.env.VU; if (VU) await p.evaluate(v => { VIT.U = +v; }, VU); // VU: try another unvoiced cost
+const lags = process.env.VIT ? [0] : [-60, -40, -20, -10, 0, 10, 20, 40, 60]; if (process.env.VIT) await p.evaluate(v => Object.assign(VIT, JSON.parse(v)), process.env.VIT); // VIT='{"U":0.6}': try other Viterbi costs
 const rows = [];
 for (const [id, singer, avg] of meta) {
   const truth = fs.readFileSync(path.join(dir, 'Annotations/F0', `vocadito_${id}_f0.csv`), 'utf8').trim().split('\n').map(l => +l.split(',')[1]);

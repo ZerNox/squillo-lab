@@ -34,14 +34,14 @@ E-003 found browsers honour). Analysis: a Web Worker at a fixed 20 ms hop
 (YIN with a continuity witness, LPC order 2+fs/1000 at 12 kHz, 4096-point
 FFT with a 2 s room profile subtracted). Takes get their own pitch track:
 every frame keeps up to 8 YIN candidates and a Viterbi path over the whole
-take picks one (pYIN, Mauch & Dixon 2014, simplified: dip + 0.3 per octave
+take picks one (pYIN, Mauch & Dixon 2014, simplified: dip + 0.15 per octave
 below the highest candidate + 0.035 per semitone jumped, unvoiced 0.45,
 voicing switch 0.25). Measured with the page's code (`check/pitch-bench.mjs`,
 held-out seed 4242, 29 328 voiced frames, 5 voice types from bass 82 Hz to
 soprano 880 Hz × clean, breathy, weak fundamental, ±100 ¢ vibrato,
-untrained drift): gross error (>50 ¢) 1.4 % live → 0.1 % take, octave
-errors 0.8 % → 0.1 %, missed voiced frames 0.0 % → 0.3 %, median error
-1.5-7.4 ¢ per cell; worst cell after: soprano breathy, 5.2 % missed. On real voices (`check/vocadito-bench.mjs`, page code, vocadito: Bittner et al. 2021, 40 a cappella excerpts, 29 singers, 7 languages, hand-corrected f0, CC BY 4.0, https://zenodo.org/records/5578807, not shipped): raw pitch accuracy (voiced, within 50 ¢) 94.8 ± 2.4 % (± 1.96 SE over clips; pooled 94.6 %), chroma 96.1 %, voicing recall 97.5 %, false alarm 16.6 ± 3.4 %, overall 91.1 %; voices centred below A3 91.8 ± 5.1 %, above 97.0 ± 1.5 %; worst clip 58 % (a low male voice). A lag sweep peaks at 0 ms, so frame times line up. Unvoiced cost 0.3 / 0.45 / 0.6 / 0.8 gives overall 90.0 / 91.1 / 90.8 / 90.3 %: 0.45 stays. The take summary states this figure.
+untrained drift): gross error (>50 ¢) 1.4 % live → 0.4 % take, octave
+errors 0.8 % → 0.4 %, missed voiced frames 0.0 % → 0.2 %, RPA 99.4 %;
+worst cell after: soprano breathy, 4.8 % octave-low (with 0.3 per octave, used until 2026-10-25: 0.1 % gross, RPA 99.6 %). On real voices (`check/vocadito-bench.mjs`, page code, vocadito: Bittner et al. 2021, 40 a cappella excerpts, 29 singers, 7 languages, hand-corrected f0, CC BY 4.0, https://zenodo.org/records/5578807, not shipped): raw pitch accuracy (voiced, within 50 ¢) 98.1 ± 0.7 % (± 1.96 SE over clips; pooled 98.1 %), chroma 98.4 %, voicing recall 98.9 %, false alarm 17.1 ± 3.5 %, overall 93.2 ± 1.2 %; voices centred below A3 97.8 ± 1.4 %, above 98.4 ± 0.7 %. With the earlier 0.3 per octave: 94.8 ± 2.4 %, low voices 91.8 ± 5.1 % (worst clip 58 %, a low voice read an octave or a twelfth high); 0.1 gives 98.3 % but 7.1 % octave-low on synthetic breathy sopranos, 0 breaks synthetic (RPA 93.8 %), so 0.15. vocadito's voices centre at B2-F4: sopranos are tested on synthetic voices only. 72 % of false alarms lie within 35 ms of an annotated sung frame (note edges); gates on HNR, CMND or level trade as much RPA as they remove false alarms (overall within ±1 pt), so none is used. A lag sweep peaks at 0 ms, so frame times line up. Unvoiced cost 0.3 / 0.45 / 0.6 / 0.8 gives overall 90.0 / 91.1 / 90.8 / 90.3 % (at 0.3 per octave): 0.45 stays. The take summary states this figure.
 Before this, takes were fed in 43 ms chunks, so pairs of frames saw the
 same audio: 10.9 % gross error on the same benchmark (seed 11). Synthetic
 voices only; real-voice ground truth (VocalSet has none for f0) is open. Eight flaw detectors with
