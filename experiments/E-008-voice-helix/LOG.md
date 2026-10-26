@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-26 · practice streak and milestones
+
+Built: under the progress lines, "n days in a row · d days sung · m min of singing kept · milestone · next", from the kept takes' local dates; a streak still counts until midnight and says "sing today to keep it". Counts only, never a score. check.mjs: 7 seeded days + today read "8 days in a row" in 3 browsers; 3 days without today keeps 3. iOS risk: none. Next: edge onsets or rating truth.
+
 ## 2026-10-26 · personal bests
 
 Built: the take summary's "went well" names personal bests over long notes (held ≥ 1 s), against every earlier take kept on the device: the steadiest note (least wobble) and the longest note held within 10 ¢, with the time to find it. A new best is claimed only when it beats all earlier takes by more than one note's reading noise (1 ¢, 0.3 s) and after 2 earlier takes; within 1 ¢ it says "matches your best". Old history records have no bests and are skipped. check.mjs: new best, and a match, in 3 browsers. iOS risk: none new (localStorage only). Next: edge onsets or rating truth.
@@ -103,11 +107,3 @@ voicing recall 97.5 %, false alarm 16.6 ± 3.4 %, overall 91.1 %; low voices
 can now read how far to trust the pitch on a real voice. iOS risk: none.
 Next: cut false alarms (breaths, consonants) and fix low male voices.
 
-## 2026-10-25 · compare with an earlier take
-
-Built: each scored take's audio is kept in IndexedDB (22.05 kHz 16-bit, last
-10, never sent); a picker with date and note score and "▶ earlier take" plays
-one, then ▶ your take gives today's. A singer can hear last week next to
-today. Numbers: none (storage and playback). check.mjs: a stored take plays in
-3 browsers. iOS risk: Safari may evict IndexedDB after 7 days unused (picker
-then just shrinks). Next: align the same phrase across takes.
