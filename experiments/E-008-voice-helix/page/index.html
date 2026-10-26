@@ -272,7 +272,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
     <button class="btn" id="bPlayTake" disabled>▶ your take</button>
     <button class="btn" id="bPlayHalf" disabled title="Half way between your take and spotless">▶ halfway</button>
     <button class="btn" id="bPlaySpot" disabled title="Every note tuned, steadied and started cleanly">▶ spotless</button>
-    <button class="btn" id="bPrevNote" disabled aria-label="Previous note" title="Previous note (← key)">◀ note</button><button class="btn" id="bNextNote" disabled aria-label="Next note" title="Next note (→ key): hear one note at a time with its numbers">note ▶</button><button class="btn" id="bMark" disabled title="Mark this moment (M key): a flag on the bar, kept with the take on this device">⚑ mark</button>
+    <button class="btn" id="bLoopPh" disabled aria-pressed="false" title="Loop the phrase around the note you are on (L key); again to stop">⟲ loop phrase</button><button class="btn" id="bPrevNote" disabled aria-label="Previous note" title="Previous note (← key)">◀ note</button><button class="btn" id="bNextNote" disabled aria-label="Next note" title="Next note (→ key): hear one note at a time with its numbers">note ▶</button><button class="btn" id="bMark" disabled title="Mark this moment (M key): a flag on the bar, kept with the take on this device">⚑ mark</button>
     <select id="cmpSel" hidden aria-label="Earlier take to compare" title="An earlier take kept on this device"></select><button class="btn" id="bPlayCmp" hidden title="Play an earlier take, then yours, to hear the change">▶ earlier take</button><button class="btn" id="bSamePh" hidden title="The phrase around the current note, sung in the earlier take, then today">▶ same phrase</button>
     <button class="btn" id="bWarm" title="A short routine for what your recent takes need most">☀ warm-up</button>
     <button class="btn" id="bProf" title="Your range, voice type and a key for any song, from your takes">♪ voice profile</button>
@@ -586,7 +586,7 @@ async function setupCtx(){const ctx=new (window.AudioContext||window.webkitAudio
   try{await ctx.audioWorklet.addModule(URL.createObjectURL(new Blob([CAP_SRC],{type:'text/javascript'})));const node=new AudioWorkletNode(ctx,'cap',{numberOfInputs:1,numberOfOutputs:1,outputChannelCount:[1]});node.port.onmessage=e=>{takeTap(e.data);dsp.post({type:'audio',buf:e.data},[e.data.buffer]);};node.connect(AU.sink);AU.cap=node;AU.capKind='worklet';}
   catch(e){const sp=ctx.createScriptProcessor(1024,1,1);sp.onaudioprocess=ev=>{const b=new Float32Array(ev.inputBuffer.getChannelData(0));takeTap(b);dsp.post({type:'audio',buf:b},[b.buffer]);};sp.connect(AU.sink);AU.cap=sp;AU.capKind='scriptprocessor';}
   return ctx;}
-function stopSource(){resetStats();AU.play=null;if(typeof playhead!=='undefined')playhead.style.left='0';if(AU.source){try{AU.source.disconnect();}catch(e){}if(AU.source.stop)try{AU.source.stop();}catch(e){}if(AU.source.mediaStream)AU.source.mediaStream.getTracks().forEach(t=>t.stop());AU.source=null;}if(AU.demo){AU.demo.stop();AU.demo=null;}AU.kind=null;if(dsp)dsp.post({type:'uncalib'});calibrating=false;}
+function stopSource(){resetStats();AU.play=null;if(typeof playhead!=='undefined')playhead.style.left='0';if(AU.source){try{AU.source.disconnect();}catch(e){}if(AU.source.stop)try{AU.source.stop();}catch(e){}if(AU.source.mediaStream)AU.source.mediaStream.getTracks().forEach(t=>t.stop());AU.source=null;}if(AU.demo){AU.demo.stop();AU.demo=null;}AU.kind=null;{const l=document.getElementById('bLoopPh');if(l)l.setAttribute('aria-pressed','false');}if(dsp)dsp.post({type:'uncalib'});calibrating=false;}
 function writeColumn(col){terHead=(terHead+1)%TD.T;gl.bindTexture(gl.TEXTURE_2D,terTex);gl.texSubImage2D(gl.TEXTURE_2D,0,terHead,0,1,TD.F,gl.RED,gl.FLOAT,col);}
 
 // ───────────────────────── demo voice synth ─────────────────────────
@@ -865,7 +865,7 @@ async function setTake(buf){TAKE.busy=true;
   TAKE.spot=improveTake(buf,sc.frames,1,sc.aspects.off);TAKE.half=improveTake(buf,sc.frames,0.5,sc.aspects.off);
   TAKE.rating=ANCHORS&&sc.aspects.ok?rateAspects(sc.aspects,ANCHORS):null;TAKE.d=null;TAKE.marks=[];if(sc.aspects.ok){const h=saveTake(sc.aspects);TAKE.d=h[h.length-1].d;storeAudio(TAKE.d,buf);}TAKE.busy=false;renderTakebar();renderRating();document.body.classList.add('has-take');
   if(matchMedia('(max-width:720px)').matches)$('takeRow').scrollIntoView({block:'start',behavior:'smooth'});
-  bPlayTake.disabled=bPlayHalf.disabled=bPlaySpot.disabled=bPrevNote.disabled=bNextNote.disabled=bMark.disabled=false;TAKE.ni=-1;
+  bPlayTake.disabled=bPlayHalf.disabled=bPlaySpot.disabled=bPrevNote.disabled=bNextNote.disabled=bMark.disabled=$('bLoopPh').disabled=false;TAKE.ni=-1;
   const names=[...new Set(TAKE.segs.map(g=>FLAWS[g.i].name))];
   takeInfo.textContent=(tr.cut>0.5||tr.talk>0?`Cut ${tr.cut>0.5?`${tr.cut.toFixed(1)} s of silence`:''}${tr.cut>0.5&&tr.talk>0?' and ':''}${tr.talk>0?`${tr.talk.toFixed(0)} s of talk or noise`:''}: only the singing is scored. `:'')+(TAKE.segs.length?`${TAKE.segs.length} spot${TAKE.segs.length>1?'s':''} to work on (${names.join(', ')}), marked on the bar. Play your take, halfway or spotless.`:`Clean take: no flaw held long enough to coach. ${(sc.voiced*100).toFixed(0)} % of it was voiced.`);}
 // Pitch of a take, decided over the whole take: a Viterbi path through each frame's YIN candidates
@@ -1274,6 +1274,18 @@ function addMark(){if(!TAKE.buf)return;const p=AU.play,d=TAKE.buf.duration;let t
   t=Math.round(t*100)/100;const a=takeMarks().filter(x=>Math.abs(x-t)>0.3);a.push(t);a.sort((x,y)=>x-y);saveMarks(a);renderMarks();
   takeInfo.textContent=`Marked ${mmss(t)} (${a.length} mark${a.length>1?'s':''} on this take). Click a ⚑ to hear it again, double-click to remove.`;}
 bMark.onclick=addMark;document.addEventListener('keydown',e=>{if(!TAKE.buf||bMark.disabled||e.ctrlKey||e.metaKey||e.altKey||/select|input|textarea/i.test(document.activeElement.tagName))return;if(e.key==='m'||e.key==='M'){e.preventDefault();addMark();}});
+// Loop a phrase: the phrase around where the take is playing (or the note stepped to), in the version and speed
+// last chosen, looped seamlessly (loopStart/loopEnd) until clicked again or anything else plays.
+function loopPhrase(){const bL=$('bLoopPh');if(AU.kind==='loop'){stopSource();bL.setAttribute('aria-pressed','false');takeInfo.textContent='Phrase loop stopped.';return;}
+  if(!TAKE.buf||!TAKE.frames)return;const p=AU.play,d=TAKE.buf.duration,P=TAKE.aspects&&TAKE.aspects.perf;let t=0;
+  if(p&&AU.kind==='take'&&AU.ctx)t=clamp((AU.ctx.currentTime-p.t0)*p.k,0,d);else if(TAKE.ni>=0&&P&&P[TAKE.ni])t=(P[TAKE.ni].t0+P[TAKE.ni].t1)/2;
+  const ph=phraseAround(TAKE.frames,t);if(!ph){takeInfo.textContent='No sung phrase there to loop.';return;}
+  const which=TAKE.nw||'take';stopSource();const ctx=AU.ctx;const go=()=>{const k=+speedSel.value,buf=versionBuf(which),a=Math.max(0,ph.t0-0.2),b=Math.min(d,ph.t1+0.3);
+    const s=ctx.createBufferSource();s.buffer=buf;s.loop=true;s.loopStart=a/k;s.loopEnd=b/k;s.connect(AU.cap);s.connect(ctx.destination);s.start(0,a/k);AU.source=s;AU.kind='loop';markSrc(null);
+    playhead.style.left=(a/d*100)+'%';goLive();bL.setAttribute('aria-pressed','true');
+    takeInfo.textContent=`Looping the phrase ${mmss(a)}-${mmss(b)} (${(b-a).toFixed(1)} s, ${which==='take'?'yours':which}${k!==1?`, ${k}× speed`:''}). Sing along, then L or ⟲ to stop.`;};
+  if(ctx){ctx.resume();go();}else ensureCtx().then(c=>{c.resume();go();});}
+$('bLoopPh').onclick=loopPhrase;document.addEventListener('keydown',e=>{if(!TAKE.buf||$('bLoopPh').disabled||e.ctrlKey||e.metaKey||e.altKey||/select|input|textarea/i.test(document.activeElement.tagName))return;if(e.key==='l'||e.key==='L'){e.preventDefault();loopPhrase();}});
 bPlayTake.onclick=()=>playTake('take');bPlayHalf.onclick=()=>playTake('half');bPlaySpot.onclick=()=>playTake('spot');
 // Compare with an earlier take: the audio of the last 10 scored takes is kept in this browser (IndexedDB,
 // 22.05 kHz 16-bit, about 2.6 MB a minute; never sent anywhere), keyed by the take's date in the progress history.

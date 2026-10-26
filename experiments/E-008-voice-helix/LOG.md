@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-26 · loop a phrase
+
+Built: ⟲ loop phrase (L key) next to the playback buttons: loops the phrase around where the take is playing, or the note stepped to (same phrase finder as "same phrase"), padded 0.2/0.3 s, in the version (yours, halfway, spotless) and speed last chosen, seamless via loopStart/loopEnd; pressed state for screen readers. A singer can now drill one phrase, sing along with the spotless version at 0.5×. check.mjs: loop under 8.6 s, pressed, stops on a second tap, 3 browsers. iOS risk: none new (context created in the click path, no new APIs). Next: edge onsets or rating truth.
+
 ## 2026-10-26 · practice streak and milestones
 
 Built: under the progress lines, "n days in a row · d days sung · m min of singing kept · milestone · next", from the kept takes' local dates; a streak still counts until midnight and says "sing today to keep it". Counts only, never a score. check.mjs: 7 seeded days + today read "8 days in a row" in 3 browsers; 3 days without today keeps 3. iOS risk: none. Next: edge onsets or rating truth.
