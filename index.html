@@ -1047,6 +1047,15 @@ function slide(v,i){const w=v.slice(Math.max(0,i-HIST_WIN+1),i+1),n=w.length,m=w
 // Trend in words only when the last 5 takes differ from the 5 before by more than both bands together.
 function trend(x,v){if(v.length<HIST_WIN+2)return '';const a=slide(v,v.length-1),b=slide(v,v.length-1-HIST_WIN);if(b.n<2)return '';
   const d=a.m-b.m,lim=Math.hypot(a.ci,b.ci);if(Math.abs(d)<=lim)return 'level within the noise';return (x.lower?d<0:d>0)?'better than the takes before':'worse than the takes before';}
+// Practice streak and milestones: counts of days and minutes sung, from the kept takes' dates (local
+// calendar days). They reward coming back, never a score; a streak still counts today until midnight.
+const MILE_TAKES=[1,10,25,50,100,250],MILE_MIN=[10,30,60,180,600];
+function dayKey(t){const d=new Date(t);return d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();}
+function streakInfo(h,now){const days=new Set(h.map(r=>dayKey(r.d)));let n=0;const t=new Date(now);if(!days.has(dayKey(+t)))t.setDate(t.getDate()-1);
+  while(days.has(dayKey(+t))){n++;t.setDate(t.getDate()-1);}const min=h.reduce((a,r)=>a+(r.sung||0),0)/60;
+  const mt=MILE_TAKES.filter(m=>h.length>=m).pop(),mm=MILE_MIN.filter(m=>min>=m).pop();return {n,today:days.has(dayKey(now)),days:days.size,min,mt,mm,nextT:MILE_TAKES.find(m=>h.length<m),nextM:MILE_MIN.find(m=>min<m)};}
+function streakLine(h){const S=streakInfo(h,Date.now());
+  return `<p class="streak">${S.n>1?`<b>${S.n} days in a row</b>`:S.n===1?'<b>1 day</b>':'No streak yet'}${S.n&&!S.today?' (sing today to keep it)':''} · ${S.days} day${S.days>1?'s':''} sung · ${S.min.toFixed(0)} min of singing kept${S.mm?` · milestone: ${S.mm} min`:''}${S.mt>1?` · ${S.mt} takes`:''}${S.nextM?` · next: ${S.nextM} min`:''}</p>`;}
 function renderProgress(){const h=loadHist();if(!h.length)return '';
   const W=220,H=36,n=h.length,X=i=>(n>1?4+i/(n-1)*(W-8):W/2).toFixed(1);
   let o=`<h3>Progress · ${n} take${n>1?'s':''} on this device</h3><table class="prog">`;
@@ -1057,7 +1066,7 @@ function renderProgress(){const h=loadHist();if(!h.length)return '';
     const last=S[n-1],tr=trend(x,v);
     o+=`<tr><td>${x.name}</td><td><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="${x.name}: ${n} takes, now ${last.m.toFixed(x.dec)}${last.ci!==null?` ± ${last.ci.toFixed(x.dec)}`:''}"><polygon class="bd" points="${band}"/><polyline class="sl" vector-effect="non-scaling-stroke" points="${S.map((s,i)=>`${X(i)},${Y(s.m)}`).join(' ')}"/>${v.map((q,i)=>`<circle cx="${X(i)}" cy="${Y(q)}" r="1.8"/>`).join('')}</svg></td>`+
       `<td>${last.m.toFixed(x.dec)}${last.ci!==null?` ± ${last.ci.toFixed(x.dec)}`:''} ${x.unit}${tr?`<br><em>${tr}</em>`:''}</td></tr>`;}
-  return o+`</table><p class="fine">Dots: each take. Line: mean of your last ${HIST_WIN} takes; band: its 95 % interval. Up is better on every line. Kept only in this browser. <button class="btn" id="forget">forget my takes</button></p>`;}
+  return o+`</table>${streakLine(h)}<p class="fine">Dots: each take. Line: mean of your last ${HIST_WIN} takes; band: its 95 % interval. Up is better on every line. Kept only in this browser. <button class="btn" id="forget">forget my takes</button></p>`;}
 // Warm-up: a five-minute routine for today, chosen from the takes kept on this device. Each aspect's mean
 // over the last 5 takes is set against the median trained singer (as in "to work on"); the one or two
 // furthest behind get a targeted step between a semi-occluded warm-up and a siren. Guide tones sit in the
