@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-26 · vibrato evenness
+
+Built: the take summary adds "Vibrato evenness: rate varies x ± % and width y ± % cycle to cycle", compared with the VocalSet trained singers on Caro mio ben (rate ~11 %, width 23-29 %), with an exercise (slow sirens, messa di voce) when less even. Cycles from zero crossings of the detrended pitch with hysteresis. Numbers (`check/vibrato-bench.mjs`, page code): rate CV true 2.9/8.7/17.3 % read 3.1/7.5/15.3 % (± ≤ 1.5); extent CV true 0/11.5/23.1 % read 2.3/12.2/22.9 %. check.mjs: pure 6 Hz take reads even in 3 browsers. iOS risk: none new. Next: edge onsets or rating truth.
+
 ## 2026-10-26 · live vibrato chip on the take estimator
 
 Built: the vibrato chip while singing now uses the take's estimator (note-change cuts, detrend, autocorrelation) on the last 1.2 s of the current note, so legato steps no longer show as vibrato. Numbers (`check/vibrato-bench.mjs`): per-note rate error median 0.07 → 0.04 Hz, p90 0.13 → 0.11; 0/30 straight notes flagged; take figures unchanged. iOS risk: a little more work per frame (about 60 frames × 14 lags), small. Next: vibrato regularity.
@@ -103,17 +107,3 @@ one, then ▶ your take gives today's. A singer can hear last week next to
 today. Numbers: none (storage and playback). check.mjs: a stored take plays in
 3 browsers. iOS risk: Safari may evict IndexedDB after 7 days unused (picker
 then just shrinks). Next: align the same phrase across takes.
-
-## 2026-10-25 · guided range finder
-
-Built: a range finder in the ♪ voice profile: three mic steps (slide to the
-lowest note and hold, slide to the highest and hold, a siren on “ng”), each
-tracked like a take; lowest/highest = extreme medians of 0.3 s voiced windows
-within 2 st; breaks from the siren. Kept apart from takes (progress untouched);
-the profile works from range finds alone. A singer can map their range in a
-minute without waiting for takes. Measured (`check/range-bench.mjs`, page code,
-30 synthetic voices with vibrato, breath, fry tail): lowest error median 0.11 st
-(p90 0.16), highest 0.19 st (p90 1.36: tops over 1100 Hz are cut by the
-tracker), 95 % within 1 st, breaks 60/60. iOS risk: mic opened from the tap as
-the Mic button does. Next: rating ground truth or compare takes.
-

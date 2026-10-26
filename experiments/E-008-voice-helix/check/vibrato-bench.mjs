@@ -15,14 +15,14 @@ const rows = await p.evaluate(async ([N, SEED]) => {
   const out = [];
   for (const [vn, [lo, hi]] of Object.entries(voices)) {
     const sr = 44100, nd = 2, gap = 0.4, notes = [];
-    for (let k = 0; k < N; k++) notes.push({ f: lo * Math.pow(hi / lo, rnd()), straight: k % 4 === 3, sag: k % 2 === 1 ? (rnd() < 0.5 ? -1 : 1) * 0.6 : 0, rate: 4 + 4 * rnd(), ext: 0.15 * Math.pow(10, rnd()) });
-    const n = Math.round(sr * N * (nd + gap)), x = new Float32Array(n); let ph = 0, vph = 0, vr = 0, drift = 0;
+    for (let k = 0; k < N; k++) notes.push({ f: lo * Math.pow(hi / lo, rnd()), straight: k % 4 === 3, sag: k % 2 === 1 ? (rnd() < 0.5 ? -1 : 1) * 0.6 : 0, rate: 4 + 4 * rnd(), ext: 0.15 * Math.pow(10, rnd()), jr: [0.05, 0.15, 0.3][k % 3], je: [0, 0.2, 0.4][(k >> 2) % 3] });
+    const n = Math.round(sr * N * (nd + gap)), x = new Float32Array(n); let ph = 0, vph = 0, vr = 0, ve = 1, drift = 0;
     for (let i = 0; i < n; i++) { const s = i / sr, k = Math.floor(s / (nd + gap)), u = s - k * (nd + gap), q = notes[k];
       if (u > nd || !q) { ph = 0; vph = 0; x[i] = 0.001 * (rnd() - 0.5); continue; }
       if (i % 441 === 0) { drift = 0.97 * drift + 0.03 * 10 * (rnd() - 0.5) * 2; }
-      if (vph === 0 || Math.floor(vph / (2 * Math.PI)) !== Math.floor((vph + 2 * Math.PI * vr / sr) / (2 * Math.PI))) vr = q.rate * (1 + 0.1 * (rnd() - 0.5));
+      if (vph === 0 || Math.floor(vph / (2 * Math.PI)) !== Math.floor((vph + 2 * Math.PI * vr / sr) / (2 * Math.PI))) { vr = q.rate * (1 + 2 * q.jr * (rnd() - 0.5)); ve = 1 + 2 * q.je * (rnd() - 0.5); }
       vph += 2 * Math.PI * vr / sr;
-      const st = (q.straight ? 0 : q.ext * Math.sin(vph)) + drift / 100 + q.sag * (u / nd - 0.5), f = q.f * Math.pow(2, st / 12) * (1 + 0.002 * (rnd() - 0.5));
+      const st = (q.straight ? 0 : q.ext * ve * Math.sin(vph)) + drift / 100 + q.sag * (u / nd - 0.5), f = q.f * Math.pow(2, st / 12) * (1 + 0.002 * (rnd() - 0.5));
       ph += 2 * Math.PI * f / sr; const env = Math.min(1, u / 0.04, (nd - u) / 0.04);
       let v = 0; for (let h = 1; h * f < 8000; h++) v += Math.sin(h * ph) / h;
       x[i] = 0.25 * env * (v + 0.1 * (rnd() - 0.5) * 2 * 0.6); }
@@ -33,7 +33,8 @@ const rows = await p.evaluate(async ([N, SEED]) => {
     notes.forEach((q, k) => { const t0 = k * (nd + gap) + 0.9, t1 = k * (nd + gap) + 1.9, R = [], E = []; let tot = 0;
       for (let i = 0; i < fr.length; i++) { if (fr[i].t < t0 || fr[i].t > t1) continue; tot++; if (snaps[i].vibRate) { R.push(snaps[i].vibRate); E.push(snaps[i].vibExt); } }
       const med = a => a.length ? a.sort((x, y) => x - y)[a.length >> 1] : 0;
-      out.push({ vn, straight: q.straight, rate: q.rate, ext: q.ext, sag: !!q.sag, det: R.length > tot / 2, eR: med(R), eE: med(E) }); });
+      const m = []; for (let i = 0; i < fr.length; i++) if (fr[i].t >= k * (nd + gap) + 0.2 && fr[i].t <= k * (nd + gap) + 1.8 && fr[i].f0 > 0) m.push(69 + 12 * Math.log2(fr[i].f0 / 440)); const P = m.length > 40 ? vibPiece(m, 0) : {};
+      out.push({ vn, straight: q.straight, rate: q.rate, ext: q.ext, sag: !!q.sag, det: R.length > tot / 2, eR: med(R), eE: med(E), jr: q.jr, je: q.je, rcv: P.rateCV, ecv: P.extCV }); });
   }
   for (const id of ['f2_vibrato', 'f2_straight', 'f2_caro_vibrato', 'f2_caro_straight', 'm2_vibrato', 'm2_straight', 'm2_caro_vibrato', 'm2_caro_straight']) {
     const ab = await (await fetch(`demo/${id}.mp3`)).arrayBuffer(), buf = await new OfflineAudioContext(1, 1, 44100).decodeAudioData(ab);
@@ -56,3 +57,8 @@ console.log(`  extent |error| median ${q(eE, 0.5).toFixed(3)} st, p90 ${q(eE, 0.
 for (const v of ['bass', 'tenor', 'alto', 'soprano', 'child']) { const a = d.filter(r => r.vn === v); if (a.length) console.log(`  ${v}: n=${a.length} rate med ${q(a.map(r => Math.abs(r.eR - r.rate)), 0.5).toFixed(2)} Hz, extent ratio ${ms(a.map(r => r.eE / r.ext - 1)).map(x => (100 * x).toFixed(0)).join(' ± ')} %`); }
 for (const t of takes) console.log(`take ${t.take}: vibrato on ${t.n} of ${t.long} long notes (truth ${t.nv}); rate ${t.rate.map(v => v.toFixed(2)).join(' ± ')} Hz (truth mean ${t.tRate.toFixed(2)}), extent ${t.ext.map(v => v.toFixed(2)).join(' ± ')} st (truth mean ${t.tExt.toFixed(2)})`);
 for (const t of reals) console.log(`VocalSet ${t.real}: vibrato on ${t.n} of ${t.long} long notes${t.rate ? `, ${t.rate.map(v => v === null ? '' : v.toFixed(2)).join(' ± ')} Hz, ±${t.ext.map(v => v === null ? '' : v.toFixed(2)).join(' ± ')} st` : ''}`);
+// Regularity: true CV of a uniform ±j jitter is j/√3 (rate) and j/√3 (extent multiplier).
+for (const [key, tk, lv] of [['rcv', 'jr', [0.05, 0.15, 0.3]], ['ecv', 'je', [0, 0.2, 0.4]]]) for (const j of lv) {
+  const a = rows.filter(r => !r.straight && r.ext >= 0.3 && r[tk] === j && r[key] !== undefined).map(r => 100 * r[key]);
+  if (a.length) console.log(`regularity ${key === 'rcv' ? 'rate' : 'extent'} jitter ±${100 * j} % (true CV ${(100 * j / Math.sqrt(3)).toFixed(1)} %): estimated CV ${ms(a).map(v => v.toFixed(1)).join(' ± ')} % (n=${a.length}), p10-p90 ${q(a, 0.1).toFixed(1)}-${q(a, 0.9).toFixed(1)}`); }
+for (const t of reals) if (t.rcv) console.log(`VocalSet ${t.real}: rate CV ${t.rcv.map(v => v === null ? '' : v.toFixed(1)).join(' ± ')} %, extent CV ${t.ecv.map(v => v === null ? '' : v.toFixed(1)).join(' ± ')} %`);
