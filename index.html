@@ -1268,7 +1268,16 @@ function samePhrase(Fq,t0,t1,Fr){const q=contour(Fq,t0,t1),r=contour(Fr),m=q.len
 const CMPF={};
 async function earlierTake(k){if(CMPF[k])return CMPF[k];const a=await adbDo('readonly',st=>st.get(k));if(!a)return null;
   const b=mkBuf(a.pcm.length,a.sr),x=b.getChannelData(0);for(let i=0;i<x.length;i++)x[i]=a.pcm[i]/32767;
-  const fs=await trackTake(b);viterbiF0(fs);trimEdges(fs,b);const F=fs.map(f=>({t:Math.max(0,f.t-0.02),f0:f.voiced?f.f0:0}));return CMPF[k]={buf:b,F};}
+  const fs=await trackTake(b);viterbiF0(fs);trimEdges(fs,b);const F=fs.map(f=>({t:Math.max(0,f.t-0.02),f0:f.voiced?f.f0:0}));
+  const st=new Stats();for(const m of fs)ingest(st,m,'take');return CMPF[k]={buf:b,F,perf:takeSpots(st).aspects.perf||[]};}
+// The held notes of a phrase in numbers: mean |cents off| and mean wobble with ±1.96 SE over its notes, and scoops.
+// Then vs today says better or worse only when the two means differ by more than both ± together.
+function phraseNums(perf,t0,t1){const N=perf.filter(n=>n.t1>t0-0.1&&n.t0<t1+0.1);if(!N.length)return null;
+  const ms=v=>{if(!v.length)return null;const m=v.reduce((s,x)=>s+x,0)/v.length,sd=v.length>1?Math.sqrt(v.reduce((s,x)=>s+(x-m)**2,0)/(v.length-1)):m;return [m,1.96*sd/Math.sqrt(v.length)];};
+  return {n:N.length,c:ms(N.map(n=>Math.abs(n.c))),wob:ms(N.filter(n=>n.wob!==null).map(n=>n.wob)),sc:N.filter(n=>n.scoop).length};}
+function phraseSay(A,B){if(!A||!B)return '';const w=(x,y,u)=>{const s=`${u} ${x[0].toFixed(0)} ± ${x[1].toFixed(0)} → ${y[0].toFixed(0)} ± ${y[1].toFixed(0)} ¢`;
+    return Math.abs(x[0]-y[0])<=x[1]+y[1]?`${s} (within the ±)`:`${s} (${y[0]<x[0]?'better':'worse'})`;};
+  const p=[w(A.c,B.c,'off')];if(A.wob&&B.wob)p.push(w(A.wob,B.wob,'wobble'));if(A.sc!==B.sc)p.push(`scoops ${A.sc} → ${B.sc}`);return ` Then vs today (${A.n} and ${B.n} notes): ${p.join(', ')}.`;}
 function joinClips(parts,sr){const n=parts.reduce((s,p)=>s+Math.ceil((p.t1-p.t0)*sr)+Math.round(0.5*sr),0),out=mkBuf(n,sr),y=out.getChannelData(0);let o=0;
   for(const p of parts){const x=p.buf.getChannelData(0),r=p.buf.sampleRate/sr,L=Math.ceil((p.t1-p.t0)*sr),a=p.t0*p.buf.sampleRate;
     for(let i=0;i<L;i++){const u=a+i*r,j=Math.floor(u),f=u-j;if(j+1<x.length)y[o+i]=x[j]*(1-f)+x[j+1]*f;}
@@ -1284,7 +1293,7 @@ async function playSamePhrase(){const k=+$('cmpSel').value;if(!k||!TAKE.frames)r
   const pad=0.2,b=joinClips([{buf:E.buf,t0:Math.max(0,m.t0-pad),t1:Math.min(E.buf.duration,m.t1+pad)},{buf:TAKE.buf,t0:Math.max(0,ph.t0-pad),t1:Math.min(d,ph.t1+pad)}],ctx.sampleRate);
   const s=ctx.createBufferSource();s.buffer=b;s.connect(AU.cap);s.connect(ctx.destination);s.start();AU.source=s;AU.kind='cmp';markSrc(null);goLive();
   const sh=Math.abs(m.shift)>=0.5?`, ${Math.abs(m.shift)} semitone${Math.abs(m.shift)>1?'s':''} ${m.shift>0?'higher':'lower'} then`:'';
-  takeInfo.textContent=`Same phrase: ${day} at ${mmss(m.t0)}${sh}, then today at ${mmss(ph.t0)} (${(ph.t1-ph.t0).toFixed(1)} s; tune match ±${m.cost.toFixed(2)} st). Step ◀ ▶ to pick another phrase.`;}
+  takeInfo.textContent=`Same phrase: ${day} at ${mmss(m.t0)}${sh}, then today at ${mmss(ph.t0)} (${(ph.t1-ph.t0).toFixed(1)} s; tune match ±${m.cost.toFixed(2)} st). ${phraseSay(phraseNums(E.perf,m.t0,m.t1),phraseNums(P||[],ph.t0,ph.t1))} Step ◀ ▶ to pick another phrase.`;}
 $('bSamePh').onclick=playSamePhrase;
 function coachTick(){const p=AU.play;if(!p||AU.kind!=='take')return;const pos=(AU.ctx.currentTime-p.t0)*p.k;playhead.style.left=clamp(pos/p.dur*100,0,100)+'%';
   const seg=TAKE.segs.find(g=>pos>=g.t0-LEAD&&pos<=g.t1+0.3)||null;const star=seg?null:(TAKE.best||[]).find(n=>pos>=n.t0&&pos<=n.t1+1.5)||null;
