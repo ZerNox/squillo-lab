@@ -75,7 +75,7 @@ breaks where 10 s hold under 1 s of held notes), each held note coloured on /
 close / off, a star on up to 8 best notes, and the coach's spots underneath;
 the card names the strongest and weakest 10 s stretch, and a click on the bar
 plays from there; a click on a note or a spot loops it A/B, 0.5× keeps the pitch: your note, 0.5 s,
-the same moment spotless, 1 s (padded 0.4 s, capped at 4 s), until clicked again. ◀ note / note ▶ (or ← →) plays one held note at a time (padded 0.15 s) in the version last played, outlines it on the bar and says its cents off, wobble and onset. A speed menu (1×, 0.75×, 0.5×) slows the take, halfway,
+the same moment spotless, 1 s (padded 0.4 s, capped at 4 s), until clicked again. ◀ note / note ▶ (or ← →) plays one held note at a time (padded 0.15 s) in the version last played, outlines it on the bar and says its cents off, wobble and onset. ⚑ mark (or M) drops a flag where the take is playing; flags are kept per take on the device (localStorage), a click plays from 1 s before, a double-click removes it. A speed menu (1×, 0.75×, 0.5×) slows the take, halfway,
 spotless and the A/B loop without changing pitch (WSOLA, 40 ms grains, ±8 ms
 search). Measured by the page's own scan on three steady synthetic voices
 (110/220/440 Hz) slowed to 0.5×: median 0.7 ¢, 90th percentile 1.1 ¢ from the

@@ -2,6 +2,17 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-26 · mark moments
+
+Built: ⚑ mark button and M key drop a flag on the take bar where the take is
+playing (or at the note just stepped to); flags are kept per take in
+localStorage (last 50 takes), a click plays from 1 s before, a double-click
+removes. A singer can now flag "that bit" while listening and come straight
+back to it, today or later. Numbers: none (playback). check.mjs: mark lands on
+the playing note, is stored, and plays, in 3 browsers. iOS risk: double-tap to
+remove may zoom on some iOS settings (touch-action untested on device).
+Next: compare the same phrase across takes, or rating truth.
+
 ## 2026-10-26 · sharper note edges
 
 Built: `trimEdges`: the first and last 2 frames of each voiced run are
@@ -122,22 +133,4 @@ frames, 25 voice×condition cells): gross error 10.9 % (old chunking) →
 1.4 % (live tracker) → 0.1 % (Viterbi); octave 0.8 → 0.1 %; missed voiced
 0.3 %. Noisy 600 Hz tone in check.mjs: live 0 %, take 81 % right. Slide bench
 unchanged (120/120). iOS risk: none (offline maths). Next: phone layout.
-
-## 2026-10-25 · slide style vs unwanted scoop
-
-Built: each onset's slide is measured from the take (settled pitch less the
-first 60 ms); two thirds or more of notes slid into by the same depth (±20 %)
-is a style: praised, not marked down, no scoop spots. A pop or soul singer is
-no longer told to fix their style. Measured (`check/slide-bench.mjs`, page
-code): 119/120 synthetic phrases classified right; 0/16 real clips called a
-style. iOS risk: none (offline maths only). Next: pitch tracker (pYIN+Viterbi).
-
-## 2026-10-25 · slow down without changing pitch
-
-Built: speed menu 1×/0.75×/0.5× for take, halfway, spotless and A/B (WSOLA).
-A singer can now hear a fast run or a scoop at half speed, same pitch.
-Measured with the page's code: 0.5× keeps steady pitch to 0.7 ¢ median,
-1.1 ¢ p90 (3 synthetic voices); 0.8-1.3 s to slow a 32 s take. iOS risk:
-the stretch runs on the main thread (UI pauses ~1 s on a phone). check.mjs
-now retries WebKit twice. Next: style-aware onsets.
 

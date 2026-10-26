@@ -19,7 +19,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Progress lines across takes, kept on the device (localStorage), with band.
 - A/B at a spot: click a note or spot, hear yours then spotless, looped.
 - Slow down to 0.75× or 0.5× without changing pitch (WSOLA), A/B included.
-- Note by note: ◀ / ▶ or ← → plays one note at a time with its numbers.
+- Note by note: ◀ / ▶ or ← → plays one note at a time with its numbers; ⚑ mark (M) flags moments, kept per take.
 - Warm-up: about 4 min, steps chosen from the last 5 takes, cited, guide tones.
 - Phone: the take comes first after a scan, progress lines full width.
 - Take pitch: YIN candidates + Viterbi (0.1 % gross error, synthetic; 97.6 ± 0.7 % RPA, false alarm 12.8 % on 40 real singers, vocadito; note edges trimmed on a short window).
