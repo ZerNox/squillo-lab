@@ -531,8 +531,9 @@ function ingest(st,m,src){const now=m.t;st.at=now;const FT=st.ft,HIST=st.HIST;co
      const D=s0*(s2*s4-s3*s3)-s1*(s1*s4-s3*s2)+s2*(s1*s3-s2*s2);if(Math.abs(D)>1e-12){const a=(y0*(s2*s4-s3*s3)-s1*(y1*s4-s3*y2)+s2*(y1*s3-s2*y2))/D;c.res=Math.abs(c.midi-a)*100;}}
     else if(pts.length>=3){let mm=0;for(const q of pts)mm+=q.midi;c.res=Math.abs(c.midi-mm/pts.length)*100;}}}
   const v=HIST.filter(h=>h.voiced&&h.fit&&now-h.t<0.8);let rough=0;if(v.length>5){let a=0;for(const h of v)a+=h.res*h.res;rough=Math.sqrt(a/v.length)*1.22;}if(voiced)FT.rough=lerp(FT.rough,rough,0.25);
-  const v2=HIST.filter(h=>h.voiced&&now-h.t<1.2);if(v2.length>12&&v2[v2.length-1].t-v2[0].t>0.8){let mm=0;for(const h of v2)mm+=h.midi;mm/=v2.length;let sd=0,zc=0,prevS=0;for(const h of v2){const d=h.midi-mm;sd+=d*d;const sg=Math.sign(d);if(prevS&&sg&&sg!==prevS)zc++;if(sg)prevS=sg;}sd=Math.sqrt(sd/v2.length);const span=v2[v2.length-1].t-v2[0].t;const rate=zc/2/span;
-    if(sd*1.41>0.08&&rate>3&&rate<9){FT.vibRate=lerp(FT.vibRate||rate,rate,0.3);FT.vibExt=lerp(FT.vibExt||sd*1.41,sd*1.41,0.3);}else{FT.vibRate=0;FT.vibExt=0;}}else{FT.vibRate=0;FT.vibExt=0;}
+  // vibrato: the take estimator (vibCuts, vibPiece) on the last 1.2 s of this voiced run, after its last note change
+  {let j=HIST.length;while(j>0&&HIST[j-1].voiced&&now-HIST[j-1].t<1.2)j--;const w=HIST.slice(j),fps=w.length>1?(w.length-1)/(w[w.length-1].t-w[0].t):50,m=w.map(h=>h.midi),c=w.length&&w[w.length-1].t-w[0].t>0.75?vibCuts(m,fps):[],L=c[c.length-1];
+   const r=L&&L[1]===m.length?vibPiece(m.slice(L[0]),0,fps):null;if(r&&r.rate){FT.vibRate=lerp(FT.vibRate||r.rate,r.rate,0.3);FT.vibExt=lerp(FT.vibExt||r.ext,r.ext,0.3);}else{FT.vibRate=0;FT.vibExt=0;}}
   const v8h=HIST.filter(h=>h.voiced&&h.ok&&h.st>0.12&&now-h.t<8);const v8=v8h.map(h=>h.midi).sort((a,b)=>a-b);FT.range=v8.length>30?v8[Math.floor(v8.length*0.9)]-v8[Math.floor(v8.length*0.1)]:0;let vs=0;for(const h of v8h)vs+=h.dt;FT.voicedSec=vs;
   st.onsetList=st.onsetList.filter(t=>now-t<8);st.scoopList=st.scoopList.filter(t=>now-t<10);st.segList=st.segList.filter(x=>now-x[0]<8);FT.onsets=st.onsetList.length;FT.scoops=st.scoopList.length;
   const sd=st.segList.map(x=>x[1]).sort((a,b)=>a-b);FT.speechy=FT.onsets>=4&&sd.length>=3&&sd[Math.floor(sd.length/2)]<0.45;
@@ -941,16 +942,18 @@ function registerBreaks(fr){const v=fr.filter(f=>f.voiced&&f.f0>0).map(f=>({t:f.
 // 0.8 s or more is a long note. A quadratic is taken out, then the residual's autocorrelation peak at 3-8.5 Hz
 // (the first local peak of 0.4 or more, interpolated) gives the rate; it counts as vibrato when there is one and the extent (1.41 × SD,
 // peak, st) 0.08 st or more. check/vibrato-bench.mjs measures this on synthetic voices and VocalSet.
-function takeVibrato(st){const fr=st.rec.frames,L=[];let i=0;
-  const piece=(m,t0)=>{const n=m.length;let s0=n,s1=0,s2=0,s3=0,s4=0,y0=0,y1=0,y2=0;for(let k=0;k<n;k++){const x=k/n-0.5,y=m[k];s1+=x;s2+=x*x;s3+=x**3;s4+=x**4;y0+=y;y1+=x*y;y2+=x*x*y;}
+function vibPiece(m,t0,fps=50){const n=m.length;let s0=n,s1=0,s2=0,s3=0,s4=0,y0=0,y1=0,y2=0;for(let k=0;k<n;k++){const x=k/n-0.5,y=m[k];s1+=x;s2+=x*x;s3+=x**3;s4+=x**4;y0+=y;y1+=x*y;y2+=x*x*y;}
     const D=s0*(s2*s4-s3*s3)-s1*(s1*s4-s3*s2)+s2*(s1*s3-s2*s2),A=(y0*(s2*s4-s3*s3)-s1*(y1*s4-s3*y2)+s2*(y1*s3-s2*y2))/D,B=(s0*(y1*s4-s3*y2)-y0*(s1*s4-s3*s2)+s2*(s1*y2-y1*s2))/D,C=(s0*(s2*y2-y1*s3)-s1*(s1*y2-y1*s2)+y0*(s1*s3-s2*s2))/D;
     const r=m.map((y,k)=>{const x=k/n-0.5;return y-A-B*x-C*x*x;});let v=0;for(const q of r)v+=q*q;const sd=Math.sqrt(v/n);if(!v)return {t:t0};
-    const ac=l=>{let a=0;for(let k=0;k+l<n;k++)a+=r[k]*r[k+l];return a/v*n/(n-l);};let bl=0,bv=-1;const cs=[];for(let l=5;l<=18;l++){cs[l]=ac(l);}
-    for(let l=6;l<=17;l++)if(cs[l]>=0.4&&cs[l]>=cs[l-1]&&cs[l]>=cs[l+1]){bv=cs[l];bl=l;break;}
-    if(!bl||bv<0.4||sd*1.41<0.08)return {t:t0};const d=cs[bl-1]-2*cs[bl]+cs[bl+1],lp=bl+(d<0?0.5*(cs[bl-1]-cs[bl+1])/d:0);return {t:t0,rate:50/lp,ext:sd*1.41};};
+    const ac=l=>{let a=0;for(let k=0;k+l<n;k++)a+=r[k]*r[k+l];return a/v*n/(n-l);};let bl=0,bv=-1;const cs=[];const l0=Math.max(2,Math.floor(fps/8.5)),l1=Math.ceil(fps/3);for(let l=l0-1;l<=l1+1;l++){cs[l]=ac(l);}
+    for(let l=l0;l<=l1;l++)if(cs[l]>=0.4&&cs[l]>=cs[l-1]&&cs[l]>=cs[l+1]){bv=cs[l];bl=l;break;}
+    if(!bl||bv<0.4||sd*1.41<0.08)return {t:t0};const d=cs[bl-1]-2*cs[bl]+cs[bl+1],lp=bl+(d<0?0.5*(cs[bl-1]-cs[bl+1])/d:0);return {t:t0,rate:fps/lp,ext:sd*1.41};}
+// Long-note pieces of one voiced run (pitch in st, fps frames/s): cut where the 0.3 s mean moves 0.8 st or more in 0.16 s.
+function vibCuts(m,fps=50){const h=Math.round(0.14*fps),g=Math.round(0.08*fps),S=m.map((_,j)=>{let a=0,c=0;for(let q=Math.max(0,j-h);q<=Math.min(m.length-1,j+h);q++){a+=m[q];c++;}return a/c;}),out=[];
+  let s=0;for(let j=g;j<=m.length;j++){const c=j===m.length||(j+g<m.length&&Math.abs(S[j+g]-S[j-g])>=0.8);if(!c)continue;if(j-s>=0.8*fps)out.push([s,j]);if(j<m.length){s=j+2*g;j=s+g-1;}}return out;}
+function takeVibrato(st){const fr=st.rec.frames,L=[];let i=0;
   while(i<fr.length){if(!fr[i].voiced||!(fr[i].f0>0)){i++;continue;}let k=i;while(k<fr.length&&fr[k].voiced&&fr[k].f0>0)k++;
-    const m=[];for(let j=i;j<k;j++)m.push(69+12*Math.log2(fr[j].f0/440));const S=m.map((_,j)=>{let a=0,c=0;for(let q=Math.max(0,j-7);q<=Math.min(m.length-1,j+7);q++){a+=m[q];c++;}return a/c;});
-    let s=0;for(let j=4;j<=m.length;j++){const cut=j===m.length||(j+4<m.length&&Math.abs(S[j+4]-S[j-4])>=0.8);if(!cut)continue;if(j-s>=40)L.push(piece(m.slice(s,j),fr[i+s].t));if(j<m.length){s=j+8;j=s+3;}}i=k;}
+    const m=[];for(let j=i;j<k;j++)m.push(69+12*Math.log2(fr[j].f0/440));for(const [a,b] of vibCuts(m))L.push(vibPiece(m.slice(a,b),fr[i+a].t));i=k;}
   const V=L.filter(x=>x.rate),ms=a=>{const m=a.reduce((t,x)=>t+x,0)/a.length,sd=a.length>1?Math.sqrt(a.reduce((t,x)=>t+(x-m)**2,0)/(a.length-1)):0;return [m,a.length>1?1.96*sd/Math.sqrt(a.length):null];};
   return {long:L.length,n:V.length,rate:V.length?ms(V.map(x=>x.rate)):null,ext:V.length?ms(V.map(x=>x.ext)):null};}
 // Vibrato in words: rate and extent with ± (1.96 SE over long notes). Trained classical singers sit near 5.5-6.5 Hz
