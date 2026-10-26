@@ -2,6 +2,16 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-26 · same phrase across all kept takes
+
+Built: the earlier-take picker has "all N kept takes"; ▶ same phrase then
+finds the phrase in each kept take (up to 10), plays the versions found
+oldest first and today's last, and lists each version's cents off (± 1.96 SE)
+plus first-vs-today. A singer can now hear one line's history in one go.
+Numbers: matcher as above (95.0 ± 3.9 % found, proxy). check.mjs: 2 of 2
+found in 3 browsers. iOS risk: tracking 10 stored takes can take several
+seconds on a phone (progress shown). Next: rating truth, or edge onsets.
+
 ## 2026-10-26 · same phrase in numbers
 
 Built: ▶ same phrase now also says how the phrase's held notes measured then
@@ -121,16 +131,4 @@ held note. A singer can now see their range and pick a key that suits them.
 Numbers: none measured (bookkeeping on the take's notes; voice type not
 validated). check.mjs: seeded takes read E3-D4, tenor, G3-D5 in G → C (3
 browsers). iOS risk: none (no audio). Next: register transitions.
-
-## 2026-10-25 · warm-up from your recent takes
-
-Built: a ☀ warm-up button: a 4-5 step, about 4 min routine (lip trill/straw,
-one or two targeted steps, siren) whose middle steps go to the aspects
-furthest from the median trained singer over the last 5 takes on the device
-(pitch matching, messa di voce, clean starts, easy onsets), each with its
-source and a guide tone in the singer's own range (notes' 10th-90th
-percentile, now kept per take). A singer can now warm up on what they need
-today. Numbers: none new (choice rule reuses the "to work on" yardstick).
-check.mjs: seeded takes give onsets then intonation, tone plays (3 browsers).
-iOS risk: tone context made in the tap. Next: range and voice profile.
 
