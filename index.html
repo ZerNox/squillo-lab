@@ -1067,6 +1067,17 @@ function streakInfo(h,now){const days=new Set(h.map(r=>dayKey(r.d)));let n=0;con
   const mt=MILE_TAKES.filter(m=>h.length>=m).pop(),mm=MILE_MIN.filter(m=>min>=m).pop();return {n,today:days.has(dayKey(now)),days:days.size,min,mt,mm,nextT:MILE_TAKES.find(m=>h.length<m),nextM:MILE_MIN.find(m=>min<m)};}
 function streakLine(h){const S=streakInfo(h,Date.now());
   return `<p class="streak">${S.n>1?`<b>${S.n} days in a row</b>`:S.n===1?'<b>1 day</b>':'No streak yet'}${S.n&&!S.today?' (sing today to keep it)':''} · ${S.days} day${S.days>1?'s':''} sung · ${S.min.toFixed(0)} min of singing kept${S.mm?` · milestone: ${S.mm} min`:''}${S.mt>1?` · ${S.mt} takes`:''}${S.nextM?` · next: ${S.nextM} min`:''}</p>`;}
+// This week against last week: each aspect's mean over the takes of the last 7 days and of the 7 days before,
+// each ± 1.96 SE between takes (2 takes or more in each week). Better or worse is said only when the means
+// differ by more than both intervals together; otherwise "level within the noise".
+function weekLines(h,now){const W7=7*864e5,a=h.filter(r=>r.d>now-W7&&r.d<=now),b=h.filter(r=>r.d>now-2*W7&&r.d<=now-W7);if(a.length<2||b.length<2)return null;
+  const ms=v=>{const n=v.length,m=v.reduce((t,x)=>t+x,0)/n,sd=Math.sqrt(v.reduce((t,x)=>t+(x-m)**2,0)/(n-1));return {m,ci:1.96*sd/Math.sqrt(n)};},out=[];
+  for(const x of PROG){const va=a.map(r=>r[x.k]).filter(Number.isFinite),vb=b.map(r=>r[x.k]).filter(Number.isFinite);if(va.length<2||vb.length<2)continue;
+    const A=ms(va),B=ms(vb),d=A.m-B.m,v=Math.abs(d)<=Math.hypot(A.ci,B.ci)?'level':(x.lower?d<0:d>0)?'better':'worse';out.push({x,A,B,v});}
+  return {na:a.length,nb:b.length,out};}
+function weekLine(h){const W=weekLines(h,Date.now());if(!W||!W.out.length)return '';const f=(s,x)=>`${s.m.toFixed(x.dec)} ± ${s.ci.toFixed(x.dec)}`;
+  const good=W.out.filter(o=>o.v==='better');
+  return `<p class="week"><b>This week vs last week</b> (${W.na} takes vs ${W.nb}): ${good.length?`${good.map(o=>o.x.name).join(', ')} better than last week beyond the noise. `:''}${W.out.map(o=>`${o.x.name} ${f(o.A,o.x)} vs ${f(o.B,o.x)} ${o.x.unit}, ${o.v==='level'?'level within the noise':o.v}`).join(' · ')}</p>`;}
 function renderProgress(){const h=loadHist();if(!h.length)return '';
   const W=220,H=36,n=h.length,X=i=>(n>1?4+i/(n-1)*(W-8):W/2).toFixed(1);
   let o=`<h3>Progress · ${n} take${n>1?'s':''} on this device</h3><table class="prog">`;
@@ -1077,7 +1088,7 @@ function renderProgress(){const h=loadHist();if(!h.length)return '';
     const last=S[n-1],tr=trend(x,v);
     o+=`<tr><td>${x.name}</td><td><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="${x.name}: ${n} takes, now ${last.m.toFixed(x.dec)}${last.ci!==null?` ± ${last.ci.toFixed(x.dec)}`:''}"><polygon class="bd" points="${band}"/><polyline class="sl" vector-effect="non-scaling-stroke" points="${S.map((s,i)=>`${X(i)},${Y(s.m)}`).join(' ')}"/>${v.map((q,i)=>`<circle cx="${X(i)}" cy="${Y(q)}" r="1.8"/>`).join('')}</svg></td>`+
       `<td>${last.m.toFixed(x.dec)}${last.ci!==null?` ± ${last.ci.toFixed(x.dec)}`:''} ${x.unit}${tr?`<br><em>${tr}</em>`:''}</td></tr>`;}
-  return o+`</table>${streakLine(h)}<p class="fine">Dots: each take. Line: mean of your last ${HIST_WIN} takes; band: its 95 % interval. Up is better on every line. Kept only in this browser. <button class="btn" id="forget">forget my takes</button></p>`;}
+  return o+`</table>${weekLine(h)}${streakLine(h)}<p class="fine">Dots: each take. Line: mean of your last ${HIST_WIN} takes; band: its 95 % interval. Up is better on every line. Kept only in this browser. <button class="btn" id="forget">forget my takes</button></p>`;}
 // Warm-up: a five-minute routine for today, chosen from the takes kept on this device. Each aspect's mean
 // over the last 5 takes is set against the median trained singer (as in "to work on"); the one or two
 // furthest behind get a targeted step between a semi-occluded warm-up and a siren. Guide tones sit in the
