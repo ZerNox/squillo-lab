@@ -936,6 +936,28 @@ function registerBreaks(fr){const v=fr.filter(f=>f.voiced&&f.f0>0).map(f=>({t:f.
     if(Math.abs(j)>=1.2&&Math.sign(A.k)===Math.sign(j)&&Math.sign(B.k)===Math.sign(j)&&Math.abs(A.k)>=3&&Math.abs(B.k)>=3&&A.rms<0.25&&B.rms<0.25){
       if(!best||Math.abs(j)>Math.abs(best.j)){if(best&&tc-best.t>0.1)flush();best={t:tc,j,m:(A.at(tc)+B.at(tc))/2};}}else if(best&&tc-best.t>0.1)flush();}
   flush();return out.map(b=>({t:+b.t.toFixed(2),m:+b.m.toFixed(2),j:+b.j.toFixed(2)}));}
+// Vibrato over the take, from the take's own pitch (not the live chip, whose 1.2 s zero count reads legato steps as
+// vibrato). Voiced runs are cut where the 0.3 s mean pitch moves 0.8 st or more in 0.16 s (a new note); each piece of
+// 0.8 s or more is a long note. A quadratic is taken out, then the residual's autocorrelation peak at 3-8.5 Hz
+// (the first local peak of 0.4 or more, interpolated) gives the rate; it counts as vibrato when there is one and the extent (1.41 × SD,
+// peak, st) 0.08 st or more. check/vibrato-bench.mjs measures this on synthetic voices and VocalSet.
+function takeVibrato(st){const fr=st.rec.frames,L=[];let i=0;
+  const piece=(m,t0)=>{const n=m.length;let s0=n,s1=0,s2=0,s3=0,s4=0,y0=0,y1=0,y2=0;for(let k=0;k<n;k++){const x=k/n-0.5,y=m[k];s1+=x;s2+=x*x;s3+=x**3;s4+=x**4;y0+=y;y1+=x*y;y2+=x*x*y;}
+    const D=s0*(s2*s4-s3*s3)-s1*(s1*s4-s3*s2)+s2*(s1*s3-s2*s2),A=(y0*(s2*s4-s3*s3)-s1*(y1*s4-s3*y2)+s2*(y1*s3-s2*y2))/D,B=(s0*(y1*s4-s3*y2)-y0*(s1*s4-s3*s2)+s2*(s1*y2-y1*s2))/D,C=(s0*(s2*y2-y1*s3)-s1*(s1*y2-y1*s2)+y0*(s1*s3-s2*s2))/D;
+    const r=m.map((y,k)=>{const x=k/n-0.5;return y-A-B*x-C*x*x;});let v=0;for(const q of r)v+=q*q;const sd=Math.sqrt(v/n);if(!v)return {t:t0};
+    const ac=l=>{let a=0;for(let k=0;k+l<n;k++)a+=r[k]*r[k+l];return a/v*n/(n-l);};let bl=0,bv=-1;const cs=[];for(let l=5;l<=18;l++){cs[l]=ac(l);}
+    for(let l=6;l<=17;l++)if(cs[l]>=0.4&&cs[l]>=cs[l-1]&&cs[l]>=cs[l+1]){bv=cs[l];bl=l;break;}
+    if(!bl||bv<0.4||sd*1.41<0.08)return {t:t0};const d=cs[bl-1]-2*cs[bl]+cs[bl+1],lp=bl+(d<0?0.5*(cs[bl-1]-cs[bl+1])/d:0);return {t:t0,rate:50/lp,ext:sd*1.41};};
+  while(i<fr.length){if(!fr[i].voiced||!(fr[i].f0>0)){i++;continue;}let k=i;while(k<fr.length&&fr[k].voiced&&fr[k].f0>0)k++;
+    const m=[];for(let j=i;j<k;j++)m.push(69+12*Math.log2(fr[j].f0/440));const S=m.map((_,j)=>{let a=0,c=0;for(let q=Math.max(0,j-7);q<=Math.min(m.length-1,j+7);q++){a+=m[q];c++;}return a/c;});
+    let s=0;for(let j=4;j<=m.length;j++){const cut=j===m.length||(j+4<m.length&&Math.abs(S[j+4]-S[j-4])>=0.8);if(!cut)continue;if(j-s>=40)L.push(piece(m.slice(s,j),fr[i+s].t));if(j<m.length){s=j+8;j=s+3;}}i=k;}
+  const V=L.filter(x=>x.rate),ms=a=>{const m=a.reduce((t,x)=>t+x,0)/a.length,sd=a.length>1?Math.sqrt(a.reduce((t,x)=>t+(x-m)**2,0)/(a.length-1)):0;return [m,a.length>1?1.96*sd/Math.sqrt(a.length):null];};
+  return {long:L.length,n:V.length,rate:V.length?ms(V.map(x=>x.rate)):null,ext:V.length?ms(V.map(x=>x.ext)):null};}
+// Vibrato in words: rate and extent with ± (1.96 SE over long notes). Trained classical singers sit near 5.5-6.5 Hz
+// and ±0.5-1 st (Prame 1994, 1997); faster than 7 Hz reads as a bleat, slower than 4.5 Hz as a wobble (Sundberg 1987).
+const pmv=(v,d)=>v[1]===null?v[0].toFixed(d):`${v[0].toFixed(d)} ± ${v[1].toFixed(d)}`;
+function vibLine(v){if(!v||v.long<2)return [];if(!v.n)return [`${v.long} long notes held straight, with no vibrato: a clean, plain line (a choice in pop, folk and early music).`];
+  const r=v.rate[0],ok=r>=4.5&&r<=7;return [`Vibrato on ${v.n} of ${v.long} long notes: ${pmv(v.rate,1)} Hz, ±${pmv(v.ext,2)} st${ok?', in the 4.5-7 Hz band of trained singers (Prame 1994).':r>7?', faster than most trained singers (5.5-6.5 Hz, Prame 1994): it may sound tight; a slower, looser jaw helps.':', slower than most trained singers (5.5-6.5 Hz, Prame 1994).'}`];}
 function takeAspects(st){const fr=st.rec.frames,sn=st.rec.snaps,notes=[],res=[];let cur=null;
   const close=()=>{if(cur&&cur.n*0.02>=0.2){const m=cur.ms.slice().sort((a,b)=>a-b),nr=[];
       if(cur.n*0.02>=0.3)for(let k=3;k<cur.fs.length-3;k++)if(cur.fs[k].fit){res.push(cur.fs[k].res);nr.push(cur.fs[k].res);}
@@ -956,7 +978,7 @@ function takeAspects(st){const fr=st.rec.frames,sn=st.rec.snaps,notes=[],res=[];
   const dm=dp.length?dp.reduce((t,x)=>t+x,0)/dp.length:0,dsd=dp.length>1?Math.sqrt(dp.reduce((t,x)=>t+(x-dm)**2,0)/(dp.length-1)):0;
   const slide={n:dp.length,of:ons,depth:dm,sd:dsd,style:dp.length>=4&&dp.length/ons>=2/3&&dsd<=0.2*dm};
   const meds=notes.map(n=>n.med).sort((a,b)=>a-b);
-  return {slide,perf:notePerf(notes,off,slide.style?[]:st.rec.events),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,tone:hn?hs/hn:0,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,breaks:registerBreaks(fr),mn:meds.length>4?Math.min(...meds):0,mx:meds.length>4?Math.max(...meds):0,ok:notes.length>=6&&sung>=4};}
+  return {slide,perf:notePerf(notes,off,slide.style?[]:st.rec.events),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,tone:hn?hs/hn:0,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,breaks:registerBreaks(fr),vib:takeVibrato(st),mn:meds.length>4?Math.min(...meds):0,mx:meds.length>4?Math.max(...meds):0,ok:notes.length>=6&&sung>=4};}
 // Per held note, for the timeline: cents off the take's grid, wobble inside the note, and whether it
 // was scooped into, folded into a 0..1 score weighted 60/25/15. The median trained singer (14 ¢, 3 ¢
 // wobble, no scoop) scores about 0.8; 25 ¢ off scores about 0.55.
@@ -1124,7 +1146,7 @@ function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;
   const vsMed=x=>{const m=TRAINED_MED[x.k],d=x.lower?m-a[x.k]:a[x.k]-m;return d/(x.tol*3);};
   const order=RATED.slice().sort((p,q)=>R?R.per[q.k]-R.per[p.k]:vsMed(q)-vsMed(p));
   const good=R?order.slice(0,2).filter(x=>R.per[x.k]>=0.25):order.filter(x=>vsMed(x)>=-0.34).filter(x=>!(a.slide&&a.slide.style&&x.k==='onset'));
-  h+='<h3>Went well</h3><ul>'+[`You sang ${a.notes} held notes over ${a.sung.toFixed(0)} s, across ${a.range.toFixed(0)} semitones.`,...(TAKE.stretch?[`Your strongest stretch ended around ${mmss(TAKE.stretch.hi[0])}: the line on the bar peaks there.`]:[]),...(TAKE.best&&TAKE.best.length?[`${TAKE.best.length} standout note${TAKE.best.length>1?'s':''} (★ on the bar): on the note, steady, started cleanly.`]:[]),...(a.slide&&a.slide.style?[`Your slides into notes are a style, not a flaw: ${a.slide.n} of ${a.slide.of} notes, each about ${a.slide.depth.toFixed(1)} ± ${a.slide.sd.toFixed(1)} semitones, the same every time. They are not marked down.`]:[]),...good.map(x=>`Your ${x.name}: ${fmt(x,a[x.k])} ${x.unit}${R?`, better than ${Math.round(R.per[x.k]*100)} % of the pool`:`, on a par with or better than the median conservatory-trained singer (${TRAINED_MED[x.k]})`}.`)].map(t=>`<li>${t}</li>`).join('')+'</ul>';
+  h+='<h3>Went well</h3><ul>'+[`You sang ${a.notes} held notes over ${a.sung.toFixed(0)} s, across ${a.range.toFixed(0)} semitones.`,...(TAKE.stretch?[`Your strongest stretch ended around ${mmss(TAKE.stretch.hi[0])}: the line on the bar peaks there.`]:[]),...(TAKE.best&&TAKE.best.length?[`${TAKE.best.length} standout note${TAKE.best.length>1?'s':''} (★ on the bar): on the note, steady, started cleanly.`]:[]),...(a.slide&&a.slide.style?[`Your slides into notes are a style, not a flaw: ${a.slide.n} of ${a.slide.of} notes, each about ${a.slide.depth.toFixed(1)} ± ${a.slide.sd.toFixed(1)} semitones, the same every time. They are not marked down.`]:[]),...vibLine(a.vib),...good.map(x=>`Your ${x.name}: ${fmt(x,a[x.k])} ${x.unit}${R?`, better than ${Math.round(R.per[x.k]*100)} % of the pool`:`, on a par with or better than the median conservatory-trained singer (${TRAINED_MED[x.k]})`}.`)].map(t=>`<li>${t}</li>`).join('')+'</ul>';
   const work=R?order.slice(-2).reverse().filter(x=>R.per[x.k]<0.75).slice(0,R.R>=2200?1:2):order.filter(x=>vsMed(x)<-0.34).reverse().slice(0,2);
   const wl=work.map(x=>`${x.name} (${fmt(x,a[x.k])} ${x.unit}): ${ASPECT_WORK[x.k].ex}${x.k==='onset'?' Slides into notes are a style in pop and soul: work on them only where you did not mean them.':''}`);
   if(a.breaks&&a.breaks.length)wl.push(`Your voice flipped register on a glide ${a.breaks.length>1?a.breaks.length+' times, ':''}around ${a.breaks.map(b=>nn(Math.round(b.m))+' at '+mmss(b.t)).join(', ')}: sirens on “ng” through that spot, slowly and lightly, help the two registers meet (Titze 2006).`);if(TAKE.stretch)wl.push(`The line dips lowest in the 10 s before ${mmss(TAKE.stretch.lo[0])}: click the bar there to listen back.`);

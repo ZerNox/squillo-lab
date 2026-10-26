@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-26 · vibrato rate and extent, measured
+
+Built: the take summary says "Vibrato on n of N long notes: rate ± Hz, ±extent st" against trained singers' 5.5-6.5 Hz (Prame 1994), or praises a plain straight line. Estimated from the take's pitch (note-change cuts, quadratic detrend, first autocorrelation peak). Found while building: the live chip's 1.2 s zero count, run over a take, read legato note steps in a straight aria as 4 Hz vibrato. Numbers (`check/vibrato-bench.mjs`, page code): synthetic take means within 0.11 Hz / 0.03 st over 5 voice types, 0/30 straight notes flagged; VocalSet Caro vibrato 5.3 / 5.0 Hz. check.mjs: 6 Hz ±0.5 st take reads 6.0 Hz, 5 of 5 notes. iOS risk: none new. Next: vibrato regularity, and the live chip on the same estimator.
+
 ## 2026-10-26 · same phrase across all kept takes
 
 Built: the earlier-take picker has "all N kept takes"; ▶ same phrase then
@@ -120,15 +124,4 @@ A singer who sings a siren now sees where their voice flips. Measured
 0.06 st, p90 0.11; 0 false on 96 clean sirens, legato and vibrato takes;
 1 in 274 s of real clips. Synthetic only: real passaggi are subtler. iOS
 risk: none. Next: guided range finder.
-
-## 2026-10-25 · voice profile and a key for any song
-
-Built: ♪ voice profile: comfortable range (median of each take's 10th-90th
-percentile note, ± between takes), full range sung so far, a voice-type guess
-from the range centre (said to be a guess), and a key for any song from its
-lowest/highest note and key. Each take now also keeps its lowest and highest
-held note. A singer can now see their range and pick a key that suits them.
-Numbers: none measured (bookkeeping on the take's notes; voice type not
-validated). check.mjs: seeded takes read E3-D4, tenor, G3-D5 in G → C (3
-browsers). iOS risk: none (no audio). Next: register transitions.
 
