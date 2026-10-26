@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-26 · personal bests
+
+Built: the take summary's "went well" names personal bests over long notes (held ≥ 1 s), against every earlier take kept on the device: the steadiest note (least wobble) and the longest note held within 10 ¢, with the time to find it. A new best is claimed only when it beats all earlier takes by more than one note's reading noise (1 ¢, 0.3 s) and after 2 earlier takes; within 1 ¢ it says "matches your best". Old history records have no bests and are skipped. check.mjs: new best, and a match, in 3 browsers. iOS risk: none new (localStorage only). Next: edge onsets or rating truth.
+
 ## 2026-10-26 · vibrato evenness
 
 Built: the take summary adds "Vibrato evenness: rate varies x ± % and width y ± % cycle to cycle", compared with the VocalSet trained singers on Caro mio ben (rate ~11 %, width 23-29 %), with an exercise (slow sirens, messa di voce) when less even. Cycles from zero crossings of the detrended pitch with hysteresis. Numbers (`check/vibrato-bench.mjs`, page code): rate CV true 2.9/8.7/17.3 % read 3.1/7.5/15.3 % (± ≤ 1.5); extent CV true 0/11.5/23.1 % read 2.3/12.2/22.9 %. check.mjs: pure 6 Hz take reads even in 3 browsers. iOS risk: none new. Next: edge onsets or rating truth.
