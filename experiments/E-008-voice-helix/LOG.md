@@ -2,6 +2,16 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-26 · sharper note edges
+
+Built: `trimEdges`: the first and last 2 frames of each voiced run are
+unvoiced when a short window (2 periods, ≥ 10 ms) centred where the pitch
+belongs is below 0.2 × the run's median level (the 40 ms window heard the
+note after it ended). Measured (page code, vocadito): false alarm 17.1 →
+12.8 ± 2.9 %, overall 93.2 → 94.3 ± 1.0 %, RPA 98.1 → 97.6 ± 0.7 %; range
+bench unchanged. Notes on the bar and in note-by-note now stop where the
+singer stopped. iOS risk: none. Next: finer hop at edges, or rating truth.
+
 ## 2026-10-26 · note by note
 
 Built: ◀ note / note ▶ buttons and ← → keys step through a take's held
@@ -130,12 +140,4 @@ Measured with the page's code: 0.5× keeps steady pitch to 0.7 ¢ median,
 1.1 ¢ p90 (3 synthetic voices); 0.8-1.3 s to slow a 32 s take. iOS risk:
 the stretch runs on the main thread (UI pauses ~1 s on a phone). check.mjs
 now retries WebKit twice. Next: style-aware onsets.
-
-## 2026-10-25 · A/B at a spot
-
-Built: a click on any note or coach spot on the timeline loops your note,
-then the same moment spotless. A singer can now hear exactly what the fix
-sounds like, back to back. Checked in three browsers (loop running after a
-tap). iOS risk: none new (same context path as take playback). Next: slow
-down without changing pitch.
 

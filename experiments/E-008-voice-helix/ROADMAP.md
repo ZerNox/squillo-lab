@@ -22,7 +22,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Note by note: ◀ / ▶ or ← → plays one note at a time with its numbers.
 - Warm-up: about 4 min, steps chosen from the last 5 takes, cited, guide tones.
 - Phone: the take comes first after a scan, progress lines full width.
-- Take pitch: YIN candidates + Viterbi (0.1 % gross error, synthetic; 98.1 ± 0.7 % RPA on 40 real singers, vocadito).
+- Take pitch: YIN candidates + Viterbi (0.1 % gross error, synthetic; 97.6 ± 0.7 % RPA, false alarm 12.8 % on 40 real singers, vocadito; note edges trimmed on a short window).
 - Slide style told from unwanted scoops (consistent depth on most notes).
 - Voice profile: comfortable and full range, voice-type guess, key for a song, register breaks on glides; a guided range finder (lowest, highest, siren) in about a minute.
 - Compare: the last 10 takes' audio kept on the device; play an earlier take, then yours.
@@ -34,7 +34,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 1. **Rating with ground truth**: human-judged takes across styles from openly
    licensed sources only, then a rating that ranks them correctly (see
    `rating/README.md`).
-2. **Sharper note edges**: false alarm 17 % on vocadito, mostly within 35 ms of note edges (20 ms hop, long window); a finer hop or edge refinement at take time. Real soprano f0 truth still missing.
+2. **Sharper note edges, part 2**: false alarm 12.8 % on vocadito after the edge trim; a finer hop at edges, or onset times from the level envelope. Real soprano f0 truth still missing.
 3. **On-device vocal separation** (ONNX in WASM) so songs with music load
     without Demucs on a desktop.
 4. **Compare the same phrase**: align today's take with an earlier one and A/B phrase by phrase.

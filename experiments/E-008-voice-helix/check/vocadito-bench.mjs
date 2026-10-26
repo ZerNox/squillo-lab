@@ -11,13 +11,13 @@ const meta = fs.readFileSync(path.join(dir, 'vocadito_metadata.csv'), 'utf8').tr
 const b = await chromium.launch({ channel: 'chrome' }).catch(() => chromium.launch()); const p = await b.newPage();
 await p.route('**/vocadito/**', r => r.fulfill({ body: fs.readFileSync(path.join(dir, 'Audio', path.basename(new URL(r.request().url()).pathname))) }));
 await p.goto(url); await p.waitForTimeout(1000);
-const lags = process.env.VIT ? [0] : [-60, -40, -20, -10, 0, 10, 20, 40, 60]; if (process.env.VIT) await p.evaluate(v => Object.assign(VIT, JSON.parse(v)), process.env.VIT); // VIT='{"U":0.6}': try other Viterbi costs
+const lags = process.env.VIT || process.env.LAG0 ? [0] : [-60, -40, -20, -10, 0, 10, 20, 40, 60]; if (process.env.VIT) await p.evaluate(v => Object.assign(VIT, JSON.parse(v)), process.env.VIT); // VIT='{"U":0.6}': try other Viterbi costs
 const rows = [];
 for (const [id, singer, avg] of meta) {
   const truth = fs.readFileSync(path.join(dir, 'Annotations/F0', `vocadito_${id}_f0.csv`), 'utf8').trim().split('\n').map(l => +l.split(',')[1]);
   const est = await p.evaluate(async id => { const ab = await (await fetch(`vocadito/vocadito_${id}.wav`)).arrayBuffer();
     const ac = new OfflineAudioContext(1, 1, 44100); const buf = await ac.decodeAudioData(ab);
-    const fs = await trackTake(buf); viterbiF0(fs); const sr = buf.sampleRate, off = 0.0025 - (Math.min(Math.floor(sr / 60), 4096 - 1024) + 512) / sr;
+    const fs = await trackTake(buf); viterbiF0(fs); trimEdges(fs, buf); const sr = buf.sampleRate, off = 0.0025 - (Math.min(Math.floor(sr / 60), 4096 - 1024) + 512) / sr;
     return fs.map(m => [m.t + off, m.voiced ? m.f0 : 0]); }, id);
   const H = 256 / 44100, score = lag => { const a = { tv: 0, hit: 0, chr: 0, vr: 0, tu: 0, fa: 0, ok: 0, n: 0 };
     for (const [t, f] of est) { const j = Math.round((t + lag / 1000) / H); if (j < 0 || j >= truth.length) continue; const T = truth[j]; a.n++;

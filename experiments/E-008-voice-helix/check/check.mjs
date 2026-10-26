@@ -112,7 +112,7 @@ async function run([name, launch, ctxOpt, file]) {
     await p.keyboard.press('ArrowRight'); await p.waitForTimeout(200); nn.key = await p.evaluate(() => TAKE.ni);
     await tap(p.locator('#bPlaySpot')); await p.waitForTimeout(1200);
     await p.selectOption('#speed', '0.5'); await p.waitForTimeout(1500);
-    const r = await p.evaluate(() => ({ k: AU.play && AU.play.k, ctx: AU.ctx && AU.ctx.state, playing: AU.play && AU.play.which, notes: TAKE.aspects.perf.length, slide: TAKE.aspects.slide && TAKE.aspects.slide.style, spots: TAKE.segs.length, summary: !document.getElementById('rating').hidden, acc: /98\.1 ± 0\.7 %/.test((document.getElementById('pitchAcc') || {}).textContent || ''), progress: document.querySelectorAll('#rating table.prog tr').length, takes: JSON.parse(localStorage.getItem('helix.takes.v1')).length }));
+    const r = await p.evaluate(() => ({ k: AU.play && AU.play.k, ctx: AU.ctx && AU.ctx.state, playing: AU.play && AU.play.which, notes: TAKE.aspects.perf.length, slide: TAKE.aspects.slide && TAKE.aspects.slide.style, spots: TAKE.segs.length, summary: !document.getElementById('rating').hidden, acc: /97\.6 ± 0\.7 %/.test((document.getElementById('pitchAcc') || {}).textContent || ''), progress: document.querySelectorAll('#rating table.prog tr').length, takes: JSON.parse(localStorage.getItem('helix.takes.v1')).length }));
     await p.locator('table.prog').screenshot({ path: join(out, `${name}-progress.png`) });
     // Take pitch tracker: a breathy 600 Hz tone (noise at about -10 dB) must come out at 600 Hz on most frames
     // (live tracker: 0 % at this noise, it locks on 75 Hz; take tracker 81 %, LOG 2026-10-25).

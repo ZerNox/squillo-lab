@@ -869,7 +869,7 @@ async function setTake(buf){TAKE.busy=true;
 // first-dip rule, against sub-octaves) + J per semitone jumped between frames
 // + VS to enter or leave voicing; unvoiced costs VU. Removes octave flips and stray frames that
 // the live tracker, which cannot wait, lets through. Measured in check/pitch-bench.mjs.
-const VIT={J:0.035,U:0.45,S:0.25,O:0.15};
+const VIT={J:0.035,U:0.45,S:0.25,O:0.15,E:0.2,EN:2};
 function viterbiF0(feats){const L=feats.length;if(!L)return;const C=feats.map(m=>m.cs||[]);let prev=null;const back=[];
   for(let i=0;i<L;i++){const c=C[i],n=c.length,fmax=n?Math.max(...c.map(q=>q[0])):0,cost=new Float64Array(n+1),bp=new Int32Array(n+1);
     for(let k=0;k<=n;k++){const em=k<n?c[k][1]+VIT.O*Math.log2(fmax/c[k][0]):VIT.U;let bc=0,bk=n;
@@ -877,10 +877,20 @@ function viterbiF0(feats){const L=feats.length;if(!L)return;const C=feats.map(m=
       cost[k]=bc+em;bp[k]=bk;}prev=cost;back.push(bp);}
   let k=0;for(let j=1;j<prev.length;j++)if(prev[j]<prev[k])k=j;
   for(let i=L-1;i>=0;i--){const m=feats[i],c=C[i];if(m.cs){if(k<c.length){m.f0=c[k][0];m.cmnd=c[k][1];m.voiced=m.f0>50&&m.f0<1100;}else m.voiced=false;}k=back[i][k];}}
+// Note edges: a frame's 40 ms window still hears a note 20 ms after it ends (and before it starts), so the
+// first and last frames of each voiced run are checked on a short window (2 periods, at least 10 ms) centred
+// where the pitch belongs: below E × the run's median short-window level they are unvoiced, up to EN per
+// edge. Measured on vocadito in check/vocadito-bench.mjs.
+function trimEdges(fs,buf){if(!VIT.E||!fs.length)return;const x=buf.getChannelData(0),sr=buf.sampleRate,off=0.0025-(Math.min(Math.floor(sr/60),4096-1024)+512)/sr;
+  const lv=m=>{const h=Math.max(Math.round(0.005*sr),Math.round(sr/m.f0)),c=Math.round((m.t+off)*sr);let e=0,n=0;for(let i=Math.max(0,c-h);i<Math.min(x.length,c+h);i++){e+=x[i]*x[i];n++;}return n?Math.sqrt(e/n):0;};
+  for(let i=0;i<fs.length;){if(!fs[i].voiced){i++;continue;}let j=i;while(j<fs.length&&fs[j].voiced)j++;
+    if(j-i>2*VIT.EN){const L=[];for(let k=i;k<j;k++)L.push(lv(fs[k]));const med=[...L].sort((a,b)=>a-b)[L.length>>1],th=VIT.E*med;
+      for(let k=0;k<VIT.EN&&L[k]<th;k++)fs[i+k].voiced=false;for(let k=0;k<VIT.EN&&L[L.length-1-k]<th;k++)fs[j-1-k].voiced=false;}
+    i=j;}}
 function trackTake(buf){return new Promise(res=>{const fs=[];const d=makeDsp(m=>{if(m.type==='feat')fs.push(m);else if(m.type==='pong'){d.kill();res(fs);}});
   d.post({type:'init',sr:buf.sampleRate,hop:0.02,offline:true});const ch=buf.getChannelData(0),Q=Math.round(buf.sampleRate/200);// 5 ms chunks: each frame sees audio up to its own time
   for(let i=0;i<ch.length;i+=Q){const b=ch.slice(i,i+Q);d.post({type:'audio',buf:b},[b.buffer]);}d.post({type:'ping'});});}
-async function scanTake(buf){const fs=await trackTake(buf);viterbiF0(fs);const st=new Stats();for(const m of fs)ingest(st,m,'take');return takeSpots(st);}
+async function scanTake(buf){const fs=await trackTake(buf);viterbiF0(fs);trimEdges(fs,buf);const st=new Stats();for(const m of fs)ingest(st,m,'take');return takeSpots(st);}
 // Frame times mark the end of the analysis window; the pitch belongs ~20 ms earlier. A flaw's
 // smoothed level lags its onset by about 0.6 s, so each spot starts that much earlier.
 function takeSpots(st){const fr=st.rec.frames,sn=st.rec.snaps;const frames=fr.map((f,i)=>({t:Math.max(0,f.t-0.02),f0:f.voiced?f.f0:0}));
@@ -1086,7 +1096,7 @@ function heldExtremes(fr){const v=fr.map(f=>f.voiced&&f.f0>0?69+12*Math.log2(f.f
   for(let i=0;i+W<=v.length;i++){const w=v.slice(i,i+W);if(w.some(q=>q===null))continue;const s=w.slice().sort((a,b)=>a-b);if(s[W-1]-s[0]>2)continue;const m=s[W>>1];if(m<mn)mn=m;if(m>mx)mx=m;}
   return mn<=mx?{mn,mx}:null;}
 async function rangeAnalyse(bufs){const out={mn:null,mx:null,br:[]};
-  for(let k=0;k<bufs.length;k++){if(!bufs[k])continue;const fs=await trackTake(bufs[k]);viterbiF0(fs);const st=new Stats();for(const m of fs)ingest(st,m,'take');const fr=st.rec.frames,e=heldExtremes(fr);
+  for(let k=0;k<bufs.length;k++){if(!bufs[k])continue;const fs=await trackTake(bufs[k]);viterbiF0(fs);trimEdges(fs,bufs[k]);const st=new Stats();for(const m of fs)ingest(st,m,'take');const fr=st.rec.frames,e=heldExtremes(fr);
     if(e){if(k!==1&&(out.mn===null||e.mn<out.mn))out.mn=e.mn;if(k!==0&&(out.mx===null||e.mx>out.mx))out.mx=e.mx;}if(k===2)out.br=registerBreaks(fr).map(b=>b.m);}
   if(out.mn===null||out.mx===null||out.mx<=out.mn)return null;const r={d:Date.now(),mn:+out.mn.toFixed(2),mx:+out.mx.toFixed(2)};if(out.br.length)r.br=out.br;
   const h=loadRange();h.push(r);try{localStorage.setItem(RANGE_KEY,JSON.stringify(h.slice(-20)));}catch(e){}return r;}
@@ -1116,7 +1126,7 @@ function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;
   const wl=work.map(x=>`${x.name} (${fmt(x,a[x.k])} ${x.unit}): ${ASPECT_WORK[x.k].ex}${x.k==='onset'?' Slides into notes are a style in pop and soul: work on them only where you did not mean them.':''}`);
   if(a.breaks&&a.breaks.length)wl.push(`Your voice flipped register on a glide ${a.breaks.length>1?a.breaks.length+' times, ':''}around ${a.breaks.map(b=>nn(Math.round(b.m))+' at '+mmss(b.t)).join(', ')}: sirens on “ng” through that spot, slowly and lightly, help the two registers meet (Titze 2006).`);if(TAKE.stretch)wl.push(`The line dips lowest in the 10 s before ${mmss(TAKE.stretch.lo[0])}: click the bar there to listen back.`);
   if(wl.length)h+='<h3>To work on</h3><ul>'+wl.map(t=>`<li>${t}</li>`).join('')+'</ul>';
-  h+=`<p class="fine">${R?`Provisional Elo: each reference voice is one game on intonation, steadiness and clean onsets (tone clarity depends on the microphone and room, so it is not rated). 2000 is the median conservatory-trained singer in ${R.pool}. It ranks you within this pool, not the world.`:''} The take's tuning is ${a.off>=0?'+':''}${(a.off*100).toFixed(0)} ¢ from A440; notes are measured on that grid. <span id="pitchAcc">How sure the pitch is: on 40 real a cappella excerpts by 29 singers (vocadito, CC BY 4.0) this tracker puts 98.1 ± 0.7 % of sung moments within half a semitone of hand-checked pitch; lower voices 97.8 ± 1.4 %, higher 98.4 ± 0.7 %; about 1 in 6 breaths or consonants is read as a note.</span></p>`;
+  h+=`<p class="fine">${R?`Provisional Elo: each reference voice is one game on intonation, steadiness and clean onsets (tone clarity depends on the microphone and room, so it is not rated). 2000 is the median conservatory-trained singer in ${R.pool}. It ranks you within this pool, not the world.`:''} The take's tuning is ${a.off>=0?'+':''}${(a.off*100).toFixed(0)} ¢ from A440; notes are measured on that grid. <span id="pitchAcc">How sure the pitch is: on 40 real a cappella excerpts by 29 singers (vocadito, CC BY 4.0) this tracker puts 97.6 ± 0.7 % of sung moments within half a semitone of hand-checked pitch; lower voices 97.3 ± 1.4 %, higher 97.8 ± 0.7 %; about 1 in 8 breaths or consonants is read as a note.</span></p>`;
   ratingEl.innerHTML=h+renderProgress();const fg=$('forget');if(fg)fg.onclick=()=>{try{localStorage.removeItem(HIST_KEY);}catch(e){}renderRating();};}
 // Target pitch per frame for "spotless": a 250 ms running median inside each voiced run (keeps the
 // melody, drops wobble), the start of each note (up to 300 ms, a third of notes from 200 ms) held at its
