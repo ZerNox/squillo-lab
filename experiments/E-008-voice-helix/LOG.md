@@ -2,6 +2,16 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-26 · note by note
+
+Built: ◀ note / note ▶ buttons and ← → keys step through a take's held
+notes; each plays alone (padded 0.15 s) in the version last played (take,
+halfway, spotless, at the chosen speed), is outlined on the bar, and its
+numbers are read out (cents off, wobble, scoop or clean start, ★). A singer
+can now walk a phrase note by note and hear exactly which note slipped.
+Numbers: none (playback). check.mjs: steps, bounds and key in 3 browsers.
+iOS risk: none (same play path as ▶ your take). Next: sharper note edges.
+
 ## 2026-10-25 · pitch on real low voices: 94.8 → 98.1 %
 
 Built: the take tracker's octave prior halved (0.3 → 0.15 per octave below
@@ -129,17 +139,3 @@ sounds like, back to back. Checked in three browsers (loop running after a
 tap). iOS risk: none new (same context path as take playback). Next: slow
 down without changing pitch.
 
-## 2026-10-25 · progress across takes
-
-Built: each scored take's summary is kept on the device; the take card ends
-with a progress line per aspect and overall (dots per take, mean of the last
-5, 95 % band from the spread between takes, "better/worse" only beyond both
-bands). A singer can now see whether they are improving over days. Checked
-in Chrome, Firefox, WebKit iPhone with 7 seeded takes. Numbers: none new
-(display of existing measures). Process: stray WebKit processes from a
-cut run make `setInputFiles` time out; kill them before re-checking. Next:
-A/B at a spot.
-
-## 2026-10-25
-
-Talk and applause cut from takes; performance timeline; check script for three browsers; helix made the main track.
