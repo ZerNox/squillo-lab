@@ -30,6 +30,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Compare: the last 10 takes' audio kept on the device; play an earlier take, then yours; ▶ same phrase finds the current phrase in it (DTW, any key; 95 % found on a vocadito proxy), then vs today in numbers with ±, or every kept version of the phrase in a row.
 - Personal bests in the summary: steadiest long note, longest in-tune note, against all kept takes, claimed only beyond one note's noise.
 - Practice streak, days and minutes sung, milestones, under the progress lines.
+- Screen lag measured live (audio to paint + half pitch window): 18-25 ms median headless, shown as a chip.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 

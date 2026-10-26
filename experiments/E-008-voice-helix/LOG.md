@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-26 · screen lag, measured
+
+Built: a "screen lag" chip in the live rail: per frame, audio chunk arrival → next helix paint + half the pitch window (+ mic latency when the browser reports it, else "+ mic"), median and p90. A singer can now see how far behind their voice the helix is, instead of it being assumed. Numbers (check.mjs, live demo, headless): Chrome 18 ms (p90 19), Firefox 25 (31), WebKit 24 (28). iOS risk: real iPhone input buffering is unreported by Safari, so the chip says "+ mic" there. Next: edge onsets or rating truth.
+
 ## 2026-10-26 · loop a phrase
 
 Built: ⟲ loop phrase (L key) next to the playback buttons: loops the phrase around where the take is playing, or the note stepped to (same phrase finder as "same phrase"), padded 0.2/0.3 s, in the version (yours, halfway, spotless) and speed last chosen, seamless via loopStart/loopEnd; pressed state for screen readers. A singer can now drill one phrase, sing along with the spotless version at 0.5×. check.mjs: loop under 8.6 s, pressed, stops on a second tap, 3 browsers. iOS risk: none new (context created in the click path, no new APIs). Next: edge onsets or rating truth.
@@ -88,16 +92,4 @@ numbers are read out (cents off, wobble, scoop or clean start, ★). A singer
 can now walk a phrase note by note and hear exactly which note slipped.
 Numbers: none (playback). check.mjs: steps, bounds and key in 3 browsers.
 iOS risk: none (same play path as ▶ your take). Next: sharper note edges.
-
-## 2026-10-25 · pitch on real low voices: 94.8 → 98.1 %
-
-Built: the take tracker's octave prior halved (0.3 → 0.15 per octave below
-the highest candidate): on vocadito low voices were read an octave or a
-twelfth high. Measured (page code): vocadito RPA 98.1 ± 0.7 % (was 94.8 ±
-2.4), low voices 97.8 ± 1.4 (was 91.8 ± 5.1), overall 93.2 %; synthetic
-99.4 % (was 99.6; breathy soprano 4.8 % octave-low). Range, break, slide
-benches unchanged. False alarms (17 %) sit at note edges; gates did not
-help. On the VocalSet m2 demos the old prior took a spurious 632 Hz candidate
-over a clean 164 Hz one; restricting the prior to good candidates added only
-0.1 pt, not kept. A low voice's take now shows its real notes. Next: edges.
 

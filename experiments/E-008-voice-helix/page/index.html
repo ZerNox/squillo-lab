@@ -259,6 +259,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
   <div class="chip"><span class="k">formants F1 · F2 · F3</span><span class="v" id="mFmt">—</span><span class="u">Hz</span></div>
   <div class="chip"><span class="k">pitch range · 8 s</span><span class="v" id="mRange">—</span><span class="u">semitones</span></div>
   <div class="chip"><span class="k">nasality A1 − P0</span><span class="v" id="mNas">—</span><span class="u">dB</span></div>
+  <div class="chip" id="cLat" title="Measured here: from the audio reaching the page to the helix being drawn, plus half the pitch window. The mic's own delay is added when the browser reports it."><span class="k">screen lag</span><span class="v" id="mLat">—</span><span class="u" id="mLatU">ms</span></div>
 </div>
 
 <div class="ui" id="coach">
@@ -368,7 +369,7 @@ function analyse(t){const sr=S.sr;const buf=new Float32Array(N);const st=(S.w-N+
   let s=0;for(let i=N-2048;i<N;i++)s+=buf[i]*buf[i];const rms=Math.sqrt(s/2048);
   spectrum(buf);const binHz=sr/N;
   if(S.calib){S.calib.n++;S.calib.rms+=rms;for(let b=0;b<db.length;b++)S.calib.acc[b]+=Math.pow(10,db[b]/10);if(t>=S.calib.until){S.prof=new Float32Array(db.length);for(let b=0;b<db.length;b++)S.prof[b]=10*Math.log10(S.calib.acc[b]/S.calib.n+1e-12);S.noiseRms=S.calib.rms/S.calib.n;let fl=0;for(let b=Math.floor(100/binHz);b<4000/binHz;b++)fl+=S.prof[b];S.floorDb=fl/(4000/binHz-Math.floor(100/binHz));S.calib=null;postMessage({type:'calib',done:true,floorDb:S.floorDb,noiseRms:S.noiseRms});}
-    postMessage({type:'feat',t,rms,voiced:false,f0:0,cmnd:1,hnr:0,h12:0,tilt:0,a1p0:0,F:null,col:new Float32Array(FB)});return;}
+    postMessage({type:'feat',n:S.count,t,rms,voiced:false,f0:0,cmnd:1,hnr:0,h12:0,tilt:0,a1p0:0,F:null,col:new Float32Array(FB)});return;}
   const thr=Math.max(0.004,S.noiseRms*3);let f0=0,cmnd=1,cs=null;if(rms>thr){const y=yin(buf,sr,(S.prevT>=0&&t-S.prevT<0.12)?S.prevF0:0);f0=y.f0;cmnd=y.cmnd;cs=y.cs;}
   const voiced=rms>thr&&cmnd<0.65&&f0>50&&f0<1100;
   let hnr=0,h12=0,tilt=0,a1p0=0,F=null,nasOk=false;
@@ -380,7 +381,7 @@ function analyse(t){const sr=S.sr;const buf=new Float32Array(N);const st=(S.w-N+
       const oral=L.peaks.find(f=>f>=400&&f<=1100);let P0=-200;for(let k=1;k*f0<=340;k++){if(k*f0>=180)P0=Math.max(P0,pk(k*f0-0.25*f0,k*f0+0.25*f0,binHz));}
       if(oral&&P0>-150){const k1=Math.max(1,Math.round(oral/f0));a1p0=pk(k1*f0-0.3*f0,k1*f0+0.3*f0,binHz)-P0;nasOk=true;}}}
   for(let j=0;j<FB;j++){const fa=TD_FMIN*Math.pow(TD_FMAX/TD_FMIN,j/FB),fb=TD_FMIN*Math.pow(TD_FMAX/TD_FMIN,(j+1)/FB);let m=-120;for(let b=Math.floor(fa/binHz);b<=Math.max(Math.floor(fa/binHz),Math.floor(fb/binHz))&&b<db.length;b++)if(db[b]>m)m=db[b];col[j]=Math.min(1,Math.max(0,(m+92)/86));}
-  postMessage({type:'feat',t,rms,voiced,f0,cmnd,hnr,h12,tilt,a1p0,nasOk,F,col:col.slice(),cs:S.offline&&rms>thr?cs:null});}
+  postMessage({type:'feat',n:S.count,t,rms,voiced,f0,cmnd,hnr,h12,tilt,a1p0,nasOk,F,col:col.slice(),cs:S.offline&&rms>thr?cs:null});}
 function onmsg(m){if(m.type==='init'){S.sr=m.sr;S.hop=m.hop||0.02;S.offline=!!m.offline;}
   else if(m.type==='audio'){const a=m.buf;for(let i=0;i<a.length;i++){S.ring[S.w]=a[i];S.w=(S.w+1)%S.ring.length;}S.count+=a.length;const t=S.count/S.sr;while(t>=S.next){S.next+=S.hop;if(S.count>=N)analyse(S.next-S.hop);}}
   else if(m.type==='calib'){S.prof=null;S.noiseRms=0;S.calib={until:S.count/S.sr+m.seconds,n:0,rms:0,acc:new Float64Array(N/2+1)};}
@@ -543,7 +544,16 @@ function ingest(st,m,src){const now=m.t;st.at=now;const FT=st.ft,HIST=st.HIST;co
   st.rec.frames.push(e);st.rec.cols.push(m.col);st.rec.snaps.push({...FT,Fs:FT.Fs.slice(),flaws:st.ema.slice()});
   if(st.rec.frames.length>60000){st.rec.frames.splice(0,3000);st.rec.cols.splice(0,3000);st.rec.snaps.splice(0,3000);}
   if(st===LIVE&&!paused)writeColumn(m.col);}
-function onDspMsg(m){if(m.type==='feat')ingest(LIVE,m,AU.kind);else if(m.type==='calib'){calibrating=false;setStatus(`Mic live. Noise floor ${m.floorDb.toFixed(0)} dB, subtracted from every spectrum. Sing a note, hold it, then speak.`);}}
+// Screen lag, measured: each chunk's arrival time is kept by its running sample count; a live frame's
+// window ends on a chunk, so the next paint after it minus that arrival, plus half the pitch window
+// (where its pitch belongs), is the lag; the mic's own latency is added when getSettings() reports it.
+const LAT={log:[],n:0,pend:0,ms:[]};
+function latCap(len){LAT.n+=len;LAT.log.push([LAT.n,performance.now()]);if(LAT.log.length>64)LAT.log.shift();}
+function latFrame(){if(!LAT.pend)return;const now=performance.now(),sr=AU.sr||48000;
+  const ms=now-LAT.pend+500*(Math.min(Math.floor(sr/60),4096-1024)+512)/sr+1000*(AU.kind==="mic"&&AU.micLat||0);LAT.pend=0;LAT.ms.push(ms);if(LAT.ms.length>300)LAT.ms.shift();}
+function latStats(){const a=LAT.ms.slice(-150).sort((x,y)=>x-y);if(a.length<10)return null;return {med:a[Math.floor(a.length/2)],p90:a[Math.floor(a.length*0.9)],n:a.length};}
+window.__lat=()=>latStats();
+function onDspMsg(m){if(m.type==='feat'){if(AU.kind&&m.n&&!LAT.pend){const e=LAT.log.find(x=>x[0]===m.n);if(e)LAT.pend=e[1];}ingest(LIVE,m,AU.kind);}else if(m.type==='calib'){calibrating=false;setStatus(`Mic live. Noise floor ${m.floorDb.toFixed(0)} dB, subtracted from every spectrum. Sing a note, hold it, then speak.`);}}
 // Summary over a time span of a recording: what a reference clip or your last take did overall.
 function summarize(rec,t0,t1,srcFilter){const fr=rec.frames,sn=rec.snaps;let n=0,nv=0,rough=0,nr=0,hnr=0,vib=0;const midis=[],fl=FLAWS.map(()=>0);
   for(let i=0;i<fr.length;i++){const f=fr[i];if(f.t<t0||f.t>t1||(srcFilter&&!srcFilter(f.src)))continue;n++;const s=sn[i];if(f.voiced){nv++;hnr+=s.hnr;if(s.vibRate)vib++;if(s.sustain>0.5){rough+=s.rough;nr++;}if(f.ok&&f.st>0.12)midis.push(f.midi);}s.flaws.forEach((e,j)=>{if(e>0.6)fl[j]++;});}
@@ -583,8 +593,8 @@ function ensureCtx(){if(!ctxReady)ctxReady=setupCtx();return ctxReady;}
 async function setupCtx(){const ctx=new (window.AudioContext||window.webkitAudioContext)();AU.ctx=ctx;AU.sr=ctx.sampleRate;
   dsp=makeDsp(onDspMsg);dsp.post({type:'init',sr:AU.sr,hop:0.02});
   AU.sink=ctx.createGain();AU.sink.gain.value=0;AU.sink.connect(ctx.destination);
-  try{await ctx.audioWorklet.addModule(URL.createObjectURL(new Blob([CAP_SRC],{type:'text/javascript'})));const node=new AudioWorkletNode(ctx,'cap',{numberOfInputs:1,numberOfOutputs:1,outputChannelCount:[1]});node.port.onmessage=e=>{takeTap(e.data);dsp.post({type:'audio',buf:e.data},[e.data.buffer]);};node.connect(AU.sink);AU.cap=node;AU.capKind='worklet';}
-  catch(e){const sp=ctx.createScriptProcessor(1024,1,1);sp.onaudioprocess=ev=>{const b=new Float32Array(ev.inputBuffer.getChannelData(0));takeTap(b);dsp.post({type:'audio',buf:b},[b.buffer]);};sp.connect(AU.sink);AU.cap=sp;AU.capKind='scriptprocessor';}
+  try{await ctx.audioWorklet.addModule(URL.createObjectURL(new Blob([CAP_SRC],{type:'text/javascript'})));const node=new AudioWorkletNode(ctx,'cap',{numberOfInputs:1,numberOfOutputs:1,outputChannelCount:[1]});node.port.onmessage=e=>{latCap(e.data.length);takeTap(e.data);dsp.post({type:'audio',buf:e.data},[e.data.buffer]);};node.connect(AU.sink);AU.cap=node;AU.capKind='worklet';}
+  catch(e){const sp=ctx.createScriptProcessor(1024,1,1);sp.onaudioprocess=ev=>{const b=new Float32Array(ev.inputBuffer.getChannelData(0));latCap(b.length);takeTap(b);dsp.post({type:'audio',buf:b},[b.buffer]);};sp.connect(AU.sink);AU.cap=sp;AU.capKind='scriptprocessor';}
   return ctx;}
 function stopSource(){resetStats();AU.play=null;if(typeof playhead!=='undefined')playhead.style.left='0';if(AU.source){try{AU.source.disconnect();}catch(e){}if(AU.source.stop)try{AU.source.stop();}catch(e){}if(AU.source.mediaStream)AU.source.mediaStream.getTracks().forEach(t=>t.stop());AU.source=null;}if(AU.demo){AU.demo.stop();AU.demo=null;}AU.kind=null;{const l=document.getElementById('bLoopPh');if(l)l.setAttribute('aria-pressed','false');}if(dsp)dsp.post({type:'uncalib'});calibrating=false;}
 function writeColumn(col){terHead=(terHead+1)%TD.T;gl.bindTexture(gl.TEXTURE_2D,terTex);gl.texSubImage2D(gl.TEXTURE_2D,0,terHead,0,1,TD.F,gl.RED,gl.FLOAT,col);}
@@ -635,7 +645,7 @@ const statusEl=document.getElementById('status');const setStatus=t=>statusEl.tex
 const srcBtns={mic:document.getElementById('bMic'),file:document.getElementById('bFile'),demo:document.getElementById('bDemo')};
 function markSrc(k){for(const [n,b] of Object.entries(srcBtns))b.setAttribute('aria-pressed',String(n===k));}
 async function useMic(){stopSource();const ctx=await ensureCtx();await ctx.resume();
-  try{const stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}});const s=ctx.createMediaStreamSource(stream);s.connect(AU.cap);AU.source=s;AU.kind='mic';markSrc('mic');
+  try{const stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}});try{const L=stream.getAudioTracks()[0].getSettings().latency;AU.micLat=typeof L==='number'&&L>=0&&L<1?L:0;AU.micLatKnown=typeof L==='number';}catch(e){AU.micLat=0;}const s=ctx.createMediaStreamSource(stream);s.connect(AU.cap);AU.source=s;AU.kind='mic';markSrc('mic');
     calibrating=true;dsp.post({type:'calib',seconds:2});setStatus('Calibrating the room: stay quiet for 2 seconds…');goLive();}
   catch(e){markSrc(null);const why=location.protocol==='file:'?'this browser does not allow the microphone on a file opened from disk':/claude\.ai|claudeusercontent/.test(location.hostname)?'the claude.ai viewer blocks the microphone':`${e&&e.name||'error'}: check the lock icon for this site's microphone permission and that no other app holds the mic`;setStatus(`Microphone refused: ${why}. Use the hosted page, or load a recording.`);}}
 // A loaded recording becomes the take (first 60 s): scanned for spots, then played with the coach.
@@ -757,6 +767,7 @@ function updateHUD(wall){if(wall-hudT<0.1)return;hudT=wall;const f=viewFT;const 
   $('mF0').textContent=v?f.f0.toFixed(1):'—';$('mF0').className='v';
   $('mNote').textContent=v?(tgt?`${noteName(f.midi)} · ${((f.midi-tgt)*100).toFixed(0)>0?'+':''}${((f.midi-tgt)*100).toFixed(0)} ¢`:noteName(f.midi)):'Hz';
   const set=(id,txt,c)=>{const e=$(id);e.textContent=txt;e.className='v'+(c?' '+c:'');};
+  {const L=latStats();$('mLat').textContent=L?L.med.toFixed(0):'—';$('mLatU').textContent=L?`ms · p90 ${L.p90.toFixed(0)}${AU.kind==='mic'&&!AU.micLatKnown?' + mic':''}`:'ms';}
   set('mJit',v?f.rough.toFixed(1):'—',v?cls(f.rough,8,15,true):'');
   set('mVib',f.vibRate?`${f.vibRate.toFixed(1)} · ±${f.vibExt.toFixed(2)}`:(v?'none':'—'),f.vibRate?(f.vibRate>4.5&&f.vibRate<7?'good':'warn'):'');
   set('mHnr',v?f.hnr.toFixed(1):'—',v?cls(f.hnr,15,10):'');
@@ -1387,7 +1398,7 @@ function frame(){const wall=performance.now()/1000;const dt=Math.min(0.1,wall-la
   if(AU.demo)AU.demo.tick(AU.ctx.currentTime,dt);
   coachTick();
   if(!paused){viewHist=LIVE.HIST;viewFT=LIVE.ft;viewNow=LIVE.at;}
-  updateHUD(wall);renderScore(false);
+  latFrame();updateHUD(wall);renderScore(false);
   const g=cam.goal,k=1-Math.exp(-dt*3.2);for(let i=0;i<3;i++)cam.target[i]=lerp(cam.target[i],g.target[i],k);cam.dist=lerp(cam.dist,g.dist*cam.dDist,k);cam.theta=lerp(cam.theta,g.theta+cam.dTheta,k);cam.phi=lerp(cam.phi,clamp(g.phi+cam.dPhi,0.2,1.5),k);
   const eye=[cam.target[0]+cam.dist*Math.sin(cam.phi)*Math.sin(cam.theta),cam.target[1]+cam.dist*Math.cos(cam.phi),cam.target[2]+cam.dist*Math.sin(cam.phi)*Math.cos(cam.theta)];
   resize();const w=canvas.width,h=canvas.height;gl.viewport(0,0,w,h);
