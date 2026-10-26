@@ -2,6 +2,16 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-26 · same phrase in numbers
+
+Built: ▶ same phrase now also says how the phrase's held notes measured then
+vs today: mean |cents off| and wobble, each ± 1.96 SE over its notes, and
+scoops; "better"/"worse" only when the means differ by more than both ±.
+Found while building: the same audio re-read at 22.05 kHz gave 16 vs 11 ¢ on
+WebKit, so a fixed 5 ¢ threshold would have claimed a change that was noise.
+check.mjs: same audio → "within the ±" in 3 browsers. iOS risk: none new.
+Next: phrase across all kept takes.
+
 ## 2026-10-26 · same phrase, then and now
 
 Built: ▶ same phrase plays the phrase around the current note as sung in the
@@ -123,14 +133,4 @@ percentile, now kept per take). A singer can now warm up on what they need
 today. Numbers: none new (choice rule reuses the "to work on" yardstick).
 check.mjs: seeded takes give onsets then intonation, tone plays (3 browsers).
 iOS risk: tone context made in the tap. Next: range and voice profile.
-
-## 2026-10-25 · take first on a phone
-
-Built: at phone width a scanned take moves its play row, timeline, summary
-and progress above the live readouts, the 3D gap shrinks from 42 to 22 % of
-the screen, the page scrolls to the take, and progress lines span the full
-width with the value above. A singer on an iPhone reads their take without
-scrolling past the helix. check.mjs asserts the timeline is on screen after
-the scan (WebKit iPhone, touch). Numbers: none new. iOS risk: smooth scroll
-only. Next: warm-up from the flaws seen most.
 
