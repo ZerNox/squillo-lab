@@ -2,9 +2,13 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-26 · live vibrato chip on the take estimator
+
+Built: the vibrato chip while singing now uses the take's estimator (note-change cuts, detrend, autocorrelation) on the last 1.2 s of the current note, so legato steps no longer show as vibrato. Numbers (`check/vibrato-bench.mjs`): per-note rate error median 0.07 → 0.04 Hz, p90 0.13 → 0.11; 0/30 straight notes flagged; take figures unchanged. iOS risk: a little more work per frame (about 60 frames × 14 lags), small. Next: vibrato regularity.
+
 ## 2026-10-26 · vibrato rate and extent, measured
 
-Built: the take summary says "Vibrato on n of N long notes: rate ± Hz, ±extent st" against trained singers' 5.5-6.5 Hz (Prame 1994), or praises a plain straight line. Estimated from the take's pitch (note-change cuts, quadratic detrend, first autocorrelation peak). Found while building: the live chip's 1.2 s zero count, run over a take, read legato note steps in a straight aria as 4 Hz vibrato. Numbers (`check/vibrato-bench.mjs`, page code): synthetic take means within 0.11 Hz / 0.03 st over 5 voice types, 0/30 straight notes flagged; VocalSet Caro vibrato 5.3 / 5.0 Hz. check.mjs: 6 Hz ±0.5 st take reads 6.0 Hz, 5 of 5 notes. iOS risk: none new. Next: vibrato regularity, and the live chip on the same estimator.
+Built: the take summary says "Vibrato on n of N long notes: rate ± Hz, ±extent st" against trained singers' 5.5-6.5 Hz (Prame 1994), or praises a plain straight line. Estimated from the take's pitch (note-change cuts, quadratic detrend, first autocorrelation peak). Found while building: the live chip's 1.2 s zero count, run over a take, read legato note steps in a straight aria as 4 Hz vibrato. Numbers (`check/vibrato-bench.mjs`, page code): synthetic take means within 0.11 Hz / 0.03 st over 5 voice types, 0/30 straight notes flagged; VocalSet Caro vibrato 5.3 / 5.0 Hz. check.mjs: 6 Hz ±0.5 st take reads 6.0 Hz, 5 of 5 notes. iOS risk: none new. Next: live chip on the same estimator.
 
 ## 2026-10-26 · same phrase across all kept takes
 
@@ -112,16 +116,4 @@ minute without waiting for takes. Measured (`check/range-bench.mjs`, page code,
 (p90 0.16), highest 0.19 st (p90 1.36: tops over 1100 Hz are cut by the
 tracker), 95 % within 1 st, breaks 60/60. iOS risk: mic opened from the tap as
 the Mic button does. Next: rating ground truth or compare takes.
-
-## 2026-10-25 · register breaks on glides
-
-Built: a break detector (two 200 ms line fits either side of each moment,
-same slope sign ≥ 3 st/s, smooth, ≥ 1.2 st apart) run on every take; breaks
-are kept per take, drawn on the profile bar, named in "to work on" with
-sirens (Titze 2006), and a suggested key says if the melody crosses one.
-A singer who sings a siren now sees where their voice flips. Measured
-(`check/break-bench.mjs`, page code): 64/64 synthetic breaks, error median
-0.06 st, p90 0.11; 0 false on 96 clean sirens, legato and vibrato takes;
-1 in 274 s of real clips. Synthetic only: real passaggi are subtler. iOS
-risk: none. Next: guided range finder.
 
