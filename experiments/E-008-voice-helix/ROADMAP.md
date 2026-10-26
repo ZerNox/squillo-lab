@@ -30,6 +30,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Compare: the last 10 takes' audio kept on the device; play an earlier take, then yours; ▶ same phrase finds the current phrase in it (DTW, any key; 95 % found on a vocadito proxy), then vs today in numbers with ±, or every kept version of the phrase in a row.
 - Personal bests in the summary: steadiest long note, longest in-tune note, against all kept takes, claimed only beyond one note's noise.
 - Practice streak, days and minutes sung, milestones, under the progress lines.
+- This week vs last week: each aspect's mean ± per week, better/worse only beyond both intervals.
 - Screen lag measured live (audio to paint + half pitch window): 18-25 ms median headless, shown as a chip.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
@@ -39,7 +40,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 1. **Rating with ground truth**: human-judged takes across styles from openly
    licensed sources only, then a rating that ranks them correctly (see
    `rating/README.md`).
-2. **Sharper note edges, part 2**: false alarm 12.8 % on vocadito; threshold/width sweeps of the trim only trade RPA for FA (OA 94.3-94.4), so it needs a finer hop at edges or level-envelope onsets. Real soprano f0 truth still missing.
+2. **Sharper note edges, part 2**: false alarm 12.8 % on vocadito; threshold/width sweeps of the trim only trade RPA for FA (OA 94.3-94.4), so it needs a finer hop at edges or level-envelope onsets. Real soprano f0 truth still missing. A neighbour-relative trim (R 0.2/0.3) also only trades: FA 12.7/12.2, OA 94.3/94.2 (2026-10-26).
 3. **On-device vocal separation** (ONNX in WASM) so songs with music load
     without Demucs on a desktop.
 4. **Vibrato, part 3**: evenness reference from more than two singers (all VocalSet vibrato clips), and per-note truth if any exists.

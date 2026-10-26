@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-26 · this week vs last week
+
+Built: under the progress lines, "This week vs last week (n takes vs m)": every aspect's mean ± 1.96 SE for the last 7 days against the 7 before, better/worse only beyond both intervals, better aspects named first. A singer now hears week-scale progress honestly, not just take-to-take. Tried first: a neighbour-relative note-edge trim on vocadito (R 0.2: FA 12.7, OA 94.3; R 0.3: FA 12.2, RPA 97.2, OA 94.2): no net gain, not shipped. check.mjs: seeded weeks read overall better, others level, 3 browsers. iOS risk: none (localStorage only). Next: rating truth or level-envelope onsets.
+
 ## 2026-10-26 · screen lag, measured
 
 Built: a "screen lag" chip in the live rail: per frame, audio chunk arrival → next helix paint + half the pitch window (+ mic latency when the browser reports it, else "+ mic"), median and p90. A singer can now see how far behind their voice the helix is, instead of it being assumed. Numbers (check.mjs, live demo, headless): Chrome 18 ms (p90 19), Firefox 25 (31), WebKit 24 (28). iOS risk: real iPhone input buffering is unreported by Safari, so the chip says "+ mic" there. Next: edge onsets or rating truth.
@@ -82,14 +86,4 @@ note after it ended). Measured (page code, vocadito): false alarm 17.1 →
 12.8 ± 2.9 %, overall 93.2 → 94.3 ± 1.0 %, RPA 98.1 → 97.6 ± 0.7 %; range
 bench unchanged. Notes on the bar and in note-by-note now stop where the
 singer stopped. iOS risk: none. Next: finer hop at edges, or rating truth.
-
-## 2026-10-26 · note by note
-
-Built: ◀ note / note ▶ buttons and ← → keys step through a take's held
-notes; each plays alone (padded 0.15 s) in the version last played (take,
-halfway, spotless, at the chosen speed), is outlined on the bar, and its
-numbers are read out (cents off, wobble, scoop or clean start, ★). A singer
-can now walk a phrase note by note and hear exactly which note slipped.
-Numbers: none (playback). check.mjs: steps, bounds and key in 3 browsers.
-iOS risk: none (same play path as ▶ your take). Next: sharper note edges.
 
