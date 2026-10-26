@@ -101,13 +101,3 @@ help. On the VocalSet m2 demos the old prior took a spurious 632 Hz candidate
 over a clean 164 Hz one; restricting the prior to good candidates added only
 0.1 pt, not kept. A low voice's take now shows its real notes. Next: edges.
 
-## 2026-10-25 · pitch measured on real singers
-
-Built: `check/vocadito-bench.mjs` runs the page's take tracker on vocadito
-(40 a cappella excerpts, 29 singers, f0 hand-corrected, CC BY 4.0), and the
-take summary now says how sure the pitch is. Measured: RPA 94.8 ± 2.4 %,
-voicing recall 97.5 %, false alarm 16.6 ± 3.4 %, overall 91.1 %; low voices
-91.8 ± 5.1 %, high 97.0 ± 1.5 %. Unvoiced-cost sweep kept 0.45. A singer
-can now read how far to trust the pitch on a real voice. iOS risk: none.
-Next: cut false alarms (breaths, consonants) and fix low male voices.
-
