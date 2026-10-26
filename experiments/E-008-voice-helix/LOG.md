@@ -2,6 +2,18 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-26 · same phrase, then and now
+
+Built: ▶ same phrase plays the phrase around the current note as sung in the
+picked earlier take, then today's. The phrase is found by subsequence DTW on
+the pitch contour at transpositions ±6 st, rejected above 0.4 st mean cost.
+Measured (page code, `check/phrase-bench.mjs`, vocadito proxy: same clip at
+0.8× + noise): 95.0 ± 3.9 % of 120 phrases found, impostors accepted 3.3 ±
+3.2 %. Bug fixed: earlier takes were stored silent (OfflineAudioContext render
+of an already-played buffer gave zeros in Chrome); toPcm now resamples by hand.
+Edge-trim sweep (E 0.2-0.3, EN 2-4): OA flat 94.3-94.4, not changed. iOS risk:
+DTW on a 6 min take is ~0.5 s on the main thread. Next: phrase across all takes.
+
 ## 2026-10-26 · mark moments
 
 Built: ⚑ mark button and M key drop a flag on the take bar where the take is
@@ -121,16 +133,4 @@ width with the value above. A singer on an iPhone reads their take without
 scrolling past the helix. check.mjs asserts the timeline is on screen after
 the scan (WebKit iPhone, touch). Numbers: none new. iOS risk: smooth scroll
 only. Next: warm-up from the flaws seen most.
-
-## 2026-10-25 · pitch tracker for takes (pYIN-style Viterbi)
-
-Built: takes are tracked with YIN candidates per frame and a Viterbi path over
-the whole take; take audio now reaches the worker in 5 ms chunks (it was
-43 ms, so frame pairs saw the same audio). A singer's notes, scoops and
-spots now come from a pitch track that does not flip octaves on a breathy
-voice. Measured (`check/pitch-bench.mjs`, page code, held-out seed, 29 328
-frames, 25 voice×condition cells): gross error 10.9 % (old chunking) →
-1.4 % (live tracker) → 0.1 % (Viterbi); octave 0.8 → 0.1 %; missed voiced
-0.3 %. Noisy 600 Hz tone in check.mjs: live 0 %, take 81 % right. Slide bench
-unchanged (120/120). iOS risk: none (offline maths). Next: phone layout.
 

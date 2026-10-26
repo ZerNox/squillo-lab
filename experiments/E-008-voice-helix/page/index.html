@@ -273,7 +273,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
     <button class="btn" id="bPlayHalf" disabled title="Half way between your take and spotless">▶ halfway</button>
     <button class="btn" id="bPlaySpot" disabled title="Every note tuned, steadied and started cleanly">▶ spotless</button>
     <button class="btn" id="bPrevNote" disabled aria-label="Previous note" title="Previous note (← key)">◀ note</button><button class="btn" id="bNextNote" disabled aria-label="Next note" title="Next note (→ key): hear one note at a time with its numbers">note ▶</button><button class="btn" id="bMark" disabled title="Mark this moment (M key): a flag on the bar, kept with the take on this device">⚑ mark</button>
-    <select id="cmpSel" hidden aria-label="Earlier take to compare" title="An earlier take kept on this device"></select><button class="btn" id="bPlayCmp" hidden title="Play an earlier take, then yours, to hear the change">▶ earlier take</button>
+    <select id="cmpSel" hidden aria-label="Earlier take to compare" title="An earlier take kept on this device"></select><button class="btn" id="bPlayCmp" hidden title="Play an earlier take, then yours, to hear the change">▶ earlier take</button><button class="btn" id="bSamePh" hidden title="The phrase around the current note, sung in the earlier take, then today">▶ same phrase</button>
     <button class="btn" id="bWarm" title="A short routine for what your recent takes need most">☀ warm-up</button>
     <button class="btn" id="bProf" title="Your range, voice type and a key for any song, from your takes">♪ voice profile</button>
     <select id="speed" aria-label="Playback speed" title="Slow down without changing pitch"><option value="1">1×</option><option value="0.75">0.75×</option><option value="0.5">0.5×</option></select>
@@ -860,7 +860,7 @@ const RATING_ON=new URLSearchParams(location.search).get('rating')==='1';
 let ANCHORS=null;if(RATING_ON)fetch('rating/anchors.json').then(r=>r.ok?r.json():null).then(j=>{ANCHORS=j;}).catch(()=>{});
 async function setTake(buf){TAKE.busy=true;
   takeInfo.textContent=`Scanning your ${buf.duration.toFixed(1)} s take…`;
-  const tr=await prepTake(buf),sc=tr.sc;buf=tr.buf;TAKE.buf=buf;TAKE.segs=sc.segs;TAKE.aspects=sc.aspects;
+  const tr=await prepTake(buf),sc=tr.sc;buf=tr.buf;TAKE.buf=buf;TAKE.frames=sc.frames;TAKE.segs=sc.segs;TAKE.aspects=sc.aspects;
   TAKE.spot=improveTake(buf,sc.frames,1,sc.aspects.off);TAKE.half=improveTake(buf,sc.frames,0.5,sc.aspects.off);
   TAKE.rating=ANCHORS&&sc.aspects.ok?rateAspects(sc.aspects,ANCHORS):null;TAKE.d=null;TAKE.marks=[];if(sc.aspects.ok){const h=saveTake(sc.aspects);TAKE.d=h[h.length-1].d;storeAudio(TAKE.d,buf);}TAKE.busy=false;renderTakebar();renderRating();document.body.classList.add('has-take');
   if(matchMedia('(max-width:720px)').matches)$('takeRow').scrollIntoView({block:'start',behavior:'smooth'});
@@ -1229,15 +1229,18 @@ bPlayTake.onclick=()=>playTake('take');bPlayHalf.onclick=()=>playTake('half');bP
 const ADB={name:'helix.audio.v1',max:10};
 function adb(){return new Promise((res,rej)=>{if(!window.indexedDB){rej(new Error('no IndexedDB'));return;}const q=indexedDB.open(ADB.name,1);q.onupgradeneeded=()=>q.result.createObjectStore('takes');q.onsuccess=()=>res(q.result);q.onerror=()=>rej(q.error);});}
 const adbDo=(mode,fn)=>adb().then(db=>new Promise((res,rej)=>{const tx=db.transaction('takes',mode),st=tx.objectStore('takes');const r=fn(st);tx.oncomplete=()=>{db.close();res(r&&r.result);};tx.onerror=()=>{db.close();rej(tx.error);};}));
-async function toPcm(buf){const SR=22050;let y;try{const oc=new OfflineAudioContext(1,Math.ceil(buf.duration*SR),SR),s=oc.createBufferSource();s.buffer=buf;s.connect(oc.destination);s.start();y=(await oc.startRendering()).getChannelData(0);}
-  catch(e){const x=buf.getChannelData(0),r=buf.sampleRate/SR;y=new Float32Array(Math.floor(x.length/r));for(let i=0;i<y.length;i++)y[i]=x[Math.floor(i*r)];}
+// Resampled by hand (box average over each output step, then linear): an OfflineAudioContext render of a buffer
+// that had already been played gave silence in Chrome (found 2026-10-26), so earlier takes were stored empty.
+async function toPcm(buf){const SR=22050,x=buf.getChannelData(0),r=buf.sampleRate/SR,y=new Float32Array(Math.floor(x.length/r)),w=Math.max(1,Math.floor(r));
+  const c=new Float64Array(x.length+1);for(let i=0;i<x.length;i++)c[i+1]=c[i]+x[i];
+  for(let i=0;i<y.length;i++){const u=i*r,j=Math.min(x.length-w,Math.floor(u));y[i]=j>=0?(c[j+w]-c[j])/w:0;}
   const p=new Int16Array(y.length);for(let i=0;i<y.length;i++)p[i]=Math.max(-32767,Math.min(32767,Math.round(y[i]*32767)));return {sr:SR,pcm:p};}
 async function storeAudio(d,buf){try{const a=await toPcm(buf);const keys=await adbDo('readonly',st=>st.getAllKeys());
     await adbDo('readwrite',st=>{st.put(a,d);const old=(keys||[]).filter(k=>k!==d).sort((x,y)=>x-y);for(const k of old.slice(0,Math.max(0,old.length+1-ADB.max)))st.delete(k);});}catch(e){}fillCompare();}
 async function fillCompare(){const sel=$('cmpSel'),b=$('bPlayCmp');let keys=[];try{keys=(await adbDo('readonly',st=>st.getAllKeys()))||[];}catch(e){}
   keys=keys.filter(k=>k!==TAKE.d).sort((x,y)=>y-x);const H=loadHist();sel.innerHTML=keys.map(k=>{const r=H.find(x=>x.d===k);const dt=new Date(k);
     return `<option value="${k}">${dt.toLocaleDateString(undefined,{day:'numeric',month:'short'})} ${dt.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'})}${r?` · ${Math.round(r.score*100)}`:''}</option>`;}).join('');
-  sel.hidden=b.hidden=!keys.length;}
+  sel.hidden=b.hidden=$('bSamePh').hidden=!keys.length;}
 async function playCompare(){const k=+$('cmpSel').value;if(!k)return;stopSource();const ctx=await ensureCtx();await ctx.resume();let a=null;try{a=await adbDo('readonly',st=>st.get(k));}catch(e){}
   if(!a){takeInfo.textContent='That earlier take is no longer on this device.';fillCompare();return;}
   const b=mkBuf(a.pcm.length,a.sr),x=b.getChannelData(0);for(let i=0;i<x.length;i++)x[i]=a.pcm[i]/32767;
@@ -1245,6 +1248,44 @@ async function playCompare(){const k=+$('cmpSel').value;if(!k)return;stopSource(
   const H=loadHist(),then=H.find(r=>r.d===k),now=H.find(r=>r.d===TAKE.d);
   takeInfo.textContent=`Playing your take from ${new Date(k).toLocaleDateString(undefined,{day:'numeric',month:'short'})}${then?` (note score ${Math.round(then.score*100)})`:''}. Then press ▶ your take${now&&then?` (${Math.round(now.score*100)} today)`:''} to hear the change.`;}
 $('bPlayCmp').onclick=playCompare;fillCompare();
+// Same phrase: the phrase around the current note (voiced stretches joined across gaps under 0.35 s, at most 8 s)
+// is found in the earlier take by subsequence DTW on the pitch contour (semitones, 40 ms steps, tried at
+// transpositions -6..+6 st in half steps so another key still matches; off-diagonal steps cost 0.15 st).
+// A match is kept when its mean cost is under SP.max semitones (measured: check/phrase-bench.mjs, README).
+const SP={max:0.4,gap:0.35,len:8};
+function phraseAround(F,t){const v=F.filter(f=>f.f0>0);if(!v.length)return null;let i=v.findIndex(f=>f.t>=t);if(i<0)i=v.length-1;let a=i,b=i;
+  for(const gap of [SP.gap,1]){while(a>0&&v[a].t-v[a-1].t<gap&&v[i].t-v[a-1].t<SP.len/2)a--;while(b<v.length-1&&v[b+1].t-v[b].t<gap&&v[b+1].t-v[a].t<SP.len)b++;if(v[b].t-v[a].t>=2)break;}// short phrase: join across gaps up to 1 s
+  return {t0:v[a].t,t1:v[b].t};}
+function contour(F,t0=-1,t1=1e9){const o=[];for(let i=0;i<F.length;i+=2){const f=F[i];if(f.f0>0&&f.t>=t0&&f.t<=t1)o.push([f.t,12*Math.log2(f.f0/440)]);}return o;}
+function samePhrase(Fq,t0,t1,Fr){const q=contour(Fq,t0,t1),r=contour(Fr),m=q.length,n=r.length;if(m<8||n<8)return null;
+  const P=0.15,C=3;let best={cost:Infinity};const D0=new Float64Array(n),D1=new Float64Array(n),S0=new Int32Array(n),S1=new Int32Array(n);
+  for(let sh=-6;sh<=6;sh+=0.5){let D=D0,S=S0,E=D1,T=S1;for(let j=0;j<n;j++){D[j]=Math.min(C,Math.abs(q[0][1]-r[j][1]+sh));S[j]=j;}
+    for(let i=1;i<m;i++){const qi=q[i][1]+sh;for(let j=0;j<n;j++){const c=Math.min(C,Math.abs(qi-r[j][1]));let v=D[j]+c+P,s=S[j];
+        if(j>0){if(D[j-1]+c<v){v=D[j-1]+c;s=S[j-1];}if(E[j-1]+c+P<v){v=E[j-1]+c+P;s=T[j-1];}}E[j]=v;T[j]=s;}
+      [D,E]=[E,D];[S,T]=[T,S];}
+    for(let j=0;j<n;j++){const c=D[j]/m;if(c<best.cost)best={cost:c,shift:-sh,t0:r[S[j]][0],t1:r[j][0]};}}
+  return best;}
+const CMPF={};
+async function earlierTake(k){if(CMPF[k])return CMPF[k];const a=await adbDo('readonly',st=>st.get(k));if(!a)return null;
+  const b=mkBuf(a.pcm.length,a.sr),x=b.getChannelData(0);for(let i=0;i<x.length;i++)x[i]=a.pcm[i]/32767;
+  const fs=await trackTake(b);viterbiF0(fs);trimEdges(fs,b);const F=fs.map(f=>({t:Math.max(0,f.t-0.02),f0:f.voiced?f.f0:0}));return CMPF[k]={buf:b,F};}
+function joinClips(parts,sr){const n=parts.reduce((s,p)=>s+Math.ceil((p.t1-p.t0)*sr)+Math.round(0.5*sr),0),out=mkBuf(n,sr),y=out.getChannelData(0);let o=0;
+  for(const p of parts){const x=p.buf.getChannelData(0),r=p.buf.sampleRate/sr,L=Math.ceil((p.t1-p.t0)*sr),a=p.t0*p.buf.sampleRate;
+    for(let i=0;i<L;i++){const u=a+i*r,j=Math.floor(u),f=u-j;if(j+1<x.length)y[o+i]=x[j]*(1-f)+x[j+1]*f;}
+    const fd=Math.min(L>>1,Math.round(0.02*sr));for(let i=0;i<fd;i++){y[o+i]*=i/fd;y[o+L-1-i]*=i/fd;}o+=L+Math.round(0.5*sr);}return out;}
+async function playSamePhrase(){const k=+$('cmpSel').value;if(!k||!TAKE.frames)return;stopSource();const ctx=await ensureCtx();await ctx.resume();
+  const P=TAKE.aspects&&TAKE.aspects.perf,p=AU.play,d=TAKE.buf.duration;
+  const t=TAKE.ni>=0&&P&&P[TAKE.ni]?P[TAKE.ni].t0:p&&AU.kind==='take'?clamp((ctx.currentTime-p.t0)*p.k,0,d):0;
+  const ph=phraseAround(TAKE.frames,t);if(!ph){takeInfo.textContent='No sung phrase there to compare.';return;}
+  takeInfo.textContent='Finding the same phrase in the earlier take…';let E=null;try{E=await earlierTake(k);}catch(e){}
+  if(!E){takeInfo.textContent='That earlier take is no longer on this device.';fillCompare();return;}
+  const m=samePhrase(TAKE.frames,ph.t0,ph.t1,E.F);TAKE.lastSP={ph,m};const day=new Date(k).toLocaleDateString(undefined,{day:'numeric',month:'short'});
+  if(!m||!(m.cost<SP.max)){takeInfo.textContent=`The phrase at ${mmss(ph.t0)} was not found in your take from ${day} (no stretch with the same tune). Try another note, or ▶ earlier take.`;return;}
+  const pad=0.2,b=joinClips([{buf:E.buf,t0:Math.max(0,m.t0-pad),t1:Math.min(E.buf.duration,m.t1+pad)},{buf:TAKE.buf,t0:Math.max(0,ph.t0-pad),t1:Math.min(d,ph.t1+pad)}],ctx.sampleRate);
+  const s=ctx.createBufferSource();s.buffer=b;s.connect(AU.cap);s.connect(ctx.destination);s.start();AU.source=s;AU.kind='cmp';markSrc(null);goLive();
+  const sh=Math.abs(m.shift)>=0.5?`, ${Math.abs(m.shift)} semitone${Math.abs(m.shift)>1?'s':''} ${m.shift>0?'higher':'lower'} then`:'';
+  takeInfo.textContent=`Same phrase: ${day} at ${mmss(m.t0)}${sh}, then today at ${mmss(ph.t0)} (${(ph.t1-ph.t0).toFixed(1)} s; tune match ±${m.cost.toFixed(2)} st). Step ◀ ▶ to pick another phrase.`;}
+$('bSamePh').onclick=playSamePhrase;
 function coachTick(){const p=AU.play;if(!p||AU.kind!=='take')return;const pos=(AU.ctx.currentTime-p.t0)*p.k;playhead.style.left=clamp(pos/p.dur*100,0,100)+'%';
   const seg=TAKE.segs.find(g=>pos>=g.t0-LEAD&&pos<=g.t1+0.3)||null;const star=seg?null:(TAKE.best||[]).find(n=>pos>=n.t0&&pos<=n.t1+1.5)||null;
   const phase=seg?(pos<seg.t0?'soon':'now'):star?'star':'';

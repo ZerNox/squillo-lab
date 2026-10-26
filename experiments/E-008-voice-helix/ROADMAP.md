@@ -25,7 +25,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Take pitch: YIN candidates + Viterbi (0.1 % gross error, synthetic; 97.6 ± 0.7 % RPA, false alarm 12.8 % on 40 real singers, vocadito; note edges trimmed on a short window).
 - Slide style told from unwanted scoops (consistent depth on most notes).
 - Voice profile: comfortable and full range, voice-type guess, key for a song, register breaks on glides; a guided range finder (lowest, highest, siren) in about a minute.
-- Compare: the last 10 takes' audio kept on the device; play an earlier take, then yours.
+- Compare: the last 10 takes' audio kept on the device; play an earlier take, then yours; ▶ same phrase finds the current phrase in it (DTW, any key; 95 % found on a vocadito proxy).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
@@ -34,7 +34,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 1. **Rating with ground truth**: human-judged takes across styles from openly
    licensed sources only, then a rating that ranks them correctly (see
    `rating/README.md`).
-2. **Sharper note edges, part 2**: false alarm 12.8 % on vocadito after the edge trim; a finer hop at edges, or onset times from the level envelope. Real soprano f0 truth still missing.
+2. **Sharper note edges, part 2**: false alarm 12.8 % on vocadito; threshold/width sweeps of the trim only trade RPA for FA (OA 94.3-94.4), so it needs a finer hop at edges or level-envelope onsets. Real soprano f0 truth still missing.
 3. **On-device vocal separation** (ONNX in WASM) so songs with music load
     without Demucs on a desktop.
-4. **Compare the same phrase**: align today's take with an earlier one and A/B phrase by phrase.
+4. **Same phrase, part 2**: a phrase list across all kept takes ("your last three versions of this line"), with each version's note numbers side by side.
