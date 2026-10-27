@@ -32,6 +32,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Practice streak, days and minutes sung, milestones, under the progress lines.
 - This week vs last week: each aspect's mean ± per week, better/worse only beyond both intervals.
 - Screen lag measured live (audio to paint + half pitch window): 18-25 ms median headless, shown as a chip.
+- Breathiness from CPP: live chip, cue, take summary, progress line (VocalSet 20 singers: AUC 0.90 WAV / 0.91 MP3 80k, same-singer pairs 98.9 %; old HNR cue was below chance).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
@@ -44,4 +45,5 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 3. **On-device vocal separation** (ONNX in WASM) so songs with music load
     without Demucs on a desktop.
 4. **Vibrato, part 3**: evenness reference from more than two singers (all VocalSet vibrato clips), and per-note truth if any exists.
-5. **Same phrase, part 3**: measure the matcher on real re-sung takes (an openly licensed set with repeated renditions of one melody) instead of the slowed-clip proxy.
+5. **Tone, part 2**: H1-H2 (corrected) and spectral tilt validated on VocalSet belt / breathy / straight; pressed-voice cue (still HNR-based, unvalidated) rebuilt on them.
+6. **Same phrase, part 3**: measure the matcher on real re-sung takes (an openly licensed set with repeated renditions of one melody) instead of the slowed-clip proxy.

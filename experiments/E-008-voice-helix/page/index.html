@@ -253,7 +253,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
   <div class="chip"><span class="k">pitch</span><span class="v" id="mF0">—</span><span class="u" id="mNote"></span></div>
   <div class="chip"><span class="k">roughness</span><span class="v" id="mJit">—</span><span class="u">¢ rms</span></div>
   <div class="chip"><span class="k">vibrato</span><span class="v" id="mVib">—</span><span class="u" id="mVibU">Hz · st</span></div>
-  <div class="chip"><span class="k">harmonics / noise</span><span class="v" id="mHnr">—</span><span class="u">dB</span></div>
+  <div class="chip"><span class="k">clarity (CPP)</span><span class="v" id="mHnr">—</span><span class="u">dB</span></div>
   <div class="chip"><span class="k">H1 − H2</span><span class="v" id="mH12">—</span><span class="u">dB</span></div>
   <div class="chip"><span class="k">spectral tilt</span><span class="v" id="mTilt">—</span><span class="u">dB/oct</span></div>
   <div class="chip"><span class="k">formants F1 · F2 · F3</span><span class="v" id="mFmt">—</span><span class="u">Hz</span></div>
@@ -361,6 +361,18 @@ function makeFFT(N){const rev=new Uint32Array(N);const bits=Math.log2(N);for(let
     for(let size=2;size<=N;size<<=1){const half=size>>1,step=N/size;for(let i=0;i<N;i+=size){for(let j=0,k=0;j<half;j++,k+=step){const ar=re[i+j+half],ai=im[i+j+half];const tr=ar*cs[k]-ai*sn[k],ti=ar*sn[k]+ai*cs[k];re[i+j+half]=re[i+j]-tr;im[i+j+half]=im[i+j]-ti;re[i+j]+=tr;im[i+j]+=ti;}}}};}
 const N=4096,FB=TD_F;const fft=makeFFT(N);const re=new Float32Array(N),im=new Float32Array(N),win=new Float32Array(N);for(let i=0;i<N;i++)win[i]=0.5-0.5*Math.cos(2*Math.PI*i/N);
 const db=new Float32Array(N/2+1),col=new Float32Array(FB);
+// Cepstral peak prominence (Hillenbrand et al. 1994): the cepstrum's peak at the pitch period above the line fitted to the
+// cepstrum over 1/1100-1/60 s, in dB. Low when breath noise fills between the harmonics; the standard breathiness measure.
+// Taken over the band below a quarter of the sample rate (11-12 kHz), floored CPP_FLOOR dB under the peak, so a codec's
+// empty band above ~16 kHz (MP3, AAC) does not add a cliff to the cepstrum (check/breath-bench.mjs, WAV and MP3 80k).
+const CPP_FLOOR=90,CN=N/2,cfft=makeFFT(CN),cre=new Float32Array(CN),cim=new Float32Array(CN);
+function cppOf(f0,sr0){const sr=sr0/2;let mx=-200;for(let i=0;i<=CN/2;i++)if(db[i]>mx)mx=db[i];const fl=mx-CPP_FLOOR;
+  for(let i=0;i<CN;i++){const v=db[i<=CN/2?i:CN-i];cre[i]=v>fl?v:fl;cim[i]=0;}cfft(cre,cim);
+  const lo=Math.floor(sr/1100),hi=Math.min(CN/2-1,Math.ceil(sr/60));let n=0,sx=0,sy=0,sxx=0,sxy=0;
+  for(let i=lo;i<=hi;i++){const y=10*Math.log10((cre[i]*cre[i]+cim[i]*cim[i])/(CN*CN)+1e-12);cre[i]=y;n++;sx+=i;sy+=y;sxx+=i*i;sxy+=i*y;}
+  const a=(n*sxy-sx*sy)/(n*sxx-sx*sx),b=(sy-a*sx)/n,q0=sr/f0;let best=-1e9,bi=0;
+  for(let i=Math.max(lo,Math.floor(q0*0.92));i<=Math.min(hi,Math.ceil(q0*1.08));i++)if(cre[i]-(a*i+b)>best){best=cre[i]-(a*i+b);bi=i;}
+  return bi?best:0;}
 const S={sr:48000,ring:new Float32Array(16384),w:0,count:0,next:0,hop:0.02,prevF0:0,prevT:-1,calib:null,prof:null,noiseRms:0,floorDb:-100};
 function spectrum(buf){for(let i=0;i<N;i++){re[i]=buf[i]*win[i];im[i]=0;}fft(re,im);for(let b=0;b<=N/2;b++){const m=Math.hypot(re[b],im[b])*4/N;db[b]=20*Math.log10(m+1e-9);}
   if(S.prof){for(let b=0;b<=N/2;b++){const pw=Math.pow(10,db[b]/10),pn=Math.pow(10,(S.prof[b]+3)/10);db[b]=10*Math.log10(Math.max(pw-pn,pw*0.03)+1e-12);}}}
@@ -369,19 +381,20 @@ function analyse(t){const sr=S.sr;const buf=new Float32Array(N);const st=(S.w-N+
   let s=0;for(let i=N-2048;i<N;i++)s+=buf[i]*buf[i];const rms=Math.sqrt(s/2048);
   spectrum(buf);const binHz=sr/N;
   if(S.calib){S.calib.n++;S.calib.rms+=rms;for(let b=0;b<db.length;b++)S.calib.acc[b]+=Math.pow(10,db[b]/10);if(t>=S.calib.until){S.prof=new Float32Array(db.length);for(let b=0;b<db.length;b++)S.prof[b]=10*Math.log10(S.calib.acc[b]/S.calib.n+1e-12);S.noiseRms=S.calib.rms/S.calib.n;let fl=0;for(let b=Math.floor(100/binHz);b<4000/binHz;b++)fl+=S.prof[b];S.floorDb=fl/(4000/binHz-Math.floor(100/binHz));S.calib=null;postMessage({type:'calib',done:true,floorDb:S.floorDb,noiseRms:S.noiseRms});}
-    postMessage({type:'feat',n:S.count,t,rms,voiced:false,f0:0,cmnd:1,hnr:0,h12:0,tilt:0,a1p0:0,F:null,col:new Float32Array(FB)});return;}
+    postMessage({type:'feat',n:S.count,t,rms,voiced:false,f0:0,cmnd:1,hnr:0,cpp:0,h12:0,tilt:0,a1p0:0,F:null,col:new Float32Array(FB)});return;}
   const thr=Math.max(0.004,S.noiseRms*3);let f0=0,cmnd=1,cs=null;if(rms>thr){const y=yin(buf,sr,(S.prevT>=0&&t-S.prevT<0.12)?S.prevF0:0);f0=y.f0;cmnd=y.cmnd;cs=y.cs;}
   const voiced=rms>thr&&cmnd<0.65&&f0>50&&f0<1100;
-  let hnr=0,h12=0,tilt=0,a1p0=0,F=null,nasOk=false;
+  let hnr=0,cpp=0,h12=0,tilt=0,a1p0=0,F=null,nasOk=false;
   if(voiced){S.prevF0=f0;S.prevT=t;const r=Math.min(0.999,Math.max(0.001,1-cmnd/2));hnr=10*Math.log10(r/(1-r));
     h12=pk(f0*0.8,f0*1.2,binHz)-pk(f0*1.8,f0*2.2,binHz);
+    cpp=cppOf(f0,sr);
     let n=0,sx=0,sy=0,sxx=0,sxy=0;for(let b=Math.floor(100/binHz);b<4000/binHz;b++){const x=Math.log2(b*binHz),yv=db[b];if(yv<-95)continue;n++;sx+=x;sy+=yv;sxx+=x*x;sxy+=x*yv;}tilt=n>4?(n*sxy-sx*sy)/(n*sxx-sx*sx):0;
     const L=lpc(buf,sr);if(L){if(L.F)F=L.F;h12-=L.env(f0)-L.env(2*f0);
       // nasality A1-P0: oral first-formant harmonic vs low nasal murmur harmonic (180-340 Hz); only measurable on non-high vowels
       const oral=L.peaks.find(f=>f>=400&&f<=1100);let P0=-200;for(let k=1;k*f0<=340;k++){if(k*f0>=180)P0=Math.max(P0,pk(k*f0-0.25*f0,k*f0+0.25*f0,binHz));}
       if(oral&&P0>-150){const k1=Math.max(1,Math.round(oral/f0));a1p0=pk(k1*f0-0.3*f0,k1*f0+0.3*f0,binHz)-P0;nasOk=true;}}}
   for(let j=0;j<FB;j++){const fa=TD_FMIN*Math.pow(TD_FMAX/TD_FMIN,j/FB),fb=TD_FMIN*Math.pow(TD_FMAX/TD_FMIN,(j+1)/FB);let m=-120;for(let b=Math.floor(fa/binHz);b<=Math.max(Math.floor(fa/binHz),Math.floor(fb/binHz))&&b<db.length;b++)if(db[b]>m)m=db[b];col[j]=Math.min(1,Math.max(0,(m+92)/86));}
-  postMessage({type:'feat',n:S.count,t,rms,voiced,f0,cmnd,hnr,h12,tilt,a1p0,nasOk,F,col:col.slice(),cs:S.offline&&rms>thr?cs:null});}
+  postMessage({type:'feat',n:S.count,t,rms,voiced,f0,cmnd,hnr,cpp,h12,tilt,a1p0,nasOk,F,col:col.slice(),cs:S.offline&&rms>thr?cs:null});}
 function onmsg(m){if(m.type==='init'){S.sr=m.sr;S.hop=m.hop||0.02;S.offline=!!m.offline;}
   else if(m.type==='audio'){const a=m.buf;for(let i=0;i<a.length;i++){S.ring[S.w]=a[i];S.w=(S.w+1)%S.ring.length;}S.count+=a.length;const t=S.count/S.sr;while(t>=S.next){S.next+=S.hop;if(S.count>=N)analyse(S.next-S.hop);}}
   else if(m.type==='calib'){S.prof=null;S.noiseRms=0;S.calib={until:S.count/S.sr+m.seconds,n:0,rms:0,acc:new Float64Array(N/2+1)};}
@@ -506,12 +519,12 @@ function buildNasal(m,level){const [p0]=tractPath(0.56);sweep(m,14,24,s=>{const 
 // ───────────────────────── feature stream + statistics ─────────────────────────
 // One Stats object per analysed stream: the live source, and each reference clip scored offline.
 function Stats(){this.rec={frames:[],cols:[],snaps:[],events:[]};this.reset();}
-Stats.prototype.reset=function(){this.HIST=[];this.ft={f0:0,midi:0,voiced:false,rms:0,cmnd:1,hnr:0,h12:0,tilt:0,a1p0:0,nasOk:false,nasT:-9,Fs:[0,0,0],rough:0,sustain:0,vibRate:0,vibExt:0,range:0,voicedSec:0,onsets:0,scoops:0,vsa:0,fry:0,speechy:false,t:0};
+Stats.prototype.reset=function(){this.HIST=[];this.ft={f0:0,midi:0,voiced:false,rms:0,cmnd:1,hnr:0,cpp:0,h12:0,tilt:0,a1p0:0,nasOk:false,nasT:-9,Fs:[0,0,0],rough:0,sustain:0,vibRate:0,vibExt:0,range:0,voicedSec:0,onsets:0,scoops:0,vsa:0,fry:0,speechy:false,t:0};
   this.ema=FLAWS.map(()=>0);this.lastVoiced=false;this.onsetT=0;this.onsetMidi=null;this.onsetList=[];this.scoopList=[];this.segList=[];this.at=0;};
 let LIVE=null;
 function resetStats(){LIVE.reset();if(dsp)dsp.post({type:'reset'});}
 function ingest(st,m,src){const now=m.t;st.at=now;const FT=st.ft,HIST=st.HIST;const voiced=m.voiced;FT.voiced=voiced;FT.rms=m.rms;FT.cmnd=m.cmnd;
-  if(voiced){FT.f0=m.f0;FT.midi=midiOf(m.f0);FT.hnr=m.hnr;FT.h12=lerp(FT.h12,m.h12,0.3);FT.tilt=m.tilt;if(m.nasOk){FT.a1p0=lerp(FT.a1p0||m.a1p0,m.a1p0,0.3);FT.nasT=now;}if(m.F){for(let i=0;i<3;i++)FT.Fs[i]=FT.Fs[i]?lerp(FT.Fs[i],m.F[i],0.5):m.F[i];}}
+  if(voiced){FT.f0=m.f0;FT.midi=midiOf(m.f0);FT.hnr=m.hnr;FT.cpp=FT.cpp?lerp(FT.cpp,m.cpp||0,0.3):m.cpp||0;FT.h12=lerp(FT.h12,m.h12,0.3);FT.tilt=m.tilt;if(m.nasOk){FT.a1p0=lerp(FT.a1p0||m.a1p0,m.a1p0,0.3);FT.nasT=now;}if(m.F){for(let i=0;i<3;i++)FT.Fs[i]=FT.Fs[i]?lerp(FT.Fs[i],m.F[i],0.5):m.F[i];}}
   FT.nasOk=now-FT.nasT<0.6; // hold the last measurable A1-P0 briefly across frames where no oral F1 peak is found
   const dtF=HIST.length?now-HIST[HIST.length-1].t:0.02;
   const e={t:now,dt:dtF,src,f0:voiced?m.f0:0,midi:voiced?FT.midi:0,voiced,rms:m.rms,cm:m.cmnd,F1:voiced?FT.Fs[0]:0,F2:voiced?FT.Fs[1]:0,res:0,fit:false,st:0,ok:true};
@@ -561,10 +574,14 @@ function summarize(rec,t0,t1,srcFilter){const fr=rec.frames,sn=rec.snaps;let n=0
   return {sec,voiced:nv/n,rough:nr?rough/nr:0,hnr:nv?hnr/nv:0,vib:nv?vib/nv:0,range:midis.length>30?midis[Math.floor(midis.length*0.9)]-midis[Math.floor(midis.length*0.1)]:0,scoops:scoops/(sec/10),flaws:fl.map(c=>c/n)};}
 
 // ───────────────────────── flaw engine ─────────────────────────
+// Breathy below 23 dB CPP: on VocalSet's breathy and straight scales (20 singers) clip medians below 23 are
+// 53 % of breathy clips and 5 % of straight ones (WAV; 64 % and 12 % from 80 kbit/s MP3) (check/breath-bench.mjs). The CMND-based HNR it replaces
+// separated them no better than chance (AUC 0.57).
+const BREATHY_CPP=23;
 const FLAWS=[
  {id:'shaky',name:'shaky pitch',view:'helix',test:f=>f.voiced&&f.sustain>0.6&&f.hnr>9&&f.rough>15&&f.f0>75,
   advice:['Pitch wobbles at random, not as even vibrato.','Breath support is unsteady. Hum “ng” on one pitch for 8 seconds and keep the ribbon straight. Aim for roughness under 8 cents.'],pose:'belly',cue:'Hands on the belly. Breathe low, keep it firm and slow while the note holds.'},
- {id:'breathy',name:'breathy',view:'terrain',test:f=>f.voiced&&f.sustain>0.3&&f.hnr<11&&f.f0>75,
+ {id:'breathy',name:'breathy',view:'terrain',test:f=>f.voiced&&f.sustain>0.3&&f.cpp>0&&f.cpp<BREATHY_CPP&&f.f0>75,
   advice:['Noise floor sits high between the harmonic ridges: the folds are not closing fully.','Start the note with a gentle glottal onset (“uh-oh”, then sustain). Watch the grey haze sink below the ridges. Aim above 15 dB.'],pose:'breath',cue:'Hand on the belly, press in slightly as you start: “uh-oh”, then hold.'},
  {id:'pressed',name:'pressed / strained',view:'terrain',test:f=>f.voiced&&f.sustain>0.3&&f.hnr>12&&f.h12<-3,
   advice:['Second harmonic louder than the first: folds squeezed, tilt too flat.','Yawn-sigh on “ah” with a low larynx. Let the first ridge on the terrain tower over the second.'],pose:'yawn',cue:'Fingers on the throat: feel the larynx drop as you yawn, keep it there and sigh “ah”.'},
@@ -770,7 +787,7 @@ function updateHUD(wall){if(wall-hudT<0.1)return;hudT=wall;const f=viewFT;const 
   {const L=latStats();$('mLat').textContent=L?L.med.toFixed(0):'—';$('mLatU').textContent=L?`ms · p90 ${L.p90.toFixed(0)}${AU.kind==='mic'&&!AU.micLatKnown?' + mic':''}`:'ms';}
   set('mJit',v?f.rough.toFixed(1):'—',v?cls(f.rough,8,15,true):'');
   set('mVib',f.vibRate?`${f.vibRate.toFixed(1)} · ±${f.vibExt.toFixed(2)}`:(v?'none':'—'),f.vibRate?(f.vibRate>4.5&&f.vibRate<7?'good':'warn'):'');
-  set('mHnr',v?f.hnr.toFixed(1):'—',v?cls(f.hnr,15,10):'');
+  set('mHnr',v&&f.cpp?f.cpp.toFixed(1):'—',v&&f.cpp?cls(f.cpp,24.5,BREATHY_CPP):'');
   set('mH12',v?(f.h12>0?'+':'')+f.h12.toFixed(1):'—',v?(f.h12<-3?'bad':f.h12>12?'warn':'good'):'');
   set('mTilt',v?f.tilt.toFixed(1):'—',v?(f.tilt>-5?'warn':'good'):'');
   set('mFmt',v&&f.Fs[0]?`${f.Fs[0].toFixed(0)} · ${f.Fs[1].toFixed(0)} · ${f.Fs[2]?f.Fs[2].toFixed(0):'—'}`:'—','');
@@ -797,7 +814,7 @@ function updateHelix(hist,now){let v=0;const n=hist.length;let prevP=null;
     helixGhost.set(new Float32Array([a[0]-wx,a[1],a[2]-wz,a[0]+wx,a[1],a[2]+wz,b[0]-wx,b[1],b[2]-wz,b[0]+wx,b[1],b[2]+wz]),null,new Float32Array([...C.copper,0.7,...C.copper,0.7,...C.copper,0.25,...C.copper,0.25]),4);}else helixGhost.count=0;}
 let tubeF=[600,1400],tubeCol=[...C.pitch],nasalLvl=0;
 function updateTract(hist,f,now){if(f.voiced&&f.Fs[0]){tubeF[0]=lerp(tubeF[0],f.Fs[0],0.25);tubeF[1]=lerp(tubeF[1],f.Fs[1],0.25);}
-  const tgtC=f.voiced?(f.hnr<11?[0.62,0.68,0.75]:f.h12<-3?C.bad:C.pitch):C.fg3;for(let i=0;i<3;i++)tubeCol[i]=lerp(tubeCol[i],tgtC[i],0.1);
+  const tgtC=f.voiced?(f.cpp&&f.cpp<BREATHY_CPP?[0.62,0.68,0.75]:f.h12<-3?C.bad:C.pitch):C.fg3;for(let i=0;i<3;i++)tubeCol[i]=lerp(tubeCol[i],tgtC[i],0.1);
   buildTube(tube,tubeF[0],tubeF[1],tubeCol,f.voiced?0.82:0.45);
   const tv=$('tVowel').value;if(tv){buildTube(ghostTube,VOWELS[tv][0],VOWELS[tv][1],C.copper,0.28);}else ghostTube.count=0;
   const nl=f.voiced&&f.nasOk?clamp((10-f.a1p0)/10,0,1):0;nasalLvl=lerp(nasalLvl,nl,0.08);buildNasal(nasalPort,nasalLvl);
@@ -927,9 +944,9 @@ const ASPECTS=[
  {k:'inton',name:'intonation',unit:'¢ off the note',lower:true,tol:3,dec:0},
  {k:'stab',name:'steadiness',unit:'¢ wobble',lower:true,tol:2,dec:1},
  {k:'onset',name:'clean onsets',unit:'scoops per note',lower:true,tol:0.04,dec:2},
- {k:'tone',name:'tone clarity',unit:'dB harmonics/noise',lower:false,tol:0.7,dec:1,info:true},
+ {k:'clar',name:'voice clarity',unit:'dB CPP',lower:false,tol:0.7,dec:1,info:true},
 ];
-// Tone clarity depends as much on the microphone, room and any music separation as on the voice, so it
+// Voice clarity (CPP) depends as much on the microphone, room and any music separation as on the voice, so it
 // is shown but not rated until the pool spans recording conditions.
 const RATED=ASPECTS.filter(x=>!x.info);
 // Steadiness is the median wobble (residual after a local quadratic fit, so even vibrato passes) over
@@ -985,7 +1002,7 @@ function takeAspects(st){const fr=st.rec.frames,sn=st.rec.snaps,notes=[],res=[];
   for(const f of fr){if(!f.voiced||!f.ok){close();continue;}if(cur&&Math.abs(f.midi-cur.sum/cur.n)<0.5){cur.n++;cur.sum+=f.midi;cur.ms.push(f.midi);cur.fs.push(f);}else{close();cur={n:1,sum:f.midi,ms:[f.midi],fs:[f]};}}close();
   let cx=0,cy=0;for(const nt of notes){const a=2*Math.PI*(nt.med-Math.round(nt.med));cx+=nt.dur*Math.cos(a);cy+=nt.dur*Math.sin(a);}const off=Math.atan2(cy,cx)/(2*Math.PI);
   let iw=0,ia=0;for(const nt of notes){const d=nt.med-off;ia+=nt.dur*Math.abs(d-Math.round(d))*100;iw+=nt.dur;}
-  let hs=0,hn=0;fr.forEach((f,i)=>{if(!f.voiced)return;hs+=sn[i].hnr;hn++;});res.sort((a,b)=>a-b);
+  let hn=0;const cp=[];fr.forEach((f,i)=>{if(!f.voiced)return;hn++;if(sn[i].cpp>0)cp.push(sn[i].cpp);});cp.sort((a,b)=>a-b);res.sort((a,b)=>a-b);
   let onsets=0;for(let i=0;i<fr.length;i++)if(fr[i].voiced&&(i===0||!fr[i-1].voiced)){let k=i;while(k<fr.length&&fr[k].voiced)k++;if((k-i)*0.02>=0.3)onsets++;}
   const sev=st.rec.events.filter(e=>e.type==='scoop'),scoops=sev.length;const sung=hn*0.02;
   // A slide style: most notes (two thirds or more) slid into by much the same depth (spread under 20 % of the
@@ -998,7 +1015,7 @@ function takeAspects(st){const fr=st.rec.frames,sn=st.rec.snaps,notes=[],res=[];
   const dm=dp.length?dp.reduce((t,x)=>t+x,0)/dp.length:0,dsd=dp.length>1?Math.sqrt(dp.reduce((t,x)=>t+(x-dm)**2,0)/(dp.length-1)):0;
   const slide={n:dp.length,of:ons,depth:dm,sd:dsd,style:dp.length>=4&&dp.length/ons>=2/3&&dsd<=0.2*dm};
   const meds=notes.map(n=>n.med).sort((a,b)=>a-b);
-  return {slide,perf:notePerf(notes,off,slide.style?[]:st.rec.events),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,tone:hn?hs/hn:0,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,breaks:registerBreaks(fr),vib:takeVibrato(st),mn:meds.length>4?Math.min(...meds):0,mx:meds.length>4?Math.max(...meds):0,ok:notes.length>=6&&sung>=4};}
+  return {slide,perf:notePerf(notes,off,slide.style?[]:st.rec.events),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,clar:cp.length?cp[cp.length>>1]:0,clarN:cp.length,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,breaks:registerBreaks(fr),vib:takeVibrato(st),mn:meds.length>4?Math.min(...meds):0,mx:meds.length>4?Math.max(...meds):0,ok:notes.length>=6&&sung>=4};}
 // Per held note, for the timeline: cents off the take's grid, wobble inside the note, and whether it
 // was scooped into, folded into a 0..1 score weighted 60/25/15. The median trained singer (14 ¢, 3 ¢
 // wobble, no scoop) scores about 0.8; 25 ¢ off scores about 0.55.
@@ -1036,6 +1053,12 @@ const ASPECT_WORK={inton:{fl:'scoop',ex:'Pitch matching: play or hum the note fi
 // scored take. The sliding line is the mean of the last 5 takes at each take; its band is ±1.96 standard
 // errors of that mean (the spread between takes), so it narrows as you sing more and widens when takes vary.
 const HIST_KEY='helix.takes.v1',HIST_MAX=500,HIST_WIN=5;
+// Voice clarity from CPP (median over sung frames, 3 s or more). Reference: VocalSet scales, 20 singers,
+// clip medians breathy 22.5 ± 0.6 dB, straight 27.0 ± 0.5 dB (check/breath-bench.mjs).
+function clarLine(a,good){if(!a.clar||a.clarN<150)return [];
+  if(good)return a.clar>=24.5?[`Clear tone: ${a.clar.toFixed(1)} dB CPP, where trained singers singing straight read ${CLAR_REF.s} and breathy ${CLAR_REF.b} (VocalSet).`]:[];
+  return a.clar<BREATHY_CPP?[`breathy tone (${a.clar.toFixed(1)} dB CPP; trained singers singing straight read ${CLAR_REF.s}, breathy ${CLAR_REF.b}): sing a phrase through a drinking straw, then at once without it, keeping the same easy, buzzy feel (semi-occluded vocal tract, Titze 2006); then a few gentle “uh-oh” onsets. If you meant it breathy, as a style, leave it.${a.clarNote||''}`]:[];}
+const CLAR_REF={s:'27.0 ± 0.5',b:'22.5 ± 0.6'};
 const PROG=[{k:'score',name:'overall',unit:'note score',lower:false,dec:2},...ASPECTS];
 function loadHist(){try{const h=JSON.parse(localStorage.getItem(HIST_KEY)||'[]');return Array.isArray(h)?h:[];}catch(e){return [];}}
 function saveTake(a){const P=a.perf;let s=0,w=0;for(const n of P){const d=n.t1-n.t0;s+=n.q*d;w+=d;}
@@ -1081,7 +1104,7 @@ function weekLine(h){const W=weekLines(h,Date.now());if(!W||!W.out.length)return
 function renderProgress(){const h=loadHist();if(!h.length)return '';
   const W=220,H=36,n=h.length,X=i=>(n>1?4+i/(n-1)*(W-8):W/2).toFixed(1);
   let o=`<h3>Progress · ${n} take${n>1?'s':''} on this device</h3><table class="prog">`;
-  for(const x of PROG){const v=h.map(r=>r[x.k]).filter(Number.isFinite);if(v.length!==n)continue;const S=v.map((_,i)=>slide(v,i));
+  for(const x of PROG){const v=h.map(r=>r[x.k]).filter(Number.isFinite);if(!v.length||v.length<h.length&&v.length<2)continue;const n=v.length,X=i=>(n>1?4+i/(n-1)*(W-8):W/2).toFixed(1);const S=v.map((_,i)=>slide(v,i));
     let lo=Math.min(...S.map(s=>s.m-(s.ci||0)),...v),hi=Math.max(...S.map(s=>s.m+(s.ci||0)),...v);if(hi-lo<1e-6){hi+=1;lo-=1;}
     const Y=q=>{const f=(q-lo)/(hi-lo);return ((x.lower?f:1-f)*(H-4)+2).toFixed(1);};
     const band=S.map((s,i)=>`${X(i)},${Y(s.m+(s.ci||0))}`).join(' ')+' '+S.map((s,i)=>`${X(i)},${Y(s.m-(s.ci||0))}`).reverse().join(' ');
@@ -1198,9 +1221,10 @@ function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;
   const vsMed=x=>{const m=TRAINED_MED[x.k],d=x.lower?m-a[x.k]:a[x.k]-m;return d/(x.tol*3);};
   const order=RATED.slice().sort((p,q)=>R?R.per[q.k]-R.per[p.k]:vsMed(q)-vsMed(p));
   const good=R?order.slice(0,2).filter(x=>R.per[x.k]>=0.25):order.filter(x=>vsMed(x)>=-0.34).filter(x=>!(a.slide&&a.slide.style&&x.k==='onset'));
-  h+='<h3>Went well</h3><ul>'+[`You sang ${a.notes} held notes over ${a.sung.toFixed(0)} s, across ${a.range.toFixed(0)} semitones.`,...(TAKE.stretch?[`Your strongest stretch ended around ${mmss(TAKE.stretch.hi[0])}: the line on the bar peaks there.`]:[]),...(TAKE.best&&TAKE.best.length?[`${TAKE.best.length} standout note${TAKE.best.length>1?'s':''} (★ on the bar): on the note, steady, started cleanly.`]:[]),...(a.slide&&a.slide.style?[`Your slides into notes are a style, not a flaw: ${a.slide.n} of ${a.slide.of} notes, each about ${a.slide.depth.toFixed(1)} ± ${a.slide.sd.toFixed(1)} semitones, the same every time. They are not marked down.`]:[]),...vibLine(a.vib),...pbLines(a.perf,TAKE.d),...good.map(x=>`Your ${x.name}: ${fmt(x,a[x.k])} ${x.unit}${R?`, better than ${Math.round(R.per[x.k]*100)} % of the pool`:`, on a par with or better than the median conservatory-trained singer (${TRAINED_MED[x.k]})`}.`)].map(t=>`<li>${t}</li>`).join('')+'</ul>';
+  h+='<h3>Went well</h3><ul>'+[`You sang ${a.notes} held notes over ${a.sung.toFixed(0)} s, across ${a.range.toFixed(0)} semitones.`,...(TAKE.stretch?[`Your strongest stretch ended around ${mmss(TAKE.stretch.hi[0])}: the line on the bar peaks there.`]:[]),...(TAKE.best&&TAKE.best.length?[`${TAKE.best.length} standout note${TAKE.best.length>1?'s':''} (★ on the bar): on the note, steady, started cleanly.`]:[]),...(a.slide&&a.slide.style?[`Your slides into notes are a style, not a flaw: ${a.slide.n} of ${a.slide.of} notes, each about ${a.slide.depth.toFixed(1)} ± ${a.slide.sd.toFixed(1)} semitones, the same every time. They are not marked down.`]:[]),...vibLine(a.vib),...clarLine(a,true),...pbLines(a.perf,TAKE.d),...good.map(x=>`Your ${x.name}: ${fmt(x,a[x.k])} ${x.unit}${R?`, better than ${Math.round(R.per[x.k]*100)} % of the pool`:`, on a par with or better than the median conservatory-trained singer (${TRAINED_MED[x.k]})`}.`)].map(t=>`<li>${t}</li>`).join('')+'</ul>';
   const work=R?order.slice(-2).reverse().filter(x=>R.per[x.k]<0.75).slice(0,R.R>=2200?1:2):order.filter(x=>vsMed(x)<-0.34).reverse().slice(0,2);
   const wl=work.map(x=>`${x.name} (${fmt(x,a[x.k])} ${x.unit}): ${ASPECT_WORK[x.k].ex}${x.k==='onset'?' Slides into notes are a style in pop and soul: work on them only where you did not mean them.':''}`);
+  wl.push(...clarLine(a,false));
   if(a.breaks&&a.breaks.length)wl.push(`Your voice flipped register on a glide ${a.breaks.length>1?a.breaks.length+' times, ':''}around ${a.breaks.map(b=>nn(Math.round(b.m))+' at '+mmss(b.t)).join(', ')}: sirens on “ng” through that spot, slowly and lightly, help the two registers meet (Titze 2006).`);if(TAKE.stretch)wl.push(`The line dips lowest in the 10 s before ${mmss(TAKE.stretch.lo[0])}: click the bar there to listen back.`);
   if(wl.length)h+='<h3>To work on</h3><ul>'+wl.map(t=>`<li>${t}</li>`).join('')+'</ul>';
   h+=`<p class="fine">${R?`Provisional Elo: each reference voice is one game on intonation, steadiness and clean onsets (tone clarity depends on the microphone and room, so it is not rated). 2000 is the median conservatory-trained singer in ${R.pool}. It ranks you within this pool, not the world.`:''} The take's tuning is ${a.off>=0?'+':''}${(a.off*100).toFixed(0)} ¢ from A440; notes are measured on that grid. <span id="pitchAcc">How sure the pitch is: on 40 real a cappella excerpts by 29 singers (vocadito, CC BY 4.0) this tracker puts 97.6 ± 0.7 % of sung moments within half a semitone of hand-checked pitch; lower voices 97.3 ± 1.4 %, higher 97.8 ± 0.7 %; about 1 in 8 breaths or consonants is read as a note.</span></p>`;

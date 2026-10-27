@@ -75,7 +75,7 @@ async function run([name, launch, ctxOpt, file]) {
     const c = await b.newContext(ctxOpt);
     if (mute) await c.addInitScript(MUTE);
     // Seven earlier takes on the device, so the progress lines have a history to slide over.
-    await c.addInitScript(() => { try { if (!localStorage.getItem('helix.takes.v1')) localStorage.setItem('helix.takes.v1', JSON.stringify(Array.from({ length: 7 }, (_, i) => ({ d: Date.now() - (7 - i) * 864e5, sung: 30, score: 0.6 + 0.02 * i, inton: 25 - i, stab: 5 - 0.2 * i, onset: 0.2, tone: 12, lo: 52, hi: 62, mn: 48, mx: 67, br: [60.2] })))); } catch (e) {} });
+    await c.addInitScript(() => { try { if (!localStorage.getItem('helix.takes.v1')) localStorage.setItem('helix.takes.v1', JSON.stringify(Array.from({ length: 7 }, (_, i) => ({ d: Date.now() - (7 - i) * 864e5, sung: 30, score: 0.6 + 0.02 * i, inton: 25 - i, stab: 5 - 0.2 * i, onset: 0.2, clar: 25, lo: 52, hi: 62, mn: 48, mx: 67, br: [60.2] })))); } catch (e) {} });
     const p = await c.newPage();
     if (headed) console.error(name, 'window', await p.evaluate(() => [outerWidth, outerHeight, screen.availWidth, screen.availHeight].join(' ')));
     p.on('pageerror', e => errs.push(String(e)));
@@ -135,6 +135,11 @@ async function run([name, launch, ctxOpt, file]) {
       for (let i = 0; i < n; i++) { s = (s * 16807) % 2147483647; const ph = 2 * Math.PI * 600 * i / sr; x[i] = 0.2 * (Math.sin(ph) + 0.5 * Math.sin(2 * ph) + 0.3 * Math.sin(3 * ph)) + 0.25 * (s / 2147483647 - 0.5); }
       const fs = await trackTake(b); viterbiF0(fs); const v = fs.filter(m => m.t > 0.2 && m.voiced); return v.filter(m => Math.abs(1200 * Math.log2(m.f0 / 600)) < 50).length / Math.max(1, fs.filter(m => m.t > 0.2).length); });
     r.pitch = +pitch.toFixed(3); r.inView = inView;
+    // Breathiness from CPP (check/breath-bench.mjs): the same singer's breathy scale reads below the cue's
+    // threshold and below their straight scale; the take summary turns the breathy one into a point to work on.
+    r.breath = await p.evaluate(async () => { const o = {}; for (const id of ['f2_breathy', 'm2_straight']) { const ab = await (await fetch(`demo/${id}.mp3`)).arrayBuffer(), buf = await new OfflineAudioContext(1, 1, 44100).decodeAudioData(ab);
+      const fs = await trackTake(buf); viterbiF0(fs); trimEdges(fs, buf); const S = new Stats(); for (const m of fs) ingest(S, m, 'take'); const a = takeAspects(S); o[id] = { clar: +a.clar.toFixed(1), work: clarLine(a, false).length, good: clarLine(a, true).length }; }
+      return o; });
     // Warm-up from the seeded takes: onsets (0.2 scoops/note) and intonation (~21 ¢) are furthest from the trained median, so they are the targeted steps; guide tone plays.
     await tap(p.locator('#bWarm')); await p.waitForTimeout(600); await p.locator('#warmup').screenshot({ path: join(out, `${name}-warmup.png`) });
     await tap(p.locator('#wNext')); await p.waitForTimeout(400);
@@ -182,13 +187,21 @@ async function run([name, launch, ctxOpt, file]) {
       const W = weekLines(H, now), t = weekLine(H);
       return !!W && W.na === 3 && W.nb === 3 && W.out[0].v === 'better' && W.out.slice(1).every(o => o.v === 'level') && weekLines(H.slice(0, 4), now) === null && /overall better than last week/.test(t); });
     r.errbox = await p.evaluate(() => typeof helixShowError === 'function' && !document.getElementById('errbox'));
-    r.nn = nn; r.lat = lat; const ok = !!lat && lat.chip && lat.med > 0 && lat.med < 200 && nn.i === 0 && nn.kind === 'take' && nn.until && nn.on === 1 && nn.said && nn.key === 1 && nn.mark && nn.markPlay && nn.loop && nn.loopStop && r.acc && r.errbox && r.cmp.kind === 'cmp' && r.cmp.ctx === 'running' && r.cmp.opts === 1 && r.cmp.said && r.stored && r.sp.kind === 'cmp' && r.sp.said && r.sp.nums && r.sp.dt <= 0.15 && r.spAll.kind === 'cmp' && r.spAll.said && r.rf.intro && r.rf.mn === 45 && r.rf.mx === 69 && r.rf.full && r.rf.finds && r.prof.tenor && r.prof.key && r.prof.br && r.prof.toC && r.vib.line && r.vib.even && r.pb && r.streak && r.week && (!touch || r.inView) && r.pitch > 0.75 && !errs.length && r.ctx === 'running' && r.playing === 'spot' && r.notes > 10 && r.slide === false && ab && slow.cents < 3 && r.k === 0.5 && Math.abs(slow.ratio - 2) < 0.01 && r.summary && r.warm.steps === 'Lip trill or straw glides|Clean starts|Pitch matching|Siren' && r.warm.text && r.warm.osc && r.warm.ctx === 'running' && r.progress === 5 && r.takes === 8 && seek > 0.45 && seek < 0.65;
+    r.nn = nn; r.lat = lat; const ok = !!lat && lat.chip && lat.med > 0 && lat.med < 200 && nn.i === 0 && nn.kind === 'take' && nn.until && nn.on === 1 && nn.said && nn.key === 1 && nn.mark && nn.markPlay && nn.loop && nn.loopStop && r.acc && r.errbox && r.cmp.kind === 'cmp' && r.cmp.ctx === 'running' && r.cmp.opts === 1 && r.cmp.said && r.stored && r.sp.kind === 'cmp' && r.sp.said && r.sp.nums && r.sp.dt <= 0.15 && r.spAll.kind === 'cmp' && r.spAll.said && r.rf.intro && r.rf.mn === 45 && r.rf.mx === 69 && r.rf.full && r.rf.finds && r.prof.tenor && r.prof.key && r.prof.br && r.prof.toC && r.vib.line && r.vib.even && r.pb && r.streak && r.breath.f2_breathy.clar < 23 && r.breath.f2_breathy.work === 1 && r.breath.m2_straight.clar > r.breath.f2_breathy.clar + 2 && r.breath.m2_straight.work === 0 && r.week && (!touch || r.inView) && r.pitch > 0.75 && !errs.length && r.ctx === 'running' && r.playing === 'spot' && r.notes > 10 && r.slide === false && ab && slow.cents < 3 && r.k === 0.5 && Math.abs(slow.ratio - 2) < 0.01 && r.summary && r.warm.steps === 'Lip trill or straw glides|Clean starts|Pitch matching|Siren' && r.warm.text && r.warm.osc && r.warm.ctx === 'running' && r.progress === 5 && r.takes === 8 && seek > 0.45 && seek < 0.65;
     return { browser: name, ok, seek: +seek.toFixed(2), ab, slow, ...r, errs };
   } catch (e) { return { browser: name, ok: false, errs: [...errs, String(e).split('\n')[0]] }; }
   finally { if (b) { if (hold) await new Promise(r => setTimeout(r, hold * 1000)); await b.close(); open.delete(b); } }
 }
 
 let allOk = true;
+// Without --only, each browser runs in its own node process: WebKit launched after Chrome and Firefox in one process
+// hung at its first page on 2026-10-27 (alone it passes in ~40 s).
+if (!only) {
+  const { spawnSync } = await import('node:child_process');
+  const rest = args.slice(1).filter((a, i, A) => a !== '--wait' && A[i - 1] !== '--wait');
+  for (const br of browsers) { const c = spawnSync(process.execPath, [fileURLToPath(import.meta.url), url, ...rest, '--only', br[0]], { stdio: 'inherit', timeout: 600000 }); allOk &&= c.status === 0; }
+  process.exit(allOk ? 0 : 1);
+}
 for (const br of browsers) {
   let r = await run(br);
   for (let k = 1; !r.ok && br[0] === 'webkit-iphone' && k <= 2; k++) r = { ...(await run(br)), retried: k };  // first WebKit launch after a cold cache can time out

@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-27 · breathiness, measured (CPP)
+
+Built: CPP (cepstral peak prominence) per frame in the worker; the 'breathy' cue, a live 'clarity (CPP)' chip, a 'voice clarity' progress line and the take summary (praise ≥ 24.5 dB, straw-phonation point < 23 dB) use it. Found first: the old HNR-based breathy cue never fired on VocalSet's breathy scales (AUC 0.36). Numbers (`check/breath-bench.mjs`, 194 VocalSet clips, 20 singers): CPP breathy 22.5 ± 0.6 vs straight 27.0 ± 0.5 dB, AUC 0.90, same-singer pairs 98.9 ± 2.1 %; cue AUC 0.83. Fixed from the failed first attempt: MP3's empty band above 16 kHz cut a straight demo's CPP by 3 dB; CPP now over 0 to sr/4 with a 90 dB floor, and the same clips at 80 kbit/s MP3 read AUC 0.91 (1.3 dB lower overall). Also: check.mjs now runs each browser in its own process (WebKit hung after Chrome and Firefox in one). iOS risk: WebKit on Linux decodes the m2 straight MP3 demo 4.6 dB lower in CPP than Chrome/Firefox (23.9 vs 28.5; the polished take agrees, 21.9 vs 21.8); live mic input is not decoded, but loaded MP3/AAC files on iPhone may read lower. One extra 2048-point FFT per frame. Next: H1-H2/tilt validated on belt vs breathy (pressed cue), or edge onsets.
+
 ## 2026-10-26 · this week vs last week
 
 Built: under the progress lines, "This week vs last week (n takes vs m)": every aspect's mean ± 1.96 SE for the last 7 days against the 7 before, better/worse only beyond both intervals, better aspects named first. A singer now hears week-scale progress honestly, not just take-to-take. Tried first: a neighbour-relative note-edge trim on vocadito (R 0.2: FA 12.7, OA 94.3; R 0.3: FA 12.2, RPA 97.2, OA 94.2): no net gain, not shipped. check.mjs: seeded weeks read overall better, others level, 3 browsers. iOS risk: none (localStorage only). Next: rating truth or level-envelope onsets.
@@ -65,25 +69,4 @@ Measured (page code, `check/phrase-bench.mjs`, vocadito proxy: same clip at
 of an already-played buffer gave zeros in Chrome); toPcm now resamples by hand.
 Edge-trim sweep (E 0.2-0.3, EN 2-4): OA flat 94.3-94.4, not changed. iOS risk:
 DTW on a 6 min take is ~0.5 s on the main thread. Next: phrase across all takes.
-
-## 2026-10-26 · mark moments
-
-Built: ⚑ mark button and M key drop a flag on the take bar where the take is
-playing (or at the note just stepped to); flags are kept per take in
-localStorage (last 50 takes), a click plays from 1 s before, a double-click
-removes. A singer can now flag "that bit" while listening and come straight
-back to it, today or later. Numbers: none (playback). check.mjs: mark lands on
-the playing note, is stored, and plays, in 3 browsers. iOS risk: double-tap to
-remove may zoom on some iOS settings (touch-action untested on device).
-Next: compare the same phrase across takes, or rating truth.
-
-## 2026-10-26 · sharper note edges
-
-Built: `trimEdges`: the first and last 2 frames of each voiced run are
-unvoiced when a short window (2 periods, ≥ 10 ms) centred where the pitch
-belongs is below 0.2 × the run's median level (the 40 ms window heard the
-note after it ended). Measured (page code, vocadito): false alarm 17.1 →
-12.8 ± 2.9 %, overall 93.2 → 94.3 ± 1.0 %, RPA 98.1 → 97.6 ± 0.7 %; range
-bench unchanged. Notes on the bar and in note-by-note now stop where the
-singer stopped. iOS risk: none. Next: finer hop at edges, or rating truth.
 
