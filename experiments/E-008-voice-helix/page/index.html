@@ -205,7 +205,6 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
     <option value="steady">Steady note (healthy)</option>
     <option value="shaky">Shaky note</option>
     <option value="breathy">Breathy note</option>
-    <option value="pressed">Pressed note</option>
     <option value="scoop">Scooped onsets</option>
     <option value="monotone">Monotone speech</option>
     <option value="nasal">Nasal speech</option>
@@ -255,7 +254,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
   <div class="chip"><span class="k">vibrato</span><span class="v" id="mVib">—</span><span class="u" id="mVibU">Hz · st</span></div>
   <div class="chip"><span class="k">clarity (CPP)</span><span class="v" id="mHnr">—</span><span class="u">dB</span></div>
   <div class="chip"><span class="k">H1 − H2</span><span class="v" id="mH12">—</span><span class="u">dB</span></div>
-  <div class="chip"><span class="k">spectral tilt</span><span class="v" id="mTilt">—</span><span class="u">dB/oct</span></div>
+  <div class="chip"><span class="k">tone colour (tilt)</span><span class="v" id="mTilt">—</span><span class="u" id="mTiltU">dB/oct</span></div>
   <div class="chip"><span class="k">formants F1 · F2 · F3</span><span class="v" id="mFmt">—</span><span class="u">Hz</span></div>
   <div class="chip"><span class="k">pitch range · 8 s</span><span class="v" id="mRange">—</span><span class="u">semitones</span></div>
   <div class="chip"><span class="k">nasality A1 − P0</span><span class="v" id="mNas">—</span><span class="u">dB</span></div>
@@ -578,12 +577,19 @@ function summarize(rec,t0,t1,srcFilter){const fr=rec.frames,sn=rec.snaps;let n=0
 // 53 % of breathy clips and 5 % of straight ones (WAV; 64 % and 12 % from 80 kbit/s MP3) (check/breath-bench.mjs). The CMND-based HNR it replaces
 // separated them no better than chance (AUC 0.57).
 const BREATHY_CPP=23;
+// Tone colour from the spectral tilt (100 Hz-4 kHz, dB/oct), a description, never a flaw: belt, straight and breathy are all styles.
+// VocalSet scales, 20 singers, clip medians (check/press-bench.mjs): belt +0.45 ± 0.32, straight -1.29 ± 0.23, breathy -2.39 ± 0.24;
+// belt reads brighter than straight in 92.6 ± 5.3 % of same-singer pairs. Boundaries at the midpoints.
+const TILT_BRIGHT=-0.4,TILT_SOFT=-1.85;
+function toneColour(t){return t>TILT_BRIGHT?'bright, belt-like':t<TILT_SOFT?'soft, airy':'balanced';}
 const FLAWS=[
  {id:'shaky',name:'shaky pitch',view:'helix',test:f=>f.voiced&&f.sustain>0.6&&f.hnr>9&&f.rough>15&&f.f0>75,
   advice:['Pitch wobbles at random, not as even vibrato.','Breath support is unsteady. Hum “ng” on one pitch for 8 seconds and keep the ribbon straight. Aim for roughness under 8 cents.'],pose:'belly',cue:'Hands on the belly. Breathe low, keep it firm and slow while the note holds.'},
  {id:'breathy',name:'breathy',view:'terrain',test:f=>f.voiced&&f.sustain>0.3&&f.cpp>0&&f.cpp<BREATHY_CPP&&f.f0>75,
   advice:['Noise floor sits high between the harmonic ridges: the folds are not closing fully.','Start the note with a gentle glottal onset (“uh-oh”, then sustain). Watch the grey haze sink below the ridges. Aim above 15 dB.'],pose:'breath',cue:'Hand on the belly, press in slightly as you start: “uh-oh”, then hold.'},
- {id:'pressed',name:'pressed / strained',view:'terrain',test:f=>f.voiced&&f.sustain>0.3&&f.hnr>12&&f.h12<-3,
+ // Retired 2026-10-27: on VocalSet (20 singers) this test fired on 18 % of straight and of belt frames alike (AUC 0.53, check/press-bench.mjs);
+ // no openly licensed pressed-voice labels exist to validate a replacement, so it never fires and its chip is hidden. Kept for index stability.
+ {id:'pressed',name:'pressed / strained',view:'terrain',off:true,test:f=>false,
   advice:['Second harmonic louder than the first: folds squeezed, tilt too flat.','Yawn-sigh on “ah” with a low larynx. Let the first ridge on the terrain tower over the second.'],pose:'yawn',cue:'Fingers on the throat: feel the larynx drop as you yawn, keep it there and sigh “ah”.'},
  {id:'scoop',name:'scooped onsets',view:'helix',test:f=>f.scoops>=2,
   advice:['Notes start under pitch and slide up.','Hear the note before you sing it, then start directly on it. The copper ghost line is your target; each hook at a ribbon start is a scoop.'],pose:'point',cue:'Point at the note before you sing it; land flat on it, no slide.'},
@@ -764,7 +770,7 @@ function projectLabels(vp,w,h){for(const l of LBL){const c=M4.xform(vp,l.pos);if
 
 // ───────────────────────── HUD ─────────────────────────
 const $=id=>document.getElementById(id);
-const flawsEl=$('flaws');for(const fl of FLAWS){const b=document.createElement('button');b.className='flaw';b.innerHTML=`<i></i>${fl.name}`;b.onclick=()=>{setView(fl.view,true);showAdvice(fl);};fl.el=b;flawsEl.appendChild(b);}
+const flawsEl=$('flaws');for(const fl of FLAWS){if(fl.off)continue;const b=document.createElement('button');b.className='flaw';b.innerHTML=`<i></i>${fl.name}`;b.onclick=()=>{setView(fl.view,true);showAdvice(fl);};fl.el=b;flawsEl.appendChild(b);}
 const adviceEl=$('advice');let shownAdvice=null;
 const adviceTxt=adviceEl.querySelector('.txt');
 function setAdvice(title,body,cue,pose,extra){adviceTxt.innerHTML=`<b>${title}</b><span>${body}</span><em>${cue||''}</em>`;adviceEl.className='pose-'+(pose||'idle')+(extra?' '+extra:'');showCoachClip(pose||'idle');}
@@ -788,13 +794,13 @@ function updateHUD(wall){if(wall-hudT<0.1)return;hudT=wall;const f=viewFT;const 
   set('mJit',v?f.rough.toFixed(1):'—',v?cls(f.rough,8,15,true):'');
   set('mVib',f.vibRate?`${f.vibRate.toFixed(1)} · ±${f.vibExt.toFixed(2)}`:(v?'none':'—'),f.vibRate?(f.vibRate>4.5&&f.vibRate<7?'good':'warn'):'');
   set('mHnr',v&&f.cpp?f.cpp.toFixed(1):'—',v&&f.cpp?cls(f.cpp,24.5,BREATHY_CPP):'');
-  set('mH12',v?(f.h12>0?'+':'')+f.h12.toFixed(1):'—',v?(f.h12<-3?'bad':f.h12>12?'warn':'good'):'');
-  set('mTilt',v?f.tilt.toFixed(1):'—',v?(f.tilt>-5?'warn':'good'):'');
+  set('mH12',v?(f.h12>0?'+':'')+f.h12.toFixed(1):'—','');
+  set('mTilt',v?(f.tilt>0?'+':'')+f.tilt.toFixed(1):'—','');$('mTiltU').textContent=v?'dB/oct · '+toneColour(f.tilt):'dB/oct';
   set('mFmt',v&&f.Fs[0]?`${f.Fs[0].toFixed(0)} · ${f.Fs[1].toFixed(0)} · ${f.Fs[2]?f.Fs[2].toFixed(0):'—'}`:'—','');
   set('mRange',f.range?f.range.toFixed(1):'—',f.range?(f.speechy?cls(f.range,4,3):'good'):'');
   set('mNas',v&&f.nasOk?(f.a1p0>0?'+':'')+f.a1p0.toFixed(1):'—',v&&f.nasOk?cls(f.a1p0,6,NASAL_TH):'');
   const emas=paused&&f.flaws?f.flaws:LIVE.ema;
-  FLAWS.forEach((fl,i)=>{const em=emas[i];const st=em>0.6?'on':em>0.3?'warn':(v?'ok':'');fl.el.className='flaw'+(st?' '+st:'');});
+  FLAWS.forEach((fl,i)=>{if(!fl.el)return;const em=emas[i];const st=em>0.6?'on':em>0.3?'warn':(v?'ok':'');fl.el.className='flaw'+(st?' '+st:'');});
   if(!paused&&AU.kind!=='take'){if(activeFlaw&&activeFlaw!==shownAdvice)showAdvice(activeFlaw);
     else if(!activeFlaw&&shownAdvice&&LIVE.ema[FLAWS.indexOf(shownAdvice)]<0.2){shownAdvice=null;if(v)setAdvice('Clean so far','No flaw above threshold. Hold a note for the helix, speak for the vowel chart, and watch the terrain ridges stay sharp.','Keep the belly engaged; that is what held it clean.','belly');else setAdvice('Listening','No voiced sound yet.','','idle');}
     if(autoFly&&activeFlaw&&activeFlaw!==lastFlyFlaw){lastFlyFlaw=activeFlaw;setView(activeFlaw.view);}}
