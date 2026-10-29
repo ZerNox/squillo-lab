@@ -46,13 +46,3 @@ Built: the vibrato chip while singing now uses the take's estimator (note-change
 
 Built: the take summary says "Vibrato on n of N long notes: rate ± Hz, ±extent st" against trained singers' 5.5-6.5 Hz (Prame 1994), or praises a plain straight line. Estimated from the take's pitch (note-change cuts, quadratic detrend, first autocorrelation peak). Found while building: the live chip's 1.2 s zero count, run over a take, read legato note steps in a straight aria as 4 Hz vibrato. Numbers (`check/vibrato-bench.mjs`, page code): synthetic take means within 0.11 Hz / 0.03 st over 5 voice types, 0/30 straight notes flagged; VocalSet Caro vibrato 5.3 / 5.0 Hz. check.mjs: 6 Hz ±0.5 st take reads 6.0 Hz, 5 of 5 notes. iOS risk: none new. Next: live chip on the same estimator.
 
-## 2026-10-26 · same phrase across all kept takes
-
-Built: the earlier-take picker has "all N kept takes"; ▶ same phrase then
-finds the phrase in each kept take (up to 10), plays the versions found
-oldest first and today's last, and lists each version's cents off (± 1.96 SE)
-plus first-vs-today. A singer can now hear one line's history in one go.
-Numbers: matcher as above (95.0 ± 3.9 % found, proxy). check.mjs: 2 of 2
-found in 3 browsers. iOS risk: tracking 10 stored takes can take several
-seconds on a phone (progress shown). Next: rating truth, or edge onsets.
-
