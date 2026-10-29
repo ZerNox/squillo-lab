@@ -24,7 +24,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Warm-up: about 4 min, steps chosen from the last 5 takes, cited, guide tones.
 - Phone: the take comes first after a scan, progress lines full width.
 - Take pitch: YIN candidates + Viterbi (0.1 % gross error, synthetic; 97.6 ± 0.7 % RPA, false alarm 12.8 % on 40 real singers, vocadito; note edges trimmed on a short window).
-- Vibrato rate and extent per take with ± (synthetic means within 0.11 Hz, 0.03 st; `check/vibrato-bench.mjs`); live chip on the same estimator; evenness (cycle-to-cycle CV, within ~2 points on synthetic jitter).
+- Vibrato rate and extent per take with ± (synthetic means within 0.11 Hz, 0.03 st; `check/vibrato-bench.mjs`); live chip on the same estimator; evenness (cycle-to-cycle CV, within ~2 points on synthetic jitter), judged against all 20 VocalSet singers.
 - Slide style told from unwanted scoops (consistent depth on most notes).
 - Voice profile: comfortable and full range, voice-type guess, key for a song, register breaks on glides; a guided range finder (lowest, highest, siren) in about a minute.
 - Compare: the last 10 takes' audio kept on the device; play an earlier take, then yours; ▶ same phrase finds the current phrase in it (DTW, any key; 95 % found on a vocadito proxy), then vs today in numbers with ±, or every kept version of the phrase in a row.
@@ -46,6 +46,6 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 2. **Sharper note edges, part 2**: false alarm 12.8 % on vocadito; threshold/width sweeps of the trim only trade RPA for FA (OA 94.3-94.4), so it needs a finer hop at edges or level-envelope onsets. Real soprano f0 truth still missing. A neighbour-relative trim (R 0.2/0.3) also only trades: FA 12.7/12.2, OA 94.3/94.2 (2026-10-26).
 3. **On-device vocal separation** (ONNX in WASM) so songs with music load
     without Demucs on a desktop.
-4. **Vibrato, part 3**: evenness reference from more than two singers (all VocalSet vibrato clips), and per-note truth if any exists.
+4. **Vibrato, part 3**: per-note truth if any exists (the 20-singer evenness reference is done).
 5. **Tone, part 2**: formant-corrected H1-H2 re-tested; a pressed cue only if openly licensed pressed-voice labels turn up.
 6. **Same phrase, part 3**: measure the matcher on real re-sung takes (an openly licensed set with repeated renditions of one melody) instead of the slowed-clip proxy.
