@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-29 · swell on the progress line
+
+Built: each take stores its largest within-note swell (`takeDynamics`, the measure benchmarked at messa vs straight AUC 0.93); a 'swell (dynamics)' row in the take table, a progress line with band, and a week line, all saying more swell / flatter, never better or worse (not rated, like tone colour). Takes without a 1 s note store no swell, so the line skips them instead of reading 0. A singer practising messa di voce now sees whether their swells grow over weeks. check.mjs: 12 seeded takes (two without swell) read 'more swell than the takes before', no better/worse, not in RATED, 3 browsers. No new measurement. iOS risk: none (localStorage). Next: edge onsets (finer hop) or tone part 2.
+
 ## 2026-10-29 · dynamics per take (messa di voce measured)
 
 Built: `takeDynamics` (level over long notes, 100 ms smoothed; swell p95-p5 within a note, span soft to loud across notes, gain-free) and `check/dyn-bench.mjs` (page code, VocalSet long tones on "a", 20 singers, 80 clips, CC BY 4.0, not shipped): messa di voce swell 21.1 ± 2.6 dB (median 19.3, p10 14.5), straight 9.6 ± 2.1 (median 7.3, p90 13.9); messa vs straight AUC 0.93, pairs 20/20; forte - pp 8.6 ± 3.6 dB. The take summary now says how a singer's level moved, names a swell of 14.5 dB or more a real messa di voce, else suggests one; described, not rated. check.mjs: synthetic swell/level/soft tones (swell 17.9 dB, span 10.0), both wordings, 3 browsers. iOS risk: none new. Next: dynamics on the progress line, or edge onsets.
@@ -37,12 +41,4 @@ Built: a "screen lag" chip in the live rail: per frame, audio chunk arrival → 
 ## 2026-10-26 · loop a phrase
 
 Built: ⟲ loop phrase (L key) next to the playback buttons: loops the phrase around where the take is playing, or the note stepped to (same phrase finder as "same phrase"), padded 0.2/0.3 s, in the version (yours, halfway, spotless) and speed last chosen, seamless via loopStart/loopEnd; pressed state for screen readers. A singer can now drill one phrase, sing along with the spotless version at 0.5×. check.mjs: loop under 8.6 s, pressed, stops on a second tap, 3 browsers. iOS risk: none new (context created in the click path, no new APIs). Next: edge onsets or rating truth.
-
-## 2026-10-26 · practice streak and milestones
-
-Built: under the progress lines, "n days in a row · d days sung · m min of singing kept · milestone · next", from the kept takes' local dates; a streak still counts until midnight and says "sing today to keep it". Counts only, never a score. check.mjs: 7 seeded days + today read "8 days in a row" in 3 browsers; 3 days without today keeps 3. iOS risk: none. Next: edge onsets or rating truth.
-
-## 2026-10-26 · personal bests
-
-Built: the take summary's "went well" names personal bests over long notes (held ≥ 1 s), against every earlier take kept on the device: the steadiest note (least wobble) and the longest note held within 10 ¢, with the time to find it. A new best is claimed only when it beats all earlier takes by more than one note's reading noise (1 ¢, 0.3 s) and after 2 earlier takes; within 1 ¢ it says "matches your best". Old history records have no bests and are skipped. check.mjs: new best, and a match, in 3 browsers. iOS risk: none new (localStorage only). Next: edge onsets or rating truth.
 

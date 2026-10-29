@@ -971,7 +971,10 @@ const ASPECTS=[
  {k:'onset',name:'clean onsets',unit:'scoops per note',lower:true,tol:0.04,dec:2},
  {k:'clar',name:'voice clarity',unit:'dB CPP',lower:false,tol:0.7,dec:1,info:true},
  {k:'tone',name:'tone colour',unit:'dB/oct tilt',lower:false,tol:0.3,dec:1,info:true,desc:['brighter','softer']},
+ {k:'swell',name:'swell (dynamics)',unit:'dB within a long note',lower:false,tol:2,dec:1,info:true,desc:['more swell','flatter']},
 ];
+// Swell is the largest level swell within one long note (takeDynamics; messa di voce reads 14.5 dB or more on
+// VocalSet, straight tones about 7): described as more swell or flatter, never better or worse; absent when no long notes.
 // Tone colour (median spectral tilt over sung frames) is a description, not a score: its lines and weeks say
 // brighter or softer, never better or worse.
 // Voice clarity (CPP) depends as much on the microphone, room and any music separation as on the voice, so it
@@ -1053,7 +1056,7 @@ function takeAspects(st){const fr=st.rec.frames,sn=st.rec.snaps,notes=[],res=[];
   const dm=dp.length?dp.reduce((t,x)=>t+x,0)/dp.length:0,dsd=dp.length>1?Math.sqrt(dp.reduce((t,x)=>t+(x-dm)**2,0)/(dp.length-1)):0;
   const slide={n:dp.length,of:ons,depth:dm,sd:dsd,style:dp.length>=4&&dp.length/ons>=2/3&&dsd<=0.2*dm};
   const meds=notes.map(n=>n.med).sort((a,b)=>a-b);
-  return {slide,perf:notePerf(notes,off,slide.style?[]:st.rec.events),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,clar:cp.length?cp[cp.length>>1]:0,clarN:cp.length,tone:tl.length?tl[tl.length>>1]:0,toneN:tl.length,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,breaks:registerBreaks(fr),vib:takeVibrato(st),dyn:takeDynamics(st),mn:meds.length>4?Math.min(...meds):0,mx:meds.length>4?Math.max(...meds):0,ok:notes.length>=6&&sung>=4};}
+  return {slide,perf:notePerf(notes,off,slide.style?[]:st.rec.events),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,clar:cp.length?cp[cp.length>>1]:0,clarN:cp.length,tone:tl.length?tl[tl.length>>1]:0,toneN:tl.length,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,breaks:registerBreaks(fr),vib:takeVibrato(st),dyn:takeDynamics(st),get swell(){return this.dyn?this.dyn.maxSwell:NaN},mn:meds.length>4?Math.min(...meds):0,mx:meds.length>4?Math.max(...meds):0,ok:notes.length>=6&&sung>=4};}
 // Per held note, for the timeline: cents off the take's grid, wobble inside the note, and whether it
 // was scooped into, folded into a 0..1 score weighted 60/25/15. The median trained singer (14 ¢, 3 ¢
 // wobble, no scoop) scores about 0.8; 25 ¢ off scores about 0.55.
@@ -1107,7 +1110,7 @@ const CLAR_REF={s:'27.0 ± 0.5',b:'22.5 ± 0.6'};
 const PROG=[{k:'score',name:'overall',unit:'note score',lower:false,dec:2},...ASPECTS];
 function loadHist(){try{const h=JSON.parse(localStorage.getItem(HIST_KEY)||'[]');return Array.isArray(h)?h:[];}catch(e){return [];}}
 function saveTake(a){const P=a.perf;let s=0,w=0;for(const n of P){const d=n.t1-n.t0;s+=n.q*d;w+=d;}
-  const r={d:Date.now(),sung:+a.sung.toFixed(1),score:w?+(s/w).toFixed(3):0};for(const x of ASPECTS)r[x.k]=+a[x.k].toFixed(3);if(a.hi>a.lo){r.lo=+(a.lo+a.off).toFixed(2);r.hi=+(a.hi+a.off).toFixed(2);r.mn=+(a.mn+a.off).toFixed(2);r.mx=+(a.mx+a.off).toFixed(2);}if(a.breaks&&a.breaks.length)r.br=a.breaks.map(b=>b.m);const lb=longBests(P);if(lb)r.lb=[lb.st?+lb.st.wob.toFixed(1):null,lb.tn?+(lb.tn.t1-lb.tn.t0).toFixed(2):null];
+  const r={d:Date.now(),sung:+a.sung.toFixed(1),score:w?+(s/w).toFixed(3):0};for(const x of ASPECTS)if(Number.isFinite(a[x.k]))r[x.k]=+a[x.k].toFixed(3);if(a.hi>a.lo){r.lo=+(a.lo+a.off).toFixed(2);r.hi=+(a.hi+a.off).toFixed(2);r.mn=+(a.mn+a.off).toFixed(2);r.mx=+(a.mx+a.off).toFixed(2);}if(a.breaks&&a.breaks.length)r.br=a.breaks.map(b=>b.m);const lb=longBests(P);if(lb)r.lb=[lb.st?+lb.st.wob.toFixed(1):null,lb.tn?+(lb.tn.t1-lb.tn.t0).toFixed(2):null];
   const h=loadHist();h.push(r);try{localStorage.setItem(HIST_KEY,JSON.stringify(h.slice(-HIST_MAX)));}catch(e){}return h;}
 // Personal bests over long notes (held at least 1 s): the steadiest (least wobble) and the longest held within
 // 10 ¢ of the note. A new best is only claimed when it beats every earlier kept take by more than the
@@ -1156,7 +1159,7 @@ function renderProgress(){const h=loadHist();if(!h.length)return '';
     const last=S[n-1],tr=trend(x,v);
     o+=`<tr><td>${x.name}</td><td><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="${x.name}: ${n} takes, now ${last.m.toFixed(x.dec)}${last.ci!==null?` ± ${last.ci.toFixed(x.dec)}`:''}"><polygon class="bd" points="${band}"/><polyline class="sl" vector-effect="non-scaling-stroke" points="${S.map((s,i)=>`${X(i)},${Y(s.m)}`).join(' ')}"/>${v.map((q,i)=>`<circle cx="${X(i)}" cy="${Y(q)}" r="1.8"/>`).join('')}</svg></td>`+
       `<td>${last.m.toFixed(x.dec)}${last.ci!==null?` ± ${last.ci.toFixed(x.dec)}`:''} ${x.unit}${tr?`<br><em>${tr}</em>`:''}</td></tr>`;}
-  return o+`</table>${weekLine(h)}${streakLine(h)}<p class="fine">Dots: each take. Line: mean of your last ${HIST_WIN} takes; band: its 95 % interval. Up is better on every line but tone colour, where up is brighter: a style, neither better nor worse. Kept only in this browser. <button class="btn" id="forget">forget my takes</button></p>`;}
+  return o+`</table>${weekLine(h)}${streakLine(h)}<p class="fine">Dots: each take. Line: mean of your last ${HIST_WIN} takes; band: its 95 % interval. Up is better on every line but tone colour (up is brighter) and swell (up is more swell within a long note): styles, neither better nor worse. Kept only in this browser. <button class="btn" id="forget">forget my takes</button></p>`;}
 // Warm-up: a five-minute routine for today, chosen from the takes kept on this device. Each aspect's mean
 // over the last 5 takes is set against the median trained singer (as in "to work on"); the one or two
 // furthest behind get a targeted step between a semi-occluded warm-up and a siren. Guide tones sit in the
@@ -1257,7 +1260,7 @@ async function rfNext(){if(RF.step<0)return;RF.res[RF.step]=RF.rec?rfBuf():null;
   RF.step=-1;renderRF('Listening back to your three steps…');const r=await rangeAnalyse(RF.res);RF.res=[];
   renderProfile(r?`Range finder: lowest held <b>${nn(Math.round(r.mn))}</b>, highest held <b>${nn(Math.round(r.mx))}</b>${r.br?`, break around <b>${r.br.map(m=>nn(Math.round(m))).join(', ')}</b>`:''}. Added to your profile.`:'No held low and high note found: sing louder or closer to the mic, hold each end for a second, and try again.');}
 function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;}ratingEl.hidden=false;const R=TAKE.rating;
-  const fmt=(x,v)=>v.toFixed(x.dec);let h='';
+  const fmt=(x,v)=>Number.isFinite(v)?v.toFixed(x.dec):'—';let h='';
   if(!RATING_ON)h+=`<div class="elo"><span>Your take over ${a.sung.toFixed(0)} s of singing</span></div>`;
   else if(R){const band=BANDS.find(b=>R.R>=b[0])[1];h+=`<div class="elo"><b>${R.R}</b><span>Experimental · ${band} · better than ${Math.round(R.pct*100)} % of ${R.n} reference voices</span></div>`;}
   else h+=`<div class="elo"><span>${a.ok?'Rating needs the reference pool (rating/anchors.json).':'Sing at least 6 held notes (about 5 s of singing) for a rating.'}</span></div>`;

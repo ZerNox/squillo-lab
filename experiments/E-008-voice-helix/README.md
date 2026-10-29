@@ -124,7 +124,7 @@ the two references is called a style (they hold 0-9 slides each, a weak
 test of false alarms). Real pop or soul slides vary more than ±10 % in
 depth; recall on them is unmeasured (no openly licensed annotated set).
 
-Dynamics (`check/dyn-bench.mjs`, page code `takeDynamics`, VocalSet long tones on "a", 20 singers, 80 clips, CC BY 4.0, not shipped): swell within a held tone (p95 - p5 of the 100 ms-smoothed level) reads messa di voce 21.1 ± 2.6 dB (median 19.3, p10 14.5), straight 9.6 ± 2.1 (median 7.3, p90 13.9), pp 9.7, forte 10.3; messa above straight AUC 0.93, same-singer pairs 20/20; forte minus pp level 8.6 ± 3.6 dB, louder in 17/20. The take summary describes dynamics (swell within long notes, span soft to loud) and calls a swell of 14.5 dB or more a real messa di voce; it is a description, not rated, and gain-free (only level differences).
+Dynamics (`check/dyn-bench.mjs`, page code `takeDynamics`, VocalSet long tones on "a", 20 singers, 80 clips, CC BY 4.0, not shipped): swell within a held tone (p95 - p5 of the 100 ms-smoothed level) reads messa di voce 21.1 ± 2.6 dB (median 19.3, p10 14.5), straight 9.6 ± 2.1 (median 7.3, p90 13.9), pp 9.7, forte 10.3; messa above straight AUC 0.93, same-singer pairs 20/20; forte minus pp level 8.6 ± 3.6 dB, louder in 17/20. The take summary describes dynamics (swell within long notes, span soft to loud) and calls a swell of 14.5 dB or more a real messa di voce; it is a description, not rated, and gain-free (only level differences). Each take also stores its largest swell; a 'swell (dynamics)' progress line and week line say more swell or flatter, never better or worse, and takes without a 1 s note store none.
 
 ## Hypothesis
 
