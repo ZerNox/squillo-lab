@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-29 · dynamics per take (messa di voce measured)
+
+Built: `takeDynamics` (level over long notes, 100 ms smoothed; swell p95-p5 within a note, span soft to loud across notes, gain-free) and `check/dyn-bench.mjs` (page code, VocalSet long tones on "a", 20 singers, 80 clips, CC BY 4.0, not shipped): messa di voce swell 21.1 ± 2.6 dB (median 19.3, p10 14.5), straight 9.6 ± 2.1 (median 7.3, p90 13.9); messa vs straight AUC 0.93, pairs 20/20; forte - pp 8.6 ± 3.6 dB. The take summary now says how a singer's level moved, names a swell of 14.5 dB or more a real messa di voce, else suggests one; described, not rated. check.mjs: synthetic swell/level/soft tones (swell 17.9 dB, span 10.0), both wordings, 3 browsers. iOS risk: none new. Next: dynamics on the progress line, or edge onsets.
+
 ## 2026-10-29 · vibrato evenness against 20 trained singers
 
 Built: `check/vibeven-bench.mjs` (page code, every VocalSet vibrato clip: scales, arpeggios, three excerpts; 250 clips, 20 singers, CC BY 4.0, not shipped). Per-singer rate CV median 13.6 % (p90 18.1, mean 12.4 ± 1.5), width CV 22.1 % (p90 28.9, mean 22.6 ± 1.9); arpeggios evener (9.5 / 19.0) than excerpts (15.7 / 25.4). The take summary's evenness line now has three tiers on that reference (evener than half / within the range / an exercise beyond the 90th percentile) instead of a two-singer Caro mio ben cut. check.mjs: all three tiers' wording, 3 browsers. iOS risk: none new. Next: edge onsets or tone part 2.
