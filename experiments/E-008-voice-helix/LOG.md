@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-29 · tone colour per take
+
+Built: each take's median spectral tilt (page code, sung frames) as a 'tone colour' aspect: a went-well line naming the colour (bright, belt-like / balanced / soft, airy) against VocalSet's belt +0.5, straight -1.3, breathy -2.4 dB/oct; a row in the take table; a progress line and a week line that say brighter/softer, never better/worse (not rated). Numbers are the clip-median ones from `check/press-bench.mjs` (belt vs straight AUC 0.81, pairs 92.6 ± 5.3 %), the same median the take uses. check.mjs: the tone line appears on both breath demos, 3 browsers. iOS risk: as for CPP, WebKit-decoded MP3 may shift tilt slightly (-1.28 vs -1.36 Chrome on m2). Next: edge onsets or tone part 2 (formant-corrected H1-H2).
+
 ## 2026-10-27 · pressed cue retired, tone colour measured
 
 Built: `check/press-bench.mjs` (page code, VocalSet scales belt/straight/breathy, 20 singers, 294 clips). Found: the 'pressed / strained' cue fired on 18 % of belt and straight frames alike (AUC 0.53), uncorrected H1-H2 AUC 0.54: a coin toss shown as a flaw. Retired it (chip and demo gone) and uncoloured H1-H2; the tilt chip, which coloured almost every voice 'warn', now names a tone colour (bright, belt-like / balanced / soft, airy) as a description. Tilt: belt +0.45 ± 0.32, straight -1.29 ± 0.23, breathy -2.39 ± 0.24 dB/oct; belt brighter than straight AUC 0.81, pairs 92.6 ± 5.3 %. A singer who belts is no longer told they strain. iOS risk: none new. Next: tone colour per take in the summary and progress, or edge onsets.
@@ -51,14 +55,4 @@ plus first-vs-today. A singer can now hear one line's history in one go.
 Numbers: matcher as above (95.0 ± 3.9 % found, proxy). check.mjs: 2 of 2
 found in 3 browsers. iOS risk: tracking 10 stored takes can take several
 seconds on a phone (progress shown). Next: rating truth, or edge onsets.
-
-## 2026-10-26 · same phrase in numbers
-
-Built: ▶ same phrase now also says how the phrase's held notes measured then
-vs today: mean |cents off| and wobble, each ± 1.96 SE over its notes, and
-scoops; "better"/"worse" only when the means differ by more than both ±.
-Found while building: the same audio re-read at 22.05 kHz gave 16 vs 11 ¢ on
-WebKit, so a fixed 5 ¢ threshold would have claimed a change that was noise.
-check.mjs: same audio → "within the ±" in 3 browsers. iOS risk: none new.
-Next: phrase across all kept takes.
 

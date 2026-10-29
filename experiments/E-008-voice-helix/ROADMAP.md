@@ -33,7 +33,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - This week vs last week: each aspect's mean ± per week, better/worse only beyond both intervals.
 - Screen lag measured live (audio to paint + half pitch window): 18-25 ms median headless, shown as a chip.
 - Breathiness from CPP: live chip, cue, take summary, progress line (VocalSet 20 singers: AUC 0.90 WAV / 0.91 MP3 80k, same-singer pairs 98.9 %; old HNR cue was below chance).
-- Tone colour from tilt (belt vs straight AUC 0.81, VocalSet); pressed cue retired (was at chance, AUC 0.53).
+- Tone colour from tilt (belt vs straight AUC 0.81, VocalSet); pressed cue retired (was at chance, AUC 0.53); tone colour per take in summary, progress and week lines, described not rated.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
@@ -46,5 +46,5 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 3. **On-device vocal separation** (ONNX in WASM) so songs with music load
     without Demucs on a desktop.
 4. **Vibrato, part 3**: evenness reference from more than two singers (all VocalSet vibrato clips), and per-note truth if any exists.
-5. **Tone, part 2**: tone colour per take (summary, progress line); formant-corrected H1-H2 re-tested; a pressed cue only if openly licensed pressed-voice labels turn up.
+5. **Tone, part 2**: formant-corrected H1-H2 re-tested; a pressed cue only if openly licensed pressed-voice labels turn up.
 6. **Same phrase, part 3**: measure the matcher on real re-sung takes (an openly licensed set with repeated renditions of one melody) instead of the slowed-clip proxy.
