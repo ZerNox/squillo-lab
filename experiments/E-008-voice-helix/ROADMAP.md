@@ -34,6 +34,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Screen lag measured live (audio to paint + half pitch window): 18-25 ms median headless, shown as a chip.
 - Breathiness from CPP: live chip, cue, take summary, progress line (VocalSet 20 singers: AUC 0.90 WAV / 0.91 MP3 80k, same-singer pairs 98.9 %; old HNR cue was below chance).
 - Tone colour from tilt (belt vs straight AUC 0.81, VocalSet); pressed cue retired (was at chance, AUC 0.53); tone colour per take in summary, progress and week lines, described not rated.
+- Eyes-free: "say note" (N) speaks the held note and cents via a live region; `?` lists the keys.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 

@@ -56,6 +56,9 @@ h1 small{font:400 11px/1 var(--f-mono);color:var(--fg-3);margin-left:8px;letter-
 .btn:hover,select:hover{color:var(--fg)}
 select{border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--fg);padding-right:24px}
 button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--pitch);outline-offset:1px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+#keys{position:fixed;inset:auto 0 0 0;margin:auto;top:0;max-width:340px;height:fit-content;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px 18px;color:var(--fg);font:12px/1.6 var(--f-mono);z-index:20}
+#keys kbd{display:inline-block;min-width:3.5em;color:var(--pitch)}
 #status{font:11px/1.3 var(--f-mono);color:var(--fg-3);margin-left:auto;max-width:30ch;text-align:right;max-height:2.6em;overflow:hidden}
 #rail{top:104px;right:max(16px,env(safe-area-inset-right,0px));width:208px;max-height:calc(100% - 300px);overflow-y:auto;scrollbar-width:none;display:flex;flex-direction:column;gap:6px}
 .chip{display:grid;grid-template-columns:1fr auto;gap:2px 8px;align-items:baseline;padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);backdrop-filter:blur(8px)}
@@ -189,7 +192,9 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
 @media (prefers-reduced-motion:reduce){.flaw.on i{box-shadow:none}}
 </style>
 
-<canvas id="gl"></canvas>
+<canvas id="gl" role="img" aria-label="Voice helix: your pitch over time"></canvas>
+<div id="say" class="sr" aria-live="polite" aria-atomic="true"></div>
+<div id="keys" role="dialog" aria-label="Keyboard shortcuts" hidden><b>Keyboard</b><br><kbd>space</kbd> pause / resume<br><kbd>← →</kbd> previous / next note of the take<br><kbd>L</kbd> loop the phrase<br><kbd>M</kbd> mark this moment<br><kbd>N</kbd> say my note on / off (screen reader)<br><kbd>?</kbd> this list · <kbd>Esc</kbd> close</div>
 <div id="labels"></div>
 <div id="nogl" hidden>This page needs WebGL2. Open it in a current Chrome, Edge, Firefox or Safari.</div>
 
@@ -244,6 +249,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
       <option value="a">target: ah</option><option value="e">target: eh</option><option value="i">target: ee</option><option value="o">target: oh</option><option value="u">target: oo</option>
     </select>
     <button class="btn" id="autoFly" aria-pressed="true">auto-fly: on</button>
+    <button class="btn" id="bSay" aria-pressed="false" title="Say my note (N key): a screen reader speaks the note you hold and how many cents off, without looking">say note: off</button>
   </div>
   <div id="status">Pick a source. Demo plays a synthetic voice with a chosen flaw.</div>
 </div>
@@ -786,7 +792,20 @@ function showAdvice(fl){shownAdvice=fl;setAdvice(fl.name,fl.advice[0]+' '+fl.adv
 const tNote=$('tNote');tNote.innerHTML='<option value="">no note target</option>'+Array.from({length:37},(_,i)=>{const m=i+41;return `<option value="${m}">target: ${noteName(m)} · ${hzOf(m).toFixed(0)} Hz</option>`;}).join('');
 function cls(v,good,bad,inv=false){const a=inv?v<good:v>good,b=inv?v>bad:v<bad;return a?'good':b?'bad':'warn';}
 let hudT=0;
-function updateHUD(wall){if(wall-hudT<0.1)return;hudT=wall;const f=viewFT;const v=f.voiced;const tgt=tNote.value?+tNote.value:0;
+// Say my note: for singing without looking (screen reader, eyes closed). A note held 0.4 s is
+// spoken once through the polite live region, again only when it changes or every 4 s.
+const SAY={on:false,n:0,since:0,said:0,saidT:0},sayEl=$('say'),bSay=$('bSay');
+function sayText(midi,tgt){const n=tgt||Math.round(midi),c=Math.round((midi-n)*100);
+  return `${noteName(Math.round(midi))}${tgt&&Math.round(midi)!==tgt?`, target ${noteName(tgt)}`:''}, ${Math.abs(c)<=10?'in tune':`${Math.abs(c)} cents ${c>0?'sharp':'flat'}`}`;}
+function sayTick(wall,f,tgt){if(!SAY.on)return;if(!f.voiced){SAY.n=0;return;}const n=Math.round(f.midi);
+  if(n!==SAY.n){SAY.n=n;SAY.since=wall;return;}
+  if(wall-SAY.since>=0.4&&(n!==SAY.said||wall-SAY.saidT>=4)){SAY.said=n;SAY.saidT=wall;sayEl.textContent=sayText(f.midi,tgt);}}
+function setSay(on){SAY.on=on;SAY.said=0;bSay.setAttribute('aria-pressed',on);bSay.textContent='say note: '+(on?'on':'off');sayEl.textContent=on?'Say my note is on. Hold a note.':'Say my note is off.';}
+bSay.onclick=()=>setSay(!SAY.on);
+document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey||/select|input|textarea/i.test(document.activeElement.tagName))return;const K=$('keys');
+  if(e.key==='n'||e.key==='N'){e.preventDefault();setSay(!SAY.on);}
+  else if(e.key==='?'){e.preventDefault();K.hidden=!K.hidden;}else if(e.key==='Escape'&&!K.hidden){K.hidden=true;}});
+function updateHUD(wall){if(wall-hudT<0.1)return;hudT=wall;const f=viewFT;const v=f.voiced;const tgt=tNote.value?+tNote.value:0;sayTick(wall,f,tgt);
   $('mF0').textContent=v?f.f0.toFixed(1):'—';$('mF0').className='v';
   $('mNote').textContent=v?(tgt?`${noteName(f.midi)} · ${((f.midi-tgt)*100).toFixed(0)>0?'+':''}${((f.midi-tgt)*100).toFixed(0)} ¢`:noteName(f.midi)):'Hz';
   const set=(id,txt,c)=>{const e=$(id);e.textContent=txt;e.className='v'+(c?' '+c:'');};

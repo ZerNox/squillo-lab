@@ -97,6 +97,12 @@ reference pool is a second toggle, `?rating=1`, experimental: see
 `rating/README.md` for why it is off. To analyse a song with music, remove the
 music first with `tools/separate-vocals.sh` (Demucs).
 
+Without looking: "say note" (N key) speaks the held note and its cents off
+(or off the target note) through a polite live region, so a screen reader
+(VoiceOver, NVDA, TalkBack) says it while you sing: once a note is held
+0.4 s, again when it changes or every 4 s; ±10 ¢ is called in tune. `?` lists
+the keys. Use headphones with a mic, or the reader's voice reaches the tracker.
+
 Real-voice demos: 14 VocalSet clips (CC BY 4.0, `page/demo/SOURCES.md`),
 one woman and one man each singing the same scale straight, breathy, in vocal
 fry, belted and with vibrato, plus "Caro mio ben" straight and with vibrato.

@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-29 · say my note (eyes-free)
+
+Built: a "say note" toggle (button, N key) that puts the held note and its cents (vs the target note if set, else the nearest note; ±10 ¢ = in tune) into a polite aria-live region, once a note is held 0.4 s, again on change or every 4 s; a `?` key list (Esc closes); the helix canvas is labelled. A blind singer, or anyone singing with eyes closed, now hears their pitch from their screen reader. check.mjs: N on, live region reads e.g. "A3, 20 cents sharp" within 2 s of the demo, ? opens/closes the list, 3 browsers. Not measured: screen-reader speech timing itself (no reader headless). iOS risk: VoiceOver's voice from the speaker reaches the mic; README says use headphones. Next: edge onsets or tone part 2.
+
 ## 2026-10-29 · tone colour per take
 
 Built: each take's median spectral tilt (page code, sung frames) as a 'tone colour' aspect: a went-well line naming the colour (bright, belt-like / balanced / soft, airy) against VocalSet's belt +0.5, straight -1.3, breathy -2.4 dB/oct; a row in the take table; a progress line and a week line that say brighter/softer, never better/worse (not rated). Numbers are the clip-median ones from `check/press-bench.mjs` (belt vs straight AUC 0.81, pairs 92.6 ± 5.3 %), the same median the take uses. check.mjs: the tone line appears on both breath demos, 3 browsers. iOS risk: as for CPP, WebKit-decoded MP3 may shift tilt slightly (-1.28 vs -1.36 Chrome on m2). Next: edge onsets or tone part 2 (formant-corrected H1-H2).
@@ -41,8 +45,4 @@ Built: the take summary adds "Vibrato evenness: rate varies x ± % and width y �
 ## 2026-10-26 · live vibrato chip on the take estimator
 
 Built: the vibrato chip while singing now uses the take's estimator (note-change cuts, detrend, autocorrelation) on the last 1.2 s of the current note, so legato steps no longer show as vibrato. Numbers (`check/vibrato-bench.mjs`): per-note rate error median 0.07 → 0.04 Hz, p90 0.13 → 0.11; 0/30 straight notes flagged; take figures unchanged. iOS risk: a little more work per frame (about 60 frames × 14 lags), small. Next: vibrato regularity.
-
-## 2026-10-26 · vibrato rate and extent, measured
-
-Built: the take summary says "Vibrato on n of N long notes: rate ± Hz, ±extent st" against trained singers' 5.5-6.5 Hz (Prame 1994), or praises a plain straight line. Estimated from the take's pitch (note-change cuts, quadratic detrend, first autocorrelation peak). Found while building: the live chip's 1.2 s zero count, run over a take, read legato note steps in a straight aria as 4 Hz vibrato. Numbers (`check/vibrato-bench.mjs`, page code): synthetic take means within 0.11 Hz / 0.03 st over 5 voice types, 0/30 straight notes flagged; VocalSet Caro vibrato 5.3 / 5.0 Hz. check.mjs: 6 Hz ±0.5 st take reads 6.0 Hz, 5 of 5 notes. iOS risk: none new. Next: live chip on the same estimator.
 
