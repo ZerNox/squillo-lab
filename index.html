@@ -1014,6 +1014,15 @@ function vibCycles(r,sd,fps){const up=[];let arm=false;for(let k=1;k<r.length;k+
 // Long-note pieces of one voiced run (pitch in st, fps frames/s): cut where the 0.3 s mean moves 0.8 st or more in 0.16 s.
 function vibCuts(m,fps=50){const h=Math.round(0.14*fps),g=Math.round(0.08*fps),S=m.map((_,j)=>{let a=0,c=0;for(let q=Math.max(0,j-h);q<=Math.min(m.length-1,j+h);q++){a+=m[q];c++;}return a/c;}),out=[];
   let s=0;for(let j=g;j<=m.length;j++){const c=j===m.length||(j+g<m.length&&Math.abs(S[j+g]-S[j-g])>=0.8);if(!c)continue;if(j-s>=0.8*fps)out.push([s,j]);if(j<m.length){s=j+2*g;j=s+g-1;}}return out;}
+// Dynamics: level (20 log10 rms) over voiced runs held 1 s or more, smoothed over 100 ms, the run's first and last
+// 100 ms dropped. Swell: p95 - p5 of a run's level (a messa di voce swells, a straight tone stays level). Span: the
+// spread of the runs' median levels (soft to loud across the take). Gain-free: only differences are used.
+function takeDynamics(st){const fr=st.rec.frames,R=[];let i=0;
+  while(i<fr.length){if(!fr[i].voiced){i++;continue;}let k=i;while(k<fr.length&&fr[k].voiced)k++;
+    if((k-i)*0.02>=1){const d=fr.slice(i,k).map(f=>20*Math.log10(f.rms+1e-9)),sm=[];for(let j=5;j<d.length-5;j++){let a=0;for(let q=j-2;q<=j+2;q++)a+=d[q];sm.push(a/5);}
+      sm.sort((a,b)=>a-b);if(sm.length>10)R.push({t0:fr[i].t,swell:sm[Math.floor(sm.length*0.95)]-sm[Math.floor(sm.length*0.05)],med:sm[sm.length>>1]});}i=k;}
+  if(!R.length)return null;const sw=R.map(r=>r.swell).sort((a,b)=>a-b),md=R.map(r=>r.med).sort((a,b)=>a-b);
+  return {n:R.length,swell:sw[sw.length>>1],maxSwell:sw[sw.length-1],span:R.length>=2?md[md.length-1]-md[0]:0,runs:R};}
 function takeVibrato(st){const fr=st.rec.frames,L=[];let i=0;
   while(i<fr.length){if(!fr[i].voiced||!(fr[i].f0>0)){i++;continue;}let k=i;while(k<fr.length&&fr[k].voiced&&fr[k].f0>0)k++;
     const m=[];for(let j=i;j<k;j++)m.push(69+12*Math.log2(fr[j].f0/440));for(const [a,b] of vibCuts(m))L.push(vibPiece(m.slice(a,b),fr[i+a].t));i=k;}
@@ -1044,7 +1053,7 @@ function takeAspects(st){const fr=st.rec.frames,sn=st.rec.snaps,notes=[],res=[];
   const dm=dp.length?dp.reduce((t,x)=>t+x,0)/dp.length:0,dsd=dp.length>1?Math.sqrt(dp.reduce((t,x)=>t+(x-dm)**2,0)/(dp.length-1)):0;
   const slide={n:dp.length,of:ons,depth:dm,sd:dsd,style:dp.length>=4&&dp.length/ons>=2/3&&dsd<=0.2*dm};
   const meds=notes.map(n=>n.med).sort((a,b)=>a-b);
-  return {slide,perf:notePerf(notes,off,slide.style?[]:st.rec.events),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,clar:cp.length?cp[cp.length>>1]:0,clarN:cp.length,tone:tl.length?tl[tl.length>>1]:0,toneN:tl.length,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,breaks:registerBreaks(fr),vib:takeVibrato(st),mn:meds.length>4?Math.min(...meds):0,mx:meds.length>4?Math.max(...meds):0,ok:notes.length>=6&&sung>=4};}
+  return {slide,perf:notePerf(notes,off,slide.style?[]:st.rec.events),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,clar:cp.length?cp[cp.length>>1]:0,clarN:cp.length,tone:tl.length?tl[tl.length>>1]:0,toneN:tl.length,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,breaks:registerBreaks(fr),vib:takeVibrato(st),dyn:takeDynamics(st),mn:meds.length>4?Math.min(...meds):0,mx:meds.length>4?Math.max(...meds):0,ok:notes.length>=6&&sung>=4};}
 // Per held note, for the timeline: cents off the take's grid, wobble inside the note, and whether it
 // was scooped into, folded into a 0..1 score weighted 60/25/15. The median trained singer (14 ¢, 3 ¢
 // wobble, no scoop) scores about 0.8; 25 ¢ off scores about 0.55.
@@ -1087,6 +1096,10 @@ const HIST_KEY='helix.takes.v1',HIST_MAX=500,HIST_WIN=5;
 function clarLine(a,good){if(!a.clar||a.clarN<150)return [];
   if(good)return a.clar>=24.5?[`Clear tone: ${a.clar.toFixed(1)} dB CPP, where trained singers singing straight read ${CLAR_REF.s} and breathy ${CLAR_REF.b} (VocalSet).`]:[];
   return a.clar<BREATHY_CPP?[`breathy tone (${a.clar.toFixed(1)} dB CPP; trained singers singing straight read ${CLAR_REF.s}, breathy ${CLAR_REF.b}): sing a phrase through a drinking straw, then at once without it, keeping the same easy, buzzy feel (semi-occluded vocal tract, Titze 2006); then a few gentle “uh-oh” onsets. If you meant it breathy, as a style, leave it.${a.clarNote||''}`]:[];}
+// Dynamics in words, a description: VocalSet long tones on "a", 20 singers (check/dyn-bench.mjs): messa di voce swells
+// 19.3 dB median (p10 14.5), straight tones 7.3 dB (p90 13.9); messa vs straight AUC 0.93, same-singer pairs 20/20.
+function dynLine(d){if(!d||!d.n)return [];const sw=d.maxSwell;
+  return [`Dynamics: on ${d.n} long note${d.n>1?'s':''} your level moved ${d.swell.toFixed(0)} dB within a note (most: ${sw.toFixed(0)} dB)${d.n>=2?`, and ${d.span.toFixed(0)} dB from your softest to your loudest`:''}. ${sw>=14.5?'A real swell, as wide as trained singers\' messa di voce (VocalSet median 19 dB).':'Held fairly level, like trained singers\' straight tones (VocalSet median 7 dB); to colour a long note, swell it soft-loud-soft (messa di voce, about 19 dB in trained singers).'}`];}
 // Tone colour of the take in words, a description in the went-well list, with where VocalSet's trained singers sit.
 function toneLine(a){if(!a.tone||a.toneN<150)return [];const c=toneColour(a.tone);
   return [`Tone colour: ${c} (spectral tilt ${a.tone>0?'+':''}${a.tone.toFixed(1)} dB/oct; trained singers read belt +0.5, straight -1.3, breathy -2.4, VocalSet). A colour you chose, not a score${c==='balanced'?'; a good base to brighten for belt or soften for ballads.':'.'}`];}
@@ -1253,7 +1266,7 @@ function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;
   const vsMed=x=>{const m=TRAINED_MED[x.k],d=x.lower?m-a[x.k]:a[x.k]-m;return d/(x.tol*3);};
   const order=RATED.slice().sort((p,q)=>R?R.per[q.k]-R.per[p.k]:vsMed(q)-vsMed(p));
   const good=R?order.slice(0,2).filter(x=>R.per[x.k]>=0.25):order.filter(x=>vsMed(x)>=-0.34).filter(x=>!(a.slide&&a.slide.style&&x.k==='onset'));
-  h+='<h3>Went well</h3><ul>'+[`You sang ${a.notes} held notes over ${a.sung.toFixed(0)} s, across ${a.range.toFixed(0)} semitones.`,...(TAKE.stretch?[`Your strongest stretch ended around ${mmss(TAKE.stretch.hi[0])}: the line on the bar peaks there.`]:[]),...(TAKE.best&&TAKE.best.length?[`${TAKE.best.length} standout note${TAKE.best.length>1?'s':''} (★ on the bar): on the note, steady, started cleanly.`]:[]),...(a.slide&&a.slide.style?[`Your slides into notes are a style, not a flaw: ${a.slide.n} of ${a.slide.of} notes, each about ${a.slide.depth.toFixed(1)} ± ${a.slide.sd.toFixed(1)} semitones, the same every time. They are not marked down.`]:[]),...vibLine(a.vib),...clarLine(a,true),...toneLine(a),...pbLines(a.perf,TAKE.d),...good.map(x=>`Your ${x.name}: ${fmt(x,a[x.k])} ${x.unit}${R?`, better than ${Math.round(R.per[x.k]*100)} % of the pool`:`, on a par with or better than the median conservatory-trained singer (${TRAINED_MED[x.k]})`}.`)].map(t=>`<li>${t}</li>`).join('')+'</ul>';
+  h+='<h3>Went well</h3><ul>'+[`You sang ${a.notes} held notes over ${a.sung.toFixed(0)} s, across ${a.range.toFixed(0)} semitones.`,...(TAKE.stretch?[`Your strongest stretch ended around ${mmss(TAKE.stretch.hi[0])}: the line on the bar peaks there.`]:[]),...(TAKE.best&&TAKE.best.length?[`${TAKE.best.length} standout note${TAKE.best.length>1?'s':''} (★ on the bar): on the note, steady, started cleanly.`]:[]),...(a.slide&&a.slide.style?[`Your slides into notes are a style, not a flaw: ${a.slide.n} of ${a.slide.of} notes, each about ${a.slide.depth.toFixed(1)} ± ${a.slide.sd.toFixed(1)} semitones, the same every time. They are not marked down.`]:[]),...vibLine(a.vib),...clarLine(a,true),...toneLine(a),...dynLine(a.dyn),...pbLines(a.perf,TAKE.d),...good.map(x=>`Your ${x.name}: ${fmt(x,a[x.k])} ${x.unit}${R?`, better than ${Math.round(R.per[x.k]*100)} % of the pool`:`, on a par with or better than the median conservatory-trained singer (${TRAINED_MED[x.k]})`}.`)].map(t=>`<li>${t}</li>`).join('')+'</ul>';
   const work=R?order.slice(-2).reverse().filter(x=>R.per[x.k]<0.75).slice(0,R.R>=2200?1:2):order.filter(x=>vsMed(x)<-0.34).reverse().slice(0,2);
   const wl=work.map(x=>`${x.name} (${fmt(x,a[x.k])} ${x.unit}): ${ASPECT_WORK[x.k].ex}${x.k==='onset'?' Slides into notes are a style in pop and soul: work on them only where you did not mean them.':''}`);
   wl.push(...clarLine(a,false));
