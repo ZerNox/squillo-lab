@@ -37,6 +37,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Dynamics per take: swell within long notes and span soft to loud (messa di voce vs straight AUC 0.93, VocalSet), described; swell on the progress and week lines.
 - Key drift per take: tuning slide over the take with ± (synthetic SD 16 ¢; vocadito agreement SD 41 ¢), praised or a drone exercise; on the progress and week lines.
 - Hear it from the summary: ▶ best note, ▶ furthest-off note then tuned.
+- "Your last three long notes were steadier than any last week" in the summary, beyond one note's noise.
 - Eyes-free: "say note" (N) speaks the held note and cents via a live region; `?` lists the keys.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.

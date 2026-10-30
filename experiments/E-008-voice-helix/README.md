@@ -84,7 +84,7 @@ reads 31 ¢ median slowed against 29 ¢ at 1× (the tracker's own lag on vibrato
 A 32 s take takes 0.8-1.3 s to slow, once per version and speed. Each scored take's summary is kept on the device
 (localStorage, last 500, never sent; "forget my takes" clears it), with its
 steadiest long note and longest note held within 10 ¢; "went well" names a personal
-best only when it beats every earlier take by more than one note's noise (1 ¢, 0.3 s). The card
+best only when it beats every earlier take by more than one note's noise (1 ¢, 0.3 s), and says "your last three long notes were each steadier than any long note last week" when all three beat the 7 days before today by that margin. The card
 ends with a practice streak (days in a row, minutes sung, milestones) and progress lines per aspect and overall: a dot per take, the mean of
 the last 5 takes, and a band of ±1.96 standard errors between takes; it says
 "better" or "worse" only when the last 5 differ from the 5 before by more
