@@ -1,0 +1,9 @@
+// Dumps per-note harmonic envelopes, formants and f0 from the page take path on VocalSet, for check/vowel-fit.mjs. Usage: node check/vowel-dump.mjs http://localhost:<port>/ <dir> notes.json
+import { chromium } from 'playwright'; import { readdirSync, readFileSync, writeFileSync } from 'fs';
+const [url, dir, out] = process.argv.slice(2), files = readdirSync(dir).filter(f => /^[fm]\d+_(scales|arpeggios)_vibrato_[aeiou]\.wav$/.test(f));
+const b = await chromium.launch({ channel: 'chrome' }).catch(() => chromium.launch());
+const job = async part => { const p = await b.newPage(); await p.route('**/vs/*', r => r.fulfill({ body: readFileSync(dir + '/' + r.request().url().split('/vs/')[1]), contentType: 'audio/wav' })); await p.goto(url); await p.waitForTimeout(1000); const N = [];
+for (const f of part) { const r = await p.evaluate(async f => { const buf = await new OfflineAudioContext(1, 1, 44100).decodeAudioData(await (await fetch('vs/' + f)).arrayBuffer()); const F = await trackTake(buf); viterbiF0(F); trimEdges(F, buf); const S = new Stats(); for (const m of F) ingest(S, m, 'take'); const fr = S.rec.frames;
+ return takeNotes(smoothPitch(fr)).notes.map(n => { const a = fr.filter(e => e.voiced && e.F1 && e.F2 && e.t >= n.t0 && e.t <= n.t1); if (a.length < 8) return null; const med = k => a.map(e => e[k]).sort((x, y) => x - y)[a.length >> 1]; const hs = a.filter(e => e.henv), env = Array.from({ length: 14 }, (_, j) => hs.reduce((s, e) => s + e.henv[j], 0) / hs.length); return { f0: med('f0'), F1: med('F1'), F2: med('F2'), env }; }).filter(Boolean); }, f);
+ const m = f.match(/^([fm]\d+)_.*_([aeiou])\.wav/); for (const x of r) N.push({ ...x, who: m[1], t: m[2] }); } return N; };
+const K = 6, parts = Array.from({ length: K }, (_, i) => files.filter((_, j) => j % K === i)); const N = (await Promise.all(parts.map(job))).flat(); writeFileSync(out, JSON.stringify(N)); console.log(N.length); await b.close();
