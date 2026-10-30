@@ -68,7 +68,12 @@ summary, progress) and the page scrolls to it. Two resyntheses by
 pitch-synchronous overlap-add, tone, words and timing untouched: "spotless"
 (250 ms running median inside each voiced run, the start of each note held
 at its settled pitch, snapped to the grid) and "halfway" (half way from the
-take to spotless). The bar is a performance timeline: a sliding line of the
+take to spotless). A fourth version, "far vision", is spotless plus even vibrato and a ±1.5 dB swell
+on held notes of 0.8 s or more (`check/far-bench.mjs`, 14 VocalSet straight clips:
+5.8 Hz, ±0.45 st asked, 5.78 Hz, ±0.41 st read back, on the 9 with a reading;
+spectrum proxy 1.43 dB from the take, spotless 1.23; a proxy, not a listener).
+Version buttons and keys 1-4 carry on from the same moment.
+The bar is a performance timeline: a sliding line of the
 note score over the last 10 s (60 % cents off the grid, 25 % wobble, 15 %
 clean start; dashes mark the median trained singer, about 0.8; the line
 breaks where 10 s hold under 1 s of held notes), each held note coloured on /
