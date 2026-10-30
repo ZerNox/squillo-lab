@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-30 · sung vowel, first benchmark of the formants
+
+Built: `readVowel`/`spanVowel` with centres fitted on sung notes, `check/vowel-bench.mjs`, a live 'vowel' chip, 'sounds like “ee”' in note by note, only when sure. Formants had no measured accuracy until now. VocalSet (2405 notes, 20 singers, 5 vowels, page code): 68.2 ± 4.4 % under 600 Hz (speech centres 61.3 ± 4.8; left-out-singer 67.7 ± 4.5), sure 74.1 ± 5.4 % on 67 % of notes; no reading at 600 Hz and up. Not benchmarked on 0.5 s live windows; the synthetic demo 'ah' reads unsure (speech-table formants). check.mjs: reader, chip, note line, 3 browsers. Process: WebKit hangs intermittently even alone (one 170 s timeout, same code passed in about 50 s; cause not found), so a hung browser gets one retry, timeout 240 s. iOS risk: none new. Next: back vowels, singer's formant.
+
 ## 2026-10-30 · hear it with your pulse
 
 Built: on a take with a found pulse, '▶ hear it with your pulse' plays the take with a soft click on the singer's own fitted pulse (every second step when under 0.3 s), following their tempo; clicks skip the analysis path and stop with playback. A singer now hears where they sat ahead or behind, with no metronome at the time of singing. check.mjs: button, click oscillator, stop, 3 browsers. No new measurement. Process: full three-browser runs hung starting WebKit after Firefox three times this run though each browser passes alone (WebKit 44 s, Firefox 52 s), cause not found; verified browser by browser. iOS risk: clicks run on the already resumed context; 'ended' listener needs Safari 14.1+. Next: legato onset floor.

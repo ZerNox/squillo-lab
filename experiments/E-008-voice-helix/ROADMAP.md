@@ -40,6 +40,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - "Your last three long notes were steadier than any last week" in the summary, beyond one note's noise.
 - Timing without a click: pulse found from note starts, rhythm spread ± and tempo change in the summary, rhythm spread progress line (synthetic jitter read within about 20 ms, change SD 1-3 %, false pulse 0/20; vocadito pulse agreement weak).
 - Hear it with your pulse: the take with a soft click on the singer's own fitted pulse.
+- Sung vowel: live chip and note by note, only when sure (VocalSet 20 singers: 74 ± 5 % on 67 % of notes, 68 ± 4 % overall, none at 600 Hz and up).
 - Eyes-free: "say note" (N) speaks the held note and cents via a live region; `?` lists the keys.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
@@ -48,6 +49,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 
 0. **Timing, part 2**: legato onset floor 31 ms (level-envelope onsets); vocadito pulse agreement 3 of 9/7 clips.
 0. **Key drift, part 2**: better real-voice agreement (vocadito SD 41 ¢ vs synthetic 16); local/global circular unwraps tried 2026-10-30, no gain (39-91 ¢): needs a different truth or note-level approach.
+0. **Vowels, part 2**: back vowels (a/o/u) share F2 and cause most errors; try harmonic-sampled envelopes, then a take-level line such as vowels held across range. Singer's formant still unmeasured.
 1. **Rating with ground truth**: human-judged takes across styles from openly
    licensed sources only, then a rating that ranks them correctly (see
    `rating/README.md`).

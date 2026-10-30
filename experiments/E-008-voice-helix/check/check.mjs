@@ -119,6 +119,8 @@ async function run([name, launch, ctxOpt, file]) {
       return { at1: +d1[d1.length >> 1].toFixed(1), cents: +d[d.length >> 1].toFixed(1), p90: +d[Math.floor(d.length * 0.9)].toFixed(1), n: d.length, ratio: +(sb.duration / TAKE.buf.duration).toFixed(3), ms: Math.round(ms) }; });
     await tap(p.locator('#takebar i').first()); await p.waitForTimeout(800);
     const ab = await p.evaluate(() => AU.kind === 'ab' && AU.source && AU.source.loop && AU.ctx.state === 'running');
+    const vow = await p.evaluate(() => { const r = readVowel(693, 1233, 220), hi = readVowel(693, 1233, 700), ee = readVowel(355, 1963, 300); const n = TAKE.aspects.perf.find(x => x.vow && x.vow.sure), i = n ? TAKE.aspects.perf.indexOf(n) : -1; if (n) { TAKE.ni = i - 1; stepNote(1); TAKE.ni = -1; } return { ok: r.v === 'a' && r.sure && hi === null && ee.v === 'i', chip: !!document.getElementById('mVow'), said: !n || /sounds like “(ah|eh|ee|oh|oo)”/.test(document.getElementById('takeInfo').textContent) }; });
+    if (!vow.ok || !vow.chip || !vow.said) throw new Error('vowel reading: ' + JSON.stringify(vow));
     // Note by note: two taps on note ▶ then one on ◀ note land on the first note, play just it and say its numbers; → key goes to note 2.
     await tap(p.locator('#bNextNote')); await tap(p.locator('#bNextNote')); await tap(p.locator('#bPrevNote')); await p.waitForTimeout(300);
     const nn = await p.evaluate(() => { const n = TAKE.aspects.perf[0]; return { i: TAKE.ni, kind: AU.kind, until: AU.play && Math.abs(AU.play.until - n.t1 - 0.15) < 0.01, on: document.querySelectorAll('#takebar u.on').length, said: /^Note 1 of \d+ at /.test(document.getElementById('takeInfo').textContent) }; });
@@ -250,7 +252,8 @@ let allOk = true;
 if (!only) {
   const { spawnSync } = await import('node:child_process');
   const rest = args.slice(1).filter((a, i, A) => a !== '--wait' && A[i - 1] !== '--wait');
-  for (const br of browsers) { const c = spawnSync(process.execPath, [fileURLToPath(import.meta.url), url, ...rest, '--only', br[0]], { stdio: 'inherit', timeout: 600000 }); allOk &&= c.status === 0; }
+  // WebKit also hangs now and then alone: a run killed by the timeout gets one retry; a failed check does not.
+  for (const br of browsers) { const go = () => spawnSync(process.execPath, [fileURLToPath(import.meta.url), url, ...rest, '--only', br[0]], { stdio: 'inherit', timeout: 240000 }); let c = go(); if (c.signal) { console.log(`${br[0]} hung, retrying once`); c = go(); } allOk &&= c.status === 0; }
   process.exit(allOk ? 0 : 1);
 }
 for (const br of browsers) {
