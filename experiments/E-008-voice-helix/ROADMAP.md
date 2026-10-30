@@ -38,12 +38,14 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Key drift per take: tuning slide over the take with ± (synthetic SD 16 ¢; vocadito agreement SD 41 ¢), praised or a drone exercise; on the progress and week lines.
 - Hear it from the summary: ▶ best note, ▶ furthest-off note then tuned.
 - "Your last three long notes were steadier than any last week" in the summary, beyond one note's noise.
+- Timing without a click: pulse found from note starts, rhythm spread ± and tempo change in the summary, rhythm spread progress line (synthetic jitter read within about 20 ms, change SD 1-3 %, false pulse 0/20; vocadito pulse agreement weak).
 - Eyes-free: "say note" (N) speaks the held note and cents via a live region; `?` lists the keys.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
 ## Next
 
+0. **Timing, part 2**: legato onset floor 31 ms (level-envelope onsets); vocadito pulse agreement 3 of 9/7 clips.
 0. **Key drift, part 2**: better real-voice agreement (vocadito SD 41 ¢ vs synthetic 16); local/global circular unwraps tried 2026-10-30, no gain (39-91 ¢): needs a different truth or note-level approach.
 1. **Rating with ground truth**: human-judged takes across styles from openly
    licensed sources only, then a rating that ranks them correctly (see

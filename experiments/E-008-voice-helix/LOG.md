@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-30 · timing and rhythm, no click needed
+
+Built: `pulseFit`/`takeTiming` (finds the steady pulse behind the note starts, following a moving tempo; spread in ms ±, tempo change %) and `check/timing-bench.mjs`. Synthetic (120 pulsed melodies, 5 voices, page code): spread reads 18/23/38/64 ms median for jitter 0/15/30/60 (floor 10 ms gapped, 31 ms legato), tempo change error SD 1.0-2.6 %, pulse found 29/30, 30/30, 29/30, 19/30; false pulse 0/20 free-rhythm controls at threshold 0.15 (5/20 at 0.17). vocadito: weak: pulse in 9 clips by page, 7 by annotated onsets, 3 by both, so 'free timing' is worded softly and rhythm is not rated. Tried raw-pitch legato onset crossing: no gain, removed. A singer now hears 'steady rhythm' with ms ±, or 'you slowed 12 %' with a metronome exercise (Repp 2005), and sees a rhythm spread progress line. iOS risk: none new. Next: legato onset floor (level-envelope onsets, shared with note edges item), real-voice pulse agreement.
+
 ## 2026-10-30 · steadier than any last week
 
 Built: `lastWeekLine` in the take summary's "went well": when the take's last three long notes (≥ 1 s) each wobble less than the steadiest long note of every take kept from the 7 days before today (by more than the 1 ¢ a single note reads to, 2+ such takes), it says so with the numbers, e.g. "Your last three long notes (2.0, 2.4, 2.8 ¢ wobble) were each steadier than any long note in your 2 takes from the week before today (best 4.0 ¢)". The mission's own example of feedback a singer can feel, now live. check.mjs: seeded week (and a 20-day-old take ignored), claim and no-claim cases, 3 browsers. No new measurement (wobble is the personal-best reading). iOS risk: none (localStorage). Next: edge onsets or tone part 2.
@@ -34,10 +38,3 @@ Built: `check/vibeven-bench.mjs` (page code, every VocalSet vibrato clip: scales
 
 Built: a "say note" toggle (button, N key) that puts the held note and its cents (vs the target note if set, else the nearest note; ±10 ¢ = in tune) into a polite aria-live region, once a note is held 0.4 s, again on change or every 4 s; a `?` key list (Esc closes); the helix canvas is labelled. A blind singer, or anyone singing with eyes closed, now hears their pitch from their screen reader. check.mjs: N on, live region reads e.g. "A3, 20 cents sharp" within 2 s of the demo, ? opens/closes the list, 3 browsers. Not measured: screen-reader speech timing itself (no reader headless). iOS risk: VoiceOver's voice from the speaker reaches the mic; README says use headphones. Next: edge onsets or tone part 2.
 
-## 2026-10-29 · tone colour per take
-
-Built: each take's median spectral tilt (page code, sung frames) as a 'tone colour' aspect: a went-well line naming the colour (bright, belt-like / balanced / soft, airy) against VocalSet's belt +0.5, straight -1.3, breathy -2.4 dB/oct; a row in the take table; a progress line and a week line that say brighter/softer, never better/worse (not rated). Numbers are the clip-median ones from `check/press-bench.mjs` (belt vs straight AUC 0.81, pairs 92.6 ± 5.3 %), the same median the take uses. check.mjs: the tone line appears on both breath demos, 3 browsers. iOS risk: as for CPP, WebKit-decoded MP3 may shift tilt slightly (-1.28 vs -1.36 Chrome on m2). Next: edge onsets or tone part 2 (formant-corrected H1-H2).
-
-## 2026-10-27 · pressed cue retired, tone colour measured
-
-Built: `check/press-bench.mjs` (page code, VocalSet scales belt/straight/breathy, 20 singers, 294 clips). Found: the 'pressed / strained' cue fired on 18 % of belt and straight frames alike (AUC 0.53), uncorrected H1-H2 AUC 0.54: a coin toss shown as a flaw. Retired it (chip and demo gone) and uncoloured H1-H2; the tilt chip, which coloured almost every voice 'warn', now names a tone colour (bright, belt-like / balanced / soft, airy) as a description. Tilt: belt +0.45 ± 0.32, straight -1.29 ± 0.23, breathy -2.39 ± 0.24 dB/oct; belt brighter than straight AUC 0.81, pairs 92.6 ± 5.3 %. A singer who belts is no longer told they strain. iOS risk: none new. Next: tone colour per take in the summary and progress, or edge onsets.
