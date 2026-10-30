@@ -263,6 +263,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
   <div class="chip"><span class="k">H1 − H2</span><span class="v" id="mH12">—</span><span class="u">dB</span></div>
   <div class="chip"><span class="k">tone colour (tilt)</span><span class="v" id="mTilt">—</span><span class="u" id="mTiltU">dB/oct</span></div>
   <div class="chip"><span class="k">formants F1 · F2 · F3</span><span class="v" id="mFmt">—</span><span class="u">Hz</span></div>
+  <div class="chip"><span class="k">vowel</span><span class="v" id="mVow">—</span><span class="u">best guess, 3 in 4 right</span></div>
   <div class="chip"><span class="k">pitch range · 8 s</span><span class="v" id="mRange">—</span><span class="u">semitones</span></div>
   <div class="chip"><span class="k">nasality A1 − P0</span><span class="v" id="mNas">—</span><span class="u">dB</span></div>
   <div class="chip" id="cLat" title="Measured here: from the audio reaching the page to the helix being drawn, plus half the pitch window. The mic's own delay is added when the browser reports it."><span class="k">screen lag</span><span class="v" id="mLat">—</span><span class="u" id="mLatU">ms</span></div>
@@ -816,6 +817,7 @@ function updateHUD(wall){if(wall-hudT<0.1)return;hudT=wall;const f=viewFT;const 
   set('mHnr',v&&f.cpp?f.cpp.toFixed(1):'—',v&&f.cpp?cls(f.cpp,24.5,BREATHY_CPP):'');
   set('mH12',v?(f.h12>0?'+':'')+f.h12.toFixed(1):'—','');
   set('mTilt',v?(f.tilt>0?'+':'')+f.tilt.toFixed(1):'—','');$('mTiltU').textContent=v?'dB/oct · '+toneColour(f.tilt):'dB/oct';
+  {const h=viewHist,t=viewNow,V=v?spanVowel(h.slice(-40),t-0.5,t):null;set('mVow',V&&V.sure?VLBL[V.v]:'—','');}
   set('mFmt',v&&f.Fs[0]?`${f.Fs[0].toFixed(0)} · ${f.Fs[1].toFixed(0)} · ${f.Fs[2]?f.Fs[2].toFixed(0):'—'}`:'—','');
   set('mRange',f.range?f.range.toFixed(1):'—',f.range?(f.speechy?cls(f.range,4,3):'good'):'');
   set('mNas',v&&f.nasOk?(f.a1p0>0?'+':'')+f.a1p0.toFixed(1):'—',v&&f.nasOk?cls(f.a1p0,6,NASAL_TH):'');
@@ -1042,6 +1044,12 @@ const pmv=(v,d)=>v[1]===null?v[0].toFixed(d):`${v[0].toFixed(d)} ± ${v[1].toFix
 function vibLine(v){if(!v||v.long<2)return [];if(!v.n)return [`${v.long} long notes held straight, with no vibrato: a clean, plain line (a choice in pop, folk and early music).`];
   const r=v.rate[0],ok=r>=4.5&&r<=7;return [`Vibrato on ${v.n} of ${v.long} long notes: ${pmv(v.rate,1)} Hz, ±${pmv(v.ext,2)} st${ok?', in the 4.5-7 Hz band of trained singers (Prame 1994).':r>7?', faster than most trained singers (5.5-6.5 Hz, Prame 1994): it may sound tight; a slower, looser jaw helps.':', slower than most trained singers (5.5-6.5 Hz, Prame 1994).'}`,...(v.rcv?[`Vibrato evenness: rate varies ${pmv(v.rcv,0)} % and width ${pmv(v.ecv,0)} % cycle to cycle${v.rcv[0]<=14&&v.ecv[0]<=22?', as even as or evener than half of 20 trained VocalSet singers (their median: 14 % and 22 %).':v.rcv[0]<=18&&v.ecv[0]<=29?', within the range of 20 trained VocalSet singers (9 in 10 of them stay under 18 % and 29 %).':v.rcv[0]>18?' (9 in 10 of 20 trained VocalSet singers stay under 18 %). Slow sirens on “ng” with a steady breath even it out.':' (9 in 10 of 20 trained VocalSet singers stay under 29 %). Messa di voce on one note keeps the width steady as the level changes.'}`]:[])];}
 // Held notes of a take: frames grouped while within 0.5 st of the running mean, 0.2 s or more; residual wobble per note.
+// Sung vowel from F1/F2: nearest centre in log frequency. Centres: means of 2405 VocalSet notes under 400 Hz (speech tables like VOWELS read sung notes worse).
+// No reading at 600 Hz and up (31 % there, chance 20 %); 'sure' needs the runner-up VOWEL_MARGIN further off. check/vowel-bench.mjs.
+const VOWEL_SUNG={a:[693,1233],e:[538,1639],i:[355,1963],o:[559,1212],u:[412,1162]},VOWEL_MARGIN=0.1;
+function readVowel(F1,F2,f0,C=VOWEL_SUNG){if(!F1||!F2||!f0||f0>=600)return null;const d=Object.keys(C).map(v=>[Math.hypot(Math.log(F1/C[v][0]),Math.log(F2/C[v][1])),v]).sort((x,y)=>x[0]-y[0]);return {v:d[0][1],sure:d[1][0]-d[0][0]>=VOWEL_MARGIN};}
+// The vowel over a span of frames: medians, so one bad LPC frame does not flip it.
+function spanVowel(fr,t0,t1){const a=fr.filter(e=>e.voiced&&e.F1&&e.F2&&e.t>=t0&&e.t<=t1);if(a.length<8)return null;const med=k=>a.map(e=>e[k]).sort((x,y)=>x-y)[a.length>>1];return readVowel(med('F1'),med('F2'),med('f0'));}
 function takeNotes(fr){const notes=[],res=[];let cur=null;
   const close=()=>{if(cur&&cur.n*0.02>=0.2){const m=cur.ms.slice().sort((a,b)=>a-b),nr=[];
       if(cur.n*0.02>=0.3)for(let k=3;k<cur.fs.length-3;k++)if(cur.fs[k].fit){res.push(cur.fs[k].res);nr.push(cur.fs[k].res);}
@@ -1092,7 +1100,7 @@ function takeAspects(st){const fr=st.rec.frames,sn=st.rec.snaps,{notes,res}=take
   const dm=dp.length?dp.reduce((t,x)=>t+x,0)/dp.length:0,dsd=dp.length>1?Math.sqrt(dp.reduce((t,x)=>t+(x-dm)**2,0)/(dp.length-1)):0;
   const slide={n:dp.length,of:ons,depth:dm,sd:dsd,style:dp.length>=4&&dp.length/ons>=2/3&&dsd<=0.2*dm};
   const meds=notes.map(n=>n.med).sort((a,b)=>a-b);
-  return {slide,perf:notePerf(notes,off,slide.style?[]:st.rec.events),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,clar:cp.length?cp[cp.length>>1]:0,clarN:cp.length,tone:tl.length?tl[tl.length>>1]:0,toneN:tl.length,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,breaks:registerBreaks(fr),vib:takeVibrato(st),drift:takeDrift(fr),tm:takeTiming(fr),get rhythm(){return this.tm&&this.tm.pulse?this.tm.sd:NaN},dyn:takeDynamics(st),get swell(){return this.dyn?this.dyn.maxSwell:NaN},get kdrift(){return this.drift?Math.abs(this.drift.cents):NaN},mn:meds.length>4?Math.min(...meds):0,mx:meds.length>4?Math.max(...meds):0,ok:notes.length>=6&&sung>=4};}
+  return {slide,perf:notePerf(notes,off,slide.style?[]:st.rec.events).map(n=>({...n,vow:spanVowel(st.rec.frames,n.t0,n.t1)})),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,clar:cp.length?cp[cp.length>>1]:0,clarN:cp.length,tone:tl.length?tl[tl.length>>1]:0,toneN:tl.length,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,breaks:registerBreaks(fr),vib:takeVibrato(st),drift:takeDrift(fr),tm:takeTiming(fr),get rhythm(){return this.tm&&this.tm.pulse?this.tm.sd:NaN},dyn:takeDynamics(st),get swell(){return this.dyn?this.dyn.maxSwell:NaN},get kdrift(){return this.drift?Math.abs(this.drift.cents):NaN},mn:meds.length>4?Math.min(...meds):0,mx:meds.length>4?Math.max(...meds):0,ok:notes.length>=6&&sung>=4};}
 // Per held note, for the timeline: cents off the take's grid, wobble inside the note, and whether it
 // was scooped into, folded into a 0..1 score weighted 60/25/15. The median trained singer (14 ¢, 3 ¢
 // wobble, no scoop) scores about 0.8; 25 ¢ off scores about 0.55.
@@ -1411,7 +1419,7 @@ function stepNote(dir){const P=TAKE.aspects&&TAKE.aspects.perf;if(!P||!P.length)
   takebar.querySelectorAll('u').forEach((e,j)=>e.classList.toggle('on',j===TAKE.ni));
   playTake(which,Math.max(0,n.t0-0.15),Math.min(d,n.t1+0.15));
   const star=(TAKE.best||[]).includes(n);
-  takeInfo.textContent=`Note ${TAKE.ni+1} of ${P.length} at ${mmss(n.t0)} (${(n.t1-n.t0).toFixed(1)} s, ${which==='take'?'yours':which}): ${n.c.toFixed(0)} ¢ off${n.wob!==null?`, ${n.wob.toFixed(1)} ¢ wobble`:''}${n.scoop?', scooped in':', clean start'}${star?'. ★ One of your best.':n.g==='g'?'. On the note.':'.'}`;}
+  takeInfo.textContent=`Note ${TAKE.ni+1} of ${P.length} at ${mmss(n.t0)} (${(n.t1-n.t0).toFixed(1)} s, ${which==='take'?'yours':which}): ${n.c.toFixed(0)} ¢ off${n.wob!==null?`, ${n.wob.toFixed(1)} ¢ wobble`:''}${n.scoop?', scooped in':', clean start'}${n.vow&&n.vow.sure?`, sounds like “${VLBL[n.vow.v]}”`:''}${star?'. ★ One of your best.':n.g==='g'?'. On the note.':'.'}`;}
 const bPrevNote=$('bPrevNote'),bNextNote=$('bNextNote');bPrevNote.onclick=()=>stepNote(-1);bNextNote.onclick=()=>stepNote(1);
 document.addEventListener('keydown',e=>{if(!TAKE.buf||bNextNote.disabled||/select|input|textarea/i.test(document.activeElement.tagName))return;if(e.key==='ArrowRight'){e.preventDefault();stepNote(1);}else if(e.key==='ArrowLeft'){e.preventDefault();stepNote(-1);}});
 // Mark moments: ⚑ mark (or M) drops a flag where the take is playing (or at the note just stepped to).
