@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-30 · key drift per take
+
+Built: `takeDrift` (notes after a 0.22 s pitch average, offsets unwrapped against a running reference, weighted line over time, ± 1.96 SE) and `check/drift-bench.mjs`. Synthetic known drifts (90 melodies, 5 voice types, half with vibrato): error +1.4 ± 3.3 ¢, SD 15.8, truth inside ± 81/90. vocadito, page vs hand-corrected f0 through the same code: SD 41 ¢, sign agrees on 11/14 truly drifting clips: coarse on real voices, so the wording is conservative. A singer now hears 'you held your key' (whole ± within 20 ¢) or 'your tuning sank 45 ± 20 ¢ over 30 s' with a drone exercise (Howard 2007). check.mjs: -60 ¢ synthetic reads -54, level reads 0, both wordings, 3 browsers. iOS risk: none new. Next: drift on the progress line; tighten real-voice agreement (note matching).
+
 ## 2026-10-29 · swell on the progress line
 
 Built: each take stores its largest within-note swell (`takeDynamics`, the measure benchmarked at messa vs straight AUC 0.93); a 'swell (dynamics)' row in the take table, a progress line with band, and a week line, all saying more swell / flatter, never better or worse (not rated, like tone colour). Takes without a 1 s note store no swell, so the line skips them instead of reading 0. A singer practising messa di voce now sees whether their swells grow over weeks. check.mjs: 12 seeded takes (two without swell) read 'more swell than the takes before', no better/worse, not in RATED, 3 browsers. No new measurement. iOS risk: none (localStorage). Next: edge onsets (finer hop) or tone part 2.
@@ -37,8 +41,4 @@ Built: under the progress lines, "This week vs last week (n takes vs m)": every 
 ## 2026-10-26 · screen lag, measured
 
 Built: a "screen lag" chip in the live rail: per frame, audio chunk arrival → next helix paint + half the pitch window (+ mic latency when the browser reports it, else "+ mic"), median and p90. A singer can now see how far behind their voice the helix is, instead of it being assumed. Numbers (check.mjs, live demo, headless): Chrome 18 ms (p90 19), Firefox 25 (31), WebKit 24 (28). iOS risk: real iPhone input buffering is unreported by Safari, so the chip says "+ mic" there. Next: edge onsets or rating truth.
-
-## 2026-10-26 · loop a phrase
-
-Built: ⟲ loop phrase (L key) next to the playback buttons: loops the phrase around where the take is playing, or the note stepped to (same phrase finder as "same phrase"), padded 0.2/0.3 s, in the version (yours, halfway, spotless) and speed last chosen, seamless via loopStart/loopEnd; pressed state for screen readers. A singer can now drill one phrase, sing along with the spotless version at 0.5×. check.mjs: loop under 8.6 s, pressed, stops on a second tap, 3 browsers. iOS risk: none new (context created in the click path, no new APIs). Next: edge onsets or rating truth.
 
