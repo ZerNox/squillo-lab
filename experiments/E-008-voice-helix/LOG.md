@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-30 · yours, then far
+
+Built: 'Where this can go' in the summary: '▶ yours, then far' loops the take's longest note (0.8 s or more) as sung, then in far vision; `abLoop` takes a target version. A singer hears the far point on their own note in one tap. check.mjs: button, loop, 3 browsers. No new measurement. iOS risk: none new. Next: vowels part 2.
+
 ## 2026-10-30 · ring: singer's formant, first measurement
 
 Built: singing power ratio per frame (`spr`, Omori 1996), `aspects.ring`, a 'ring' line in the summary and a progress row, described, not rated; `check/ring-bench.mjs`. A singer now sees how much 2-4 kHz energy their voice carries, take by take. VocalSet (page code, no singer's-formant label exists, so contrasts are proxies): forte vs pp AUC 0.85, pairs 19/20, -18.4 vs -28.1 dB; straight vs breathy AUC 0.82, pairs 16/19, -18.5 vs -26.0 dB; first vs second half r 0.89 (79 clips). Not fully gain-free: at -12 dB the worst clip shifted 5.5 dB (frames gated differently), so small changes between sessions mean little. SPR rises with loudness; the line says so. No live chip. Process: one WebKit run closed its page mid-check (same as earlier reports, cause not found); WebKit alone passed. iOS risk: none new. Next: vowels part 2.

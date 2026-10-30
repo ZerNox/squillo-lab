@@ -41,7 +41,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Timing without a click: pulse found from note starts, rhythm spread ± and tempo change in the summary, rhythm spread progress line (synthetic jitter read within about 20 ms, change SD 1-3 %, false pulse 0/20; vocadito pulse agreement weak).
 - Hear it with your pulse: the take with a soft click on the singer's own fitted pulse.
 - Sung vowel: live chip and note by note, only when sure (VocalSet 20 singers: 74 ± 5 % on 67 % of notes, 68 ± 4 % overall, none at 600 Hz and up).
-- Far vision: spotless plus even vibrato and a gentle swell on long notes (VocalSet read-back 5.78 Hz, 0.41 st for 5.8, 0.45 asked); versions switch at the same moment, keys 1-4.
+- Far vision: spotless plus even vibrato and a gentle swell on long notes (VocalSet read-back 5.78 Hz, 0.41 st for 5.8, 0.45 asked); versions switch at the same moment, keys 1-4; '▶ yours, then far' on the longest note.
 - Ring (singing power ratio): summary and progress line, described not rated (VocalSet forte vs pp AUC 0.85, pairs 19/20; proxies, no direct label).
 - Eyes-free: "say note" (N) speaks the held note and cents via a live region; `?` lists the keys.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
