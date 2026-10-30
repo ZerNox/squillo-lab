@@ -4,9 +4,9 @@
 //    the take. Reported: error (estimate - truth) mean, SD, p90 |error|, and how often truth lies inside the ±.
 // 2. vocadito (Bittner et al. 2021, CC BY 4.0, https://zenodo.org/records/5578807, not shipped): drift from the page's
 //    pitch against drift from the hand-corrected f0 run through the same takeNotes/takeDrift. Also the spread across singers.
-// Usage: node check/drift-bench.mjs http://localhost:<port>/ [/path/to/vocadito] [melodies per cell, default 3]
+// Usage: node check/drift-bench.mjs http://localhost:<port>/ [/path/to/vocadito] [melodies per cell, default 3; 0 skips synthetic]
 import { chromium } from 'playwright'; import fs from 'node:fs'; import path from 'node:path';
-const [url, dir] = process.argv.slice(2), N = +(process.argv[4] || 3);
+const [url, dir] = process.argv.slice(2), N = +(process.argv[4] ?? 3);
 const b = await chromium.launch({ channel: 'chrome' }).catch(() => chromium.launch()); const p = await b.newPage();
 if (dir) await p.route('**/vocadito/**', r => r.fulfill({ body: fs.readFileSync(path.join(dir, 'Audio', path.basename(new URL(r.request().url()).pathname))) }));
 await p.goto(url); await p.waitForTimeout(1000);
@@ -25,9 +25,9 @@ const syn = await p.evaluate(async N => {
   return out; }, N);
 const q = (a, f) => a.slice().sort((x, y) => x - y)[Math.floor(f * (a.length - 1))], ms = a => { const m = a.reduce((s, x) => s + x, 0) / a.length; return [m, Math.sqrt(a.reduce((s, x) => s + (x - m) ** 2, 0) / (a.length - 1))]; };
 const ok = syn.filter(r => r.est !== null), e = ok.map(r => r.est - r.D), [em, es] = ms(e);
-console.log(`synthetic: ${ok.length}/${syn.length} measured; error ${em.toFixed(1)} ± ${(1.96 * es / Math.sqrt(e.length)).toFixed(1)} ¢ (SD ${es.toFixed(1)}), p90 |error| ${q(e.map(Math.abs), 0.9).toFixed(1)} ¢; truth inside ± ${ok.filter(r => Math.abs(r.est - r.D) <= r.ci).length}/${ok.length}; median ± ${q(ok.map(r => r.ci), 0.5).toFixed(1)} ¢`);
+if (N) { console.log(`synthetic: ${ok.length}/${syn.length} measured; error ${em.toFixed(1)} ± ${(1.96 * es / Math.sqrt(e.length)).toFixed(1)} ¢ (SD ${es.toFixed(1)}), p90 |error| ${q(e.map(Math.abs), 0.9).toFixed(1)} ¢; truth inside ± ${ok.filter(r => Math.abs(r.est - r.D) <= r.ci).length}/${ok.length}; median ± ${q(ok.map(r => r.ci), 0.5).toFixed(1)} ¢`);
 for (const D of [-100, -50, -20, 0, 20, 60]) { const a = ok.filter(r => r.D === D).map(r => r.est); const [m, s] = ms(a); console.log(`  drift ${D}: estimate ${m.toFixed(1)} (SD ${s.toFixed(1)}), |est| beyond its ± ${ok.filter(r => r.D === D && Math.abs(r.est) > r.ci).length}/${a.length}`); }
-for (const v of ['bass', 'tenor', 'alto', 'soprano', 'child']) { const a = ok.filter(r => r.vn === v).map(r => r.est - r.D); console.log(`  ${v}: error SD ${ms(a)[1].toFixed(1)}, mean ${ms(a)[0].toFixed(1)}`); }
+for (const v of ['bass', 'tenor', 'alto', 'soprano', 'child']) { const a = ok.filter(r => r.vn === v).map(r => r.est - r.D); console.log(`  ${v}: error SD ${ms(a)[1].toFixed(1)}, mean ${ms(a)[0].toFixed(1)}`); } }
 if (dir) {
   const meta = fs.readFileSync(path.join(dir, 'vocadito_metadata.csv'), 'utf8').trim().split('\n').slice(1).map(l => l.split(','));
   const rows = [];

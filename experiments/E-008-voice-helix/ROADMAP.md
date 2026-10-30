@@ -36,13 +36,14 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Tone colour from tilt (belt vs straight AUC 0.81, VocalSet); pressed cue retired (was at chance, AUC 0.53); tone colour per take in summary, progress and week lines, described not rated.
 - Dynamics per take: swell within long notes and span soft to loud (messa di voce vs straight AUC 0.93, VocalSet), described; swell on the progress and week lines.
 - Key drift per take: tuning slide over the take with ± (synthetic SD 16 ¢; vocadito agreement SD 41 ¢), praised or a drone exercise; on the progress and week lines.
+- Hear it from the summary: ▶ best note, ▶ furthest-off note then tuned.
 - Eyes-free: "say note" (N) speaks the held note and cents via a live region; `?` lists the keys.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
 ## Next
 
-0. **Key drift, part 2**: better real-voice agreement (vocadito SD 41 ¢ vs synthetic 16).
+0. **Key drift, part 2**: better real-voice agreement (vocadito SD 41 ¢ vs synthetic 16); local/global circular unwraps tried 2026-10-30, no gain (39-91 ¢): needs a different truth or note-level approach.
 1. **Rating with ground truth**: human-judged takes across styles from openly
    licensed sources only, then a rating that ranks them correctly (see
    `rating/README.md`).

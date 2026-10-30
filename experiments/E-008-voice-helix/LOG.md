@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-30 · hear it from the summary
+
+Built: "▶ hear it" by the best note in "went well" (plays it from the take) and the furthest-off held note (≥ 0.4 s, ≥ 20 ¢) leading "to work on" with "▶ yours, then tuned" (A/B loop with spotless). A singer now hears the note the words are about, theirs next to the tuned version, in one click. check.mjs: both buttons tapped (a note forced 40 ¢ off for the second), 3 browsers. Negative result, not shipped: key drift unwrapping against a ±3/5/8 s local circular mean or a global circular fit gave vocadito SD 63/39/39/91 ¢ vs 41 now; the agreement limit is note-level ambiguity on loose real intonation (offsets near ±50 ¢), not the unwrap rule. `drift-bench.mjs` takes 0 melodies to skip synthetic. iOS risk: none new (playback through the existing paths). Next: edge onsets or tone part 2.
+
 ## 2026-10-30 · key drift on the progress line
 
 Built: each take stores |key drift| (`takeDrift`, synthetic SD 16 ¢, vocadito SD 41 ¢); a 'key drift' row in the take table, a progress line with band and a week line, lower is better, shown but not rated (excluded from the rating and warm-up, given the coarse real-voice agreement). Takes too short for a drift store none and the line skips them. A singer working with a drone now sees whether their tuning holds better over weeks. check.mjs: 12 seeded takes (two without drift), 70 to 15 ¢, read 'better than the takes before', not in RATED, 3 browsers. No new measurement. iOS risk: none (localStorage). Next: real-voice drift agreement (note matching) or edge onsets.
@@ -33,8 +37,3 @@ Built: each take's median spectral tilt (page code, sung frames) as a 'tone colo
 ## 2026-10-27 · pressed cue retired, tone colour measured
 
 Built: `check/press-bench.mjs` (page code, VocalSet scales belt/straight/breathy, 20 singers, 294 clips). Found: the 'pressed / strained' cue fired on 18 % of belt and straight frames alike (AUC 0.53), uncorrected H1-H2 AUC 0.54: a coin toss shown as a flaw. Retired it (chip and demo gone) and uncoloured H1-H2; the tilt chip, which coloured almost every voice 'warn', now names a tone colour (bright, belt-like / balanced / soft, airy) as a description. Tilt: belt +0.45 ± 0.32, straight -1.29 ± 0.23, breathy -2.39 ± 0.24 dB/oct; belt brighter than straight AUC 0.81, pairs 92.6 ± 5.3 %. A singer who belts is no longer told they strain. iOS risk: none new. Next: tone colour per take in the summary and progress, or edge onsets.
-
-## 2026-10-27 · breathiness, measured (CPP)
-
-Built: CPP (cepstral peak prominence) per frame in the worker; the 'breathy' cue, a live 'clarity (CPP)' chip, a 'voice clarity' progress line and the take summary (praise ≥ 24.5 dB, straw-phonation point < 23 dB) use it. Found first: the old HNR-based breathy cue never fired on VocalSet's breathy scales (AUC 0.36). Numbers (`check/breath-bench.mjs`, 194 VocalSet clips, 20 singers): CPP breathy 22.5 ± 0.6 vs straight 27.0 ± 0.5 dB, AUC 0.90, same-singer pairs 98.9 ± 2.1 %; cue AUC 0.83. Fixed from the failed first attempt: MP3's empty band above 16 kHz cut a straight demo's CPP by 3 dB; CPP now over 0 to sr/4 with a 90 dB floor, and the same clips at 80 kbit/s MP3 read AUC 0.91 (1.3 dB lower overall). Also: check.mjs now runs each browser in its own process (WebKit hung after Chrome and Firefox in one). iOS risk: WebKit on Linux decodes the m2 straight MP3 demo 4.6 dB lower in CPP than Chrome/Firefox (23.9 vs 28.5; the polished take agrees, 21.9 vs 21.8); live mic input is not decoded, but loaded MP3/AAC files on iPhone may read lower. One extra 2048-point FFT per frame. Next: H1-H2/tilt validated on belt vs breathy (pressed cue), or edge onsets.
-
