@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-30 · notes as a person would mark them
+
+Built: `segNotes` (optimal partitioning of each voiced run, 7-frame median, penalty 4, notes from 60 ms) for the timeline, note by note, best notes and timing; `check/notes-bench.mjs`. First note-level benchmark: the old splitter found 806 of 2237 hand-marked notes. vocadito, 40 clips, page code, A1 as truth, F ± 1.96 SE: COnP 36.7 ± 5.3 → 74.2 ± 2.7 %, COn 36.9 → 82.7 ± 2.2, COnPOff 26.6 → 60.1 ± 3.5; second annotator against A1: 74.0 ± 2.9 / 81.7 ± 2.1 / 64.2 ± 4.0. Penalty and 40 ms lag were chosen on these clips (odd/even folds 72.7/72.5 with near-final settings), so slightly optimistic. Vibrato: VocalSet vibrato arpeggios median 9 notes (old 9), scales 18 (old 17); synthetic ±1 st at 5.5 Hz one note, ±1.5 st at 4 Hz splits to 3. Timing now uses these onsets: legato floor 31 → 12 ms, gapped 10 → 6, false pulse 0/40; vocadito pulse page 5, truth 7, both 3 (weak as before). A singer gets every note in a quick phrase, not just long ones. Intonation, stability and drift stay on `takeNotes`: their calibration is unchanged. Note score history mixes old and new lists. iOS risk: none new. Process: WebKit hung intermittently again, on the unchanged page too (control run); outer timeouts under about 600 s cut off check.mjs's own retries. Next: vowels part 2, drift on `segNotes`.
+
 ## 2026-10-30 · yours, then far
 
 Built: 'Where this can go' in the summary: '▶ yours, then far' loops the take's longest note (0.8 s or more) as sung, then in far vision; `abLoop` takes a target version. A singer hears the far point on their own note in one tap. check.mjs: button, loop, 3 browsers. No new measurement. iOS risk: none new. Next: vowels part 2.
@@ -29,11 +33,3 @@ Built: `pulseFit`/`takeTiming` (finds the steady pulse behind the note starts, f
 ## 2026-10-30 · steadier than any last week
 
 Built: `lastWeekLine` in the take summary's "went well": when the take's last three long notes (≥ 1 s) each wobble less than the steadiest long note of every take kept from the 7 days before today (by more than the 1 ¢ a single note reads to, 2+ such takes), it says so with the numbers, e.g. "Your last three long notes (2.0, 2.4, 2.8 ¢ wobble) were each steadier than any long note in your 2 takes from the week before today (best 4.0 ¢)". The mission's own example of feedback a singer can feel, now live. check.mjs: seeded week (and a 20-day-old take ignored), claim and no-claim cases, 3 browsers. No new measurement (wobble is the personal-best reading). iOS risk: none (localStorage). Next: edge onsets or tone part 2.
-
-## 2026-10-30 · hear it from the summary
-
-Built: "▶ hear it" by the best note in "went well" (plays it from the take) and the furthest-off held note (≥ 0.4 s, ≥ 20 ¢) leading "to work on" with "▶ yours, then tuned" (A/B loop with spotless). A singer now hears the note the words are about, theirs next to the tuned version, in one click. check.mjs: both buttons tapped (a note forced 40 ¢ off for the second), 3 browsers. Negative result, not shipped: key drift unwrapping against a ±3/5/8 s local circular mean or a global circular fit gave vocadito SD 63/39/39/91 ¢ vs 41 now; the agreement limit is note-level ambiguity on loose real intonation (offsets near ±50 ¢), not the unwrap rule. `drift-bench.mjs` takes 0 melodies to skip synthetic. iOS risk: none new (playback through the existing paths). Next: edge onsets or tone part 2.
-
-## 2026-10-30 · key drift on the progress line
-
-Built: each take stores |key drift| (`takeDrift`, synthetic SD 16 ¢, vocadito SD 41 ¢); a 'key drift' row in the take table, a progress line with band and a week line, lower is better, shown but not rated (excluded from the rating and warm-up, given the coarse real-voice agreement). Takes too short for a drift store none and the line skips them. A singer working with a drone now sees whether their tuning holds better over weeks. check.mjs: 12 seeded takes (two without drift), 70 to 15 ¢, read 'better than the takes before', not in RATED, 3 browsers. No new measurement. iOS risk: none (localStorage). Next: real-voice drift agreement (note matching) or edge onsets.

@@ -1060,6 +1060,19 @@ function takeNotes(fr){const notes=[],res=[];let cur=null;
       nr.sort((a,b)=>a-b);notes.push({med:m[m.length>>1],dur:cur.n*0.02,t0:Math.max(0,cur.fs[0].t-0.02),t1:cur.fs[cur.fs.length-1].t-0.02,wob:nr.length?nr[nr.length>>1]:null});}cur=null;};
   for(const f of fr){if(!f.voiced||!f.ok){close();continue;}if(cur&&Math.abs(f.midi-cur.sum/cur.n)<0.5){cur.n++;cur.sum+=f.midi;cur.ms.push(f.midi);cur.fs.push(f);}else{close();cur={n:1,sum:f.midi,ms:[f.midi],fs:[f]};}}close();
   return {notes,res};}
+// Note list a singer sees (timeline, note by note, summary): each voiced run, pitch median-filtered over 7 frames, is cut by optimal partitioning
+// (sum of squares about each segment's mean + SEG_P per note, 60 ms or longer), so legato steps split and vibrato does not. takeNotes (0.5 st from a running mean)
+// stays for the calibrated intonation and stability figures. check/notes-bench.mjs: vocadito, against two annotators.
+const SEG_P=4;
+function segNotes(fr){const out=[],N=fr.length,med=a=>a.slice().sort((x,y)=>x-y)[a.length>>1],F0=3;let i=0;
+  while(i<N){if(!fr[i].voiced||!fr[i].ok){i++;continue;}let e=i;while(e<N&&fr[e].voiced&&fr[e].ok)e++;const run=fr.slice(i,e),n=run.length;i=e;if(n<F0)continue;
+    const x=run.map((f,k)=>med(run.slice(Math.max(0,k-3),k+4).map(q=>q.midi))),s1=[0],s2=[0];for(let k=0;k<n;k++){s1.push(s1[k]+x[k]);s2.push(s2[k]+x[k]*x[k]);}
+    const C=new Float64Array(n+1).fill(Infinity),B=new Int32Array(n+1);C[0]=0;
+    for(let b=F0;b<=n;b++)for(let a=Math.max(0,b-600);a<=b-F0;a++){if(C[a]===Infinity)continue;const d=s1[b]-s1[a],v=C[a]+s2[b]-s2[a]-d*d/(b-a)+SEG_P;if(v<C[b]){C[b]=v;B[b]=a;}}
+    const cuts=[];for(let b=n;b>0;b=B[b])cuts.unshift([B[b],b]);
+    for(const [a,b] of cuts){const f=run.slice(a,b),nr=[];for(let k=3;k<f.length-3;k++)if(f[k].fit)nr.push(f[k].res);
+      out.push({med:med(f.map(q=>q.midi)),dur:f.length*0.02,t0:Math.max(0,f[0].t-0.04),t1:f[f.length-1].t-0.02,wob:nr.length?med(nr):null});}}
+  return out;}
 // Pitch drift: does the singer's tuning slide over the take? Each note's offset from the semitone grid (st), unwrapped
 // against a running reference (0.7/0.3), so a slow slide past a quarter tone is followed and not folded back; then
 // the duration-weighted straight line through the offsets over time: drift = its slope × the span, cents, ± 1.96 SE.
@@ -1087,7 +1100,7 @@ function pulseFit(on){const t=on.slice().sort((a,b)=>a-b).filter((x,i,A)=>!i||x-
   if(!C.length)return null;const lo=Math.min(...C.map(c=>c.r)),c=C.filter(c=>c.r<=lo*1.15).sort((a,b)=>b.T-a.T)[0];
   const st=c.T<0.3?2:1,beats=[];for(let k=0;k<=c.steps;k+=st)beats.push(c.x[0]+c.x[1]*k+c.x[2]*k*k);
   return {beats,step:c.T,sd:c.sd*1000,ci:1.96*c.sd*1000/Math.sqrt(2*(n-3)),change:c.change,ratio:c.r,pulse:c.r<PULSE_MAX,n,span:t[n-1]-t[0]};}
-function takeTiming(fr){return pulseFit(takeNotes(smoothPitch(fr)).notes.map(n=>n.t0));}
+function takeTiming(fr){return pulseFit(segNotes(fr).filter(n=>n.dur>=0.2).map(n=>n.t0));}
 function takeAspects(st){const fr=st.rec.frames,sn=st.rec.snaps,{notes,res}=takeNotes(fr);
   let cx=0,cy=0;for(const nt of notes){const a=2*Math.PI*(nt.med-Math.round(nt.med));cx+=nt.dur*Math.cos(a);cy+=nt.dur*Math.sin(a);}const off=Math.atan2(cy,cx)/(2*Math.PI);
   let iw=0,ia=0;for(const nt of notes){const d=nt.med-off;ia+=nt.dur*Math.abs(d-Math.round(d))*100;iw+=nt.dur;}
@@ -1105,7 +1118,7 @@ function takeAspects(st){const fr=st.rec.frames,sn=st.rec.snaps,{notes,res}=take
   const slide={n:dp.length,of:ons,depth:dm,sd:dsd,style:dp.length>=4&&dp.length/ons>=2/3&&dsd<=0.2*dm};
   const meds=notes.map(n=>n.med).sort((a,b)=>a-b);
   const rg=[];fr.forEach((f,i)=>{if(f.voiced&&f.f0<1000&&sn[i].spr)rg.push(sn[i].spr);});rg.sort((a,b)=>a-b);
-  return {slide,ring:rg.length>=150?rg[rg.length>>1]:NaN,perf:notePerf(notes,off,slide.style?[]:st.rec.events).map(n=>({...n,vow:spanVowel(st.rec.frames,n.t0,n.t1)})),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,clar:cp.length?cp[cp.length>>1]:0,clarN:cp.length,tone:tl.length?tl[tl.length>>1]:0,toneN:tl.length,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,breaks:registerBreaks(fr),vib:takeVibrato(st),drift:takeDrift(fr),tm:takeTiming(fr),get rhythm(){return this.tm&&this.tm.pulse?this.tm.sd:NaN},dyn:takeDynamics(st),get swell(){return this.dyn?this.dyn.maxSwell:NaN},get kdrift(){return this.drift?Math.abs(this.drift.cents):NaN},mn:meds.length>4?Math.min(...meds):0,mx:meds.length>4?Math.max(...meds):0,ok:notes.length>=6&&sung>=4};}
+  return {slide,ring:rg.length>=150?rg[rg.length>>1]:NaN,perf:notePerf(segNotes(fr),off,slide.style?[]:st.rec.events).map(n=>({...n,vow:spanVowel(st.rec.frames,n.t0,n.t1)})),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,clar:cp.length?cp[cp.length>>1]:0,clarN:cp.length,tone:tl.length?tl[tl.length>>1]:0,toneN:tl.length,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,breaks:registerBreaks(fr),vib:takeVibrato(st),drift:takeDrift(fr),tm:takeTiming(fr),get rhythm(){return this.tm&&this.tm.pulse?this.tm.sd:NaN},dyn:takeDynamics(st),get swell(){return this.dyn?this.dyn.maxSwell:NaN},get kdrift(){return this.drift?Math.abs(this.drift.cents):NaN},mn:meds.length>4?Math.min(...meds):0,mx:meds.length>4?Math.max(...meds):0,ok:notes.length>=6&&sung>=4};}
 // Per held note, for the timeline: cents off the take's grid, wobble inside the note, and whether it
 // was scooped into, folded into a 0..1 score weighted 60/25/15. The median trained singer (14 ¢, 3 ¢
 // wobble, no scoop) scores about 0.8; 25 ¢ off scores about 0.55.
