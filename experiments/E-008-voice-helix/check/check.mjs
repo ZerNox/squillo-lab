@@ -146,6 +146,12 @@ async function run([name, launch, ctxOpt, file]) {
       nn.hear[m] = await p.evaluate(m => m === 'worst' ? AU.kind === 'ab' && AU.source.loop : AU.kind === 'take' && AU.play && AU.play.until > 0, m); nn.hear.ok = nn.hear.ok && nn.hear[m]; }
     await tap(p.locator('#bPlaySpot')); await p.waitForTimeout(1200);
     // Far vision: a fourth version; a version button carries on from the same moment; the render differs from spotless only where a long note exists.
+    // Sing it again: tuned note, 4 s capture (the mic stubbed, synthetic note 10 ¢ sharp of the target fed in), a reading with ± in the box.
+    nn.drill = await p.evaluate(async () => { const b = document.getElementById('bTry'); if (!b) return { ok: false, why: 'no button' }; const m = +b.dataset.m, sr = AU.sr || AU.ctx.sampleRate, old = useMic; useMic = async () => { AU.kind = 'mic'; }; b.click();
+      for (let i = 0; i < 100 && !DRILL.rec; i++) await new Promise(r => setTimeout(r, 50)); const live = !!DRILL.rec, n = sr * 3, x = new Float32Array(n); let ph = 0; for (let i = 0; i < n; i++) { ph += 2 * Math.PI * 440 * Math.pow(2, (m + 0.1 - 69) / 12) / sr; for (let h = 1; h <= 6; h++) x[i] += 0.15 * Math.sin(h * ph) / h; } DRILL.rec && DRILL.rec.push(x);
+      for (let i = 0; i < 300 && DRILL.busy; i++) await new Promise(r => setTimeout(r, 100)); useMic = old; const t = document.getElementById('tryBox').textContent; stopSource(); return { live, t, ok: live && /Try 1: on the note, 1?[0-9] ¢ sharp ± [0-9]+/.test(t) && !/Further off/.test(t) }; });
+    if (!nn.drill.ok) throw new Error('sing it again: ' + JSON.stringify(nn.drill));
+    await p.locator('#tryBox').scrollIntoViewIfNeeded(); await p.locator('#tryBox').locator('xpath=..').screenshot({ path: join(out, `${name}-drill.png`) });
     { const bt = p.locator('#rating [data-hear="far"]'); nn.farAb = await bt.count(); if (nn.farAb) { await tap(bt); await p.waitForTimeout(300); nn.farAb = await p.evaluate(() => AU.kind === 'ab' && AU.source.loop && /far/.test(AU.ab)); await p.evaluate(() => stopSource()); } if (!nn.farAb) throw new Error('far A/B: ' + nn.farAb); await tap(p.locator('#bPlaySpot')); await p.waitForTimeout(1000); }
     nn.ring = await p.evaluate(() => ({ v: TAKE.aspects.ring, line: /Ring: singing power ratio/.test($('rating').textContent), row: Number.isFinite(loadHist().slice(-1)[0].ring) && !RATED.some(x => x.k === 'ring') }));
     if (!(nn.ring.v > -60 && nn.ring.v < 10 && nn.ring.line && nn.ring.row)) throw new Error('ring: ' + JSON.stringify(nn.ring));

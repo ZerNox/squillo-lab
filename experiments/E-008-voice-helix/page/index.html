@@ -870,7 +870,7 @@ document.addEventListener('click',primeAudio,true);
 const TAKE={rec:null,recN:0,buf:null,half:null,spot:null,segs:[],busy:false,aspects:null,rating:null},MAXTAKE=60,MAXFILE=360,LEAD=1.5;
 const bRec=$('bRec'),bPlayTake=$('bPlayTake'),bPlayHalf=$('bPlayHalf'),bPlaySpot=$('bPlaySpot'),bPlayFar=$('bPlayFar'),takeInfo=$('takeInfo'),takebar=$('takebar'),playhead=$('playhead'),ratingEl=$('rating');
 const mkBuf=(n,sr)=>new AudioBuffer({length:Math.max(1,n),numberOfChannels:1,sampleRate:sr});
-function takeTap(b){rfTap(b);if(!TAKE.rec)return;TAKE.rec.push(b.slice());TAKE.recN+=b.length;if(TAKE.recN>=MAXTAKE*AU.sr)setTimeout(finishTake,0);}
+function takeTap(b){rfTap(b);if(DRILL.rec)DRILL.rec.push(b.slice());if(!TAKE.rec)return;TAKE.rec.push(b.slice());TAKE.recN+=b.length;if(TAKE.recN>=MAXTAKE*AU.sr)setTimeout(finishTake,0);}
 bRec.onclick=()=>{if(TAKE.rec){finishTake();return;}if(TAKE.busy)return;
   if(!AU.kind||AU.kind==='take'){takeInfo.textContent='Pick a source first: Mic to sing, or a demo or recording to try it out.';return;}
   TAKE.rec=[];TAKE.recN=0;bRec.textContent='■ stop take';bRec.setAttribute('aria-pressed','true');takeInfo.textContent='Recording… press stop when you are done (60 s at most).';};
@@ -1126,7 +1126,7 @@ const PERF_MED=0.79;
 function notePerf(notes,off,events){const sc=events.filter(e=>e.type==='scoop').map(e=>e.t);
   return notes.map(n=>{const d=n.med-off,c=Math.abs(d-Math.round(d))*100,scoop=sc.some(t=>n.t0>=t-0.5&&n.t0<=t+0.3);
     const q=0.6*clamp(1-(c-5)/30,0,1)+0.25*(n.wob===null?0.7:clamp(1-(n.wob-2)/8,0,1))+0.15*(scoop?0:1);
-    return {t0:n.t0,t1:n.t1,c,wob:n.wob,scoop,q,g:q>=0.75?'g':q>=0.5?'w':'b'};});}
+    return {t0:n.t0,t1:n.t1,c,d:(d-Math.round(d))*100,m:off+Math.round(d),wob:n.wob,scoop,q,g:q>=0.75?'g':q>=0.5?'w':'b'};});}
 // The sliding line: duration-weighted mean note score over the previous 10 s, every 0.25 s. It breaks
 // where those 10 s hold less than 1 s of held notes (runs, speech, pauses), rather than let one note speak for them.
 function perfLine(P,d){const out=[];for(let t=0;t<=d;t+=0.25){let a=0,w=0;for(const n of P){const o=Math.min(n.t1,t)-Math.max(n.t0,t-10);if(o>0){a+=n.q*o;w+=o;}}
@@ -1357,14 +1357,14 @@ function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;
   h+='<h3>Went well</h3><ul>'+[...(hb?[`Your best note, at ${mmss(hb.t0)}: ${hb.c.toFixed(0)} ¢ off the take's grid${hb.wob!==null?`, ${hb.wob.toFixed(1)} ¢ wobble`:''}. ${hear(hb,'best','▶ hear it')}`]:[]),`You sang ${a.notes} held notes over ${a.sung.toFixed(0)} s, across ${a.range.toFixed(0)} semitones.`,...(TAKE.stretch?[`Your strongest stretch ended around ${mmss(TAKE.stretch.hi[0])}: the line on the bar peaks there.`]:[]),...(TAKE.best&&TAKE.best.length?[`${TAKE.best.length} standout note${TAKE.best.length>1?'s':''} (★ on the bar): on the note, steady, started cleanly.`]:[]),...(a.slide&&a.slide.style?[`Your slides into notes are a style, not a flaw: ${a.slide.n} of ${a.slide.of} notes, each about ${a.slide.depth.toFixed(1)} ± ${a.slide.sd.toFixed(1)} semitones, the same every time. They are not marked down.`]:[]),...vibLine(a.vib),...driftLine(a.drift,true),...timingLine(a.tm,true).map(l=>a.tm.pulse?l+' '+hear({t0:0,t1:0},'pulse','▶ hear it with your pulse'):l),...clarLine(a,true),...toneLine(a),...ringLine(a),...dynLine(a.dyn),...pbLines(a.perf,TAKE.d),...good.map(x=>`Your ${x.name}: ${fmt(x,a[x.k])} ${x.unit}${R?`, better than ${Math.round(R.per[x.k]*100)} % of the pool`:`, on a par with or better than the median conservatory-trained singer (${TRAINED_MED[x.k]})`}.`)].map(t=>`<li>${t}</li>`).join('')+'</ul>';
   const work=R?order.slice(-2).reverse().filter(x=>R.per[x.k]<0.75).slice(0,R.R>=2200?1:2):order.filter(x=>vsMed(x)<-0.34).reverse().slice(0,2);
   const wl=work.map(x=>`${x.name} (${fmt(x,a[x.k])} ${x.unit}): ${ASPECT_WORK[x.k].ex}${x.k==='onset'?' Slides into notes are a style in pop and soul: work on them only where you did not mean them.':''}`);
-  if(hw)wl.unshift(`Your furthest-off held note, at ${mmss(hw.t0)}, was ${hw.c.toFixed(0)} ¢ off the take's grid: hear it, then the same note tuned, and sing along with the second. ${hear(hw,'worst','▶ yours, then tuned')}`);
+  if(hw)wl.unshift(`Your furthest-off held note, at ${mmss(hw.t0)}, was ${hw.c.toFixed(0)} ¢ off the take's grid: hear it, then the same note tuned, and sing along with the second. ${hear(hw,'worst','▶ yours, then tuned')} ${hw.m===undefined?'':`<button class="btn hear" id="bTry" data-m="${hw.m}" data-d="${hw.d}" data-t0="${hw.t0}" data-t1="${hw.t1}">🎙 sing it again</button><div id="tryBox" aria-live="polite"></div>`}`);
   wl.push(...clarLine(a,false),...driftLine(a.drift,false),...timingLine(a.tm,false));
   if(a.breaks&&a.breaks.length)wl.push(`Your voice flipped register on a glide ${a.breaks.length>1?a.breaks.length+' times, ':''}around ${a.breaks.map(b=>nn(Math.round(b.m))+' at '+mmss(b.t)).join(', ')}: sirens on “ng” through that spot, slowly and lightly, help the two registers meet (Titze 2006).`);if(TAKE.stretch)wl.push(`The line dips lowest in the 10 s before ${mmss(TAKE.stretch.lo[0])}: click the bar there to listen back.`);
   if(wl.length)h+='<h3>To work on</h3><ul>'+wl.map(t=>`<li>${t}</li>`).join('')+'</ul>';
   {const ln=[...a.perf].filter(n=>n.t1-n.t0>=0.8).sort((x,y)=>(y.t1-y.t0)-(x.t1-x.t0))[0];if(ln)h+=`<h3>Where this can go</h3><p>Your longest note, at ${mmss(ln.t0)}, as it is, then in your far vision: tuned, even vibrato, a gentle swell. One possible far point. ${hear(ln,'far','▶ yours, then far')}</p>`;}
   h+=`<p class="fine">${R?`Provisional Elo: each reference voice is one game on intonation, steadiness and clean onsets (tone clarity depends on the microphone and room, so it is not rated). 2000 is the median conservatory-trained singer in ${R.pool}. It ranks you within this pool, not the world.`:''} The take's tuning is ${a.off>=0?'+':''}${(a.off*100).toFixed(0)} ¢ from A440; notes are measured on that grid. <span id="pitchAcc">How sure the pitch is: on 40 real a cappella excerpts by 29 singers (vocadito, CC BY 4.0) this tracker puts 97.6 ± 0.7 % of sung moments within half a semitone of hand-checked pitch; lower voices 97.3 ± 1.4 %, higher 97.8 ± 0.7 %; about 1 in 8 breaths or consonants is read as a note.</span></p>`;
   ratingEl.innerHTML=h+renderProgress();for(const e of ratingEl.querySelectorAll('[data-hear]'))e.onclick=()=>{const t0=+e.dataset.t0,t1=+e.dataset.t1;
-    if(e.dataset.hear==='pulse')playPulse();else if(e.dataset.hear==='worst')abLoop(t0,t1,'note');else if(e.dataset.hear==='far')abLoop(t0,t1,'longest note','far');else playTake('take',Math.max(0,t0-0.3),Math.min(TAKE.buf.duration,t1+0.3));};const fg=$('forget');if(fg)fg.onclick=()=>{try{localStorage.removeItem(HIST_KEY);}catch(e){}renderRating();};}
+    if(e.dataset.hear==='pulse')playPulse();else if(e.dataset.hear==='worst')abLoop(t0,t1,'note');else if(e.dataset.hear==='far')abLoop(t0,t1,'longest note','far');else playTake('take',Math.max(0,t0-0.3),Math.min(TAKE.buf.duration,t1+0.3));};const bt=$('bTry');if(bt)bt.onclick=()=>drillGo(bt);const fg=$('forget');if(fg)fg.onclick=()=>{try{localStorage.removeItem(HIST_KEY);}catch(e){}renderRating();};}
 // Target pitch per frame for "spotless": a 250 ms running median inside each voiced run (keeps the
 // melody, drops wobble), the start of each note (up to 300 ms, a third of notes from 200 ms) held at its
 // settled pitch (no scoop), then snapped
@@ -1409,6 +1409,26 @@ function renderTakebar(){takebar.querySelectorAll('i,u,s,svg').forEach(e=>e.remo
   TAKE.stretch=stretches(L);renderMarks();}
 // A/B at a spot: your note, a breath, the same moment spotless, a longer breath, looped until you click
 // it again or play anything else. The spot is padded by 0.4 s each side and capped at 4 s.
+// Sing it again (pitch matching, Hutchins & Peretz 2012): the furthest-off note, tuned, in the singer's own voice, then 4 s of mic and a reading against
+// that same note. Reading: the longest note in the capture, its first 0.1 s dropped, median ¢ from the target (nearest octave), ± 1.96 SE over 0.25 s blocks, 3 ¢ at least. check/drill-bench.mjs.
+const DRILL={rec:null,tries:[],t0:-1,busy:false},DRILL_S=4;
+async function tryRead(buf,m){const fs=await trackTake(buf);viterbiF0(fs);trimEdges(fs,buf);const st=new Stats();for(const f of fs)ingest(st,f,'take');const fr=st.rec.frames,n=segNotes(fr).sort((a,b)=>b.dur-a.dur)[0];if(!n||n.dur<0.4)return null;
+  const v=fr.filter(f=>f.voiced&&f.ok&&f.t>=n.t0+0.1&&f.t<=n.t1).map(f=>({t:f.t,c:f.midi-m}));if(v.length<10)return null;const med=a=>a.slice().sort((x,y)=>x-y)[a.length>>1],o=12*Math.round(med(v.map(f=>f.c))/12),B={};
+  for(const f of v)(B[Math.floor((f.t-n.t0)/0.25)]??=[]).push(f.c-o);const b=Object.values(B).filter(q=>q.length>=5).map(med),k=b.length,mb=b.reduce((x,y)=>x+y,0)/(k||1),sd=k>1?Math.sqrt(b.reduce((x,y)=>x+(y-mb)**2,0)/(k-1)):0;
+  return {c:med(v.map(f=>f.c-o))*100,e:Math.max(3,k>1?196*sd/Math.sqrt(k):30),dur:n.dur};}
+const tryWord=c=>`${Math.abs(c).toFixed(0)} ¢ ${c<0?'flat':'sharp'}`;
+function tryLine(r,i,was){if(!r)return `<li>Try ${i+1}: no held note heard. Hold it for about a second.</li>`;const on=Math.abs(r.c)<=Math.max(15,r.e),gain=Math.abs(was)-Math.abs(r.c);
+  return `<li>Try ${i+1}: ${on?'on the note, ':''}${tryWord(r.c)} ± ${r.e.toFixed(0)} (${r.dur.toFixed(1)} s held). ${gain>r.e?`${gain.toFixed(0)} ¢ closer than in the take.`:on?'':gain<-r.e?'Further off than in the take: listen once more.':'About the same as in the take.'}</li>`;}
+function renderTry(msg,d){const el=$('tryBox');if(!el)return;el.innerHTML=(msg?`<p class="fine">${msg}</p>`:'')+(DRILL.tries.length?`<ul>${DRILL.tries.map((r,i)=>tryLine(r,i,d)).join('')}</ul>`:'')+(DRILL.tries.length&&!DRILL.busy?`<button class="btn hear" id="tryDone">mic off</button>`:'');const b=$('tryDone');if(b)b.onclick=()=>{stopSource();b.remove();};}
+async function drillGo(b){if(DRILL.busy||!TAKE.spot)return;const t0=+b.dataset.t0,t1=+b.dataset.t1,m=+b.dataset.m,d=+b.dataset.d;if(AU.ctx)AU.ctx.resume();DRILL.busy=true;if(DRILL.t0!==t0){DRILL.t0=t0;DRILL.tries=[];}
+  try{if(AU.kind!=='mic'){renderTry('Starting the microphone: stay quiet for 2 seconds…',d);await useMic();for(let i=0;i<60&&calibrating;i++)await new Promise(r=>setTimeout(r,100));if(AU.kind!=='mic'){renderTry('The microphone is needed: '+statusEl.textContent,d);return;}}
+    const ctx=AU.ctx,sr=TAKE.spot.sampleRate,a=Math.max(0,t0-0.05),dur=Math.min(t1-t0+0.1,2.5),n=Math.round(dur*sr),c=mkBuf(n,sr);c.getChannelData(0).set(TAKE.spot.getChannelData(0).subarray(Math.round(a*sr),Math.round(a*sr)+n));
+    const s=ctx.createBufferSource(),g=ctx.createGain(),t=ctx.currentTime+0.05;s.buffer=c;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(0.9,t+0.02);g.gain.setValueAtTime(0.9,t+dur-0.05);g.gain.linearRampToValueAtTime(0,t+dur);s.connect(g);g.connect(ctx.destination);s.start(t);
+    renderTry('Listen: your note, tuned…',d);await new Promise(r=>setTimeout(r,(dur+0.25)*1000));
+    DRILL.rec=[];renderTry(`Now you: sing it and hold, ${DRILL_S} s.`,d);await new Promise(r=>setTimeout(r,DRILL_S*1000));
+    const ch=DRILL.rec;DRILL.rec=null;const N=ch.reduce((x,y)=>x+y.length,0),buf=mkBuf(Math.max(1,N),AU.sr),x=buf.getChannelData(0);let o=0;for(const q of ch){x.set(q,o);o+=q.length;}
+    DRILL.tries.push(N>=AU.sr?await tryRead(buf,m):null);DRILL.busy=false;renderTry('',d);}
+  finally{DRILL.busy=false;DRILL.rec=null;}}
 async function abLoop(t0,t1,label,to='spot'){const key=label+'@'+t0+to;if(AU.kind==='ab'&&AU.ab===key){stopSource();takeInfo.textContent='A/B stopped.';return;}
   if(!TAKE.spot)return;stopSource();const ctx=await ensureCtx();await ctx.resume();const sr=TAKE.buf.sampleRate,d=TAKE.buf.duration;
   const k=+speedSel.value,a=Math.max(0,t0-0.4),b=Math.min(d,Math.max(t1+0.4,a+0.6),a+4),i0=Math.round(a/k*sr),n=Math.round((b-a)/k*sr),g1=Math.round(0.5*sr),g2=Math.round(sr);
