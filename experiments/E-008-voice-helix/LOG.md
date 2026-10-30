@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-30 · ring: singer's formant, first measurement
+
+Built: singing power ratio per frame (`spr`, Omori 1996), `aspects.ring`, a 'ring' line in the summary and a progress row, described, not rated; `check/ring-bench.mjs`. A singer now sees how much 2-4 kHz energy their voice carries, take by take. VocalSet (page code, no singer's-formant label exists, so contrasts are proxies): forte vs pp AUC 0.85, pairs 19/20, -18.4 vs -28.1 dB; straight vs breathy AUC 0.82, pairs 16/19, -18.5 vs -26.0 dB; first vs second half r 0.89 (79 clips). Not fully gain-free: at -12 dB the worst clip shifted 5.5 dB (frames gated differently), so small changes between sessions mean little. SPR rises with loudness; the line says so. No live chip. Process: one WebKit run closed its page mid-check (same as earlier reports, cause not found); WebKit alone passed. iOS risk: none new. Next: vowels part 2.
+
 ## 2026-10-30 · far vision in the singer's own voice
 
 Built: a fourth version, '▶ far vision': spotless plus even vibrato (the singer's own rate and width when in the trained band, otherwise 5.8 Hz, ±0.45 st) and a ±1.5 dB swell on held notes of 0.8 s or more (`farVib`, `improveTake`, `check/far-bench.mjs`). Version buttons and keys 1-4 now carry on from the same moment. A singer can hear themselves further on and flip between take, halfway, spotless and far mid-phrase. VocalSet straight clips (14 files, 28 far notes, page code, 5.8 Hz/0.45 st asked): read back 5.78 [5.75-6.07] Hz, 0.41 [0.28-0.45] st, on the 9 files with a reading; 5 short-note scale clips gave no reading. 'Still your voice' proxy, not a listener: 1/3-octave long-term spectrum, 500 Hz-8 kHz, take vs far 1.43 dB median [0.38-5.20], vs spotless 1.23 [0.32-4.23], so far adds little beyond spotless. The first band floor (100 Hz) gave 5-11 dB, room noise under f0, so the floor was raised after seeing it. Far vision is pitch and level only: it does not model tone; naturalness unmeasured. iOS risk: none new (a third render lengthens the scan; time on a phone unmeasured). Next: vowels part 2 or singer's formant.
@@ -29,11 +33,3 @@ Built: "▶ hear it" by the best note in "went well" (plays it from the take) an
 ## 2026-10-30 · key drift on the progress line
 
 Built: each take stores |key drift| (`takeDrift`, synthetic SD 16 ¢, vocadito SD 41 ¢); a 'key drift' row in the take table, a progress line with band and a week line, lower is better, shown but not rated (excluded from the rating and warm-up, given the coarse real-voice agreement). Takes too short for a drift store none and the line skips them. A singer working with a drone now sees whether their tuning holds better over weeks. check.mjs: 12 seeded takes (two without drift), 70 to 15 ¢, read 'better than the takes before', not in RATED, 3 browsers. No new measurement. iOS risk: none (localStorage). Next: real-voice drift agreement (note matching) or edge onsets.
-
-## 2026-10-30 · key drift per take
-
-Built: `takeDrift` (notes after a 0.22 s pitch average, offsets unwrapped against a running reference, weighted line over time, ± 1.96 SE) and `check/drift-bench.mjs`. Synthetic known drifts (90 melodies, 5 voice types, half with vibrato): error +1.4 ± 3.3 ¢, SD 15.8, truth inside ± 81/90. vocadito, page vs hand-corrected f0 through the same code: SD 41 ¢, sign agrees on 11/14 truly drifting clips: coarse on real voices, so the wording is conservative. A singer now hears 'you held your key' (whole ± within 20 ¢) or 'your tuning sank 45 ± 20 ¢ over 30 s' with a drone exercise (Howard 2007). check.mjs: -60 ¢ synthetic reads -54, level reads 0, both wordings, 3 browsers. iOS risk: none new. Next: drift on the progress line; tighten real-voice agreement (note matching).
-
-## 2026-10-29 · swell on the progress line
-
-Built: each take stores its largest within-note swell (`takeDynamics`, the measure benchmarked at messa vs straight AUC 0.93); a 'swell (dynamics)' row in the take table, a progress line with band, and a week line, all saying more swell / flatter, never better or worse (not rated, like tone colour). Takes without a 1 s note store no swell, so the line skips them instead of reading 0. A singer practising messa di voce now sees whether their swells grow over weeks. check.mjs: 12 seeded takes (two without swell) read 'more swell than the takes before', no better/worse, not in RATED, 3 browsers. No new measurement. iOS risk: none (localStorage). Next: edge onsets (finer hop) or tone part 2.

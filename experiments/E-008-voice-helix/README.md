@@ -68,7 +68,8 @@ summary, progress) and the page scrolls to it. Two resyntheses by
 pitch-synchronous overlap-add, tone, words and timing untouched: "spotless"
 (250 ms running median inside each voiced run, the start of each note held
 at its settled pitch, snapped to the grid) and "halfway" (half way from the
-take to spotless). A fourth version, "far vision", is spotless plus even vibrato and a ±1.5 dB swell
+take to spotless). The summary and progress lines also carry ring, the singing power ratio (Omori 1996; `check/ring-bench.mjs`, VocalSet, proxy contrasts: forte vs pp AUC 0.85, pairs 19/20; straight vs breathy AUC 0.82; up to 5.5 dB shift at -12 dB gain).
+A fourth version, "far vision", is spotless plus even vibrato and a ±1.5 dB swell
 on held notes of 0.8 s or more (`check/far-bench.mjs`, 14 VocalSet straight clips:
 5.8 Hz, ±0.45 st asked, 5.78 Hz, ±0.41 st read back, on the 9 with a reading;
 spectrum proxy 1.43 dB from the take, spotless 1.23; a proxy, not a listener).

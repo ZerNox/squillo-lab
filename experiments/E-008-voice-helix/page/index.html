@@ -392,17 +392,18 @@ function analyse(t){const sr=S.sr;const buf=new Float32Array(N);const st=(S.w-N+
     postMessage({type:'feat',n:S.count,t,rms,voiced:false,f0:0,cmnd:1,hnr:0,cpp:0,h12:0,tilt:0,a1p0:0,F:null,col:new Float32Array(FB)});return;}
   const thr=Math.max(0.004,S.noiseRms*3);let f0=0,cmnd=1,cs=null;if(rms>thr){const y=yin(buf,sr,(S.prevT>=0&&t-S.prevT<0.12)?S.prevF0:0);f0=y.f0;cmnd=y.cmnd;cs=y.cs;}
   const voiced=rms>thr&&cmnd<0.65&&f0>50&&f0<1100;
-  let hnr=0,cpp=0,h12=0,tilt=0,a1p0=0,F=null,nasOk=false;
+  let hnr=0,cpp=0,h12=0,tilt=0,spr=0,a1p0=0,F=null,nasOk=false;
   if(voiced){S.prevF0=f0;S.prevT=t;const r=Math.min(0.999,Math.max(0.001,1-cmnd/2));hnr=10*Math.log10(r/(1-r));
     h12=pk(f0*0.8,f0*1.2,binHz)-pk(f0*1.8,f0*2.2,binHz);
     cpp=cppOf(f0,sr);
     let n=0,sx=0,sy=0,sxx=0,sxy=0;for(let b=Math.floor(100/binHz);b<4000/binHz;b++){const x=Math.log2(b*binHz),yv=db[b];if(yv<-95)continue;n++;sx+=x;sy+=yv;sxx+=x*x;sxy+=x*yv;}tilt=n>4?(n*sxy-sx*sy)/(n*sxx-sx*sx):0;
+    {let a=-200,c=-200;for(let b=Math.ceil(50/binHz),e=Math.floor(4000/binHz);b<e;b++){if(b*binHz<2000)a=Math.max(a,db[b]);else c=Math.max(c,db[b]);}spr=c-a;} // singing power ratio (Omori et al. 1996): strongest peak 2-4 kHz over strongest under 2 kHz, dB
     const L=lpc(buf,sr);if(L){if(L.F)F=L.F;h12-=L.env(f0)-L.env(2*f0);
       // nasality A1-P0: oral first-formant harmonic vs low nasal murmur harmonic (180-340 Hz); only measurable on non-high vowels
       const oral=L.peaks.find(f=>f>=400&&f<=1100);let P0=-200;for(let k=1;k*f0<=340;k++){if(k*f0>=180)P0=Math.max(P0,pk(k*f0-0.25*f0,k*f0+0.25*f0,binHz));}
       if(oral&&P0>-150){const k1=Math.max(1,Math.round(oral/f0));a1p0=pk(k1*f0-0.3*f0,k1*f0+0.3*f0,binHz)-P0;nasOk=true;}}}
   for(let j=0;j<FB;j++){const fa=TD_FMIN*Math.pow(TD_FMAX/TD_FMIN,j/FB),fb=TD_FMIN*Math.pow(TD_FMAX/TD_FMIN,(j+1)/FB);let m=-120;for(let b=Math.floor(fa/binHz);b<=Math.max(Math.floor(fa/binHz),Math.floor(fb/binHz))&&b<db.length;b++)if(db[b]>m)m=db[b];col[j]=Math.min(1,Math.max(0,(m+92)/86));}
-  postMessage({type:'feat',n:S.count,t,rms,voiced,f0,cmnd,hnr,cpp,h12,tilt,a1p0,nasOk,F,col:col.slice(),cs:S.offline&&rms>thr?cs:null});}
+  postMessage({type:'feat',n:S.count,t,rms,voiced,f0,cmnd,hnr,cpp,h12,tilt,spr,a1p0,nasOk,F,col:col.slice(),cs:S.offline&&rms>thr?cs:null});}
 function onmsg(m){if(m.type==='init'){S.sr=m.sr;S.hop=m.hop||0.02;S.offline=!!m.offline;}
   else if(m.type==='audio'){const a=m.buf;for(let i=0;i<a.length;i++){S.ring[S.w]=a[i];S.w=(S.w+1)%S.ring.length;}S.count+=a.length;const t=S.count/S.sr;while(t>=S.next){S.next+=S.hop;if(S.count>=N)analyse(S.next-S.hop);}}
   else if(m.type==='calib'){S.prof=null;S.noiseRms=0;S.calib={until:S.count/S.sr+m.seconds,n:0,rms:0,acc:new Float64Array(N/2+1)};}
@@ -532,7 +533,7 @@ Stats.prototype.reset=function(){this.HIST=[];this.ft={f0:0,midi:0,voiced:false,
 let LIVE=null;
 function resetStats(){LIVE.reset();if(dsp)dsp.post({type:'reset'});}
 function ingest(st,m,src){const now=m.t;st.at=now;const FT=st.ft,HIST=st.HIST;const voiced=m.voiced;FT.voiced=voiced;FT.rms=m.rms;FT.cmnd=m.cmnd;
-  if(voiced){FT.f0=m.f0;FT.midi=midiOf(m.f0);FT.hnr=m.hnr;FT.cpp=FT.cpp?lerp(FT.cpp,m.cpp||0,0.3):m.cpp||0;FT.h12=lerp(FT.h12,m.h12,0.3);FT.tilt=m.tilt;if(m.nasOk){FT.a1p0=lerp(FT.a1p0||m.a1p0,m.a1p0,0.3);FT.nasT=now;}if(m.F){for(let i=0;i<3;i++)FT.Fs[i]=FT.Fs[i]?lerp(FT.Fs[i],m.F[i],0.5):m.F[i];}}
+  if(voiced){FT.f0=m.f0;FT.midi=midiOf(m.f0);FT.hnr=m.hnr;FT.cpp=FT.cpp?lerp(FT.cpp,m.cpp||0,0.3):m.cpp||0;FT.h12=lerp(FT.h12,m.h12,0.3);FT.tilt=m.tilt;FT.spr=m.spr;if(m.nasOk){FT.a1p0=lerp(FT.a1p0||m.a1p0,m.a1p0,0.3);FT.nasT=now;}if(m.F){for(let i=0;i<3;i++)FT.Fs[i]=FT.Fs[i]?lerp(FT.Fs[i],m.F[i],0.5):m.F[i];}}
   FT.nasOk=now-FT.nasT<0.6; // hold the last measurable A1-P0 briefly across frames where no oral F1 peak is found
   const dtF=HIST.length?now-HIST[HIST.length-1].t:0.02;
   const e={t:now,dt:dtF,src,f0:voiced?m.f0:0,midi:voiced?FT.midi:0,voiced,rms:m.rms,cm:m.cmnd,F1:voiced?FT.Fs[0]:0,F2:voiced?FT.Fs[1]:0,res:0,fit:false,st:0,ok:true};
@@ -976,6 +977,7 @@ const ASPECTS=[
  {k:'onset',name:'clean onsets',unit:'scoops per note',lower:true,tol:0.04,dec:2},
  {k:'clar',name:'voice clarity',unit:'dB CPP',lower:false,tol:0.7,dec:1,info:true},
  {k:'tone',name:'tone colour',unit:'dB/oct tilt',lower:false,tol:0.3,dec:1,info:true,desc:['brighter','softer']},
+ {k:'ring',name:'ring',unit:'dB SPR',lower:false,tol:2,dec:1,info:true,desc:['more ring','less ring']},
  {k:'swell',name:'swell (dynamics)',unit:'dB within a long note',lower:false,tol:2,dec:1,info:true,desc:['more swell','flatter']},
  {k:'kdrift',name:'key drift',unit:'¢ over the take',lower:true,tol:15,dec:0,info:true},
  {k:'rhythm',name:'rhythm spread',unit:'ms around your pulse',lower:true,tol:15,dec:0,info:true},
@@ -1102,7 +1104,8 @@ function takeAspects(st){const fr=st.rec.frames,sn=st.rec.snaps,{notes,res}=take
   const dm=dp.length?dp.reduce((t,x)=>t+x,0)/dp.length:0,dsd=dp.length>1?Math.sqrt(dp.reduce((t,x)=>t+(x-dm)**2,0)/(dp.length-1)):0;
   const slide={n:dp.length,of:ons,depth:dm,sd:dsd,style:dp.length>=4&&dp.length/ons>=2/3&&dsd<=0.2*dm};
   const meds=notes.map(n=>n.med).sort((a,b)=>a-b);
-  return {slide,perf:notePerf(notes,off,slide.style?[]:st.rec.events).map(n=>({...n,vow:spanVowel(st.rec.frames,n.t0,n.t1)})),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,clar:cp.length?cp[cp.length>>1]:0,clarN:cp.length,tone:tl.length?tl[tl.length>>1]:0,toneN:tl.length,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,breaks:registerBreaks(fr),vib:takeVibrato(st),drift:takeDrift(fr),tm:takeTiming(fr),get rhythm(){return this.tm&&this.tm.pulse?this.tm.sd:NaN},dyn:takeDynamics(st),get swell(){return this.dyn?this.dyn.maxSwell:NaN},get kdrift(){return this.drift?Math.abs(this.drift.cents):NaN},mn:meds.length>4?Math.min(...meds):0,mx:meds.length>4?Math.max(...meds):0,ok:notes.length>=6&&sung>=4};}
+  const rg=[];fr.forEach((f,i)=>{if(f.voiced&&f.f0<1000&&sn[i].spr)rg.push(sn[i].spr);});rg.sort((a,b)=>a-b);
+  return {slide,ring:rg.length>=150?rg[rg.length>>1]:NaN,perf:notePerf(notes,off,slide.style?[]:st.rec.events).map(n=>({...n,vow:spanVowel(st.rec.frames,n.t0,n.t1)})),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,clar:cp.length?cp[cp.length>>1]:0,clarN:cp.length,tone:tl.length?tl[tl.length>>1]:0,toneN:tl.length,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,breaks:registerBreaks(fr),vib:takeVibrato(st),drift:takeDrift(fr),tm:takeTiming(fr),get rhythm(){return this.tm&&this.tm.pulse?this.tm.sd:NaN},dyn:takeDynamics(st),get swell(){return this.dyn?this.dyn.maxSwell:NaN},get kdrift(){return this.drift?Math.abs(this.drift.cents):NaN},mn:meds.length>4?Math.min(...meds):0,mx:meds.length>4?Math.max(...meds):0,ok:notes.length>=6&&sung>=4};}
 // Per held note, for the timeline: cents off the take's grid, wobble inside the note, and whether it
 // was scooped into, folded into a 0..1 score weighted 60/25/15. The median trained singer (14 ¢, 3 ¢
 // wobble, no scoop) scores about 0.8; 25 ¢ off scores about 0.55.
@@ -1160,6 +1163,7 @@ function driftLine(dr,good){if(!dr)return [];const c=dr.cents,s=`${c<0?'sank':'r
   if(good)return Math.abs(c)+dr.ci<=20?[`You held your key: over ${dr.span.toFixed(0)} s and ${dr.n} notes your tuning moved ${c.toFixed(0)} ± ${dr.ci.toFixed(0)} ¢, under a fifth of a semitone.`]:[];
   return Math.abs(c)>=30&&Math.abs(c)>dr.ci?[`key drift (your tuning ${s}, so the end sits off the key you started in): sing the phrase over a drone of its first note (any tuner or app), then again without it and check the first note at the end; singers drift less with a reference (Howard 2007).`]:[];}
 // Tone colour of the take in words, a description in the went-well list, with where VocalSet's trained singers sit.
+function ringLine(a){return a.ring===a.ring?[`Ring: singing power ratio ${a.ring.toFixed(1)} dB, the 2-4 kHz peak against the strongest below (Omori 1996). Trained singers read about -18 full voice, -28 very soft, VocalSet; higher carries further, it also rises with loudness, and it is not a score.`]:[];}
 function toneLine(a){if(!a.tone||a.toneN<150)return [];const c=toneColour(a.tone);
   return [`Tone colour: ${c} (spectral tilt ${a.tone>0?'+':''}${a.tone.toFixed(1)} dB/oct; trained singers read belt +0.5, straight -1.3, breathy -2.4, VocalSet). A colour you chose, not a score${c==='balanced'?'; a good base to brighten for belt or soften for ballads.':'.'}`];}
 const CLAR_REF={s:'27.0 ± 0.5',b:'22.5 ± 0.6'};
@@ -1337,7 +1341,7 @@ function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;
   // spotless, one click from the words that name them.
   const hb=TAKE.best&&TAKE.best.length?TAKE.best.slice().sort((p,q)=>q.q-p.q)[0]:null,hw=(a.perf||[]).filter(n=>n.t1-n.t0>=0.4&&n.c>=20).sort((p,q)=>q.c-p.c)[0]||null;
   const hear=(n,m,l)=>`<button class="btn hear" data-hear="${m}" data-t0="${n.t0}" data-t1="${n.t1}">${l}</button>`;
-  h+='<h3>Went well</h3><ul>'+[...(hb?[`Your best note, at ${mmss(hb.t0)}: ${hb.c.toFixed(0)} ¢ off the take's grid${hb.wob!==null?`, ${hb.wob.toFixed(1)} ¢ wobble`:''}. ${hear(hb,'best','▶ hear it')}`]:[]),`You sang ${a.notes} held notes over ${a.sung.toFixed(0)} s, across ${a.range.toFixed(0)} semitones.`,...(TAKE.stretch?[`Your strongest stretch ended around ${mmss(TAKE.stretch.hi[0])}: the line on the bar peaks there.`]:[]),...(TAKE.best&&TAKE.best.length?[`${TAKE.best.length} standout note${TAKE.best.length>1?'s':''} (★ on the bar): on the note, steady, started cleanly.`]:[]),...(a.slide&&a.slide.style?[`Your slides into notes are a style, not a flaw: ${a.slide.n} of ${a.slide.of} notes, each about ${a.slide.depth.toFixed(1)} ± ${a.slide.sd.toFixed(1)} semitones, the same every time. They are not marked down.`]:[]),...vibLine(a.vib),...driftLine(a.drift,true),...timingLine(a.tm,true).map(l=>a.tm.pulse?l+' '+hear({t0:0,t1:0},'pulse','▶ hear it with your pulse'):l),...clarLine(a,true),...toneLine(a),...dynLine(a.dyn),...pbLines(a.perf,TAKE.d),...good.map(x=>`Your ${x.name}: ${fmt(x,a[x.k])} ${x.unit}${R?`, better than ${Math.round(R.per[x.k]*100)} % of the pool`:`, on a par with or better than the median conservatory-trained singer (${TRAINED_MED[x.k]})`}.`)].map(t=>`<li>${t}</li>`).join('')+'</ul>';
+  h+='<h3>Went well</h3><ul>'+[...(hb?[`Your best note, at ${mmss(hb.t0)}: ${hb.c.toFixed(0)} ¢ off the take's grid${hb.wob!==null?`, ${hb.wob.toFixed(1)} ¢ wobble`:''}. ${hear(hb,'best','▶ hear it')}`]:[]),`You sang ${a.notes} held notes over ${a.sung.toFixed(0)} s, across ${a.range.toFixed(0)} semitones.`,...(TAKE.stretch?[`Your strongest stretch ended around ${mmss(TAKE.stretch.hi[0])}: the line on the bar peaks there.`]:[]),...(TAKE.best&&TAKE.best.length?[`${TAKE.best.length} standout note${TAKE.best.length>1?'s':''} (★ on the bar): on the note, steady, started cleanly.`]:[]),...(a.slide&&a.slide.style?[`Your slides into notes are a style, not a flaw: ${a.slide.n} of ${a.slide.of} notes, each about ${a.slide.depth.toFixed(1)} ± ${a.slide.sd.toFixed(1)} semitones, the same every time. They are not marked down.`]:[]),...vibLine(a.vib),...driftLine(a.drift,true),...timingLine(a.tm,true).map(l=>a.tm.pulse?l+' '+hear({t0:0,t1:0},'pulse','▶ hear it with your pulse'):l),...clarLine(a,true),...toneLine(a),...ringLine(a),...dynLine(a.dyn),...pbLines(a.perf,TAKE.d),...good.map(x=>`Your ${x.name}: ${fmt(x,a[x.k])} ${x.unit}${R?`, better than ${Math.round(R.per[x.k]*100)} % of the pool`:`, on a par with or better than the median conservatory-trained singer (${TRAINED_MED[x.k]})`}.`)].map(t=>`<li>${t}</li>`).join('')+'</ul>';
   const work=R?order.slice(-2).reverse().filter(x=>R.per[x.k]<0.75).slice(0,R.R>=2200?1:2):order.filter(x=>vsMed(x)<-0.34).reverse().slice(0,2);
   const wl=work.map(x=>`${x.name} (${fmt(x,a[x.k])} ${x.unit}): ${ASPECT_WORK[x.k].ex}${x.k==='onset'?' Slides into notes are a style in pop and soul: work on them only where you did not mean them.':''}`);
   if(hw)wl.unshift(`Your furthest-off held note, at ${mmss(hw.t0)}, was ${hw.c.toFixed(0)} ¢ off the take's grid: hear it, then the same note tuned, and sing along with the second. ${hear(hw,'worst','▶ yours, then tuned')}`);

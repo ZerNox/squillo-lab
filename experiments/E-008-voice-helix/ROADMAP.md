@@ -42,6 +42,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Hear it with your pulse: the take with a soft click on the singer's own fitted pulse.
 - Sung vowel: live chip and note by note, only when sure (VocalSet 20 singers: 74 ± 5 % on 67 % of notes, 68 ± 4 % overall, none at 600 Hz and up).
 - Far vision: spotless plus even vibrato and a gentle swell on long notes (VocalSet read-back 5.78 Hz, 0.41 st for 5.8, 0.45 asked); versions switch at the same moment, keys 1-4.
+- Ring (singing power ratio): summary and progress line, described not rated (VocalSet forte vs pp AUC 0.85, pairs 19/20; proxies, no direct label).
 - Eyes-free: "say note" (N) speaks the held note and cents via a live region; `?` lists the keys.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
@@ -50,7 +51,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 
 0. **Timing, part 2**: legato onset floor 31 ms (level-envelope onsets); vocadito pulse agreement 3 of 9/7 clips.
 0. **Key drift, part 2**: better real-voice agreement (vocadito SD 41 ¢ vs synthetic 16); local/global circular unwraps tried 2026-10-30, no gain (39-91 ¢): needs a different truth or note-level approach.
-0. **Vowels, part 2**: back vowels (a/o/u) share F2 and cause most errors; try harmonic-sampled envelopes, then a take-level line such as vowels held across range. Singer's formant still unmeasured.
+0. **Vowels, part 2**: back vowels (a/o/u) share F2 and cause most errors; try harmonic-sampled envelopes, then a take-level line such as vowels held across range.
 1. **Rating with ground truth**: human-judged takes across styles from openly
    licensed sources only, then a rating that ranks them correctly (see
    `rating/README.md`).

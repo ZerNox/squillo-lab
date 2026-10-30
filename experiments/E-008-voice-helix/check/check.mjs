@@ -144,6 +144,8 @@ async function run([name, launch, ctxOpt, file]) {
       nn.hear[m] = await p.evaluate(m => m === 'worst' ? AU.kind === 'ab' && AU.source.loop : AU.kind === 'take' && AU.play && AU.play.until > 0, m); nn.hear.ok = nn.hear.ok && nn.hear[m]; }
     await tap(p.locator('#bPlaySpot')); await p.waitForTimeout(1200);
     // Far vision: a fourth version; a version button carries on from the same moment; the render differs from spotless only where a long note exists.
+    nn.ring = await p.evaluate(() => ({ v: TAKE.aspects.ring, line: /Ring: singing power ratio/.test($('rating').textContent), row: Number.isFinite(loadHist().slice(-1)[0].ring) && !RATED.some(x => x.k === 'ring') }));
+    if (!(nn.ring.v > -60 && nn.ring.v < 10 && nn.ring.line && nn.ring.row)) throw new Error('ring: ' + JSON.stringify(nn.ring));
     nn.far = await p.evaluate(() => { const f = TAKE.far && TAKE.far.getChannelData(0), t = AU.play && (AU.ctx.currentTime - AU.play.t0) * AU.play.k; return { len: !!f && f.length === TAKE.buf.length, peak: f ? f.reduce((m, v) => Math.max(m, Math.abs(v)), 0) : 0, t, status: /^Far vision/.test(VERSION.far.status) && VERSION.far.status.length > 20 }; });
     await tap(p.locator('#bPlayFar')); await p.waitForTimeout(300);
     nn.far.ok = nn.far.len && nn.far.peak > 0.01 && nn.far.peak <= 1 && nn.far.status && await p.evaluate(t => AU.play && AU.play.which === 'far' && (AU.ctx.currentTime - AU.play.t0) * AU.play.k >= t, nn.far.t);
