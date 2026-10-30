@@ -1147,7 +1147,15 @@ function pbLines(P,d){const lb=longBests(P);if(!lb)return [];const H=loadHist().
   if(lb.st&&Number.isFinite(bw)){if(lb.st.wob<bw-PB_WOB)out.push(`Personal best: your steadiest long note on this device, at ${mmss(lb.st.t0)}, wobbled ${lb.st.wob.toFixed(1)} ¢; your best in ${H.length} earlier takes was ${bw.toFixed(1)} ¢.`);
     else if(lb.st.wob<=bw+PB_WOB)out.push(`Your steadiest long note, at ${mmss(lb.st.t0)} (${lb.st.wob.toFixed(1)} ¢ wobble), matches your best of ${H.length} earlier takes (${bw.toFixed(1)} ¢) within the ±${PB_WOB} ¢ a single note reads to.`);}
   if(lb.tn){const L=lb.tn.t1-lb.tn.t0;if(L>bl+PB_LEN)out.push(`Personal best: you held a note in tune (within ${PB_TUNE} ¢) for ${L.toFixed(1)} s at ${mmss(lb.tn.t0)}, longer than any in ${H.length} earlier takes (${bl.toFixed(1)} s).`);}
+  const wk=lastWeekLine(P,d);if(wk)out.push(wk);
   return out;}
+// "Your last three long notes were steadier than any last week": the take's last 3 long notes against the
+// steadiest long note of every take kept from the 7 days before today; claimed only when all three beat it
+// by more than one note's noise (PB_WOB), and only with 2 or more such takes.
+function lastWeekLine(P,d){const L=P.filter(n=>n.t1-n.t0>=PB_MIN&&n.wob!==null);if(L.length<3)return '';const l3=L.slice(-3),mx=Math.max(...l3.map(n=>n.wob));
+  const t0=new Date(d);t0.setHours(0,0,0,0);const lo=t0.getTime()-7*864e5,W=loadHist().filter(r=>r.d>=lo&&r.d<t0.getTime()&&Array.isArray(r.lb)&&Number.isFinite(r.lb[0]));if(W.length<2)return '';
+  const bw=Math.min(...W.map(r=>r.lb[0]));if(mx>=bw-PB_WOB)return '';
+  return `Your last three long notes (${l3.map(n=>n.wob.toFixed(1)).join(', ')} ¢ wobble) were each steadier than any long note in your ${W.length} takes from the week before today (best ${bw.toFixed(1)} ¢).`;}
 function slide(v,i){const w=v.slice(Math.max(0,i-HIST_WIN+1),i+1),n=w.length,m=w.reduce((t,x)=>t+x,0)/n;
   const sd=n>1?Math.sqrt(w.reduce((t,x)=>t+(x-m)**2,0)/(n-1)):null;return {m,ci:sd===null?null:1.96*sd/Math.sqrt(n),n};}
 // Trend in words only when the last 5 takes differ from the 5 before by more than both bands together.
