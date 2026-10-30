@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-30 · hear it with your pulse
+
+Built: on a take with a found pulse, '▶ hear it with your pulse' plays the take with a soft click on the singer's own fitted pulse (every second step when under 0.3 s), following their tempo; clicks skip the analysis path and stop with playback. A singer now hears where they sat ahead or behind, with no metronome at the time of singing. check.mjs: button, click oscillator, stop, 3 browsers. No new measurement. Process: full three-browser runs hung starting WebKit after Firefox three times this run though each browser passes alone (WebKit 44 s, Firefox 52 s), cause not found; verified browser by browser. iOS risk: clicks run on the already resumed context; 'ended' listener needs Safari 14.1+. Next: legato onset floor.
+
 ## 2026-10-30 · timing and rhythm, no click needed
 
 Built: `pulseFit`/`takeTiming` (finds the steady pulse behind the note starts, following a moving tempo; spread in ms ±, tempo change %) and `check/timing-bench.mjs`. Synthetic (120 pulsed melodies, 5 voices, page code): spread reads 18/23/38/64 ms median for jitter 0/15/30/60 (floor 10 ms gapped, 31 ms legato), tempo change error SD 1.0-2.6 %, pulse found 29/30, 30/30, 29/30, 19/30; false pulse 0/20 free-rhythm controls at threshold 0.15 (5/20 at 0.17). vocadito: weak: pulse in 9 clips by page, 7 by annotated onsets, 3 by both, so 'free timing' is worded softly and rhythm is not rated. Tried raw-pitch legato onset crossing: no gain, removed. A singer now hears 'steady rhythm' with ms ±, or 'you slowed 12 %' with a metronome exercise (Repp 2005), and sees a rhythm spread progress line. iOS risk: none new. Next: legato onset floor (level-envelope onsets, shared with note edges item), real-voice pulse agreement.
@@ -33,8 +37,4 @@ Built: `takeDynamics` (level over long notes, 100 ms smoothed; swell p95-p5 with
 ## 2026-10-29 · vibrato evenness against 20 trained singers
 
 Built: `check/vibeven-bench.mjs` (page code, every VocalSet vibrato clip: scales, arpeggios, three excerpts; 250 clips, 20 singers, CC BY 4.0, not shipped). Per-singer rate CV median 13.6 % (p90 18.1, mean 12.4 ± 1.5), width CV 22.1 % (p90 28.9, mean 22.6 ± 1.9); arpeggios evener (9.5 / 19.0) than excerpts (15.7 / 25.4). The take summary's evenness line now has three tiers on that reference (evener than half / within the range / an exercise beyond the 90th percentile) instead of a two-singer Caro mio ben cut. check.mjs: all three tiers' wording, 3 browsers. iOS risk: none new. Next: edge onsets or tone part 2.
-
-## 2026-10-29 · say my note (eyes-free)
-
-Built: a "say note" toggle (button, N key) that puts the held note and its cents (vs the target note if set, else the nearest note; ±10 ¢ = in tune) into a polite aria-live region, once a note is held 0.4 s, again on change or every 4 s; a `?` key list (Esc closes); the helix canvas is labelled. A blind singer, or anyone singing with eyes closed, now hears their pitch from their screen reader. check.mjs: N on, live region reads e.g. "A3, 20 cents sharp" within 2 s of the demo, ? opens/closes the list, 3 browsers. Not measured: screen-reader speech timing itself (no reader headless). iOS risk: VoiceOver's voice from the speaker reaches the mic; README says use headphones. Next: edge onsets or tone part 2.
 

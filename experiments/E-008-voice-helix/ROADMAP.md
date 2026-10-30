@@ -39,6 +39,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Hear it from the summary: ▶ best note, ▶ furthest-off note then tuned.
 - "Your last three long notes were steadier than any last week" in the summary, beyond one note's noise.
 - Timing without a click: pulse found from note starts, rhythm spread ± and tempo change in the summary, rhythm spread progress line (synthetic jitter read within about 20 ms, change SD 1-3 %, false pulse 0/20; vocadito pulse agreement weak).
+- Hear it with your pulse: the take with a soft click on the singer's own fitted pulse.
 - Eyes-free: "say note" (N) speaks the held note and cents via a live region; `?` lists the keys.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
