@@ -385,6 +385,10 @@ const S={sr:48000,ring:new Float32Array(16384),w:0,count:0,next:0,hop:0.02,prevF
 function spectrum(buf){for(let i=0;i<N;i++){re[i]=buf[i]*win[i];im[i]=0;}fft(re,im);for(let b=0;b<=N/2;b++){const m=Math.hypot(re[b],im[b])*4/N;db[b]=20*Math.log10(m+1e-9);}
   if(S.prof){for(let b=0;b<=N/2;b++){const pw=Math.pow(10,db[b]/10),pn=Math.pow(10,(S.prof[b]+3)/10);db[b]=10*Math.log10(Math.max(pw-pn,pw*0.03)+1e-12);}}}
 function pk(lo,hi,binHz){let m=-200;for(let b=Math.max(1,Math.floor(lo/binHz));b<=Math.ceil(hi/binHz)&&b<db.length;b++)if(db[b]>m)m=db[b];return m;}
+// Spectral envelope sampled at the harmonics only (no formant picking): harmonic levels read onto ENVN log-spaced points 250-4500 Hz, dB around their mean.
+const ENVN=14;function harmEnv(f0,binHz){const K=Math.min(40,Math.floor(4800/f0));if(K<2)return null;const lf=[],la=[];for(let k=1;k<=K;k++){lf.push(Math.log(k*f0));la.push(pk(k*f0*0.94,k*f0*1.06,binHz));}
+  const o=new Int8Array(ENVN),v=new Float32Array(ENVN);let i=0,sum=0;for(let j=0;j<ENVN;j++){const x=Math.log(250)+Math.log(18)*j/(ENVN-1);while(i<K-2&&lf[i+1]<x)i++;const u=Math.min(1,Math.max(0,(x-lf[i])/(lf[i+1]-lf[i])));v[j]=la[i]+(la[i+1]-la[i])*u;sum+=v[j];}
+  sum/=ENVN;for(let j=0;j<ENVN;j++)o[j]=Math.round(v[j]-sum);return o;}
 function analyse(t){const sr=S.sr;const buf=new Float32Array(N);const st=(S.w-N+S.ring.length)%S.ring.length;for(let i=0;i<N;i++)buf[i]=S.ring[(st+i)%S.ring.length];
   let s=0;for(let i=N-2048;i<N;i++)s+=buf[i]*buf[i];const rms=Math.sqrt(s/2048);
   spectrum(buf);const binHz=sr/N;
@@ -392,18 +396,19 @@ function analyse(t){const sr=S.sr;const buf=new Float32Array(N);const st=(S.w-N+
     postMessage({type:'feat',n:S.count,t,rms,voiced:false,f0:0,cmnd:1,hnr:0,cpp:0,h12:0,tilt:0,a1p0:0,F:null,col:new Float32Array(FB)});return;}
   const thr=Math.max(0.004,S.noiseRms*3);let f0=0,cmnd=1,cs=null;if(rms>thr){const y=yin(buf,sr,(S.prevT>=0&&t-S.prevT<0.12)?S.prevF0:0);f0=y.f0;cmnd=y.cmnd;cs=y.cs;}
   const voiced=rms>thr&&cmnd<0.65&&f0>50&&f0<1100;
-  let hnr=0,cpp=0,h12=0,tilt=0,spr=0,a1p0=0,F=null,nasOk=false;
+  let hnr=0,cpp=0,h12=0,tilt=0,spr=0,a1p0=0,F=null,nasOk=false,henv=null;
   if(voiced){S.prevF0=f0;S.prevT=t;const r=Math.min(0.999,Math.max(0.001,1-cmnd/2));hnr=10*Math.log10(r/(1-r));
     h12=pk(f0*0.8,f0*1.2,binHz)-pk(f0*1.8,f0*2.2,binHz);
     cpp=cppOf(f0,sr);
     let n=0,sx=0,sy=0,sxx=0,sxy=0;for(let b=Math.floor(100/binHz);b<4000/binHz;b++){const x=Math.log2(b*binHz),yv=db[b];if(yv<-95)continue;n++;sx+=x;sy+=yv;sxx+=x*x;sxy+=x*yv;}tilt=n>4?(n*sxy-sx*sy)/(n*sxx-sx*sx):0;
     {let a=-200,c=-200;for(let b=Math.ceil(50/binHz),e=Math.floor(4000/binHz);b<e;b++){if(b*binHz<2000)a=Math.max(a,db[b]);else c=Math.max(c,db[b]);}spr=c-a;} // singing power ratio (Omori et al. 1996): strongest peak 2-4 kHz over strongest under 2 kHz, dB
+    henv=harmEnv(f0,binHz);
     const L=lpc(buf,sr);if(L){if(L.F)F=L.F;h12-=L.env(f0)-L.env(2*f0);
       // nasality A1-P0: oral first-formant harmonic vs low nasal murmur harmonic (180-340 Hz); only measurable on non-high vowels
       const oral=L.peaks.find(f=>f>=400&&f<=1100);let P0=-200;for(let k=1;k*f0<=340;k++){if(k*f0>=180)P0=Math.max(P0,pk(k*f0-0.25*f0,k*f0+0.25*f0,binHz));}
       if(oral&&P0>-150){const k1=Math.max(1,Math.round(oral/f0));a1p0=pk(k1*f0-0.3*f0,k1*f0+0.3*f0,binHz)-P0;nasOk=true;}}}
   for(let j=0;j<FB;j++){const fa=TD_FMIN*Math.pow(TD_FMAX/TD_FMIN,j/FB),fb=TD_FMIN*Math.pow(TD_FMAX/TD_FMIN,(j+1)/FB);let m=-120;for(let b=Math.floor(fa/binHz);b<=Math.max(Math.floor(fa/binHz),Math.floor(fb/binHz))&&b<db.length;b++)if(db[b]>m)m=db[b];col[j]=Math.min(1,Math.max(0,(m+92)/86));}
-  postMessage({type:'feat',n:S.count,t,rms,voiced,f0,cmnd,hnr,cpp,h12,tilt,spr,a1p0,nasOk,F,col:col.slice(),cs:S.offline&&rms>thr?cs:null});}
+  postMessage({type:'feat',n:S.count,t,rms,voiced,f0,cmnd,hnr,cpp,h12,tilt,spr,a1p0,nasOk,F,henv,col:col.slice(),cs:S.offline&&rms>thr?cs:null});}
 function onmsg(m){if(m.type==='init'){S.sr=m.sr;S.hop=m.hop||0.02;S.offline=!!m.offline;}
   else if(m.type==='audio'){const a=m.buf;for(let i=0;i<a.length;i++){S.ring[S.w]=a[i];S.w=(S.w+1)%S.ring.length;}S.count+=a.length;const t=S.count/S.sr;while(t>=S.next){S.next+=S.hop;if(S.count>=N)analyse(S.next-S.hop);}}
   else if(m.type==='calib'){S.prof=null;S.noiseRms=0;S.calib={until:S.count/S.sr+m.seconds,n:0,rms:0,acc:new Float64Array(N/2+1)};}
@@ -536,7 +541,7 @@ function ingest(st,m,src){const now=m.t;st.at=now;const FT=st.ft,HIST=st.HIST;co
   if(voiced){FT.f0=m.f0;FT.midi=midiOf(m.f0);FT.hnr=m.hnr;FT.cpp=FT.cpp?lerp(FT.cpp,m.cpp||0,0.3):m.cpp||0;FT.h12=lerp(FT.h12,m.h12,0.3);FT.tilt=m.tilt;FT.spr=m.spr;if(m.nasOk){FT.a1p0=lerp(FT.a1p0||m.a1p0,m.a1p0,0.3);FT.nasT=now;}if(m.F){for(let i=0;i<3;i++)FT.Fs[i]=FT.Fs[i]?lerp(FT.Fs[i],m.F[i],0.5):m.F[i];}}
   FT.nasOk=now-FT.nasT<0.6; // hold the last measurable A1-P0 briefly across frames where no oral F1 peak is found
   const dtF=HIST.length?now-HIST[HIST.length-1].t:0.02;
-  const e={t:now,dt:dtF,src,f0:voiced?m.f0:0,midi:voiced?FT.midi:0,voiced,rms:m.rms,cm:m.cmnd,F1:voiced?FT.Fs[0]:0,F2:voiced?FT.Fs[1]:0,res:0,fit:false,st:0,ok:true};
+  const e={t:now,dt:dtF,src,f0:voiced?m.f0:0,midi:voiced?FT.midi:0,voiced,rms:m.rms,cm:m.cmnd,F1:voiced?FT.Fs[0]:0,F2:voiced?FT.Fs[1]:0,res:0,fit:false,st:0,ok:true,henv:voiced?m.henv:null};
   if(voiced&&HIST.length&&HIST[HIST.length-1].voiced&&Math.abs(e.midi-HIST[HIST.length-1].midi)>5)e.ok=false;
   HIST.push(e);while(HIST.length&&(now-HIST[0].t>MAXAGE||HIST.length>900))HIST.shift();
   if(voiced&&!st.lastVoiced){st.onsetT=now;st.onsetMidi=null;st.onsetList.push(now);}
@@ -1053,7 +1058,11 @@ function vibLine(v){if(!v||v.long<2)return [];if(!v.n)return [`${v.long} long no
 const VOWEL_SUNG={a:[693,1233],e:[538,1639],i:[355,1963],o:[559,1212],u:[412,1162]},VOWEL_MARGIN=0.1;
 function readVowel(F1,F2,f0,C=VOWEL_SUNG){if(!F1||!F2||!f0||f0>=600)return null;const d=Object.keys(C).map(v=>[Math.hypot(Math.log(F1/C[v][0]),Math.log(F2/C[v][1])),v]).sort((x,y)=>x[0]-y[0]);return {v:d[0][1],sure:d[1][0]-d[0][0]>=VOWEL_MARGIN};}
 // The vowel over a span of frames: medians, so one bad LPC frame does not flip it.
-function spanVowel(fr,t0,t1){const a=fr.filter(e=>e.voiced&&e.F1&&e.F2&&e.t>=t0&&e.t<=t1);if(a.length<8)return null;const med=k=>a.map(e=>e[k]).sort((x,y)=>x-y)[a.length>>1];return readVowel(med('F1'),med('F2'),med('f0'));}
+// Sung vowel from the harmonic envelope (LDA, tilt removed so a mic's slope cannot move it, plus f0); formant picks stay as the fallback. Back vowels share F2 and picks fail there. check/vowel-fit.mjs.
+const VOWEL_LDA={a:[-137.207,-0.0409,0.1329,0.2791,-0.1054,0.3559,-0.3219,-0.3853,-0.2575,-0.2417,-0.5844,0.7912,0.5946,0.009,-0.3039,2.4371],e:[-160.689,0.0081,0.1699,0.4243,0.0637,0.4265,-0.6973,-0.7901,-0.7442,0.2936,-0.2752,0.8415,0.4868,-0.1564,-0.1401,2.6863],i:[-184.004,0.1761,0.3594,0.5154,-0.1337,0.3453,-1.0061,-0.8276,-0.7164,0.0157,-0.1459,0.9809,0.491,-0.1115,-0.0641,2.8645],o:[-148.652,-0.1646,0.1238,0.4402,0.1508,0.1853,-0.2941,-0.4224,-0.4383,-0.2703,-0.5747,0.7996,0.631,0.025,-0.2744,2.533],u:[-154.41,-0.116,0.3274,0.5215,-0.0654,0.072,-0.4133,-0.4717,-0.4668,-0.1691,-0.6013,0.9428,0.5513,-0.0085,-0.1931,2.6239]};
+const VOWEL_LDA_SURE=1;function envVowel(env,f0){if(f0>=600)return null;const n=env.length,c=(n-1)/2;let sxx=0,b=0;for(let j=0;j<n;j++){sxx+=(j-c)*(j-c);b+=env[j]*(j-c);}b/=sxx;
+  const d=Object.keys(VOWEL_LDA).map(v=>{const w=VOWEL_LDA[v];let s=w[0]+w[n+1]*20*Math.log(f0);for(let j=0;j<n;j++)s+=w[j+1]*(env[j]-b*(j-c));return [s,v];}).sort((x,y)=>y[0]-x[0]);return {v:d[0][1],sure:d[0][0]-d[1][0]>=VOWEL_LDA_SURE};}
+function spanVowel(fr,t0,t1){const a=fr.filter(e=>e.voiced&&e.F1&&e.F2&&e.t>=t0&&e.t<=t1);if(a.length<8)return null;const med=k=>a.map(e=>e[k]).sort((x,y)=>x-y)[a.length>>1];const h=a.filter(e=>e.henv);if(h.length>=8){const env=Array.from(h[0].henv,(_,j)=>h.reduce((s,e)=>s+e.henv[j],0)/h.length);return envVowel(env,med('f0'));}return readVowel(med('F1'),med('F2'),med('f0'));}
 function takeNotes(fr){const notes=[],res=[];let cur=null;
   const close=()=>{if(cur&&cur.n*0.02>=0.2){const m=cur.ms.slice().sort((a,b)=>a-b),nr=[];
       if(cur.n*0.02>=0.3)for(let k=3;k<cur.fs.length-3;k++)if(cur.fs[k].fit){res.push(cur.fs[k].res);nr.push(cur.fs[k].res);}
