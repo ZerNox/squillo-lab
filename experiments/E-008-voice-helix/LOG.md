@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-30 · key drift on the progress line
+
+Built: each take stores |key drift| (`takeDrift`, synthetic SD 16 ¢, vocadito SD 41 ¢); a 'key drift' row in the take table, a progress line with band and a week line, lower is better, shown but not rated (excluded from the rating and warm-up, given the coarse real-voice agreement). Takes too short for a drift store none and the line skips them. A singer working with a drone now sees whether their tuning holds better over weeks. check.mjs: 12 seeded takes (two without drift), 70 to 15 ¢, read 'better than the takes before', not in RATED, 3 browsers. No new measurement. iOS risk: none (localStorage). Next: real-voice drift agreement (note matching) or edge onsets.
+
 ## 2026-10-30 · key drift per take
 
 Built: `takeDrift` (notes after a 0.22 s pitch average, offsets unwrapped against a running reference, weighted line over time, ± 1.96 SE) and `check/drift-bench.mjs`. Synthetic known drifts (90 melodies, 5 voice types, half with vibrato): error +1.4 ± 3.3 ¢, SD 15.8, truth inside ± 81/90. vocadito, page vs hand-corrected f0 through the same code: SD 41 ¢, sign agrees on 11/14 truly drifting clips: coarse on real voices, so the wording is conservative. A singer now hears 'you held your key' (whole ± within 20 ¢) or 'your tuning sank 45 ± 20 ¢ over 30 s' with a drone exercise (Howard 2007). check.mjs: -60 ¢ synthetic reads -54, level reads 0, both wordings, 3 browsers. iOS risk: none new. Next: drift on the progress line; tighten real-voice agreement (note matching).

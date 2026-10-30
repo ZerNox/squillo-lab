@@ -972,7 +972,10 @@ const ASPECTS=[
  {k:'clar',name:'voice clarity',unit:'dB CPP',lower:false,tol:0.7,dec:1,info:true},
  {k:'tone',name:'tone colour',unit:'dB/oct tilt',lower:false,tol:0.3,dec:1,info:true,desc:['brighter','softer']},
  {k:'swell',name:'swell (dynamics)',unit:'dB within a long note',lower:false,tol:2,dec:1,info:true,desc:['more swell','flatter']},
+ {k:'kdrift',name:'key drift',unit:'¢ over the take',lower:true,tol:15,dec:0,info:true},
 ];
+// Key drift is how far the take's tuning slid from start to end, either way (takeDrift: synthetic SD 16 ¢,
+// vocadito vs hand f0 SD 41 ¢), so it is shown, better or worse only beyond the bands, but not rated.
 // Swell is the largest level swell within one long note (takeDynamics; messa di voce reads 14.5 dB or more on
 // VocalSet, straight tones about 7): described as more swell or flatter, never better or worse; absent when no long notes.
 // Tone colour (median spectral tilt over sung frames) is a description, not a score: its lines and weeks say
@@ -1070,7 +1073,7 @@ function takeAspects(st){const fr=st.rec.frames,sn=st.rec.snaps,{notes,res}=take
   const dm=dp.length?dp.reduce((t,x)=>t+x,0)/dp.length:0,dsd=dp.length>1?Math.sqrt(dp.reduce((t,x)=>t+(x-dm)**2,0)/(dp.length-1)):0;
   const slide={n:dp.length,of:ons,depth:dm,sd:dsd,style:dp.length>=4&&dp.length/ons>=2/3&&dsd<=0.2*dm};
   const meds=notes.map(n=>n.med).sort((a,b)=>a-b);
-  return {slide,perf:notePerf(notes,off,slide.style?[]:st.rec.events),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,clar:cp.length?cp[cp.length>>1]:0,clarN:cp.length,tone:tl.length?tl[tl.length>>1]:0,toneN:tl.length,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,breaks:registerBreaks(fr),vib:takeVibrato(st),drift:takeDrift(fr),dyn:takeDynamics(st),get swell(){return this.dyn?this.dyn.maxSwell:NaN},mn:meds.length>4?Math.min(...meds):0,mx:meds.length>4?Math.max(...meds):0,ok:notes.length>=6&&sung>=4};}
+  return {slide,perf:notePerf(notes,off,slide.style?[]:st.rec.events),inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,clar:cp.length?cp[cp.length>>1]:0,clarN:cp.length,tone:tl.length?tl[tl.length>>1]:0,toneN:tl.length,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,breaks:registerBreaks(fr),vib:takeVibrato(st),drift:takeDrift(fr),dyn:takeDynamics(st),get swell(){return this.dyn?this.dyn.maxSwell:NaN},get kdrift(){return this.drift?Math.abs(this.drift.cents):NaN},mn:meds.length>4?Math.min(...meds):0,mx:meds.length>4?Math.max(...meds):0,ok:notes.length>=6&&sung>=4};}
 // Per held note, for the timeline: cents off the take's grid, wobble inside the note, and whether it
 // was scooped into, folded into a 0..1 score weighted 60/25/15. The median trained singer (14 ¢, 3 ¢
 // wobble, no scoop) scores about 0.8; 25 ¢ off scores about 0.55.
