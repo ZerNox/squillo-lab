@@ -4,7 +4,7 @@ Newest first. Date, what was built, what a singer can now do, numbers, next.
 
 ## 2026-10-30 · sung vowel, first benchmark of the formants
 
-Built: `readVowel`/`spanVowel` with centres fitted on sung notes, `check/vowel-bench.mjs`, a live 'vowel' chip, 'sounds like “ee”' in note by note, only when sure. Formants had no measured accuracy until now. VocalSet (2405 notes, 20 singers, 5 vowels, page code): 68.2 ± 4.4 % under 600 Hz (speech centres 61.3 ± 4.8; left-out-singer 67.7 ± 4.5), sure 74.1 ± 5.4 % on 67 % of notes; no reading at 600 Hz and up. Not benchmarked on 0.5 s live windows; the synthetic demo 'ah' reads unsure (speech-table formants). check.mjs: reader, chip, note line, 3 browsers. Process: WebKit hangs intermittently even alone (one 170 s timeout, same code passed in about 50 s; cause not found), so a hung browser gets one retry, timeout 240 s. iOS risk: none new. Next: back vowels, singer's formant.
+Built: `readVowel`/`spanVowel` with centres fitted on sung notes, `check/vowel-bench.mjs`, a live 'vowel' chip, 'sounds like “ee”' in note by note, only when sure. Formants had no measured accuracy until now. VocalSet (2405 notes, 20 singers, 5 vowels, page code): 68.2 ± 4.4 % under 600 Hz (speech centres 61.3 ± 4.8; left-out-singer 67.7 ± 4.5), sure 74.1 ± 5.4 % on 67 % of notes; no reading at 600 Hz and up. Not benchmarked on 0.5 s live windows; the synthetic demo 'ah' reads unsure (speech-table formants). check.mjs: reader, chip, note line, 3 browsers. Process: WebKit hangs intermittently even alone (one 170 s timeout, same code passed in about 50 s; cause not found), so a hung browser gets one retry, timeout 240 s. iOS risk: none new. Tried, not shipped: adding F3 or f0 to the centres, left-out-singer 66.4 / 67.9 / both 66.2 ± 4.7 % vs 67.7, no gain. One live WebKit run in check.mjs exited 1 with no message; rerun alone passed (cause not found). Next: back vowels from the envelope, singer's formant.
 
 ## 2026-10-30 · hear it with your pulse
 
@@ -37,8 +37,3 @@ Built: each take stores its largest within-note swell (`takeDynamics`, the measu
 ## 2026-10-29 · dynamics per take (messa di voce measured)
 
 Built: `takeDynamics` (level over long notes, 100 ms smoothed; swell p95-p5 within a note, span soft to loud across notes, gain-free) and `check/dyn-bench.mjs` (page code, VocalSet long tones on "a", 20 singers, 80 clips, CC BY 4.0, not shipped): messa di voce swell 21.1 ± 2.6 dB (median 19.3, p10 14.5), straight 9.6 ± 2.1 (median 7.3, p90 13.9); messa vs straight AUC 0.93, pairs 20/20; forte - pp 8.6 ± 3.6 dB. The take summary now says how a singer's level moved, names a swell of 14.5 dB or more a real messa di voce, else suggests one; described, not rated. check.mjs: synthetic swell/level/soft tones (swell 17.9 dB, span 10.0), both wordings, 3 browsers. iOS risk: none new. Next: dynamics on the progress line, or edge onsets.
-
-## 2026-10-29 · vibrato evenness against 20 trained singers
-
-Built: `check/vibeven-bench.mjs` (page code, every VocalSet vibrato clip: scales, arpeggios, three excerpts; 250 clips, 20 singers, CC BY 4.0, not shipped). Per-singer rate CV median 13.6 % (p90 18.1, mean 12.4 ± 1.5), width CV 22.1 % (p90 28.9, mean 22.6 ± 1.9); arpeggios evener (9.5 / 19.0) than excerpts (15.7 / 25.4). The take summary's evenness line now has three tiers on that reference (evener than half / within the range / an exercise beyond the 90th percentile) instead of a two-singer Caro mio ben cut. check.mjs: all three tiers' wording, 3 browsers. iOS risk: none new. Next: edge onsets or tone part 2.
-
