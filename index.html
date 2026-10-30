@@ -195,7 +195,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
 
 <canvas id="gl" role="img" aria-label="Voice helix: your pitch over time"></canvas>
 <div id="say" class="sr" aria-live="polite" aria-atomic="true"></div>
-<div id="keys" role="dialog" aria-label="Keyboard shortcuts" hidden><b>Keyboard</b><br><kbd>space</kbd> pause / resume<br><kbd>← →</kbd> previous / next note of the take<br><kbd>L</kbd> loop the phrase<br><kbd>M</kbd> mark this moment<br><kbd>N</kbd> say my note on / off (screen reader)<br><kbd>?</kbd> this list · <kbd>Esc</kbd> close</div>
+<div id="keys" role="dialog" aria-label="Keyboard shortcuts" hidden><b>Keyboard</b><br><kbd>space</kbd> pause / resume<br><kbd>← →</kbd> previous / next note of the take<br><kbd>1 2 3 4</kbd> take, halfway, spotless, far vision, from the same moment<br><kbd>L</kbd> loop the phrase<br><kbd>M</kbd> mark this moment<br><kbd>N</kbd> say my note on / off (screen reader)<br><kbd>?</kbd> this list · <kbd>Esc</kbd> close</div>
 <div id="labels"></div>
 <div id="nogl" hidden>This page needs WebGL2. Open it in a current Chrome, Edge, Firefox or Safari.</div>
 
@@ -280,6 +280,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
     <button class="btn" id="bPlayTake" disabled>▶ your take</button>
     <button class="btn" id="bPlayHalf" disabled title="Half way between your take and spotless">▶ halfway</button>
     <button class="btn" id="bPlaySpot" disabled title="Every note tuned, steadied and started cleanly">▶ spotless</button>
+    <button class="btn" id="bPlayFar" disabled title="Spotless, with even vibrato and a gentle swell on the long notes: your voice, further on">▶ far vision</button>
     <button class="btn" id="bLoopPh" disabled aria-pressed="false" title="Loop the phrase around the note you are on (L key); again to stop">⟲ loop phrase</button><button class="btn" id="bPrevNote" disabled aria-label="Previous note" title="Previous note (← key)">◀ note</button><button class="btn" id="bNextNote" disabled aria-label="Next note" title="Next note (→ key): hear one note at a time with its numbers">note ▶</button><button class="btn" id="bMark" disabled title="Mark this moment (M key): a flag on the bar, kept with the take on this device">⚑ mark</button>
     <select id="cmpSel" hidden aria-label="Earlier take to compare" title="An earlier take kept on this device"></select><button class="btn" id="bPlayCmp" hidden title="Play an earlier take, then yours, to hear the change">▶ earlier take</button><button class="btn" id="bSamePh" hidden title="The phrase around the current note, sung in the earlier take, then today">▶ same phrase</button>
     <button class="btn" id="bWarm" title="A short routine for what your recent takes need most">☀ warm-up</button>
@@ -866,7 +867,7 @@ document.addEventListener('click',primeAudio,true);
 // take's own semitone grid) and "halfway" (half way from the take to spotless). On playback the coach
 // appears LEAD seconds before each spot and shows the exercise without sound.
 const TAKE={rec:null,recN:0,buf:null,half:null,spot:null,segs:[],busy:false,aspects:null,rating:null},MAXTAKE=60,MAXFILE=360,LEAD=1.5;
-const bRec=$('bRec'),bPlayTake=$('bPlayTake'),bPlayHalf=$('bPlayHalf'),bPlaySpot=$('bPlaySpot'),takeInfo=$('takeInfo'),takebar=$('takebar'),playhead=$('playhead'),ratingEl=$('rating');
+const bRec=$('bRec'),bPlayTake=$('bPlayTake'),bPlayHalf=$('bPlayHalf'),bPlaySpot=$('bPlaySpot'),bPlayFar=$('bPlayFar'),takeInfo=$('takeInfo'),takebar=$('takebar'),playhead=$('playhead'),ratingEl=$('rating');
 const mkBuf=(n,sr)=>new AudioBuffer({length:Math.max(1,n),numberOfChannels:1,sampleRate:sr});
 function takeTap(b){rfTap(b);if(!TAKE.rec)return;TAKE.rec.push(b.slice());TAKE.recN+=b.length;if(TAKE.recN>=MAXTAKE*AU.sr)setTimeout(finishTake,0);}
 bRec.onclick=()=>{if(TAKE.rec){finishTake();return;}if(TAKE.busy)return;
@@ -919,9 +920,10 @@ async function setTake(buf){TAKE.busy=true;
   takeInfo.textContent=`Scanning your ${buf.duration.toFixed(1)} s take…`;
   const tr=await prepTake(buf),sc=tr.sc;buf=tr.buf;TAKE.buf=buf;TAKE.frames=sc.frames;TAKE.segs=sc.segs;TAKE.aspects=sc.aspects;
   TAKE.spot=improveTake(buf,sc.frames,1,sc.aspects.off);TAKE.half=improveTake(buf,sc.frames,0.5,sc.aspects.off);
+  {const fv=farVib(sc.aspects.vib);TAKE.far=improveTake(buf,sc.frames,1,sc.aspects.off,fv);VERSION.far.status=fv.notes?`Far vision: spotless, plus even vibrato (${fv.rate.toFixed(1)} Hz, ±${fv.ext.toFixed(2)} st) and a gentle swell on ${fv.notes} long note${fv.notes>1?'s':''}. Tone, words and timing are yours; one possible far point, not the only one.`:'Far vision: no note held long enough for vibrato here, so this equals spotless. Hold a note for a second to hear it.';}
   TAKE.rating=ANCHORS&&sc.aspects.ok?rateAspects(sc.aspects,ANCHORS):null;TAKE.d=null;TAKE.marks=[];if(sc.aspects.ok){const h=saveTake(sc.aspects);TAKE.d=h[h.length-1].d;storeAudio(TAKE.d,buf);}TAKE.busy=false;renderTakebar();renderRating();document.body.classList.add('has-take');
   if(matchMedia('(max-width:720px)').matches)$('takeRow').scrollIntoView({block:'start',behavior:'smooth'});
-  bPlayTake.disabled=bPlayHalf.disabled=bPlaySpot.disabled=bPrevNote.disabled=bNextNote.disabled=bMark.disabled=$('bLoopPh').disabled=false;TAKE.ni=-1;
+  bPlayTake.disabled=bPlayHalf.disabled=bPlaySpot.disabled=bPlayFar.disabled=bPrevNote.disabled=bNextNote.disabled=bMark.disabled=$('bLoopPh').disabled=false;TAKE.ni=-1;
   const names=[...new Set(TAKE.segs.map(g=>FLAWS[g.i].name))];
   takeInfo.textContent=(tr.cut>0.5||tr.talk>0?`Cut ${tr.cut>0.5?`${tr.cut.toFixed(1)} s of silence`:''}${tr.cut>0.5&&tr.talk>0?' and ':''}${tr.talk>0?`${tr.talk.toFixed(0)} s of talk or noise`:''}: only the singing is scored. `:'')+(TAKE.segs.length?`${TAKE.segs.length} spot${TAKE.segs.length>1?'s':''} to work on (${names.join(', ')}), marked on the bar. Play your take, halfway or spotless.`:`Clean take: no flaw held long enough to coach. ${(sc.voiced*100).toFixed(0)} % of it was voiced.`);}
 // Pitch of a take, decided over the whole take: a Viterbi path through each frame's YIN candidates
@@ -1350,14 +1352,20 @@ function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;
 // settled pitch (no scoop), then snapped
 // to the take's semitone grid. amount 1 is spotless, 0.5 is half way from the take to spotless.
 // Resynthesis is pitch-synchronous overlap-add with Hann grains.
-function improveTake(buf,frames,amount,off){const sr=buf.sampleRate,x=buf.getChannelData(0),n=x.length,hop=0.02,F=frames.length;
-  const m=frames.map(f=>f.f0?midiOf(f.f0):0),tg=new Float64Array(F);
+// "Far vision" (far given): spotless, plus on every held note of 0.8 s or more even vibrato faded in after 0.2 s and a swell of ±1.5 dB. check/far-bench.mjs.
+// Rate and width are the singer's own when in the trained band (Prame 1994), otherwise 5.8 Hz, ±0.45 st.
+function farVib(v){const r=v&&v.rate?v.rate[0]:0,e=v&&v.ext?v.ext[0]:0;return {rate:r>=4.5&&r<=7?r:5.8,ext:e?clamp(e,0.3,0.6):0.45,notes:0};}
+function improveTake(buf,frames,amount,off,far){const sr=buf.sampleRate,x=buf.getChannelData(0),n=x.length,hop=0.02,F=frames.length;
+  const m=frames.map(f=>f.f0?midiOf(f.f0):0),tg=new Float64Array(F),gn=new Float64Array(F);
   for(let a=0;a<F;){if(!m[a]){a++;continue;}let b=a;while(b+1<F&&m[b+1])b++;
     for(let i=a;i<=b;i++){const w=[];for(let k=Math.max(a,i-6);k<=Math.min(b,i+6);k++)w.push(m[k]);w.sort((p,q)=>p-q);tg[i]=w[w.length>>1];}
     if(b-a>=10){const k0=a+Math.min(15,Math.floor((b-a)/3));for(let i=a;i<k0;i++)if(Math.abs(tg[i]-tg[k0])>0.4)tg[i]=tg[k0];}
-    for(let i=a;i<=b;i++){const g=Math.round(tg[i]-off)+off;tg[i]=m[i]+amount*(g-m[i]);}a=b+1;}
+    for(let i=a;i<=b;i++){const g=Math.round(tg[i]-off)+off;tg[i]=m[i]+amount*(g-m[i]);}
+    if(far)for(let i=a;i<=b;){let e=i;const g=Math.round(tg[i]-off);while(e<b&&Math.round(tg[e+1]-off)===g)e++;const L=e-i+1;
+      if(L>=40){far.notes++;let ph=0;for(let j=i;j<=e;j++){const u=(j-i)*hop;ph+=2*Math.PI*far.rate*(1+0.03*Math.sin(2*Math.PI*0.7*u))*hop;tg[j]+=far.ext*clamp((u-0.2)/0.3,0,1)*clamp((e-j)*hop/0.1,0,1)*Math.sin(ph);gn[j]=3*Math.sin(Math.PI*(j-i)/(L-1))-1.5;}}i=e+1;}
+    a=b+1;}
   const ratio=new Float64Array(F);for(let i=0;i<F;i++)ratio[i]=m[i]?clamp(Math.pow(2,(tg[i]-m[i])/12),0.8,1.25):1;
-  const fi=t=>clamp(Math.round(t/hop),0,F-1),per=smp=>{const i=fi(smp/sr);return frames[i]&&frames[i].f0?sr/frames[i].f0:sr*0.005;},rat=smp=>{const i=fi(smp/sr);let a=0,c=0;for(let k=Math.max(0,i-2);k<=Math.min(F-1,i+2);k++){a+=ratio[k];c++;}return a/c;};
+  const fi=t=>clamp(Math.round(t/hop),0,F-1),per=smp=>{const i=fi(smp/sr);return frames[i]&&frames[i].f0?sr/frames[i].f0:sr*0.005;},rat=smp=>{if(far){const q=clamp(smp/sr/hop,0,F-1),i=Math.floor(q),u=q-i;return ratio[i]*(1-u)+ratio[Math.min(F-1,i+1)]*u;}const i=fi(smp/sr);let a=0,c=0;for(let k=Math.max(0,i-2);k<=Math.min(F-1,i+2);k++){a+=ratio[k];c++;}return a/c;};
   // Analysis marks one period apart, each snapped to the waveform peak within a quarter period, so
   // successive grains start at the same point of the cycle (pitch-synchronous).
   const vo=smp=>{const f=frames[fi(smp/sr)];return !!(f&&f.f0);};const marks=[];
@@ -1368,6 +1376,7 @@ function improveTake(buf,frames,amount,off){const sr=buf.sampleRate,x=buf.getCha
     for(let j=-L;j<=L;j++){const si=am+j,di=ds+j;if(si<0||si>=n||di<0||di>=n)continue;const h=0.5+0.5*Math.cos(Math.PI*j/L);y[di]+=x[si]*h;w[di]+=h;}
     s+=P/rat(s);}
   for(let i=0;i<n;i++)y[i]=w[i]>0.05?y[i]/w[i]:0;
+  if(far){const G=new Float64Array(F);for(let i=0;i<F;i++){let a=0,c=0;for(let k=Math.max(0,i-5);k<=Math.min(F-1,i+5);k++){a+=gn[k];c++;}G[i]=a/c;}for(let i=0;i<n;i++){const q=Math.min(F-1.001,i/sr/hop),j=Math.floor(q);y[i]*=Math.pow(10,(G[j]+(q-j)*(G[j+1]-G[j]))/20);if(y[i]>1)y[i]=1;else if(y[i]<-1)y[i]=-1;}}
   const out=mkBuf(n,sr);out.getChannelData(0).set(y);return out;}
 function renderTakebar(){takebar.querySelectorAll('i,u,s,svg').forEach(e=>e.remove());const d=TAKE.buf.duration;takebar.hidden=false;$('takeKey').hidden=false;
   const P=TAKE.aspects.perf,L=perfLine(P,d),pc=t=>(t/d*100)+'%',y=q=>(100-clamp((q-0.3)/0.7,0,1)*92).toFixed(1);
@@ -1391,7 +1400,8 @@ async function abLoop(t0,t1,label){const key=label+'@'+t0;if(AU.kind==='ab'&&AU.
 takebar.onclick=ev=>{if(!TAKE.buf)return;const r=takebar.getBoundingClientRect();playTake(AU.play?AU.play.which:'take',clamp((ev.clientX-r.left)/r.width,0,1)*TAKE.buf.duration);};
 const VERSION={take:{title:'Your take',body:'Listen back. The coach steps in just before each spot that can improve.',status:'Your take, as recorded.'},
   half:{title:'Halfway',body:'You, half way to spotless: the coach steps in just before each spot you struggled with.',status:'Halfway: your take moved half way to spotless. Tone, words and timing are yours.'},
-  spot:{title:'Spotless',body:'Every note tuned, steadied and started cleanly: what this take sounds like with nothing to fix.',status:'Spotless: every note on the take’s semitone grid, steadied, no scoops. Tone, words and timing are yours.'}};
+  spot:{title:'Spotless',body:'Every note tuned, steadied and started cleanly: what this take sounds like with nothing to fix.',status:'Spotless: every note on the take’s semitone grid, steadied, no scoops. Tone, words and timing are yours.'},
+  far:{title:'Far vision',body:'Your voice further on: spotless, with even vibrato and a gentle swell on the long notes.',status:'Far vision.'}};
 // Slow down without changing pitch: WSOLA (Verhelst & Roelands 1993). 40 ms Hann grains at a 10 ms
 // synthesis hop; each grain is taken up to ±8 ms off its nominal place where it best continues the last
 // one (cross-correlation on every 4th sample, lags in 2-sample steps). Cached per version and speed.
@@ -1451,7 +1461,10 @@ function loopPhrase(){const bL=$('bLoopPh');if(AU.kind==='loop'){stopSource();bL
     takeInfo.textContent=`Looping the phrase ${mmss(a)}-${mmss(b)} (${(b-a).toFixed(1)} s, ${which==='take'?'yours':which}${k!==1?`, ${k}× speed`:''}). Sing along, then L or ⟲ to stop.`;};
   if(ctx){ctx.resume();go();}else ensureCtx().then(c=>{c.resume();go();});}
 $('bLoopPh').onclick=loopPhrase;document.addEventListener('keydown',e=>{if(!TAKE.buf||$('bLoopPh').disabled||e.ctrlKey||e.metaKey||e.altKey||/select|input|textarea/i.test(document.activeElement.tagName))return;if(e.key==='l'||e.key==='L'){e.preventDefault();loopPhrase();}});
-bPlayTake.onclick=()=>playTake('take');bPlayHalf.onclick=()=>playTake('half');bPlaySpot.onclick=()=>playTake('spot');
+// A/B instantly: while a take version plays, any version button or 1-4 carries on from the same moment.
+const switchTo=w=>{const p=AU.play;playTake(w,p&&AU.kind==='take'?clamp((AU.ctx.currentTime-p.t0)*p.k,0,Math.max(0,TAKE.buf.duration-0.1)):0,p&&AU.kind==='take'?p.until:0);};
+bPlayTake.onclick=()=>switchTo('take');bPlayHalf.onclick=()=>switchTo('half');bPlaySpot.onclick=()=>switchTo('spot');bPlayFar.onclick=()=>switchTo('far');
+document.addEventListener('keydown',e=>{if(!TAKE.far||e.ctrlKey||e.metaKey||e.altKey||/select|input|textarea/i.test(document.activeElement.tagName))return;const w={1:'take',2:'half',3:'spot',4:'far'}[e.key];if(w){e.preventDefault();switchTo(w);}});
 // Compare with an earlier take: the audio of the last 10 scored takes is kept in this browser (IndexedDB,
 // 22.05 kHz 16-bit, about 2.6 MB a minute; never sent anywhere), keyed by the take's date in the progress history.
 // Pick an earlier take and play it, then your take, to hear the change; its score sits next to today's.
