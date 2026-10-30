@@ -1348,9 +1348,10 @@ function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;
   wl.push(...clarLine(a,false),...driftLine(a.drift,false),...timingLine(a.tm,false));
   if(a.breaks&&a.breaks.length)wl.push(`Your voice flipped register on a glide ${a.breaks.length>1?a.breaks.length+' times, ':''}around ${a.breaks.map(b=>nn(Math.round(b.m))+' at '+mmss(b.t)).join(', ')}: sirens on “ng” through that spot, slowly and lightly, help the two registers meet (Titze 2006).`);if(TAKE.stretch)wl.push(`The line dips lowest in the 10 s before ${mmss(TAKE.stretch.lo[0])}: click the bar there to listen back.`);
   if(wl.length)h+='<h3>To work on</h3><ul>'+wl.map(t=>`<li>${t}</li>`).join('')+'</ul>';
+  {const ln=[...a.perf].filter(n=>n.t1-n.t0>=0.8).sort((x,y)=>(y.t1-y.t0)-(x.t1-x.t0))[0];if(ln)h+=`<h3>Where this can go</h3><p>Your longest note, at ${mmss(ln.t0)}, as it is, then in your far vision: tuned, even vibrato, a gentle swell. One possible far point. ${hear(ln,'far','▶ yours, then far')}</p>`;}
   h+=`<p class="fine">${R?`Provisional Elo: each reference voice is one game on intonation, steadiness and clean onsets (tone clarity depends on the microphone and room, so it is not rated). 2000 is the median conservatory-trained singer in ${R.pool}. It ranks you within this pool, not the world.`:''} The take's tuning is ${a.off>=0?'+':''}${(a.off*100).toFixed(0)} ¢ from A440; notes are measured on that grid. <span id="pitchAcc">How sure the pitch is: on 40 real a cappella excerpts by 29 singers (vocadito, CC BY 4.0) this tracker puts 97.6 ± 0.7 % of sung moments within half a semitone of hand-checked pitch; lower voices 97.3 ± 1.4 %, higher 97.8 ± 0.7 %; about 1 in 8 breaths or consonants is read as a note.</span></p>`;
   ratingEl.innerHTML=h+renderProgress();for(const e of ratingEl.querySelectorAll('[data-hear]'))e.onclick=()=>{const t0=+e.dataset.t0,t1=+e.dataset.t1;
-    if(e.dataset.hear==='pulse')playPulse();else if(e.dataset.hear==='worst')abLoop(t0,t1,'note');else playTake('take',Math.max(0,t0-0.3),Math.min(TAKE.buf.duration,t1+0.3));};const fg=$('forget');if(fg)fg.onclick=()=>{try{localStorage.removeItem(HIST_KEY);}catch(e){}renderRating();};}
+    if(e.dataset.hear==='pulse')playPulse();else if(e.dataset.hear==='worst')abLoop(t0,t1,'note');else if(e.dataset.hear==='far')abLoop(t0,t1,'longest note','far');else playTake('take',Math.max(0,t0-0.3),Math.min(TAKE.buf.duration,t1+0.3));};const fg=$('forget');if(fg)fg.onclick=()=>{try{localStorage.removeItem(HIST_KEY);}catch(e){}renderRating();};}
 // Target pitch per frame for "spotless": a 250 ms running median inside each voiced run (keeps the
 // melody, drops wobble), the start of each note (up to 300 ms, a third of notes from 200 ms) held at its
 // settled pitch (no scoop), then snapped
@@ -1395,12 +1396,12 @@ function renderTakebar(){takebar.querySelectorAll('i,u,s,svg').forEach(e=>e.remo
   TAKE.stretch=stretches(L);renderMarks();}
 // A/B at a spot: your note, a breath, the same moment spotless, a longer breath, looped until you click
 // it again or play anything else. The spot is padded by 0.4 s each side and capped at 4 s.
-async function abLoop(t0,t1,label){const key=label+'@'+t0;if(AU.kind==='ab'&&AU.ab===key){stopSource();takeInfo.textContent='A/B stopped.';return;}
+async function abLoop(t0,t1,label,to='spot'){const key=label+'@'+t0+to;if(AU.kind==='ab'&&AU.ab===key){stopSource();takeInfo.textContent='A/B stopped.';return;}
   if(!TAKE.spot)return;stopSource();const ctx=await ensureCtx();await ctx.resume();const sr=TAKE.buf.sampleRate,d=TAKE.buf.duration;
   const k=+speedSel.value,a=Math.max(0,t0-0.4),b=Math.min(d,Math.max(t1+0.4,a+0.6),a+4),i0=Math.round(a/k*sr),n=Math.round((b-a)/k*sr),g1=Math.round(0.5*sr),g2=Math.round(sr);
-  const out=mkBuf(n*2+g1+g2,sr),o=out.getChannelData(0);const A=versionBuf('take').getChannelData(0),B=versionBuf('spot').getChannelData(0);o.set(A.subarray(i0,i0+n),0);o.set(B.subarray(i0,i0+n),n+g1);
+  const out=mkBuf(n*2+g1+g2,sr),o=out.getChannelData(0);const A=versionBuf('take').getChannelData(0),B=versionBuf(to).getChannelData(0);o.set(A.subarray(i0,i0+n),0);o.set(B.subarray(i0,i0+n),n+g1);
   const s=ctx.createBufferSource();s.buffer=out;s.loop=true;s.connect(AU.cap);s.connect(ctx.destination);AU.source=s;AU.kind='ab';AU.ab=key;markSrc(null);s.start();
-  playhead.style.left=(a/d*100)+'%';goLive();takeInfo.textContent=`A/B at ${mmss(a)}: your ${label}, then the same moment spotless, looping. Click it again to stop.`;}
+  playhead.style.left=(a/d*100)+'%';goLive();takeInfo.textContent=`A/B at ${mmss(a)}: your ${label}, then the same moment ${VERSION[to].title.toLowerCase()}, looping. Click it again to stop.`;}
 takebar.onclick=ev=>{if(!TAKE.buf)return;const r=takebar.getBoundingClientRect();playTake(AU.play?AU.play.which:'take',clamp((ev.clientX-r.left)/r.width,0,1)*TAKE.buf.duration);};
 const VERSION={take:{title:'Your take',body:'Listen back. The coach steps in just before each spot that can improve.',status:'Your take, as recorded.'},
   half:{title:'Halfway',body:'You, half way to spotless: the coach steps in just before each spot you struggled with.',status:'Halfway: your take moved half way to spotless. Tone, words and timing are yours.'},
