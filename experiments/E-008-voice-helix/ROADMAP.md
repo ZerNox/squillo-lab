@@ -52,7 +52,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 ## Next
 
 0. **Timing, part 2**: vocadito pulse agreement 3 of 5/7 clips.
-0. **Notes, part 2**: repeated same-pitch notes (level dips).
+0. **Notes, part 2**: repeated same-pitch notes; level dips tried 2026-10-30, no gain (COnP 72.9-74.0 vs 74.2): needs a spectral-change cue.
 0. **Key drift, part 2**: better real-voice agreement (vocadito SD 41 ¢ vs synthetic 16); local/global circular unwraps tried 2026-10-30, no gain (39-91 ¢): needs a different truth or note-level approach. `segNotes` input: SD 62 ¢, worse.
 0. **Vowels, part 2**: back vowels (a/o/u) share F2 and cause most errors; try harmonic-sampled envelopes, then a take-level line such as vowels held across range.
 1. **Rating with ground truth**: human-judged takes across styles from openly
