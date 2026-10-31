@@ -355,13 +355,14 @@ const DSP_SRC=String.raw`
 // Live level gate, as a multiple of the calibrated room's level: 3 shut out most singing below 10 dB over the room. Voicing limit: V in quiet, rising with the noise's share of the frame (check/live-noise-bench.mjs, breathy-live-bench.mjs).
 const LN={G:1.5,V:0.3,K:4};
 const YW=1024;let yinD=new Float32Array(1);
-function yin(buf,sr,prevF0){const tauMax=Math.min(Math.floor(sr/60),buf.length-YW),tauMin=Math.floor(sr/1000);if(yinD.length<tauMax+1)yinD=new Float32Array(tauMax+1);
+const F0MAX=1400;
+function yin(buf,sr,prevF0){const tauMax=Math.min(Math.floor(sr/60),buf.length-YW),tauMin=Math.floor(sr/F0MAX);if(yinD.length<tauMax+1)yinD=new Float32Array(tauMax+1);
   const off=buf.length-YW-tauMax;let run=0,best=-1;
   for(let tau=1;tau<=tauMax;tau++){let s=0;for(let j=0;j<YW;j++){const d=buf[off+j]-buf[off+j+tau];s+=d*d;}run+=s;yinD[tau]=run>0?s*tau/run:1;}
   const cands=[];for(let tau=tauMin+1;tau<tauMax;tau++)if(yinD[tau]<(S.offline?CG:0.5)&&yinD[tau]<=yinD[tau-1]&&yinD[tau]<yinD[tau+1])cands.push(tau);
   if(!cands.length)return {f0:0,cmnd:1,cs:[]};
   // Offline takes keep every candidate (period, dip) for a Viterbi pass over the whole take (pYIN-style).
-  let cs=[];if(S.offline){const ref=t=>{const a=yinD[t-1],b=yinD[t],c=yinD[t+1],den=a-2*b+c;return sr/(t+(den!==0?0.5*(a-c)/den:0));};cs=cands.slice().sort((x,y)=>yinD[x]-yinD[y]).slice(0,8).map(t=>[ref(t),yinD[t]]);}
+  let cs=[];if(S.offline){const ref=t=>{const a=yinD[t-1],b=yinD[t],c=yinD[t+1],den=a-2*b+c;return sr/(t+(den!==0?0.5*(a-c)/den:0));};const dip=t=>{const a=yinD[t-1],b=yinD[t],c=yinD[t+1],den=a-2*b+c;return den>0?Math.max(0,b-(a-c)*(a-c)/(8*den)):b;};const rk=t=>dip(t)+0.15*Math.log2(t/cands[0]);cs=cands.slice().sort((x,y)=>rk(x)-rk(y)).slice(0,8).map(t=>[ref(t),dip(t)]);}
   const under=cands.filter(t=>yinD[t]<0.12);best=under.length?under[0]:cands.reduce((x,y)=>yinD[y]<yinD[x]?y:x);
   if(prevF0){const pt=sr/prevF0;let nb=null;for(const t of cands)if(Math.abs(t-pt)/pt<0.12&&(nb===null||yinD[t]<yinD[nb]))nb=t;if(nb!==null&&yinD[nb]<yinD[best]+0.2)best=nb;}
   if(best<2||best>=tauMax)return {f0:0,cmnd:1};
@@ -409,7 +410,7 @@ function analyse(t){const sr=S.sr;const buf=new Float32Array(N);const st=(S.w-N+
   if(S.calib){S.calib.n++;S.calib.rms+=rms;for(let b=0;b<db.length;b++)S.calib.acc[b]+=Math.pow(10,db[b]/10);if(t>=S.calib.until){S.prof=new Float32Array(db.length);for(let b=0;b<db.length;b++)S.prof[b]=10*Math.log10(S.calib.acc[b]/S.calib.n+1e-12);S.noiseRms=S.calib.rms/S.calib.n;let fl=0;for(let b=Math.floor(100/binHz);b<4000/binHz;b++)fl+=S.prof[b];S.floorDb=fl/(4000/binHz-Math.floor(100/binHz));S.calib=null;postMessage({type:'calib',done:true,floorDb:S.floorDb,noiseRms:S.noiseRms});}
     postMessage({type:'feat',n:S.count,t,rms,voiced:false,f0:0,cmnd:1,hnr:0,cpp:0,h12:0,tilt:0,a1p0:0,F:null,col:new Float32Array(FB)});return;}
   const thr=Math.max(0.004,S.noiseRms*LN.G);let f0=0,cmnd=1,cs=null;if(rms>thr){const y=yin(buf,sr,(S.prevT>=0&&t-S.prevT<0.12)?S.prevF0:0);f0=y.f0;cmnd=y.cmnd;cs=y.cs;}
-  const voiced=rms>thr&&cmnd<Math.min(0.65,LN.V+LN.K*S.noiseRms*S.noiseRms/Math.max(1e-9,rms*rms))&&f0>50&&f0<1100;
+  const voiced=rms>thr&&cmnd<Math.min(0.65,LN.V+LN.K*S.noiseRms*S.noiseRms/Math.max(1e-9,rms*rms))&&f0>50&&f0<F0MAX;
   let hnr=0,cpp=0,h12=0,tilt=0,spr=0,a1p0=0,F=null,nasOk=false,henv=null;
   if(voiced){S.prevF0=f0;S.prevT=t;const r=Math.min(0.999,Math.max(0.001,1-cmnd/2));hnr=10*Math.log10(r/(1-r));
     h12=pk(f0*0.8,f0*1.2,binHz)-pk(f0*1.8,f0*2.2,binHz);
@@ -972,7 +973,7 @@ function viterbiF0(feats){const L=feats.length;if(!L)return;const snr=roomSnr(fe
       if(prev){bc=Infinity;const pc=C[i-1];for(let j=0;j<prev.length;j++){const uk=k===n,uj=j===pc.length;const tr=uk||uj?(uk&&uj?0:VIT.S):VIT.J*Math.min(24,Math.abs(12*Math.log2(c[k][0]/pc[j][0])));const v=prev[j]+tr;if(v<bc){bc=v;bk=j;}}}
       cost[k]=bc+em;bp[k]=bk;}prev=cost;back.push(bp);}
   let k=0;for(let j=1;j<prev.length;j++)if(prev[j]<prev[k])k=j;
-  for(let i=L-1;i>=0;i--){const m=feats[i],c=C[i];if(m.cs){if(k<c.length){m.f0=c[k][0];m.cmnd=c[k][1];m.voiced=m.f0>50&&m.f0<1100;}else m.voiced=false;}k=back[i][k];}}
+  for(let i=L-1;i>=0;i--){const m=feats[i],c=C[i];if(m.cs){if(k<c.length){m.f0=c[k][0];m.cmnd=c[k][1];m.voiced=m.f0>50&&m.f0<1400;}else m.voiced=false;}k=back[i][k];}}
 // Note edges: a frame's 40 ms window still hears a note 20 ms after it ends (and before it starts), so the
 // first and last frames of each voiced run are checked on a short window (2 periods, at least 10 ms) centred
 // where the pitch belongs: below E × the run's median short-window level they are unvoiced, up to EN per
@@ -1403,7 +1404,7 @@ function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;
   if(a.breaks&&a.breaks.length)wl.push(`Your voice flipped register on a glide ${a.breaks.length>1?a.breaks.length+' times, ':''}around ${a.breaks.map(b=>nn(Math.round(b.m))+' at '+mmss(b.t)).join(', ')}: sirens on “ng” through that spot, slowly and lightly, help the two registers meet (Titze 2006).`);if(TAKE.stretch)wl.push(`The line dips lowest in the 10 s before ${mmss(TAKE.stretch.lo[0])}: click the bar there to listen back.`);
   if(wl.length)h+='<h3>To work on</h3><ul>'+wl.map(t=>`<li>${t}</li>`).join('')+'</ul>';
   {const ln=[...a.perf].filter(n=>n.t1-n.t0>=0.8).sort((x,y)=>(y.t1-y.t0)-(x.t1-x.t0))[0];if(ln)h+=`<h3>Where this can go</h3><p>Your longest note, at ${mmss(ln.t0)}, as it is, then in your far vision: tuned, even vibrato, a gentle swell. One possible far point. ${hear(ln,'far','▶ yours, then far')}</p>`;}
-  h+=`<p class="fine">${R?`Provisional Elo: each reference voice is one game on intonation, steadiness and clean onsets (tone clarity depends on the microphone and room, so it is not rated). 2000 is the median conservatory-trained singer in ${R.pool}. It ranks you within this pool, not the world.`:''} The take's tuning is ${a.off>=0?'+':''}${(a.off*100).toFixed(0)} ¢ from A440; notes are measured on that grid. <span id="pitchAcc">How sure the pitch is: on 40 real a cappella excerpts by 29 singers (vocadito, CC BY 4.0) this tracker puts 97.6 ± 0.7 % of sung moments within half a semitone of hand-checked pitch; lower voices 97.3 ± 1.4 %, higher 97.8 ± 0.7 %; about 1 in 8 breaths or consonants is read as a note.</span></p>`;
+  h+=`<p class="fine">${R?`Provisional Elo: each reference voice is one game on intonation, steadiness and clean onsets (tone clarity depends on the microphone and room, so it is not rated). 2000 is the median conservatory-trained singer in ${R.pool}. It ranks you within this pool, not the world.`:''} The take's tuning is ${a.off>=0?'+':''}${(a.off*100).toFixed(0)} ¢ from A440; notes are measured on that grid. <span id="pitchAcc">How sure the pitch is: on 40 real a cappella excerpts by 29 singers (vocadito, CC BY 4.0) this tracker puts 97.4 ± 0.8 % of sung moments within half a semitone of hand-checked pitch; lower voices 97.3 ± 1.4 %, higher 97.8 ± 0.7 %; about 1 in 8 breaths or consonants is read as a note.</span></p>`;
   ratingEl.innerHTML=h+renderProgress();for(const e of ratingEl.querySelectorAll('[data-hear]'))e.onclick=()=>{const t0=+e.dataset.t0,t1=+e.dataset.t1;
     if(e.dataset.hear==='pulse')playPulse();else if(e.dataset.hear==='worst')abLoop(t0,t1,'note');else if(e.dataset.hear==='far')abLoop(t0,t1,'longest note','far');else playTake('take',Math.max(0,t0-0.3),Math.min(TAKE.buf.duration,t1+0.3));};const bt=$('bTry');if(bt)bt.onclick=()=>drillGo(bt);const fg=$('forget');if(fg)fg.onclick=()=>{try{localStorage.removeItem(HIST_KEY);}catch(e){}renderRating();};}
 // Target pitch per frame for "spotless": a 250 ms running median inside each voiced run (keeps the
