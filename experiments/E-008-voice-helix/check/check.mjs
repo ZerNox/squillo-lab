@@ -100,6 +100,9 @@ async function run([name, launch, ctxOpt, file]) {
     await tap(p.locator('#vLane')); await p.waitForTimeout(1800);
     const lane = await p.evaluate(() => ({ note: document.getElementById('laneNote').textContent, c: document.getElementById('laneC').textContent, rail: getComputedStyle(document.getElementById('rail')).display, cv: getComputedStyle(document.getElementById('lane')).display, ink: (() => { const c = document.getElementById('lane'), d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; let n = 0; for (let i = 0; i < d.length; i += 4) if (d[i + 1] > 180 && d[i] < 120) n++; return n; })() }));
     await p.screenshot({ path: join(out, `${name}-lane.png`) });
+    // Drone: starts on the target note in the Lane's reach, follows a new target, stops.
+    const drone = await p.evaluate(async () => { const B = document.getElementById('bDrone'), T = document.getElementById('tNote'), keep = T.value; T.value = '60'; T.dispatchEvent(new Event('change')); B.click(); await new Promise(r => setTimeout(r, 300)); const a = { on: DRONE.on, st: DRONE.ctx.state, f: DRONE.o[0].frequency.value, label: B.textContent }; T.value = '62'; T.dispatchEvent(new Event('change')); const m = DRONE.m; B.click(); const off = DRONE.on; T.value = keep; T.dispatchEvent(new Event('change')); return { ...a, m, off }; });
+    if (!drone.on || drone.st !== 'running' || Math.abs(drone.f - 261.63) > 0.1 || drone.label !== '♪ C4' || drone.m !== 62 || drone.off) throw new Error('drone: ' + JSON.stringify(drone));
     if (!/^[A-G]♯?\d$/.test(lane.note) || !/±/.test(lane.c) || lane.rail !== 'none' || lane.cv !== 'block' || lane.ink < 100) throw new Error('lane: ' + JSON.stringify(lane));
     await tap(p.locator('#vHelix'));
     if (touch) { await tap(p.getByRole('button', { name: 'Recording' })); await p.waitForTimeout(300); await p.setInputFiles('#file', file); }

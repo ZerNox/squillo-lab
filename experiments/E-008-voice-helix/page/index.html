@@ -205,7 +205,7 @@ body.lane #rail,body.lane #labels,body.lane #flaws,body.lane #advice{display:non
 <canvas id="lane" aria-hidden="true"></canvas>
 <div id="laneRead" aria-hidden="true"><div id="laneNote">—</div><div id="laneC"></div></div>
 <div id="say" class="sr" aria-live="polite" aria-atomic="true"></div>
-<div id="keys" role="dialog" aria-label="Keyboard shortcuts" hidden><b>Keyboard</b><br><kbd>space</kbd> pause / resume<br><kbd>← →</kbd> previous / next note of the take<br><kbd>1 2 3 4</kbd> take, halfway, spotless, far vision, from the same moment<br><kbd>L</kbd> loop the phrase<br><kbd>M</kbd> mark this moment<br><kbd>N</kbd> say my note on / off (screen reader)<br><kbd>?</kbd> this list · <kbd>Esc</kbd> close</div>
+<div id="keys" role="dialog" aria-label="Keyboard shortcuts" hidden><b>Keyboard</b><br><kbd>space</kbd> pause / resume<br><kbd>D</kbd> drone on the target note<br><kbd>← →</kbd> previous / next note of the take<br><kbd>1 2 3 4</kbd> take, halfway, spotless, far vision, from the same moment<br><kbd>L</kbd> loop the phrase<br><kbd>M</kbd> mark this moment<br><kbd>N</kbd> say my note on / off (screen reader)<br><kbd>?</kbd> this list · <kbd>Esc</kbd> close</div>
 <div id="labels"></div>
 <div id="nogl" hidden>This page needs WebGL2. Open it in a current Chrome, Edge, Firefox or Safari.</div>
 
@@ -256,6 +256,7 @@ body.lane #rail,body.lane #labels,body.lane #flaws,body.lane #advice{display:non
   </div>
   <div id="drill" class="lbl-row">
     <select id="tNote" aria-label="Target note"></select>
+    <button class="btn" id="bDrone" aria-pressed="false" title="A soft held tone on the target note, to sing against (D key). Headphones keep the pitch reading cleanest">♪ drone</button>
     <select id="tVowel" aria-label="Target vowel">
       <option value="">no vowel target</option>
       <option value="a">target: ah</option><option value="e">target: eh</option><option value="i">target: ee</option><option value="o">target: oh</option><option value="u">target: oo</option>
@@ -826,6 +827,15 @@ bSay.onclick=()=>setSay(!SAY.on);
 document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey||/select|input|textarea/i.test(document.activeElement.tagName))return;const K=$('keys');
   if(e.key==='n'||e.key==='N'){e.preventDefault();setSay(!SAY.on);}
   else if(e.key==='?'){e.preventDefault();K.hidden=!K.hidden;}else if(e.key==='Escape'&&!K.hidden){K.hidden=true;}});
+// Drone: a soft unison tone on the target note, in its own AudioContext so a take stopping leaves it alone. Unison only: an octave below flips the pitch reading (check/drone-bench.mjs). Started inside the click for iOS.
+const DRONE={h:[1,0.5,0.25],gain:0.05,ctx:null,g:null,o:[],on:false};
+function droneSet(m){const f=440*Math.pow(2,(m-69)/12),now=DRONE.ctx.currentTime;DRONE.o.forEach((o,i)=>o.frequency.setTargetAtTime(f*(i+1),now,0.02));DRONE.m=m;}
+function droneToggle(){const B=$('bDrone');if(DRONE.on){DRONE.on=false;DRONE.g.gain.setTargetAtTime(0,DRONE.ctx.currentTime,0.08);const o=DRONE.o;DRONE.o=[];setTimeout(()=>o.forEach(x=>x.stop()),500);B.setAttribute('aria-pressed','false');B.textContent='♪ drone';return;}
+  const ctx=DRONE.ctx||(DRONE.ctx=new (window.AudioContext||window.webkitAudioContext)());if(ctx.state!=='running')ctx.resume();
+  if(!tNote.value){const f=viewFT,m=f&&f.voiced&&f.midi?Math.round(f.midi):57;tNote.value=Math.min(77,Math.max(41,m));tNote.dispatchEvent(new Event('change'));}
+  const g=ctx.createGain();g.gain.value=0;g.connect(ctx.destination);DRONE.g=g;const m=+tNote.value,f=440*Math.pow(2,(m-69)/12);DRONE.o=DRONE.h.map((a,i)=>{const o=ctx.createOscillator(),v=ctx.createGain();o.frequency.value=f*(i+1);v.gain.value=a;o.connect(v).connect(g);o.start();return o;});DRONE.m=m;g.gain.setTargetAtTime(DRONE.gain,ctx.currentTime,0.08);DRONE.on=true;B.setAttribute('aria-pressed','true');B.textContent='♪ '+noteName(m);}
+$('bDrone').onclick=droneToggle;tNote.addEventListener('change',()=>{if(!DRONE.on)return;if(!tNote.value){droneToggle();return;}droneSet(+tNote.value);$('bDrone').textContent='♪ '+noteName(+tNote.value);});
+document.addEventListener('keydown',e=>{if((e.key==='d'||e.key==='D')&&!e.metaKey&&!e.ctrlKey&&!e.altKey&&!/select|input|textarea/i.test(document.activeElement.tagName))droneToggle();});
 function updateHUD(wall){if(wall-hudT<0.1)return;hudT=wall;const f=viewFT;const v=f.voiced;const tgt=tNote.value?+tNote.value:0;sayTick(wall,f,tgt);
   $('mF0').textContent=v?f.f0.toFixed(1):'—';$('mF0').className='v';
   $('mNote').textContent=v?(tgt?`${noteName(f.midi)} · ${((f.midi-tgt)*100).toFixed(0)>0?'+':''}${((f.midi-tgt)*100).toFixed(0)} ¢`:noteName(f.midi)):'Hz';
@@ -1199,7 +1209,7 @@ function timingLine(m,good){if(!m||!m.pulse)return good&&m?[`Free timing: no ste
   return Math.abs(c)>=8?[`tempo (you ${s} over ${m.span.toFixed(0)} s): sing the phrase with a soft metronome, then without it and check it at the end; a steady external beat trains the inner one (Repp 2005).`]:m.sd>90?[`rhythm (note starts spread ${sd} around your pulse): clap the pulse while you speak the words, then sing them to the same claps (Repp 2005).`]:[];}
 function driftLine(dr,good){if(!dr)return [];const c=dr.cents,s=`${c<0?'sank':'rose'} ${Math.abs(c).toFixed(0)} ± ${dr.ci.toFixed(0)} ¢ (${c<0?'flat':'sharp'}) over ${dr.span.toFixed(0)} s`;
   if(good)return Math.abs(c)+dr.ci<=20?[`You held your key: over ${dr.span.toFixed(0)} s and ${dr.n} notes your tuning moved ${c.toFixed(0)} ± ${dr.ci.toFixed(0)} ¢, under a fifth of a semitone.`]:[];
-  return Math.abs(c)>=30&&Math.abs(c)>dr.ci?[`key drift (your tuning ${s}, so the end sits off the key you started in): sing the phrase over a drone of its first note (any tuner or app), then again without it and check the first note at the end; singers drift less with a reference (Howard 2007).`]:[];}
+  return Math.abs(c)>=30&&Math.abs(c)>dr.ci?[`key drift (your tuning ${s}, so the end sits off the key you started in): sing the phrase over a drone (♪ drone, by the target note) of its first note (any tuner or app), then again without it and check the first note at the end; singers drift less with a reference (Howard 2007).`]:[];}
 // Tone colour of the take in words, a description in the went-well list, with where VocalSet's trained singers sit.
 function roomLine(a){const r=a.room;if(r!==r)return [];const d=Math.max(0,r).toFixed(0);return [r>=15?`Quiet room: your voice stood about ${d} dB over its steady noise, enough for full pitch readings. Talk or music nearby is not counted here.`:r>=8?`Some steady room noise: your voice stood about ${d} dB over it. Pitch still reads, but very soft notes may drop out; a quieter spot or a closer phone helps.`:`Noisy room: your voice stood only about ${d} dB over its steady noise, so some notes went unread and this take's numbers are rougher. A quieter spot or a closer phone gives a fairer reading.`];}
 function ringLine(a){return a.ring===a.ring?[`Ring: singing power ratio ${a.ring.toFixed(1)} dB, the 2-4 kHz peak against the strongest below (Omori 1996). Trained singers read about -18 full voice, -28 very soft, VocalSet; higher carries further, it also rises with loudness, and it is not a score.`]:[];}

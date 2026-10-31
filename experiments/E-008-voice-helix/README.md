@@ -28,6 +28,8 @@ Three stations in one scene, the camera flies between them:
 | Vocal tract tube | radius profile from LPC formants F1/F2 along a glottis-to-lips path | vowel shape against a target vowel; nasal port glows when A1−P0 is low; floor chart = F1×F2 vowel space |
 | Resonance terrain | log-frequency spectrogram as a lit landscape | harmonic ridges, breathiness (noise floor as haze), spectral tilt, harmonic comb at k·f0 |
 
+Drone: ♪ drone (D) holds a soft unison tone on the target note. Leak into the mic, Lane reading, synthetic (`check/drone-bench.mjs`): -18 dB max 2.5 ¢, -12 dB max 4.8 ¢, -6 dB max 13 ¢; an octave below flips the reading, so unison only. Real speaker leak unmeasured; no training gain claimed.
+
 Capture: AudioWorklet (ScriptProcessor fallback) at raw settings
 (`echoCancellation`, `noiseSuppression`, `autoGainControl` all false, as
 E-003 found browsers honour). Analysis: a Web Worker at a fixed 20 ms hop

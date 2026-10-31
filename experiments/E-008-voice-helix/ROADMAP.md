@@ -48,6 +48,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Sing it again: hear the furthest-off note tuned, sing it, read against that note with ± (synthetic SD 1.5-2.1 ¢, truth inside ± 59/60).
 - Lane: flat 8 s pitch line, held note large with cents and ± (synthetic straight max 1.1 ¢; vibrato max 4.8 ¢, truth inside ± 97 %).
 - Noisy rooms: take pitch holds in steady noise (vocadito, pink 5 dB RPA 68.9 → 85.4, clean unchanged), room line in the summary.
+- Drone: ♪ drone (D) on the target note to sing against; unison only (synthetic leak at -12 dB: max 4.8 ¢; octave below flips the reading).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
