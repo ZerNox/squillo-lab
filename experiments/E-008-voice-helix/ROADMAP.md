@@ -49,7 +49,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Lane: flat 8 s pitch line, held note large with cents and ± (synthetic straight max 1.1 ¢; vibrato max 4.8 ¢, truth inside ± 97 %).
 - Noisy rooms: take pitch holds in steady noise (vocadito, pink 5 dB RPA 68.9 → 85.4, clean unchanged), room line in the summary.
 - Drone: ♪ drone (D) on the target note to sing against; unison only (synthetic leak at -12 dB: max 4.8 ¢; octave below flips the reading).
-- Live in noise: gate at 1.5× the calibrated room (vocadito, pink 5 dB RPA 6.0 → 64.0, 10 dB 47.5 → 83.6); voicing limit scales with noise (clean FA 24.1 → 14.9).
+- Live in noise: gate at 1.5× the calibrated room (vocadito, pink 5 dB RPA 6.0 → 64.0, 10 dB 47.5 → 83.6); voicing limit scales with noise, and a gate under the recent peak (clean FA 24.1 → 11.0).
 - Match and measure: warm-up's pitch steps hear five tones, sing each, read in ¢ with ± and landing time; sessions kept and compared (synthetic landing within about 75 ms; real voices unmeasured).
 - Swell and measure: the warm-up's messa di voce hears one swell, reads width, peak place, pitch stillness and pull with level, with ±; kept and compared (synthetic width within 1.2 dB, truth inside ± 160/160).
 - High notes: take pitch to 1400 Hz; straight notes from E5 up no longer read at a fraction of the note (synthetic C5-E6 100 %, was 0-63 % on straight tones from E5; vocadito 97.4 ± 0.8).
@@ -58,7 +58,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 
 ## Next
 
-0. **Noise, part 3**: live false alarms (clean FA 14.9 %, no Viterbi live; HNR 0 dB breathy notes unread); take pitch in talk-like noise no gain, room read 10-13 dB high.
+0. **Noise, part 3**: live false alarms (clean FA 11.0 %, no Viterbi live; HNR 0 dB breathy notes unread); take pitch in talk-like noise no gain, room read 10-13 dB high.
 0. **Timing, part 2**: vocadito pulse agreement 3 of 5/7 clips.
 0. **Key drift, part 2**: better real-voice agreement (vocadito SD 41 ¢ vs synthetic 16); local/global circular unwraps tried 2026-10-30, no gain (39-91 ¢): needs a different truth or note-level approach. `segNotes` input: SD 62 ¢, worse.
 0. **Vowels, part 3**: o/u still weakest (64/72 %, left-out singer); try other mics or languages if an open labelled set exists.

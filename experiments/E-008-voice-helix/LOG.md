@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-31 · fewer live ghost notes, part 2
+
+Built: live voicing also needs the frame within 18.4 dB of the recent peak (`LN.R` 0.12, peak halves each second), so note tails and room echo stop drawing false notes. vocadito 40 clips, page code, live: clean FA 14.9 → 11.0 ± 2.2, RPA 91.0 → 90.9 ± 3.5, OA 89.1 → 90.3 ± 2.8; pink 20 dB FA 14.7 → 13.3, OA 89.3 → 89.8; pink 5 dB and hum 10 dB unchanged. Take pitch and the breathy live bench unchanged. R chosen on 10 of these clips, so slightly optimistic. Cost by design, unmeasured: a note 24 dB under the last loud one stays unread live for about 1 s. iOS risk: none new. Next: Timing part 2.
+
 ## 2026-10-31 · swell and measure in the warm-up
 
 Built: ♪ swell and measure on the warm-up's Messa di voce step (`swellGo`, `swellRead`), `check/swell-bench.mjs`, a check.mjs test. A singer sings one 10 s swell and is told how wide it was, where the peak fell, how far the pitch moved, and whether pitch rose or fell with the volume, with ±, against their last swells. That step listened to nothing before. Page code, synthetic, 160 takes: width within 1.2 dB, tie within 0.45 ¢/dB, truth inside ± 160/160, false pull 0/40. VocalSet messa: read 16/20 (why 4 were unread not checked), width median 22.5 dB, tie median +1.25 ¢/dB, 7/16 pulled; straight clips with note changes gave wild slopes, so sd 50 ¢ and up now says to stay on one note. Real voices have no truth. iOS risk: as Match and measure. Next: Timing part 2.
@@ -33,7 +37,3 @@ Built: `roomFloor`, `roomSnr`, noise-compensated Viterbi (only under 14 dB voice
 ## 2026-10-31 · Lane reads through vibrato
 
 Built: on vibrato `laneRead` averages whole cycles of the last 0.7 s, ± from how far they differ; a singer with vibrato gets a steady note reading, not a swinging one. Lane bench, page code, synthetic, ±0.5 st, 4.5-7 Hz, 450 reads: median 2.2 ¢, max 4.8, ± 4, truth inside 97.1 % (0.4 s median at 5.5 Hz: 6.3, 23.2, ± 24). Real vibrato unmeasured. iOS risk: none new. Next: timing or tone, part 2.
-
-## 2026-10-31 · Lane: a view to read while singing
-
-Built: fifth view, Lane, reused from the failed attempt `wip/daily-20261031T022828`: the last 8 s as a flat line on a semitone grid, held note large with cents and ±, target note marked. A singer can read pitch at arm's length, on a phone too, without the 3D scene. `check/lane-bench.mjs`, page code, synthetic, 900 reads: straight median 0.4, max 1.1 ¢, truth inside ± 100 %; vibrato ±0.5 st median 6.3, max 23.2, ± 24, inside 96.9 %. No real-voice figure. check.mjs: lane reading, three browsers. iOS risk: none new. Next: Lane window of whole vibrato cycles, to tighten the ±.
