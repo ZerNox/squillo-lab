@@ -142,6 +142,8 @@ Dynamics (`check/dyn-bench.mjs`, page code `takeDynamics`, VocalSet long tones o
 
 **My data.** ⛁ my data shows what is kept in this browser, saves a copy as one JSON file of numbers and dates (no audio), brings a copy back by merging on date (existing records win; a file holding markup is refused record by record), and deletes everything, kept audio included, after a second tap. Under progress, a line asks for a copy from 5 takes on when none exists or the last is over 14 days old.
 
+Live ghost notes, part 3 (2026-10-31, `check/live-noise-bench.mjs`, page code, vocadito 40 clips): a frame counts only when the one before agrees within a semitone (`LN.M`): clean FA 6.5 ± 1.4, RPA 89.7 ± 1.6, OA 91.1 ± 1.3; pink 10 dB FA 2.6 ± 0.7, RPA 80.9 ± 2.8, OA 86.4 ± 2.0. These supersede the earlier live figures; note starts draw 20 ms later.
+
 ## Hypothesis
 
 A singer who sees the ribbon straighten, the haze sink, or the tube change
