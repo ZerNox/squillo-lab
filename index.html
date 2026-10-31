@@ -1627,11 +1627,17 @@ function renderData(msg){const el=$('data'),h=loadHist(),s=+dataRead(SAVED_KEY,'
 // On the home screen: opens like an app, and with no network. iOS has no install prompt and gives the installed app its own storage, so the singer is told to carry a copy across.
 let installAsk=null;addEventListener('beforeinstallprompt',e=>{e.preventDefault();installAsk=e;appLine();});addEventListener('appinstalled',()=>{installAsk=null;appLine();});
 const isStandalone=()=>matchMedia('(display-mode:standalone)').matches||navigator.standalone===true,isIOS=()=>/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
-function appLine(){const q=$('dataApp');if(!q)return;const off=navigator.serviceWorker&&navigator.serviceWorker.controller?'This device can open the page with no network. ':'';
+function appLine(){const q=$('dataApp');if(!q)return;const kept=swOK()&&offOn(),off=kept?'Kept for opening with no network. ':'';
+  if(swOK()&&!$('dKeep')){const b=document.createElement('button');b.className='btn';b.id='dKeep';b.textContent=kept?'stop keeping for no network':'keep for no network';b.onclick=()=>{(kept?dropOffline():keepOffline()).catch(()=>{}).then(()=>renderData(kept?'No longer kept for no network.':'Kept: next time you open it, it works with no network.'));};$('dSave').parentNode.appendChild(b);}
   if(isStandalone()){q.textContent=off+'Running from your home screen.';return;}
   if(installAsk){q.innerHTML=off+'<button class="btn" id="dInstall">＋ add to this device</button>';$('dInstall').onclick=()=>{const a=installAsk;installAsk=null;a.prompt();appLine();};return;}
   q.textContent=off+(isIOS()?'To keep it on your home screen: Share, then Add to Home Screen. It opens like an app and Safari stops counting days away, but it starts empty: save a copy here first, then bring it back there.':'');}
-if('serviceWorker' in navigator&&/^https?:/.test(location.protocol))addEventListener('load',()=>navigator.serviceWorker.register('sw.js').then(()=>navigator.serviceWorker.ready).then(appLine).catch(()=>{}));
+// Opt-in only: an automatic worker hung taps in WebKit on Linux (5 of 6 runs, 0 of 6 without), and no real iPhone can be tested here. Asked for, it takes effect on the next open.
+const OFF_KEY='helix.offline.v1',swOK=()=>'serviceWorker' in navigator&&/^https?:/.test(location.protocol);
+const offOn=()=>{try{return localStorage.getItem(OFF_KEY);}catch(e){return null;}};
+function keepOffline(){if(!swOK())return Promise.resolve(false);try{localStorage.setItem(OFF_KEY,'1');}catch(e){}return navigator.serviceWorker.register('sw.js').then(()=>navigator.serviceWorker.ready).then(()=>true);}
+function dropOffline(){try{localStorage.removeItem(OFF_KEY);}catch(e){}return navigator.serviceWorker.getRegistrations().then(a=>Promise.all(a.map(r=>r.unregister()))).then(()=>caches.delete('helix-1'));}
+if(swOK()&&!offOn())navigator.serviceWorker.getRegistrations().then(a=>{if(a.length)dropOffline();}).catch(()=>{});
 function keepAsked(){if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});}
 async function forgetAll(){for(const k of [...DATA_KEYS.map(q=>q[0]),MARK_KEY,SAVED_KEY])try{localStorage.removeItem(k);}catch(e){}try{await adbDo('readwrite',st=>st.clear());}catch(e){}fillCompare();if(!$('rating').hidden)renderRating();renderData('Deleted: takes, readings, marks and kept audio.');}
 $('bData').onclick=()=>{const el=$('data');if(!el.hidden){el.hidden=true;return;}renderData();el.scrollIntoView({block:'nearest'});};
