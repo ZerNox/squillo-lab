@@ -1128,15 +1128,15 @@ function takeDrift(fr){const g=smoothPitch(fr);
 // steady pulse that explains them best. Each candidate step (0.16-1.2 s) walks the onsets, following a slowly moving
 // tempo; then a smooth curve (time = a + b k + c k²) through the step numbers. Spread: the SD of onsets about that curve,
 // ms, ± its 95 % interval. Change: step at the end vs the start, %. The longest step within 15 % of the best spread/step wins.
-// Pulse found only when spread/step is under PULSE_MAX (uniform random onsets give 0.29). check/timing-bench.mjs.
-const PULSE_MAX=0.15;
+// Pulse found only when the spread of the closest 90 % of onsets, over the step, is under PULSE_MAX: a stray or missed onset no longer hides a pulse (4 % false on random onsets). check/timing-bench.mjs.
+const PULSE_MAX=0.11;
 function smoothPitch(fr){const g=fr.map(f=>({...f}));for(let i=0;i<fr.length;i++){if(!fr[i].voiced||!fr[i].ok)continue;let a=0,c=0;for(let q=Math.max(0,i-5);q<=Math.min(fr.length-1,i+5);q++)if(fr[q].voiced&&fr[q].ok){a+=fr[q].midi;c++;}g[i].midi=a/c;}return g;}
 function pulseFit(on){const t=on.slice().sort((a,b)=>a-b).filter((x,i,A)=>!i||x-A[i-1]>=0.1),n=t.length;if(n<12||t[n-1]-t[0]<8)return null;
   const quad=(k)=>{const A=[[0,0,0,0],[0,0,0,0],[0,0,0,0]];for(let i=0;i<n;i++){const v=[1,k[i],k[i]*k[i]];for(let r=0;r<3;r++){for(let c=0;c<3;c++)A[r][c]+=v[r]*v[c];A[r][3]+=v[r]*t[i];}}
     for(let c=0;c<3;c++){let m=c;for(let r=c+1;r<3;r++)if(Math.abs(A[r][c])>Math.abs(A[m][c]))m=r;[A[c],A[m]]=[A[m],A[c]];if(!A[c][c])return null;for(let r=0;r<3;r++)if(r!==c){const f=A[r][c]/A[c][c];for(let q=c;q<4;q++)A[r][q]-=f*A[c][q];}}
-    const x=[A[0][3]/A[0][0],A[1][3]/A[1][1],A[2][3]/A[2][2]];let r2=0;for(let i=0;i<n;i++)r2+=(t[i]-x[0]-x[1]*k[i]-x[2]*k[i]*k[i])**2;return {x,sd:Math.sqrt(r2/(n-3))};};
+    const x=[A[0][3]/A[0][0],A[1][3]/A[1][1],A[2][3]/A[2][2]];let r2=0;for(let i=0;i<n;i++)r2+=(t[i]-x[0]-x[1]*k[i]-x[2]*k[i]*k[i])**2;const e=[];for(let i=0;i<n;i++)e.push((t[i]-x[0]-x[1]*k[i]-x[2]*k[i]*k[i])**2);e.sort((a,b)=>a-b);const m=Math.ceil(n*0.9);return {x,sd:Math.sqrt(r2/(n-3)),core:Math.sqrt(e.slice(0,m).reduce((a,b)=>a+b,0)/m)};};
   const C=[];for(let T=0.16;T<=1.2;T*=1.015){let pred=t[0],P=T,K=0;const k=[0];for(let i=1;i<n;i++){const s=Math.max(1,Math.round((t[i]-pred)/P)),e=t[i]-(pred+s*P);K+=s;k.push(K);pred+=s*P+0.5*e;P+=0.08*e/s;}
-    const q=quad(k);if(!q)continue;const K2=k[n-1],a=q.x[1],b=a+2*q.x[2]*K2,M=(a+b)/2;if(a<=0||b<=0||M<0.14)continue;C.push({T:M,sd:q.sd,r:q.sd/M,change:(b/a-1)*100,steps:K2,x:q.x});}
+    const q=quad(k);if(!q)continue;const K2=k[n-1],a=q.x[1],b=a+2*q.x[2]*K2,M=(a+b)/2;if(a<=0||b<=0||M<0.14)continue;C.push({T:M,sd:q.sd,r:q.core/M,change:(b/a-1)*100,steps:K2,x:q.x});}
   if(!C.length)return null;const lo=Math.min(...C.map(c=>c.r)),c=C.filter(c=>c.r<=lo*1.15).sort((a,b)=>b.T-a.T)[0];
   const st=c.T<0.3?2:1,beats=[];for(let k=0;k<=c.steps;k+=st)beats.push(c.x[0]+c.x[1]*k+c.x[2]*k*k);
   return {beats,step:c.T,sd:c.sd*1000,ci:1.96*c.sd*1000/Math.sqrt(2*(n-3)),change:c.change,ratio:c.r,pulse:c.r<PULSE_MAX,n,span:t[n-1]-t[0]};}
