@@ -1299,12 +1299,13 @@ function planWarmup(h){const r=h.slice(-HIST_WIN),lo=r.filter(x=>x.hi>x.lo),M=k=
   const why=pick.map(g=>`${g.x.name} (${g.m.toFixed(g.x.dec)} ${g.x.unit}; median trained singer ${TRAINED_MED[g.x.k]})`);
   return {n:r.length,low,high,why,steps:[WARM_STEP.start,...pick.map(g=>WARM_STEP[g.x.k]),...(r.length?[]:[WARM_STEP.inton,WARM_STEP.stab]),WARM_STEP.end]};}
 const nn=m=>NOTE[(m%12+12)%12]+(Math.floor(m/12)-1);
+const warmNotes=W=>[0,2,4,2,0].map(d=>Math.min(W.high,W.low+Math.round((W.high-W.low)/4)+d));
 // Guide tones: a soft sine with two overtones, scheduled on the take's audio context (created in the click).
 function warmTone(ctx,st,W){const t0=ctx.currentTime+0.05,g=ctx.createGain(),o=ctx.createOscillator(),f=m=>440*Math.pow(2,(m-69)/12);
   const w=ctx.createPeriodicWave(new Float32Array([0,0,0,0]),new Float32Array([0,1,0.3,0.1]));o.setPeriodicWave(w);g.gain.value=0;o.connect(g);g.connect(ctx.destination);
   let end;if(st.tone==='glide'){o.frequency.setValueAtTime(f(W.low),t0);for(let k=0;k<2;k++){o.frequency.exponentialRampToValueAtTime(f(W.high),t0+3+k*6);o.frequency.exponentialRampToValueAtTime(f(W.low),t0+6+k*6);}end=t0+12;}
   else if(st.tone==='hold'){o.frequency.setValueAtTime(f(Math.round((W.low+W.high)/2)),t0);end=t0+8;}
-  else{const ms=[0,2,4,2,0].map(d=>Math.min(W.high,W.low+Math.round((W.high-W.low)/4)+d));ms.forEach((m,i)=>o.frequency.setValueAtTime(f(m),t0+i*2.5));end=t0+ms.length*2.5;}
+  else{const ms=warmNotes(W);ms.forEach((m,i)=>o.frequency.setValueAtTime(f(m),t0+i*2.5));end=t0+ms.length*2.5;}
   g.gain.setValueAtTime(0,t0);g.gain.linearRampToValueAtTime(0.15,t0+0.08);g.gain.setValueAtTime(0.15,end-0.15);g.gain.linearRampToValueAtTime(0,end);o.start(t0);o.stop(end+0.05);
   if(WARM.osc)try{WARM.osc.stop();}catch(e){}WARM.osc=o;return end-t0;}
 const WARM={plan:null,i:0,osc:null,timer:0};
@@ -1312,11 +1313,12 @@ function renderWarm(){const W=WARM.plan,el=$('warmup');if(!W){el.hidden=true;ret
   el.innerHTML=`<h3>Warm-up · step ${WARM.i+1} of ${W.steps.length} · about ${Math.round(W.steps.reduce((a,s)=>a+s.sec,0)/60)} min</h3>`+
    (WARM.i===0?`<p>${W.n?`Chosen from your last ${W.n} take${W.n>1?'s':''} on this device${W.why.length?`: most to gain in ${W.why.join(' and ')}.`:'.'}`:'No takes on this device yet: a general routine. Record a take and the next warm-up targets what it needs.'} Guide tones ${nn(W.low)}–${nn(W.high)}.</p>`:'')+
    `<p><b>${st.name}</b> · ${st.sec} s<br>${st.txt}<br><cite>${WARM_SRC[st.src]}</cite></p>`+
-   `<div class="row"><button class="btn" id="wTone">▶ guide tone</button><span id="wLeft">${st.sec} s</span>${last?'':'<button class="btn" id="wNext">next step →</button>'}<button class="btn" id="wDone">${last?'done':'stop'}</button></div>`;
+   `<div class="row"><button class="btn" id="wTone">▶ guide tone</button>${st.tone==='steps'?'<button class="btn" id="wMatch" title="Hear each tone, sing it, and read how close you landed">♪ match and measure</button>':''}<span id="wLeft">${st.sec} s</span>${last?'':'<button class="btn" id="wNext">next step →</button>'}<button class="btn" id="wDone">${last?'done':'stop'}</button></div>`+(st.tone==='steps'?'<div id="matchBox"></div>':'');
   clearInterval(WARM.timer);let left=st.sec;WARM.timer=setInterval(()=>{left--;const e=$('wLeft');if(e)e.textContent=left>0?`${left} s`:'time: move on when ready';if(left<=0)clearInterval(WARM.timer);},1000);
   $('wTone').onclick=()=>{const ctx=AU.ctx||WARM.ctx||(WARM.ctx=new (window.AudioContext||window.webkitAudioContext)());if(ctx.state!=='running')ctx.resume();warmTone(ctx,st,W);};
-  if(!last)$('wNext').onclick=()=>{WARM.i++;renderWarm();$('wTone').onclick();};
-  $('wDone').onclick=()=>{WARM.plan=null;clearInterval(WARM.timer);if(WARM.osc)try{WARM.osc.stop();}catch(e){}renderWarm();};}
+  if($('wMatch'))$('wMatch').onclick=()=>matchGo(W);renderMatch();
+  if(!last)$('wNext').onclick=()=>{MATCH.stop=true;WARM.i++;renderWarm();$('wTone').onclick();};
+  $('wDone').onclick=()=>{MATCH.stop=true;WARM.plan=null;clearInterval(WARM.timer);if(WARM.osc)try{WARM.osc.stop();}catch(e){}renderWarm();};}
 $('bWarm').onclick=()=>{WARM.plan=planWarmup(loadHist());WARM.i=0;renderWarm();$('wTone').onclick();$('warmup').scrollIntoView({block:'nearest'});};
 // Voice profile from the takes kept on this device. Comfortable range: median over takes of each take's
 // 10th and 90th percentile note (± the spread between takes, 1.96 SE); full range: lowest and highest held
@@ -1454,7 +1456,8 @@ const DRILL={rec:null,tries:[],t0:-1,busy:false},DRILL_S=4;
 async function tryRead(buf,m){const fs=await trackTake(buf);viterbiF0(fs);trimEdges(fs,buf);const st=new Stats();for(const f of fs)ingest(st,f,'take');const fr=st.rec.frames,n=segNotes(fr).sort((a,b)=>b.dur-a.dur)[0];if(!n||n.dur<0.4)return null;
   const v=fr.filter(f=>f.voiced&&f.ok&&f.t>=n.t0+0.1&&f.t<=n.t1).map(f=>({t:f.t,c:f.midi-m}));if(v.length<10)return null;const med=a=>a.slice().sort((x,y)=>x-y)[a.length>>1],o=12*Math.round(med(v.map(f=>f.c))/12),B={};
   for(const f of v)(B[Math.floor((f.t-n.t0)/0.25)]??=[]).push(f.c-o);const b=Object.values(B).filter(q=>q.length>=5).map(med),k=b.length,mb=b.reduce((x,y)=>x+y,0)/(k||1),sd=k>1?Math.sqrt(b.reduce((x,y)=>x+(y-mb)**2,0)/(k-1)):0;
-  return {c:med(v.map(f=>f.c-o))*100,e:Math.max(3,k>1?196*sd/Math.sqrt(k):30),dur:n.dur};}
+  const hold=med(v.map(f=>f.c))+m,vf=fr.filter(f=>f.voiced&&f.ok&&f.t>=n.t0-0.3&&f.t<=n.t1),st0=vf.length?vf[0].t:n.t0;let land=n.dur;for(const f of vf){const w=vf.filter(g=>Math.abs(g.t-f.t)<=0.1).map(g=>g.midi);if(Math.abs(med(w)-hold)<=0.5){land=f.t-st0;break;}}
+  return {c:med(v.map(f=>f.c-o))*100,e:Math.max(3,k>1?196*sd/Math.sqrt(k):30),dur:n.dur,land};}
 const tryWord=c=>`${Math.abs(c).toFixed(0)} ¢ ${c<0?'flat':'sharp'}`;
 function tryLine(r,i,was){if(!r)return `<li>Try ${i+1}: no held note heard. Hold it for about a second.</li>`;const on=Math.abs(r.c)<=Math.max(15,r.e),gain=Math.abs(was)-Math.abs(r.c);
   return `<li>Try ${i+1}: ${on?'on the note, ':''}${tryWord(r.c)} ± ${r.e.toFixed(0)} (${r.dur.toFixed(1)} s held). ${gain>r.e?`${gain.toFixed(0)} ¢ closer than in the take.`:on?'':gain<-r.e?'Further off than in the take: listen once more.':'About the same as in the take.'}</li>`;}
@@ -1510,6 +1513,32 @@ function stepNote(dir){const P=TAKE.aspects&&TAKE.aspects.perf;if(!P||!P.length)
 const bPrevNote=$('bPrevNote'),bNextNote=$('bNextNote');bPrevNote.onclick=()=>stepNote(-1);bNextNote.onclick=()=>stepNote(1);
 document.addEventListener('keydown',e=>{if(!TAKE.buf||bNextNote.disabled||/select|input|textarea/i.test(document.activeElement.tagName))return;if(e.key==='ArrowRight'){e.preventDefault();stepNote(1);}else if(e.key==='ArrowLeft'){e.preventDefault();stepNote(-1);}});
 // Mark moments: ⚑ mark (or M) drops a flag where the take is playing (or at the note just stepped to).
+// Match and measure, in the warm-up: hear each guide tone, sing it, read with tryRead (nearest octave). A session keeps
+// how far off (mean |¢| with its 95 % interval) and the landing time, on this device. Better/worse only beyond both intervals. check/match-bench.mjs.
+const MATCH_KEY='helix.match.v1',MATCH_TONE=1.5,MATCH_S=3,MATCH={busy:false,stop:false,now:null};
+function loadMatch(){try{const h=JSON.parse(localStorage.getItem(MATCH_KEY)||'[]');return Array.isArray(h)?h:[];}catch(e){return [];}}
+function matchStats(rs){const ok=rs.filter(Boolean);if(!ok.length)return null;const a=ok.map(r=>Math.abs(r.c)),n=a.length,off=a.reduce((x,y)=>x+y,0)/n,sd=n>1?Math.sqrt(a.reduce((x,y)=>x+(y-off)**2,0)/(n-1)):0,em=ok.reduce((x,r)=>x+r.e,0)/n,
+   bias=ok.reduce((x,r)=>x+r.c,0)/n,bsd=n>1?Math.sqrt(ok.reduce((x,r)=>x+(r.c-bias)**2,0)/(n-1)):0,L=ok.map(r=>r.land).sort((x,y)=>x-y);
+  return {d:Date.now(),n,of:rs.length,off,e:Math.max(em,1.96*sd)/Math.sqrt(n),bias,be:Math.max(em,1.96*bsd)/Math.sqrt(n),land:L[n>>1],on:ok.filter(r=>Math.abs(r.c)<=Math.max(15,r.e)).length};}
+function matchLine(s,h){const p=h.slice(-5).filter(x=>x.n>=3);let o=`<b>${s.on} of ${s.of} landed on the note</b> · ${s.off.toFixed(0)} ± ${s.e.toFixed(0)} ¢ off on average · ${s.land<0.08?'settled at once':`settled in about ${Math.round(s.land*20)*50} ms`}.`;
+  if(s.n>=3&&Math.abs(s.bias)>s.be)o+=` You sat ${tryWord(s.bias)} overall (± ${s.be.toFixed(0)}): aim a touch ${s.bias<0?'higher':'lower'}.`;
+  if(s.n>=3&&p.length){const m=p.reduce((x,y)=>x+y.off,0)/p.length,me=Math.sqrt(p.reduce((x,y)=>x+y.e*y.e,0))/p.length,g=m-s.off;o+=Math.abs(g)>s.e+me?` ${g>0?`${g.toFixed(0)} ¢ closer than`:`${(-g).toFixed(0)} ¢ further off than`} your last ${p.length>1?p.length+' sessions':'session'} (${m.toFixed(0)} ± ${me.toFixed(0)}).`:` About the same as your last ${p.length>1?p.length+' sessions':'session'} (${m.toFixed(0)} ± ${me.toFixed(0)}).`;}
+  return o;}
+function matchSpark(h){const p=h.slice(-20);if(p.length<2)return '';const mx=Math.max(60,...p.map(x=>x.off+x.e)),X=i=>4+i*232/(p.length-1),Y=v=>4+v/mx*32;
+  return `<svg viewBox="0 0 240 40" style="width:240px;max-width:100%;height:40px;display:block;margin-top:6px" role="img" aria-label="Cents off, last ${p.length} sessions, lower is closer"><path d="${p.map((x,i)=>`M${X(i).toFixed(1)} ${Y(Math.max(0,x.off-x.e)).toFixed(1)}V${Y(x.off+x.e).toFixed(1)}`).join('')}" stroke="var(--line)" stroke-width="3"/><polyline fill="none" stroke="var(--ok)" stroke-width="1.5" points="${p.map((x,i)=>`${X(i).toFixed(1)},${Y(x.off).toFixed(1)}`).join(' ')}"/></svg><p class="fine">Cents off per session, with its interval; lower is closer. Kept on this device.</p>`;}
+function renderMatch(msg){const el=$('matchBox');if(!el)return;const N=MATCH.now,h=loadMatch();el.innerHTML=(msg?`<p class="fine">${msg}</p>`:'')+(N?`<ul>${N.rs.map((r,i)=>`<li>${nn(N.ms[i])}: ${r?`${Math.abs(r.c)<=Math.max(15,r.e)?'on the note, ':''}${tryWord(r.c)} ± ${r.e.toFixed(0)}`:'no held note heard'}</li>`).join('')}</ul>`:'')+(N&&N.s?`<p>${matchLine(N.s,N.h)}</p>`:'')+matchSpark(h);}
+async function matchGo(W){if(MATCH.busy)return;const ensure=AU.kind!=='mic';if(AU.ctx)AU.ctx.resume();MATCH.busy=true;MATCH.stop=false;if(WARM.osc)try{WARM.osc.stop();}catch(e){}const ms=warmNotes(W),rs=[],hist=loadMatch();MATCH.now=null;
+  try{if(ensure){renderMatch('Starting the microphone: stay quiet for 2 seconds…');await useMic();for(let i=0;i<60&&calibrating;i++)await new Promise(r=>setTimeout(r,100));if(AU.kind!=='mic'){renderMatch('The microphone is needed: '+statusEl.textContent);return;}}
+    MATCH.now={ms:[],rs:[]};
+    for(let i=0;i<ms.length&&!MATCH.stop;i++){const m=ms[i];renderMatch(`Listen: ${nn(m)} (${i+1} of ${ms.length})…`);const ctx=AU.ctx,t=ctx.currentTime+0.05,o=ctx.createOscillator(),g=ctx.createGain();o.setPeriodicWave(ctx.createPeriodicWave(new Float32Array([0,0,0,0]),new Float32Array([0,1,0.3,0.1])));o.frequency.value=440*Math.pow(2,(m-69)/12);
+      g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(0.15,t+0.05);g.gain.setValueAtTime(0.15,t+MATCH_TONE-0.08);g.gain.linearRampToValueAtTime(0,t+MATCH_TONE);o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+MATCH_TONE+0.02);
+      await new Promise(r=>setTimeout(r,(MATCH_TONE+0.25)*1000));if(MATCH.stop)break;
+      DRILL.rec=[];renderMatch(`Now you: sing ${nn(m)} and hold, ${MATCH_S} s.`);await new Promise(r=>setTimeout(r,MATCH_S*1000));
+      const ch=DRILL.rec;DRILL.rec=null;if(MATCH.stop)break;const N=ch.reduce((x,y)=>x+y.length,0),buf=mkBuf(Math.max(1,N),AU.sr),x=buf.getChannelData(0);let c=0;for(const q of ch){x.set(q,c);c+=q.length;}
+      const r=N>=AU.sr?await tryRead(buf,m):null;rs.push(r);MATCH.now.ms.push(m);MATCH.now.rs.push(r);}
+    const s=rs.length===ms.length?matchStats(rs):null;if(s){MATCH.now.s=s;MATCH.now.h=hist;if(s.n>=3){const keep=hist.concat({d:s.d,n:s.n,off:s.off,e:s.e,land:s.land});try{localStorage.setItem(MATCH_KEY,JSON.stringify(keep.slice(-60)));}catch(e){}}}
+    renderMatch(MATCH.stop?'Stopped.':s&&s.n<3?'Too few notes heard to keep this one: hold each for about a second.':'');}
+  finally{MATCH.busy=false;DRILL.rec=null;if(ensure&&AU.kind==='mic')stopSource();}}
 // Flags are kept per take on this device (localStorage, keyed by the take's date); click one to play
 // from 1 s before it, double-click to remove it.
 const MARK_KEY='helix.marks.v1',bMark=$('bMark');
