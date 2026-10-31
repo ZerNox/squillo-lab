@@ -55,7 +55,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Siren and measure: the warm-up's siren read for span, drop-outs and register jumps (synthetic range within 0.46 st, breaks 0/20 clean, 20/20 jumped).
 - High notes: take pitch to 1400 Hz; straight notes from E5 up no longer read at a fraction of the note (synthetic C5-E6 100 %, was 0-63 % on straight tones from E5; vocadito 97.4 ± 0.8).
 - My data: save a copy of progress, bring it back after a wipe (merged, nothing lost), delete everything including audio.
-- On the device: opens with no network, no third-party request (fonts self-hosted), home-screen install (real outage reopens in all three browsers; `check/offline-check.mjs`).
+- On the device: opens with no network if asked (my data), no third-party request (fonts self-hosted), home-screen install (real outage reopens in all three browsers; `check/offline-check.mjs`).
 - Live subharmonic guard: breathy HNR 5 dB read right 49.7 → 99.7 %; vocadito live clean OA 91.8, pink 10 dB OA 88.9.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.

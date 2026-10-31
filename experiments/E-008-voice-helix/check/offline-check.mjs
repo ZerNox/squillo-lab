@@ -13,7 +13,7 @@ let bad = 0;
 for (const [name, type, opt, how] of [['chrome', chromium, {}, { channel: 'chrome' }], ['firefox', firefox, {}, existsSync('/snap/bin/firefox') ? { channel: 'moz-firefox', executablePath: '/snap/bin/firefox' } : {}], ['webkit-iphone', webkit, devices['iPhone 15'], {}]]) {
   const srv = createServer((q, s) => { const u = decodeURIComponent(q.url.split('?')[0]), f = join(root, u.endsWith('/') ? 'index.html' : u); if (u.includes('..') || !existsSync(f)) { s.writeHead(404); s.end(); return; } s.writeHead(200, { 'Content-Type': MIME[extname(f)] || 'text/plain', Connection: 'close' }); s.end(readFileSync(f)); });
   await new Promise(r => srv.listen(0, '127.0.0.1', r)); const url = `http://localhost:${srv.address().port}/`, b = await type.launch(how), c = await b.newContext(opt); let r = { browser: name, ok: false };
-  try { const p = await c.newPage(); await p.goto(url); await p.evaluate(() => navigator.serviceWorker.ready); await p.waitForFunction(() => navigator.serviceWorker.controller, null, { timeout: 15000 });
+  try { const p = await c.newPage(); await p.goto(url); await p.evaluate(() => keepOffline()); await p.reload(); await p.waitForFunction(() => navigator.serviceWorker.controller, null, { timeout: 15000 });
     r.kept = await p.evaluate(async () => { const c = await caches.open('helix-1'); for (let k = 0; k < 100; k++) { const n = (await c.keys()).length; if (n >= 26) return n; await new Promise(r => setTimeout(r, 100)); } return (await c.keys()).length; });
     srv.closeAllConnections(); await new Promise(r => srv.close(r));
     const o = await c.newPage(), t0 = Date.now(); await o.goto(url); await o.waitForSelector('#bData', { state: 'attached' }); r.ms = Date.now() - t0;

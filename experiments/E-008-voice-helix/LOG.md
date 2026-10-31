@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-31 · offline worker made opt-in
+
+Found after shipping: live WebKit runs stalled at the first tap. Service worker on vs blocked, live: 5 of 6 hung vs 0 of 6; without `clients.claim` still 1 of 6, cause not found. So the worker no longer starts by itself: 'keep for no network' under my data starts it, for the next open, and a worker registered in the hour it was automatic is removed on load. Normal visits have none. The hang may be Linux WebKit only; pressing the button on a real iPhone is unverified. Claims in the entry below about automatic keeping are replaced by this. Next: find the hang, Key drift part 2.
+
 ## 2026-10-31 · breathy notes no longer read an octave or more low, live
 
 Explained the 25.0 → 49.7 % rise from the last entry: all frames were voiced, but most breathy notes locked onto a subharmonic from the first frame (330 Hz read 110, 523 Hz read 105) and the continuity hint held them; waiting for two frames only dodged some locks. Built: live, a shorter period dividing the chosen one wins when its dip is within `LN.E` 0.05; takes unchanged (offline path, pitch bench identical). Page code: breathy HNR 5 dB read right 49.7 → 99.7 %; vocadito 40 clips live, clean RPA 89.7 ± 1.6 → 90.6 ± 1.3, OA 91.1 → 91.8 ± 1.0, FA 6.5 unchanged; pink 10 dB RPA 80.9 ± 2.8 → 84.5 ± 2.5, OA 86.4 → 88.9 ± 1.7, which wins back the two-frame cost. E chosen on these clips (0.1 gave pink RPA 83.7, OA 88.3), so slightly optimistic. No synthetic live gross-error figure: pitch-bench runs offline only. iOS risk: none new. Next: Key drift part 2.

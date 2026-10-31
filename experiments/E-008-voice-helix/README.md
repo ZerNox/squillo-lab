@@ -20,7 +20,7 @@ Pages serves the `gh-pages` branch; `.github/workflows/voice-helix-publish.yml`
 copies `page/` to its root on every push to `main` that changes the page.
 Edit the page on `main` only.
 
-On the device: `sw.js` keeps the page, clips, fonts and icons, network first with a 4 s limit; `manifest.webmanifest` adds it to a home screen; fonts are in `font/`, so no request leaves the site (check.mjs fails on one). A real outage reopens it in Chrome, Firefox and WebKit (`check/offline-check.mjs`). Takes and audio are never seen by the service worker.
+On the device: `sw.js`, only after the singer presses 'keep for no network' under my data (automatic, it hung taps in WebKit on Linux), keeps the page, clips, fonts and icons, network first with a 4 s limit; `manifest.webmanifest` adds it to a home screen; fonts are in `font/`, so no request leaves the site (check.mjs fails on one). A real outage reopens it in Chrome, Firefox and WebKit (`check/offline-check.mjs`). Takes and audio are never seen by the service worker.
 
 Three stations in one scene, the camera flies between them:
 
