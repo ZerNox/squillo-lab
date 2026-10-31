@@ -46,6 +46,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Eyes-free: "say note" (N) speaks the held note and cents via a live region; `?` lists the keys.
 - Note segmentation: optimal partitioning, vocadito COnP F 74.2 ± 2.7 % (old 36.7, second annotator 74.0); timing legato floor 12 ms.
 - Sing it again: hear the furthest-off note tuned, sing it, read against that note with ± (synthetic SD 1.5-2.1 ¢, truth inside ± 59/60).
+- Lane: flat 8 s pitch line, held note large with cents and ± (synthetic straight max 1.1 ¢; vibrato max 23 ¢, truth inside ± 97 %).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 

@@ -191,9 +191,19 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
   #rating table.prog td:nth-child(2){grid-column:1/-1;width:auto;min-width:0}
 }
 @media (prefers-reduced-motion:reduce){.flaw.on i{box-shadow:none}}
+#lane{position:fixed;inset:0;width:100%;height:100%;display:none;pointer-events:none}
+#laneRead{position:fixed;left:max(20px,env(safe-area-inset-left,0px));display:none;pointer-events:none;background:#080b10d9;padding:4px 12px 8px;border-radius:8px;font-variant-numeric:tabular-nums;line-height:1}
+#laneNote{font-size:clamp(56px,11vw,96px);font-weight:600;color:#e8edf2}
+#laneC{font-size:clamp(18px,3.4vw,26px);margin-top:6px;color:#a8b3bf}
+#laneRead.tune #laneNote{color:#4fd8c4}
+body.lane #lane,body.lane #laneRead{display:block}
+body.lane #rail,body.lane #labels,body.lane #flaws,body.lane #advice{display:none}
+@media (max-width:720px){body.lane #coach{margin-top:58vh}}
 </style>
 
 <canvas id="gl" role="img" aria-label="Voice helix: your pitch over time"></canvas>
+<canvas id="lane" aria-hidden="true"></canvas>
+<div id="laneRead" aria-hidden="true"><div id="laneNote">—</div><div id="laneC"></div></div>
 <div id="say" class="sr" aria-live="polite" aria-atomic="true"></div>
 <div id="keys" role="dialog" aria-label="Keyboard shortcuts" hidden><b>Keyboard</b><br><kbd>space</kbd> pause / resume<br><kbd>← →</kbd> previous / next note of the take<br><kbd>1 2 3 4</kbd> take, halfway, spotless, far vision, from the same moment<br><kbd>L</kbd> loop the phrase<br><kbd>M</kbd> mark this moment<br><kbd>N</kbd> say my note on / off (screen reader)<br><kbd>?</kbd> this list · <kbd>Esc</kbd> close</div>
 <div id="labels"></div>
@@ -242,6 +252,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
     <button id="vTract" data-view="tract" aria-pressed="false">Tract</button>
     <button id="vTerrain" data-view="terrain" aria-pressed="false">Terrain</button>
     <button id="vAll" data-view="all" aria-pressed="false">All</button>
+    <button id="vLane" data-view="lane" aria-pressed="false" title="A flat pitch line and the note in big letters, to read while singing">Lane</button>
   </div>
   <div id="drill" class="lbl-row">
     <select id="tNote" aria-label="Target note"></select>
@@ -756,9 +767,10 @@ const VIEWS={
  terrain:{target:[ZX[0]+TD.size[0]*0.55,ZX[1]+0.8,ZX[2]+TD.size[2]*0.5],dist:12,theta:-0.75,phi:1.0},
  all:{target:[-0.5,0.2,0],dist:24,theta:0.2,phi:1.05},
 };
+VIEWS.lane=VIEWS.helix;
 const cam={target:[...VIEWS.helix.target],dist:VIEWS.helix.dist,theta:VIEWS.helix.theta,phi:VIEWS.helix.phi,goal:VIEWS.helix,dTheta:0,dPhi:0,dDist:1};
 let autoFly=true;
-function setView(v,user=false){cam.goal=VIEWS[v];if(user){cam.dTheta=0;cam.dPhi=0;cam.dDist=1;}for(const b of document.querySelectorAll('[data-view]'))b.setAttribute('aria-pressed',String(b.dataset.view===v));}
+function setView(v,user=false){if(!user&&document.body.classList.contains('lane'))return;document.body.classList.toggle('lane',v==='lane');cam.goal=VIEWS[v];if(user){cam.dTheta=0;cam.dPhi=0;cam.dDist=1;}for(const b of document.querySelectorAll('[data-view]'))b.setAttribute('aria-pressed',String(b.dataset.view===v));}
 for(const b of document.querySelectorAll('[data-view]'))b.onclick=()=>{setView(b.dataset.view,true);lastFlyFlaw=activeFlaw;};
 const autoBtn=document.getElementById('autoFly');autoBtn.onclick=()=>{autoFly=!autoFly;autoBtn.textContent=`auto-fly: ${autoFly?'on':'off'}`;autoBtn.setAttribute('aria-pressed',String(autoFly));};
 let drag=null;canvas.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY};canvas.setPointerCapture(e.pointerId);});
@@ -1609,6 +1621,23 @@ window.helixAspects=async ab=>{const o=new OfflineAudioContext(1,1,48000);const 
 // ───────────────────────── main loop ─────────────────────────
 let lastWall=performance.now()/1000;
 function resize(){const dpr=Math.min(window.devicePixelRatio||1,2);const w=Math.floor(canvas.clientWidth*dpr),h=Math.floor(canvas.clientHeight*dpr);if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}}
+// Lane: the last 8 s as a flat line on a semitone grid, and the held note large. laneRead: median of the last 0.4 s of the same note, ± from its spread over about 4 independent blocks, 3 ¢ floor.
+function laneRead(hist,now,tgt){const last=hist[hist.length-1];if(!last||!last.voiced||now-last.t>0.15)return null;const m=[];for(let i=hist.length-1;i>=0&&now-hist[i].t<0.4;i--){const h=hist[i];if(h.voiced&&h.ok!==false&&Math.abs(h.midi-last.midi)<1.5)m.push(h.midi);}
+  if(m.length<8)return null;m.sort((a,b)=>a-b);const med=m[m.length>>1],dev=m.map(x=>Math.abs(x-med)).sort((a,b)=>a-b),n=tgt||Math.round(med);
+  return {n,midi:med,c:(med-n)*100,pm:Math.max(3,1.4826*dev[dev.length>>1]*100/2)};}
+const LANE={mid:60,half:7,box:null,boxT:0},laneC=$('lane'),laneX=laneC.getContext('2d');
+function laneBox(wall){if(LANE.box&&wall-LANE.boxT<0.5)return LANE.box;LANE.boxT=wall;const t=$('top').getBoundingClientRect().bottom+8,tl=$('tl').getBoundingClientRect().top-8,H=innerHeight;LANE.box={x:0,y:Math.max(0,t),w:innerWidth,h:Math.max(140,(tl>t+140?Math.min(tl,H):H)-Math.max(0,t))};
+  const r=$('laneRead').style;r.top=(LANE.box.y+10)+'px';return LANE.box;}
+function laneDraw(wall){if(!document.body.classList.contains('lane'))return;const b=laneBox(wall),dpr=Math.min(devicePixelRatio||1,2),W=Math.floor(innerWidth*dpr),H=Math.floor(innerHeight*dpr);if(laneC.width!==W||laneC.height!==H){laneC.width=W;laneC.height=H;}
+  const x=laneX,now=viewNow,S=8,tgt=tNote.value?+tNote.value:0;x.setTransform(dpr,0,0,dpr,0,0);x.fillStyle='#080b10';x.fillRect(0,0,innerWidth,innerHeight);
+  const fr=viewHist.filter(h=>now-h.t<S),v=fr.filter(h=>h.voiced&&h.ok!==false).map(h=>h.midi).sort((a,b)=>a-b);
+  if(v.length>10){const lo=v[Math.floor(v.length*0.05)],hi=v[Math.floor(v.length*0.95)],k=matchMedia('(prefers-reduced-motion:reduce)').matches?1:0.06;LANE.mid=lerp(LANE.mid,(lo+hi)/2,k);LANE.half=lerp(LANE.half,clamp((hi-lo)/2+3,5,14),k);}
+  const R=b.x+b.w-46,Y=m=>b.y+b.h/2-(m-LANE.mid)/LANE.half*(b.h/2-10),X=t=>R-(now-t)/S*(R-16);x.font='12px ui-monospace,monospace';x.textBaseline='middle';
+  for(let m=Math.ceil(LANE.mid-LANE.half);m<=LANE.mid+LANE.half;m++){const pc=((m%12)+12)%12,nat=[0,2,4,5,7,9,11].includes(pc),y=Y(m);x.strokeStyle=m===tgt?'#d9925c':pc===0?'#3a4654':nat?'#222b35':'#171e26';x.lineWidth=m===tgt?2:1;x.beginPath();x.moveTo(16,y);x.lineTo(R,y);x.stroke();if(nat||m===tgt||LANE.half<8){x.fillStyle=m===tgt?'#d9925c':nat?'#8894a1':'#56616d';x.fillText(noteName(m),R+8,y);}}
+  x.strokeStyle='#4fd8c4';x.lineWidth=3;x.lineJoin='round';x.lineCap='round';x.beginPath();let pen=false,pt=0,pm=0;for(const h of fr){if(!h.voiced||h.ok===false){pen=false;continue;}if(pen&&(h.t-pt>0.1||Math.abs(h.midi-pm)>3))pen=false;const a=X(h.t),c=Y(h.midi);pen?x.lineTo(a,c):x.moveTo(a,c);pen=true;pt=h.t;pm=h.midi;}x.stroke();
+  const r=laneRead(viewHist,now,tgt);if(r){x.fillStyle='#4fd8c4';x.beginPath();x.arc(R,Y(r.midi),6,0,6.3);x.fill();}
+  const c=r&&Math.round(r.c);$('laneNote').textContent=r?noteName(r.n):'—';$('laneC').textContent=r?(Math.abs(r.c)<=r.pm?`in tune · ±${r.pm.toFixed(0)} ¢`:`${Math.abs(c)} ¢ ${c>0?'sharp':'flat'} · ±${r.pm.toFixed(0)}`):'';$('laneRead').classList.toggle('tune',!!r&&Math.abs(r.c)<=r.pm);}
+window.addEventListener('resize',()=>LANE.box=null);
 function frame(){const wall=performance.now()/1000;const dt=Math.min(0.1,wall-lastWall);lastWall=wall;
   if(AU.demo)AU.demo.tick(AU.ctx.currentTime,dt);
   coachTick();
@@ -1624,7 +1653,7 @@ function frame(){const wall=performance.now()/1000;const dt=Math.min(0.1,wall-la
   gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
   helixFrame.draw(view,proj);chart.draw(view,proj);comb.draw(view,proj);trail.draw(view,proj);marker.draw(view,proj);helixGhost.draw(view,proj);
   gl.depthMask(false);helixRibbon.draw(view,proj);ghostTube.draw(view,proj);nasalPort.draw(view,proj);tube.draw(view,proj);gl.depthMask(true);
-  projectLabels(M4.mul(proj,view),canvas.clientWidth,canvas.clientHeight);
+  projectLabels(M4.mul(proj,view),canvas.clientWidth,canvas.clientHeight);laneDraw(wall);
   requestAnimationFrame(frame);}
 if(gl){P=prog(SH_V,SH_F);PT=prog(TER_V,TER_F);buildStatic();setupLabels();
   const hash=location.hash.replace('#','');if(VIEWS[hash])setView(hash,true);

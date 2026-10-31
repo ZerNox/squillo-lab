@@ -96,6 +96,12 @@ async function run([name, launch, ctxOpt, file]) {
     say.ok = say.on && /^[A-G]#?-?\d(, target [A-G]#?\d)?, (in tune|\d+ cents (sharp|flat))$/.test(say.t) && say.keys;
     await tap(p.locator('#bSay'));
     await p.locator('#rail').screenshot({ path: join(out, `${name}-lag.png`) }).catch(() => {});
+    // Lane: the demo's steady note appears in big letters with cents and ±, the rail steps aside; a screenshot while it sings.
+    await tap(p.locator('#vLane')); await p.waitForTimeout(1800);
+    const lane = await p.evaluate(() => ({ note: document.getElementById('laneNote').textContent, c: document.getElementById('laneC').textContent, rail: getComputedStyle(document.getElementById('rail')).display, cv: getComputedStyle(document.getElementById('lane')).display, ink: (() => { const c = document.getElementById('lane'), d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; let n = 0; for (let i = 0; i < d.length; i += 4) if (d[i + 1] > 180 && d[i] < 120) n++; return n; })() }));
+    await p.screenshot({ path: join(out, `${name}-lane.png`) });
+    if (!/^[A-G]♯?\d$/.test(lane.note) || !/±/.test(lane.c) || lane.rail !== 'none' || lane.cv !== 'block' || lane.ink < 100) throw new Error('lane: ' + JSON.stringify(lane));
+    await tap(p.locator('#vHelix'));
     if (touch) { await tap(p.getByRole('button', { name: 'Recording' })); await p.waitForTimeout(300); await p.setInputFiles('#file', file); }
     else { const [fc] = await Promise.all([p.waitForEvent('filechooser'), p.getByRole('button', { name: 'Recording' }).click()]); await fc.setFiles(file); }
     await p.waitForFunction(() => !document.getElementById('bPlaySpot').disabled, null, { timeout: 120000 });
