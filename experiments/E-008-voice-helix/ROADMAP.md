@@ -38,7 +38,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Key drift per take: tuning slide over the take with ± (synthetic SD 16 ¢; vocadito agreement SD 41 ¢), praised or a drone exercise; on the progress and week lines.
 - Hear it from the summary: ▶ best note, ▶ furthest-off note then tuned.
 - "Your last three long notes were steadier than any last week" in the summary, beyond one note's noise.
-- Timing without a click: pulse found from note starts, rhythm spread ± and tempo change in the summary, rhythm spread progress line (synthetic jitter read within about 20 ms, change SD 1-3 %, false pulse 0/20; vocadito pulse agreement weak).
+- Timing without a click: pulse found from note starts, rhythm spread ± and tempo change in the summary, rhythm spread progress line (synthetic jitter read within about 20 ms, change SD 1-3 %, false pulse 0/40 on free melodies, 4 % on random onsets; 5 of 7 vocadito clips both annotators pulse).
 - Hear it with your pulse: the take with a soft click on the singer's own fitted pulse.
 - Sung vowel: 'vowels heard' in the summary; live chip and note by note, only when sure, from the harmonic envelope (VocalSet left-out singer: 85 ± 5 % on 74 % of notes, 78.5 ± 4.5 % overall, none at 600 Hz and up).
 - Far vision: spotless plus even vibrato and a gentle swell on long notes (VocalSet read-back 5.78 Hz, 0.41 st for 5.8, 0.45 asked); versions switch at the same moment, keys 1-4; '▶ yours, then far' on the longest note.
@@ -60,7 +60,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 ## Next
 
 0. **Noise, part 3**: live false alarms (clean FA 11.0 %, no Viterbi live; HNR 0 dB breathy notes unread); take pitch in talk-like noise no gain, room read 10-13 dB high.
-0. **Timing, part 2**: vocadito pulse agreement 3 of 5/7 clips.
+0. **Timing, part 3**: page finds 5 of the 7 clips both vocadito annotators pulse, 4 % false on random onsets; real truth is thin (annotators share only 7 of 40).
 0. **Key drift, part 2**: better real-voice agreement (vocadito SD 41 ¢ vs synthetic 16); local/global circular unwraps tried 2026-10-30, no gain (39-91 ¢): needs a different truth or note-level approach. `segNotes` input: SD 62 ¢, worse.
 0. **Vowels, part 3**: o/u still weakest (64/72 %, left-out singer); try other mics or languages if an open labelled set exists.
 1. **Rating with ground truth**: human-judged takes across styles from openly
