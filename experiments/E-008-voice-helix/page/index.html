@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0a0d12">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' blob:; worker-src blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self'; media-src 'self' blob:; img-src 'self' data:; frame-src 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' blob:; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; connect-src 'self'; media-src 'self' blob:; img-src 'self' data:; frame-src 'none'; object-src 'none'">
 <style>body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Voice Helix</title>
 <script>
@@ -15,7 +15,18 @@ window.addEventListener('unhandledrejection',function(e){var r=e.reason;show('pr
 window.helixShowError=show;})();
 </script>
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Helix">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+@font-face{font-family:"Syne";font-weight:500 700;font-display:swap;src:url(font/syne.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Sans";font-weight:400 500;font-display:swap;src:url(font/plex-sans.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-weight:400;font-display:swap;src:url(font/plex-mono-400.woff2) format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-weight:500;font-display:swap;src:url(font/plex-mono-500.woff2) format("woff2")}
+</style>
 </head>
 <body>
 <style>
@@ -1605,12 +1616,20 @@ function restoreText(t){let o;try{o=JSON.parse(t);}catch(e){return null;}if(!o||
   try{for(const [k,v] of w)localStorage.setItem(k,JSON.stringify(v));}catch(e){return {n:0,takes:0,full:true};}return {n,takes};}
 function dataNudge(h){const s=+dataRead(SAVED_KEY,'0');if(h.length<5||(s&&Date.now()-s<14*864e5))return '';return `<p class="fine">${s?`Your last copy is ${Math.floor((Date.now()-s)/864e5)} days old`:'No copy of your progress yet'}: a browser can clear what it keeps. Save one under my data.</p>`;}
 function renderData(msg){const el=$('data'),h=loadHist(),s=+dataRead(SAVED_KEY,'0'),ex=DATA_KEYS.slice(1).reduce((a,[k])=>a+dataRead(k,'[]').length,0);el.hidden=false;
-  el.innerHTML=`<h3>My data</h3>${msg?`<p id="dataMsg">${msg}</p>`:''}<p>Kept in this browser only, sent nowhere: <b>${h.length}</b> take${h.length===1?'':'s'}, <b>${ex}</b> warm-up and range reading${ex===1?'':'s'}, <span id="dataAudio">and up to ${ADB.max} takes' audio</span>. ${s?`Last copy saved ${new Date(s).toLocaleDateString()}.`:'No copy saved yet.'}</p><p class="fine" id="dataPersist"></p>
+  el.innerHTML=`<h3>My data</h3>${msg?`<p id="dataMsg">${msg}</p>`:''}<p>Kept in this browser only, sent nowhere: <b>${h.length}</b> take${h.length===1?'':'s'}, <b>${ex}</b> warm-up and range reading${ex===1?'':'s'}, <span id="dataAudio">and up to ${ADB.max} takes' audio</span>. ${s?`Last copy saved ${new Date(s).toLocaleDateString()}.`:'No copy saved yet.'}</p><p class="fine" id="dataPersist"></p><p class="fine" id="dataApp"></p>
    <div class="row"><button class="btn" id="dSave">⤓ save a copy</button><button class="btn" id="dLoad">⤒ bring a copy back</button><button class="btn" id="dForget">delete everything</button></div><p class="fine">A copy is one small file of numbers and dates, no audio. Bringing it back adds what is missing and changes nothing you already have.</p>`;
   $('dSave').onclick=()=>{const now=Date.now(),a=document.createElement('a');a.href=URL.createObjectURL(new Blob([backupText(now)],{type:'application/json'}));a.download=`voice-helix-${new Date(now).toISOString().slice(0,10)}.json`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),60000);try{localStorage.setItem(SAVED_KEY,String(now));}catch(e){}keepAsked();renderData(`Copy saved as ${a.download}.`);};
   $('dLoad').onclick=()=>$('dataFile').click();
   $('dForget').onclick=e=>{const b=e.currentTarget;if(!b.dataset.sure){b.dataset.sure='1';b.textContent='sure? this cannot be undone';return;}forgetAll();};
-  if(navigator.storage&&navigator.storage.persisted)navigator.storage.persisted().then(p=>{const q=$('dataPersist');if(q)q.textContent=p?'This browser has agreed to keep it unless you clear it.':'This browser may clear it if space runs low or you stay away: keep a copy.';}).catch(()=>{});}
+  if(navigator.storage&&navigator.storage.persisted)navigator.storage.persisted().then(p=>{const q=$('dataPersist');if(q)q.textContent=p?'This browser has agreed to keep it unless you clear it.':'This browser may clear it if space runs low or you stay away: keep a copy.';}).catch(()=>{});appLine();}
+// On the home screen: opens like an app, and with no network. iOS has no install prompt and gives the installed app its own storage, so the singer is told to carry a copy across.
+let installAsk=null;addEventListener('beforeinstallprompt',e=>{e.preventDefault();installAsk=e;appLine();});addEventListener('appinstalled',()=>{installAsk=null;appLine();});
+const isStandalone=()=>matchMedia('(display-mode:standalone)').matches||navigator.standalone===true,isIOS=()=>/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+function appLine(){const q=$('dataApp');if(!q)return;const off=navigator.serviceWorker&&navigator.serviceWorker.controller?'This device can open the page with no network. ':'';
+  if(isStandalone()){q.textContent=off+'Running from your home screen.';return;}
+  if(installAsk){q.innerHTML=off+'<button class="btn" id="dInstall">＋ add to this device</button>';$('dInstall').onclick=()=>{const a=installAsk;installAsk=null;a.prompt();appLine();};return;}
+  q.textContent=off+(isIOS()?'To keep it on your home screen: Share, then Add to Home Screen. It opens like an app and Safari stops counting days away, but it starts empty: save a copy here first, then bring it back there.':'');}
+if('serviceWorker' in navigator&&/^https?:/.test(location.protocol))addEventListener('load',()=>navigator.serviceWorker.register('sw.js').then(()=>navigator.serviceWorker.ready).then(appLine).catch(()=>{}));
 function keepAsked(){if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});}
 async function forgetAll(){for(const k of [...DATA_KEYS.map(q=>q[0]),MARK_KEY,SAVED_KEY])try{localStorage.removeItem(k);}catch(e){}try{await adbDo('readwrite',st=>st.clear());}catch(e){}fillCompare();if(!$('rating').hidden)renderRating();renderData('Deleted: takes, readings, marks and kept audio.');}
 $('bData').onclick=()=>{const el=$('data');if(!el.hidden){el.hidden=true;return;}renderData();el.scrollIntoView({block:'nearest'});};
