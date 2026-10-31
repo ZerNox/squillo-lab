@@ -101,9 +101,9 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
 #coachVid{width:96px;height:128px;object-fit:cover;border-radius:6px;flex:0 0 auto;background:var(--bg-2)}
 #advice.coach-on{border-left-color:var(--pitch)}
 #advice.coach-on #coachVid,#advice.coach-on #fig{width:150px;height:200px}
-#warmup,#profile{max-width:620px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);backdrop-filter:blur(8px);font-size:13px;color:var(--fg-2)}
-#warmup h3,#profile h3{font:600 12px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);margin:0 0 4px}
-#warmup b,#profile b{color:var(--fg)}#profile .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:6px}#profile input{width:4.5em;font:inherit;background:transparent;color:var(--fg);border:1px solid var(--line);border-radius:4px;padding:2px 4px}#profile svg{width:100%;height:46px;display:block;margin:6px 0}#profile svg .full{fill:var(--line)}#profile svg .comf{fill:var(--ok)}#profile svg text{font:9px var(--f-mono);fill:var(--fg-3)}#warmup .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px}#warmup cite{color:var(--fg-3);font-size:11px}
+#warmup,#profile,#data{max-width:620px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);backdrop-filter:blur(8px);font-size:13px;color:var(--fg-2)}
+#warmup h3,#profile h3,#data h3{font:600 12px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);margin:0 0 4px}
+#warmup b,#profile b,#data b{color:var(--fg)}#profile .row,#data .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:6px}#profile input{width:4.5em;font:inherit;background:transparent;color:var(--fg);border:1px solid var(--line);border-radius:4px;padding:2px 4px}#profile svg{width:100%;height:46px;display:block;margin:6px 0}#profile svg .full{fill:var(--line)}#profile svg .comf{fill:var(--ok)}#profile svg text{font:9px var(--f-mono);fill:var(--fg-3)}#warmup .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px}#warmup cite{color:var(--fg-3);font-size:11px}
 #rating{max-width:620px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);backdrop-filter:blur(8px);font-size:13px}
 #rating .elo{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 #rating .elo b{font:700 34px/1 var(--f-display);color:var(--pitch);font-variant-numeric:tabular-nums}
@@ -297,11 +297,14 @@ body.lane #rail,body.lane #labels,body.lane #flaws,body.lane #advice{display:non
     <select id="cmpSel" hidden aria-label="Earlier take to compare" title="An earlier take kept on this device"></select><button class="btn" id="bPlayCmp" hidden title="Play an earlier take, then yours, to hear the change">▶ earlier take</button><button class="btn" id="bSamePh" hidden title="The phrase around the current note, sung in the earlier take, then today">▶ same phrase</button>
     <button class="btn" id="bWarm" title="A short routine for what your recent takes need most">☀ warm-up</button>
     <button class="btn" id="bProf" title="Your range, voice type and a key for any song, from your takes">♪ voice profile</button>
+    <button class="btn" id="bData" title="What is kept on this device: save a copy, bring one back, or delete it all">⛁ my data</button>
     <select id="speed" aria-label="Playback speed" title="Slow down without changing pitch"><option value="1">1×</option><option value="0.75">0.75×</option><option value="0.5">0.5×</option></select>
     <span id="takeInfo">Sing (or play any source) and record up to 60 s. Then play it back: the coach shows the exercise just before each spot that can improve.</span>
   </div>
   <section id="warmup" hidden aria-live="polite"></section>
   <section id="profile" hidden aria-live="polite"></section>
+  <section id="data" hidden aria-live="polite"></section>
+  <input type="file" id="dataFile" accept=".json,application/json" hidden>
   <div id="takebar" hidden title="Click to play from here"><b id="playhead"></b></div>
   <div id="takeKey" hidden>line: how well you sang over the last 10 s (dashes: median trained singer) · notes: <b style="background:var(--ok)">on</b> <b style="background:var(--warn)">close</b> <b style="background:var(--bad)">off</b> · ★ best notes · red: spot the coach works on · click a note or spot to hear it A/B with spotless · ⚑ your marks (M)</div>
   <section id="rating" hidden aria-live="polite"></section>
@@ -1281,7 +1284,7 @@ function renderProgress(){const h=loadHist();if(!h.length)return '';
     const last=S[n-1],tr=trend(x,v);
     o+=`<tr><td>${x.name}</td><td><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="${x.name}: ${n} takes, now ${last.m.toFixed(x.dec)}${last.ci!==null?` ± ${last.ci.toFixed(x.dec)}`:''}"><polygon class="bd" points="${band}"/><polyline class="sl" vector-effect="non-scaling-stroke" points="${S.map((s,i)=>`${X(i)},${Y(s.m)}`).join(' ')}"/>${v.map((q,i)=>`<circle cx="${X(i)}" cy="${Y(q)}" r="1.8"/>`).join('')}</svg></td>`+
       `<td>${last.m.toFixed(x.dec)}${last.ci!==null?` ± ${last.ci.toFixed(x.dec)}`:''} ${x.unit}${tr?`<br><em>${tr}</em>`:''}</td></tr>`;}
-  return o+`</table>${weekLine(h)}${streakLine(h)}<p class="fine">Dots: each take. Line: mean of your last ${HIST_WIN} takes; band: its 95 % interval. Up is better on every line but tone colour (up is brighter) and swell (up is more swell within a long note): styles, neither better nor worse. Kept only in this browser. <button class="btn" id="forget">forget my takes</button></p>`;}
+  return o+`</table>${weekLine(h)}${streakLine(h)}<p class="fine">Dots: each take. Line: mean of your last ${HIST_WIN} takes; band: its 95 % interval. Up is better on every line but tone colour (up is brighter) and swell (up is more swell within a long note): styles, neither better nor worse. Kept only in this browser. <button class="btn" id="openData">my data</button></p>${dataNudge(h)}`;}
 // Warm-up: a five-minute routine for today, chosen from the takes kept on this device. Each aspect's mean
 // over the last 5 takes is set against the median trained singer (as in "to work on"); the one or two
 // furthest behind get a targeted step between a semi-occluded warm-up and a siren. Guide tones sit in the
@@ -1407,7 +1410,7 @@ function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;
   {const ln=[...a.perf].filter(n=>n.t1-n.t0>=0.8).sort((x,y)=>(y.t1-y.t0)-(x.t1-x.t0))[0];if(ln)h+=`<h3>Where this can go</h3><p>Your longest note, at ${mmss(ln.t0)}, as it is, then in your far vision: tuned, even vibrato, a gentle swell. One possible far point. ${hear(ln,'far','▶ yours, then far')}</p>`;}
   h+=`<p class="fine">${R?`Provisional Elo: each reference voice is one game on intonation, steadiness and clean onsets (tone clarity depends on the microphone and room, so it is not rated). 2000 is the median conservatory-trained singer in ${R.pool}. It ranks you within this pool, not the world.`:''} The take's tuning is ${a.off>=0?'+':''}${(a.off*100).toFixed(0)} ¢ from A440; notes are measured on that grid. <span id="pitchAcc">How sure the pitch is: on 40 real a cappella excerpts by 29 singers (vocadito, CC BY 4.0) this tracker puts 97.4 ± 0.8 % of sung moments within half a semitone of hand-checked pitch; lower voices 97.3 ± 1.4 %, higher 97.8 ± 0.7 %; about 1 in 8 breaths or consonants is read as a note.</span></p>`;
   ratingEl.innerHTML=h+renderProgress();for(const e of ratingEl.querySelectorAll('[data-hear]'))e.onclick=()=>{const t0=+e.dataset.t0,t1=+e.dataset.t1;
-    if(e.dataset.hear==='pulse')playPulse();else if(e.dataset.hear==='worst')abLoop(t0,t1,'note');else if(e.dataset.hear==='far')abLoop(t0,t1,'longest note','far');else playTake('take',Math.max(0,t0-0.3),Math.min(TAKE.buf.duration,t1+0.3));};const bt=$('bTry');if(bt)bt.onclick=()=>drillGo(bt);const fg=$('forget');if(fg)fg.onclick=()=>{try{localStorage.removeItem(HIST_KEY);}catch(e){}renderRating();};}
+    if(e.dataset.hear==='pulse')playPulse();else if(e.dataset.hear==='worst')abLoop(t0,t1,'note');else if(e.dataset.hear==='far')abLoop(t0,t1,'longest note','far');else playTake('take',Math.max(0,t0-0.3),Math.min(TAKE.buf.duration,t1+0.3));};const bt=$('bTry');if(bt)bt.onclick=()=>drillGo(bt);const od=$('openData');if(od)od.onclick=()=>{renderData();$('data').scrollIntoView({block:'nearest'});};}
 // Target pitch per frame for "spotless": a 250 ms running median inside each voiced run (keeps the
 // melody, drops wobble), the start of each note (up to 300 ms, a third of notes from 200 ms) held at its
 // settled pitch (no scoop), then snapped
@@ -1586,6 +1589,31 @@ async function sirenGo(){if(SIREN.busy)return;const ensure=AU.kind!=='mic';if(AU
 // Flags are kept per take on this device (localStorage, keyed by the take's date); click one to play
 // from 1 s before it, double-click to remove it.
 const MARK_KEY='helix.marks.v1',bMark=$('bMark');
+// My data: everything kept lives in this browser, and a browser may clear it (Safari after 7 days away unless the page is on the
+// home screen). A copy is a plain JSON file the singer holds; bringing it back merges by date, existing records win, nothing is lost
+// in either direction. Audio stays out of the copy. Imported text reaches innerHTML, so a record holding markup is refused.
+const SAVED_KEY='helix.saved.v1',DATA_KEYS=[[HIST_KEY,HIST_MAX],[RANGE_KEY,RF_MAX],[MATCH_KEY,60],[SWELL_KEY,60],[SIREN_KEY,60]],DATA_APP='voice-helix';
+const dataOk=r=>!!r&&typeof r==='object'&&!JSON.stringify(r).includes('<');
+function dataRead(k,e){try{return JSON.parse(localStorage.getItem(k)||e);}catch(x){return JSON.parse(e);}}
+function backupText(now){const data={[MARK_KEY]:dataRead(MARK_KEY,'{}')};for(const [k] of DATA_KEYS)data[k]=dataRead(k,'[]');return JSON.stringify({app:DATA_APP,v:1,saved:now,data});}
+function mergeList(cur,inc,max){const seen=new Set(cur.map(r=>r.d)),add=(Array.isArray(inc)?inc:[]).filter(r=>dataOk(r)&&!Array.isArray(r)&&Number.isFinite(r.d)&&!seen.has(r.d)&&seen.add(r.d));
+  return {list:cur.concat(add).sort((a,b)=>a.d-b.d).slice(-max),n:add.length};}
+function restoreText(t){let o;try{o=JSON.parse(t);}catch(e){return null;}if(!o||o.app!==DATA_APP||o.v!==1||!o.data||typeof o.data!=='object')return null;
+  const w=[];let n=0,takes=0;for(const [k,max] of DATA_KEYS){const m=mergeList(dataRead(k,'[]'),o.data[k],max);w.push([k,m.list]);n+=m.n;if(k===HIST_KEY)takes=m.n;}
+  const mk=dataRead(MARK_KEY,'{}'),im=o.data[MARK_KEY];if(dataOk(im)&&!Array.isArray(im))for(const q of Object.keys(im))if(/^\d+$/.test(q)&&Array.isArray(im[q])&&!mk[q])mk[q]=im[q];w.push([MARK_KEY,mk]);
+  try{for(const [k,v] of w)localStorage.setItem(k,JSON.stringify(v));}catch(e){return {n:0,takes:0,full:true};}return {n,takes};}
+function dataNudge(h){const s=+dataRead(SAVED_KEY,'0');if(h.length<5||(s&&Date.now()-s<14*864e5))return '';return `<p class="fine">${s?`Your last copy is ${Math.floor((Date.now()-s)/864e5)} days old`:'No copy of your progress yet'}: a browser can clear what it keeps. Save one under my data.</p>`;}
+function renderData(msg){const el=$('data'),h=loadHist(),s=+dataRead(SAVED_KEY,'0'),ex=DATA_KEYS.slice(1).reduce((a,[k])=>a+dataRead(k,'[]').length,0);el.hidden=false;
+  el.innerHTML=`<h3>My data</h3>${msg?`<p id="dataMsg">${msg}</p>`:''}<p>Kept in this browser only, sent nowhere: <b>${h.length}</b> take${h.length===1?'':'s'}, <b>${ex}</b> warm-up and range reading${ex===1?'':'s'}, <span id="dataAudio">and up to ${ADB.max} takes' audio</span>. ${s?`Last copy saved ${new Date(s).toLocaleDateString()}.`:'No copy saved yet.'}</p><p class="fine" id="dataPersist"></p>
+   <div class="row"><button class="btn" id="dSave">⤓ save a copy</button><button class="btn" id="dLoad">⤒ bring a copy back</button><button class="btn" id="dForget">delete everything</button></div><p class="fine">A copy is one small file of numbers and dates, no audio. Bringing it back adds what is missing and changes nothing you already have.</p>`;
+  $('dSave').onclick=()=>{const now=Date.now(),a=document.createElement('a');a.href=URL.createObjectURL(new Blob([backupText(now)],{type:'application/json'}));a.download=`voice-helix-${new Date(now).toISOString().slice(0,10)}.json`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),60000);try{localStorage.setItem(SAVED_KEY,String(now));}catch(e){}keepAsked();renderData(`Copy saved as ${a.download}.`);};
+  $('dLoad').onclick=()=>$('dataFile').click();
+  $('dForget').onclick=e=>{const b=e.currentTarget;if(!b.dataset.sure){b.dataset.sure='1';b.textContent='sure? this cannot be undone';return;}forgetAll();};
+  if(navigator.storage&&navigator.storage.persisted)navigator.storage.persisted().then(p=>{const q=$('dataPersist');if(q)q.textContent=p?'This browser has agreed to keep it unless you clear it.':'This browser may clear it if space runs low or you stay away: keep a copy.';}).catch(()=>{});}
+function keepAsked(){if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});}
+async function forgetAll(){for(const k of [...DATA_KEYS.map(q=>q[0]),MARK_KEY,SAVED_KEY])try{localStorage.removeItem(k);}catch(e){}try{await adbDo('readwrite',st=>st.clear());}catch(e){}fillCompare();if(!$('rating').hidden)renderRating();renderData('Deleted: takes, readings, marks and kept audio.');}
+$('bData').onclick=()=>{const el=$('data');if(!el.hidden){el.hidden=true;return;}renderData();el.scrollIntoView({block:'nearest'});};
+$('dataFile').onchange=async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;const r=f.size>5e6?null:restoreText(await f.text());if(r&&!$('rating').hidden)renderRating();renderData(!r?'That file is not a Voice Helix copy; nothing changed.':r.full?'This browser is out of space; nothing changed.':r.n?`Brought back ${r.n} record${r.n===1?'':'s'}, ${r.takes} of them take${r.takes===1?'':'s'}.`:'Nothing new in that copy: you already have all of it.');};
 function loadMarks(){try{const m=JSON.parse(localStorage.getItem(MARK_KEY)||'{}');return m&&typeof m==='object'?m:{};}catch(e){return {};}}
 function takeMarks(){return TAKE.d?(loadMarks()[TAKE.d]||[]):(TAKE.marks||[]);}
 function saveMarks(a){TAKE.marks=a;if(!TAKE.d)return;const m=loadMarks();if(a.length)m[TAKE.d]=a;else delete m[TAKE.d];
