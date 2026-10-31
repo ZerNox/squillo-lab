@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-31 · siren and measure in the warm-up
+
+Built: ♪ siren and measure on the Siren step (`sirenGo`, `sirenRead`), `check/siren-bench.mjs`, a check.mjs test. A singer sings one 12 s siren and hears its span, lowest and highest note, drop-outs, any register jump and how it compares with their usual span. Page code, synthetic, 4 voices, 40 sirens: range within 0.46 st; breaks 0/20 clean, 20/20 with a 1-2 st jump; no drop-outs. Span has no ± yet and comparison uses 2 st, a fixed step, not a measured one. Real voices unmeasured. iOS risk: as Match and measure. Next: Timing part 2.
+
 ## 2026-10-31 · fewer live ghost notes, part 2
 
 Built: live voicing also needs the frame within 18.4 dB of the recent peak (`LN.R` 0.12, peak halves each second), so note tails and room echo stop drawing false notes. vocadito 40 clips, page code, live: clean FA 14.9 → 11.0 ± 2.2, RPA 91.0 → 90.9 ± 3.5, OA 89.1 → 90.3 ± 2.8; pink 20 dB FA 14.7 → 13.3, OA 89.3 → 89.8; pink 5 dB and hum 10 dB unchanged. Take pitch and the breathy live bench unchanged. R chosen on 10 of these clips, so slightly optimistic. Cost by design, unmeasured: a note 24 dB under the last loud one stays unread live for about 1 s. iOS risk: none new. Next: Timing part 2.
@@ -33,7 +37,3 @@ Built: ♪ drone (D) by the target note: a soft held tone on the target, follows
 ## 2026-10-31 · noisy rooms
 
 Built: `roomFloor`, `roomSnr`, noise-compensated Viterbi (only under 14 dB voice over floor), a room line under Went well; `check/noise-bench.mjs`. A singer in a room with a fan or hum keeps most of their notes and is told when the room makes the numbers rougher. vocadito 40 clips, page code, RPA before → after: pink 10 dB 89.2 → 93.0, 5 dB 68.9 → 85.4 (FA 1.0 → 4.0), 0 dB 18.3 → 63.0; hum 10 dB 82.7 → 88.2; talk-like 5 dB 73.4 → 73.6, no gain; clean unchanged, 97.6 ± 0.7, FA 12.8. Room read within about 2 dB on steady noise, 10-13 dB high on talk-like noise, so the line names steady noise only. Settings tuned on these clips; added noise and simulated roll-off, no real phone or room; live tracker unchanged. iOS risk: none new. Next: same compensation on the live tracker, or talk-like noise.
-
-## 2026-10-31 · Lane reads through vibrato
-
-Built: on vibrato `laneRead` averages whole cycles of the last 0.7 s, ± from how far they differ; a singer with vibrato gets a steady note reading, not a swinging one. Lane bench, page code, synthetic, ±0.5 st, 4.5-7 Hz, 450 reads: median 2.2 ¢, max 4.8, ± 4, truth inside 97.1 % (0.4 s median at 5.5 Hz: 6.3, 23.2, ± 24). Real vibrato unmeasured. iOS risk: none new. Next: timing or tone, part 2.
