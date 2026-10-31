@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-31 · no pulse said in words
+
+Built: the summary's rhythm row says 'free timing, no steady pulse' or 'too few notes to find a pulse' instead of a bare dash; a check.mjs test. No new measurement. Local WebKit hangs at random steps (twice this run, no failed assertion): run `--only` per browser with a 290 s timeout. Next: Key drift part 2 or live false alarms.
+
 ## 2026-10-31 · pulse found through a stray note
 
 Found: the two vocadito annotators disagree on a pulse as much as the page does (7 and 14 clips, 7 shared), and one stray or missed note start hid a real pulse; the old limit also passed 38/400 random onset sets (the earlier 0/20 and 0/40 hid that). Built: `pulseFit` decides on the closest 90 % of note starts (`PULSE_MAX` 0.11, was 0.15 on all), reported spread stays on all starts; `check/timing-bench.mjs` now scores against the clips both annotators pulse; a check.mjs test. A singer with a steady beat and a stray note gets their rhythm read instead of 'free timing'. Page code: of 7 clips both annotators pulse, found at their step 5 (was 3); random onsets 17/400 false (was 38). Synthetic: jitter 15/30 ms found 60/60, 60 ms 34/60, spread within 3 ms, free melodies 0/40. Tuned on the same clips with only 7 positives: indicative. Next: Key drift part 2 or live false alarms.

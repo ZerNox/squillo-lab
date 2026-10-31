@@ -289,6 +289,9 @@ async function run([name, launch, ctxOpt, file]) {
     // A stray onset no longer hides a pulse: 20 onsets on a 0.5 s step with 12 ms spread and two between beats (the half step is a fair reading).
     r.stray = await p.evaluate(() => { const on = Array.from({ length: 20 }, (_, i) => 1 + i * 0.5 + (i % 2 ? 0.012 : -0.012)); on.push(3.2, 7.3); const f = pulseFit(on); return !!f?.pulse && [0.25, 0.5].some(s => Math.abs(f.step - s) < 0.03); });
     if (!r.stray) throw new Error('stray onset hid the pulse');
+    // No pulse is said in words in the summary, not as a bare dash.
+    r.noPulse = await p.evaluate(() => { const A = TAKE.aspects, o = A.tm, v = A.rhythm; A.rhythm = NaN; A.tm = { pulse: false, n: 14 }; renderRating(); const f = /free timing, no steady pulse/.test(document.getElementById('rating').textContent); A.tm = null; renderRating(); const s = /too few notes to find a pulse/.test(document.getElementById('rating').textContent); A.tm = o; A.rhythm = v; renderRating(); return f && s; });
+    if (!r.noPulse) throw new Error('no-pulse words missing');
     // Hear it with your pulse: a take with a found pulse gets the button; a tap plays the take with the click oscillator running, and stopping ends the clicks.
     r.pulse = await p.evaluate(async () => { const old = TAKE.aspects.tm; TAKE.aspects.tm = { ...pulseFit(Array.from({ length: 16 }, (_, i) => 1 + i * 0.6)) }; renderRating(); const b = document.querySelector('#rating [data-hear="pulse"]'); if (!b) return false; b.click(); await new Promise(r => setTimeout(r, 600));
       const ok = AU.kind === 'take' && !!AU.clicks && TAKE.aspects.tm.beats.length === 16; let ended = false; AU.clicks.addEventListener('ended', () => ended = true); stopSource(); await new Promise(r => setTimeout(r, 300)); TAKE.aspects.tm = old; renderRating(); return ok && ended; });
