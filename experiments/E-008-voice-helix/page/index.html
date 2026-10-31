@@ -1314,12 +1314,12 @@ function renderWarm(){const W=WARM.plan,el=$('warmup');if(!W){el.hidden=true;ret
   el.innerHTML=`<h3>Warm-up · step ${WARM.i+1} of ${W.steps.length} · about ${Math.round(W.steps.reduce((a,s)=>a+s.sec,0)/60)} min</h3>`+
    (WARM.i===0?`<p>${W.n?`Chosen from your last ${W.n} take${W.n>1?'s':''} on this device${W.why.length?`: most to gain in ${W.why.join(' and ')}.`:'.'}`:'No takes on this device yet: a general routine. Record a take and the next warm-up targets what it needs.'} Guide tones ${nn(W.low)}–${nn(W.high)}.</p>`:'')+
    `<p><b>${st.name}</b> · ${st.sec} s<br>${st.txt}<br><cite>${WARM_SRC[st.src]}</cite></p>`+
-   `<div class="row"><button class="btn" id="wTone">▶ guide tone</button>${st.tone==='steps'?'<button class="btn" id="wMatch" title="Hear each tone, sing it, and read how close you landed">♪ match and measure</button>':''}<span id="wLeft">${st.sec} s</span>${last?'':'<button class="btn" id="wNext">next step →</button>'}<button class="btn" id="wDone">${last?'done':'stop'}</button></div>`+(st.tone==='steps'?'<div id="matchBox"></div>':'');
+   `<div class="row"><button class="btn" id="wTone">▶ guide tone</button>${st.tone==='steps'?'<button class="btn" id="wMatch" title="Hear each tone, sing it, and read how close you landed">♪ match and measure</button>':''}${st.src==='mdv'?'<button class="btn" id="wSwell" title="Sing one swell and read its width and how still the pitch stayed">♪ swell and measure</button>':''}<span id="wLeft">${st.sec} s</span>${last?'':'<button class="btn" id="wNext">next step →</button>'}<button class="btn" id="wDone">${last?'done':'stop'}</button></div>`+(st.tone==='steps'?'<div id="matchBox"></div>':'')+(st.src==='mdv'?'<div id="swellBox"></div>':'');
   clearInterval(WARM.timer);let left=st.sec;WARM.timer=setInterval(()=>{left--;const e=$('wLeft');if(e)e.textContent=left>0?`${left} s`:'time: move on when ready';if(left<=0)clearInterval(WARM.timer);},1000);
   $('wTone').onclick=()=>{const ctx=AU.ctx||WARM.ctx||(WARM.ctx=new (window.AudioContext||window.webkitAudioContext)());if(ctx.state!=='running')ctx.resume();warmTone(ctx,st,W);};
-  if($('wMatch'))$('wMatch').onclick=()=>matchGo(W);renderMatch();
-  if(!last)$('wNext').onclick=()=>{MATCH.stop=true;WARM.i++;renderWarm();$('wTone').onclick();};
-  $('wDone').onclick=()=>{MATCH.stop=true;WARM.plan=null;clearInterval(WARM.timer);if(WARM.osc)try{WARM.osc.stop();}catch(e){}renderWarm();};}
+  if($('wMatch'))$('wMatch').onclick=()=>matchGo(W);renderMatch();if($('wSwell'))$('wSwell').onclick=()=>swellGo(W);SWELL.stop=true;SWELL.now=null;
+  if(!last)$('wNext').onclick=()=>{MATCH.stop=true;SWELL.stop=true;WARM.i++;renderWarm();$('wTone').onclick();};
+  $('wDone').onclick=()=>{MATCH.stop=true;SWELL.stop=true;WARM.plan=null;clearInterval(WARM.timer);if(WARM.osc)try{WARM.osc.stop();}catch(e){}renderWarm();};}
 $('bWarm').onclick=()=>{WARM.plan=planWarmup(loadHist());WARM.i=0;renderWarm();$('wTone').onclick();$('warmup').scrollIntoView({block:'nearest'});};
 // Voice profile from the takes kept on this device. Comfortable range: median over takes of each take's
 // 10th and 90th percentile note (± the spread between takes, 1.96 SE); full range: lowest and highest held
@@ -1540,6 +1540,33 @@ async function matchGo(W){if(MATCH.busy)return;const ensure=AU.kind!=='mic';if(A
     const s=rs.length===ms.length?matchStats(rs):null;if(s){MATCH.now.s=s;MATCH.now.h=hist;if(s.n>=3){const keep=hist.concat({d:s.d,n:s.n,off:s.off,e:s.e,land:s.land});try{localStorage.setItem(MATCH_KEY,JSON.stringify(keep.slice(-60)));}catch(e){}}}
     renderMatch(MATCH.stop?'Stopped.':s&&s.n<3?'Too few notes heard to keep this one: hold each for about a second.':'');}
   finally{MATCH.busy=false;DRILL.rec=null;if(ensure&&AU.kind==='mic')stopSource();}}
+// Swell and measure, in the warm-up's messa di voce: one 10 s capture on a held note. Longest voiced run; width in dB from the 100 ms level (p99 - p1, as takeDynamics); whole 0.5 s blocks (median level, mean pitch, so
+// vibrato averages out) for where the peak fell, how still the pitch stayed (SD of blocks, ¢), and pitch against level (¢ per dB, OLS, with ±). check/swell-bench.mjs.
+const SWELL_KEY='helix.swell.v1',SWELL_S=10,SWELL={busy:false,stop:false,now:null,h:[]};
+function loadSwell(){try{const h=JSON.parse(localStorage.getItem(SWELL_KEY)||'[]');return Array.isArray(h)?h:[];}catch(e){return [];}}
+async function swellRead(buf){const fs=await trackTake(buf);viterbiF0(fs);trimEdges(fs,buf);const S=new Stats();for(const f of fs)ingest(S,f,'take');const fr=S.rec.frames.filter(f=>f.voiced&&f.ok);if(fr.length<20)return null;
+  let a=0,best=[0,0];for(let i=1;i<=fr.length;i++)if(i===fr.length||fr[i].t-fr[i-1].t>0.2||Math.abs(fr[i].midi-fr[i-1].midi)>1.5){if(i-a>best[1]-best[0])best=[a,i];a=i;}
+  const v=fr.slice(best[0],best[1]),t0=v[0].t,dur=v[v.length-1].t-t0;if(dur<3)return null;const med=q=>q.slice().sort((x,y)=>x-y)[q.length>>1],BL=0.5,B=[];
+  for(const f of v){const i=Math.floor((f.t-t0)/BL);(B[i]??=[]).push(f);}
+  const b=B.map((q,i)=>q&&q.length>=8&&i>0&&(i+1)*BL<=dur?{t:(i+0.5)*BL,l:med(q.map(f=>20*Math.log10(f.rms+1e-9))),p:q.reduce((x,f)=>x+f.midi*100,0)/q.length}:null).filter(Boolean),k=b.length;if(k<5)return null;
+  const M=q=>q.reduce((x,y)=>x+y,0)/q.length,lm=M(b.map(x=>x.l)),pm=M(b.map(x=>x.p)),sxx=b.reduce((x,y)=>x+(y.l-lm)**2,0),spp=b.reduce((x,y)=>x+(y.p-pm)**2,0),d=v.map(f=>20*Math.log10(f.rms+1e-9)),L=[],peak=b.reduce((x,y)=>y.l>x.l?y:x),
+    sd=Math.sqrt(spp/(k-1)),slope=sxx>0?b.reduce((x,y)=>x+(y.l-lm)*(y.p-pm),0)/sxx:0,res=b.reduce((x,y)=>x+(y.p-pm-slope*(y.l-lm))**2,0),se=sxx>0?Math.sqrt(res/Math.max(1,k-2)/sxx):0;
+  for(let j=5;j<d.length-5;j++){let q=0;for(let i=j-2;i<=j+2;i++)q+=d[i];L.push(q/5);}L.sort((x,y)=>x-y);const span=L[Math.floor(L.length*0.99)]-L[Math.floor(L.length*0.01)];
+  return {dur,k,span,at:peak.t/dur,sd,sde:1.96*sd/Math.sqrt(2*(k-1)),slope,se:Math.max(0.1,2*se),midi:pm/100};}
+function swellLine(r,h){const c=r.slope*r.span,up=r.at>=0.3&&r.at<=0.7;let o=`<b>${r.span.toFixed(0)} dB from soft to loud</b> over ${r.dur.toFixed(1)} s, around ${nn(Math.round(r.midi))}${r.span<6?': a level hold, not much swell yet. Start softer.':up?', peak near the middle.':`, peak at ${Math.round(r.at*100)} % of the note: aim for the middle.`} Pitch moved ${r.sd.toFixed(0)} ± ${r.sde.toFixed(0)} ¢ under the swell.`;
+  if(r.sd>=50)o+=' That is more than a held note moves: stay on one note and try again.';else if(r.span>=6)o+=Math.abs(r.slope)>r.se?` It went ${r.slope>0?'up':'down'} with the volume, about ${Math.abs(r.slope).toFixed(1)} ± ${r.se.toFixed(1)} ¢ per dB (${Math.abs(c).toFixed(0)} ¢ across the swell): ${r.slope>0?'as you get louder, ease the pitch down':'keep the support as you get louder'}.`:' Pitch held apart from the volume: no measured pull (± '+r.se.toFixed(1)+' ¢ per dB).';
+  const p=h.slice(-5);if(p.length){const m=p.reduce((x,y)=>x+y.sd,0)/p.length,me=Math.sqrt(p.reduce((x,y)=>x+y.sde*y.sde,0))/p.length,g=m-r.sd;o+=Math.abs(g)>r.sde+me?` ${g>0?'Stiller':'Less still'} than your last ${p.length>1?p.length+' swells':'swell'} (${m.toFixed(0)} ± ${me.toFixed(0)} ¢).`:` As still as your last ${p.length>1?p.length+' swells':'swell'} (${m.toFixed(0)} ± ${me.toFixed(0)} ¢).`;}
+  return o;}
+function renderSwell(msg){const el=$('swellBox');if(!el)return;const N=SWELL.now;el.innerHTML=(msg?`<p class="fine">${msg}</p>`:'')+(N?`<p>${swellLine(N,SWELL.h)}</p>`:'');}
+async function swellGo(W){if(SWELL.busy)return;const ensure=AU.kind!=='mic';if(AU.ctx)AU.ctx.resume();SWELL.busy=true;SWELL.stop=false;SWELL.now=null;if(WARM.osc)try{WARM.osc.stop();}catch(e){}const m=Math.round((W.low+W.high)/2);
+  try{if(ensure){renderSwell('Starting the microphone: stay quiet for 2 seconds…');await useMic();for(let i=0;i<60&&calibrating;i++)await new Promise(r=>setTimeout(r,100));if(AU.kind!=='mic'){renderSwell('The microphone is needed: '+statusEl.textContent);return;}}
+    const ctx=AU.ctx,t=ctx.currentTime+0.05,o=ctx.createOscillator(),g=ctx.createGain();o.frequency.value=440*Math.pow(2,(m-69)/12);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(0.12,t+0.05);g.gain.setValueAtTime(0.12,t+1.42);g.gain.linearRampToValueAtTime(0,t+1.5);o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+1.52);
+    renderSwell(`Listen: ${nn(m)}…`);await new Promise(r=>setTimeout(r,1750));if(SWELL.stop)return;
+    DRILL.rec=[];renderSwell(`Now you: soft, swell over 5 s, back to soft by 10 s. Keep the pitch still.`);await new Promise(r=>setTimeout(r,SWELL_S*1000));
+    const ch=DRILL.rec;DRILL.rec=null;if(SWELL.stop)return;const N=ch.reduce((x,y)=>x+y.length,0),buf=mkBuf(Math.max(1,N),AU.sr),x=buf.getChannelData(0);let c=0;for(const q of ch){x.set(q,c);c+=q.length;}
+    renderSwell('Reading…');const r=N>=3*AU.sr?await swellRead(buf):null;if(!r){renderSwell('No note of 3 s or more heard: hold one breath through the swell.');return;}
+    SWELL.h=loadSwell();SWELL.now=r;const keep=SWELL.h.concat({d:Date.now(),span:r.span,sd:r.sd,sde:r.sde,slope:r.slope,se:r.se});try{localStorage.setItem(SWELL_KEY,JSON.stringify(keep.slice(-60)));}catch(e){}renderSwell();}
+  finally{SWELL.busy=false;DRILL.rec=null;if(ensure&&AU.kind==='mic')stopSource();}}
 // Flags are kept per take on this device (localStorage, keyed by the take's date); click one to play
 // from 1 s before it, double-click to remove it.
 const MARK_KEY='helix.marks.v1',bMark=$('bMark');

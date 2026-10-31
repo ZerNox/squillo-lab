@@ -51,6 +51,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Drone: ♪ drone (D) on the target note to sing against; unison only (synthetic leak at -12 dB: max 4.8 ¢; octave below flips the reading).
 - Live in noise: gate at 1.5× the calibrated room (vocadito, pink 5 dB RPA 6.0 → 64.0, 10 dB 47.5 → 83.6); voicing limit scales with noise (clean FA 24.1 → 14.9).
 - Match and measure: warm-up's pitch steps hear five tones, sing each, read in ¢ with ± and landing time; sessions kept and compared (synthetic landing within about 75 ms; real voices unmeasured).
+- Swell and measure: the warm-up's messa di voce hears one swell, reads width, peak place, pitch stillness and pull with level, with ±; kept and compared (synthetic width within 1.2 dB, truth inside ± 160/160).
 - High notes: take pitch to 1400 Hz; straight notes from E5 up no longer read at a fraction of the note (synthetic C5-E6 100 %, was 0-63 % on straight tones from E5; vocadito 97.4 ± 0.8).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.

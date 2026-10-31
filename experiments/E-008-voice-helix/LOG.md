@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-31 · swell and measure in the warm-up
+
+Built: ♪ swell and measure on the warm-up's Messa di voce step (`swellGo`, `swellRead`), `check/swell-bench.mjs`, a check.mjs test. A singer sings one 10 s swell and is told how wide it was, where the peak fell, how far the pitch moved, and whether pitch rose or fell with the volume, with ±, against their last swells. That step listened to nothing before. Page code, synthetic, 160 takes: width within 1.2 dB, tie within 0.45 ¢/dB, truth inside ± 160/160, false pull 0/40. VocalSet messa: read 16/20 (why 4 were unread not checked), width median 22.5 dB, tie median +1.25 ¢/dB, 7/16 pulled; straight clips with note changes gave wild slopes, so sd 50 ¢ and up now says to stay on one note. Real voices have no truth. iOS risk: as Match and measure. Next: Timing part 2.
+
 ## 2026-10-31 · high notes read right
 
 Found by the match bench: from E5 up, straight notes read at a half or a third of the note, and nothing above about 1 kHz was searched. Octave folding had hidden the halves. Built: YIN searches to 1400 Hz (`F0MAX`), dips valued at sub-sample lag, candidates ranked with the Viterbi's lag cost so the true period stays in the top 8; `check/high-bench.mjs`, a check.mjs test. A soprano or child holding a high straight note now gets the right note. Page code, synthetic, C5-E6, four voice settings, frames within 50 ¢: 100 % everywhere; before, plain E5 63, G♯5 50, A♯5 38, C6-E6 0. vocadito 40 clips: RPA 97.6 ± 0.7 → 97.4 ± 0.8, FA 12.8 → 12.9, OA 94.3 → 94.1, low 97.3 same, high 97.8 → 97.4 (voices stop near F4, so a small cost and no direct test of the gain). Noise: pink 0 dB 63.0 → 64.0, hum 10 dB 88.2 same, speech 5 dB 73.6 → 73.3. Live bench unchanged (clean RPA 91.0, FA 15.0); live high straight notes unmeasured. iOS risk: none new. Next: real high-voice truth, or Timing part 2.
@@ -33,8 +37,3 @@ Built: on vibrato `laneRead` averages whole cycles of the last 0.7 s, ± from ho
 ## 2026-10-31 · Lane: a view to read while singing
 
 Built: fifth view, Lane, reused from the failed attempt `wip/daily-20261031T022828`: the last 8 s as a flat line on a semitone grid, held note large with cents and ±, target note marked. A singer can read pitch at arm's length, on a phone too, without the 3D scene. `check/lane-bench.mjs`, page code, synthetic, 900 reads: straight median 0.4, max 1.1 ¢, truth inside ± 100 %; vibrato ±0.5 st median 6.3, max 23.2, ± 24, inside 96.9 %. No real-voice figure. check.mjs: lane reading, three browsers. iOS risk: none new. Next: Lane window of whole vibrato cycles, to tighten the ±.
-
-## 2026-10-30 · repeated notes closed; vowels heard
-
-Tried, not shipped: splitting `segNotes` at spectral change (`henv`, ±100 ms, thresholds 4-10 dB, gap 0.12/0.2 s), vocadito 40 clips, page code: COnP 68.0-74.2 vs 74.2 ± 2.7, COnPOff never above 60.2. `segNotes` already matches the second annotator (74.0), so the roadmap item is closed. Built: 'Vowels heard' under Went well, sure notes only, from 5 notes; a singer sees which vowels the take used. No new measurement. iOS risk: none new. Next: timing part 2 or tone part 2.
-
