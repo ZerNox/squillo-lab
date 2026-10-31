@@ -352,8 +352,8 @@ const TD={T:200,F:72,fmin:70,fmax:6000,size:[9,2.6,6.5]}; // terrain: 200 column
 // ───────────────────────── DSP (runs in a Worker; inline fallback) ─────────────────────────
 // Plain source string so the same code runs in a Worker (preferred) or on the main thread.
 const DSP_SRC=String.raw`
-// Live level gate, as a multiple of the calibrated room's level: 3 shut out most singing below 10 dB over the room (check/live-noise-bench.mjs).
-const LN={G:1.5};
+// Live level gate, as a multiple of the calibrated room's level: 3 shut out most singing below 10 dB over the room. Voicing limit: V in quiet, rising with the noise's share of the frame (check/live-noise-bench.mjs, breathy-live-bench.mjs).
+const LN={G:1.5,V:0.3,K:4};
 const YW=1024;let yinD=new Float32Array(1);
 function yin(buf,sr,prevF0){const tauMax=Math.min(Math.floor(sr/60),buf.length-YW),tauMin=Math.floor(sr/1000);if(yinD.length<tauMax+1)yinD=new Float32Array(tauMax+1);
   const off=buf.length-YW-tauMax;let run=0,best=-1;
@@ -409,7 +409,7 @@ function analyse(t){const sr=S.sr;const buf=new Float32Array(N);const st=(S.w-N+
   if(S.calib){S.calib.n++;S.calib.rms+=rms;for(let b=0;b<db.length;b++)S.calib.acc[b]+=Math.pow(10,db[b]/10);if(t>=S.calib.until){S.prof=new Float32Array(db.length);for(let b=0;b<db.length;b++)S.prof[b]=10*Math.log10(S.calib.acc[b]/S.calib.n+1e-12);S.noiseRms=S.calib.rms/S.calib.n;let fl=0;for(let b=Math.floor(100/binHz);b<4000/binHz;b++)fl+=S.prof[b];S.floorDb=fl/(4000/binHz-Math.floor(100/binHz));S.calib=null;postMessage({type:'calib',done:true,floorDb:S.floorDb,noiseRms:S.noiseRms});}
     postMessage({type:'feat',n:S.count,t,rms,voiced:false,f0:0,cmnd:1,hnr:0,cpp:0,h12:0,tilt:0,a1p0:0,F:null,col:new Float32Array(FB)});return;}
   const thr=Math.max(0.004,S.noiseRms*LN.G);let f0=0,cmnd=1,cs=null;if(rms>thr){const y=yin(buf,sr,(S.prevT>=0&&t-S.prevT<0.12)?S.prevF0:0);f0=y.f0;cmnd=y.cmnd;cs=y.cs;}
-  const voiced=rms>thr&&cmnd<0.65&&f0>50&&f0<1100;
+  const voiced=rms>thr&&cmnd<Math.min(0.65,LN.V+LN.K*S.noiseRms*S.noiseRms/Math.max(1e-9,rms*rms))&&f0>50&&f0<1100;
   let hnr=0,cpp=0,h12=0,tilt=0,spr=0,a1p0=0,F=null,nasOk=false,henv=null;
   if(voiced){S.prevF0=f0;S.prevT=t;const r=Math.min(0.999,Math.max(0.001,1-cmnd/2));hnr=10*Math.log10(r/(1-r));
     h12=pk(f0*0.8,f0*1.2,binHz)-pk(f0*1.8,f0*2.2,binHz);
