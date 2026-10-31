@@ -11,7 +11,7 @@
 // iPhone (no H.264/AAC, different audio stack): name any iOS-only risk separately.
 import { chromium, firefox, webkit, devices } from 'playwright';
 import { createHash } from 'node:crypto';
-import { copyFileSync, existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -226,6 +226,15 @@ async function run([name, launch, ctxOpt, file]) {
         for (let i = 0; i < n; i++) { ph += 2 * Math.PI * 440 * Math.pow(2, (m(i / sr) - 69) / 12) / sr; for (let h = 1; h <= 6; h++) x[i] += 0.2 * Math.sin(h * ph) / h; } return b; };
       const res = await rangeAnalyse([mk(3, s => s < 1.5 ? 52 - 7 * s / 1.5 : 45), mk(3, s => s < 1.5 ? 57 + 12 * s / 1.5 : 69), null]); renderProfile('x');
       const t = document.getElementById('profile').textContent; localStorage.removeItem(RANGE_KEY); return { intro, mn: res && Math.round(res.mn), mx: res && Math.round(res.mx), full: /Full range sung so far A2/.test(t), finds: /1 range find/.test(t) }; });
+    // My data: a saved copy round-trips through a real download and file input after a wipe, merges without doubles, refuses markup, and delete takes the audio too.
+    r.data = await p.evaluate(() => { const k = Date.now(), o = {}; o.old = localStorage.getItem(HIST_KEY); localStorage.setItem(HIST_KEY, JSON.stringify([{ d: k, sung: 9, score: 0.7 }])); localStorage.setItem(RANGE_KEY, JSON.stringify([{ d: k, mn: 45, mx: 69 }])); localStorage.setItem(MARK_KEY, JSON.stringify({ [k]: [3.5] })); window.__dk = k; window.__do = o.old; document.getElementById('bData').click(); return true; });
+    await p.locator('#data').screenshot({ path: join(out, `${name}-data.png`) }); await p.locator('#dSave').scrollIntoViewIfNeeded(); const [dl] = await Promise.all([p.waitForEvent('download'), p.locator('#dSave').click()]); const dlp = join(out, `${name}-copy.json`); await dl.saveAs(dlp);
+    await p.locator('#dForget').click(); await p.locator('#dForget').click(); await p.waitForFunction(() => /^Deleted/.test(document.getElementById('dataMsg')?.textContent || ''));
+    const dgone = await p.evaluate(async () => [loadHist().length, loadRange().length, ((await adbDo('readonly', st => st.getAllKeys())) || []).length]);
+    await p.setInputFiles('#dataFile', { name: 'copy.json', mimeType: 'application/json', buffer: readFileSync(dlp) }); await p.waitForFunction(() => /^Brought back \d+ records?, 1 of them take/.test(document.getElementById('dataMsg')?.textContent || ''));
+    r.data = await p.evaluate(() => { const k = window.__dk, t = backupText(1), again = restoreText(t), bad = restoreText(JSON.stringify({ app: 'voice-helix', v: 1, data: { [HIST_KEY]: [{ d: 5, x: '<img src=x>' }, { d: 6, score: 1 }] } })), junk = restoreText('{"a":1}'), h = loadHist(), ok = h.length === 2 && h[0].d === 6 && h[1].d === k && loadRange().length === 1 && loadMarks()[k]?.[0] === 3.5 && again.n === 0 && bad.n === 1 && junk === null;
+      if (window.__do === null) localStorage.removeItem(HIST_KEY); else localStorage.setItem(HIST_KEY, window.__do); localStorage.removeItem(RANGE_KEY); localStorage.removeItem(MARK_KEY); localStorage.removeItem(SAVED_KEY); document.getElementById('data').hidden = true; renderRating(); return { ok, n: h.length }; });
+    if (!r.data.ok || dgone.join() !== '0,0,0') throw new Error('data: ' + JSON.stringify([r.data, dgone])); r.data = true;
     // The on-page error box (for phones, which have no console) is armed and empty.
     // Vibrato in the take summary: 5 notes of 2 s at 6 Hz, ±0.5 st must read 6.0 ± 0.3 Hz on 5 of 5 long notes (check/vibrato-bench.mjs).
     r.vib = await p.evaluate(async () => { const sr = 44100, n = sr * 12, b = mkBuf(n, sr), x = b.getChannelData(0); let ph = 0;
@@ -314,7 +323,7 @@ if (!only) {
 }
 for (const br of browsers) {
   let r = await run(br);
-  for (let k = 1; !r.ok && br[0] === 'webkit-iphone' && k <= 2; k++) r = { ...(await run(br)), retried: k };  // first WebKit launch after a cold cache can time out
+  for (let k = 1; !r.ok && br[0] === 'webkit-iphone' && k <= 2; k++) { console.error('webkit retry', k, r.errs); r = { ...(await run(br)), retried: k }; }  // first WebKit launch after a cold cache can time out
   console.log(JSON.stringify(r)); allOk &&= r.ok;
 }
 process.exit(allOk ? 0 : 1);

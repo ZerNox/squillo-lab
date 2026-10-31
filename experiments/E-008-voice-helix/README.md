@@ -140,6 +140,8 @@ Dynamics (`check/dyn-bench.mjs`, page code `takeDynamics`, VocalSet long tones o
 
 **Sung vowel** (`readVowel`, `spanVowel`; `check/vowel-bench.mjs`, page code, VocalSet CC BY 4.0, 2405 notes of scales and arpeggios, 20 singers, 5 vowels, chance 20 %): 68.2 ± 4.4 % per note under 600 Hz (speech-table centres 61.3 ± 4.8 %; leave-one-singer-out 67.7 ± 4.5 %, so the centres are not overfitted), 73.0 ± 8.6 % under 200 Hz, 63.8 ± 11.6 % at 400-600 Hz, no reading at 600 Hz and up (30 % there). Shown only when 'sure' (runner-up 0.1 log units further off): 74.1 ± 5.4 % on 67 % of notes. Live chip 'vowel' and the note-by-note line; a best guess, not a score. Real-time 0.5 s windows were not benchmarked separately; the figure is per note.
 
+**My data.** ⛁ my data shows what is kept in this browser, saves a copy as one JSON file of numbers and dates (no audio), brings a copy back by merging on date (existing records win; a file holding markup is refused record by record), and deletes everything, kept audio included, after a second tap. Under progress, a line asks for a copy from 5 takes on when none exists or the last is over 14 days old.
+
 ## Hypothesis
 
 A singer who sees the ribbon straighten, the haze sink, or the tube change
