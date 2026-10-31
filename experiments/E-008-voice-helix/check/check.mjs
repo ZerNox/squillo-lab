@@ -163,6 +163,8 @@ async function run([name, launch, ctxOpt, file]) {
     if (!nn.vowels.shown || !nn.vowels.ok) throw new Error('vowels line: ' + JSON.stringify(nn.vowels));
     nn.ring = await p.evaluate(() => ({ v: TAKE.aspects.ring, line: /Ring: singing power ratio/.test($('rating').textContent), row: Number.isFinite(loadHist().slice(-1)[0].ring) && !RATED.some(x => x.k === 'ring') }));
     if (!(nn.ring.v > -60 && nn.ring.v < 10 && nn.ring.line && nn.ring.row)) throw new Error('ring: ' + JSON.stringify(nn.ring));
+    nn.room = await p.evaluate(() => { const c = (rms, v) => ({ rms, voiced: v, cs: v ? [[220, 0.1]] : [[300, 0.8]] }), fs = [...Array(30).fill(c(0.01, false)), ...Array(90).fill(c(0.1, true))]; return { snr: roomSnr(fs), lo: roomLine({ room: 5 })[0], hi: roomLine({ room: 25 })[0], none: roomFloor(Array(99).fill(c(0.1, true))) }; });
+    if (!(Math.abs(nn.room.snr - 20) < 0.1 && /Noisy room/.test(nn.room.lo) && /Quiet room/.test(nn.room.hi) && nn.room.none === 0)) throw new Error('room: ' + JSON.stringify(nn.room));
     nn.far = await p.evaluate(() => { const f = TAKE.far && TAKE.far.getChannelData(0), t = AU.play && (AU.ctx.currentTime - AU.play.t0) * AU.play.k; return { len: !!f && f.length === TAKE.buf.length, peak: f ? f.reduce((m, v) => Math.max(m, Math.abs(v)), 0) : 0, t, status: /^Far vision/.test(VERSION.far.status) && VERSION.far.status.length > 20 }; });
     await tap(p.locator('#bPlayFar')); await p.waitForTimeout(300);
     nn.far.ok = nn.far.len && nn.far.peak > 0.01 && nn.far.peak <= 1 && nn.far.status && await p.evaluate(t => AU.play && AU.play.which === 'far' && (AU.ctx.currentTime - AU.play.t0) * AU.play.k >= t, nn.far.t);

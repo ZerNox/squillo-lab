@@ -47,11 +47,13 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Note segmentation: optimal partitioning, vocadito COnP F 74.2 ± 2.7 % (old 36.7, second annotator 74.0); timing legato floor 12 ms.
 - Sing it again: hear the furthest-off note tuned, sing it, read against that note with ± (synthetic SD 1.5-2.1 ¢, truth inside ± 59/60).
 - Lane: flat 8 s pitch line, held note large with cents and ± (synthetic straight max 1.1 ¢; vibrato max 4.8 ¢, truth inside ± 97 %).
+- Noisy rooms: take pitch holds in steady noise (vocadito, pink 5 dB RPA 68.9 → 85.4, clean unchanged), room line in the summary.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
 ## Next
 
+0. **Noise, part 2**: live tracker still uncompensated; talk-like noise no gain and room read 10-13 dB high.
 0. **Timing, part 2**: vocadito pulse agreement 3 of 5/7 clips.
 0. **Key drift, part 2**: better real-voice agreement (vocadito SD 41 ¢ vs synthetic 16); local/global circular unwraps tried 2026-10-30, no gain (39-91 ¢): needs a different truth or note-level approach. `segNotes` input: SD 62 ¢, worse.
 0. **Vowels, part 3**: o/u still weakest (64/72 %, left-out singer); try other mics or languages if an open labelled set exists.
