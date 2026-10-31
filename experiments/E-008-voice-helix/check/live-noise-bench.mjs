@@ -1,0 +1,23 @@
+// Live pitch in a noisy room: vocadito (CC BY 4.0, see vocadito-bench.mjs) with noise at a known SNR, page code: the worker in live mode, 2 s of room alone to calibrate as the mic does, then the clip, no Viterbi, no trim.
+// Noise as in noise-bench.mjs: pink, 50 Hz hum, talk-like (level swings; calibration then catches one stretch of it). ± = 1.96 SE over clips.
+// Usage: LN='{"G":3}' node check/live-noise-bench.mjs http://localhost:<port>/ /path/to/vocadito  (EVERY=n thins clips, ONLY=pink5,hum10)
+import { chromium } from 'playwright'; import fs from 'node:fs'; import path from 'node:path';
+const [url, dir] = process.argv.slice(2), ALL = fs.readFileSync(path.join(dir, 'vocadito_metadata.csv'), 'utf8').trim().split('\n').slice(1).map(l => l.split(',')[0]), ids = ALL.filter((_, i) => i % (+process.env.EVERY || 1) === 0);
+const conds = [['clean', 0], ['pink', 20], ['pink', 10], ['pink', 5], ['pink', 0], ['hum', 10], ['hum', 0], ['speech', 10], ['speech', 5]].filter(([k, s]) => !process.env.ONLY || process.env.ONLY.split(',').includes(k + s) || k === 'clean');
+const LN = JSON.parse(process.env.LN || '{}');
+const b = await chromium.launch({ channel: 'chrome' }).catch(() => chromium.launch()), p = await b.newPage();
+await p.route('**/vocadito/**', r => r.fulfill({ body: fs.readFileSync(path.join(dir, 'Audio', path.basename(new URL(r.request().url()).pathname))) }));
+await p.goto(url); await p.waitForTimeout(1000);
+await p.evaluate(() => { window.mix = (x, sr, truth, kind, snr) => { const P = 2 * sr, y = new Float32Array(x.length + P); y.set(x, P); if (kind === 'clean') return y; let seed = 7; const R = () => (seed = seed * 16807 % 2147483647) / 2147483647 * 2 - 1, H = 256 / 44100;
+    let ev = 0, nv = 0; for (let i = 0; i < x.length; i++) if (truth[Math.min(truth.length - 1, Math.round(i / sr / H))] > 0) { ev += x[i] * x[i]; nv++; } const n = new Float32Array(y.length); let e = 0, b0 = 0, b1 = 0, b2 = 0;
+    for (let i = 0; i < n.length; i++) { const w = R(); let v; if (kind === 'hum') { v = 0; for (let h = 1; h <= 6; h++) v += Math.sin(2 * Math.PI * 50 * h * i / sr + h) / h; } else { b0 = 0.99765 * b0 + w * 0.099046; b1 = 0.963 * b1 + w * 0.2965164; b2 = 0.57 * b2 + w * 1.0526913; v = b0 + b1 + b2 + w * 0.1848; if (kind === 'speech') v *= 0.15 + (0.5 + 0.5 * Math.sin(2 * Math.PI * 4 * i / sr + 3 * Math.sin(2 * Math.PI * 0.7 * i / sr))) ** 2; } n[i] = v; e += v * v; }
+    const g = Math.sqrt(ev / nv / (e / n.length)) * 10 ** (-snr / 20); for (let i = 0; i < y.length; i++) y[i] += g * n[i]; return y; };
+  window.liveTrack = (ch, sr, LN) => new Promise(res => { const fs = [], d = makeDsp(m => { if (m.type === 'feat') fs.push(m); else if (m.type === 'pong') { d.kill(); res(fs); } }); d.post({ type: 'init', sr, hop: 0.02 }); d.post({ type: 'tune', v: LN }); d.post({ type: 'calib', seconds: 2 }); const Q = Math.round(sr / 200); for (let i = 0; i < ch.length; i += Q) { const c = ch.slice(i, i + Q); d.post({ type: 'audio', buf: c }, [c.buffer]); } d.post({ type: 'ping' }); }); });
+const rows = {}; for (const id of ids) { const truth = fs.readFileSync(path.join(dir, 'Annotations/F0', `vocadito_${id}_f0.csv`), 'utf8').trim().split('\n').map(l => +l.split(',')[1]);
+  const res = await p.evaluate(async ({ id, truth, conds, LN }) => { const ab = await (await fetch(`vocadito/vocadito_${id}.wav`)).arrayBuffer(), buf0 = await new OfflineAudioContext(1, 1, 44100).decodeAudioData(ab), sr = buf0.sampleRate, x = buf0.getChannelData(0), H = 256 / 44100, out = [];
+    for (const [k, s] of conds) { const f = await liveTrack(mix(x, sr, truth, k, s), sr, LN), off = -2 + 0.0025 - (Math.min(Math.floor(sr / 60), 4096 - 1024) + 512) / sr; let tv = 0, hit = 0, vr = 0, tu = 0, fa = 0;
+      for (const m of f) { const j = Math.round((m.t + off) / H); if (j < 0 || j >= truth.length) continue; const T = truth[j], e = m.voiced ? m.f0 : 0; if (T > 0) { tv++; if (e > 0) { vr++; if (Math.abs(1200 * Math.log2(e / T)) <= 50) hit++; } } else { tu++; if (e > 0) fa++; } }
+      out.push({ rpa: hit / tv, vr: vr / tv, fa: fa / Math.max(1, tu), oa: (hit + tu - fa) / (tv + tu) }); } return out; }, { id, truth, conds, LN });
+  conds.forEach(([k, s], i) => (rows[k + s] ??= []).push(res[i])); }
+await b.close(); const ms = v => { const m = v.reduce((s, x) => s + x, 0) / v.length, sd = Math.sqrt(v.reduce((s, x) => s + (x - m) ** 2, 0) / Math.max(1, v.length - 1)); return `${(100 * m).toFixed(1)} ± ${(196 * sd / Math.sqrt(v.length)).toFixed(1)}`; };
+for (const [k, s] of conds) { const a = rows[k + s]; console.log(`${k} ${s} dB: RPA ${ms(a.map(r => r.rpa))}  FA ${ms(a.map(r => r.fa))}  OA ${ms(a.map(r => r.oa))}`); }

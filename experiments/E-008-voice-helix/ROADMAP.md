@@ -49,12 +49,13 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Lane: flat 8 s pitch line, held note large with cents and ± (synthetic straight max 1.1 ¢; vibrato max 4.8 ¢, truth inside ± 97 %).
 - Noisy rooms: take pitch holds in steady noise (vocadito, pink 5 dB RPA 68.9 → 85.4, clean unchanged), room line in the summary.
 - Drone: ♪ drone (D) on the target note to sing against; unison only (synthetic leak at -12 dB: max 4.8 ¢; octave below flips the reading).
+- Live in noise: gate at 1.5× the calibrated room (vocadito, pink 5 dB RPA 6.0 → 64.0, 10 dB 47.5 → 83.6, clean unchanged).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
 ## Next
 
-0. **Noise, part 2**: live tracker still uncompensated; talk-like noise no gain and room read 10-13 dB high.
+0. **Noise, part 3**: live false alarms (clean FA 24 %, no Viterbi live); take pitch in talk-like noise no gain, room read 10-13 dB high.
 0. **Timing, part 2**: vocadito pulse agreement 3 of 5/7 clips.
 0. **Key drift, part 2**: better real-voice agreement (vocadito SD 41 ¢ vs synthetic 16); local/global circular unwraps tried 2026-10-30, no gain (39-91 ¢): needs a different truth or note-level approach. `segNotes` input: SD 62 ¢, worse.
 0. **Vowels, part 3**: o/u still weakest (64/72 %, left-out singer); try other mics or languages if an open labelled set exists.
