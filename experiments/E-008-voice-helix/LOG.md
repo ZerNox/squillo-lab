@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-31 · Lane reads through vibrato
+
+Built: on vibrato `laneRead` averages whole cycles of the last 0.7 s, ± from how far they differ; a singer with vibrato gets a steady note reading, not a swinging one. Lane bench, page code, synthetic, ±0.5 st, 4.5-7 Hz, 450 reads: median 2.2 ¢, max 4.8, ± 4, truth inside 97.1 % (0.4 s median at 5.5 Hz: 6.3, 23.2, ± 24). Real vibrato unmeasured. iOS risk: none new. Next: timing or tone, part 2.
+
 ## 2026-10-31 · Lane: a view to read while singing
 
 Built: fifth view, Lane, reused from the failed attempt `wip/daily-20261031T022828`: the last 8 s as a flat line on a semitone grid, held note large with cents and ±, target note marked. A singer can read pitch at arm's length, on a phone too, without the 3D scene. `check/lane-bench.mjs`, page code, synthetic, 900 reads: straight median 0.4, max 1.1 ¢, truth inside ± 100 %; vibrato ±0.5 st median 6.3, max 23.2, ± 24, inside 96.9 %. No real-voice figure. check.mjs: lane reading, three browsers. iOS risk: none new. Next: Lane window of whole vibrato cycles, to tighten the ±.
@@ -33,7 +37,3 @@ Built: 'Where this can go' in the summary: '▶ yours, then far' loops the take'
 ## 2026-10-30 · ring: singer's formant, first measurement
 
 Built: singing power ratio per frame (`spr`, Omori 1996), `aspects.ring`, a 'ring' line in the summary and a progress row, described, not rated; `check/ring-bench.mjs`. A singer now sees how much 2-4 kHz energy their voice carries, take by take. VocalSet (page code, no singer's-formant label exists, so contrasts are proxies): forte vs pp AUC 0.85, pairs 19/20, -18.4 vs -28.1 dB; straight vs breathy AUC 0.82, pairs 16/19, -18.5 vs -26.0 dB; first vs second half r 0.89 (79 clips). Not fully gain-free: at -12 dB the worst clip shifted 5.5 dB (frames gated differently), so small changes between sessions mean little. SPR rises with loudness; the line says so. No live chip. Process: one WebKit run closed its page mid-check (same as earlier reports, cause not found); WebKit alone passed. iOS risk: none new. Next: vowels part 2.
-
-## 2026-10-30 · far vision in the singer's own voice
-
-Built: a fourth version, '▶ far vision': spotless plus even vibrato (the singer's own rate and width when in the trained band, otherwise 5.8 Hz, ±0.45 st) and a ±1.5 dB swell on held notes of 0.8 s or more (`farVib`, `improveTake`, `check/far-bench.mjs`). Version buttons and keys 1-4 now carry on from the same moment. A singer can hear themselves further on and flip between take, halfway, spotless and far mid-phrase. VocalSet straight clips (14 files, 28 far notes, page code, 5.8 Hz/0.45 st asked): read back 5.78 [5.75-6.07] Hz, 0.41 [0.28-0.45] st, on the 9 files with a reading; 5 short-note scale clips gave no reading. 'Still your voice' proxy, not a listener: 1/3-octave long-term spectrum, 500 Hz-8 kHz, take vs far 1.43 dB median [0.38-5.20], vs spotless 1.23 [0.32-4.23], so far adds little beyond spotless. The first band floor (100 Hz) gave 5-11 dB, room noise under f0, so the floor was raised after seeing it. Far vision is pitch and level only: it does not model tone; naturalness unmeasured. iOS risk: none new (a third render lengthens the scan; time on a phone unmeasured). Next: vowels part 2 or singer's formant.
