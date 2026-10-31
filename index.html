@@ -1388,7 +1388,7 @@ function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;
   if(!RATING_ON)h+=`<div class="elo"><span>Your take over ${a.sung.toFixed(0)} s of singing</span></div>`;
   else if(R){const band=BANDS.find(b=>R.R>=b[0])[1];h+=`<div class="elo"><b>${R.R}</b><span>Experimental · ${band} · better than ${Math.round(R.pct*100)} % of ${R.n} reference voices</span></div>`;}
   else h+=`<div class="elo"><span>${a.ok?'Rating needs the reference pool (rating/anchors.json).':'Sing at least 6 held notes (about 5 s of singing) for a rating.'}</span></div>`;
-  h+='<table>'+ASPECTS.map(x=>`<tr><td>${x.name}</td><td>${x.k==='onset'&&a.slide&&a.slide.style?`slide style, ${a.slide.n} of ${a.slide.of} notes, not counted`:`${fmt(x,a[x.k])} ${x.unit}`}</td>${R&&!x.info?`<td class="bar"><i style="width:${Math.round(R.per[x.k]*100)}%"></i></td><td>beats ${Math.round(R.per[x.k]*100)} %</td>`:R?'<td colspan="2">not rated</td>':''}</tr>`).join('')+'</table>';
+  h+='<table>'+ASPECTS.map(x=>`<tr><td>${x.name}</td><td>${x.k==='onset'&&a.slide&&a.slide.style?`slide style, ${a.slide.n} of ${a.slide.of} notes, not counted`:x.k==='rhythm'&&!Number.isFinite(a.rhythm)?(a.tm?'free timing, no steady pulse':'too few notes to find a pulse'):`${fmt(x,a[x.k])} ${x.unit}`}</td>${R&&!x.info?`<td class="bar"><i style="width:${Math.round(R.per[x.k]*100)}%"></i></td><td>beats ${Math.round(R.per[x.k]*100)} %</td>`:R?'<td colspan="2">not rated</td>':''}</tr>`).join('')+'</table>';
   // Without the rating, each aspect is set against the median trained singer: how far better (+) or worse.
   const vsMed=x=>{const m=TRAINED_MED[x.k],d=x.lower?m-a[x.k]:a[x.k]-m;return d/(x.tol*3);};
   const order=RATED.slice().sort((p,q)=>R?R.per[q.k]-R.per[p.k]:vsMed(q)-vsMed(p));
