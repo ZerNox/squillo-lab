@@ -23,7 +23,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Note by note: ◀ / ▶ or ← → plays one note at a time with its numbers; ⚑ mark (M) flags moments, kept per take.
 - Warm-up: about 4 min, steps chosen from the last 5 takes, cited, guide tones.
 - Phone: the take comes first after a scan, progress lines full width.
-- Take pitch: YIN candidates + Viterbi (0.1 % gross error, synthetic; 97.6 ± 0.7 % RPA, false alarm 12.8 % on 40 real singers, vocadito; note edges trimmed on a short window).
+- Take pitch: YIN candidates + Viterbi (0.1 % gross error, synthetic; 97.4 ± 0.8 % RPA, false alarm 12.9 % on 40 real singers, vocadito; note edges trimmed on a short window).
 - Vibrato rate and extent per take with ± (synthetic means within 0.11 Hz, 0.03 st; `check/vibrato-bench.mjs`); live chip on the same estimator; evenness (cycle-to-cycle CV, within ~2 points on synthetic jitter), judged against all 20 VocalSet singers.
 - Slide style told from unwanted scoops (consistent depth on most notes).
 - Voice profile: comfortable and full range, voice-type guess, key for a song, register breaks on glides; a guided range finder (lowest, highest, siren) in about a minute.
@@ -51,6 +51,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Drone: ♪ drone (D) on the target note to sing against; unison only (synthetic leak at -12 dB: max 4.8 ¢; octave below flips the reading).
 - Live in noise: gate at 1.5× the calibrated room (vocadito, pink 5 dB RPA 6.0 → 64.0, 10 dB 47.5 → 83.6); voicing limit scales with noise (clean FA 24.1 → 14.9).
 - Match and measure: warm-up's pitch steps hear five tones, sing each, read in ¢ with ± and landing time; sessions kept and compared (synthetic landing within about 75 ms; real voices unmeasured).
+- High notes: take pitch to 1400 Hz; straight notes from E5 up no longer read at a fraction of the note (synthetic C5-E6 100 %, was 0-63 % on straight tones from E5; vocadito 97.4 ± 0.8).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
@@ -63,7 +64,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 1. **Rating with ground truth**: human-judged takes across styles from openly
    licensed sources only, then a rating that ranks them correctly (see
    `rating/README.md`).
-2. **Sharper note edges, part 2**: false alarm 12.8 % on vocadito; threshold/width sweeps of the trim only trade RPA for FA (OA 94.3-94.4), so it needs a finer hop at edges or level-envelope onsets. Real soprano f0 truth still missing. A neighbour-relative trim (R 0.2/0.3) also only trades: FA 12.7/12.2, OA 94.3/94.2 (2026-10-26).
+2. **Sharper note edges, part 2**: false alarm 12.9 % on vocadito; threshold/width sweeps of the trim only trade RPA for FA (OA 94.3-94.4), so it needs a finer hop at edges or level-envelope onsets. Real soprano f0 truth still missing, and matters more now: the high-note gain is synthetic only. A neighbour-relative trim (R 0.2/0.3) also only trades: FA 12.7/12.2, OA 94.3/94.2 (2026-10-26).
 3. **On-device vocal separation** (ONNX in WASM) so songs with music load
     without Demucs on a desktop.
 4. **Vibrato, part 3**: per-note truth if any exists (the 20-singer evenness reference is done).

@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-31 · high notes read right
+
+Found by the match bench: from E5 up, straight notes read at a half or a third of the note, and nothing above about 1 kHz was searched. Octave folding had hidden the halves. Built: YIN searches to 1400 Hz (`F0MAX`), dips valued at sub-sample lag, candidates ranked with the Viterbi's lag cost so the true period stays in the top 8; `check/high-bench.mjs`, a check.mjs test. A soprano or child holding a high straight note now gets the right note. Page code, synthetic, C5-E6, four voice settings, frames within 50 ¢: 100 % everywhere; before, plain E5 63, G♯5 50, A♯5 38, C6-E6 0. vocadito 40 clips: RPA 97.6 ± 0.7 → 97.4 ± 0.8, FA 12.8 → 12.9, OA 94.3 → 94.1, low 97.3 same, high 97.8 → 97.4 (voices stop near F4, so a small cost and no direct test of the gain). Noise: pink 0 dB 63.0 → 64.0, hum 10 dB 88.2 same, speech 5 dB 73.6 → 73.3. Live bench unchanged (clean RPA 91.0, FA 15.0); live high straight notes unmeasured. iOS risk: none new. Next: real high-voice truth, or Timing part 2.
+
 ## 2026-10-31 · match and measure in the warm-up
 
 Built: ♪ match and measure on the warm-up's Pitch matching and Clean starts steps (`matchGo`, `matchStats`, landing time in `tryRead`), `check/match-bench.mjs`. A singer hears five tones, sings each, and gets each note in ¢ with ±, how many landed, any overall flat or sharp lean, how fast they settled, the last sessions compared (better or worse only beyond both intervals) and a line of sessions, kept on the device. The warm-up used to listen to nothing. Page code, synthetic, 5 voices: landing error worst 55 ms straight, 75 ms vibrato, for scoops 0-400 ms, so the page rounds to 50 ms and says 'at once' under 80 ms. 40 sessions, 200 notes: truth inside ± 40/40, mean ± 17.8 ¢; SD 15.6 ¢ comes from one note at 830 Hz read 498 ¢ off, the other 199 within 12 ¢. Real voices unmeasured. Speaker tone stops before the capture, so no leak. iOS risk: as Sing it again, mic mode may route the tone quieter or to the earpiece. Next: Timing part 2.
@@ -33,8 +37,4 @@ Built: fifth view, Lane, reused from the failed attempt `wip/daily-20261031T0228
 ## 2026-10-30 · repeated notes closed; vowels heard
 
 Tried, not shipped: splitting `segNotes` at spectral change (`henv`, ±100 ms, thresholds 4-10 dB, gap 0.12/0.2 s), vocadito 40 clips, page code: COnP 68.0-74.2 vs 74.2 ± 2.7, COnPOff never above 60.2. `segNotes` already matches the second annotator (74.0), so the roadmap item is closed. Built: 'Vowels heard' under Went well, sure notes only, from 5 notes; a singer sees which vowels the take used. No new measurement. iOS risk: none new. Next: timing part 2 or tone part 2.
-
-## 2026-10-30 · vowels from the harmonic envelope
-
-Built: `harmEnv` (harmonic levels at 14 log points, 250-4500 Hz, each frame), `envVowel` (LDA, tilt removed, plus f0) behind `spanVowel`; formant picks stay as fallback; `check/vowel-dump.mjs`, `check/vowel-fit.mjs`. The live chip and note by note now name a vowel far more often and rightly, back vowels most. VocalSet, 2354 notes, 20 singers, page code, left-out singer: 78.5 ± 4.5 % vs 67.7 ± 4.5; o 64, u 72 (LDA on formants alone: 55, 57); sure 85.2 ± 4.7 % on 74 % of notes (was 74.1 on 67). Kept tilt scored 82.5 but 76 under a ±3 dB/oct slope, so removed: a phone mic's slope is unmeasured otherwise. 0.5 s window 82.1 ± 5.1 (fitted on same notes, optimistic). One recording chain, five vowels; other mics and languages unmeasured. iOS risk: none new. Live WebKit: passed on the 5th try (two full runs and one lone run hung, as in earlier reports; a local lone run hung too, same intermittent hang); Chrome, Firefox live pass. Next: repeated-note splits by spectral change, using `henv`.
 
