@@ -367,7 +367,7 @@ const TD={T:200,F:72,fmin:70,fmax:6000,size:[9,2.6,6.5]}; // terrain: 200 column
 // Plain source string so the same code runs in a Worker (preferred) or on the main thread.
 const DSP_SRC=String.raw`
 // Live level gate, as a multiple of the calibrated room's level: 3 shut out most singing below 10 dB over the room. Voicing limit: V in quiet, rising with the noise's share of the frame (check/live-noise-bench.mjs, breathy-live-bench.mjs).
-const LN={G:1.5,V:0.3,K:4,R:0.12,M:2};
+const LN={G:1.5,V:0.3,K:4,R:0.12,M:2,E:0.05};
 const YW=1024;let yinD=new Float32Array(1);
 const F0MAX=1400;
 function yin(buf,sr,prevF0){const tauMax=Math.min(Math.floor(sr/60),buf.length-YW),tauMin=Math.floor(sr/F0MAX);if(yinD.length<tauMax+1)yinD=new Float32Array(tauMax+1);
@@ -379,6 +379,8 @@ function yin(buf,sr,prevF0){const tauMax=Math.min(Math.floor(sr/60),buf.length-Y
   let cs=[];if(S.offline){const ref=t=>{const a=yinD[t-1],b=yinD[t],c=yinD[t+1],den=a-2*b+c;return sr/(t+(den!==0?0.5*(a-c)/den:0));};const dip=t=>{const a=yinD[t-1],b=yinD[t],c=yinD[t+1],den=a-2*b+c;return den>0?Math.max(0,b-(a-c)*(a-c)/(8*den)):b;};const rk=t=>dip(t)+0.15*Math.log2(t/cands[0]);cs=cands.slice().sort((x,y)=>rk(x)-rk(y)).slice(0,8).map(t=>[ref(t),dip(t)]);}
   const under=cands.filter(t=>yinD[t]<0.12);best=under.length?under[0]:cands.reduce((x,y)=>yinD[y]<yinD[x]?y:x);
   if(prevF0){const pt=sr/prevF0;let nb=null;for(const t of cands)if(Math.abs(t-pt)/pt<0.12&&(nb===null||yinD[t]<yinD[nb]))nb=t;if(nb!==null&&yinD[nb]<yinD[best]+0.2)best=nb;}
+  // Live has no Viterbi: on a noisy dip a shorter period that divides this one wins when nearly as deep, or a breathy note locks onto a subharmonic.
+  if(!S.offline&&LN.E)for(const t of cands){if(t>=best)break;const k=best/t;if(k>1.5&&Math.abs(k-Math.round(k))<0.06&&yinD[t]<yinD[best]+LN.E){best=t;break;}}
   if(best<2||best>=tauMax)return {f0:0,cmnd:1};
   const a=yinD[best-1],b=yinD[best],c=yinD[best+1];const den=a-2*b+c;const sh=den!==0?0.5*(a-c)/den:0;
   return {f0:sr/(best+sh),cmnd:yinD[best],cs};}

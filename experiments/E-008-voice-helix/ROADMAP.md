@@ -56,12 +56,13 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - High notes: take pitch to 1400 Hz; straight notes from E5 up no longer read at a fraction of the note (synthetic C5-E6 100 %, was 0-63 % on straight tones from E5; vocadito 97.4 ± 0.8).
 - My data: save a copy of progress, bring it back after a wipe (merged, nothing lost), delete everything including audio.
 - On the device: opens with no network, no third-party request (fonts self-hosted), home-screen install (real outage reopens in all three browsers; `check/offline-check.mjs`).
+- Live subharmonic guard: breathy HNR 5 dB read right 49.7 → 99.7 %; vocadito live clean OA 91.8, pink 10 dB OA 88.9.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
 ## Next
 
-0. **Noise, part 3**: live false alarms (clean FA 6.5 %, no Viterbi live, a two-frame run gates notes; HNR 0 dB breathy notes unread); take pitch in talk-like noise no gain, room read 10-13 dB high.
+0. **Noise, part 3**: live false alarms (clean FA 6.5 %, no Viterbi live; HNR 0 dB breathy notes unread); take pitch in talk-like noise no gain, room read 10-13 dB high.
 0. **Timing, part 3**: page finds 5 of the 7 clips both vocadito annotators pulse, 4 % false on random onsets; real truth is thin (annotators share only 7 of 40).
 0. **Key drift, part 2**: better real-voice agreement (vocadito SD 41 ¢ vs synthetic 16); local/global circular unwraps tried 2026-10-30, no gain (39-91 ¢): needs a different truth or note-level approach. `segNotes` input: SD 62 ¢, worse.
 0. **Vowels, part 3**: o/u still weakest (64/72 %, left-out singer); try other mics or languages if an open labelled set exists.
