@@ -4,7 +4,7 @@ Newest first. Date, what was built, what a singer can now do, numbers, next.
 
 ## 2026-10-31 · fewer false notes live
 
-Built: live voicing limit 0.3 in a quiet room, rising with the noise's share of the frame (`LN.V`, `LN.K`, was 0.65); `check/breathy-live-bench.mjs`. A singer's live line shows fewer ghost notes in gaps and breaths. vocadito 40 clips, page code, live: clean FA 24.1 → 14.9 ± 3.2, RPA 89.5 → 91.0 ± 3.5, OA 85.2 → 89.1 ± 2.8; pink 10 dB OA 87.3 → 87.4, FA 5.3 same; hum 10 dB OA 84.8 same. Cost: synthetic very breathy note in a quiet room, HNR 0 dB, read 32 → 0 % of frames (HNR 5 dB 25 % same, 10 dB and up 100 %); real extreme breathy voices unmeasured. Limit tuned on 10 of the clips. Local WebKit hung twice in full runs, passed alone first try (known intermittent hang). iOS risk: none new. Next: Timing part 2.
+Built: live voicing limit 0.3 in a quiet room, rising with the noise's share of the frame (`LN.V`, `LN.K`, was 0.65); `check/breathy-live-bench.mjs`. A singer's live line shows fewer ghost notes in gaps and breaths. vocadito 40 clips, page code, live: clean FA 24.1 → 14.9 ± 3.2, RPA 89.5 → 91.0 ± 3.5, OA 85.2 → 89.1 ± 2.8; pink 10 dB OA 87.3 → 87.4, FA 5.3 same; hum 10 dB OA 84.8 same. Cost: synthetic very breathy note in a quiet room, HNR 0 dB, read 32 → 0 % of frames (HNR 5 dB 25 % same, 10 dB and up 100 %); real extreme breathy voices unmeasured. Limit tuned on 10 of the clips. Local WebKit hung twice in full runs, passed alone first try; live WebKit passed on the 4th lone run (known intermittent hang), Chrome and Firefox first try. iOS risk: none new. Next: Timing part 2.
 
 ## 2026-10-31 · live pitch in noisy rooms
 
