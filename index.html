@@ -1622,9 +1622,11 @@ window.helixAspects=async ab=>{const o=new OfflineAudioContext(1,1,48000);const 
 let lastWall=performance.now()/1000;
 function resize(){const dpr=Math.min(window.devicePixelRatio||1,2);const w=Math.floor(canvas.clientWidth*dpr),h=Math.floor(canvas.clientHeight*dpr);if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}}
 // Lane: the last 8 s as a flat line on a semitone grid, and the held note large. laneRead: median of the last 0.4 s of the same note, ± from its spread over about 4 independent blocks, 3 ¢ floor.
-function laneRead(hist,now,tgt){const last=hist[hist.length-1];if(!last||!last.voiced||now-last.t>0.15)return null;const m=[];for(let i=hist.length-1;i>=0&&now-hist[i].t<0.4;i--){const h=hist[i];if(h.voiced&&h.ok!==false&&Math.abs(h.midi-last.midi)<1.5)m.push(h.midi);}
-  if(m.length<8)return null;m.sort((a,b)=>a-b);const med=m[m.length>>1],dev=m.map(x=>Math.abs(x-med)).sort((a,b)=>a-b),n=tgt||Math.round(med);
-  return {n,midi:med,c:(med-n)*100,pm:Math.max(3,1.4826*dev[dev.length>>1]*100/2)};}
+function laneRead(hist,now,tgt){const last=hist[hist.length-1];if(!last||!last.voiced||now-last.t>0.15)return null;const m=[];let n4=0;for(let i=hist.length-1;i>=0&&now-hist[i].t<0.7;i--){const h=hist[i];if(h.voiced&&h.ok!==false&&Math.abs(h.midi-last.midi)<1.5){m.push(h.midi);if(now-h.t<0.4)n4++;}}
+  if(n4<8)return null;const q=m.slice(0,n4).sort((a,b)=>a-b),med=q[q.length>>1],dev=q.map(x=>Math.abs(x-med)).sort((a,b)=>a-b),s=1.4826*dev[dev.length>>1];let c=med;
+  // Vibrato: a 0.4 s median holds an uneven count of peaks. Mean over the whole cycles of the last 0.7 s, between upward crossings 0.1 s apart at least, ± from how far the cycles' means differ.
+  let pm=Math.max(3,s*50);if(s>0.08){const gap=n4/4,u=[];for(let i=m.length-1;i>0;i--)if(m[i]<med&&m[i-1]>=med&&(!u.length||u[u.length-1]-i>=gap))u.push(i);if(u.length>=3){const M=[];for(let k=1;k<u.length;k++){const p=m.slice(u[k],u[k-1]);M.push(p.reduce((x,y)=>x+y,0)/p.length);}c=M.reduce((x,y)=>x+y,0)/M.length;pm=Math.max(3,(Math.max(...M)-Math.min(...M))*100);}}
+  const n=tgt||Math.round(c);return {n,midi:c,c:(c-n)*100,pm};}
 const LANE={mid:60,half:7,box:null,boxT:0},laneC=$('lane'),laneX=laneC.getContext('2d');
 function laneBox(wall){if(LANE.box&&wall-LANE.boxT<0.5)return LANE.box;LANE.boxT=wall;const t=$('top').getBoundingClientRect().bottom+8,tl=$('tl').getBoundingClientRect().top-8,H=innerHeight;LANE.box={x:0,y:Math.max(0,t),w:innerWidth,h:Math.max(140,(tl>t+140?Math.min(tl,H):H)-Math.max(0,t))};
   const r=$('laneRead').style;r.top=(LANE.box.y+10)+'px';return LANE.box;}
