@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-10-31 · fewer false notes live
+
+Built: live voicing limit 0.3 in a quiet room, rising with the noise's share of the frame (`LN.V`, `LN.K`, was 0.65); `check/breathy-live-bench.mjs`. A singer's live line shows fewer ghost notes in gaps and breaths. vocadito 40 clips, page code, live: clean FA 24.1 → 14.9 ± 3.2, RPA 89.5 → 91.0 ± 3.5, OA 85.2 → 89.1 ± 2.8; pink 10 dB OA 87.3 → 87.4, FA 5.3 same; hum 10 dB OA 84.8 same. Cost: synthetic very breathy note in a quiet room, HNR 0 dB, read 32 → 0 % of frames (HNR 5 dB 25 % same, 10 dB and up 100 %); real extreme breathy voices unmeasured. Limit tuned on 10 of the clips. Local WebKit hung twice in full runs, passed alone first try (known intermittent hang). iOS risk: none new. Next: Timing part 2.
+
 ## 2026-10-31 · live pitch in noisy rooms
 
 Built: the live level gate drops from 3× to 1.5× the calibrated room level (`LN.G`); `check/live-noise-bench.mjs`, a live gate check in check.mjs. A singer in a room with a fan or hum now keeps their pitch line live; before, the gate shut out most singing below 10 dB over the room. vocadito 40 clips, page code, live mode, 2 s calibration, no Viterbi, RPA before → after (FA after): pink 10 dB 47.5 → 83.6 (5.3), 5 dB 6.0 → 64.0 (1.5), 0 dB 0.1 → 21.7; hum 10 dB 39.9 → 78.9 (3.8); talk-like 10 dB 62.1 → 80.1, 5 dB 16.2 → 55.3; pink 20 dB OA 89.3 both, FA 9.5 → 14.7; clean unchanged, RPA 89.5 ± 4.4, FA 24.1 ± 4.7. Raising YIN's dip limits by the noise share (tried on 10 clips, 1.3×): pink 5 dB OA 79 vs 73, but 20 dB OA 83 vs 90, not shipped. Gate chosen on 10 of these clips, so slightly optimistic; added noise, no real room. Clean FA of 24 % is the live tracker's own weakness. iOS risk: none new. Next: live false alarms in quiet, or Timing part 2.

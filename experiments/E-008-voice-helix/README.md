@@ -34,7 +34,7 @@ Capture: AudioWorklet (ScriptProcessor fallback) at raw settings
 (`echoCancellation`, `noiseSuppression`, `autoGainControl` all false, as
 E-003 found browsers honour). Analysis: a Web Worker at a fixed 20 ms hop
 (YIN with a continuity witness, LPC order 2+fs/1000 at 12 kHz, 4096-point
-FFT with a 2 s room profile subtracted). The live level gate sits at 1.5× the calibrated room level (`check/live-noise-bench.mjs`, vocadito 40 clips, page code, live RPA: pink 10 dB 83.6 ± 3.7, 5 dB 64.0 ± 3.7, hum 10 dB 78.9 ± 3.7, was 47.5, 6.0, 39.9; clean 89.5 ± 4.4, FA 24.1 ± 4.7; added noise, no real room). Takes get their own pitch track:
+FFT with a 2 s room profile subtracted). The live level gate sits at 1.5× the calibrated room level (`check/live-noise-bench.mjs`, vocadito 40 clips, page code, live RPA: pink 10 dB 83.6 ± 3.7, 5 dB 64.0 ± 3.7, hum 10 dB 78.9 ± 3.7, was 47.5, 6.0, 39.9; clean 91.0 ± 3.5, FA 14.9 ± 3.2 with the voicing limit at 0.3, rising with the noise's share; synthetic HNR 0 dB notes go unread in quiet; added noise, no real room). Takes get their own pitch track:
 every frame keeps up to 8 YIN candidates and a Viterbi path over the whole
 take picks one (pYIN, Mauch & Dixon 2014, simplified: dip + 0.15 per octave
 below the highest candidate + 0.035 per semitone jumped, unvoiced 0.45,
