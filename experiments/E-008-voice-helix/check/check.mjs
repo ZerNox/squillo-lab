@@ -140,6 +140,8 @@ async function run([name, launch, ctxOpt, file]) {
     if (!vow.ok || !vow.chip || !vow.said) throw new Error('vowel reading: ' + JSON.stringify(vow));
     if (seg.leg !== 4 || seg.vib !== 1 || !seg.perf) throw new Error('note segmentation: ' + JSON.stringify(seg));
     // Note by note: two taps on note ▶ then one on ◀ note land on the first note, play just it and say its numbers; → key goes to note 2.
+    const spotKey = await p.evaluate(async () => { const K = () => document.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', shiftKey: true })); document.activeElement.blur(); TAKE.spotAt = null; K(); const a = [TAKE.spotAt, document.getElementById('say').textContent]; K(); await new Promise(r => setTimeout(r, 400)); const kind = AU.kind; stopSource(); return { a, b: TAKE.spotAt, n: TAKE.segs.length, kind }; });
+    if (!(spotKey.n > 1 && spotKey.kind === 'ab' && spotKey.b > spotKey.a[0] && / spot 1 of /.test(spotKey.a[1]))) throw new Error('spot keys: ' + JSON.stringify(spotKey));
     await tap(p.locator('#bNextNote')); await tap(p.locator('#bNextNote')); await tap(p.locator('#bPrevNote')); await p.waitForTimeout(300);
     const nn = await p.evaluate(() => { const n = TAKE.aspects.perf[0]; return { i: TAKE.ni, kind: AU.kind, until: AU.play && Math.abs(AU.play.until - n.t1 - 0.15) < 0.01, on: document.querySelectorAll('#takebar u.on').length, said: /^Note 1 of \d+ at /.test(document.getElementById('takeInfo').textContent) }; });
     await p.keyboard.press('ArrowRight'); await p.waitForTimeout(200); nn.key = await p.evaluate(() => TAKE.ni);
