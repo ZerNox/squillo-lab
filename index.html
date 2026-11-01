@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0a0d12">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' blob:; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; connect-src 'self'; media-src 'self' blob:; img-src 'self' data:; frame-src 'none'; object-src 'none'">
-<style>body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}#phrBox{margin:.5rem 0;padding:.4rem .7rem;background:#0b0f14e6;border-radius:.5rem;font-size:.9rem}#phrBox ul{margin:.3rem 0;padding-left:1.1rem}.pns{display:flex;flex-wrap:wrap;gap:.3rem;margin:.3rem 0}.pn{padding:.1rem .4rem;border-radius:.4rem;border:1px solid #6b7686;font-variant-numeric:tabular-nums}.pn[data-on="1"]{border-color:#5fd0a0;color:#8fe6c0}
+</style>
 <title>Voice Helix</title>
 <script>
 /* Show script errors on the page itself: a phone has no console, so a singer (or a screenshot) can tell what broke. */
@@ -218,7 +219,7 @@ body.lane #rail,body.lane #labels,body.lane #flaws,body.lane #advice{display:non
 <canvas id="lane" aria-hidden="true"></canvas>
 <div id="laneRead" aria-hidden="true"><div id="laneNote">—</div><div id="laneC"></div></div>
 <div id="say" class="sr" aria-live="polite" aria-atomic="true"></div>
-<div id="keys" role="dialog" aria-label="Keyboard shortcuts" hidden><b>Keyboard</b><br><kbd>space</kbd> pause / resume<br><kbd>5</kbd> next step<br><kbd>D</kbd> drone on the target note<br><kbd>← →</kbd> previous / next note of the take<br><kbd>shift ← →</kbd> previous / next spot to work on, A/B with spotless<br><kbd>1 2 3 4</kbd> take, halfway, spotless, far vision, from the same moment<br><kbd>L</kbd> loop the phrase<br><kbd>M</kbd> mark this moment<br><kbd>N</kbd> say my note on / off (screen reader)<br><kbd>?</kbd> this list · <kbd>Esc</kbd> close</div>
+<div id="keys" role="dialog" aria-label="Keyboard shortcuts" hidden><b>Keyboard</b><br><kbd>space</kbd> pause / resume<br><kbd>5</kbd> next step<br><kbd>D</kbd> drone on the target note<br><kbd>← →</kbd> previous / next note of the take<br><kbd>shift ← →</kbd> previous / next spot to work on, A/B with spotless<br><kbd>1 2 3 4</kbd> take, halfway, spotless, far vision, from the same moment<br><kbd>L</kbd> loop the phrase<br><kbd>P</kbd> sing the phrase, read note by note<br><kbd>M</kbd> mark this moment<br><kbd>N</kbd> say my note on / off (screen reader)<br><kbd>?</kbd> this list · <kbd>Esc</kbd> close</div>
 <div id="labels" aria-hidden="true"></div>
 <div id="nogl" hidden>This page needs WebGL2. Open it in a current Chrome, Edge, Firefox or Safari.</div>
 
@@ -307,7 +308,7 @@ body.lane #rail,body.lane #labels,body.lane #flaws,body.lane #advice{display:non
     <button class="btn" id="bPlayHalf" disabled title="Half way between your take and spotless">▶ halfway</button>
     <button class="btn" id="bPlaySpot" disabled title="Every note tuned, steadied and started cleanly">▶ spotless</button>
     <button class="btn" id="bPlayFar" disabled title="Spotless, with even vibrato and a gentle swell on the long notes: your voice, further on">▶ far vision</button>
-    <button class="btn" id="bLoopPh" disabled aria-pressed="false" title="Loop the phrase around the note you are on (L key); again to stop">⟲ loop phrase</button><button class="btn" id="bPrevNote" disabled aria-label="Previous note" title="Previous note (← key)">◀ note</button><button class="btn" id="bNextNote" disabled aria-label="Next note" title="Next note (→ key): hear one note at a time with its numbers">note ▶</button><button class="btn" id="bMark" disabled title="Mark this moment (M key): a flag on the bar, kept with the take on this device">⚑ mark</button>
+    <button class="btn" id="bLoopPh" disabled aria-pressed="false" title="Loop the phrase around the note you are on (L key); again to stop">⟲ loop phrase</button><button class="btn" id="bSingPh" disabled title="Hear the phrase around the note you are on, in tune, sing it, read note by note (P key)">🎙 sing phrase</button><button class="btn" id="bPrevNote" disabled aria-label="Previous note" title="Previous note (← key)">◀ note</button><button class="btn" id="bNextNote" disabled aria-label="Next note" title="Next note (→ key): hear one note at a time with its numbers">note ▶</button><button class="btn" id="bMark" disabled title="Mark this moment (M key): a flag on the bar, kept with the take on this device">⚑ mark</button>
     <select id="cmpSel" hidden aria-label="Earlier take to compare" title="An earlier take kept on this device"></select><button class="btn" id="bPlayCmp" hidden title="Play an earlier take, then yours, to hear the change">▶ earlier take</button><button class="btn" id="bSamePh" hidden title="The phrase around the current note, sung in the earlier take, then today">▶ same phrase</button>
     <button class="btn" id="bWarm" title="A short routine for what your recent takes need most">☀ warm-up</button>
     <button class="btn" id="bProf" title="Your range, voice type and a key for any song, from your takes">♪ voice profile</button>
@@ -322,6 +323,7 @@ body.lane #rail,body.lane #labels,body.lane #flaws,body.lane #advice{display:non
   <div id="takebar" hidden title="Click to play from here"><b id="playhead"></b></div>
   <div id="takeKey" hidden>line: how well you sang over the last 10 s (dashes: median trained singer) · notes: <b style="background:var(--ok)">on</b> <b style="background:var(--warn)">close</b> <b style="background:var(--bad)">off</b> · ★ best notes · red: spot the coach works on · click a note or spot to hear it A/B with spotless · ⚑ your marks (M)</div>
   <section id="today" hidden aria-label="Today's focus"></section>
+  <section id="phrBox" hidden aria-live="polite"></section>
   <section id="rating" hidden aria-live="polite"></section>
   <div id="flaws"></div>
   <div id="score" hidden tabindex="0" role="region" aria-label="Take summary"></div>
@@ -979,7 +981,7 @@ async function setTake(buf){TAKE.busy=true;
   TAKE.next=improveTake(buf,sc.frames,0.5,sc.aspects.off,null,true);
   TAKE.rating=ANCHORS&&sc.aspects.ok?rateAspects(sc.aspects,ANCHORS):null;TAKE.d=null;TAKE.marks=[];if(sc.aspects.ok){const h=saveTake(sc.aspects);TAKE.d=h[h.length-1].d;storeAudio(TAKE.d,buf);}$('today').hidden=true;TAKE.busy=false;renderTakebar();renderRating();document.body.classList.add('has-take');
   if(matchMedia('(max-width:720px)').matches)$('takeRow').scrollIntoView({block:'start',behavior:'smooth'});
-  bPlayTake.disabled=bPlayHalf.disabled=bPlaySpot.disabled=bPlayFar.disabled=bPlayNext.disabled=bPrevNote.disabled=bNextNote.disabled=bMark.disabled=$('bLoopPh').disabled=false;TAKE.ni=-1;
+  bPlayTake.disabled=bPlayHalf.disabled=bPlaySpot.disabled=bPlayFar.disabled=bPlayNext.disabled=bPrevNote.disabled=bNextNote.disabled=bMark.disabled=$('bLoopPh').disabled=$('bSingPh').disabled=false;TAKE.ni=-1;
   const names=[...new Set(TAKE.segs.map(g=>FLAWS[g.i].name))];
   takeInfo.textContent=(tr.cut>0.5||tr.talk>0?`Cut ${tr.cut>0.5?`${tr.cut.toFixed(1)} s of silence`:''}${tr.cut>0.5&&tr.talk>0?' and ':''}${tr.talk>0?`${tr.talk.toFixed(0)} s of talk or noise`:''}: only the singing is scored. `:'')+(TAKE.segs.length?`${TAKE.segs.length} spot${TAKE.segs.length>1?'s':''} to work on (${names.join(', ')}), marked on the bar. Play your take, next step, halfway or spotless.`:`Clean take: no flaw held long enough to coach. ${(sc.voiced*100).toFixed(0)} % of it was voiced.`);}
 // Pitch of a take, decided over the whole take: a Viterbi path through each frame's YIN candidates
@@ -1539,6 +1541,38 @@ async function drillGo(b){if(DRILL.busy||!TAKE.spot)return;const t0=+b.dataset.t
     const ch=DRILL.rec;DRILL.rec=null;const N=ch.reduce((x,y)=>x+y.length,0),buf=mkBuf(Math.max(1,N),AU.sr),x=buf.getChannelData(0);let o=0;for(const q of ch){x.set(q,o);o+=q.length;}
     DRILL.tries.push(N>=AU.sr?await tryRead(buf,m):null);DRILL.busy=false;renderTry('',d);}
   finally{DRILL.busy=false;DRILL.rec=null;}}
+// Sing the phrase: the phrase around the current note, tuned, in the singer's own voice, then its length + 2 s of mic, read note by note against those notes.
+// phraseAlign: frames to notes by Viterbi (stay, next, or skip one at a cost), semitone transposition searched; cost is the capped distance in semitones plus a weak pull to the note's place in time, which only parts repeated notes. Not the phrase: under 60 % of frames within 0.75 st, or under 60 % of notes heard. check/sing-bench.mjs.
+const PHR={tries:[],key:'',busy:false,T:null},PHR_TAIL=2,PHR_MINF=0.6;
+function phraseCost(v,T,k){const N=v.length,K=T.length,ts=v[0].t,sp=(v[N-1].t-ts)||1,T0=T[0].t0,Ts=(T[K-1].t1-T0)||1,u0=T.map(n=>(n.t0-T0)/Ts),u1=T.map(n=>(n.t1-T0)/Ts),BIG=1e9,back=[];
+  let c=new Float64Array(K).fill(BIG);const at=(f,i)=>{const u=(f.t-ts)/sp;return Math.min(Math.abs(f.midi-T[i].m-k),3)+3*Math.max(0,u0[i]-u,u-u1[i]);};c[0]=at(v[0],0);if(K>1)c[1]=at(v[0],1)+2;
+  for(let j=1;j<N;j++){const d=new Float64Array(K).fill(BIG),b=new Int8Array(K);for(let i=0;i<K;i++){let m=c[i],s=0;if(i>0&&c[i-1]+0.5<m){m=c[i-1]+0.5;s=1;}if(i>1&&c[i-2]+2<m){m=c[i-2]+2;s=2;}d[i]=m+at(v[j],i);b[i]=s;}c=d;back.push(b);}
+  let e=0;for(let i=1;i<K;i++)if(c[i]<c[e])e=i;const st=new Int16Array(N);st[N-1]=e;for(let j=N-2;j>=0;j--)st[j]=st[j+1]-back[j][st[j+1]];return {cost:c[e]/N,st};}
+function phraseAlign(v,T){let best=null;for(let k=-14;k<=14;k++){const r=phraseCost(v,T,k);r.cost+=Math.abs(k)*0.002;r.k=k;if(!best||r.cost<best.cost)best=r;}return best;}
+async function phraseRead(buf,T){const fs=await trackTake(buf);viterbiF0(fs);trimEdges(fs,buf);const st=new Stats();for(const f of fs)ingest(st,f,'take');const v=st.rec.frames.filter(f=>f.voiced&&f.ok);if(v.length<20)return null;
+  const A=phraseAlign(v,T),med=a=>a.slice().sort((x,y)=>x-y)[a.length>>1],fit=v.filter((f,j)=>Math.abs(f.midi-T[A.st[j]].m-A.k)<=0.75).length/v.length;
+  const notes=T.map((n,i)=>{const f=v.filter((q,j)=>A.st[j]===i);if(!f.length||f[f.length-1].t-f[0].t<0.12)return {i,heard:false};const g=f.filter(q=>q.t>=f[0].t+0.06).map(q=>({t:q.t,c:(q.midi-n.m)*100})),B={};
+    for(const q of g)(B[Math.floor((q.t-f[0].t)/0.1)]??=[]).push(q.c);const b=Object.values(B).map(med),mb=b.reduce((x,y)=>x+y,0)/b.length,sd=b.length>1?Math.sqrt(b.reduce((x,y)=>x+(y-mb)**2,0)/(b.length-1)):0;
+    return {i,heard:true,c:med(g.map(q=>q.c)),e:Math.max(5,b.length>2?1.96*sd/Math.sqrt(b.length):30),was:Math.abs(n.d)};});
+  const H=notes.filter(n=>n.heard);if(fit<PHR_MINF||H.length<Math.max(2,Math.ceil(T.length*PHR_MINF)))return {same:false,fit,heard:H.length};
+  const sh=med(H.map(n=>n.c)),moved=Math.abs(sh)>=60;if(moved)for(const n of H)n.c-=sh;const off=H.map(n=>Math.abs(n.c)),g=H.map((n,i)=>n.was-off[i]),gain=g.reduce((x,y)=>x+y,0)/g.length,sd=g.length>1?Math.sqrt(g.reduce((x,y)=>x+(y-gain)**2,0)/(g.length-1)):0;
+  return {same:true,fit,notes,heard:H.length,shift:moved?sh:0,mean:off.reduce((x,y)=>x+y,0)/off.length,was:H.reduce((x,n)=>x+n.was,0)/H.length,gain,ge:g.length>1?1.96*sd/Math.sqrt(g.length):99,tempo:(v[v.length-1].t-v[0].t)/((T[T.length-1].t1-T[0].t0)||1)};}
+function phraseLine(r,i,T){if(!r)return `<li>Try ${i+1}: no singing heard. Sing the whole phrase, a little closer to the mic.</li>`;if(!r.same)return `<li>Try ${i+1}: that did not follow this phrase (${r.heard} of ${T.length} notes found), so no reading. Listen once more.</li>`;
+  const H=r.notes.filter(n=>n.heard),on=H.filter(n=>Math.abs(n.c)<=Math.max(15,n.e)),w=H.slice().sort((a,b)=>Math.abs(b.c)-Math.abs(a.c))[0],pill=n=>`<span class="pn" data-on="${n.heard?Math.abs(n.c)<=Math.max(15,n.e)?1:0:''}">${nn(Math.round(T[n.i].m))} ${n.heard?`${Math.round(n.c)>0?'+':''}${Math.round(n.c)+0}`:'not heard'}</span>`;
+  return `<li>Try ${i+1}: ${on.length} of ${T.length} notes on, about ${r.mean.toFixed(0)} ¢ off on average${r.gain>r.ge?`, ${r.gain.toFixed(0)} ± ${r.ge.toFixed(0)} ¢ closer than in the take`:r.gain<-r.ge?`, ${(-r.gain).toFixed(0)} ± ${r.ge.toFixed(0)} ¢ further off than in the take`:', level with the take within the noise'}.${r.shift?` You sat ${Math.abs(r.shift/100).toFixed(1)} semitones ${r.shift<0?'under':'over'} what you heard, so these are your steps between the notes.`:''}${w&&Math.abs(w.c)>Math.max(15,w.e)?` Most to gain: note ${w.i+1}, ${nn(Math.round(T[w.i].m))}, ${tryWord(w.c)} ± ${w.e.toFixed(0)}.`:''}${Math.abs(r.tempo-1)>=0.15?` Your phrase took ${(r.tempo*100).toFixed(0)} % of the take's time.`:''}<div class="pns">${r.notes.map(pill).join('')}</div></li>`;}
+function renderPhr(msg){const el=$('phrBox'),T=PHR.T;el.hidden=false;el.innerHTML=(msg?`<p class="fine">${msg}</p>`:'')+(PHR.tries.length?`<ul>${PHR.tries.map((r,i)=>phraseLine(r,i,T)).join('')}</ul>`:'')+(PHR.tries.length&&!PHR.busy?`<button class="btn hear" id="phrOff">mic off</button>`:'');const b=$('phrOff');if(b)b.onclick=()=>{stopSource();b.remove();};}
+async function phraseGo(){if(PHR.busy||!TAKE.spot||!TAKE.frames)return;if(AU.ctx)AU.ctx.resume();const p=AU.play,P=(TAKE.aspects&&TAKE.aspects.perf)||[];let t=TAKE.buf.duration/2;if(p&&AU.kind==='take'&&AU.ctx)t=clamp((AU.ctx.currentTime-p.t0)*p.k,0,TAKE.buf.duration);else if(TAKE.ni>=0&&P[TAKE.ni])t=(P[TAKE.ni].t0+P[TAKE.ni].t1)/2;
+  const ph=phraseAround(TAKE.frames,t),T=ph?P.filter(n=>n.t1>ph.t0&&n.t0<ph.t1&&n.m!==undefined):[];PHR.T=T.length?T:PHR.T;if(T.length<2){$('phrBox').hidden=false;$('phrBox').innerHTML='<p class="fine">No phrase of two notes or more there: step to another note with ◀ ▶.</p>';return;}
+  const key=T[0].t0+':'+T.length;if(key!==PHR.key){PHR.key=key;PHR.tries=[];}PHR.busy=true;
+  try{if(AU.kind!=='mic'){renderPhr('Starting the microphone: stay quiet for 2 seconds…');await useMic();for(let i=0;i<60&&calibrating;i++)await new Promise(r=>setTimeout(r,100));if(AU.kind!=='mic'){renderPhr('The microphone is needed: '+statusEl.textContent);return;}}
+    const ctx=AU.ctx,sr=TAKE.spot.sampleRate,a=Math.max(0,T[0].t0-0.1),dur=Math.min(T[T.length-1].t1+0.2,TAKE.spot.duration)-a,n=Math.round(dur*sr),c=mkBuf(n,sr);c.getChannelData(0).set(TAKE.spot.getChannelData(0).subarray(Math.round(a*sr),Math.round(a*sr)+n));
+    const s=ctx.createBufferSource(),g=ctx.createGain(),t0=ctx.currentTime+0.05;s.buffer=c;g.gain.setValueAtTime(0,t0);g.gain.linearRampToValueAtTime(0.9,t0+0.02);g.gain.setValueAtTime(0.9,t0+dur-0.05);g.gain.linearRampToValueAtTime(0,t0+dur);s.connect(g);g.connect(ctx.destination);s.start(t0);
+    renderPhr(`Listen: this phrase in your voice, in tune (${dur.toFixed(1)} s, ${T.length} notes)…`);await new Promise(r=>setTimeout(r,(dur+0.3)*1000));
+    DRILL.rec=[];renderPhr(`Now you: sing the phrase, ${(dur+PHR_TAIL).toFixed(0)} s.`);await new Promise(r=>setTimeout(r,(dur+PHR_TAIL)*1000));
+    const ch=DRILL.rec;DRILL.rec=null;const N=ch.reduce((x,y)=>x+y.length,0),buf=mkBuf(Math.max(1,N),AU.sr),x=buf.getChannelData(0);let o=0;for(const q of ch){x.set(q,o);o+=q.length;}
+    renderPhr('Reading…');PHR.tries.push(N>=AU.sr?await phraseRead(buf,T):null);PHR.busy=false;renderPhr('');}
+  finally{PHR.busy=false;DRILL.rec=null;}}
+$('bSingPh').onclick=phraseGo;document.addEventListener('keydown',e=>{if(!TAKE.buf||$('bSingPh').disabled||e.ctrlKey||e.metaKey||e.altKey||/select|input|textarea/i.test(document.activeElement.tagName))return;if(e.key==='p'||e.key==='P'){e.preventDefault();phraseGo();}});
 async function abLoop(t0,t1,label,to='spot'){const key=label+'@'+t0+to;if(AU.kind==='ab'&&AU.ab===key){stopSource();takeInfo.textContent='A/B stopped.';return;}
   if(!TAKE.spot)return;stopSource();const tok=AU.abTok=(AU.abTok||0)+1,ctx=await ensureCtx();await ctx.resume();if(tok!==AU.abTok)return;/* a newer press won: two would both loop */const sr=TAKE.buf.sampleRate,d=TAKE.buf.duration;
   const k=+speedSel.value,a=Math.max(0,t0-0.4),b=Math.min(d,Math.max(t1+0.4,a+0.6),a+4),i0=Math.round(a/k*sr),n=Math.round((b-a)/k*sr),g1=Math.round(0.5*sr),g2=Math.round(sr);
