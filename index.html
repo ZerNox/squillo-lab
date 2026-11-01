@@ -669,9 +669,9 @@ function ensureCtx(){if(!ctxReady)ctxReady=setupCtx();return ctxReady;}
 async function setupCtx(){const ctx=new (window.AudioContext||window.webkitAudioContext)();AU.ctx=ctx;AU.sr=ctx.sampleRate;
   dsp=makeDsp(onDspMsg);dsp.post({type:'init',sr:AU.sr,hop:0.02});
   AU.sink=ctx.createGain();AU.sink.gain.value=0;AU.sink.connect(ctx.destination);
-  try{await ctx.audioWorklet.addModule(URL.createObjectURL(new Blob([CAP_SRC],{type:'text/javascript'})));const node=new AudioWorkletNode(ctx,'cap',{numberOfInputs:1,numberOfOutputs:1,outputChannelCount:[1]});node.port.onmessage=e=>{latCap(e.data.length);takeTap(e.data);dsp.post({type:'audio',buf:e.data},[e.data.buffer]);};node.connect(AU.sink);AU.cap=node;AU.capKind='worklet';}
+  try{/* Worklet set up on a running context deadlocked WebKit (Linux, 5 of 20); suspended 0 of 31. */await Promise.race([ctx.suspend(),new Promise(r=>setTimeout(r,300))]);await ctx.audioWorklet.addModule(URL.createObjectURL(new Blob([CAP_SRC],{type:'text/javascript'})));const node=new AudioWorkletNode(ctx,'cap',{numberOfInputs:1,numberOfOutputs:1,outputChannelCount:[1]});node.port.onmessage=e=>{latCap(e.data.length);takeTap(e.data);dsp.post({type:'audio',buf:e.data},[e.data.buffer]);};node.connect(AU.sink);AU.cap=node;AU.capKind='worklet';}
   catch(e){const sp=ctx.createScriptProcessor(1024,1,1);sp.onaudioprocess=ev=>{const b=new Float32Array(ev.inputBuffer.getChannelData(0));latCap(b.length);takeTap(b);dsp.post({type:'audio',buf:b},[b.buffer]);};sp.connect(AU.sink);AU.cap=sp;AU.capKind='scriptprocessor';}
-  return ctx;}
+  ctx.resume().catch(()=>{});return ctx;}
 function stopSource(){resetStats();AU.play=null;if(AU.clicks){try{AU.clicks.stop();}catch(e){}AU.clicks=null;}if(typeof playhead!=='undefined')playhead.style.left='0';if(AU.source){try{AU.source.disconnect();}catch(e){}if(AU.source.stop)try{AU.source.stop();}catch(e){}if(AU.source.mediaStream)AU.source.mediaStream.getTracks().forEach(t=>t.stop());AU.source=null;}if(AU.demo){AU.demo.stop();AU.demo=null;}AU.kind=null;{const l=document.getElementById('bLoopPh');if(l)l.setAttribute('aria-pressed','false');}if(dsp)dsp.post({type:'uncalib'});calibrating=false;}
 function writeColumn(col){terHead=(terHead+1)%TD.T;gl.bindTexture(gl.TEXTURE_2D,terTex);gl.texSubImage2D(gl.TEXTURE_2D,0,terHead,0,1,TD.F,gl.RED,gl.FLOAT,col);}
 
