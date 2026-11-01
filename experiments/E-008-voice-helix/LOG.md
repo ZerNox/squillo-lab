@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-01 · today's session
+
+Found: the summary read one take; the mission says every session, and nothing spoke for a day's singing. Built: 'Today's session' from the second take of a day: takes and minutes, today's steadiest and longest in-tune notes with ▶ from kept audio, better / level / further against up to 10 earlier takes, one point for next time with its exercise. Decided: Welch's t at 99 % with the aspect's tol as a floor, since up to 7 aspects are tested per session; described aspects stay out. `check/session-bench.mjs`, page code, VocalSet straight clips dealt into today and earlier: false change 1/440 sessions = 0.2 % (0.0-1.3), 11 singers, draws share clips and same-day takes are likely more alike than these; normal draws one aspect 1.7 % (1.3-2.1). Power is low: clarity breathy → straight better 35/120, reverse worse 16/120, wrong way 0. Quiet by design. A NaN limit on overall made it always claim; seen in the rendered text, fixed, now gated. Notes before this version have no `lt`, so no ▶. iOS risk: ▶ awaits IndexedDB after resume, as compare does. Next: a real-voice view of first to last take in a day.
+
 ## 2026-11-01 · live trellis: short-level cost, no change
 
 `check/live-noise-bench.mjs`, 14 vocadito clips, clean: a voiced cost when the centred 2-period level falls under T × frame level. Off: OA 93.5, FA 9.5; P 1, T 0.5: 93.6, 9.3; P 0.5, T 0.8: 93.5, 8.6, RPA 94.4. Pink 10 dB unmoved. Same trade again, reverted. Live ghost frames are not worth more cue-hunting on this data; next run moves to experience.
@@ -34,6 +38,3 @@ Found: 'halfway' moved everything at once, so a singer could not hear one reacha
 
 `check/live-noise-bench.mjs`, page code, vocadito 40 clips, clean: level gate R 0.12 (kept) RPA 90.6 ± 1.3, FA 6.5 ± 1.4, OA 91.8 ± 1.0; R 0.2 89.2, 4.5, 91.5; R 0.28 87.4, 3.2, 90.6. Pink 10 dB barely moves. On every 3rd clip, M 3 (OA 88.2) and V 0.2 (OA 90.6) also lose. These gates only trade RPA for FA, so nothing shipped; a real gain needs a new cue, not a limit. Next: a new voicing cue for live, such as periodicity across two frames or Viterbi with short lookahead.
 
-## 2026-11-01 · WebKit hang found and fixed
-
-Found with new `check/hang-probe.mjs` (repeats the demo start, then tests whether the page answers): a real deadlock, every WPEWebProcess thread asleep at 0 CPU, 2-3 s after the demo tap. Thread names point at audio; no stack, as Yama ptrace blocks gdb and that setting was left alone. Local iPhone-size WebKit: page as it was hung 5 of 20; forced ScriptProcessor 0 of 31, so the AudioWorklet path; no buffer transfer still 6 of 18; worklet set up on a suspended context 0 of 31. Built: `setupCtx` suspends the context while the worklet is added (capped at 300 ms), then resumes it. Page after the fix: 0 of 66 (95 % upper bound 4.4 %), all on the worklet, running, audio arriving. Capture stays on the worklet because the fallback adds main-thread latency; check.mjs now fails if capture falls back or the context does not run. Limits: mechanism inside WebKit unproven, only the condition that avoids it; seen on Linux WPE/GStreamer only. iOS risk: suspend then resume in the same tap is unverified on a real iPhone; the tap's own resume still runs before any await, and setup ends with one more resume. Live, first try: Chrome, Firefox and WebKit all passed, no retry. Next: live false alarms.

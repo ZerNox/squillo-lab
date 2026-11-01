@@ -1274,7 +1274,7 @@ const CLAR_REF={s:'27.0 ± 0.5',b:'22.5 ± 0.6'};
 const PROG=[{k:'score',name:'overall',unit:'note score',lower:false,dec:2},...ASPECTS];
 function loadHist(){try{const h=JSON.parse(localStorage.getItem(HIST_KEY)||'[]');return Array.isArray(h)?h:[];}catch(e){return [];}}
 function saveTake(a){const P=a.perf;let s=0,w=0;for(const n of P){const d=n.t1-n.t0;s+=n.q*d;w+=d;}
-  const r={d:Date.now(),sung:+a.sung.toFixed(1),score:w?+(s/w).toFixed(3):0};for(const x of ASPECTS)if(Number.isFinite(a[x.k]))r[x.k]=+a[x.k].toFixed(3);if(a.hi>a.lo){r.lo=+(a.lo+a.off).toFixed(2);r.hi=+(a.hi+a.off).toFixed(2);r.mn=+(a.mn+a.off).toFixed(2);r.mx=+(a.mx+a.off).toFixed(2);}if(a.breaks&&a.breaks.length)r.br=a.breaks.map(b=>b.m);const fk=focusKeys(a);if(fk.length)r.f=fk;const lb=longBests(P);if(lb)r.lb=[lb.st?+lb.st.wob.toFixed(1):null,lb.tn?+(lb.tn.t1-lb.tn.t0).toFixed(2):null];
+  const r={d:Date.now(),sung:+a.sung.toFixed(1),score:w?+(s/w).toFixed(3):0};for(const x of ASPECTS)if(Number.isFinite(a[x.k]))r[x.k]=+a[x.k].toFixed(3);if(a.hi>a.lo){r.lo=+(a.lo+a.off).toFixed(2);r.hi=+(a.hi+a.off).toFixed(2);r.mn=+(a.mn+a.off).toFixed(2);r.mx=+(a.mx+a.off).toFixed(2);}if(a.breaks&&a.breaks.length)r.br=a.breaks.map(b=>b.m);const fk=focusKeys(a);if(fk.length)r.f=fk;const lb=longBests(P);if(lb){r.lb=[lb.st?+lb.st.wob.toFixed(1):null,lb.tn?+(lb.tn.t1-lb.tn.t0).toFixed(2):null];r.lt=[lb.st,lb.tn].map(n=>n?[+n.t0.toFixed(2),+n.t1.toFixed(2)]:null);}
   const h=loadHist();h.push(r);try{localStorage.setItem(HIST_KEY,JSON.stringify(h.slice(-HIST_MAX)));}catch(e){}return h;}
 // Personal bests over long notes (held at least 1 s): the steadiest (least wobble) and the longest held within
 // 10 ¢ of the note. A new best is only claimed when it beats every earlier kept take by more than the
@@ -1315,6 +1315,30 @@ function ago(d,now){const a=new Date(now),b=new Date(d);a.setHours(0,0,0,0);b.se
 function renderToday(){const el=$('today'),h=loadHist(),r=h.slice(-5).reverse().find(q=>Array.isArray(q.f)&&q.f.length);if(!r||document.body.classList.contains('has-take')){el.hidden=true;return;}
   const x=aspectOf(r.f[0]),ex=x&&((ASPECT_WORK[x.k]||{}).ex||FOCUS_EX[x.k]);if(!x||!ex){el.hidden=true;return;}const S=streakInfo(h,Date.now());
   el.innerHTML=`<p><b>Today's focus: ${x.name}</b> (${r[x.k].toFixed(x.dec)} ${x.unit}, ${ago(r.d,Date.now())}).${S.n&&!S.today?` ${S.n===1?'1 day':S.n+' days'} in a row so far.`:''}</p><p>${ex}</p><p>Then sing anything: the take will say whether it moved.</p>`;el.hidden=false;}
+// Today's session: a session is the calendar day. The day's takes against up to 10 from earlier days, Welch's t at
+// the 99 % level (a claim for each of up to 7 aspects, so 95 % would cry wolf most sessions), never under the aspect's tol.
+// Described aspects stay out: this section says better or worse. check/session-bench.mjs.
+const SESS_T=[63.66,9.92,5.84,4.60,4.03,3.71,3.50,3.36,3.25,3.17],SESS_MIN=2,SESS_PRE=3,SESS_WIN=10,SESS_TOL=0.03;// note score has no tol of its own
+
+const SESS=[PROG[0],...ASPECTS.filter(x=>!x.desc)];
+function sessVerdict(x,a,b){const A=a.filter(Number.isFinite),B=b.filter(Number.isFinite).slice(-SESS_WIN),n=A.length,m=B.length;if(n<SESS_MIN||m<SESS_PRE)return null;
+  const ms=v=>{const q=v.reduce((t,e)=>t+e,0)/v.length;return [q,v.reduce((t,e)=>t+(e-q)**2,0)/(v.length-1)];},[ma,va]=ms(A),[mb,vb]=ms(B),ea=va/n,eb=vb/m,se=Math.sqrt(ea+eb);
+  const df=se?(ea+eb)**2/(ea*ea/(n-1)+eb*eb/(m-1)):1,f=Math.floor(df),t=f<=10?SESS_T[Math.max(1,f)-1]:2.58+6/df,half=Math.max(x.tol||SESS_TOL,t*se),d=ma-mb;
+  return {x,now:ma,was:mb,half,n,m,v:Math.abs(d)<=half?'level':(x.lower?d<0:d>0)?'better':'worse'};}
+function sessInfo(h,d){const day=dayKey(d),T=h.filter(r=>dayKey(r.d)===day&&r.d<=d);if(T.length<SESS_MIN)return null;const P=h.filter(r=>r.d<T[0].d);
+  const V=SESS.map(x=>sessVerdict(x,T.map(r=>r[x.k]),P.map(r=>r[x.k]))).filter(Boolean);
+  const pick=(i,f)=>{let b=null;for(const r of T)if(Array.isArray(r.lb)&&Number.isFinite(r.lb[i])&&r.lt&&r.lt[i]&&(!b||f(r.lb[i],b.lb[i])))b=r;return b;};
+  const st=pick(0,(p,q)=>p<q),tn=pick(1,(p,q)=>p>q),c={};for(const r of T)for(const k of r.f||[])c[k]=(c[k]||0)+1;
+  const fk=Object.keys(c).sort((p,q)=>c[q]-c[p])[0];return {n:T.length,sung:T.reduce((t,r)=>t+(r.sung||0),0),V,st,tn,fk,nf:fk?c[fk]:0};}
+function sessBlock(d){const S=sessInfo(loadHist(),d);if(!S)return '';const s=(o,v)=>v.toFixed(o.x.dec),L=o=>`${o.x.name} ${s(o,o.now)} ${o.x.unit}, your earlier ${o.m} takes ${s(o,o.was)}, a gap beyond ± ${s(o,o.half)}`;
+  const hear=(r,i,l)=>`<button class="btn hear" data-kept="${r.d}" data-t0="${r.lt[i][0]}" data-t1="${r.lt[i][1]}">${l}</button>`,G=S.V.filter(o=>o.v==='better'),W=S.V.filter(o=>o.v==='worse'),lv=S.V.filter(o=>o.v==='level').length;
+  const o=[`${S.n} takes, ${S.sung>=90?(S.sung/60).toFixed(0)+' min':S.sung.toFixed(0)+' s'} of singing today.`];
+  if(S.st)o.push(`Steadiest long note today: ${S.st.lb[0].toFixed(1)} ¢ wobble. ${hear(S.st,0,'▶ hear it')}`);
+  if(S.tn&&(!S.st||S.tn!==S.st||S.tn.lt[1][0]!==S.st.lt[0][0]))o.push(`Longest note in tune today: ${S.tn.lb[1].toFixed(1)} s. ${hear(S.tn,1,'▶ hear it')}`);
+  for(const g of G)o.push(`Better today: ${L(g)}.`);if(lv)o.push(`${lv===1?'One aspect':lv+' aspects'} level with your earlier takes: no change today's takes can show, either way.`);
+  for(const w of W)o.push(`Further off today: ${L(w)}. One day can swing; the line below shows whether it lasts.`);
+  const x=S.fk&&aspectOf(S.fk),ex=x&&((ASPECT_WORK[x.k]||{}).ex||FOCUS_EX[x.k]);if(ex)o.push(`For next time: ${x.name}, named in ${S.nf} of today's ${S.n} takes. ${ex}`);
+  return '<h2>Today\'s session</h2><ul>'+o.map(t=>`<li>${t}</li>`).join('')+'</ul>';}
 function slide(v,i){const w=v.slice(Math.max(0,i-HIST_WIN+1),i+1),n=w.length,m=w.reduce((t,x)=>t+x,0)/n;
   const sd=n>1?Math.sqrt(w.reduce((t,x)=>t+(x-m)**2,0)/(n-1)):null;return {m,ci:sd===null?null:1.96*sd/Math.sqrt(n),n};}
 // Trend in words only when the last 5 takes differ from the 5 before by more than both bands together.
@@ -1466,7 +1490,7 @@ function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;
   // spotless, one click from the words that name them.
   const hb=TAKE.best&&TAKE.best.length?TAKE.best.slice().sort((p,q)=>q.q-p.q)[0]:null,hw=(a.perf||[]).filter(n=>n.t1-n.t0>=0.4&&n.c>=20).sort((p,q)=>q.c-p.c)[0]||null;
   const hear=(n,m,l)=>`<button class="btn hear" data-hear="${m}" data-t0="${n.t0}" data-t1="${n.t1}">${l}</button>`;
-  {const fl=focusLines(TAKE.d);if(fl.length)h+='<h2>Since your last take</h2><ul>'+fl.map(t=>`<li>${t}</li>`).join('')+'</ul>';}
+  {const fl=focusLines(TAKE.d);if(fl.length)h+='<h2>Since your last take</h2><ul>'+fl.map(t=>`<li>${t}</li>`).join('')+'</ul>';h+=sessBlock(TAKE.d);}
   h+='<h2>Went well</h2><ul>'+[...(hb?[`Your best note, at ${mmss(hb.t0)}: ${hb.c.toFixed(0)} ¢ off the take's grid${hb.wob!==null?`, ${hb.wob.toFixed(1)} ¢ wobble`:''}. ${hear(hb,'best','▶ hear it')}`]:[]),`You sang ${a.notes} held notes over ${a.sung.toFixed(0)} s, across ${a.range.toFixed(0)} semitones.`,...leanLine(a.lean,true),...vowelLine(a.perf),...(TAKE.stretch?[`Your strongest stretch ended around ${mmss(TAKE.stretch.hi[0])}: the line on the bar peaks there.`]:[]),...(TAKE.best&&TAKE.best.length?[`${TAKE.best.length} standout note${TAKE.best.length>1?'s':''} (★ on the bar): on the note, steady, started cleanly.`]:[]),...(a.slide&&a.slide.style?[`Your slides into notes are a style, not a flaw: ${a.slide.n} of ${a.slide.of} notes, each about ${a.slide.depth.toFixed(1)} ± ${a.slide.sd.toFixed(1)} semitones, the same every time. They are not marked down.`]:[]),...vibLine(a.vib),...driftLine(a.drift,true),...timingLine(a.tm,true).map(l=>a.tm.pulse?l+' '+hear({t0:0,t1:0},'pulse','▶ hear it with your pulse'):l),...clarLine(a,true),...toneLine(a),...creakLine(a),...ringLine(a),...roomLine(a),...dynLine(a.dyn),...pbLines(a.perf,TAKE.d),...good.map(x=>`Your ${x.name}: ${fmt(x,a[x.k])} ${x.unit}${R?`, better than ${Math.round(R.per[x.k]*100)} % of the pool`:`, on a par with or better than the median conservatory-trained singer (${TRAINED_MED[x.k]})`}.`)].map(t=>`<li>${t}</li>`).join('')+'</ul>';
   const work=R?order.slice(-2).reverse().filter(x=>R.per[x.k]<0.75).slice(0,R.R>=2200?1:2):order.filter(x=>vsMed(x)<-0.34).reverse().slice(0,2);
   const wl=work.map(x=>`${x.name} (${fmt(x,a[x.k])} ${x.unit}): ${ASPECT_WORK[x.k].ex}${x.k==='onset'?' Slides into notes are a style in pop and soul: work on them only where you did not mean them.':''}`);
@@ -1478,7 +1502,7 @@ function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;
   {const ln=[...a.perf].filter(n=>n.t1-n.t0>=0.8).sort((x,y)=>(y.t1-y.t0)-(x.t1-x.t0))[0];if(ln)h+=`<h2>Where this can go</h2><p>Your longest note, at ${mmss(ln.t0)}, as it is, then in your far vision: tuned, even vibrato, a gentle swell. One possible far point. ${hear(ln,'far','▶ yours, then far')}</p>`;}
   h+=`<p class="fine">${R?`Provisional Elo: each reference voice is one game on intonation, steadiness and clean onsets (tone clarity depends on the microphone and room, so it is not rated). 2000 is the median conservatory-trained singer in ${R.pool}. It ranks you within this pool, not the world.`:''} The take's tuning is ${a.off>=0?'+':''}${(a.off*100).toFixed(0)} ¢ from A440; notes are measured on that grid. <span id="pitchAcc">How sure the pitch is: on 40 real a cappella excerpts by 29 singers (vocadito, CC BY 4.0) this tracker puts 97.4 ± 0.8 % of sung moments within half a semitone of hand-checked pitch; lower voices 97.3 ± 1.4 %, higher 97.8 ± 0.7 %; about 1 in 8 breaths or consonants is read as a note.</span></p>`;
   ratingEl.innerHTML=h+renderProgress();for(const e of ratingEl.querySelectorAll('[data-hear]'))e.onclick=()=>{const t0=+e.dataset.t0,t1=+e.dataset.t1;
-    if(e.dataset.hear==='pulse')playPulse();else if(e.dataset.hear==='worst')abLoop(t0,t1,'note');else if(e.dataset.hear==='far')abLoop(t0,t1,'longest note','far');else if(e.dataset.hear==='next')abLoop(t0,t1,'note','next');else playTake('take',Math.max(0,t0-0.3),Math.min(TAKE.buf.duration,t1+0.3));};const bt=$('bTry');if(bt)bt.onclick=()=>drillGo(bt);const od=$('openData');if(od)od.onclick=()=>{renderData();$('data').scrollIntoView({block:'nearest'});};}
+    if(e.dataset.hear==='pulse')playPulse();else if(e.dataset.hear==='worst')abLoop(t0,t1,'note');else if(e.dataset.hear==='far')abLoop(t0,t1,'longest note','far');else if(e.dataset.hear==='next')abLoop(t0,t1,'note','next');else playTake('take',Math.max(0,t0-0.3),Math.min(TAKE.buf.duration,t1+0.3));};for(const e of ratingEl.querySelectorAll('[data-kept]'))e.onclick=()=>playKept(+e.dataset.kept,+e.dataset.t0,+e.dataset.t1);const bt=$('bTry');if(bt)bt.onclick=()=>drillGo(bt);const od=$('openData');if(od)od.onclick=()=>{renderData();$('data').scrollIntoView({block:'nearest'});};}
 // Target pitch per frame for "spotless": a 250 ms running median inside each voiced run (keeps the
 // melody, drops wobble), the start of each note (up to 300 ms, a third of notes from 200 ms) held at its
 // settled pitch (no scoop), then snapped
@@ -1800,6 +1824,12 @@ async function playCompare(){const k=+$('cmpSel').value||+$('cmpSel').options[0]
   const s=ctx.createBufferSource();s.buffer=b;s.connect(AU.cap);s.connect(ctx.destination);s.start();AU.source=s;AU.kind='cmp';markSrc(null);goLive();
   const H=loadHist(),then=H.find(r=>r.d===k),now=H.find(r=>r.d===TAKE.d);
   takeInfo.textContent=`Playing your take from ${new Date(k).toLocaleDateString(undefined,{day:'numeric',month:'short'})}${then?` (note score ${Math.round(then.score*100)})`:''}. Then press ▶ your take${now&&then?` (${Math.round(now.score*100)} today)`:''} to hear the change.`;}
+// One note from any kept take, today's session or this one; the current take plays at the speed chosen.
+async function playKept(k,t0,t1){const from=Math.max(0,t0-0.3);if(k===TAKE.d){playTake('take',from,Math.min(TAKE.buf.duration,t1+0.3));return;}stopSource();const ctx=await ensureCtx();await ctx.resume();let a=null;try{a=await adbDo('readonly',st=>st.get(k));}catch(e){}
+  if(!a){takeInfo.textContent='That take is no longer on this device: the last 10 are kept.';return;}
+  const b=mkBuf(a.pcm.length,a.sr),x=b.getChannelData(0);for(let i=0;i<x.length;i++)x[i]=a.pcm[i]/32767;
+  const s=ctx.createBufferSource();s.buffer=b;s.connect(AU.cap);s.connect(ctx.destination);s.start(0,from,t1+0.3-from);AU.source=s;AU.kind='cmp';markSrc(null);goLive();
+  takeInfo.textContent=`Playing a note from your take at ${new Date(k).toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'})}.`;}
 $('bPlayCmp').onclick=playCompare;fillCompare();
 // Same phrase: the phrase around the current note (voiced stretches joined across gaps under 0.35 s, at most 8 s)
 // is found in the earlier take by subsequence DTW on the pitch contour (semitones, 40 ms steps, tried at
