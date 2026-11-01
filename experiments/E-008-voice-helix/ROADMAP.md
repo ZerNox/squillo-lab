@@ -66,6 +66,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Sing the phrase: hear the phrase tuned, sing it, read note by note at any tempo or key (synthetic median 0.1 ¢ straight, 6.0 vibrato; vocadito shift proxy median 3.0, p90 20.2 ¢; other melody wrongly accepted 5/30, 10/30 without the gate, same stream); tries kept and compared across days (synthetic 80 pairs: false change 0-1, cut errors said closer 48-53); a note's timing named against the singer's own pace (250 ms 35/50, false 0/43; vocadito same singing 4/128).
 - Live Viterbi with one frame's lag (vocadito clean RPA 90.6 → 94.3, FA 6.5 → 8.8, OA 91.8 → 93.2; pink 10 dB OA 88.9 → 90.4; +20 ms on the lag chip).
 - Today's session: from a day's second take, best notes with ▶, better/level/further vs earlier takes, one point for next time (VocalSet false change 1/440 sessions; finds 13-29 % of a clarity change, wrong way 0).
+- Moments you marked: the newest 6 marks from kept earlier takes, ▶ and ✕, in the summary.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
