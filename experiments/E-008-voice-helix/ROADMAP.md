@@ -64,12 +64,13 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - WebKit hang: AudioWorklet added to a running context deadlocked Linux WebKit (5 of 20); set up suspended, 0 of 66; `check/hang-probe.mjs`.
 - Next step: tuning alone moved half way, button, key 5 and summary A/B (read back: synthetic 17.4 → 8.7 ¢, VocalSet 15.8 → 10.2 ¢); steadiness and starts dropped, not beyond the render's floor.
 - Sing the phrase: hear the phrase tuned, sing it, read note by note at any tempo or key (synthetic median 0.1 ¢ straight, 6.0 vibrato; vocadito shift proxy median 3.0, p90 20.2 ¢; other melody wrongly accepted 5/30, 10/30 without the gate, same stream); tries kept and compared across days (synthetic 80 pairs: false change 0-1, cut errors said closer 48-53); a note's timing named against the singer's own pace (250 ms 35/50, false 0/43; vocadito same singing 4/128).
+- Live Viterbi with one frame's lag (vocadito clean RPA 90.6 → 94.3, FA 6.5 → 8.8, OA 91.8 → 93.2; pink 10 dB OA 88.9 → 90.4; +20 ms on the lag chip).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
 ## Next
 
-0. **Noise, part 3**: live false alarms (clean FA 6.5 %, no Viterbi live; R, V, M and a centred level cue only trade RPA for FA, Viterbi with short lookahead is left; HNR 0 dB breathy notes unread); take pitch in talk-like noise no gain, talk-like room reads high, the line says talk is not counted (steady noise reads right: pink 10 dB 10/10/11, hum 10 dB 9/9/10, 14 clips, 2026-11-01).
+0. **Noise, part 3**: live false alarms (clean FA 8.8 % with live Viterbi; gates and a centred level cue only trade RPA for FA; talk-like noise slightly worse with it; HNR 0 dB breathy notes unread); take pitch in talk-like noise no gain, talk-like room reads high, the line says talk is not counted (steady noise reads right: pink 10 dB 10/10/11, hum 10 dB 9/9/10, 14 clips, 2026-11-01).
 0. **Timing, part 3**: page finds 5 of the 7 clips both vocadito annotators pulse, 4 % false on random onsets; real truth is thin (annotators share only 7 of 40).
 0. **Key drift, part 2**: better real-voice agreement (vocadito SD 41 ¢ vs synthetic 16); local/global circular unwraps tried 2026-10-30, no gain (39-91 ¢): needs a different truth or note-level approach. `segNotes` input: SD 62 ¢, worse.
 0. **Vowels, part 3**: o/u still weakest (64/72 %, left-out singer); try other mics or languages if an open labelled set exists.

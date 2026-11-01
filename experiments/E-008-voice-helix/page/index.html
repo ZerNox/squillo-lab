@@ -374,7 +374,14 @@ const TD={T:200,F:72,fmin:70,fmax:6000,size:[9,2.6,6.5]}; // terrain: 200 column
 // Plain source string so the same code runs in a Worker (preferred) or on the main thread.
 const DSP_SRC=String.raw`
 // Live level gate, as a multiple of the calibrated room's level: 3 shut out most singing below 10 dB over the room. Voicing limit: V in quiet, rising with the noise's share of the frame (check/live-noise-bench.mjs, breathy-live-bench.mjs).
-const LN={G:1.5,V:0.3,K:4,R:0.12,M:2,E:0.05};
+const LN={G:1.5,V:0.3,K:4,R:0.12,M:2,E:0.05,C:1,D:1,U:0.28,J:0.035,S:0.25,O:0.15,N:1,NM:0.6};
+// Live tracking: the take's Viterbi run forward, each frame deciding the frame D hops back from the best path so far (check/live-noise-bench.mjs). C:0 goes back to the gates above. Reference clips use the gates, as trained.
+function lagVit(){const Q=[];let prev=null,pc=null;return m=>{const D=LN.D,c=(m.cs||[]).filter(q=>q[0]>50&&q[0]<F0MAX),n=c.length,fmax=n?Math.max(...c.map(q=>q[0])):0,cost=new Float64Array(n+1),bp=new Int32Array(n+1),c0=Math.min(LN.NM,LN.N*m.nf*m.nf/Math.max(1e-12,m.rms*m.rms));
+  for(let k=0;k<=n;k++){const em=k<n?Math.max(0,c[k][1]-c0)/(1-c0)+LN.O*Math.log2(fmax/c[k][0]):LN.U;let bc=0,bk=n;
+    if(prev){bc=Infinity;for(let j=0;j<prev.length;j++){const uk=k===n,uj=j===pc.length,tr=uk||uj?(uk&&uj?0:LN.S):LN.J*Math.min(24,Math.abs(12*Math.log2(c[k][0]/pc[j][0]))),v=prev[j]+tr;if(v<bc){bc=v;bk=j;}}}
+    cost[k]=bc+em;bp[k]=bk;}
+  const low=Math.min(...cost);for(let k=0;k<=n;k++)cost[k]-=low;prev=cost;pc=c;Q.push({t:m.t,c,bp});if(Q.length>D+1)Q.shift();if(Q.length<D+1)return null;
+  let k=0;for(let j=1;j<=n;j++)if(cost[j]<cost[k])k=j;for(let i=Q.length-1;i>0;i--)k=Q[i].bp[k];const h=Q[0];return k<h.c.length?{t:h.t,f0:h.c[k][0],cmnd:h.c[k][1]}:{t:h.t,f0:0,cmnd:1};};}
 const YW=1024;let yinD=new Float32Array(1);
 const F0MAX=1400;
 function yin(buf,sr,prevF0){const tauMax=Math.min(Math.floor(sr/60),buf.length-YW),tauMin=Math.floor(sr/F0MAX);if(yinD.length<tauMax+1)yinD=new Float32Array(tauMax+1);
@@ -383,7 +390,7 @@ function yin(buf,sr,prevF0){const tauMax=Math.min(Math.floor(sr/60),buf.length-Y
   const cands=[];for(let tau=tauMin+1;tau<tauMax;tau++)if(yinD[tau]<(S.offline?CG:0.5)&&yinD[tau]<=yinD[tau-1]&&yinD[tau]<yinD[tau+1])cands.push(tau);
   if(!cands.length)return {f0:0,cmnd:1,cs:[]};
   // Offline takes keep every candidate (period, dip) for a Viterbi pass over the whole take (pYIN-style).
-  let cs=[];if(S.offline){const ref=t=>{const a=yinD[t-1],b=yinD[t],c=yinD[t+1],den=a-2*b+c;return sr/(t+(den!==0?0.5*(a-c)/den:0));};const dip=t=>{const a=yinD[t-1],b=yinD[t],c=yinD[t+1],den=a-2*b+c;return den>0?Math.max(0,b-(a-c)*(a-c)/(8*den)):b;};const rk=t=>dip(t)+0.15*Math.log2(t/cands[0]);cs=cands.slice().sort((x,y)=>rk(x)-rk(y)).slice(0,8).map(t=>[ref(t),dip(t)]);}
+  let cs=[];if(S.offline||S.lv){const ref=t=>{const a=yinD[t-1],b=yinD[t],c=yinD[t+1],den=a-2*b+c;return sr/(t+(den!==0?0.5*(a-c)/den:0));};const dip=t=>{const a=yinD[t-1],b=yinD[t],c=yinD[t+1],den=a-2*b+c;return den>0?Math.max(0,b-(a-c)*(a-c)/(8*den)):b;};const rk=t=>dip(t)+0.15*Math.log2(t/cands[0]);cs=cands.slice().sort((x,y)=>rk(x)-rk(y)).slice(0,8).map(t=>[ref(t),dip(t)]);}
   const under=cands.filter(t=>yinD[t]<0.12);best=under.length?under[0]:cands.reduce((x,y)=>yinD[y]<yinD[x]?y:x);
   if(prevF0){const pt=sr/prevF0;let nb=null;for(const t of cands)if(Math.abs(t-pt)/pt<0.12&&(nb===null||yinD[t]<yinD[nb]))nb=t;if(nb!==null&&yinD[nb]<yinD[best]+0.2)best=nb;}
   // Live has no Viterbi: on a noisy dip a shorter period that divides this one wins when nearly as deep, or a breathy note locks onto a subharmonic.
@@ -432,10 +439,11 @@ function analyse(t){const sr=S.sr;const buf=new Float32Array(N);const st=(S.w-N+
   spectrum(buf);const binHz=sr/N;
   if(S.calib){S.calib.n++;S.calib.rms+=rms;for(let b=0;b<db.length;b++)S.calib.acc[b]+=Math.pow(10,db[b]/10);if(t>=S.calib.until){S.prof=new Float32Array(db.length);for(let b=0;b<db.length;b++)S.prof[b]=10*Math.log10(S.calib.acc[b]/S.calib.n+1e-12);S.noiseRms=S.calib.rms/S.calib.n;let fl=0;for(let b=Math.floor(100/binHz);b<4000/binHz;b++)fl+=S.prof[b];S.floorDb=fl/(4000/binHz-Math.floor(100/binHz));S.calib=null;postMessage({type:'calib',done:true,floorDb:S.floorDb,noiseRms:S.noiseRms});}
     postMessage({type:'feat',n:S.count,t,rms,voiced:false,f0:0,cmnd:1,hnr:0,cpp:0,h12:0,tilt:0,a1p0:0,F:null,col:new Float32Array(FB)});return;}
-  const thr=Math.max(0.004,S.noiseRms*LN.G);let f0=0,cmnd=1,cs=null;if(rms>thr){const y=yin(buf,sr,(S.prevT>=0&&t-S.prevT<0.12)?S.prevF0:0);f0=y.f0;cmnd=y.cmnd;cs=y.cs;}
+  if(!S.lv&&LN.C&&!S.offline&&!S.gates)S.lv=lagVit();const thr=Math.max(0.004,S.noiseRms*LN.G);let f0=0,cmnd=1,cs=null;if(rms>thr){const y=yin(buf,sr,(S.prevT>=0&&t-S.prevT<0.12)?S.prevF0:0);f0=y.f0;cmnd=y.cmnd;cs=y.cs;}
   S.peak=Math.max(rms,(S.peak||0)*Math.pow(0.5,0.02));
   const cand=rms>thr&&rms>=LN.R*S.peak&&cmnd<Math.min(0.65,LN.V+LN.K*S.noiseRms*S.noiseRms/Math.max(1e-9,rms*rms))&&f0>50&&f0<F0MAX;
-  S.run=cand?(S.run&&Math.abs(Math.log2(f0/S.runF))<1/12?S.run+1:1):0;S.runF=f0;const voiced=cand&&S.run>=LN.M;
+  S.run=cand?(S.run&&Math.abs(Math.log2(f0/S.runF))<1/12?S.run+1:1):0;S.runF=f0;let voiced=cand&&S.run>=LN.M;
+  if(S.lv){const r=S.lv({t,rms,nf:S.noiseRms,cs:rms>thr&&rms>=LN.R*S.peak?cs:null});t=r?r.t:t;f0=r?r.f0:0;cmnd=r?r.cmnd:1;voiced=f0>0;}
   let hnr=0,cpp=0,h12=0,tilt=0,spr=0,a1p0=0,F=null,nasOk=false,henv=null;
   if(voiced){S.prevF0=f0;S.prevT=t;const r=Math.min(0.999,Math.max(0.001,1-cmnd/2));hnr=10*Math.log10(r/(1-r));
     h12=pk(f0*0.8,f0*1.2,binHz)-pk(f0*1.8,f0*2.2,binHz);
@@ -449,10 +457,10 @@ function analyse(t){const sr=S.sr;const buf=new Float32Array(N);const st=(S.w-N+
       if(oral&&P0>-150){const k1=Math.max(1,Math.round(oral/f0));a1p0=pk(k1*f0-0.3*f0,k1*f0+0.3*f0,binHz)-P0;nasOk=true;}}}
   for(let j=0;j<FB;j++){const fa=TD_FMIN*Math.pow(TD_FMAX/TD_FMIN,j/FB),fb=TD_FMIN*Math.pow(TD_FMAX/TD_FMIN,(j+1)/FB);let m=-120;for(let b=Math.floor(fa/binHz);b<=Math.max(Math.floor(fa/binHz),Math.floor(fb/binHz))&&b<db.length;b++)if(db[b]>m)m=db[b];col[j]=Math.min(1,Math.max(0,(m+92)/86));}
   postMessage({type:'feat',n:S.count,t,rms,voiced,f0,cmnd,hnr,cpp,h12,tilt,spr,a1p0,nasOk,F,henv,col:col.slice(),cs:S.offline&&rms>thr?cs:null});}
-function onmsg(m){if(m.type==='init'){S.sr=m.sr;S.hop=m.hop||0.02;S.offline=!!m.offline;}
+function onmsg(m){if(m.type==='init'){S.sr=m.sr;S.hop=m.hop||0.02;S.offline=!!m.offline;S.gates=!!m.gates;S.lv=null;}
   else if(m.type==='audio'){const a=m.buf;for(let i=0;i<a.length;i++){S.ring[S.w]=a[i];S.w=(S.w+1)%S.ring.length;}S.count+=a.length;const t=S.count/S.sr;while(t>=S.next){S.next+=S.hop;if(S.count>=N)analyse(S.next-S.hop);}}
   else if(m.type==='calib'){S.prof=null;S.noiseRms=0;S.calib={until:S.count/S.sr+m.seconds,n:0,rms:0,acc:new Float64Array(N/2+1)};}
-  else if(m.type==='tune'){Object.assign(LN,m.v);}
+  else if(m.type==='tune'){Object.assign(LN,m.v);S.lv=null;}
   else if(m.type==='uncalib'){S.prof=null;S.noiseRms=0;S.calib=null;}
   else if(m.type==='reset'){S.prevT=-1;S.next=S.count/S.sr;}
   else if(m.type==='ping'){postMessage({type:'pong'});}}
@@ -618,7 +626,7 @@ function ingest(st,m,src){const now=m.t;st.at=now;const FT=st.ft,HIST=st.HIST;co
 const LAT={log:[],n:0,pend:0,ms:[]};
 function latCap(len){LAT.n+=len;LAT.log.push([LAT.n,performance.now()]);if(LAT.log.length>64)LAT.log.shift();}
 function latFrame(){if(!LAT.pend)return;const now=performance.now(),sr=AU.sr||48000;
-  const ms=now-LAT.pend+500*(Math.min(Math.floor(sr/60),4096-1024)+512)/sr+1000*(AU.kind==="mic"&&AU.micLat||0);LAT.pend=0;LAT.ms.push(ms);if(LAT.ms.length>300)LAT.ms.shift();}
+  const ms=now-LAT.pend+20+500*(Math.min(Math.floor(sr/60),4096-1024)+512)/sr+1000*(AU.kind==="mic"&&AU.micLat||0);LAT.pend=0;LAT.ms.push(ms);if(LAT.ms.length>300)LAT.ms.shift();}
 function latStats(){const a=LAT.ms.slice(-150).sort((x,y)=>x-y);if(a.length<10)return null;return {med:a[Math.floor(a.length/2)],p90:a[Math.floor(a.length*0.9)],n:a.length};}
 window.__lat=()=>latStats();
 function onDspMsg(m){if(m.type==='feat'){if(AU.kind&&m.n&&!LAT.pend){const e=LAT.log.find(x=>x[0]===m.n);if(e)LAT.pend=e[1];}ingest(LIVE,m,AU.kind);}else if(m.type==='calib'){calibrating=false;setStatus(`Mic live. Noise floor ${m.floorDb.toFixed(0)} dB, subtracted from every spectrum. Sing a note, hold it, then speak.`);}}
@@ -756,7 +764,7 @@ function trimBuffer(octx,buf,maxSec){const sr=buf.sampleRate,nch=buf.numberOfCha
   const srt=r.slice().sort((a,b)=>a-b);const nf=srt[Math.floor(r.length*0.1)]||0;const th=Math.max(0.02,nf*4);let start=0;for(let i=0;i<r.length;i++)if(r[i]>th){start=Math.max(0,i*win-Math.floor(sr*0.15));break;}
   const len=Math.min(len0-start,Math.floor(maxSec*sr));const out=octx.createBuffer(1,len,sr);out.getChannelData(0).set(mono.subarray(start,start+len));return out;}
 function analyseBuffer(buf){return new Promise(res=>{const st=new Stats();const d=makeDsp(m=>{if(m.type==='feat')ingest(st,m,'ref');else if(m.type==='pong'){d.kill();res(summarize(st.rec,0,buf.duration+1));}});
-  d.post({type:'init',sr:buf.sampleRate,hop:0.02});const ch=buf.getChannelData(0);for(let i=0;i<ch.length;i+=2048){const b=ch.slice(i,i+2048);d.post({type:'audio',buf:b},[b.buffer]);}d.post({type:'ping'});});}
+  d.post({type:'init',sr:buf.sampleRate,hop:0.02,gates:true});const ch=buf.getChannelData(0);for(let i=0;i<ch.length;i+=2048){const b=ch.slice(i,i+2048);d.post({type:'audio',buf:b},[b.buffer]);}d.post({type:'ping'});});}
 async function loadRef(slot,ab,name){try{const octx=new OfflineAudioContext(1,1,48000);const buf=await octx.decodeAudioData(ab);const tr=trimBuffer(octx,buf,30);REF[slot]={buf:tr,name,sum:null};setStatus(`${slot} take: ${name}, ${tr.duration.toFixed(1)} s kept from the first sung note. Scoring…`);REF[slot].sum=await analyseBuffer(tr);renderScore();setStatus(`${slot} take ready: ${name}. Press Reference to play it through the analysis.`);}
   catch(e){setStatus('Could not decode that clip. Try WAV, MP3, M4A or OGG.');}}
 document.getElementById('refLoad').onclick=()=>document.getElementById('refFile').click();

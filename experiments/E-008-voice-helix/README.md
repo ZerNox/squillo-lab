@@ -152,6 +152,8 @@ Dynamics (`check/dyn-bench.mjs`, page code `takeDynamics`, VocalSet long tones o
 
 **My data.** ⛁ my data shows what is kept in this browser, saves a copy as one JSON file of numbers and dates (no audio), brings a copy back by merging on date (existing records win; a file holding markup is refused record by record), and deletes everything, kept audio included, after a second tap. Under progress, a line asks for a copy from 5 takes on when none exists or the last is over 14 days old.
 
+Live Viterbi (2026-11-01, `lagVit`, `check/live-noise-bench.mjs`, page code, vocadito 40 clips, ± 1.96 SE): the take's trellis run forward, deciding each frame one hop later (20 ms, counted in the lag chip). Clean RPA 94.3 ± 1.8, FA 8.8 ± 1.9, OA 93.2 ± 1.5 (gates 90.6, 6.5, 91.8); pink 10 dB OA 90.4 ± 2.1 (88.9); speech-like 10 dB 87.0 ± 2.7 (87.4). The gate figures below are the history of `LN.C:0`, still used for reference clips.
+
 Live ghost notes, part 3 (2026-10-31, `check/live-noise-bench.mjs`, page code, vocadito 40 clips): a frame counts only when the one before agrees within a semitone (`LN.M`): clean FA 6.5 ± 1.4, RPA 89.7 ± 1.6, OA 91.1 ± 1.3; pink 10 dB FA 2.6 ± 0.7, RPA 80.9 ± 2.8, OA 86.4 ± 2.0. These supersede the earlier live figures; note starts draw 20 ms later.
 
 Next step: `▶ next step` (key 5) and 'Your next step' in the summary move each whole note half way to the take's grid and leave wobble, vibrato, slides, tone, words and timing as sung. Read back by the page's own scan (`check/next-bench.mjs`, median): synthetic 30 takes 17.4 → 8.7 ¢; VocalSet 11 clips 15.8 → 10.2 ¢, render alone 15.4. Steadiness and clean starts are not offered: neither read back beyond the render's own floor. Half is a chosen step, not a training result.
