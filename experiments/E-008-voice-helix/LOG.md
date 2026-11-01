@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-01 · live false alarms: centred level cue, no change
+
+`check/live-noise-bench.mjs`, page code, 14 vocadito clips, clean; a short level window where the pitch belongs, against the long one (the live twin of the take's edge trim). T off: RPA 90.9, FA 6.8, OA 91.8; 0.2: 90.8, 6.5, 91.8; 0.35: 90.2, 5.1, 91.9; 0.5: 89.2, 3.6, 91.7 (each ± about 2). Pink 10 dB unmoved. Same trade as the gates, so reverted. Left to try: Viterbi with short lookahead, which costs latency.
+
 ## 2026-11-01 · sing the phrase
 
 Found: only one note could be re-sung and read; singers practise phrases. Built: 🎙 sing phrase (P): the phrase around the current note, tuned, in their own voice; they sing it; each note reads ¢ with ±, at any tempo or key, against the take. Decided: read against full tuning, as the target is what they hear. `check/sing-bench.mjs`, page code: see README; synthetic 470/470 notes, median 0.1 ¢ straight, 6.0 vibrato (p90 16.4), ± covers 99-100 %; key moves 74/80; other melody wrongly accepted 5/31, a known weak spot; vocadito shift proxy accepted 205/240, median 3.0, p90 22.4 ¢, 97 % inside ±. No truly re-sung phrase measured. iOS risk: as sing it again, mic and playback in one tap; loudspeaker bleed stops before capture. Next: live voicing cue.
