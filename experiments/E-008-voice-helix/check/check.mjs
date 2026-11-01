@@ -123,6 +123,9 @@ async function run([name, launch, ctxOpt, file]) {
     const bb = await bar.boundingBox(); const pos = { position: { x: bb.width * 0.5, y: 10 } };
     touch ? await bar.tap(pos) : await bar.click(pos); await p.waitForTimeout(1200);
     const seek = await p.evaluate(() => AU.play ? (AU.ctx.currentTime - AU.play.t0) / AU.play.dur : -1);
+    // Creak: read from 200 Hz up on 5 s sung, words only past the limit.
+    const creak = await p.evaluate(() => { const fr = n => Array.from({ length: 300 }, () => ({ voiced: true, f0: n })), sn = (h, c) => Array.from({ length: 300 }, () => ({ h12: h, cpp: c })), on = takeCreak(fr(250), sn(0, 16)), off = takeCreak(fr(250), sn(8, 24)), low = takeCreak(fr(120), sn(0, 16)), short = takeCreak(fr(250).slice(0, 100), sn(0, 16)); return { on: on.on, words: creakLine({ creak: on }).length, off: off.on, quiet: creakLine({ creak: off }).length, low, short }; });
+    if (!creak.on || creak.words !== 1 || creak.off || creak.quiet || creak.low !== null || creak.short !== null) throw new Error('creak: ' + JSON.stringify(creak));
     // Slow down: 0.5x must keep the pitch: three synthetic voices (110/220/440 Hz, steady, 8 harmonics) slowed, then scanned by the page; median and 90th percentile |cents| from the true pitch.
     const slow = await p.evaluate(async () => {
       const t = performance.now(), sb = wsola(TAKE.buf, 0.5), ms = performance.now() - t, sr = 48000, d = [], d1 = [];

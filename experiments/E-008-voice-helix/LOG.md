@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-01 · creak read in a take
+
+Found: VocalSet's 'vocal_fry' clips are pitched near 250 Hz, so pulse counting at low rates failed (0.05-0.12 of frames, straight 0.11) and subharmonic ratio with frame rules reached AUC 0.75. A plain take score did better: median H1-H2 + half the 10th percentile of CPP, AUC 0.87 (women 0.97, men 0.73, men's vibrato reads alike). Built: `takeCreak`, read from median 200 Hz up on 5 s sung; under 10 the summary describes a creaky edge, fine if chosen, with straw humming (Titze 2006); otherwise silent. Page code (`check/fry-bench.mjs`, 214 VocalSet clips): fry 33/42 = 78.6 % (64-88), controls 1/49 = 2.0 % (0.4-10.7), vocadito 3/25 unlabelled; 123 clips unread (too low or too short). Limit and gate tuned on these clips, so optimistic; clip-level labels, nothing says when in a take; no reading for most men's takes. Not on the progress lines. iOS risk: none new. Next: Key drift part 2 or live false alarms.
+
 ## 2026-11-01 · spots by keyboard
 
 Built: shift ← → steps through the spots to work on, A/B with spotless as a click does, spoken through the live region ('Shaky pitch at 0:12, spot 3 of 10' style); in the `?` list; a check.mjs test. Its test exposed a real bug: two fast A/B starts both played, one looping unstoppably and feeding the analyser (it broke the siren reading); a token in `abLoop` now lets the newest win. No accuracy measured. Touch still taps the bar. iOS risk: none new. Next: Key drift part 2.
@@ -34,6 +38,3 @@ Found: progress lived only in the browser, and Safari can clear script storage a
 
 Built: the summary's rhythm row says 'free timing, no steady pulse' or 'too few notes to find a pulse' instead of a bare dash; a check.mjs test. No new measurement. Local WebKit hangs at random steps (twice this run, no failed assertion): run `--only` per browser with a 290 s timeout. Next: Key drift part 2 or live false alarms.
 
-## 2026-10-31 · pulse found through a stray note
-
-Found: the two vocadito annotators disagree on a pulse as much as the page does (7 and 14 clips, 7 shared), and one stray or missed note start hid a real pulse; the old limit also passed 38/400 random onset sets (the earlier 0/20 and 0/40 hid that). Built: `pulseFit` decides on the closest 90 % of note starts (`PULSE_MAX` 0.11, was 0.15 on all), reported spread stays on all starts; `check/timing-bench.mjs` now scores against the clips both annotators pulse; a check.mjs test. A singer with a steady beat and a stray note gets their rhythm read instead of 'free timing'. Page code: of 7 clips both annotators pulse, found at their step 5 (was 3); random onsets 17/400 false (was 38). Synthetic: jitter 15/30 ms found 60/60, 60 ms 34/60, spread within 3 ms, free melodies 0/40. Tuned on the same clips with only 7 positives: indicative. Next: Key drift part 2 or live false alarms.

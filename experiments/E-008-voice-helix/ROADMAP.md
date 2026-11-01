@@ -58,6 +58,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - On the device: opens with no network if asked (my data), no third-party request (fonts self-hosted), home-screen install (real outage reopens in all three browsers; `check/offline-check.mjs`).
 - Live subharmonic guard: breathy HNR 5 dB read right 49.7 → 99.7 %; vocadito live clean OA 91.8, pink 10 dB OA 88.9.
 - Accessibility audit: axe-core 0 violations (WCAG 2 A/AA, best practice) on start, take, warm-up, profile, my data in Chrome and WebKit; contrast, keyboard reach, landmark, headings fixed; gated in check.mjs; spots by keyboard (shift ← →).
+- Creak: described in the summary from 200 Hz up (VocalSet fry 33/42, controls 1/49, tuned on the same clips).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
