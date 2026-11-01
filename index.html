@@ -115,7 +115,8 @@ button:focus-visible,select:focus-visible,input:focus-visible,#rail:focus-visibl
 #warmup,#profile,#data{max-width:620px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);backdrop-filter:blur(8px);font-size:13px;color:var(--fg-2)}
 #warmup h2,#profile h2,#data h2{font:600 12px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);margin:0 0 4px}
 #warmup b,#profile b,#data b{color:var(--fg)}#profile .row,#data .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:6px}#profile input{width:4.5em;font:inherit;background:transparent;color:var(--fg);border:1px solid var(--line);border-radius:4px;padding:2px 4px}#profile svg{width:100%;height:46px;display:block;margin:6px 0}#profile svg .full{fill:var(--line)}#profile svg .comf{fill:var(--ok)}#profile svg text{font:9px var(--f-mono);fill:var(--fg-3)}#warmup .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px}#warmup cite{color:var(--fg-3);font-size:11px}
-#rating{max-width:620px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);backdrop-filter:blur(8px);font-size:13px}
+#rating,#today{max-width:620px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);backdrop-filter:blur(8px);font-size:13px}
+#today{font-size:13px;color:var(--fg-2)}#today b{color:var(--fg)}#today p{margin:0 0 6px}
 #rating .elo{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 #rating .elo b{font:700 34px/1 var(--f-display);color:var(--pitch);font-variant-numeric:tabular-nums}
 #rating .elo span{color:var(--fg-2)}
@@ -319,6 +320,7 @@ body.lane #rail,body.lane #labels,body.lane #flaws,body.lane #advice{display:non
   <input type="file" id="dataFile" accept=".json,application/json" hidden>
   <div id="takebar" hidden title="Click to play from here"><b id="playhead"></b></div>
   <div id="takeKey" hidden>line: how well you sang over the last 10 s (dashes: median trained singer) · notes: <b style="background:var(--ok)">on</b> <b style="background:var(--warn)">close</b> <b style="background:var(--bad)">off</b> · ★ best notes · red: spot the coach works on · click a note or spot to hear it A/B with spotless · ⚑ your marks (M)</div>
+  <section id="today" hidden aria-label="Today's focus"></section>
   <section id="rating" hidden aria-live="polite"></section>
   <div id="flaws"></div>
   <div id="score" hidden tabindex="0" role="region" aria-label="Take summary"></div>
@@ -973,7 +975,7 @@ async function setTake(buf){TAKE.busy=true;
   const tr=await prepTake(buf),sc=tr.sc;buf=tr.buf;TAKE.buf=buf;TAKE.frames=sc.frames;TAKE.segs=sc.segs;TAKE.aspects=sc.aspects;
   TAKE.spot=improveTake(buf,sc.frames,1,sc.aspects.off);TAKE.half=improveTake(buf,sc.frames,0.5,sc.aspects.off);
   {const fv=farVib(sc.aspects.vib);TAKE.far=improveTake(buf,sc.frames,1,sc.aspects.off,fv);VERSION.far.status=fv.notes?`Far vision: spotless, plus even vibrato (${fv.rate.toFixed(1)} Hz, ±${fv.ext.toFixed(2)} st) and a gentle swell on ${fv.notes} long note${fv.notes>1?'s':''}. Tone, words and timing are yours; one possible far point, not the only one.`:'Far vision: no note held long enough for vibrato here, so this equals spotless. Hold a note for a second to hear it.';}
-  TAKE.rating=ANCHORS&&sc.aspects.ok?rateAspects(sc.aspects,ANCHORS):null;TAKE.d=null;TAKE.marks=[];if(sc.aspects.ok){const h=saveTake(sc.aspects);TAKE.d=h[h.length-1].d;storeAudio(TAKE.d,buf);}TAKE.busy=false;renderTakebar();renderRating();document.body.classList.add('has-take');
+  TAKE.rating=ANCHORS&&sc.aspects.ok?rateAspects(sc.aspects,ANCHORS):null;TAKE.d=null;TAKE.marks=[];if(sc.aspects.ok){const h=saveTake(sc.aspects);TAKE.d=h[h.length-1].d;storeAudio(TAKE.d,buf);}$('today').hidden=true;TAKE.busy=false;renderTakebar();renderRating();document.body.classList.add('has-take');
   if(matchMedia('(max-width:720px)').matches)$('takeRow').scrollIntoView({block:'start',behavior:'smooth'});
   bPlayTake.disabled=bPlayHalf.disabled=bPlaySpot.disabled=bPlayFar.disabled=bPrevNote.disabled=bNextNote.disabled=bMark.disabled=$('bLoopPh').disabled=false;TAKE.ni=-1;
   const names=[...new Set(TAKE.segs.map(g=>FLAWS[g.i].name))];
@@ -1247,7 +1249,7 @@ const CLAR_REF={s:'27.0 ± 0.5',b:'22.5 ± 0.6'};
 const PROG=[{k:'score',name:'overall',unit:'note score',lower:false,dec:2},...ASPECTS];
 function loadHist(){try{const h=JSON.parse(localStorage.getItem(HIST_KEY)||'[]');return Array.isArray(h)?h:[];}catch(e){return [];}}
 function saveTake(a){const P=a.perf;let s=0,w=0;for(const n of P){const d=n.t1-n.t0;s+=n.q*d;w+=d;}
-  const r={d:Date.now(),sung:+a.sung.toFixed(1),score:w?+(s/w).toFixed(3):0};for(const x of ASPECTS)if(Number.isFinite(a[x.k]))r[x.k]=+a[x.k].toFixed(3);if(a.hi>a.lo){r.lo=+(a.lo+a.off).toFixed(2);r.hi=+(a.hi+a.off).toFixed(2);r.mn=+(a.mn+a.off).toFixed(2);r.mx=+(a.mx+a.off).toFixed(2);}if(a.breaks&&a.breaks.length)r.br=a.breaks.map(b=>b.m);const lb=longBests(P);if(lb)r.lb=[lb.st?+lb.st.wob.toFixed(1):null,lb.tn?+(lb.tn.t1-lb.tn.t0).toFixed(2):null];
+  const r={d:Date.now(),sung:+a.sung.toFixed(1),score:w?+(s/w).toFixed(3):0};for(const x of ASPECTS)if(Number.isFinite(a[x.k]))r[x.k]=+a[x.k].toFixed(3);if(a.hi>a.lo){r.lo=+(a.lo+a.off).toFixed(2);r.hi=+(a.hi+a.off).toFixed(2);r.mn=+(a.mn+a.off).toFixed(2);r.mx=+(a.mx+a.off).toFixed(2);}if(a.breaks&&a.breaks.length)r.br=a.breaks.map(b=>b.m);const fk=focusKeys(a);if(fk.length)r.f=fk;const lb=longBests(P);if(lb)r.lb=[lb.st?+lb.st.wob.toFixed(1):null,lb.tn?+(lb.tn.t1-lb.tn.t0).toFixed(2):null];
   const h=loadHist();h.push(r);try{localStorage.setItem(HIST_KEY,JSON.stringify(h.slice(-HIST_MAX)));}catch(e){}return h;}
 // Personal bests over long notes (held at least 1 s): the steadiest (least wobble) and the longest held within
 // 10 ¢ of the note. A new best is only claimed when it beats every earlier kept take by more than the
@@ -1269,6 +1271,25 @@ function lastWeekLine(P,d){const L=P.filter(n=>n.t1-n.t0>=PB_MIN&&n.wob!==null);
   const t0=new Date(d);t0.setHours(0,0,0,0);const lo=t0.getTime()-7*864e5,W=loadHist().filter(r=>r.d>=lo&&r.d<t0.getTime()&&Array.isArray(r.lb)&&Number.isFinite(r.lb[0]));if(W.length<2)return '';
   const bw=Math.min(...W.map(r=>r.lb[0]));if(mx>=bw-PB_WOB)return '';
   return `Your last three long notes (${l3.map(n=>n.wob.toFixed(1)).join(', ')} ¢ wobble) were each steadier than any long note in your ${W.length} takes from the week before today (best ${bw.toFixed(1)} ¢).`;}
+// Focus across takes: each take stores the one or two tracked points it named to work on; the next take says whether they moved.
+// A single take against the singer's own earlier takes (up to 5, 3 at least): the 95 % prediction interval of one new take, t(n-1) · SD · √(1+1/n),
+// never under the aspect's tol. Inside it: 'level', nothing claimed. check/focus-bench.mjs.
+const FOCUS_T={3:4.30,4:3.18,5:2.78},FOCUS_MIN=3,FOCUS_EX={clar:'A phrase through a drinking straw, then at once without it, keeping the same easy, buzzy feel (Titze 2006).',kdrift:'Sing a phrase over ♪ drone on its first note, then again without it, and check the first note at the end (Howard 2007).',rhythm:'Clap the pulse while you speak the words, then sing them to the same claps (Repp 2005).'};
+const aspectOf=k=>ASPECTS.find(x=>x.k===k);
+function vsTrained(x,v){const m=TRAINED_MED[x.k];return (x.lower?m-v:v-m)/(x.tol*3);}
+function focusKeys(a){const o=RATED.filter(x=>Number.isFinite(a[x.k])&&!(x.k==='onset'&&a.slide&&a.slide.style)&&vsTrained(x,a[x.k])<-0.34).sort((p,q)=>vsTrained(p,a[p.k])-vsTrained(q,a[q.k])).map(x=>x.k);
+  if(clarLine(a,false).length)o.push('clar');if(driftLine(a.drift,false).length&&Number.isFinite(a.kdrift))o.push('kdrift');if(a.tm&&a.tm.pulse&&a.tm.sd>90&&Number.isFinite(a.rhythm))o.push('rhythm');return o.slice(0,2);}
+function focusVerdict(x,now,prev){const v=prev.filter(Number.isFinite).slice(-HIST_WIN),n=v.length;if(n<FOCUS_MIN)return {n,v:'few'};const m=v.reduce((t,q)=>t+q,0)/n,sd=Math.sqrt(v.reduce((t,q)=>t+(q-m)**2,0)/(n-1)),half=Math.max(x.tol,FOCUS_T[n]*sd*Math.sqrt(1+1/n)),d=now-m;
+  return {n,m,half,v:Math.abs(d)<=half?'level':(x.lower?d<0:d>0)?'better':'worse'};}
+function focusLines(d){const h=loadHist(),i=h.findIndex(r=>r.d===d);if(i<1||!Array.isArray(h[i-1].f))return [];const out=[];
+  for(const k of h[i-1].f){const x=aspectOf(k),now=h[i][k];if(!x||!Number.isFinite(now))continue;const V=focusVerdict(x,now,h.slice(0,i).map(r=>r[k])),s=q=>q.toFixed(x.dec),head=`<b>${x.name}</b>: ${s(now)} ${x.unit}`;
+    out.push(V.v==='few'?`${head}. ${FOCUS_MIN-V.n} more take${FOCUS_MIN-V.n>1?'s':''} before a change can be told from one take's noise.`:`${head}; your last ${V.n} takes ${s(V.m)}, one take usually lands within ± ${s(V.half)}. ${V.v==='better'?'Better, beyond your usual spread: what you worked on shows.':V.v==='worse'?'Further off than your usual spread this take. One take can swing; the line below shows whether it lasts.':'Level within your usual spread: no change this one take can show, either way.'}`);}
+  return out;}
+// On opening with takes kept: what to sing for today, from the newest take that named a point.
+function ago(d,now){const a=new Date(now),b=new Date(d);a.setHours(0,0,0,0);b.setHours(0,0,0,0);const n=Math.round((a-b)/864e5);return n<=0?'today':n===1?'yesterday':`${n} days ago`;}
+function renderToday(){const el=$('today'),h=loadHist(),r=h.slice(-5).reverse().find(q=>Array.isArray(q.f)&&q.f.length);if(!r||document.body.classList.contains('has-take')){el.hidden=true;return;}
+  const x=aspectOf(r.f[0]),ex=x&&((ASPECT_WORK[x.k]||{}).ex||FOCUS_EX[x.k]);if(!x||!ex){el.hidden=true;return;}const S=streakInfo(h,Date.now());
+  el.innerHTML=`<p><b>Today's focus: ${x.name}</b> (${r[x.k].toFixed(x.dec)} ${x.unit}, ${ago(r.d,Date.now())}).${S.n&&!S.today?` ${S.n===1?'1 day':S.n+' days'} in a row so far.`:''}</p><p>${ex}</p><p>Then sing anything: the take will say whether it moved.</p>`;el.hidden=false;}
 function slide(v,i){const w=v.slice(Math.max(0,i-HIST_WIN+1),i+1),n=w.length,m=w.reduce((t,x)=>t+x,0)/n;
   const sd=n>1?Math.sqrt(w.reduce((t,x)=>t+(x-m)**2,0)/(n-1)):null;return {m,ci:sd===null?null:1.96*sd/Math.sqrt(n),n};}
 // Trend in words only when the last 5 takes differ from the 5 before by more than both bands together.
@@ -1413,13 +1434,14 @@ function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;
   else h+=`<div class="elo"><span>${a.ok?'Rating needs the reference pool (rating/anchors.json).':'Sing at least 6 held notes (about 5 s of singing) for a rating.'}</span></div>`;
   h+='<table>'+ASPECTS.map(x=>`<tr><td>${x.name}</td><td>${x.k==='onset'&&a.slide&&a.slide.style?`slide style, ${a.slide.n} of ${a.slide.of} notes, not counted`:x.k==='rhythm'&&!Number.isFinite(a.rhythm)?(a.tm?'free timing, no steady pulse':'too few notes to find a pulse'):`${fmt(x,a[x.k])} ${x.unit}`}</td>${R&&!x.info?`<td class="bar"><i style="width:${Math.round(R.per[x.k]*100)}%"></i></td><td>beats ${Math.round(R.per[x.k]*100)} %</td>`:R?'<td colspan="2">not rated</td>':''}</tr>`).join('')+'</table>';
   // Without the rating, each aspect is set against the median trained singer: how far better (+) or worse.
-  const vsMed=x=>{const m=TRAINED_MED[x.k],d=x.lower?m-a[x.k]:a[x.k]-m;return d/(x.tol*3);};
+  const vsMed=x=>vsTrained(x,a[x.k]);
   const order=RATED.slice().sort((p,q)=>R?R.per[q.k]-R.per[p.k]:vsMed(q)-vsMed(p));
   const good=R?order.slice(0,2).filter(x=>R.per[x.k]>=0.25):order.filter(x=>vsMed(x)>=-0.34).filter(x=>!(a.slide&&a.slide.style&&x.k==='onset'));
   // Hear it: the best note as sung, and the furthest-off held note (0.4 s or longer, 20 ¢ or more off) A/B with
   // spotless, one click from the words that name them.
   const hb=TAKE.best&&TAKE.best.length?TAKE.best.slice().sort((p,q)=>q.q-p.q)[0]:null,hw=(a.perf||[]).filter(n=>n.t1-n.t0>=0.4&&n.c>=20).sort((p,q)=>q.c-p.c)[0]||null;
   const hear=(n,m,l)=>`<button class="btn hear" data-hear="${m}" data-t0="${n.t0}" data-t1="${n.t1}">${l}</button>`;
+  {const fl=focusLines(TAKE.d);if(fl.length)h+='<h2>Since your last take</h2><ul>'+fl.map(t=>`<li>${t}</li>`).join('')+'</ul>';}
   h+='<h2>Went well</h2><ul>'+[...(hb?[`Your best note, at ${mmss(hb.t0)}: ${hb.c.toFixed(0)} ¢ off the take's grid${hb.wob!==null?`, ${hb.wob.toFixed(1)} ¢ wobble`:''}. ${hear(hb,'best','▶ hear it')}`]:[]),`You sang ${a.notes} held notes over ${a.sung.toFixed(0)} s, across ${a.range.toFixed(0)} semitones.`,...vowelLine(a.perf),...(TAKE.stretch?[`Your strongest stretch ended around ${mmss(TAKE.stretch.hi[0])}: the line on the bar peaks there.`]:[]),...(TAKE.best&&TAKE.best.length?[`${TAKE.best.length} standout note${TAKE.best.length>1?'s':''} (★ on the bar): on the note, steady, started cleanly.`]:[]),...(a.slide&&a.slide.style?[`Your slides into notes are a style, not a flaw: ${a.slide.n} of ${a.slide.of} notes, each about ${a.slide.depth.toFixed(1)} ± ${a.slide.sd.toFixed(1)} semitones, the same every time. They are not marked down.`]:[]),...vibLine(a.vib),...driftLine(a.drift,true),...timingLine(a.tm,true).map(l=>a.tm.pulse?l+' '+hear({t0:0,t1:0},'pulse','▶ hear it with your pulse'):l),...clarLine(a,true),...toneLine(a),...creakLine(a),...ringLine(a),...roomLine(a),...dynLine(a.dyn),...pbLines(a.perf,TAKE.d),...good.map(x=>`Your ${x.name}: ${fmt(x,a[x.k])} ${x.unit}${R?`, better than ${Math.round(R.per[x.k]*100)} % of the pool`:`, on a par with or better than the median conservatory-trained singer (${TRAINED_MED[x.k]})`}.`)].map(t=>`<li>${t}</li>`).join('')+'</ul>';
   const work=R?order.slice(-2).reverse().filter(x=>R.per[x.k]<0.75).slice(0,R.R>=2200?1:2):order.filter(x=>vsMed(x)<-0.34).reverse().slice(0,2);
   const wl=work.map(x=>`${x.name} (${fmt(x,a[x.k])} ${x.unit}): ${ASPECT_WORK[x.k].ex}${x.k==='onset'?' Slides into notes are a style in pop and soul: work on them only where you did not mean them.':''}`);
@@ -1647,7 +1669,7 @@ function keepOffline(){if(!swOK())return Promise.resolve(false);try{localStorage
 function dropOffline(){try{localStorage.removeItem(OFF_KEY);}catch(e){}return navigator.serviceWorker.getRegistrations().then(a=>Promise.all(a.map(r=>r.unregister()))).then(()=>caches.delete('helix-1'));}
 if(swOK()&&!offOn())navigator.serviceWorker.getRegistrations().then(a=>{if(a.length)dropOffline();}).catch(()=>{});
 function keepAsked(){if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});}
-async function forgetAll(){for(const k of [...DATA_KEYS.map(q=>q[0]),MARK_KEY,SAVED_KEY])try{localStorage.removeItem(k);}catch(e){}try{await adbDo('readwrite',st=>st.clear());}catch(e){}fillCompare();if(!$('rating').hidden)renderRating();renderData('Deleted: takes, readings, marks and kept audio.');}
+async function forgetAll(){for(const k of [...DATA_KEYS.map(q=>q[0]),MARK_KEY,SAVED_KEY])try{localStorage.removeItem(k);}catch(e){}try{await adbDo('readwrite',st=>st.clear());}catch(e){}fillCompare();renderToday();if(!$('rating').hidden)renderRating();renderData('Deleted: takes, readings, marks and kept audio.');}
 $('bData').onclick=()=>{const el=$('data');if(!el.hidden){el.hidden=true;return;}renderData();el.scrollIntoView({block:'nearest'});};
 $('dataFile').onchange=async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;const r=f.size>5e6?null:restoreText(await f.text());if(r&&!$('rating').hidden)renderRating();renderData(!r?'That file is not a Voice Helix copy; nothing changed.':r.full?'This browser is out of space; nothing changed.':r.n?`Brought back ${r.n} record${r.n===1?'':'s'}, ${r.takes} of them take${r.takes===1?'':'s'}.`:'Nothing new in that copy: you already have all of it.');};
 function loadMarks(){try{const m=JSON.parse(localStorage.getItem(MARK_KEY)||'{}');return m&&typeof m==='object'?m:{};}catch(e){return {};}}
@@ -1771,6 +1793,8 @@ function coachTick(){const p=AU.play;if(!p||AU.kind!=='take')return;const pos=(A
 // For the lab: aspects of a decoded clip, exactly as the page measures a take (rating/build-anchors.mjs).
 window.helixAspects=async ab=>{const o=new OfflineAudioContext(1,1,48000);const b=await o.decodeAudioData(ab);const x=new Float32Array(b.length);for(let c=0;c<b.numberOfChannels;c++){const d=b.getChannelData(c);for(let i=0;i<b.length;i++)x[i]+=d[i]/b.numberOfChannels;}
   const m=mkBuf(b.length,b.sampleRate);m.getChannelData(0).set(x);return (await prepTake(m)).sc.aspects;};
+
+renderToday();
 
 // ───────────────────────── main loop ─────────────────────────
 let lastWall=performance.now()/1000;
