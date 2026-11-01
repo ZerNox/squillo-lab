@@ -87,6 +87,8 @@ async function run([name, launch, ctxOpt, file]) {
     const touch = !!ctxOpt.hasTouch, tap = l => touch ? l.tap() : l.click();
     // Screen lag: the demo voice runs live 3 s; the chip shows the measured audio-to-paint lag (median, p90).
     await tap(p.locator('#bDemo')); await p.waitForTimeout(3000);
+    // Capture stays on the worklet in every browser (the fallback would hide a WebKit deadlock), and the context runs after its suspended setup.
+    { const cap = await p.evaluate(() => [AU.capKind, AU.ctx.state]); if (cap[0] !== 'worklet' || cap[1] !== 'running') throw new Error('capture: ' + cap); }
     const lat = await p.evaluate(() => { const L = window.__lat(); return L && { med: Math.round(L.med), p90: Math.round(L.p90), n: L.n, chip: document.getElementById('mLat').textContent === String(L.med.toFixed(0)) || Math.abs(+document.getElementById('mLat').textContent - L.med) < 30 }; });
     // Tone colour: the tilt chip names a colour while the demo sings; the retired 'pressed' cue has no chip.
     const tone = await p.evaluate(() => /· (bright, belt-like|balanced|soft, airy)$/.test(document.getElementById('mTiltU').textContent) && ![...document.querySelectorAll('#flaws .flaw')].some(b => /pressed/.test(b.textContent)));

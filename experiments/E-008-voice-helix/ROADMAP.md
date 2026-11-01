@@ -61,12 +61,12 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Creak: described in the summary from 200 Hz up (VocalSet fry 33/42, controls 1/49, tuned on the same clips).
 - Focus across takes: 'Since your last take' reads the points last named against the singer's own takes with a prediction interval (VocalSet: false change 0-7.5 %, wrong way 0/125, half of large changes read level); 'Today's focus' on opening.
 - Tuning across the range: high notes under or over the low ones with ±, silent unless sure (synthetic 40 ¢ said 20/20, level 0/10; vocadito said 5 of 36, 0 opposite, gates tuned on those clips).
+- WebKit hang: AudioWorklet added to a running context deadlocked Linux WebKit (5 of 20); set up suspended, 0 of 66; `check/hang-probe.mjs`.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
 ## Next
 
-0. **WebKit hang**: `TRACE=1` stops it at the first evaluate about 5 s in, after the demo starts; happens on the page without the newest change too.
 0. **Noise, part 3**: live false alarms (clean FA 6.5 %, no Viterbi live; HNR 0 dB breathy notes unread); take pitch in talk-like noise no gain, talk-like room reads high, the line says talk is not counted (steady noise reads right: pink 10 dB 10/10/11, hum 10 dB 9/9/10, 14 clips, 2026-11-01).
 0. **Timing, part 3**: page finds 5 of the 7 clips both vocadito annotators pulse, 4 % false on random onsets; real truth is thin (annotators share only 7 of 40).
 0. **Key drift, part 2**: better real-voice agreement (vocadito SD 41 ¢ vs synthetic 16); local/global circular unwraps tried 2026-10-30, no gain (39-91 ¢): needs a different truth or note-level approach. `segNotes` input: SD 62 ¢, worse.
