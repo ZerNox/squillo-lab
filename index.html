@@ -33,7 +33,7 @@ window.helixShowError=show;})();
 /* Layout: full-bleed WebGL scene, instrument chrome floats over it (top bar, right readout rail, bottom coaching strip). Dark-first single look: a lit instrument in a dim room. */
 :root{
   --bg:#0a0d12; --bg-2:#111620; --panel:rgba(14,18,26,.78); --line:rgba(170,190,220,.14);
-  --fg:#e8ecf2; --fg-2:#9aa6b8; --fg-3:#5f6b7d;
+  --fg:#e8ecf2; --fg-2:#9aa6b8; --fg-3:#8592a6;
   --pitch:#4fd8c8; --pitch-2:#1a8f88; --warn:#e8a04a; --bad:#e85a5a; --ok:#6fcf8e; --copper:#d08a5a;
   --f-display:"Syne",ui-sans-serif,system-ui,sans-serif;
   --f-body:"IBM Plex Sans",ui-sans-serif,system-ui,sans-serif;
@@ -66,7 +66,7 @@ h1 small{font:400 11px/1 var(--f-mono);color:var(--fg-3);margin-left:8px;letter-
 .btn{border:1px solid var(--line);border-radius:6px;background:var(--panel)}
 .btn:hover,select:hover{color:var(--fg)}
 select{border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--fg);padding-right:24px}
-button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--pitch);outline-offset:1px}
+button:focus-visible,select:focus-visible,input:focus-visible,#rail:focus-visible,#score:focus-visible{outline:2px solid var(--pitch);outline-offset:1px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 #keys{position:fixed;inset:auto 0 0 0;margin:auto;top:0;max-width:340px;height:fit-content;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px 18px;color:var(--fg);font:12px/1.6 var(--f-mono);z-index:20}
 #keys kbd{display:inline-block;min-width:3.5em;color:var(--pitch)}
@@ -93,7 +93,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
 #takeRow{display:flex;gap:6px;flex-wrap:wrap;align-items:center;max-width:620px}
 #takeRow .btn[disabled]{opacity:.4;cursor:default}
 #bRec[aria-pressed="true"]{color:var(--bg);background:var(--bad);border-color:var(--bad)}
-#takeInfo{font:11px/1.35 var(--f-mono);color:var(--fg-3);flex:1 1 220px}
+#takeInfo{font:11px/1.35 var(--f-mono);color:var(--fg-2);flex:1 1 220px;padding:4px 8px;border-radius:6px;background:var(--panel);backdrop-filter:blur(8px)}
 #takebar{flex:none;position:relative;height:52px;width:100%;max-width:620px;border:1px solid var(--line);border-radius:4px;background:var(--panel);overflow:hidden;cursor:pointer}
 #takebar svg{position:absolute;left:0;top:2px;width:100%;height:30px;pointer-events:none}
 #takebar svg .ln{fill:none;stroke:var(--pitch);stroke-width:2;vector-effect:non-scaling-stroke}
@@ -103,7 +103,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
 #takebar u.on{outline:2px solid var(--fg);outline-offset:1px} #takebar u.g{background:var(--ok)} #takebar u.w{background:var(--warn)} #takebar u.b{background:var(--bad)}
 #takebar s{position:absolute;top:1px;transform:translateX(-50%);font:12px/1 var(--f-mono);color:var(--ok);text-decoration:none;pointer-events:none}
 #takebar i{position:absolute;bottom:2px;height:6px;background:rgba(232,90,90,.6);border-left:2px solid var(--bad);cursor:pointer}
-#takeKey{flex:none;max-width:620px;font:11px/1.35 var(--f-mono);color:var(--fg-3)}
+#takeKey{flex:none;max-width:620px;font:11px/1.35 var(--f-mono);color:var(--fg-2);padding:4px 8px;border-radius:6px;background:var(--panel);backdrop-filter:blur(8px)}
 #takeKey b{font-weight:400;padding:0 3px;border-radius:2px;color:var(--bg)}
 #takebar em{position:absolute;top:0;bottom:0;width:14px;transform:translateX(-7px);cursor:pointer;font:11px/1 var(--f-mono);color:var(--fg);font-style:normal;border-left:none}
 #takebar em::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:2px;background:var(--fg);opacity:.7}
@@ -113,7 +113,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
 #advice.coach-on{border-left-color:var(--pitch)}
 #advice.coach-on #coachVid,#advice.coach-on #fig{width:150px;height:200px}
 #warmup,#profile,#data{max-width:620px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);backdrop-filter:blur(8px);font-size:13px;color:var(--fg-2)}
-#warmup h3,#profile h3,#data h3{font:600 12px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);margin:0 0 4px}
+#warmup h2,#profile h2,#data h2{font:600 12px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);margin:0 0 4px}
 #warmup b,#profile b,#data b{color:var(--fg)}#profile .row,#data .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:6px}#profile input{width:4.5em;font:inherit;background:transparent;color:var(--fg);border:1px solid var(--line);border-radius:4px;padding:2px 4px}#profile svg{width:100%;height:46px;display:block;margin:6px 0}#profile svg .full{fill:var(--line)}#profile svg .comf{fill:var(--ok)}#profile svg text{font:9px var(--f-mono);fill:var(--fg-3)}#warmup .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px}#warmup cite{color:var(--fg-3);font-size:11px}
 #rating{max-width:620px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:var(--panel);backdrop-filter:blur(8px);font-size:13px}
 #rating .elo{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
@@ -123,7 +123,7 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid 
 #rating td{padding:2px 6px 2px 0;white-space:nowrap}
 #rating td.bar{width:40%}
 #rating td.bar i{display:block;height:6px;border-radius:3px;background:var(--pitch);min-width:2px}
-#rating h3{font:600 12px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);margin:8px 0 2px}
+#rating h2{font:600 12px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);margin:8px 0 2px}
 #rating ul{margin:0;padding-left:18px;color:var(--fg-2)}
 #rating .hear{padding:3px 9px;margin-left:4px;font:12px/1.4 var(--f-mono);color:var(--fg);cursor:pointer;min-height:28px}
 #rating table.prog td{vertical-align:middle}
@@ -212,12 +212,13 @@ body.lane #rail,body.lane #labels,body.lane #flaws,body.lane #advice{display:non
 @media (max-width:720px){body.lane #coach{margin-top:58vh}}
 </style>
 
+<main style="display:contents">
 <canvas id="gl" role="img" aria-label="Voice helix: your pitch over time"></canvas>
 <canvas id="lane" aria-hidden="true"></canvas>
 <div id="laneRead" aria-hidden="true"><div id="laneNote">—</div><div id="laneC"></div></div>
 <div id="say" class="sr" aria-live="polite" aria-atomic="true"></div>
 <div id="keys" role="dialog" aria-label="Keyboard shortcuts" hidden><b>Keyboard</b><br><kbd>space</kbd> pause / resume<br><kbd>D</kbd> drone on the target note<br><kbd>← →</kbd> previous / next note of the take<br><kbd>1 2 3 4</kbd> take, halfway, spotless, far vision, from the same moment<br><kbd>L</kbd> loop the phrase<br><kbd>M</kbd> mark this moment<br><kbd>N</kbd> say my note on / off (screen reader)<br><kbd>?</kbd> this list · <kbd>Esc</kbd> close</div>
-<div id="labels"></div>
+<div id="labels" aria-hidden="true"></div>
 <div id="nogl" hidden>This page needs WebGL2. Open it in a current Chrome, Edge, Firefox or Safari.</div>
 
 <div class="ui" id="top">
@@ -278,7 +279,7 @@ body.lane #rail,body.lane #labels,body.lane #flaws,body.lane #advice{display:non
   <div id="status">Pick a source. Demo plays a synthetic voice with a chosen flaw.</div>
 </div>
 
-<div class="ui" id="rail">
+<div class="ui" id="rail" tabindex="0" role="group" aria-label="Live readings">
   <div class="chip"><span class="k">pitch</span><span class="v" id="mF0">—</span><span class="u" id="mNote"></span></div>
   <div class="chip"><span class="k">roughness</span><span class="v" id="mJit">—</span><span class="u">¢ rms</span></div>
   <div class="chip"><span class="k">vibrato</span><span class="v" id="mVib">—</span><span class="u" id="mVibU">Hz · st</span></div>
@@ -310,7 +311,7 @@ body.lane #rail,body.lane #labels,body.lane #flaws,body.lane #advice{display:non
     <button class="btn" id="bProf" title="Your range, voice type and a key for any song, from your takes">♪ voice profile</button>
     <button class="btn" id="bData" title="What is kept on this device: save a copy, bring one back, or delete it all">⛁ my data</button>
     <select id="speed" aria-label="Playback speed" title="Slow down without changing pitch"><option value="1">1×</option><option value="0.75">0.75×</option><option value="0.5">0.5×</option></select>
-    <span id="takeInfo">Sing (or play any source) and record up to 60 s. Then play it back: the coach shows the exercise just before each spot that can improve.</span>
+    <span id="takeInfo" role="status">Sing (or play any source) and record up to 60 s. Then play it back: the coach shows the exercise just before each spot that can improve.</span>
   </div>
   <section id="warmup" hidden aria-live="polite"></section>
   <section id="profile" hidden aria-live="polite"></section>
@@ -320,7 +321,7 @@ body.lane #rail,body.lane #labels,body.lane #flaws,body.lane #advice{display:non
   <div id="takeKey" hidden>line: how well you sang over the last 10 s (dashes: median trained singer) · notes: <b style="background:var(--ok)">on</b> <b style="background:var(--warn)">close</b> <b style="background:var(--bad)">off</b> · ★ best notes · red: spot the coach works on · click a note or spot to hear it A/B with spotless · ⚑ your marks (M)</div>
   <section id="rating" hidden aria-live="polite"></section>
   <div id="flaws"></div>
-  <div id="score" hidden></div>
+  <div id="score" hidden tabindex="0" role="region" aria-label="Take summary"></div>
   <div id="advice" class="pose-idle">
     <video id="coachVid" muted loop playsinline preload="auto" aria-hidden="true" hidden></video>
     <svg id="fig" viewBox="0 0 120 160" aria-hidden="true">
@@ -339,6 +340,7 @@ body.lane #rail,body.lane #labels,body.lane #flaws,body.lane #advice{display:non
     <div class="txt"><b>Waiting for sound</b><span>Choose Mic, load a recording, or play a demo voice. Flaws light up above as they are detected; click one to fly to the view that explains it. The figure shows the exercise for the flaw.</span><em></em></div>
   </div>
 </div>
+</main>
 
 <script>
 'use strict';
@@ -766,7 +768,7 @@ function renderScore(force){const now=performance.now()/1000;if(!force&&now-scor
   const you=summarize(LIVE.rec,LIVE.at-30,LIVE.at+1,src=>src==='mic'||src==='file');
   const fmt=(s,k)=>{if(!s)return '—';switch(k){case 'rough':return s.rough.toFixed(1)+' ¢';case 'hnr':return s.hnr.toFixed(1)+' dB';case 'vib':return (s.vib*100).toFixed(0)+' %';case 'range':return s.range.toFixed(1)+' st';case 'scoops':return s.scoops.toFixed(1)+' /10 s';case 'voiced':return (s.voiced*100).toFixed(0)+' %';case 'flaw':{let bi=-1,bv=0.08;s.flaws.forEach((v,i)=>{if(v>bv){bv=v;bi=i;}});return bi<0?'none':FLAWS[bi].name+' '+(bv*100).toFixed(0)+' %';}}};
   const rows=[['pitch roughness','rough'],['harmonics / noise','hnr'],['vibrato present','vib'],['pitch range','range'],['scooped onsets','scoops'],['voiced time','voiced'],['main flaw','flaw']];
-  scoreEl.innerHTML='<table><thead><tr><th></th><th>polished</th><th>rough</th><th>you · last 30 s</th></tr></thead><tbody>'+rows.map(([n,k])=>`<tr><th>${n}</th><td>${fmt(A,k)}</td><td>${fmt(B,k)}</td><td>${fmt(you,k)}</td></tr>`).join('')+'</tbody></table>';}
+  scoreEl.innerHTML='<table><thead><tr><th><span class="sr">Aspect</span></th><th>polished</th><th>rough</th><th>you · last 30 s</th></tr></thead><tbody>'+rows.map(([n,k])=>`<tr><th>${n}</th><td>${fmt(A,k)}</td><td>${fmt(B,k)}</td><td>${fmt(you,k)}</td></tr>`).join('')+'</tbody></table>';}
 
 // ───────────────────────── replay / scrub ─────────────────────────
 let paused=false,scrubT=0,scrubbing=false;
@@ -1290,7 +1292,7 @@ function weekLine(h){const W=weekLines(h,Date.now());if(!W||!W.out.length)return
   return `<p class="week"><b>This week vs last week</b> (${W.na} takes vs ${W.nb}): ${good.length?`${good.map(o=>o.x.name).join(', ')} better than last week beyond the noise. `:''}${W.out.map(o=>`${o.x.name} ${f(o.A,o.x)} vs ${f(o.B,o.x)} ${o.x.unit}, ${o.v==='level'?'level within the noise':o.v}`).join(' · ')}</p>`;}
 function renderProgress(){const h=loadHist();if(!h.length)return '';
   const W=220,H=36,n=h.length,X=i=>(n>1?4+i/(n-1)*(W-8):W/2).toFixed(1);
-  let o=`<h3>Progress · ${n} take${n>1?'s':''} on this device</h3><table class="prog">`;
+  let o=`<h2>Progress · ${n} take${n>1?'s':''} on this device</h2><table class="prog">`;
   for(const x of PROG){const v=h.map(r=>r[x.k]).filter(Number.isFinite);if(!v.length||v.length<h.length&&v.length<2)continue;const n=v.length,X=i=>(n>1?4+i/(n-1)*(W-8):W/2).toFixed(1);const S=v.map((_,i)=>slide(v,i));
     let lo=Math.min(...S.map(s=>s.m-(s.ci||0)),...v),hi=Math.max(...S.map(s=>s.m+(s.ci||0)),...v);if(hi-lo<1e-6){hi+=1;lo-=1;}
     const Y=q=>{const f=(q-lo)/(hi-lo);return ((x.lower?f:1-f)*(H-4)+2).toFixed(1);};
@@ -1329,7 +1331,7 @@ function warmTone(ctx,st,W){const t0=ctx.currentTime+0.05,g=ctx.createGain(),o=c
   if(WARM.osc)try{WARM.osc.stop();}catch(e){}WARM.osc=o;return end-t0;}
 const WARM={plan:null,i:0,osc:null,timer:0};
 function renderWarm(){const W=WARM.plan,el=$('warmup');if(!W){el.hidden=true;return;}el.hidden=false;const st=W.steps[WARM.i],last=WARM.i===W.steps.length-1;
-  el.innerHTML=`<h3>Warm-up · step ${WARM.i+1} of ${W.steps.length} · about ${Math.round(W.steps.reduce((a,s)=>a+s.sec,0)/60)} min</h3>`+
+  el.innerHTML=`<h2>Warm-up · step ${WARM.i+1} of ${W.steps.length} · about ${Math.round(W.steps.reduce((a,s)=>a+s.sec,0)/60)} min</h2>`+
    (WARM.i===0?`<p>${W.n?`Chosen from your last ${W.n} take${W.n>1?'s':''} on this device${W.why.length?`: most to gain in ${W.why.join(' and ')}.`:'.'}`:'No takes on this device yet: a general routine. Record a take and the next warm-up targets what it needs.'} Guide tones ${nn(W.low)}–${nn(W.high)}.</p>`:'')+
    `<p><b>${st.name}</b> · ${st.sec} s<br>${st.txt}<br><cite>${WARM_SRC[st.src]}</cite></p>`+
    `<div class="row"><button class="btn" id="wTone">▶ guide tone</button>${st.tone==='steps'?'<button class="btn" id="wMatch" title="Hear each tone, sing it, and read how close you landed">♪ match and measure</button>':''}${st===WARM_STEP.end?'<button class="btn" id="wSiren" title="Sing one siren and read its span and any register jump">♪ siren and measure</button>':''}${st.src==='mdv'?'<button class="btn" id="wSwell" title="Sing one swell and read its width and how still the pitch stayed">♪ swell and measure</button>':''}<span id="wLeft">${st.sec} s</span>${last?'':'<button class="btn" id="wNext">next step →</button>'}<button class="btn" id="wDone">${last?'done':'stop'}</button></div>`+(st.tone==='steps'?'<div id="matchBox"></div>':'')+(st.src==='mdv'?'<div id="swellBox"></div>':'')+(st===WARM_STEP.end?'<div id="sirenBox"></div>':'');
@@ -1359,12 +1361,12 @@ function voiceProfile(h,rg=loadRange()){const r=h.filter(x=>x.hi>x.lo);if(!r.len
 function suggestKey(P,lo,hi,key){if(lo===null||hi===null||hi<lo)return null;const sh=Math.round(P.mid-(lo+hi)/2),a=lo+sh,b=hi+sh;
   const fit=a>=Math.round(P.lo)&&b<=Math.round(P.hi)?'inside your comfortable range':a>=Math.round(P.mn)&&b<=Math.round(P.mx)?'inside your full range, past the comfortable part':'wider than any range you have sung yet: expect a stretch at '+(a<P.mn?'the bottom':'the top');
   const cross=P.br&&a<P.br.m&&b>P.br.m;return {sh,a,b,cross,fit,key:key===null?null:KEYS[((key+sh)%12+12)%12]};}
-function renderProfile(msg){const el=$('profile'),P=voiceProfile(loadHist());el.hidden=false;const rf=`<h3>Range finder</h3><div id="rfBox"></div>`;
-  if(!P){el.innerHTML='<h3>Voice profile</h3><p>No takes with held notes on this device yet. Run the range finder below, or record or load a take, and your range shows here.</p>'+rf;RF.step=-1;renderRF(msg);return;}
+function renderProfile(msg){const el=$('profile'),P=voiceProfile(loadHist());el.hidden=false;const rf=`<h2>Range finder</h2><div id="rfBox"></div>`;
+  if(!P){el.innerHTML='<h2>Voice profile</h2><p>No takes with held notes on this device yet. Run the range finder below, or record or load a take, and your range shows here.</p>'+rf;RF.step=-1;renderRF(msg);return;}
   const W=600,x0=Math.floor(P.mn)-2,x1=Math.ceil(P.mx)+2,X=m=>((m-x0)/(x1-x0)*W).toFixed(1),pm=v=>v===null?'':` ± ${v.toFixed(1)}`;
   let svg=`<svg viewBox="0 0 ${W} 46" preserveAspectRatio="none" role="img" aria-label="Full range ${nn(Math.round(P.mn))} to ${nn(Math.round(P.mx))}, comfortable ${nn(Math.round(P.lo))} to ${nn(Math.round(P.hi))}"><rect class="full" x="${X(P.mn)}" y="10" width="${X(P.mx)-X(P.mn)}" height="16" rx="3"/><rect class="comf" x="${X(P.lo)}" y="13" width="${X(P.hi)-X(P.lo)}" height="10" rx="2"/>`;
   for(let m=Math.ceil(x0);m<=x1;m++)if(m%12===0)svg+=`<text x="${X(m)}" y="40">${nn(m)}</text>`;if(P.br)svg+=`<line x1="${X(P.br.m)}" x2="${X(P.br.m)}" y1="6" y2="30" stroke="var(--warn)" stroke-width="2"/><text x="${X(P.br.m)}" y="6">break</text>`;svg+='</svg>';
-  el.innerHTML=`<h3>Voice profile · from ${P.n?`${P.n} take${P.n>1?'s':''}`:''}${P.n&&P.rf?' and ':''}${P.rf?`${P.rf} range find${P.rf>1?'s':''}`:''} on this device</h3>${msg?`<p>${msg}</p>`:''}${svg}`+
+  el.innerHTML=`<h2>Voice profile · from ${P.n?`${P.n} take${P.n>1?'s':''}`:''}${P.n&&P.rf?' and ':''}${P.rf?`${P.rf} range find${P.rf>1?'s':''}`:''} on this device</h2>${msg?`<p>${msg}</p>`:''}${svg}`+
    `<p>${P.n?`Comfortable range <b>${nn(Math.round(P.lo))}–${nn(Math.round(P.hi))}</b> (where most of your notes sit: ${P.lo.toFixed(1)}${pm(P.loCi)} to ${P.hi.toFixed(1)}${pm(P.hiCi)} semitones on MIDI).`:'Comfortable range: not known until you record a take with songs or scales; keys below use your full range.'} Full range sung so far <b>${nn(Math.round(P.mn))}–${nn(Math.round(P.mx))}</b> (${Math.round(P.mx-P.mn)} semitones). Range centre fits a <b>${P.type}</b>: a guess from range alone${P.n?'':' (your full range here)'}, not timbre or register breaks.${P.n<3?' Sing a few more takes for a firmer range.':''}</p><p>${P.br?`Register break${P.br.n>1?'s':''} heard on glides: <b>around ${nn(Math.round(P.br.m))}</b> (${P.br.n} time${P.br.n>1?'s':''}${Math.round(P.br.lo)<Math.round(P.br.hi)?`, ${nn(Math.round(P.br.lo))}–${nn(Math.round(P.br.hi))}`:''}). Sirens on “ng” across it smooth it out (Titze 2006).`:'No register break heard yet. To find yours, sing a slow siren on “ng” from low to high and back as a take.'}</p>`+
    `<p><b>Key for a song</b>: type the melody's lowest and highest note in the key you know it in (e.g. G3, D5).</p><div class="row"><label>lowest <input id="pLo" value="G3"></label><label>highest <input id="pHi" value="D5"></label><label>key <input id="pKey" placeholder="e.g. G"></label><button class="btn" id="pGo">suggest key</button></div><p id="pOut"></p><p class="fine">Kept only in this browser. Use the notes the voice sings, not the backing.</p>`+rf;
   const go=()=>{const lo=parseNote($('pLo').value),hi=parseNote($('pHi').value),k=$('pKey').value.trim(),ki=k?KEYS.findIndex(q=>q.toLowerCase()===k.toLowerCase().replace('♯','#').replace('♭','b').replace(/^(.)db$/,'$1#')):-1;
@@ -1414,14 +1416,14 @@ function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;
   // spotless, one click from the words that name them.
   const hb=TAKE.best&&TAKE.best.length?TAKE.best.slice().sort((p,q)=>q.q-p.q)[0]:null,hw=(a.perf||[]).filter(n=>n.t1-n.t0>=0.4&&n.c>=20).sort((p,q)=>q.c-p.c)[0]||null;
   const hear=(n,m,l)=>`<button class="btn hear" data-hear="${m}" data-t0="${n.t0}" data-t1="${n.t1}">${l}</button>`;
-  h+='<h3>Went well</h3><ul>'+[...(hb?[`Your best note, at ${mmss(hb.t0)}: ${hb.c.toFixed(0)} ¢ off the take's grid${hb.wob!==null?`, ${hb.wob.toFixed(1)} ¢ wobble`:''}. ${hear(hb,'best','▶ hear it')}`]:[]),`You sang ${a.notes} held notes over ${a.sung.toFixed(0)} s, across ${a.range.toFixed(0)} semitones.`,...vowelLine(a.perf),...(TAKE.stretch?[`Your strongest stretch ended around ${mmss(TAKE.stretch.hi[0])}: the line on the bar peaks there.`]:[]),...(TAKE.best&&TAKE.best.length?[`${TAKE.best.length} standout note${TAKE.best.length>1?'s':''} (★ on the bar): on the note, steady, started cleanly.`]:[]),...(a.slide&&a.slide.style?[`Your slides into notes are a style, not a flaw: ${a.slide.n} of ${a.slide.of} notes, each about ${a.slide.depth.toFixed(1)} ± ${a.slide.sd.toFixed(1)} semitones, the same every time. They are not marked down.`]:[]),...vibLine(a.vib),...driftLine(a.drift,true),...timingLine(a.tm,true).map(l=>a.tm.pulse?l+' '+hear({t0:0,t1:0},'pulse','▶ hear it with your pulse'):l),...clarLine(a,true),...toneLine(a),...ringLine(a),...roomLine(a),...dynLine(a.dyn),...pbLines(a.perf,TAKE.d),...good.map(x=>`Your ${x.name}: ${fmt(x,a[x.k])} ${x.unit}${R?`, better than ${Math.round(R.per[x.k]*100)} % of the pool`:`, on a par with or better than the median conservatory-trained singer (${TRAINED_MED[x.k]})`}.`)].map(t=>`<li>${t}</li>`).join('')+'</ul>';
+  h+='<h2>Went well</h2><ul>'+[...(hb?[`Your best note, at ${mmss(hb.t0)}: ${hb.c.toFixed(0)} ¢ off the take's grid${hb.wob!==null?`, ${hb.wob.toFixed(1)} ¢ wobble`:''}. ${hear(hb,'best','▶ hear it')}`]:[]),`You sang ${a.notes} held notes over ${a.sung.toFixed(0)} s, across ${a.range.toFixed(0)} semitones.`,...vowelLine(a.perf),...(TAKE.stretch?[`Your strongest stretch ended around ${mmss(TAKE.stretch.hi[0])}: the line on the bar peaks there.`]:[]),...(TAKE.best&&TAKE.best.length?[`${TAKE.best.length} standout note${TAKE.best.length>1?'s':''} (★ on the bar): on the note, steady, started cleanly.`]:[]),...(a.slide&&a.slide.style?[`Your slides into notes are a style, not a flaw: ${a.slide.n} of ${a.slide.of} notes, each about ${a.slide.depth.toFixed(1)} ± ${a.slide.sd.toFixed(1)} semitones, the same every time. They are not marked down.`]:[]),...vibLine(a.vib),...driftLine(a.drift,true),...timingLine(a.tm,true).map(l=>a.tm.pulse?l+' '+hear({t0:0,t1:0},'pulse','▶ hear it with your pulse'):l),...clarLine(a,true),...toneLine(a),...ringLine(a),...roomLine(a),...dynLine(a.dyn),...pbLines(a.perf,TAKE.d),...good.map(x=>`Your ${x.name}: ${fmt(x,a[x.k])} ${x.unit}${R?`, better than ${Math.round(R.per[x.k]*100)} % of the pool`:`, on a par with or better than the median conservatory-trained singer (${TRAINED_MED[x.k]})`}.`)].map(t=>`<li>${t}</li>`).join('')+'</ul>';
   const work=R?order.slice(-2).reverse().filter(x=>R.per[x.k]<0.75).slice(0,R.R>=2200?1:2):order.filter(x=>vsMed(x)<-0.34).reverse().slice(0,2);
   const wl=work.map(x=>`${x.name} (${fmt(x,a[x.k])} ${x.unit}): ${ASPECT_WORK[x.k].ex}${x.k==='onset'?' Slides into notes are a style in pop and soul: work on them only where you did not mean them.':''}`);
   if(hw)wl.unshift(`Your furthest-off held note, at ${mmss(hw.t0)}, was ${hw.c.toFixed(0)} ¢ off the take's grid: hear it, then the same note tuned, and sing along with the second. ${hear(hw,'worst','▶ yours, then tuned')} ${hw.m===undefined?'':`<button class="btn hear" id="bTry" data-m="${hw.m}" data-d="${hw.d}" data-t0="${hw.t0}" data-t1="${hw.t1}">🎙 sing it again</button><div id="tryBox" aria-live="polite"></div>`}`);
   wl.push(...clarLine(a,false),...driftLine(a.drift,false),...timingLine(a.tm,false));
   if(a.breaks&&a.breaks.length)wl.push(`Your voice flipped register on a glide ${a.breaks.length>1?a.breaks.length+' times, ':''}around ${a.breaks.map(b=>nn(Math.round(b.m))+' at '+mmss(b.t)).join(', ')}: sirens on “ng” through that spot, slowly and lightly, help the two registers meet (Titze 2006).`);if(TAKE.stretch)wl.push(`The line dips lowest in the 10 s before ${mmss(TAKE.stretch.lo[0])}: click the bar there to listen back.`);
-  if(wl.length)h+='<h3>To work on</h3><ul>'+wl.map(t=>`<li>${t}</li>`).join('')+'</ul>';
-  {const ln=[...a.perf].filter(n=>n.t1-n.t0>=0.8).sort((x,y)=>(y.t1-y.t0)-(x.t1-x.t0))[0];if(ln)h+=`<h3>Where this can go</h3><p>Your longest note, at ${mmss(ln.t0)}, as it is, then in your far vision: tuned, even vibrato, a gentle swell. One possible far point. ${hear(ln,'far','▶ yours, then far')}</p>`;}
+  if(wl.length)h+='<h2>To work on</h2><ul>'+wl.map(t=>`<li>${t}</li>`).join('')+'</ul>';
+  {const ln=[...a.perf].filter(n=>n.t1-n.t0>=0.8).sort((x,y)=>(y.t1-y.t0)-(x.t1-x.t0))[0];if(ln)h+=`<h2>Where this can go</h2><p>Your longest note, at ${mmss(ln.t0)}, as it is, then in your far vision: tuned, even vibrato, a gentle swell. One possible far point. ${hear(ln,'far','▶ yours, then far')}</p>`;}
   h+=`<p class="fine">${R?`Provisional Elo: each reference voice is one game on intonation, steadiness and clean onsets (tone clarity depends on the microphone and room, so it is not rated). 2000 is the median conservatory-trained singer in ${R.pool}. It ranks you within this pool, not the world.`:''} The take's tuning is ${a.off>=0?'+':''}${(a.off*100).toFixed(0)} ¢ from A440; notes are measured on that grid. <span id="pitchAcc">How sure the pitch is: on 40 real a cappella excerpts by 29 singers (vocadito, CC BY 4.0) this tracker puts 97.4 ± 0.8 % of sung moments within half a semitone of hand-checked pitch; lower voices 97.3 ± 1.4 %, higher 97.8 ± 0.7 %; about 1 in 8 breaths or consonants is read as a note.</span></p>`;
   ratingEl.innerHTML=h+renderProgress();for(const e of ratingEl.querySelectorAll('[data-hear]'))e.onclick=()=>{const t0=+e.dataset.t0,t1=+e.dataset.t1;
     if(e.dataset.hear==='pulse')playPulse();else if(e.dataset.hear==='worst')abLoop(t0,t1,'note');else if(e.dataset.hear==='far')abLoop(t0,t1,'longest note','far');else playTake('take',Math.max(0,t0-0.3),Math.min(TAKE.buf.duration,t1+0.3));};const bt=$('bTry');if(bt)bt.onclick=()=>drillGo(bt);const od=$('openData');if(od)od.onclick=()=>{renderData();$('data').scrollIntoView({block:'nearest'});};}
@@ -1618,7 +1620,7 @@ function restoreText(t){let o;try{o=JSON.parse(t);}catch(e){return null;}if(!o||
   try{for(const [k,v] of w)localStorage.setItem(k,JSON.stringify(v));}catch(e){return {n:0,takes:0,full:true};}return {n,takes};}
 function dataNudge(h){const s=+dataRead(SAVED_KEY,'0');if(h.length<5||(s&&Date.now()-s<14*864e5))return '';return `<p class="fine">${s?`Your last copy is ${Math.floor((Date.now()-s)/864e5)} days old`:'No copy of your progress yet'}: a browser can clear what it keeps. Save one under my data.</p>`;}
 function renderData(msg){const el=$('data'),h=loadHist(),s=+dataRead(SAVED_KEY,'0'),ex=DATA_KEYS.slice(1).reduce((a,[k])=>a+dataRead(k,'[]').length,0);el.hidden=false;
-  el.innerHTML=`<h3>My data</h3>${msg?`<p id="dataMsg">${msg}</p>`:''}<p>Kept in this browser only, sent nowhere: <b>${h.length}</b> take${h.length===1?'':'s'}, <b>${ex}</b> warm-up and range reading${ex===1?'':'s'}, <span id="dataAudio">and up to ${ADB.max} takes' audio</span>. ${s?`Last copy saved ${new Date(s).toLocaleDateString()}.`:'No copy saved yet.'}</p><p class="fine" id="dataPersist"></p><p class="fine" id="dataApp"></p>
+  el.innerHTML=`<h2>My data</h2>${msg?`<p id="dataMsg">${msg}</p>`:''}<p>Kept in this browser only, sent nowhere: <b>${h.length}</b> take${h.length===1?'':'s'}, <b>${ex}</b> warm-up and range reading${ex===1?'':'s'}, <span id="dataAudio">and up to ${ADB.max} takes' audio</span>. ${s?`Last copy saved ${new Date(s).toLocaleDateString()}.`:'No copy saved yet.'}</p><p class="fine" id="dataPersist"></p><p class="fine" id="dataApp"></p>
    <div class="row"><button class="btn" id="dSave">⤓ save a copy</button><button class="btn" id="dLoad">⤒ bring a copy back</button><button class="btn" id="dForget">delete everything</button></div><p class="fine">A copy is one small file of numbers and dates, no audio. Bringing it back adds what is missing and changes nothing you already have.</p>`;
   $('dSave').onclick=()=>{const now=Date.now(),a=document.createElement('a');a.href=URL.createObjectURL(new Blob([backupText(now)],{type:'application/json'}));a.download=`voice-helix-${new Date(now).toISOString().slice(0,10)}.json`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),60000);try{localStorage.setItem(SAVED_KEY,String(now));}catch(e){}keepAsked();renderData(`Copy saved as ${a.download}.`);};
   $('dLoad').onclick=()=>$('dataFile').click();
