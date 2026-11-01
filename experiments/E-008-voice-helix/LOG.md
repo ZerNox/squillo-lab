@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-01 · sing the phrase: kept across days, fewer wrong melodies
+
+Found: phrase tries vanished at reload, and another melody could read as the phrase. Built: tries kept by the phrase's steps, in my data, and a later day says closer, level or further with ±. Half the phrase's notes must now sit within 60 ¢ of its own level. `check/sing-bench.mjs`, page code: other melody accepted 5/31 → 3/30; vocadito shift proxy 205 → 202/240, median 3.0, p90 20.2 ¢, 98 % inside ±. A 60 % gate gave 1/30 but 180/240, so 50 % was chosen. Synthetic 80 pairs across days: same errors closer 0, further 1; errors cut to 40 % closer 53, level 27, further 0. Duration ratios separated well on synthetic, left out: no real re-sung timing to test them on, and rubato would pay. Key from steps alone, so another tune with the same steps shares a history. No new iOS risk beyond sing the phrase. Next: live Viterbi lookahead, or noise part 3.
+
 ## 2026-11-01 · live false alarms: centred level cue, no change
 
 `check/live-noise-bench.mjs`, page code, 14 vocadito clips, clean; a short level window where the pitch belongs, against the long one (the live twin of the take's edge trim). T off: RPA 90.9, FA 6.8, OA 91.8; 0.2: 90.8, 6.5, 91.8; 0.35: 90.2, 5.1, 91.9; 0.5: 89.2, 3.6, 91.7 (each ± about 2). Pink 10 dB unmoved. Same trade as the gates, so reverted. Left to try: Viterbi with short lookahead, which costs latency.
