@@ -63,6 +63,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Tuning across the range: high notes under or over the low ones with ±, silent unless sure (synthetic 40 ¢ said 20/20, level 0/10; vocadito said 5 of 36, 0 opposite, gates tuned on those clips).
 - WebKit hang: AudioWorklet added to a running context deadlocked Linux WebKit (5 of 20); set up suspended, 0 of 66; `check/hang-probe.mjs`.
 - Next step: tuning alone moved half way, button, key 5 and summary A/B (read back: synthetic 17.4 → 8.7 ¢, VocalSet 15.8 → 10.2 ¢); steadiness and starts dropped, not beyond the render's floor.
+- Sing the phrase: hear the phrase tuned, sing it, read note by note at any tempo or key (synthetic median 0.1 ¢ straight, 6.0 vibrato; vocadito shift proxy median 3.0, p90 22.4 ¢; other melody wrongly accepted 5/31).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
@@ -82,3 +83,4 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 5. **Tone, part 2**: formant-corrected H1-H2 re-tested; a pressed cue only if openly licensed pressed-voice labels turn up.
 6. **Same phrase, part 3**: measure the matcher on real re-sung takes (an openly licensed set with repeated renditions of one melody) instead of the slowed-clip proxy.
 7. **Next step, part 2**: a scoop reading that survives a render, then 'clean starts' as a next step; a real-voice steadiness render above the 0.3 ¢ floor.
+8. **Sing the phrase, part 2**: fewer other melodies accepted (5/31), a test on really re-sung phrases, tries kept across days.
