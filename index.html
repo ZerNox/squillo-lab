@@ -217,7 +217,7 @@ body.lane #rail,body.lane #labels,body.lane #flaws,body.lane #advice{display:non
 <canvas id="lane" aria-hidden="true"></canvas>
 <div id="laneRead" aria-hidden="true"><div id="laneNote">—</div><div id="laneC"></div></div>
 <div id="say" class="sr" aria-live="polite" aria-atomic="true"></div>
-<div id="keys" role="dialog" aria-label="Keyboard shortcuts" hidden><b>Keyboard</b><br><kbd>space</kbd> pause / resume<br><kbd>D</kbd> drone on the target note<br><kbd>← →</kbd> previous / next note of the take<br><kbd>1 2 3 4</kbd> take, halfway, spotless, far vision, from the same moment<br><kbd>L</kbd> loop the phrase<br><kbd>M</kbd> mark this moment<br><kbd>N</kbd> say my note on / off (screen reader)<br><kbd>?</kbd> this list · <kbd>Esc</kbd> close</div>
+<div id="keys" role="dialog" aria-label="Keyboard shortcuts" hidden><b>Keyboard</b><br><kbd>space</kbd> pause / resume<br><kbd>D</kbd> drone on the target note<br><kbd>← →</kbd> previous / next note of the take<br><kbd>shift ← →</kbd> previous / next spot to work on, A/B with spotless<br><kbd>1 2 3 4</kbd> take, halfway, spotless, far vision, from the same moment<br><kbd>L</kbd> loop the phrase<br><kbd>M</kbd> mark this moment<br><kbd>N</kbd> say my note on / off (screen reader)<br><kbd>?</kbd> this list · <kbd>Esc</kbd> close</div>
 <div id="labels" aria-hidden="true"></div>
 <div id="nogl" hidden>This page needs WebGL2. Open it in a current Chrome, Edge, Firefox or Safari.</div>
 
@@ -1493,7 +1493,7 @@ async function drillGo(b){if(DRILL.busy||!TAKE.spot)return;const t0=+b.dataset.t
     DRILL.tries.push(N>=AU.sr?await tryRead(buf,m):null);DRILL.busy=false;renderTry('',d);}
   finally{DRILL.busy=false;DRILL.rec=null;}}
 async function abLoop(t0,t1,label,to='spot'){const key=label+'@'+t0+to;if(AU.kind==='ab'&&AU.ab===key){stopSource();takeInfo.textContent='A/B stopped.';return;}
-  if(!TAKE.spot)return;stopSource();const ctx=await ensureCtx();await ctx.resume();const sr=TAKE.buf.sampleRate,d=TAKE.buf.duration;
+  if(!TAKE.spot)return;stopSource();const tok=AU.abTok=(AU.abTok||0)+1,ctx=await ensureCtx();await ctx.resume();if(tok!==AU.abTok)return;/* a newer press won: two would both loop */const sr=TAKE.buf.sampleRate,d=TAKE.buf.duration;
   const k=+speedSel.value,a=Math.max(0,t0-0.4),b=Math.min(d,Math.max(t1+0.4,a+0.6),a+4),i0=Math.round(a/k*sr),n=Math.round((b-a)/k*sr),g1=Math.round(0.5*sr),g2=Math.round(sr);
   const out=mkBuf(n*2+g1+g2,sr),o=out.getChannelData(0);const A=versionBuf('take').getChannelData(0),B=versionBuf(to).getChannelData(0);o.set(A.subarray(i0,i0+n),0);o.set(B.subarray(i0,i0+n),n+g1);
   const s=ctx.createBufferSource();s.buffer=out;s.loop=true;s.connect(AU.cap);s.connect(ctx.destination);AU.source=s;AU.kind='ab';AU.ab=key;markSrc(null);s.start();
@@ -1532,7 +1532,9 @@ function stepNote(dir){const P=TAKE.aspects&&TAKE.aspects.perf;if(!P||!P.length)
   const star=(TAKE.best||[]).includes(n);
   takeInfo.textContent=`Note ${TAKE.ni+1} of ${P.length} at ${mmss(n.t0)} (${(n.t1-n.t0).toFixed(1)} s, ${which==='take'?'yours':which}): ${n.c.toFixed(0)} ¢ off${n.wob!==null?`, ${n.wob.toFixed(1)} ¢ wobble`:''}${n.scoop?', scooped in':', clean start'}${n.vow&&n.vow.sure?`, sounds like “${VLBL[n.vow.v]}”`:''}${star?'. ★ One of your best.':n.g==='g'?'. On the note.':'.'}`;}
 const bPrevNote=$('bPrevNote'),bNextNote=$('bNextNote');bPrevNote.onclick=()=>stepNote(-1);bNextNote.onclick=()=>stepNote(1);
-document.addEventListener('keydown',e=>{if(!TAKE.buf||bNextNote.disabled||/select|input|textarea/i.test(document.activeElement.tagName))return;if(e.key==='ArrowRight'){e.preventDefault();stepNote(1);}else if(e.key==='ArrowLeft'){e.preventDefault();stepNote(-1);}});
+// Shift+arrows: the spots on the bar, which are otherwise pointer-only. Same A/B as a click, spoken for a screen reader.
+function stepSpot(dir){const G=[...(TAKE.segs||[])].sort((x,y)=>x.t0-y.t0);if(!G.length)return;const now=TAKE.spotAt;const i=now==null?(dir>0?0:G.length-1):dir>0?G.findIndex(g=>g.t0>now):G.map(g=>g.t0<now).lastIndexOf(true);const g=G[i<0?(dir>0?0:G.length-1):i];TAKE.spotAt=g.t0;showAdvice(FLAWS[g.i]);abLoop(g.t0,g.t1,FLAWS[g.i].name);$('say').textContent=`${FLAWS[g.i].name} at ${mmss(g.t0)}, spot ${G.indexOf(g)+1} of ${G.length}`;}
+document.addEventListener('keydown',e=>{if(!TAKE.buf||bNextNote.disabled||/select|input|textarea/i.test(document.activeElement.tagName))return;if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();const d=e.key==='ArrowRight'?1:-1;if(e.shiftKey)stepSpot(d);else stepNote(d);}});
 // Mark moments: ⚑ mark (or M) drops a flag where the take is playing (or at the note just stepped to).
 // Match and measure, in the warm-up: hear each guide tone, sing it, read with tryRead (nearest octave). A session keeps
 // how far off (mean |¢| with its 95 % interval) and the landing time, on this device. Better/worse only beyond both intervals. check/match-bench.mjs.
