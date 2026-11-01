@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-01 · focus across takes
+
+Found: the summary named points to work on, then forgot them; no take said whether they moved. Built: each take stores its tracked points (`focusKeys`); the next opens with 'Since your last take', each point against the singer's last 5 takes, better or worse only outside a 95 % prediction interval of one take, level otherwise, 'N more takes' under 3. The page opens with 'Today's focus' and its exercise; a check.mjs test. Page code (`check/focus-bench.mjs`, VocalSet, 19 singers, 150 clips as takes): false change at rest 0-7.5 % per aspect (intonation 5/67, steadiness 0/67, onsets 4/67, clarity 3/67); clarity breathy to straight better 40/66, straight to breathy worse 25/59, wrong way 0/125. Limits: same-day clips stand in for takes across days; change tested on clarity only; large changes in one take are often read level. iOS risk: none new. Next: live false alarms.
+
 ## 2026-11-01 · creak read in a take
 
 Found: VocalSet's 'vocal_fry' clips are pitched near 250 Hz, so pulse counting at low rates failed (0.05-0.12 of frames, straight 0.11) and subharmonic ratio with frame rules reached AUC 0.75. A plain take score did better: median H1-H2 + half the 10th percentile of CPP, AUC 0.87 (women 0.97, men 0.73, men's vibrato reads alike). Built: `takeCreak`, read from median 200 Hz up on 5 s sung; under 10 the summary describes a creaky edge, fine if chosen, with straw humming (Titze 2006); otherwise silent. Page code (`check/fry-bench.mjs`, 214 VocalSet clips): fry 33/42 = 78.6 % (64-88), controls 1/49 = 2.0 % (0.4-10.7), vocadito 3/25 unlabelled; 123 clips unread (too low or too short). Limit and gate tuned on these clips, so optimistic; clip-level labels, nothing says when in a take; no reading for most men's takes. Not on the progress lines. WebKit hung once locally and once live, passed on retry both times; cause still unknown. Checked the room line next: steady noise reads right (`noise-bench`, every 3rd clip: pink 10 dB 10/10/11, 5 dB 6/7/7, hum 10 dB 9/9/10), so nothing to build; roadmap corrected. iOS risk: none new. Next: Key drift part 2 or live false alarms.
@@ -29,12 +33,4 @@ Found: every load asked Google for fonts while the page said 'sent nowhere', and
 ## 2026-10-31 · fewer live ghost notes, part 3
 
 Built: live, a frame counts as a note only when the frame before agrees within a semitone (`LN.M` 2); one-frame blips no longer draw. Page code, live, vocadito 40 clips: clean FA 11.0 ± 2.2 → 6.5 ± 1.4, RPA 90.9 ± 3.5 → 89.7 ± 1.6, OA 90.3 → 91.1 ± 1.3; pink 10 dB FA 5.3 → 2.6, RPA 83.6 → 80.9, OA 87.4 → 86.4 ± 2.0 (a real cost in noise, within its band). Note starts draw one hop (20 ms) later. M 3 and up lost more than it gained (clean RPA 84.4 at 3, 74.7 at 5, on 14 clips). M chosen on these clips. Take pitch unchanged (low 97.3, high 97.4). Breathy live bench at HNR 5 dB read 25.0 → 49.7 %, a rise this gate should not cause, not explained; do not rely on it. iOS risk: none new. Next: Key drift part 2.
-
-## 2026-10-31 · my data: a copy, and a real delete
-
-Found: progress lived only in the browser, and Safari can clear script storage after 7 days away from a site not on the home screen, so a holiday could erase the progress line; 'forget my takes' deleted at one tap yet left kept audio, marks and warm-up readings behind. Built: ⛁ my data (reachable with no takes, so restore works after a wipe): counts what is kept, save a copy (one JSON file, no audio), bring one back (merges by date, existing records win, markup refused, 5 MB limit), delete everything including audio after a second tap; `navigator.storage.persist` asked on saving; a line under progress from 5 takes when no copy exists or the last is over 14 days old. check.mjs does a real download, delete, file input and repeat import in all three browsers; retries now print why. No accuracy measured: none claimed. iOS risk: 'copy saved' shows when the download starts, before Safari's Files prompt, so a cancelled save still reads saved; the file flow is unverified on a real iPhone. Next: Key drift part 2 or live false alarms.
-
-## 2026-10-31 · no pulse said in words
-
-Built: the summary's rhythm row says 'free timing, no steady pulse' or 'too few notes to find a pulse' instead of a bare dash; a check.mjs test. No new measurement. Local WebKit hangs at random steps (twice this run, no failed assertion): run `--only` per browser with a 290 s timeout. Next: Key drift part 2 or live false alarms.
 

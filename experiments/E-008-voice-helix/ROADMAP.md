@@ -59,6 +59,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Live subharmonic guard: breathy HNR 5 dB read right 49.7 → 99.7 %; vocadito live clean OA 91.8, pink 10 dB OA 88.9.
 - Accessibility audit: axe-core 0 violations (WCAG 2 A/AA, best practice) on start, take, warm-up, profile, my data in Chrome and WebKit; contrast, keyboard reach, landmark, headings fixed; gated in check.mjs; spots by keyboard (shift ← →).
 - Creak: described in the summary from 200 Hz up (VocalSet fry 33/42, controls 1/49, tuned on the same clips).
+- Focus across takes: 'Since your last take' reads the points last named against the singer's own takes with a prediction interval (VocalSet: false change 0-7.5 %, wrong way 0/125, half of large changes read level); 'Today's focus' on opening.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
