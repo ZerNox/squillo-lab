@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-01 · accessibility measured and fixed
+
+Found with axe-core 4.14 (page's real states: start, scanned take, warm-up, voice profile, my data; Chrome, WebKit iPhone size): secondary text at 3.49:1 contrast on the phone (14-31 elements per state), live readings and summary unreachable by keyboard, no main landmark, headings skipping a level, an empty table header. Built: secondary text brighter, hint and legend on a panel so they read over the terrain, readings and summary focusable with a ring, `main`, h2 headings, note labels hidden from screen readers, the take message announced as a status. `check/a11y-audit.mjs`: 0 violations of WCAG 2 A/AA and best-practice rules in those states; check.mjs now fails on any WCAG violation on a scanned take. Limits: axe finds only part of what a screen-reader user meets and cannot judge text over the canvas; no real VoiceOver run; spots on the timeline stay pointer-only (◀ ▶ note reaches each note). A full check run lost WebKit once ('browser closed', under my 595 s outer limit), then WebKit passed alone in 147 s; cause unproven, the known hang not ruled out. iOS risk: `backdrop-filter` unprefixed on older Safari only loses the blur, background stays. Next: Key drift part 2.
+
 ## 2026-10-31 · offline worker made opt-in
 
 Found after shipping: live WebKit runs stalled at the first tap. Service worker on vs blocked, live: 5 of 6 hung vs 0 of 6; without `clients.claim` still 1 of 6, cause not found. So the worker no longer starts by itself: 'keep for no network' under my data starts it, for the next open, and a worker registered in the hour it was automatic is removed on load. Normal visits have none. The hang may be Linux WebKit only; pressing the button on a real iPhone is unverified. Claims in the entry below about automatic keeping are replaced by this. Next: find the hang, Key drift part 2.
@@ -29,16 +33,3 @@ Built: the summary's rhythm row says 'free timing, no steady pulse' or 'too few 
 ## 2026-10-31 · pulse found through a stray note
 
 Found: the two vocadito annotators disagree on a pulse as much as the page does (7 and 14 clips, 7 shared), and one stray or missed note start hid a real pulse; the old limit also passed 38/400 random onset sets (the earlier 0/20 and 0/40 hid that). Built: `pulseFit` decides on the closest 90 % of note starts (`PULSE_MAX` 0.11, was 0.15 on all), reported spread stays on all starts; `check/timing-bench.mjs` now scores against the clips both annotators pulse; a check.mjs test. A singer with a steady beat and a stray note gets their rhythm read instead of 'free timing'. Page code: of 7 clips both annotators pulse, found at their step 5 (was 3); random onsets 17/400 false (was 38). Synthetic: jitter 15/30 ms found 60/60, 60 ms 34/60, spread within 3 ms, free melodies 0/40. Tuned on the same clips with only 7 positives: indicative. Next: Key drift part 2 or live false alarms.
-
-## 2026-10-31 · siren and measure in the warm-up
-
-Built: ♪ siren and measure on the Siren step (`sirenGo`, `sirenRead`), `check/siren-bench.mjs`, a check.mjs test. A singer sings one 12 s siren and hears its span, lowest and highest note, drop-outs, any register jump and how it compares with their usual span. Page code, synthetic, 4 voices, 40 sirens: range within 0.46 st; breaks 0/20 clean, 20/20 with a 1-2 st jump; no drop-outs. Span has no ± yet and comparison uses 2 st, a fixed step, not a measured one. Real voices unmeasured. iOS risk: as Match and measure. Live: Chrome and Firefox passed; WebKit gave no result in a 590 s full run, likely the timeout (not confirmed), and passed first try alone. With swell and siren the run is longer: do the --wait live run per browser. Next: Timing part 2.
-
-## 2026-10-31 · fewer live ghost notes, part 2
-
-Built: live voicing also needs the frame within 18.4 dB of the recent peak (`LN.R` 0.12, peak halves each second), so note tails and room echo stop drawing false notes. vocadito 40 clips, page code, live: clean FA 14.9 → 11.0 ± 2.2, RPA 91.0 → 90.9 ± 3.5, OA 89.1 → 90.3 ± 2.8; pink 20 dB FA 14.7 → 13.3, OA 89.3 → 89.8; pink 5 dB and hum 10 dB unchanged. Take pitch and the breathy live bench unchanged. R chosen on 10 of these clips, so slightly optimistic. Cost by design, unmeasured: a note 24 dB under the last loud one stays unread live for about 1 s. iOS risk: none new. Next: Timing part 2.
-
-## 2026-10-31 · swell and measure in the warm-up
-
-Built: ♪ swell and measure on the warm-up's Messa di voce step (`swellGo`, `swellRead`), `check/swell-bench.mjs`, a check.mjs test. A singer sings one 10 s swell and is told how wide it was, where the peak fell, how far the pitch moved, and whether pitch rose or fell with the volume, with ±, against their last swells. That step listened to nothing before. Page code, synthetic, 160 takes: width within 1.2 dB, tie within 0.45 ¢/dB, truth inside ± 160/160, false pull 0/40. VocalSet messa: read 16/20 (why 4 were unread not checked), width median 22.5 dB, tie median +1.25 ¢/dB, 7/16 pulled; straight clips with note changes gave wild slopes, so sd 50 ¢ and up now says to stay on one note. Real voices have no truth. iOS risk: as Match and measure. Next: Timing part 2.
-

@@ -12,6 +12,7 @@
 import { chromium, firefox, webkit, devices } from 'playwright';
 import { createHash } from 'node:crypto';
 import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -115,6 +116,9 @@ async function run([name, launch, ctxOpt, file]) {
     await p.waitForTimeout(900); const inView = await p.evaluate(() => { const r = document.getElementById('takebar').getBoundingClientRect(); return r.top >= 0 && r.bottom <= innerHeight; });
     await p.screenshot({ path: join(out, `${name}-take-first.png`) });
     const bar = p.locator('#takebar'); await bar.scrollIntoViewIfNeeded(); await bar.screenshot({ path: join(out, `${name}-timeline.png`) });
+    await p.evaluate(readFileSync(createRequire(import.meta.url).resolve('axe-core/axe.min.js'), 'utf8'));  // accessibility: no WCAG 2 A/AA violation on a scanned take (fuller states: a11y-audit.mjs)
+    const axeBad = await p.evaluate(() => window.axe.run(document, { runOnly: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'] }).then(r => r.violations.map(v => v.id + ' ' + v.nodes[0].target)));
+    if (axeBad.length) throw new Error('accessibility: ' + axeBad);
     await p.screenshot({ path: join(out, `${name}-take.png`) });
     const bb = await bar.boundingBox(); const pos = { position: { x: bb.width * 0.5, y: 10 } };
     touch ? await bar.tap(pos) : await bar.click(pos); await p.waitForTimeout(1200);
