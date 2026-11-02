@@ -1053,8 +1053,10 @@ const ASPECTS=[
  {k:'ring',name:'ring',unit:'dB SPR',lower:false,tol:2,dec:1,info:true,desc:['more ring','less ring']},
  {k:'swell',name:'swell (dynamics)',unit:'dB within a long note',lower:false,tol:2,dec:1,info:true,desc:['more swell','flatter']},
  {k:'kdrift',name:'key drift',unit:'¢ over the take',lower:true,tol:15,dec:0,info:true},
+ {k:'tsag',name:'note endings',unit:'¢ off at the ends of long notes',lower:true,tol:5,dec:0,info:true},
  {k:'rhythm',name:'rhythm spread',unit:'ms around your pulse',lower:true,tol:15,dec:0,info:true},
 ];
+// Note endings: how far the last 0.18 s of long notes sits from their body, either way (takeTail; vocadito vs hand f0 SD 9.7 ¢), shown, not rated.
 // Key drift is how far the take's tuning slid from start to end, either way (takeDrift: synthetic SD 16 ¢,
 // vocadito vs hand f0 SD 41 ¢), so it is shown, better or worse only beyond the bands, but not rated.
 // Swell is the largest level swell within one long note (takeDynamics; messa di voce reads 14.5 dB or more on
@@ -1221,7 +1223,7 @@ function takeAspects(st){const fr=st.rec.frames,sn=st.rec.snaps,{notes,res}=take
   const slide={n:dp.length,of:ons,depth:dm,sd:dsd,style:dp.length>=4&&dp.length/ons>=2/3&&dsd<=0.2*dm};
   const meds=notes.map(n=>n.med).sort((a,b)=>a-b);
   const rg=[];fr.forEach((f,i)=>{if(f.voiced&&f.f0<1000&&sn[i].spr)rg.push(sn[i].spr);});rg.sort((a,b)=>a-b);
-  return {slide,creak:takeCreak(fr,sn),ring:rg.length>=150?rg[rg.length>>1]:NaN,perf:notePerf(segNotes(fr),off,slide.style?[]:st.rec.events).map(n=>({...n,vow:spanVowel(st.rec.frames,n.t0,n.t1)})),get key(){return takeKey(this.perf,off);},inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,clar:cp.length?cp[cp.length>>1]:0,clarN:cp.length,tone:tl.length?tl[tl.length>>1]:0,toneN:tl.length,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,breaks:registerBreaks(fr),vib:takeVibrato(st),drift:takeDrift(fr),lean:takeLean(fr),tail:takeTail(fr),tm:takeTiming(fr),get rhythm(){return this.tm&&this.tm.pulse?this.tm.sd:NaN},dyn:takeDynamics(st),get swell(){return this.dyn?this.dyn.maxSwell:NaN},get kdrift(){return this.drift?Math.abs(this.drift.cents):NaN},mn:meds.length>4?Math.min(...meds):0,mx:meds.length>4?Math.max(...meds):0,ok:notes.length>=6&&sung>=4};}
+  return {slide,creak:takeCreak(fr,sn),ring:rg.length>=150?rg[rg.length>>1]:NaN,perf:notePerf(segNotes(fr),off,slide.style?[]:st.rec.events).map(n=>({...n,vow:spanVowel(st.rec.frames,n.t0,n.t1)})),get key(){return takeKey(this.perf,off);},inton:iw?ia/iw:0,stab:res.length?res[res.length>>1]:0,onset:slide.style?0:onsets?scoops/onsets:0,onsetRaw:onsets?scoops/onsets:0,clar:cp.length?cp[cp.length>>1]:0,clarN:cp.length,tone:tl.length?tl[tl.length>>1]:0,toneN:tl.length,off,notes:notes.length,sung,range:meds.length>4?meds[Math.floor(meds.length*0.9)]-meds[Math.floor(meds.length*0.1)]:0,lo:meds.length>4?meds[Math.floor(meds.length*0.1)]:0,hi:meds.length>4?meds[Math.floor(meds.length*0.9)]:0,breaks:registerBreaks(fr),vib:takeVibrato(st),drift:takeDrift(fr),lean:takeLean(fr),tail:takeTail(fr),tm:takeTiming(fr),get rhythm(){return this.tm&&this.tm.pulse?this.tm.sd:NaN},dyn:takeDynamics(st),get swell(){return this.dyn?this.dyn.maxSwell:NaN},get kdrift(){return this.drift?Math.abs(this.drift.cents):NaN},get tsag(){return this.tail?Math.abs(this.tail.cents):NaN},mn:meds.length>4?Math.min(...meds):0,mx:meds.length>4?Math.max(...meds):0,ok:notes.length>=6&&sung>=4};}
 // Per held note, for the timeline: cents off the take's grid, wobble inside the note, and whether it
 // was scooped into, folded into a 0..1 score weighted 60/25/15. The median trained singer (14 ¢, 3 ¢
 // wobble, no scoop) scores about 0.8; 25 ¢ off scores about 0.55.
@@ -1325,11 +1327,11 @@ function lastWeekLine(P,d){const L=P.filter(n=>n.t1-n.t0>=PB_MIN&&n.wob!==null);
 // Focus across takes: each take stores the one or two tracked points it named to work on; the next take says whether they moved.
 // A single take against the singer's own earlier takes (up to 5, 3 at least): the 95 % prediction interval of one new take, t(n-1) · SD · √(1+1/n),
 // never under the aspect's tol. Inside it: 'level', nothing claimed. check/focus-bench.mjs.
-const FOCUS_T={3:4.30,4:3.18,5:2.78},FOCUS_MIN=3,FOCUS_EX={clar:'A phrase through a drinking straw, then at once without it, keeping the same easy, buzzy feel (Titze 2006).',kdrift:'Sing a phrase over ♪ drone on its first note, then again without it, and check the first note at the end (Howard 2007).',rhythm:'Clap the pulse while you speak the words, then sing them to the same claps (Repp 2005).'};
+const FOCUS_T={3:4.30,4:3.18,5:2.78},FOCUS_MIN=3,FOCUS_EX={clar:'A phrase through a drinking straw, then at once without it, keeping the same easy, buzzy feel (Titze 2006).',tsag:'A long “oo” over ♪ drone, stopped by stopping the air, not by letting go of the note (Titze & Verdolini Abbott 2012).',kdrift:'Sing a phrase over ♪ drone on its first note, then again without it, and check the first note at the end (Howard 2007).',rhythm:'Clap the pulse while you speak the words, then sing them to the same claps (Repp 2005).'};
 const aspectOf=k=>ASPECTS.find(x=>x.k===k);
 function vsTrained(x,v){const m=TRAINED_MED[x.k];return (x.lower?m-v:v-m)/(x.tol*3);}
 function focusKeys(a){const o=RATED.filter(x=>Number.isFinite(a[x.k])&&!(x.k==='onset'&&a.slide&&a.slide.style)&&vsTrained(x,a[x.k])<-0.34).sort((p,q)=>vsTrained(p,a[p.k])-vsTrained(q,a[q.k])).map(x=>x.k);
-  if(clarLine(a,false).length)o.push('clar');if(driftLine(a.drift,false).length&&Number.isFinite(a.kdrift))o.push('kdrift');if(a.tm&&a.tm.pulse&&a.tm.sd>90&&Number.isFinite(a.rhythm))o.push('rhythm');return o.slice(0,2);}
+  if(clarLine(a,false).length)o.push('clar');if(driftLine(a.drift,false).length&&Number.isFinite(a.kdrift))o.push('kdrift');if(tailLine(a.tail,false).length&&Number.isFinite(a.tsag))o.push('tsag');if(a.tm&&a.tm.pulse&&a.tm.sd>90&&Number.isFinite(a.rhythm))o.push('rhythm');return o.slice(0,2);}
 function focusVerdict(x,now,prev){const v=prev.filter(Number.isFinite).slice(-HIST_WIN),n=v.length;if(n<FOCUS_MIN)return {n,v:'few'};const m=v.reduce((t,q)=>t+q,0)/n,sd=Math.sqrt(v.reduce((t,q)=>t+(q-m)**2,0)/(n-1)),half=Math.max(x.tol,FOCUS_T[n]*sd*Math.sqrt(1+1/n)),d=now-m;
   return {n,m,half,v:Math.abs(d)<=half?'level':(x.lower?d<0:d>0)?'better':'worse'};}
 function focusLines(d){const h=loadHist(),i=h.findIndex(r=>r.d===d);if(i<1||!Array.isArray(h[i-1].f))return [];const out=[];
