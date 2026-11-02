@@ -69,6 +69,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Moments you marked: the newest 6 marks from kept earlier takes, ▶ and ✕, in the summary.
 - Whole span: take and live read A1-E6 on five spectra, floor 60 → 46 Hz (synthetic 100 % in every cell, A1 was 0 %; vocadito unchanged within ±, live hum 10 dB OA -1).
 - Phone: take controls in two swipeable rows, score line on the first screen.
+- Scale of a take: named in the summary from 30 notes when 90 % sure (synthetic 98-100 % right; vocadito said on 2/40, no key labels); aiming off notes from the key tried, dropped (0/624 restored on vocadito).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 

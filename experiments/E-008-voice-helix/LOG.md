@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-02 · the scale of a take; aiming notes from the key, dropped
+
+Tried: a note over 30 ¢ off, nearest a semitone outside the take's scale, read against the scale neighbour instead, so a 70 ¢ flat note is not called 30 ¢ sharp of the wrong one. `check/key-bench.mjs` (first form in git only as numbers here): Krumhansl-Kessler correlation at 90 % resample agreement, sure on 1-3 % of synthetic takes, 40-63 % right; scale by held time, 40-note takes sure 32 %, off notes aimed right 18.9 %, 0 plain notes moved; vocadito sure on 3/40 clips, 0/624 pushed notes restored, key held under pushes 57.5 %. Too rarely sure on real short melodies, so not shipped. Kept: 'Your notes fit the scale of G major / E minor' in the summary, from 30 notes at 90 % sure, no tonic claimed. Synthetic random walks, 600 takes each: 40 notes said 330, right 324 = 98.2 %; 60 notes said 462, right 462. Vocadito (no key labels, about 15 s clips): said on 2/40, agrees with annotator notes 2/2, so mostly silent on short takes. No iOS risk: note arithmetic only, 200 resamples at summary time. Next: noise part 3.
+
 ## 2026-11-02 · clarity follows the low notes
 
 Found: CPP searched only to 60 Hz, so the newly read 55 Hz note had CPP 0, a false 'breathy'. Built: peak search to 46 Hz, baseline fit left alone (widening it moved 65 Hz by 4 dB and would have voided the VocalSet cue). Sawtooth 65, 82, 110 Hz read 26.6, 30.6, 31.2 before and after; 55 Hz 0 → 33.2, high from the extrapolated fit, so clear but not comparable under 65 Hz. Synthetic only. Next: noise part 3.
@@ -37,12 +41,4 @@ Found: the phrase read only pitch. Built: note starts against the singer's own p
 ## 2026-11-01 · sing the phrase: kept across days, fewer wrong melodies
 
 Found: phrase tries vanished at reload, and another melody could read as the phrase. Built: tries kept by the phrase's steps, in my data, and a later day says closer, level or further with ±. Half the phrase's notes must now sit within 60 ¢ of its own level. `check/sing-bench.mjs`, page code: other melody accepted 10/30 → 5/30 on one random stream (corrected: the first figure here, 5/31 → 3/30, compared different streams; 3-5/30 across streams); vocadito shift proxy 205 → 202/240, median 3.0, p90 20.2 ¢, 98 % inside ±. A 60 % gate gave 1/30 but 180/240, so 50 % was chosen. Synthetic 80 pairs across days: same errors closer 0, further 1; errors cut to 40 % closer 53, level 27, further 0. Duration ratios separated well on synthetic, left out: no real re-sung timing to test them on, and rubato would pay. Key from steps alone, so another tune with the same steps shares a history. No new iOS risk beyond sing the phrase. Next: live Viterbi lookahead, or noise part 3.
-
-## 2026-11-01 · live false alarms: centred level cue, no change
-
-`check/live-noise-bench.mjs`, page code, 14 vocadito clips, clean; a short level window where the pitch belongs, against the long one (the live twin of the take's edge trim). T off: RPA 90.9, FA 6.8, OA 91.8; 0.2: 90.8, 6.5, 91.8; 0.35: 90.2, 5.1, 91.9; 0.5: 89.2, 3.6, 91.7 (each ± about 2). Pink 10 dB unmoved. Same trade as the gates, so reverted. Left to try: Viterbi with short lookahead, which costs latency.
-
-## 2026-11-01 · sing the phrase
-
-Found: only one note could be re-sung and read; singers practise phrases. Built: 🎙 sing phrase (P): the phrase around the current note, tuned, in their own voice; they sing it; each note reads ¢ with ±, at any tempo or key, against the take. Decided: read against full tuning, as the target is what they hear. `check/sing-bench.mjs`, page code: see README; synthetic 470/470 notes, median 0.1 ¢ straight, 6.0 vibrato (p90 16.4), ± covers 99-100 %; key moves 74/80; other melody wrongly accepted 5/31, a known weak spot; vocadito shift proxy accepted 205/240, median 3.0, p90 22.4 ¢, 97 % inside ±. No truly re-sung phrase measured. iOS risk: as sing it again, mic and playback in one tap; loudspeaker bleed stops before capture. Next: live voicing cue.
 

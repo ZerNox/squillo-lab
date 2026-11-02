@@ -115,6 +115,8 @@ Lane: a fifth view for reading while singing. The last 8 s as a flat line on a s
 0.4 s, again when it changes or every 4 s; ±10 ¢ is called in tune. `?` lists
 the keys. Use headphones with a mic, or the reader's voice reaches the tracker.
 
+The scale of a take (2026-11-02, `check/key-bench.mjs`, page code): the major scale holding most held time, said from 30 notes when 90 % of 200 resamples agree, tonic not claimed. Synthetic random-walk melodies with 10 % outside notes: 324/330 right at 40 notes, 462/462 at 60. vocadito has no key labels: said on 2/40 clips, both agreeing with annotator notes.
+
 Real-voice demos: 14 VocalSet clips (CC BY 4.0, `page/demo/SOURCES.md`),
 one woman and one man each singing the same scale straight, breathy, in vocal
 fry, belted and with vibrato, plus "Caro mio ben" straight and with vibrato.
