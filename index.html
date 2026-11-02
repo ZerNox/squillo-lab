@@ -1658,9 +1658,15 @@ function versionBuf(which){const b=which==='take'?TAKE.buf:TAKE[which],k=+speedS
 function wavBlob(b){const x=b.getChannelData(0),n=x.length,sr=b.sampleRate,v=new DataView(new ArrayBuffer(44+2*n)),w=(o,t)=>{for(let i=0;i<t.length;i++)v.setUint8(o+i,t.charCodeAt(i));};
   w(0,'RIFF');v.setUint32(4,36+2*n,true);w(8,'WAVEfmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,sr,true);v.setUint32(28,2*sr,true);v.setUint16(32,2,true);v.setUint16(34,16,true);w(36,'data');v.setUint32(40,2*n,true);
   for(let i=0;i<n;i++)v.setInt16(44+2*i,Math.round(clamp(x[i],-1,1)*32767),true);return new Blob([v],{type:'audio/wav'});}
-function saveAudio(){const which=(AU.play&&AU.play.which)||TAKE.nw||'take',b=versionBuf(which);if(!b)return;const k=+speedSel.value,a=document.createElement('a');
-  a.href=URL.createObjectURL(wavBlob(b));a.download=`voice-helix-${new Date(TAKE.d||Date.now()).toISOString().slice(0,10)}-${VERSION[which].title.toLowerCase().replace(/ /g,'-')}${k===1?'':'-'+k+'x'}.wav`;
-  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),60000);takeInfo.textContent=`Saved ${VERSION[which].title.toLowerCase()}${k===1?'':` at ${k}×`} as ${a.download} (${b.duration.toFixed(1)} s), on this device only.`;}
+// On a phone the share sheet (Save to Files, Voice Memos, a message) replaces a bare download, which iOS Safari only previews; desktops and browsers without file sharing download.
+function shareFile(f){try{return matchMedia('(pointer:coarse)').matches&&!!navigator.canShare&&navigator.canShare({files:[f]});}catch(e){return false;}}
+function saveAudio(){const which=(AU.play&&AU.play.which)||TAKE.nw||'take',b=versionBuf(which);if(!b)return;const k=+speedSel.value,a=document.createElement('a'),blob=wavBlob(b);
+  a.download=`voice-helix-${new Date(TAKE.d||Date.now()).toISOString().slice(0,10)}-${VERSION[which].title.toLowerCase().replace(/ /g,'-')}${k===1?'':'-'+k+'x'}.wav`;
+  const what=`${VERSION[which].title.toLowerCase()}${k===1?'':` at ${k}×`}`,dl=()=>{a.href=URL.createObjectURL(blob);document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),60000);
+    takeInfo.textContent=`Saved ${what} as ${a.download} (${b.duration.toFixed(1)} s), on this device only.`;};
+  const f=new File([blob],a.download,{type:'audio/wav'});if(!shareFile(f))return dl();
+  navigator.share({files:[f],title:a.download}).then(()=>{takeInfo.textContent=`Shared ${what} as ${a.download} (${b.duration.toFixed(1)} s); it goes only where you sent it.`;},
+    e=>{if(e&&e.name==='AbortError')takeInfo.textContent=`Not saved: the share sheet was closed.`;else dl();});}
 $('bSave').onclick=saveAudio;
 // Your take with a soft click on your own fitted pulse: hear where you sat ahead of it or behind it. Clicks go to the speakers only, never to the analysis.
 async function playPulse(){const B=TAKE.aspects.tm&&TAKE.aspects.tm.beats;if(!B)return;await playTake('take',Math.max(0,B[0]-1));const ctx=AU.source.context,k=+speedSel.value,t0=ctx.currentTime-Math.max(0,B[0]-1)/k,o=ctx.createOscillator(),g=ctx.createGain();
