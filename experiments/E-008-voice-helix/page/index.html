@@ -95,6 +95,7 @@ button:focus-visible,select:focus-visible,input:focus-visible,#rail:focus-visibl
 #takeRow .btn[disabled]{opacity:.4;cursor:default}
 #bRec[aria-pressed="true"]{color:var(--bg);background:var(--bad);border-color:var(--bad)}
 #takeInfo{font:11px/1.35 var(--f-mono);color:var(--fg-2);flex:none;max-width:620px;box-sizing:border-box;padding:4px 8px;border-radius:6px;background:var(--panel);backdrop-filter:blur(8px)}
+#cmpFig{flex:none;width:100%;max-width:620px;height:132px;border:1px solid var(--line);border-radius:4px;background:var(--panel);box-sizing:border-box}
 #takebar{flex:none;position:relative;height:52px;width:100%;max-width:620px;border:1px solid var(--line);border-radius:4px;background:var(--panel);overflow:hidden;cursor:pointer}
 #takebar svg{position:absolute;left:0;top:2px;width:100%;height:30px;pointer-events:none}
 #takebar svg .ln{fill:none;stroke:var(--pitch);stroke-width:2;vector-effect:non-scaling-stroke}
@@ -198,7 +199,7 @@ button:focus-visible,select:focus-visible,input:focus-visible,#rail:focus-visibl
   /* Phone with a take: the take (play row, timeline, summary, progress) comes first, the live
      readouts after it, and the 3D gap shrinks, so the singer reads the take without scrolling past the helix. */
   body.has-take #rail{margin-top:22vh}
-  body.has-take #takeRow,body.has-take #takeInfo{order:-4} body.has-take #takebar{order:-3} body.has-take #takeKey{order:-2} body.has-take #rating{order:-1}
+  body.has-take #takeRow,body.has-take #takeInfo{order:-4} body.has-take #takebar{order:-3} body.has-take #cmpFig,body.has-take #takeKey{order:-2} body.has-take #rating{order:-1}
   body.has-take #takeRow{display:grid;grid-template-rows:auto auto;grid-auto-flow:column;grid-auto-columns:max-content;max-width:none;overflow-x:auto;scrollbar-width:none;scroll-padding:0 12px;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent);padding-right:32px}
   #rating table.prog tr{display:grid;grid-template-columns:auto 1fr;column-gap:8px;align-items:center;padding:3px 0}
   #rating table.prog td:nth-child(1){grid-row:1} #rating table.prog td:nth-child(3){grid-row:1;text-align:right}
@@ -317,6 +318,7 @@ body.lane #rail,body.lane #labels,body.lane #flaws,body.lane #advice{display:non
     <select id="speed" aria-label="Playback speed" title="Slow down without changing pitch"><option value="1">1×</option><option value="0.75">0.75×</option><option value="0.5">0.5×</option></select>
   </div>
   <span id="takeInfo" role="status">Sing (or play any source) and record up to 60 s. Then play it back: the coach shows the exercise just before each spot that can improve.</span>
+  <canvas id="cmpFig" role="img" hidden></canvas>
   <section id="warmup" hidden aria-live="polite"></section>
   <section id="profile" hidden aria-live="polite"></section>
   <section id="data" hidden aria-live="polite"></section>
@@ -1831,9 +1833,9 @@ async function toPcm(buf){const SR=22050,x=buf.getChannelData(0),r=buf.sampleRat
   const c=new Float64Array(x.length+1);for(let i=0;i<x.length;i++)c[i+1]=c[i]+x[i];
   for(let i=0;i<y.length;i++){const u=i*r,j=Math.min(x.length-w,Math.floor(u));y[i]=j>=0?(c[j+w]-c[j])/w:0;}
   const p=new Int16Array(y.length);for(let i=0;i<y.length;i++)p[i]=Math.max(-32767,Math.min(32767,Math.round(y[i]*32767)));return {sr:SR,pcm:p};}
-async function storeAudio(d,buf){try{const a=await toPcm(buf);const keys=await adbDo('readonly',st=>st.getAllKeys());
+async function storeAudio(d,buf){CMPV=null;$('cmpFig').hidden=true;try{const a=await toPcm(buf);const keys=await adbDo('readonly',st=>st.getAllKeys());
     await adbDo('readwrite',st=>{st.put(a,d);const old=(keys||[]).filter(k=>k!==d).sort((x,y)=>x-y);for(const k of old.slice(0,Math.max(0,old.length+1-ADB.max)))st.delete(k);});}catch(e){}fillCompare();}
-async function fillCompare(){const sel=$('cmpSel'),b=$('bPlayCmp');let keys=[];try{keys=(await adbDo('readonly',st=>st.getAllKeys()))||[];}catch(e){}
+async function fillCompare(){CMPV=null;$('cmpFig').hidden=true;const sel=$('cmpSel'),b=$('bPlayCmp');let keys=[];try{keys=(await adbDo('readonly',st=>st.getAllKeys()))||[];}catch(e){}
   keys=keys.filter(k=>k!==TAKE.d).sort((x,y)=>y-x);const H=loadHist();sel.innerHTML=keys.map(k=>{const r=H.find(x=>x.d===k);const dt=new Date(k);
     return `<option value="${k}">${dt.toLocaleDateString(undefined,{day:'numeric',month:'short'})} ${dt.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'})}${r?` · ${Math.round(r.score*100)}`:''}</option>`;}).join('');
   if(keys.length>1)sel.insertAdjacentHTML('beforeend',`<option value="all">all ${keys.length} kept takes</option>`);sel.hidden=b.hidden=$('bSamePh').hidden=!keys.length;}
@@ -1880,6 +1882,24 @@ function phraseNums(perf,t0,t1){const N=perf.filter(n=>n.t1>t0-0.1&&n.t0<t1+0.1)
 function phraseSay(A,B){if(!A||!B)return '';const w=(x,y,u)=>{const s=`${u} ${x[0].toFixed(0)} ± ${x[1].toFixed(0)} → ${y[0].toFixed(0)} ± ${y[1].toFixed(0)} ¢`;
     return Math.abs(x[0]-y[0])<=x[1]+y[1]?`${s} (within the ±)`:`${s} (${y[0]<x[0]?'better':'worse'})`;};
   const p=[w(A.c,B.c,'off')];if(A.wob&&B.wob)p.push(w(A.wob,B.wob,'wobble'));if(A.sc!==B.sc)p.push(`scoops ${A.sc} → ${B.sc}`);return ` Then vs today (${A.n} and ${B.n} notes): ${p.join(', ')}.`;}
+// The versions drawn over each other: each phrase stretched to the same width, earlier takes moved into today's key
+// (the matcher's shift, in half steps), so the shape of the tune is what differs. Dashed earlier, solid today.
+var CMPV=null;
+function cmpLine(F,t0,t1,sh){return contour(F,t0,t1).map(([t,st])=>[(t-t0)/((t1-t0)||1),st+sh]);}
+function cmpGap(A,B){const d=[];let j=0;for(const [u,st] of A){while(j<B.length-1&&B[j+1][0]<u)j++;if(B.length)d.push(Math.abs(st-B[j][1]));}d.sort((x,y)=>x-y);return d.length?d[d.length>>1]:null;}
+function cmpDraw(u,on){const V=CMPV,c=$('cmpFig');if(!V)return;const css=getComputedStyle(document.documentElement),W=c.clientWidth,H=c.clientHeight,R=devicePixelRatio||1;
+  if(c.width!==Math.round(W*R)||c.height!==Math.round(H*R)){c.width=Math.round(W*R);c.height=Math.round(H*R);}
+  const g=c.getContext('2d');g.setTransform(R,0,0,R,0,0);g.clearRect(0,0,W,H);const L=34,Rt=8,T=20,B=8,all=V.lines.flatMap(l=>l.pts.map(p=>p[1]));
+  let lo=Math.floor(Math.min(...all)),hi=Math.ceil(Math.max(...all));if(hi-lo<6){const m=(lo+hi)>>1;lo=m-3;hi=m+3;}
+  const X=u=>L+u*(W-L-Rt),Y=st=>T+(hi-st)/(hi-lo)*(H-T-B),step=hi-lo>14?4:hi-lo>7?2:1;g.font='10px '+css.getPropertyValue('--f-mono');g.textBaseline='middle';
+  for(let m=lo;m<=hi;m+=step){g.strokeStyle='rgba(170,190,220,.12)';g.lineWidth=1;g.beginPath();g.moveTo(L,Y(m));g.lineTo(W-Rt,Y(m));g.stroke();g.fillStyle=css.getPropertyValue('--fg-3');g.textAlign='left';g.fillText(noteName(m+69),4,Y(m));}
+  V.lines.forEach((l,i)=>{const today=i===V.lines.length-1,hot=on===i;g.strokeStyle=css.getPropertyValue(today?'--pitch':'--copper');g.globalAlpha=hot||on==null?1:.5;if(!today&&on==null)g.globalAlpha=(i+1)/(V.lines.length-1);
+    g.lineWidth=hot?2.5:1.5;g.setLineDash(today?[]:[5,3]);g.lineJoin='round';g.beginPath();let was=null;for(const [a,st] of l.pts){if(was===null||a-was>0.04/V.dur*2)g.moveTo(X(a),Y(st));else g.lineTo(X(a),Y(st));was=a;}g.stroke();g.globalAlpha=1;});
+  g.setLineDash([]);if(on!=null){g.strokeStyle=css.getPropertyValue('--fg');g.lineWidth=1;g.beginPath();g.moveTo(X(u),T);g.lineTo(X(u),H-B);g.stroke();}
+  const say=V.lines.length>3?[V.lines[0],V.lines[V.lines.length-2],V.lines[V.lines.length-1]]:V.lines;let x=L;g.textBaseline='top';for(const l of say){const t=(on!=null&&V.lines[on]===l?'▶ ':'')+l.name;g.fillStyle=css.getPropertyValue(l===V.lines[V.lines.length-1]?'--pitch':'--copper');g.fillText(t,x,5);x+=g.measureText(t).width+14;}}
+function cmpShow(ctx,s,lines,segs,dur){const c=$('cmpFig');CMPV={lines,dur};c.hidden=false;const today=lines[lines.length-1];
+  c.setAttribute('aria-label',`Pitch of the same phrase drawn over each other, in today's key: ${lines.map((l,i)=>i<lines.length-1?`${l.name}, ${(cmpGap(l.pts,today.pts)*100).toFixed(0)} cents from today at the median`:'today').join('; ')}.`);
+  const t0=ctx.currentTime,tick=()=>{if(!CMPV||CMPV.lines!==lines)return;const pos=ctx.currentTime-t0,g=segs.find(q=>pos>=q.a&&pos<q.b),done=AU.source!==s;if(done||pos>segs[segs.length-1].b){cmpDraw();return;}cmpDraw(g?clamp((pos-g.a)/(g.b-g.a),0,1):0,g?g.i:undefined);requestAnimationFrame(tick);};cmpDraw();requestAnimationFrame(tick);}
 function joinClips(parts,sr){const n=parts.reduce((s,p)=>s+Math.ceil((p.t1-p.t0)*sr)+Math.round(0.5*sr),0),out=mkBuf(n,sr),y=out.getChannelData(0);let o=0;
   for(const p of parts){const x=p.buf.getChannelData(0),r=p.buf.sampleRate/sr,L=Math.ceil((p.t1-p.t0)*sr),a=p.t0*p.buf.sampleRate;
     for(let i=0;i<L;i++){const u=a+i*r,j=Math.floor(u),f=u-j;if(j+1<x.length)y[o+i]=x[j]*(1-f)+x[j+1]*f;}
@@ -1899,6 +1919,7 @@ async function playSamePhrase(){const v=$('cmpSel').value;if(!v||!TAKE.frames)re
   const pad=0.2,clip=(buf,a,b)=>({buf,t0:Math.max(0,a-pad),t1:Math.min(buf.duration,b+pad)});
   const b=joinClips([...found.map(f=>clip(f.E.buf,f.m.t0,f.m.t1)),clip(TAKE.buf,ph.t0,ph.t1)],ctx.sampleRate);
   const s=ctx.createBufferSource();s.buffer=b;s.connect(AU.cap);s.connect(ctx.destination);s.start();AU.source=s;AU.kind='cmp';markSrc(null);goLive();
+  {const lines=[...found.map(f=>({name:day(f.k),pts:cmpLine(f.E.F,f.m.t0,f.m.t1,f.m.shift)})),{name:'today',pts:cmpLine(TAKE.frames,ph.t0,ph.t1,0)}],parts=[...found.map(f=>f.m.t1-f.m.t0),ph.t1-ph.t0];let at=0;const segs=parts.map((L,i)=>{const a=at+Math.min(pad,0.2),q={a,b:a+L,i};at+=L+2*pad+0.5;return q;});cmpShow(ctx,s,lines,segs,ph.t1-ph.t0);}
   const today=phraseNums(P||[],ph.t0,ph.t1);TAKE.lastSP.n=found.length;
   if(found.length===1){const {k,E,m}=found[0],sh=Math.abs(m.shift)>=0.5?`, ${Math.abs(m.shift)} semitone${Math.abs(m.shift)>1?'s':''} ${m.shift>0?'higher':'lower'} then`:'';
     takeInfo.textContent=`Same phrase: ${day(k)} at ${mmss(m.t0)}${sh}, then today at ${mmss(ph.t0)} (${(ph.t1-ph.t0).toFixed(1)} s; tune match ±${m.cost.toFixed(2)} st). ${phraseSay(phraseNums(E.perf,m.t0,m.t1),today)} Step ◀ ▶ to pick another phrase.`;return;}

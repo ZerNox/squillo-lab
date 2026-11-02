@@ -256,6 +256,10 @@ async function run([name, launch, ctxOpt, file]) {
     await p.selectOption('#cmpSel', 'all'); await tap(p.locator('#bSamePh'));
     await p.waitForFunction(() => /kept takes, oldest|not found/.test(document.getElementById('takeInfo').textContent), null, { timeout: 30000 }).catch(() => {});
     r.spAll = await p.evaluate(() => ({ kind: AU.kind, said: /Same phrase in 2 of 2 kept takes, oldest first: .* then today [0-9]+ ± [0-9]+ ¢ off/.test(document.getElementById('takeInfo').textContent) }));
+    // Same phrase drawn: versions over each other in today's key; a copy moved up 2 st comes back onto today's line, a line was painted.
+    r.spFig = await p.evaluate(() => { const c = document.getElementById('cmpFig'), d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; let ink = 0; for (let i = 3; i < d.length; i += 4) if (d[i]) ink++; const L = TAKE.lastSP, F = TAKE.frames, up = F.map(f => ({ t: f.t, f0: f.f0 * 2 ** (2 / 12) })), m = samePhrase(F, L.ph.t0, L.ph.t1, up); return { shown: !c.hidden, h: c.clientHeight, ink, lines: CMPV.lines.length, say: c.getAttribute('aria-label'), shift: m.shift, gap: cmpGap(cmpLine(up, m.t0, m.t1, m.shift), cmpLine(F, L.ph.t0, L.ph.t1, 0)) }; });
+    console.log('spFig', JSON.stringify(r.spFig)); if (!r.spFig.shown || r.spFig.ink < 200 || r.spFig.lines !== 3 || r.spFig.shift !== -2 || !(r.spFig.gap < 0.3)) throw new Error('phrase figure: ' + JSON.stringify(r.spFig));
+    await p.locator('#cmpFig').screenshot({ path: join(out, `${name}-cmpfig.png`) });
     // Range finder: the intro shows in the profile; three synthetic steps (lowest A2, highest A4) go through the page's analysis and show in the profile.
     r.rf = await p.evaluate(async () => { const intro = !!document.getElementById('rfGo'); const sr = 48000, mk = (T, m) => { const n = sr * T, b = mkBuf(n, sr), x = b.getChannelData(0); let ph = 0;
         for (let i = 0; i < n; i++) { ph += 2 * Math.PI * 440 * Math.pow(2, (m(i / sr) - 69) / 12) / sr; for (let h = 1; h <= 6; h++) x[i] += 0.2 * Math.sin(h * ph) / h; } return b; };

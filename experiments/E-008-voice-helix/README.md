@@ -22,6 +22,8 @@ Edit the page on `main` only.
 
 On the device: `sw.js`, only after the singer presses 'keep for no network' under my data (automatic, it hung taps in WebKit on Linux), keeps the page, clips, fonts and icons, network first with a 4 s limit; `manifest.webmanifest` adds it to a home screen; fonts are in `font/`, so no request leaves the site (check.mjs fails on one). A real outage reopens it in Chrome, Firefox and WebKit (`check/offline-check.mjs`). Takes and audio are never seen by the service worker.
 
+Same phrase, seen: ▶ same phrase also draws the versions found over each other, earlier dashed and today solid, in today's key and stretched to one width, with a playhead following what sounds (`LOG.md`, 2026-11-02).
+
 Three stations in one scene, the camera flies between them:
 
 | View | Encodes | Shows |

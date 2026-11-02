@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-02 · same phrase, seen as well as heard
+
+Found: ▶ same phrase played the versions and gave numbers, but a singer could not see where they differ. Built: the found versions drawn over each other under the take: earlier dashed, today solid, in today's key by the matcher's half-step shift, each stretched to the same width, note names at the side, the sounding one bold with a playhead, a text alternative with median distance from today. Under the score line on a phone, so the first screen stays 177 px. check.mjs: a copy moved up 2 st returns shift -2 and lands on today's line (gap 0 st); Chrome, Firefox, WebKit. Linear stretch, so timing differences inside a phrase show as sideways offset; no new accuracy claim. iOS risk: canvas redraw per frame during playback, not measured on a phone. Next: noise part 3 or register transitions inside a take.
+
 ## 2026-11-02 · the scale of a take; aiming notes from the key, dropped
 
 Tried: a note over 30 ¢ off, nearest a semitone outside the take's scale, read against the scale neighbour instead, so a 70 ¢ flat note is not called 30 ¢ sharp of the wrong one. `check/key-bench.mjs` (first form in git only as numbers here): Krumhansl-Kessler correlation at 90 % resample agreement, sure on 1-3 % of synthetic takes, 40-63 % right; scale by held time, 40-note takes sure 32 %, off notes aimed right 18.9 %, 0 plain notes moved; vocadito sure on 3/40 clips, 0/624 pushed notes restored, key held under pushes 57.5 %. Too rarely sure on real short melodies, so not shipped. Kept: 'Your notes fit the scale of G major / E minor' in the summary, from 30 notes at 90 % sure, no tonic claimed. Synthetic random walks, 600 takes each: 40 notes said 330, right 324 = 98.2 %; 60 notes said 462, right 462. Vocadito (no key labels, about 15 s clips): said on 2/40, agrees with annotator notes 2/2, so mostly silent on short takes. No iOS risk: note arithmetic only, 200 resamples at summary time. Next: noise part 3.
