@@ -1182,11 +1182,13 @@ function leanLine(l,good){if(!l||l.R<LEAN_R||l.alt>LEAN_ALT)return [];const c=l.
 // against the median of its body (0.12 s in, to 0.25 s before the end), cents; then the take's mean over notes, ± 1.96 SE. Needs 6 such notes.
 // Said beyond TAIL_MIN and its ± over 8 notes or more (vocadito: fewer gave 2 of 2 claims the hand f0 did not make); praised when the whole interval sits inside it. Frames are the take's, after trimEdges. check/tail-bench.mjs.
 const TAIL_MIN=20;
-function takeTail(fr){const med=a=>a.slice().sort((x,y)=>x-y)[a.length>>1],d=[];
+function takeTail(fr){const med=a=>a.slice().sort((x,y)=>x-y)[a.length>>1],d=[],at=[];
   for(const n of segNotes(fr)){if(n.dur<0.5)continue;const v=fr.filter(f=>f.voiced&&f.ok&&f.t>=n.t0&&f.t<=n.t1+0.03);if(v.length<20)continue;const a=v[0].t,z=v[v.length-1].t;
     const body=v.filter(f=>f.t>=a+0.12&&f.t<=z-0.25).map(f=>f.midi),end=v.filter(f=>f.t>z-0.18).map(f=>f.midi);if(body.length<5||end.length<5)continue;
-    d.push(100*(end.reduce((x,y)=>x+y,0)/end.length-med(body)));}
-  const k=d.length;if(k<6)return null;const m=d.reduce((x,y)=>x+y,0)/k,sd=Math.sqrt(d.reduce((x,y)=>x+(y-m)**2,0)/(k-1));return {cents:m,ci:1.96*sd/Math.sqrt(k),n:k};}
+    d.push(100*(end.reduce((x,y)=>x+y,0)/end.length-med(body)));at.push([a,z]);}
+  const k=d.length;if(k<6)return null;const m=d.reduce((x,y)=>x+y,0)/k,sd=Math.sqrt(d.reduce((x,y)=>x+(y-m)**2,0)/(k-1));
+  let w=0;for(let i=1;i<k;i++)if(d[i]*Math.sign(m)>d[w]*Math.sign(m))w=i;/* the note that moved furthest the way the take does, to hear against spotless */
+  return {cents:m,ci:1.96*sd/Math.sqrt(k),n:k,worst:{c:d[w],t0:at[w][0],t1:at[w][1]}};}
 function tailLine(t,good){if(!t)return [];const c=t.cents,a=Math.abs(c),e=t.ci.toFixed(0);
   if(good)return a+t.ci<TAIL_MIN?[`Your long notes held their pitch to the end: the last fifth of a second sat ${a.toFixed(0)} ± ${e} ¢ from the rest of the note, over ${t.n} notes.`]:[];
   return a>=TAIL_MIN&&a>t.ci&&t.n>=8?[`Note endings: as you let your long notes go, their last fifth of a second sits ${a.toFixed(0)} ± ${e} ¢ ${c<0?'under':'over'} the rest of the note (${t.n} notes). If that is not a ${c<0?'fall-off':'lift'} you mean as style, sing a long “oo” and stop it by stopping the air, not by letting go of the note, with the ♪ drone on; then a slow messa di voce that keeps its pitch as it fades (Titze & Verdolini Abbott 2012).`]:[];}
@@ -1534,17 +1536,17 @@ function renderRating(){const a=TAKE.aspects;if(!a){ratingEl.hidden=true;return;
   const work=R?order.slice(-2).reverse().filter(x=>R.per[x.k]<0.75).slice(0,R.R>=2200?1:2):order.filter(x=>vsMed(x)<-0.34).reverse().slice(0,2);
   const wl=work.map(x=>`${x.name} (${fmt(x,a[x.k])} ${x.unit}): ${ASPECT_WORK[x.k].ex}${x.k==='onset'?' Slides into notes are a style in pop and soul: work on them only where you did not mean them.':''}`);
   if(hw)wl.unshift(`Your furthest-off held note, at ${mmss(hw.t0)}, was ${hw.c.toFixed(0)} ¢ off the take's grid: hear it, then the same note tuned, and sing along with the second. ${hear(hw,'worst','▶ yours, then tuned')} ${hw.m===undefined?'':`<button class="btn hear" id="bTry" data-m="${hw.m}" data-d="${hw.d}" data-t0="${hw.t0}" data-t1="${hw.t1}">🎙 sing it again</button><div id="tryBox" aria-live="polite"></div>`}`);
-  wl.push(...clarLine(a,false),...driftLine(a.drift,false),...leanLine(a.lean,false),...tailLine(a.tail,false),...timingLine(a.tm,false));
+  wl.push(...clarLine(a,false),...driftLine(a.drift,false),...leanLine(a.lean,false),...tailLine(a.tail,false).map(t=>a.tail.worst?`${t} The note at ${mmss(a.tail.worst.t0)} ${a.tail.worst.c<0?'fell':'rose'} ${Math.abs(a.tail.worst.c).toFixed(0)} ¢ as it ended: hear it, then held to the end. ${hear(a.tail.worst,'tail','▶ yours, then held')}`:t),...timingLine(a.tm,false));
   if(a.breaks&&a.breaks.length)wl.push(`Your voice flipped register on a glide ${a.breaks.length>1?a.breaks.length+' times, ':''}around ${a.breaks.map(b=>nn(Math.round(b.m))+' at '+mmss(b.t)).join(', ')}: sirens on “ng” through that spot, slowly and lightly, help the two registers meet (Titze 2006).`);if(TAKE.stretch)wl.push(`The line dips lowest in the 10 s before ${mmss(TAKE.stretch.lo[0])}: click the bar there to listen back.`);
   if(wl.length)h+='<h2>To work on</h2><ul>'+wl.map(t=>`<li>${t}</li>`).join('')+'</ul>';
   {const n=[...(a.perf||[])].filter(n=>n.t1-n.t0>=0.4).sort((p,q)=>q.c-p.c)[0];if(TAKE.next&&n)h+=`<h2>Your next step</h2><p>One thing only: your tuning, each note moved half way to in tune, everything else as you sang it. It is the step you can reach next. Hear the note it changes most, at ${mmss(n.t0)}, then sing along with the second. ${hear(n,'next','▶ yours, then next step')}</p>`;}
   {const ln=[...a.perf].filter(n=>n.t1-n.t0>=0.8).sort((x,y)=>(y.t1-y.t0)-(x.t1-x.t0))[0];if(ln)h+=`<h2>Where this can go</h2><p>Your longest note, at ${mmss(ln.t0)}, as it is, then in your far vision: tuned, even vibrato, a gentle swell. One possible far point. ${hear(ln,'far','▶ yours, then far')}</p>`;}
   h+=`<p class="fine">${R?`Provisional Elo: each reference voice is one game on intonation, steadiness and clean onsets (tone clarity depends on the microphone and room, so it is not rated). 2000 is the median conservatory-trained singer in ${R.pool}. It ranks you within this pool, not the world.`:''} The take's tuning is ${a.off>=0?'+':''}${(a.off*100).toFixed(0)} ¢ from A440; notes are measured on that grid. <span id="pitchAcc">How sure the pitch is: on 40 real a cappella excerpts by 29 singers (vocadito, CC BY 4.0) this tracker puts 97.4 ± 0.8 % of sung moments within half a semitone of hand-checked pitch; lower voices 97.3 ± 1.4 %, higher 97.8 ± 0.7 %; about 1 in 8 breaths or consonants is read as a note.</span></p>`;
   ratingEl.innerHTML=h+'<div id="oldMarks"></div>'+renderProgress();fillOldMarks();for(const e of ratingEl.querySelectorAll('[data-hear]'))e.onclick=()=>{const t0=+e.dataset.t0,t1=+e.dataset.t1;
-    if(e.dataset.hear==='pulse')playPulse();else if(e.dataset.hear==='worst')abLoop(t0,t1,'note');else if(e.dataset.hear==='far')abLoop(t0,t1,'longest note','far');else if(e.dataset.hear==='next')abLoop(t0,t1,'note','next');else playTake('take',Math.max(0,t0-0.3),Math.min(TAKE.buf.duration,t1+0.3));};for(const e of ratingEl.querySelectorAll('[data-kept]'))e.onclick=()=>playKept(+e.dataset.kept,+e.dataset.t0,+e.dataset.t1);const bt=$('bTry');if(bt)bt.onclick=()=>drillGo(bt);const od=$('openData');if(od)od.onclick=()=>{renderData();$('data').scrollIntoView({block:'nearest'});};}
+    if(e.dataset.hear==='pulse')playPulse();else if(e.dataset.hear==='worst')abLoop(t0,t1,'note');else if(e.dataset.hear==='tail')abLoop(t0,t1,'note ending');else if(e.dataset.hear==='far')abLoop(t0,t1,'longest note','far');else if(e.dataset.hear==='next')abLoop(t0,t1,'note','next');else playTake('take',Math.max(0,t0-0.3),Math.min(TAKE.buf.duration,t1+0.3));};for(const e of ratingEl.querySelectorAll('[data-kept]'))e.onclick=()=>playKept(+e.dataset.kept,+e.dataset.t0,+e.dataset.t1);const bt=$('bTry');if(bt)bt.onclick=()=>drillGo(bt);const od=$('openData');if(od)od.onclick=()=>{renderData();$('data').scrollIntoView({block:'nearest'});};}
 // Target pitch per frame for "spotless": a 250 ms running median inside each voiced run (keeps the
 // melody, drops wobble), the start of each note (up to 300 ms, a third of notes from 200 ms) held at its
-// settled pitch (no scoop), then snapped
+// settled pitch (no scoop), the end of a long run held at its pitch (no sag), then snapped
 // to the take's semitone grid. amount 1 is spotless, 0.5 is half way from the take to spotless.
 // Resynthesis is pitch-synchronous overlap-add with Hann grains.
 // "Far vision" (far given): spotless, plus on every held note of 0.8 s or more even vibrato faded in after 0.2 s and a swell of ±1.5 dB. check/far-bench.mjs.
@@ -1559,12 +1561,15 @@ function improveTake(buf,frames,amount,off,far,only){const sr=buf.sampleRate,x=b
   for(let a=0;a<F;){if(!m[a]){a++;continue;}let b=a;while(b+1<F&&m[b+1])b++;
     for(let i=a;i<=b;i++){const w=[];for(let k=Math.max(a,i-6);k<=Math.min(b,i+6);k++)w.push(m[k]);w.sort((p,q)=>p-q);tg[i]=w[w.length>>1];}
     if(b-a>=10){const k0=a+Math.min(15,Math.floor((b-a)/3));for(let i=a;i<k0;i++)if(Math.abs(tg[i]-tg[k0])>0.4)tg[i]=tg[k0];}
+    // held to the end: on a run of 0.5 s or more the last 0.26 s keeps the pitch of the 0.3 s before it (a sag as the note is let go is dropped; check/tailfix-bench.mjs)
+    if(b-a>=25){const z=b-12,w=Array.from(tg.subarray(z-15,z)).sort((p,q)=>p-q),h=w[w.length>>1];for(let i=z;i<=b;i++)if(Math.abs(tg[i]-h)>0.1)tg[i]=h;}
     if(only){nextPitch(m,tg,a,b,amount,off);a=b+1;continue;}
     for(let i=a;i<=b;i++){const g=Math.round(tg[i]-off)+off;tg[i]=m[i]+amount*(g-m[i]);}
     if(far)for(let i=a;i<=b;){let e=i;const g=Math.round(tg[i]-off);while(e<b&&Math.round(tg[e+1]-off)===g)e++;const L=e-i+1;
       if(L>=40){far.notes++;let ph=0;for(let j=i;j<=e;j++){const u=(j-i)*hop;ph+=2*Math.PI*far.rate*(1+0.03*Math.sin(2*Math.PI*0.7*u))*hop;tg[j]+=far.ext*clamp((u-0.2)/0.3,0,1)*clamp((e-j)*hop/0.1,0,1)*Math.sin(ph);gn[j]=3*Math.sin(Math.PI*(j-i)/(L-1))-1.5;}}i=e+1;}
     a=b+1;}
   const ratio=new Float64Array(F);for(let i=0;i<F;i++)ratio[i]=m[i]?clamp(Math.pow(2,(tg[i]-m[i])/12),0.8,1.25):1;
+  if(!far&&!only&&amount===1)for(let i=1;i<F;i++)if(!m[i]&&m[i-1]&&i>=26&&m[i-26])for(let j=i;j<Math.min(F,i+4)&&!m[j];j++)ratio[j]=ratio[i-1];/* a fading tail sounds past its last voiced frame */
   const fi=t=>clamp(Math.round(t/hop),0,F-1),per=smp=>{const i=fi(smp/sr);return frames[i]&&frames[i].f0?sr/frames[i].f0:sr*0.005;},rat=smp=>{if(far||only){const q=clamp(smp/sr/hop,0,F-1),i=Math.floor(q),u=q-i;return ratio[i]*(1-u)+ratio[Math.min(F-1,i+1)]*u;}const i=fi(smp/sr);let a=0,c=0;for(let k=Math.max(0,i-2);k<=Math.min(F-1,i+2);k++){a+=ratio[k];c++;}return a/c;};
   // Analysis marks one period apart, each snapped to the waveform peak within a quarter period, so
   // successive grains start at the same point of the cycle (pitch-synchronous).

@@ -365,9 +365,13 @@ async function run([name, launch, ctxOpt, file]) {
     r.tail = await p.evaluate(async () => { const mk = async D => { const sr = 44100, n = sr * 12, b = mkBuf(n, sr), x = b.getChannelData(0), sc = [0, 2, 4, 5, 7, 5, 4, 2, 0, 4]; let ph = 0;
         for (let i = 0; i < n; i++) { const s = i / sr, k = Math.floor(s / 1.15), u = s - k * 1.15; if (k >= 10 || u > 1) { ph = 0; continue; } const rel = Math.max(0, (u - 0.8) / 0.2), f = 220 * Math.pow(2, (sc[k] + D / 100 * rel) / 12); ph += 2 * Math.PI * f / sr;
           x[i] = 0.25 * Math.min(1, u / 0.04, (1 - u) / 0.03) * (1 - 0.5 * rel) * (Math.sin(ph) + 0.5 * Math.sin(2 * ph) + 0.3 * Math.sin(3 * ph)); }
-        const fs = await trackTake(b); viterbiF0(fs); trimEdges(fs, b); const S = new Stats(); for (const m of fs) ingest(S, m, 'take'); return takeTail(S.rec.frames); };
+        const fs = await trackTake(b); viterbiF0(fs); trimEdges(fs, b); const S = new Stats(); for (const m of fs) ingest(S, m, 'take'); mk.last = mk.last || b; return takeTail(S.rec.frames); };
       const a = await mk(-80), z = await mk(0);
-      return !!a && !!z && a.cents < -20 && /^Note endings: .* ¢ under the rest/.test(tailLine(a, false)[0] || '') && !tailLine(z, false).length && /^Your long notes held their pitch/.test(tailLine(z, true)[0] || '') && { a: +a.cents.toFixed(0), ci: +a.ci.toFixed(0), z: +z.cents.toFixed(0) }; });
+      // held ending, heard: the furthest-falling note is picked, and spotless holds it (check/tailfix-bench.mjs)
+      const rd = async b => { const fs = await trackTake(b); viterbiF0(fs); trimEdges(fs, b); const S = new Stats(); for (const m of fs) ingest(S, m, 'take'); return takeTail(S.rec.frames); };
+      const sc = await scanTake(mk.last), held = await rd(improveTake(mk.last, sc.frames, 1, sc.aspects.off));
+      if (!a || !a.worst || a.worst.c > -20 || a.worst.t1 - a.worst.t0 < 0.5 || !held || Math.abs(held.cents) > 10) return false;
+      return !!a && !!z && a.cents < -20 && /^Note endings: .* ¢ under the rest/.test(tailLine(a, false)[0] || '') && !tailLine(z, false).length && /^Your long notes held their pitch/.test(tailLine(z, true)[0] || '') && { a: +a.cents.toFixed(0), ci: +a.ci.toFixed(0), z: +z.cents.toFixed(0), held: +held.cents.toFixed(0) }; });
     r.lean = await p.evaluate(() => { const L = { cents: -30, ci: 12, hi: 69, lo: 57, R: 0.7, alt: 0.6 }; return /sit 30 ± 12 ¢ under your low ones/.test(leanLine(L, false)[0] || '') && !leanLine({ ...L, alt: 0.95 }, false).length && /^High and low notes sit together/.test(leanLine({ ...L, cents: 3 }, true)[0] || '') && !leanLine({ ...L, cents: 3 }, false).length; });
     // Key drift on the progress line: 12 seeded takes whose drift falls 70 to 15 ¢ (two without a drift) read 'better', the row exists, not rated.
     r.kdrift = await p.evaluate(() => { const H = Array.from({ length: 12 }, (_, i) => { const r = { d: Date.now() - (12 - i) * 36e5, score: 0.6, inton: 10, stab: 5, onset: 0.1, clar: 25, tone: -1 }; if (i !== 2 && i !== 9) r.kdrift = 70 - i * 5; return r; });
