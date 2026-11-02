@@ -94,7 +94,7 @@ button:focus-visible,select:focus-visible,input:focus-visible,#rail:focus-visibl
 #takeRow{display:flex;gap:6px;flex-wrap:wrap;align-items:center;max-width:620px}
 #takeRow .btn[disabled]{opacity:.4;cursor:default}
 #bRec[aria-pressed="true"]{color:var(--bg);background:var(--bad);border-color:var(--bad)}
-#takeInfo{font:11px/1.35 var(--f-mono);color:var(--fg-2);flex:1 1 220px;padding:4px 8px;border-radius:6px;background:var(--panel);backdrop-filter:blur(8px)}
+#takeInfo{font:11px/1.35 var(--f-mono);color:var(--fg-2);flex:none;max-width:620px;box-sizing:border-box;padding:4px 8px;border-radius:6px;background:var(--panel);backdrop-filter:blur(8px)}
 #takebar{flex:none;position:relative;height:52px;width:100%;max-width:620px;border:1px solid var(--line);border-radius:4px;background:var(--panel);overflow:hidden;cursor:pointer}
 #takebar svg{position:absolute;left:0;top:2px;width:100%;height:30px;pointer-events:none}
 #takebar svg .ln{fill:none;stroke:var(--pitch);stroke-width:2;vector-effect:non-scaling-stroke}
@@ -198,7 +198,8 @@ button:focus-visible,select:focus-visible,input:focus-visible,#rail:focus-visibl
   /* Phone with a take: the take (play row, timeline, summary, progress) comes first, the live
      readouts after it, and the 3D gap shrinks, so the singer reads the take without scrolling past the helix. */
   body.has-take #rail{margin-top:22vh}
-  body.has-take #takeRow{order:-4} body.has-take #takebar{order:-3} body.has-take #takeKey{order:-2} body.has-take #rating{order:-1}
+  body.has-take #takeRow,body.has-take #takeInfo{order:-4} body.has-take #takebar{order:-3} body.has-take #takeKey{order:-2} body.has-take #rating{order:-1}
+  body.has-take #takeRow{display:grid;grid-template-rows:auto auto;grid-auto-flow:column;grid-auto-columns:max-content;max-width:none;overflow-x:auto;scrollbar-width:none;scroll-padding:0 12px;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent);padding-right:32px}
   #rating table.prog tr{display:grid;grid-template-columns:auto 1fr;column-gap:8px;align-items:center;padding:3px 0}
   #rating table.prog td:nth-child(1){grid-row:1} #rating table.prog td:nth-child(3){grid-row:1;text-align:right}
   #rating table.prog td:nth-child(2){grid-column:1/-1;width:auto;min-width:0}
@@ -314,8 +315,8 @@ body.lane #rail,body.lane #labels,body.lane #flaws,body.lane #advice{display:non
     <button class="btn" id="bProf" title="Your range, voice type and a key for any song, from your takes">♪ voice profile</button>
     <button class="btn" id="bData" title="What is kept on this device: save a copy, bring one back, or delete it all">⛁ my data</button>
     <select id="speed" aria-label="Playback speed" title="Slow down without changing pitch"><option value="1">1×</option><option value="0.75">0.75×</option><option value="0.5">0.5×</option></select>
-    <span id="takeInfo" role="status">Sing (or play any source) and record up to 60 s. Then play it back: the coach shows the exercise just before each spot that can improve.</span>
   </div>
+  <span id="takeInfo" role="status">Sing (or play any source) and record up to 60 s. Then play it back: the coach shows the exercise just before each spot that can improve.</span>
   <section id="warmup" hidden aria-live="polite"></section>
   <section id="profile" hidden aria-live="polite"></section>
   <section id="data" hidden aria-live="polite"></section>

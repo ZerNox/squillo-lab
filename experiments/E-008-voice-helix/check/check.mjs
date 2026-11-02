@@ -245,6 +245,8 @@ async function run([name, launch, ctxOpt, file]) {
     // Same phrase: the earlier take is this take's own audio, so the phrase around the current note is found at the same time and plays.
     await tap(p.locator('#bSamePh')); await p.waitForFunction(() => /Same phrase:|not found/.test(document.getElementById('takeInfo').textContent), null, { timeout: 20000 }).catch(() => {});
     await p.locator('#takeRow').screenshot({ path: join(out, `${name}-samephrase.png`) });
+    // Phone: two swipeable rows of take controls keep the score line on the first screen, every control still reachable.
+    if (name.includes('iphone')) { r.rowFit = await p.evaluate(() => { const t = document.getElementById('takeRow'), b = document.getElementById('takebar'), h = t.getBoundingClientRect().height; return { h, gap: b.getBoundingClientRect().top - t.getBoundingClientRect().top, sw: t.scrollWidth, cw: t.clientWidth }; }); if (r.rowFit.gap > 300 || r.rowFit.sw <= r.rowFit.cw) throw new Error('take row: ' + JSON.stringify(r.rowFit)); console.log('rowFit', JSON.stringify(r.rowFit)); }
     r.sp = await p.evaluate(() => { const L = TAKE.lastSP; return { kind: AU.kind, said: /Same phrase:/.test(document.getElementById('takeInfo').textContent), nums: /Then vs today .*off [0-9]+ ± [0-9]+ → [0-9]+ ± [0-9]+ ¢ \(within the ±\)/.test(document.getElementById('takeInfo').textContent), dt: L && L.m ? +Math.abs(L.m.t0 - L.ph.t0).toFixed(2) : null, cost: L && L.m ? +L.m.cost.toFixed(2) : null }; });
     // All kept takes: a second copy stored two days earlier; with "all" picked the phrase is found in both, oldest first, then today.
     await p.evaluate(async () => { await storeAudio(Date.now() - 2 * 864e5, TAKE.buf); });

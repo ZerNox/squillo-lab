@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-02 · phone: score line on the first screen
+
+Found: after a take, 15 controls wrapped to five rows on iPhone, and the score line started 270 px down. Built: under 720 px, two swipeable rows, right edge fading to show there is more; status text moved out of the row. Row top to score line 177 px (screenshot, iPhone 15 size), gated in check.mjs; every control still reachable, desktop unchanged. Cost: phrase and note tools need a swipe. iOS risk: mask with momentum scroll on a real phone, unseen. Next: noise part 3.
+
 ## 2026-11-02 · the whole span, take and live
 
 Found: `check/span-bench.mjs` (page code, both paths, A1-E6, plain, vibrato, breathy, thin, phone high-pass, 3 notes per cell) read 100 % from C2 up, and 0 % at A1: the floor stopped at 60 Hz, so a low bass was silent. Built: `F0MIN` 46 Hz, A1 now 100 % on both. Vocadito 40 clips: take RPA 97.4 → 97.3, FA 12.9 → 13.1, OA 94.1 → 94.0; live clean OA 93.2 same, FA 8.8 → 8.3; pink 10 dB same; hum 10 dB OA 87.2 → 86.2, hum 0 42.5 → 42.0. All within ±. Lag chip about +2.5 ms at 48 kHz. Synthetic only under C2; CPP still floors at 60 Hz. iOS risk: yin about 30 % more worker CPU per frame, not measured on a phone. Next: noise part 3, or experience.
