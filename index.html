@@ -316,6 +316,7 @@ body.lane #rail,body.lane #labels,body.lane #flaws,body.lane #advice{display:non
     <button class="btn" id="bProf" title="Your range, voice type and a key for any song, from your takes">♪ voice profile</button>
     <button class="btn" id="bData" title="What is kept on this device: save a copy, bring one back, or delete it all">⛁ my data</button>
     <select id="speed" aria-label="Playback speed" title="Slow down without changing pitch"><option value="1">1×</option><option value="0.75">0.75×</option><option value="0.5">0.5×</option></select>
+    <button class="btn" id="bSave" disabled title="Save the version you last played, at the speed chosen, as a WAV file on this device">⤓ save audio</button>
   </div>
   <span id="takeInfo" role="status">Sing (or play any source) and record up to 60 s. Then play it back: the coach shows the exercise just before each spot that can improve.</span>
   <canvas id="cmpFig" role="img" hidden></canvas>
@@ -993,7 +994,7 @@ async function setTake(buf){TAKE.busy=true;
   TAKE.next=improveTake(buf,sc.frames,0.5,sc.aspects.off,null,true);
   TAKE.rating=ANCHORS&&sc.aspects.ok?rateAspects(sc.aspects,ANCHORS):null;TAKE.d=null;TAKE.marks=[];if(sc.aspects.ok){const h=saveTake(sc.aspects);TAKE.d=h[h.length-1].d;storeAudio(TAKE.d,buf);}$('today').hidden=true;TAKE.busy=false;renderTakebar();renderRating();document.body.classList.add('has-take');
   if(matchMedia('(max-width:720px)').matches)$('takeRow').scrollIntoView({block:'start',behavior:'smooth'});
-  bPlayTake.disabled=bPlayHalf.disabled=bPlaySpot.disabled=bPlayFar.disabled=bPlayNext.disabled=bPrevNote.disabled=bNextNote.disabled=bMark.disabled=$('bLoopPh').disabled=$('bSingPh').disabled=false;TAKE.ni=-1;
+  bPlayTake.disabled=bPlayHalf.disabled=bPlaySpot.disabled=bPlayFar.disabled=bPlayNext.disabled=bPrevNote.disabled=bNextNote.disabled=bMark.disabled=$('bLoopPh').disabled=$('bSingPh').disabled=$('bSave').disabled=false;TAKE.ni=-1;
   const names=[...new Set(TAKE.segs.map(g=>FLAWS[g.i].name))];
   takeInfo.textContent=(tr.cut>0.5||tr.talk>0?`Cut ${tr.cut>0.5?`${tr.cut.toFixed(1)} s of silence`:''}${tr.cut>0.5&&tr.talk>0?' and ':''}${tr.talk>0?`${tr.talk.toFixed(0)} s of talk or noise`:''}: only the singing is scored. `:'')+(TAKE.segs.length?`${TAKE.segs.length} spot${TAKE.segs.length>1?'s':''} to work on (${names.join(', ')}), marked on the bar. Play your take, next step, halfway or spotless.`:`Clean take: no flaw held long enough to coach. ${(sc.voiced*100).toFixed(0)} % of it was voiced.`);}
 // Pitch of a take, decided over the whole take: a Viterbi path through each frame's YIN candidates
@@ -1653,6 +1654,14 @@ function wsola(src,k){const sr=src.sampleRate,x=src.getChannelData(0),n=x.length
 const speedSel=$('speed');
 function versionBuf(which){const b=which==='take'?TAKE.buf:TAKE[which],k=+speedSel.value;if(!b||k===1)return b;
   TAKE.slow=TAKE.slow||{};const key=which+k;if(!TAKE.slow[key]||TAKE.slow[key].src!==b)TAKE.slow[key]={src:b,buf:wsola(b,k)};return TAKE.slow[key].buf;}
+// Save audio: the version last played (or your take), at the chosen speed, as a 16-bit mono WAV, made and kept on the device (no upload).
+function wavBlob(b){const x=b.getChannelData(0),n=x.length,sr=b.sampleRate,v=new DataView(new ArrayBuffer(44+2*n)),w=(o,t)=>{for(let i=0;i<t.length;i++)v.setUint8(o+i,t.charCodeAt(i));};
+  w(0,'RIFF');v.setUint32(4,36+2*n,true);w(8,'WAVEfmt ');v.setUint32(16,16,true);v.setUint16(20,1,true);v.setUint16(22,1,true);v.setUint32(24,sr,true);v.setUint32(28,2*sr,true);v.setUint16(32,2,true);v.setUint16(34,16,true);w(36,'data');v.setUint32(40,2*n,true);
+  for(let i=0;i<n;i++)v.setInt16(44+2*i,Math.round(clamp(x[i],-1,1)*32767),true);return new Blob([v],{type:'audio/wav'});}
+function saveAudio(){const which=(AU.play&&AU.play.which)||TAKE.nw||'take',b=versionBuf(which);if(!b)return;const k=+speedSel.value,a=document.createElement('a');
+  a.href=URL.createObjectURL(wavBlob(b));a.download=`voice-helix-${new Date(TAKE.d||Date.now()).toISOString().slice(0,10)}-${VERSION[which].title.toLowerCase().replace(/ /g,'-')}${k===1?'':'-'+k+'x'}.wav`;
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),60000);takeInfo.textContent=`Saved ${VERSION[which].title.toLowerCase()}${k===1?'':` at ${k}×`} as ${a.download} (${b.duration.toFixed(1)} s), on this device only.`;}
+$('bSave').onclick=saveAudio;
 // Your take with a soft click on your own fitted pulse: hear where you sat ahead of it or behind it. Clicks go to the speakers only, never to the analysis.
 async function playPulse(){const B=TAKE.aspects.tm&&TAKE.aspects.tm.beats;if(!B)return;await playTake('take',Math.max(0,B[0]-1));const ctx=AU.source.context,k=+speedSel.value,t0=ctx.currentTime-Math.max(0,B[0]-1)/k,o=ctx.createOscillator(),g=ctx.createGain();
   o.frequency.value=1500;g.gain.value=0;o.connect(g);g.connect(ctx.destination);for(const b of B){const t=t0+b/k;if(t<ctx.currentTime)continue;g.gain.setValueAtTime(0.08,t);g.gain.setValueAtTime(0,t+0.015);}o.start();AU.source.addEventListener('ended',()=>{try{o.stop();}catch(e){}});AU.clicks=o;}
