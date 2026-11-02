@@ -112,6 +112,8 @@ music first with `tools/separate-vocals.sh` (Demucs).
 Without looking: "say note" (N key) speaks the held note and its cents off
 
 Lane: a fifth view for reading while singing. The last 8 s as a flat line on a semitone grid, and the held note in big letters with cents and ± (`laneRead`: median of the last 0.4 s of the same note, on vibrato the mean of the whole cycles in the last 0.7 s, ± from how far they differ, 3 ¢ floor). `check/lane-bench.mjs`, page code, synthetic, 5 voices 110-660 Hz, offsets -60..45 ¢: straight median error 0.4 ¢, max 1.1, truth inside ± 100 %; vibrato ±0.5 st, 4.5-7 Hz, median 2.2 ¢, max 4.8, median ± 4, truth inside ± 97.1 %. Live frames only, no real-voice figure.
+
+Lane note endings: once a held note of 0.5 s or more stops, the Lane says "last note held to the end" or "last note fell/rose N ¢ as you let go · ±" for 4 s (`laneEnd`: last 0.18 s against the 0.5 s before it, ± from the end's spread, 6 ¢ floor; said at 20 ¢ and beyond ±). `check/lane-end-bench.mjs`, page code, live frames, synthetic 5 voices × straight/vibrato × 4, 0.2 s releases: level said 0/40, wrong way 0/240; -80 ¢ said 27/40 (straight 20/20, vibrato 7/20), -40 ¢ 13/40; reads about half the move, as the take reading does. Vibrato notes are rarely judged either way (wide ±). No real-voice figure.
 (or off the target note) through a polite live region, so a screen reader
 (VoiceOver, NVDA, TalkBack) says it while you sing: once a note is held
 0.4 s, again when it changes or every 4 s; ±10 ¢ is called in tune. `?` lists

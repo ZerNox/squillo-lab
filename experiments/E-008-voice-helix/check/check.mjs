@@ -111,6 +111,10 @@ async function run([name, launch, ctxOpt, file]) {
     const drone = await p.evaluate(async () => { const B = document.getElementById('bDrone'), T = document.getElementById('tNote'), keep = T.value; T.value = '60'; T.dispatchEvent(new Event('change')); B.click(); await new Promise(r => setTimeout(r, 300)); const a = { on: DRONE.on, st: DRONE.ctx.state, f: DRONE.o[0].frequency.value, label: B.textContent }; T.value = '62'; T.dispatchEvent(new Event('change')); const m = DRONE.m; B.click(); const off = DRONE.on; T.value = keep; T.dispatchEvent(new Event('change')); return { ...a, m, off }; });
     if (!drone.on || drone.st !== 'running' || Math.abs(drone.f - 261.63) > 0.1 || drone.label !== '♪ C4' || drone.m !== 62 || drone.off) throw new Error('drone: ' + JSON.stringify(drone));
     if (!/^[A-G]♯?\d$/.test(lane.note) || !/±/.test(lane.c) || lane.rail !== 'none' || lane.cv !== 'block' || lane.ink < 100) throw new Error('lane: ' + JSON.stringify(lane));
+    // Live note endings: a 1 s note whose last 0.2 s falls 80 ¢ is named as falling once it stops; a level one reads 'held'; nothing while it sounds.
+    const lend = await p.evaluate(() => { const mk = D => { const h = []; for (let t = 0; t <= 1; t += 0.01) h.push({ t, voiced: true, ok: true, midi: 60 + D / 100 * Math.max(0, (t - 0.8) / 0.2) }); return h; };
+      const f = laneEnd(mk(-80), 1.2), l = laneEnd(mk(0), 1.2); return { f: laneEndText(f), l: laneEndText(l), during: laneEnd(mk(-80), 1.0), el: !!document.querySelector('#laneRead #laneEnd') }; });
+    if (!/^last note fell \d+ ¢ as you let go · ±\d+$/.test(lend.f) || lend.l !== 'last note held to the end' || lend.during !== null || !lend.el) throw new Error('lane note end: ' + JSON.stringify(lend));
     await tap(p.locator('#vHelix'));
     if (touch) { await tap(p.getByRole('button', { name: 'Recording' })); await p.waitForTimeout(300); await p.setInputFiles('#file', file); }
     else { const [fc] = await Promise.all([p.waitForEvent('filechooser'), p.getByRole('button', { name: 'Recording' }).click()]); await fc.setFiles(file); }
