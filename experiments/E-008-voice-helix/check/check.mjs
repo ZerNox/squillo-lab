@@ -115,6 +115,10 @@ async function run([name, launch, ctxOpt, file]) {
     const lend = await p.evaluate(() => { const mk = D => { const h = []; for (let t = 0; t <= 1; t += 0.01) h.push({ t, voiced: true, ok: true, midi: 60 + D / 100 * Math.max(0, (t - 0.8) / 0.2) }); return h; };
       const f = laneEnd(mk(-80), 1.2), l = laneEnd(mk(0), 1.2); return { f: laneEndText(f), l: laneEndText(l), during: laneEnd(mk(-80), 1.0), el: !!document.querySelector('#laneRead #laneEnd') }; });
     if (!/^last note fell \d+ ¢ as you let go · ±\d+$/.test(lend.f) || lend.l !== 'last note held to the end' || lend.during !== null || !lend.el) throw new Error('lane note end: ' + JSON.stringify(lend));
+    // Live note starts: a note that comes in 80 ¢ under and slides up over 0.25 s is named while it sounds; a level one 'landed'.
+    const lst = await p.evaluate(() => { const mk = D => { const h = []; for (let t = 0; t <= 0.7; t += 0.01) h.push({ t, voiced: true, ok: true, midi: 60 + D / 100 * Math.max(0, 1 - t / 0.25) ** 2 }); return h; };
+      return { u: laneStartText(laneStart(mk(-80), 0.7)), l: laneStartText(laneStart(mk(0), 0.7)), early: laneStart(mk(-80).filter(h => h.t <= 0.3), 0.3), el: !!document.querySelector('#laneRead #laneStart') }; });
+    if (!/^came in \d+ ¢ under, then found it · ±\d+$/.test(lst.u) || lst.l !== 'landed right on the note' || lst.early !== null || !lst.el) throw new Error('lane note start: ' + JSON.stringify(lst));
     await tap(p.locator('#vHelix'));
     if (touch) { await tap(p.getByRole('button', { name: 'Recording' })); await p.waitForTimeout(300); await p.setInputFiles('#file', file); }
     else { const [fc] = await Promise.all([p.waitForEvent('filechooser'), p.getByRole('button', { name: 'Recording' }).click()]); await fc.setFiles(file); }
