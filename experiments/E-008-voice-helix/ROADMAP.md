@@ -74,6 +74,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Same phrase seen: found versions drawn over each other in today's key, synced to playback.
 - Note endings: long notes falling or rising as they are let go, in the summary with ± and an exercise, praised when held, on the progress and week lines and in 'since your last take' (synthetic -80 ¢ said 10/10, level 0/10 false; vocadito page vs hand f0 SD 9.7 ¢, 0 opposite).
 - Live note endings: the Lane says 'held to the end' or 'fell N ¢ as you let go' after each long note (synthetic level said 0/40, wrong way 0/240, -80 ¢ 27/40).
+- Warm-up also targets note endings, key drift, clarity and rhythm when takes keep naming them (2 of the last 5).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
