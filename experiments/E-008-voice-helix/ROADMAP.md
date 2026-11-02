@@ -67,6 +67,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Live Viterbi with one frame's lag (vocadito clean RPA 90.6 → 94.3, FA 6.5 → 8.8, OA 91.8 → 93.2; pink 10 dB OA 88.9 → 90.4; +20 ms on the lag chip).
 - Today's session: from a day's second take, best notes with ▶, better/level/further vs earlier takes, one point for next time (VocalSet false change 1/440 sessions; finds 13-29 % of a clarity change, wrong way 0).
 - Moments you marked: the newest 6 marks from kept earlier takes, ▶ and ✕, in the summary.
+- Whole span: take and live read A1-E6 on five spectra, floor 60 → 46 Hz (synthetic 100 % in every cell, A1 was 0 %; vocadito unchanged within ±, live hum 10 dB OA -1).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 

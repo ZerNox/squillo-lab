@@ -32,7 +32,7 @@ const r = await p.evaluate(async ([N, SEED]) => {
         x[i] = env * (0.2 * v + nz); }
       const buf = mkBuf(n, sr); buf.getChannelData(0).set(x);
       const fs = await trackTake(buf); const before = fs.map(m => ({ v: m.voiced, f: m.f0 })); viterbiF0(fs);
-      fs.forEach((m, i) => { const tc = m.t + 0.0025 - (Math.min(Math.floor(sr / 60), 4096 - 1024) + 512) / sr, j = Math.round(tc * sr / 240); const T = j >= 0 && j < tf.length ? tf[j] : 0;
+      fs.forEach((m, i) => { const tc = m.t + 0.0025 - (Math.min(Math.floor(sr / (+process.env.FL || 46)), 4096 - 1024) + 512) / sr, j = Math.round(tc * sr / 240); const T = j >= 0 && j < tf.length ? tf[j] : 0;
         // skip frames within 40 ms of a note edge (the truth there is ambiguous)
         const ok = j - 8 >= 0 && j + 8 < tf.length && tf[j - 8] > 0 && tf[j + 8] > 0;
         if (T > 0 && ok) { acc.n++; for (const [v, f, g, o, u, c] of [[before[i].v, before[i].f, 'gB', 'oB', 'uB', acc.cB], [m.voiced, m.f0, 'gA', 'oA', 'uA', acc.cA]]) {

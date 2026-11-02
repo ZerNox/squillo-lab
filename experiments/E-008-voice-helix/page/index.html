@@ -368,6 +368,7 @@ const midiOf=f=>69+12*Math.log2(f/440), hzOf=m=>440*Math.pow(2,(m-69)/12);
 const noteName=m=>NOTE[((Math.round(m)%12)+12)%12]+(Math.floor(Math.round(m)/12)-1);
 const VOWELS={a:[730,1090,2440],e:[530,1840,2480],i:[270,2290,3010],o:[570,840,2410],u:[300,870,2240]};
 const VLBL={a:'ah',e:'eh',i:'ee',o:'oh',u:'oo'};
+const F0MIN=46; // lowest pitch read: below a bass G1 (49 Hz); same value in the worker
 const TD={T:200,F:72,fmin:70,fmax:6000,size:[9,2.6,6.5]}; // terrain: 200 columns at 50 Hz = 4 s
 
 // ───────────────────────── DSP (runs in a Worker; inline fallback) ─────────────────────────
@@ -376,15 +377,15 @@ const DSP_SRC=String.raw`
 // Live level gate, as a multiple of the calibrated room's level: 3 shut out most singing below 10 dB over the room. Voicing limit: V in quiet, rising with the noise's share of the frame (check/live-noise-bench.mjs, breathy-live-bench.mjs).
 const LN={G:1.5,V:0.3,K:4,R:0.12,M:2,E:0.05,C:1,D:1,U:0.28,J:0.035,S:0.25,O:0.15,N:1,NM:0.6};
 // Live tracking: the take's Viterbi run forward, each frame deciding the frame D hops back from the best path so far (check/live-noise-bench.mjs). C:0 goes back to the gates above. Reference clips use the gates, as trained.
-function lagVit(){const Q=[];let prev=null,pc=null;return m=>{const D=LN.D,c=(m.cs||[]).filter(q=>q[0]>50&&q[0]<F0MAX),n=c.length,fmax=n?Math.max(...c.map(q=>q[0])):0,cost=new Float64Array(n+1),bp=new Int32Array(n+1),c0=Math.min(LN.NM,LN.N*m.nf*m.nf/Math.max(1e-12,m.rms*m.rms));
+function lagVit(){const Q=[];let prev=null,pc=null;return m=>{const D=LN.D,c=(m.cs||[]).filter(q=>q[0]>F0MIN&&q[0]<F0MAX),n=c.length,fmax=n?Math.max(...c.map(q=>q[0])):0,cost=new Float64Array(n+1),bp=new Int32Array(n+1),c0=Math.min(LN.NM,LN.N*m.nf*m.nf/Math.max(1e-12,m.rms*m.rms));
   for(let k=0;k<=n;k++){const em=k<n?Math.max(0,c[k][1]-c0)/(1-c0)+LN.O*Math.log2(fmax/c[k][0]):LN.U;let bc=0,bk=n;
     if(prev){bc=Infinity;for(let j=0;j<prev.length;j++){const uk=k===n,uj=j===pc.length,tr=uk||uj?(uk&&uj?0:LN.S):LN.J*Math.min(24,Math.abs(12*Math.log2(c[k][0]/pc[j][0]))),v=prev[j]+tr;if(v<bc){bc=v;bk=j;}}}
     cost[k]=bc+em;bp[k]=bk;}
   const low=Math.min(...cost);for(let k=0;k<=n;k++)cost[k]-=low;prev=cost;pc=c;Q.push({t:m.t,c,bp});if(Q.length>D+1)Q.shift();if(Q.length<D+1)return null;
   let k=0;for(let j=1;j<=n;j++)if(cost[j]<cost[k])k=j;for(let i=Q.length-1;i>0;i--)k=Q[i].bp[k];const h=Q[0];return k<h.c.length?{t:h.t,f0:h.c[k][0],cmnd:h.c[k][1]}:{t:h.t,f0:0,cmnd:1};};}
 const YW=1024;let yinD=new Float32Array(1);
-const F0MAX=1400;
-function yin(buf,sr,prevF0){const tauMax=Math.min(Math.floor(sr/60),buf.length-YW),tauMin=Math.floor(sr/F0MAX);if(yinD.length<tauMax+1)yinD=new Float32Array(tauMax+1);
+const F0MAX=1400,F0MIN=46;
+function yin(buf,sr,prevF0){const tauMax=Math.min(Math.floor(sr/F0MIN),buf.length-YW),tauMin=Math.floor(sr/F0MAX);if(yinD.length<tauMax+1)yinD=new Float32Array(tauMax+1);
   const off=buf.length-YW-tauMax;let run=0,best=-1;
   for(let tau=1;tau<=tauMax;tau++){let s=0;for(let j=0;j<YW;j++){const d=buf[off+j]-buf[off+j+tau];s+=d*d;}run+=s;yinD[tau]=run>0?s*tau/run:1;}
   const cands=[];for(let tau=tauMin+1;tau<tauMax;tau++)if(yinD[tau]<(S.offline?CG:0.5)&&yinD[tau]<=yinD[tau-1]&&yinD[tau]<yinD[tau+1])cands.push(tau);
@@ -441,7 +442,7 @@ function analyse(t){const sr=S.sr;const buf=new Float32Array(N);const st=(S.w-N+
     postMessage({type:'feat',n:S.count,t,rms,voiced:false,f0:0,cmnd:1,hnr:0,cpp:0,h12:0,tilt:0,a1p0:0,F:null,col:new Float32Array(FB)});return;}
   if(!S.lv&&LN.C&&!S.offline&&!S.gates)S.lv=lagVit();const thr=Math.max(0.004,S.noiseRms*LN.G);let f0=0,cmnd=1,cs=null;if(rms>thr){const y=yin(buf,sr,(S.prevT>=0&&t-S.prevT<0.12)?S.prevF0:0);f0=y.f0;cmnd=y.cmnd;cs=y.cs;}
   S.peak=Math.max(rms,(S.peak||0)*Math.pow(0.5,0.02));
-  const cand=rms>thr&&rms>=LN.R*S.peak&&cmnd<Math.min(0.65,LN.V+LN.K*S.noiseRms*S.noiseRms/Math.max(1e-9,rms*rms))&&f0>50&&f0<F0MAX;
+  const cand=rms>thr&&rms>=LN.R*S.peak&&cmnd<Math.min(0.65,LN.V+LN.K*S.noiseRms*S.noiseRms/Math.max(1e-9,rms*rms))&&f0>F0MIN&&f0<F0MAX;
   S.run=cand?(S.run&&Math.abs(Math.log2(f0/S.runF))<1/12?S.run+1:1):0;S.runF=f0;let voiced=cand&&S.run>=LN.M;
   if(S.lv){const r=S.lv({t,rms,nf:S.noiseRms,cs:rms>thr&&rms>=LN.R*S.peak?cs:null});t=r?r.t:t;f0=r?r.f0:0;cmnd=r?r.cmnd:1;voiced=f0>0;}
   let hnr=0,cpp=0,h12=0,tilt=0,spr=0,a1p0=0,F=null,nasOk=false,henv=null;
@@ -626,7 +627,7 @@ function ingest(st,m,src){const now=m.t;st.at=now;const FT=st.ft,HIST=st.HIST;co
 const LAT={log:[],n:0,pend:0,ms:[]};
 function latCap(len){LAT.n+=len;LAT.log.push([LAT.n,performance.now()]);if(LAT.log.length>64)LAT.log.shift();}
 function latFrame(){if(!LAT.pend)return;const now=performance.now(),sr=AU.sr||48000;
-  const ms=now-LAT.pend+20+500*(Math.min(Math.floor(sr/60),4096-1024)+512)/sr+1000*(AU.kind==="mic"&&AU.micLat||0);LAT.pend=0;LAT.ms.push(ms);if(LAT.ms.length>300)LAT.ms.shift();}
+  const ms=now-LAT.pend+20+500*(Math.min(Math.floor(sr/F0MIN),4096-1024)+512)/sr+1000*(AU.kind==="mic"&&AU.micLat||0);LAT.pend=0;LAT.ms.push(ms);if(LAT.ms.length>300)LAT.ms.shift();}
 function latStats(){const a=LAT.ms.slice(-150).sort((x,y)=>x-y);if(a.length<10)return null;return {med:a[Math.floor(a.length/2)],p90:a[Math.floor(a.length*0.9)],n:a.length};}
 window.__lat=()=>latStats();
 function onDspMsg(m){if(m.type==='feat'){if(AU.kind&&m.n&&!LAT.pend){const e=LAT.log.find(x=>x[0]===m.n);if(e)LAT.pend=e[1];}ingest(LIVE,m,AU.kind);}else if(m.type==='calib'){calibrating=false;setStatus(`Mic live. Noise floor ${m.floorDb.toFixed(0)} dB, subtracted from every spectrum. Sing a note, hold it, then speak.`);}}
@@ -1007,12 +1008,12 @@ function viterbiF0(feats){const L=feats.length;if(!L)return;const snr=roomSnr(fe
       if(prev){bc=Infinity;const pc=C[i-1];for(let j=0;j<prev.length;j++){const uk=k===n,uj=j===pc.length;const tr=uk||uj?(uk&&uj?0:VIT.S):VIT.J*Math.min(24,Math.abs(12*Math.log2(c[k][0]/pc[j][0])));const v=prev[j]+tr;if(v<bc){bc=v;bk=j;}}}
       cost[k]=bc+em;bp[k]=bk;}prev=cost;back.push(bp);}
   let k=0;for(let j=1;j<prev.length;j++)if(prev[j]<prev[k])k=j;
-  for(let i=L-1;i>=0;i--){const m=feats[i],c=C[i];if(m.cs){if(k<c.length){m.f0=c[k][0];m.cmnd=c[k][1];m.voiced=m.f0>50&&m.f0<1400;}else m.voiced=false;}k=back[i][k];}}
+  for(let i=L-1;i>=0;i--){const m=feats[i],c=C[i];if(m.cs){if(k<c.length){m.f0=c[k][0];m.cmnd=c[k][1];m.voiced=m.f0>F0MIN&&m.f0<1400;}else m.voiced=false;}k=back[i][k];}}
 // Note edges: a frame's 40 ms window still hears a note 20 ms after it ends (and before it starts), so the
 // first and last frames of each voiced run are checked on a short window (2 periods, at least 10 ms) centred
 // where the pitch belongs: below E × the run's median short-window level they are unvoiced, up to EN per
 // edge. Measured on vocadito in check/vocadito-bench.mjs.
-function trimEdges(fs,buf){if(!VIT.E||!fs.length)return;const x=buf.getChannelData(0),sr=buf.sampleRate,off=0.0025-(Math.min(Math.floor(sr/60),4096-1024)+512)/sr;
+function trimEdges(fs,buf){if(!VIT.E||!fs.length)return;const x=buf.getChannelData(0),sr=buf.sampleRate,off=0.0025-(Math.min(Math.floor(sr/F0MIN),4096-1024)+512)/sr;
   const lv=m=>{const h=Math.max(Math.round(0.005*sr),Math.round(sr/m.f0)),c=Math.round((m.t+off)*sr);let e=0,n=0;for(let i=Math.max(0,c-h);i<Math.min(x.length,c+h);i++){e+=x[i]*x[i];n++;}return n?Math.sqrt(e/n):0;};
   for(let i=0;i<fs.length;){if(!fs[i].voiced){i++;continue;}let j=i;while(j<fs.length&&fs[j].voiced)j++;
     if(j-i>2*VIT.EN){const L=[];for(let k=i;k<j;k++)L.push(lv(fs[k]));const med=[...L].sort((a,b)=>a-b)[L.length>>1],th=VIT.E*med;

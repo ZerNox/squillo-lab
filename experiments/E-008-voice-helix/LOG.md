@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-02 · the whole span, take and live
+
+Found: `check/span-bench.mjs` (page code, both paths, A1-E6, plain, vibrato, breathy, thin, phone high-pass, 3 notes per cell) read 100 % from C2 up, and 0 % at A1: the floor stopped at 60 Hz, so a low bass was silent. Built: `F0MIN` 46 Hz, A1 now 100 % on both. Vocadito 40 clips: take RPA 97.4 → 97.3, FA 12.9 → 13.1, OA 94.1 → 94.0; live clean OA 93.2 same, FA 8.8 → 8.3; pink 10 dB same; hum 10 dB OA 87.2 → 86.2, hum 0 42.5 → 42.0. All within ±. Lag chip about +2.5 ms at 48 kHz. Synthetic only under C2; CPP still floors at 60 Hz. iOS risk: yin about 30 % more worker CPU per frame, not measured on a phone. Next: noise part 3, or experience.
+
 ## 2026-11-01 · moments you marked, from earlier takes
 
 Found: a ⚑ was kept per take but could only be reached on its own take's bar, so the next take orphaned it. Built: 'Moments you marked' in the summary: the newest 6 marks whose audio is still kept (last 10 takes), ▶ from 1 s before, ✕ to remove. No accuracy claim, nothing measured beyond the check. Marks on takes past the last 10 stay in my data but do not list. iOS risk: as compare. Next: first to last take of a day on real re-sung data, if an open set turns up; else noise part 3.
@@ -33,12 +37,4 @@ Found: phrase tries vanished at reload, and another melody could read as the phr
 ## 2026-11-01 · sing the phrase
 
 Found: only one note could be re-sung and read; singers practise phrases. Built: 🎙 sing phrase (P): the phrase around the current note, tuned, in their own voice; they sing it; each note reads ¢ with ±, at any tempo or key, against the take. Decided: read against full tuning, as the target is what they hear. `check/sing-bench.mjs`, page code: see README; synthetic 470/470 notes, median 0.1 ¢ straight, 6.0 vibrato (p90 16.4), ± covers 99-100 %; key moves 74/80; other melody wrongly accepted 5/31, a known weak spot; vocadito shift proxy accepted 205/240, median 3.0, p90 22.4 ¢, 97 % inside ±. No truly re-sung phrase measured. iOS risk: as sing it again, mic and playback in one tap; loudspeaker bleed stops before capture. Next: live voicing cue.
-
-## 2026-11-01 · next step: tuning alone, half way
-
-Found: 'halfway' moved everything at once, so a singer could not hear one reachable step. Built: `▶ next step` (key 5), each whole note moved half way to the take's grid, wobble, vibrato and scoops kept; 'Your next step' in the summary with an A/B on the note it changes most. `check/next-bench.mjs`, page code, median [range], read back: synthetic 30 takes, five voices, intonation 17.4 [13.9, 23.8] → 8.7 [6.6, 13.1] ¢; VocalSet 11 clips of 30 scanned OK, 15.8 [11.5, 22.6] → 10.2 [5.4, 23.0] ¢ (render at amount 0: 15.4). Planned one step per top point; steadiness and clean starts were dropped, as neither read back beyond the render's own floor (steadiness VocalSet 1.05 as sung, floor 1.35, moved 1.37; synthetic scoops floor 0.33, moved 0.29 per note). The reading side of scoops is noisy after any render, a finding for later. The other readings: steadiness floor rises on VocalSet, so a render adds about 0.3 ¢. 'Reachable' is a choice (half the error), not a measured training result. iOS risk: one more render at scan time on long takes. Next: live voicing cue, or a scoop reading that survives a render.
-
-## 2026-11-01 · live false alarms: gate sweep, no change
-
-`check/live-noise-bench.mjs`, page code, vocadito 40 clips, clean: level gate R 0.12 (kept) RPA 90.6 ± 1.3, FA 6.5 ± 1.4, OA 91.8 ± 1.0; R 0.2 89.2, 4.5, 91.5; R 0.28 87.4, 3.2, 90.6. Pink 10 dB barely moves. On every 3rd clip, M 3 (OA 88.2) and V 0.2 (OA 90.6) also lose. These gates only trade RPA for FA, so nothing shipped; a real gain needs a new cue, not a limit. Next: a new voicing cue for live, such as periodicity across two frames or Viterbi with short lookahead.
 
