@@ -423,10 +423,10 @@ const db=new Float32Array(N/2+1),col=new Float32Array(FB);
 const CPP_FLOOR=90,CN=N/2,cfft=makeFFT(CN),cre=new Float32Array(CN),cim=new Float32Array(CN);
 function cppOf(f0,sr0){const sr=sr0/2;let mx=-200;for(let i=0;i<=CN/2;i++)if(db[i]>mx)mx=db[i];const fl=mx-CPP_FLOOR;
   for(let i=0;i<CN;i++){const v=db[i<=CN/2?i:CN-i];cre[i]=v>fl?v:fl;cim[i]=0;}cfft(cre,cim);
-  const lo=Math.floor(sr/1100),hi=Math.min(CN/2-1,Math.ceil(sr/60));let n=0,sx=0,sy=0,sxx=0,sxy=0;
-  for(let i=lo;i<=hi;i++){const y=10*Math.log10((cre[i]*cre[i]+cim[i]*cim[i])/(CN*CN)+1e-12);cre[i]=y;n++;sx+=i;sy+=y;sxx+=i*i;sxy+=i*y;}
+  const lo=Math.floor(sr/1100),hi=Math.min(CN/2-1,Math.ceil(sr/60)),hp=Math.min(CN/2-1,Math.ceil(sr/F0MIN));let n=0,sx=0,sy=0,sxx=0,sxy=0;
+  for(let i=lo;i<=hp;i++){const y=10*Math.log10((cre[i]*cre[i]+cim[i]*cim[i])/(CN*CN)+1e-12);cre[i]=y;if(i<=hi){n++;sx+=i;sy+=y;sxx+=i*i;sxy+=i*y;}}
   const a=(n*sxy-sx*sy)/(n*sxx-sx*sx),b=(sy-a*sx)/n,q0=sr/f0;let best=-1e9,bi=0;
-  for(let i=Math.max(lo,Math.floor(q0*0.92));i<=Math.min(hi,Math.ceil(q0*1.08));i++)if(cre[i]-(a*i+b)>best){best=cre[i]-(a*i+b);bi=i;}
+  for(let i=Math.max(lo,Math.floor(q0*0.92));i<=Math.min(hp,Math.ceil(q0*1.08));i++)if(cre[i]-(a*i+b)>best){best=cre[i]-(a*i+b);bi=i;}
   return bi?best:0;}
 const S={sr:48000,ring:new Float32Array(16384),w:0,count:0,next:0,hop:0.02,prevF0:0,prevT:-1,calib:null,prof:null,noiseRms:0,floorDb:-100};
 function spectrum(buf){for(let i=0;i<N;i++){re[i]=buf[i]*win[i];im[i]=0;}fft(re,im);for(let b=0;b<=N/2;b++){const m=Math.hypot(re[b],im[b])*4/N;db[b]=20*Math.log10(m+1e-9);}
