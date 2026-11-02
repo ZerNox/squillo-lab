@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-02 · note endings
+
+Found: nothing read whether pitch sags (or lifts) as a long note is let go, a common habit the singer cannot hear in the moment. Built: `takeTail`: per note of 0.5 s or more, the last 0.18 s against the body, take mean ± 1.96 SE; the summary praises "held their pitch to the end" or names the sag with ± and an exercise (stop the air, not the note, over the drone; messa di voce; Titze & Verdolini Abbott 2012), saying a fall-off may be style. `check/tail-bench.mjs`: synthetic 0.2 s falls read about 0.46 of the move; -80 ¢ said 10/10, level 0/10 false and praised 10/10, wrong way 0/60; vocadito page vs hand f0 -2.7 ¢ (SD 9.7), says 3 of 20, hand 2, 0 opposite (8-note gate set on those clips). check.mjs: a falling and a held 10-note take; Chrome, Firefox, WebKit iPhone. Next: noise part 3, or note endings live and in the progress lines once real use shows it is said often enough.
+
 ## 2026-11-02 · save audio on a phone: the share sheet
 
 Found: on iOS Safari a blob download opens a preview, not a saved file (named as a risk last run). Built: on a touch screen where `navigator.canShare({files})` holds, ⤓ hands the same WAV to the share sheet (Files, Voice Memos, a message); closing the sheet says "not saved", any other share error falls back to the download; desktops download as before. check.mjs, with share stubbed: the shared file decodes to the playing version's length, close and fallback paths; Chrome, Firefox, WebKit iPhone. iOS risk: the real share sheet is not reachable headless; the WAV is built synchronously inside the click so the gesture holds. Next: noise part 3, or register (falsetto vs chest) once labelled clips are on hand (none locally).
@@ -37,8 +41,4 @@ Found: a ⚑ was kept per take but could only be reached on its own take's bar, 
 ## 2026-11-01 · today's session
 
 Found: the summary read one take; the mission says every session, and nothing spoke for a day's singing. Built: 'Today's session' from the second take of a day: takes and minutes, today's steadiest and longest in-tune notes with ▶ from kept audio, better / level / further against up to 10 earlier takes, one point for next time with its exercise. Decided: Welch's t at 99 % with the aspect's tol as a floor, since up to 7 aspects are tested per session; described aspects stay out. `check/session-bench.mjs`, page code, VocalSet straight clips dealt into today and earlier: false change 1/440 sessions = 0.2 % (0.0-1.3), 11 singers, draws share clips and same-day takes are likely more alike than these; normal draws one aspect 1.7 % (1.3-2.1). Power is low: clarity breathy → straight better 35/120, reverse worse 16/120, wrong way 0. Quiet by design. A NaN limit on overall made it always claim; seen in the rendered text, fixed, now gated. Notes before this version have no `lt`, so no ▶. iOS risk: ▶ awaits IndexedDB after resume, as compare does. Next: a real-voice view of first to last take in a day.
-
-## 2026-11-01 · live trellis: short-level cost, no change
-
-`check/live-noise-bench.mjs`, 14 vocadito clips, clean: a voiced cost when the centred 2-period level falls under T × frame level. Off: OA 93.5, FA 9.5; P 1, T 0.5: 93.6, 9.3; P 0.5, T 0.8: 93.5, 8.6, RPA 94.4. Pink 10 dB unmoved. Same trade again, reverted. Live ghost frames are not worth more cue-hunting on this data; next run moves to experience.
 

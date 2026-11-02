@@ -72,6 +72,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Scale of a take: named in the summary from 30 notes when 90 % sure (synthetic 98-100 % right; vocadito said on 2/40, no key labels); aiming off notes from the key tried, dropped (0/624 restored on vocadito).
 - Save audio: ⤓ the version last played, at the chosen speed, as a WAV on the device; the share sheet on phones.
 - Same phrase seen: found versions drawn over each other in today's key, synced to playback.
+- Note endings: long notes falling or rising as they are let go, in the summary with ± and an exercise, praised when held (synthetic -80 ¢ said 10/10, level 0/10 false; vocadito page vs hand f0 SD 9.7 ¢, 0 opposite).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
