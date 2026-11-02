@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-02 · save audio on a phone: the share sheet
+
+Found: on iOS Safari a blob download opens a preview, not a saved file (named as a risk last run). Built: on a touch screen where `navigator.canShare({files})` holds, ⤓ hands the same WAV to the share sheet (Files, Voice Memos, a message); closing the sheet says "not saved", any other share error falls back to the download; desktops download as before. check.mjs, with share stubbed: the shared file decodes to the playing version's length, close and fallback paths; Chrome, Firefox, WebKit iPhone. iOS risk: the real share sheet is not reachable headless; the WAV is built synchronously inside the click so the gesture holds. Next: noise part 3, or register (falsetto vs chest) once labelled clips are on hand (none locally).
+
 ## 2026-11-02 · save audio
 
 Found: a singer could hear their take, next step, spotless and far vision only inside the page. Built: ⤓ save audio writes the version last played, at the chosen speed (WSOLA), as a 16-bit mono WAV made in the page, never uploaded. check.mjs: the saved file decodes back to the same length and sample rate as the playing version, named `voice-helix-<date>-<version>.wav`; Chrome, Firefox, WebKit. Register classifier inside a take considered and left: no falsetto-labelled clips on hand. iOS risk: Safari shows a download sheet for blob links rather than saving silently; not tried on a phone. Next: noise part 3, or register (falsetto vs chest) from VocalSet labels.
@@ -37,8 +41,4 @@ Found: the summary read one take; the mission says every session, and nothing sp
 ## 2026-11-01 · live trellis: short-level cost, no change
 
 `check/live-noise-bench.mjs`, 14 vocadito clips, clean: a voiced cost when the centred 2-period level falls under T × frame level. Off: OA 93.5, FA 9.5; P 1, T 0.5: 93.6, 9.3; P 0.5, T 0.8: 93.5, 8.6, RPA 94.4. Pink 10 dB unmoved. Same trade again, reverted. Live ghost frames are not worth more cue-hunting on this data; next run moves to experience.
-
-## 2026-11-01 · live pitch: Viterbi with one frame's lag
-
-Found: live used gates only, which missed sung frames; every gate sweep only traded RPA for FA. Built: the take's trellis run forward in the worker (`lagVit`, `LN.C`), each frame deciding the frame one hop back; pitch keeps its own time and the lag chip adds the 20 ms. Reference clips keep the gates. `check/live-noise-bench.mjs`, page code, vocadito 40 clips, gates → shipped: clean RPA 90.6 → 94.3, FA 6.5 → 8.8, OA 91.8 → 93.2 (± 1.0-1.9); pink 10 dB OA 88.9 → 90.4; pink 5 76.8 → 79.6; hum 10 85.8 → 87.2; speech 10 87.4 → 87.0, speech 5 71.9 → 71.0, FA up about 1 point. Sweep on 14 clips, clean OA/FA: lag 0, U 0.45 93.4/14.0; U 0.28 91.3/10.6; lag 1, U 0.28 93.5/9.5; lag 2 93.7/9.6. Chosen lag 1, U 0.28: lag 0 doubles ghosts, lag 2 pays 20 ms for nothing. Cost: more ghost frames than the gates, 20 ms lag, slightly worse in talk. Breathy HNR 5 dB 100 %, HNR 0 still unread; lane unchanged (max 1.1 / 4.8 ¢). iOS risk: slightly more worker CPU per frame, not measured on a phone. Next: edge FA, using the take's trim on the live path.
 
