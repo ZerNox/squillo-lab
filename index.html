@@ -214,6 +214,9 @@ button:focus-visible,select:focus-visible,input:focus-visible,#rail:focus-visibl
 #laneStart,#laneEnd,#laneVib,#laneSteady,#laneSwell{font-size:clamp(14px,2.6vw,18px);margin-top:6px;color:#a8b3bf}#laneStart:empty,#laneEnd:empty,#laneVib:empty,#laneSteady:empty,#laneSwell:empty{display:none}#laneSwell.best{color:#4fd8c4}#laneSteady.best{color:#4fd8c4}#laneStart.fell,#laneEnd.fell{color:#e0b070}
 body.lane #lane,body.lane #laneRead{display:block}
 body.lane #rail,body.lane #labels,body.lane #flaws,body.lane #advice{display:none}
+#laneLog{display:none;font:13px/1.4 var(--f-mono);color:#a8b3bf;max-width:620px}#laneLog h2{font-size:12px;margin:0 0 4px;color:var(--fg-3);font-weight:500;letter-spacing:.04em}#laneLog ol{margin:0;padding-left:0;list-style:none}#laneLog li{margin:0 0 5px}#laneLog b{color:var(--fg);font-weight:600}#laneLog li.best b{color:#4fd8c4}
+body.lane #laneLog:not(:empty){display:block}
+@media (min-width:721px){body.lane #laneLog{position:fixed;right:max(20px,env(safe-area-inset-right,0px));top:340px;width:min(560px,calc(100vw - 700px));max-height:calc(100vh - 360px);overflow-y:auto}}
 @media (max-width:720px){body.lane #coach{margin-top:58vh}}
 </style>
 
@@ -299,6 +302,7 @@ body.lane #rail,body.lane #labels,body.lane #flaws,body.lane #advice{display:non
 </div>
 
 <div class="ui" id="coach">
+  <section id="laneLog" aria-label="Long notes this sitting"></section>
   <div id="tl">
     <button class="btn" id="pause" aria-pressed="false" title="Pause / resume (space)">pause</button>
     <input type="range" id="scrub" min="0" max="0" step="0.02" value="0" aria-label="Session timeline">
@@ -872,8 +876,12 @@ bSay.onclick=()=>setSay(!SAY.on);
 // No new measurement: the lane* readers and their benches. check.mjs: recap once per note, not while it sounds.
 function noteRecap(hist,now,prev,dev){let k=hist.length-1;while(k>=0&&!(hist[k].voiced&&hist[k].ok!==false))k--;if(k<0)return null;const z=hist[k].t;if(now-z<0.3||now-z>4)return null;
   const g=laneStart(hist,now),p=[laneStartText(g),laneEndText(laneEnd(hist,now)),laneVibText(laneVib(hist,now)),(()=>{const w=laneSteady(hist,now);return w?laneSteadyText(w,prev||[],dev).s:'';})(),laneSwellText(laneSwell(hist,now)).s].filter(Boolean);
-  return p.length?{t:z,s:'Last note: '+p.join('; ')+'.'}:null;}
-function sayRecap(now){if(!SAY.on)return;const r=noteRecap(viewHist,now,LANE.stN,LANE.dev);if(r&&Math.abs(r.t-(SAY.recT??-9))>0.05){SAY.recT=r.t;sayEl.textContent=r.s;}}
+  if(!p.length)return null;let a=k;while(a>0&&hist[a-1].voiced&&hist[a-1].ok!==false&&z-hist[a-1].t<8)a--;const ms=hist.slice(a,k+1).map(h=>h.midi).sort((x,y)=>x-y);
+  return{t:z,s:'Last note: '+p.join('; ')+'.',n:noteName(ms[ms.length>>1]),d:z-hist[a].t,p,best:/steadiest|steadier than any/.test(p.join(' '))};}
+// Long notes this sitting: every recap also goes on a list beside the Lane (newest first, 8 kept), so a reading is still there after its 4 s line fades. Same readers, no new measurement.
+const LOG8=[];function logRecap(r){if(!r||LOG8.some(q=>Math.abs(q.t-r.t)<0.05))return;LOG8.unshift(r);LOG8.length=Math.min(8,LOG8.length);const el=$('laneLog');if(!el)return;
+  el.innerHTML=`<h2>Long notes this sitting</h2><ol>${LOG8.map(q=>`<li${q.best?' class="best"':''}><b>${q.n}</b> ${q.d.toFixed(1)} s · ${q.p.join('; ')}</li>`).join('')}</ol>`;}
+function sayRecap(now){const r=noteRecap(viewHist,now,LANE.stN,LANE.dev);logRecap(r);if(!SAY.on)return;if(r&&Math.abs(r.t-(SAY.recT??-9))>0.05){SAY.recT=r.t;sayEl.textContent=r.s;}}
 document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey||/select|input|textarea/i.test(document.activeElement.tagName))return;const K=$('keys');
   if(e.key==='n'||e.key==='N'){e.preventDefault();setSay(!SAY.on);}
   else if(e.key==='?'){e.preventDefault();K.hidden=!K.hidden;}else if(e.key==='Escape'&&!K.hidden){K.hidden=true;}});
