@@ -140,6 +140,12 @@ async function run([name, launch, ctxOpt, file]) {
     const llog = await p.evaluate(() => { const h = []; for (let t = 0; t <= 1.5; t += 0.02) h.push({ t: 100 + t, voiced: true, ok: true, midi: 60 + 0.5 * Math.sin(2 * Math.PI * 5.5 * t), rms: 0.1 }); const r = noteRecap(h, 101.9, [], null); logRecap(r); logRecap(noteRecap(h, 102.2, [], null));
       const el = document.getElementById('laneLog'), li = el.querySelectorAll('li'); return { n: [...li].filter(x => x.textContent.startsWith('C4 1.5 s · ')).length, first: li[0] && li[0].textContent, vis: getComputedStyle(el).display }; });
     if (llog.n !== 1 || !/^C4 1\.5 s · .*vibrato 5\.[45] Hz/.test(llog.first) || llog.vis !== 'block') throw new Error('lane log: ' + JSON.stringify(llog));
+    // Long notes across days: same wobble says level, half says steadier, under 3 notes a side says nothing; a recap with a steadiness reading is kept and the line shows.
+    const ldays = await p.evaluate(() => { const now = Date.now(), E = [1.9, 2.1, 2.0, 2.2, 1.8].map((w, i) => ({ d: now - 2 * 864e5 - i * 6e4, wob: w })), T = w => [0, 1, 2, 3].map(i => ({ d: now - i * 6e4, wob: w * (1 + 0.05 * (i % 2)) }));
+      const lv = laneDays(E.concat(T(2)), now).v, st = laneDays(E.concat(T(1)), now).v, few = laneDays(E.concat(T(1).slice(0, 2)), now).s;
+      localStorage.setItem(LN_KEY, JSON.stringify(E.concat(T(1).slice(0, 3)))); logRecap({ t: 500, s: 'x', n: 'A3', d: 1.4, p: ['steadiness 1.0 ¢ wobble · ±0.2'], w: { wob: 1.0, pm: 0.2 }, best: false });
+      const kept = JSON.parse(localStorage.getItem(LN_KEY)).length, line = (document.querySelector('#laneLog .days') || {}).textContent || ''; localStorage.removeItem(LN_KEY); return { lv, st, few, kept, line }; });
+    if (ldays.lv !== 'level with' || ldays.st !== 'steadier than' || ldays.few !== '' || ldays.kept !== 9 || !/^Today's 4 long notes steadier than your 5 from the last two weeks: wobble 1\.\d ¢/.test(ldays.line)) throw new Error('lane days: ' + JSON.stringify(ldays));
     await p.screenshot({ path: join(out, `${name}-lanelog.png`) });
     await tap(p.locator('#vHelix'));
     if (touch) { await tap(p.getByRole('button', { name: 'Recording' })); await p.waitForTimeout(300); await p.setInputFiles('#file', file); }

@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-03 · long notes across days
+
+Built: `laneDays`/`laneKeep`: every live long note's wobble is kept on the device (`helix.lanenotes.v1`, 400 newest, in my data's copy, merge and delete); the Lane's list opens with "Today's 6 long notes steadier than your 14 from the last two weeks: wobble 1.2 ¢ (1.0-1.4) vs 2.0 ¢ (…)", or level / less steady, said only beyond 15 % and both intervals (t on the smaller side), 3 notes a side. `check/lane-days-bench.mjs` (page code, live laneSteady on synthetic notes, five voices): same wobble false change 7-11/400 day pairs (a plain 1.96 gave 31-39, dropped), half the wobble 388-400/400, wrong way 0. Real voices vary more note to note: unmeasured. check.mjs: level/steadier/silent and the line; Chrome, Firefox, WebKit iPhone. Next: noise part 3, or o/u vowels.
+
 ## 2026-11-03 · live vowel chip re-measured
 
 Built: `check/vowel-live-bench.mjs` runs the page's `spanVowel` on the live chip's 0.5 s window (ending at the middle, three quarters and end of each note) on VocalSet (CC BY 4.0, 1136 notes, 20 singers). With this morning's f0 terms: 83.0 ± 5.3 → 88.1 ± 3.9 %, 'sure' 90.0 → 92.8 % on 47 % of windows (table fitted on these singers: optimistic). The chip now says 'best guess, 7 in 8 right' (left-out-singer sure figure), was '5 in 6'. check.mjs checks the claim; Chrome, Firefox, WebKit iPhone. Next: noise part 3, or o/u.
@@ -41,8 +45,3 @@ Built: `improveTake(…,'endings')` moves the last 0.26 s of each long note half
 ## 2026-11-03 · next step for starts
 
 Found: the next step only ever moved tuning, so a singer whose main habit is scooping into notes heard a step that did not touch it. Built: `improveTake(…,'starts')` makes each scoop's rise half as deep (frames under the settled pitch in a run's first 0.3 s), the rest as sung; `nextKindOf` picks it when scoops are on 25 %+ of notes (not a slide style) and tuning is under 20 ¢; the summary's 'Your next step' names it with ▶ yours, then next step on a scooped note. `check/next-start-bench.mjs` (page code, synthetic 30 takes, 5 voices): 3 st scoops 0.50 → 0.00 scoops per note, render alone 0.50 [0.25-0.50], tuning 16.3 → 18.5 ¢; 1.8 st scoops are under the scan's line, read 0 before and after. check.mjs: a scooped take reads fewer scoops after the render, rule picks starts, not on clean or off-tune takes; Chrome, Firefox, WebKit iPhone. No real-voice figure; the readback is all-or-nothing at the 1.5 st line. Next: noise part 3.
-
-## 2026-11-02 · note endings, heard held
-
-Found: spotless kept about two thirds of a sag at a note's end (its 250 ms median and the last voiced frame), so an A/B would not have let the singer hear the difference. Built: spotless holds the last 0.26 s of a long run at the pitch before it, and carries it 4 frames past the last voiced frame; the note-endings point in the summary names the note that moved furthest and offers "▶ yours, then held". `check/tailfix-bench.mjs` (page code, synthetic): -80 ¢ take -37.1 → spotless -3.3 ¢, -40: -19.1 → 0.3, +40: 17.0 → 1.1, level unchanged; picked note right way 30/30. check.mjs: picked note and held render; Chrome, Firefox, WebKit iPhone. No real-voice figure. Next: noise part 3.
-
