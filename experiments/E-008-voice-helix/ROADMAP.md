@@ -80,6 +80,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Next step for starts: when scoops lead and tuning is near the trained median, the next step makes each scoop half as deep (synthetic 3 st: 0.50 → 0.00 scoops per note, render alone 0.50).
 - Next step for endings: when note endings are named, each long note's ending comes half way back (synthetic -80 ¢: -37 → -26 ¢, render alone -46).
 - Live vibrato: the Lane names each long note's rate, width and evenness, or 'held straight' (synthetic: straight 40/40, rate max 0.04 Hz off, even 40/40, jittered uneven 15/40).
+- Live swell: the Lane names each long note's swell in dB with ± and peak place, or 'held level' (synthetic: truth inside ± 138/150, peak place 90/90, messa claim 0 at 14 dB and under).
 - Live steadiness: the Lane names each long note's wobble and 'your steadiest' this sitting or across kept takes (synthetic: live = take within 0.2 ¢, false best 0/144, right 17/18).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.

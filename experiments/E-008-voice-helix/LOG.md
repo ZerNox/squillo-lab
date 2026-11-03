@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-03 · live swell in the Lane
+
+Built: `laneSwell`: when a note of 1 s or more stops, the Lane says "swell 19 dB ±2, peak near the middle, a real messa di voce" or "held level", so a singer practising messa di voce hears the width and shape of each swell as they sing it. `check/lane-swell-bench.mjs` (page code, live frames, synthetic 150 notes, 5 voices): error mean within 0.9 dB (max 3.1), truth inside ± 138/150, peak place 90/90, live = take within 0.5 dB; 'messa di voce' 28/30 at 20 dB, 0 at 14 and under. The first ± (frame noise only) held 9/30 at 20 dB; 8 % of width added. check.mjs: swell and level; Chrome, Firefox, WebKit iPhone. No real-voice figure. Next: noise part 3.
+
 ## 2026-11-03 · steadiest on this device, live
 
 Built: the Lane's steadiness line also says "steadier than any long note in your N kept takes (best X ¢)" when a long note beats the steadiest long note of every kept take by more than 1 ¢ and its ± (the summary's personal-best rule, 2 kept takes at least), so a personal best is felt on the note itself. check.mjs: said with 3 takes, not with 1, not on a 4 ¢ note against a 4 ¢ best; Chrome, Firefox, WebKit iPhone. No new accuracy claim (wobble as the entry below). Next: noise part 3.
@@ -41,8 +45,3 @@ Built: `laneEnd`: when a held note (0.5 s+) stops, the Lane names its ending for
 ## 2026-11-02 · note endings over takes
 
 Built: note endings (¢ off at the ends of long notes, either way) kept with each take: a progress line with its band, the week lines, and 'since your last take' when it was the point named; shown, not rated. check.mjs: 12 seeded takes from 40 to 7 ¢ read 'better', the row exists, not rated; Chrome, Firefox, WebKit iPhone. No new accuracy claim (per-take reading as below). Next: noise part 3.
-
-## 2026-11-02 · note endings
-
-Found: nothing read whether pitch sags (or lifts) as a long note is let go, a common habit the singer cannot hear in the moment. Built: `takeTail`: per note of 0.5 s or more, the last 0.18 s against the body, take mean ± 1.96 SE; the summary praises "held their pitch to the end" or names the sag with ± and an exercise (stop the air, not the note, over the drone; messa di voce; Titze & Verdolini Abbott 2012), saying a fall-off may be style. `check/tail-bench.mjs`: synthetic 0.2 s falls read about 0.46 of the move; -80 ¢ said 10/10, level 0/10 false and praised 10/10, wrong way 0/60; vocadito page vs hand f0 -2.7 ¢ (SD 9.7), says 3 of 20, hand 2, 0 opposite (8-note gate set on those clips). check.mjs: a falling and a held 10-note take; Chrome, Firefox, WebKit iPhone. Next: noise part 3, or note endings live and in the progress lines once real use shows it is said often enough.
-

@@ -128,6 +128,10 @@ async function run([name, launch, ctxOpt, file]) {
       const w = laneSteady(mk(4, 0), 1.7), s = laneSteady(mk(1, 10), 11.7), w2 = laneSteady(mk(4, 10), 11.7);
       return { w: laneSteadyText(w, []).s, s: laneSteadyText(s, [w]), w2: laneSteadyText(w2, [w]).best, dv: laneSteadyText(s, [], { n: 3, bw: 4 }).s, dv1: laneSteadyText(s, [], { n: 1, bw: 4 }).best, dvN: laneSteadyText(w2, [], { n: 3, bw: 4 }).best, during: laneSteady(mk(4, 0), 1.5), el: !!document.querySelector('#laneRead #laneSteady') }; });
     if (!/^steadiness \d\.\d ¢ wobble · ±\d\.\d$/.test(lsd.w) || !lsd.s.best || !/your steadiest of 2 long notes$/.test(lsd.s.s) || lsd.w2 || !/steadier than any long note in your 3 kept takes \(best 4\.0 ¢\)$/.test(lsd.dv) || lsd.dv1 || lsd.dvN || lsd.during !== null || !lsd.el) throw new Error('lane steadiness: ' + JSON.stringify(lsd));
+    // Live swell: a 1.5 s note swelling 20 dB soft-loud-soft is named a messa di voce with its peak near the middle; a level one 'held level'.
+    const lsw = await p.evaluate(() => { const mk = D => { const h = []; for (let t = 0; t <= 1.5; t += 0.02) h.push({ t, voiced: true, ok: true, midi: 60, rms: 0.1 * 10 ** (D * (1 - Math.cos(2 * Math.PI * t / 1.5)) / 2 / 20) }); return h; };
+      return { s: laneSwellText(laneSwell(mk(20), 1.7)), l: laneSwellText(laneSwell(mk(0), 1.7)).s, during: laneSwell(mk(20), 1.5), el: !!document.querySelector('#laneRead #laneSwell') }; });
+    if (!/^swell 1\d dB ±\d, peak near the middle, a real messa di voce$/.test(lsw.s.s) || !lsw.s.real || !/^held level · 0 dB ±\d$/.test(lsw.l) || lsw.during !== null || !lsw.el) throw new Error('lane swell: ' + JSON.stringify(lsw));
     await tap(p.locator('#vHelix'));
     if (touch) { await tap(p.getByRole('button', { name: 'Recording' })); await p.waitForTimeout(300); await p.setInputFiles('#file', file); }
     else { const [fc] = await Promise.all([p.waitForEvent('filechooser'), p.getByRole('button', { name: 'Recording' }).click()]); await fc.setFiles(file); }
