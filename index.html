@@ -867,6 +867,13 @@ function sayTick(wall,f,tgt){if(!SAY.on)return;if(!f.voiced){SAY.n=0;return;}con
   if(wall-SAY.since>=0.4&&(n!==SAY.said||wall-SAY.saidT>=4)){SAY.said=n;SAY.saidT=wall;sayEl.textContent=sayText(f.midi,tgt);}}
 function setSay(on){SAY.on=on;SAY.said=0;bSay.setAttribute('aria-pressed',on);bSay.textContent='say note: '+(on?'on':'off');sayEl.textContent=on?'Say my note is on. Hold a note.':'Say my note is off.';}
 bSay.onclick=()=>setSay(!SAY.on);
+// After-note recap: with say note on, once a long note has stopped (0.3 s), the Lane's lines for it (start, ending,
+// vibrato, steadiness, swell) are read once as one sentence through the same live region, in or out of the Lane.
+// No new measurement: the lane* readers and their benches. check.mjs: recap once per note, not while it sounds.
+function noteRecap(hist,now,prev,dev){let k=hist.length-1;while(k>=0&&!(hist[k].voiced&&hist[k].ok!==false))k--;if(k<0)return null;const z=hist[k].t;if(now-z<0.3||now-z>4)return null;
+  const g=laneStart(hist,now),p=[laneStartText(g),laneEndText(laneEnd(hist,now)),laneVibText(laneVib(hist,now)),(()=>{const w=laneSteady(hist,now);return w?laneSteadyText(w,prev||[],dev).s:'';})(),laneSwellText(laneSwell(hist,now)).s].filter(Boolean);
+  return p.length?{t:z,s:'Last note: '+p.join('; ')+'.'}:null;}
+function sayRecap(now){if(!SAY.on)return;const r=noteRecap(viewHist,now,LANE.stN,LANE.dev);if(r&&Math.abs(r.t-(SAY.recT??-9))>0.05){SAY.recT=r.t;sayEl.textContent=r.s;}}
 document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey||/select|input|textarea/i.test(document.activeElement.tagName))return;const K=$('keys');
   if(e.key==='n'||e.key==='N'){e.preventDefault();setSay(!SAY.on);}
   else if(e.key==='?'){e.preventDefault();K.hidden=!K.hidden;}else if(e.key==='Escape'&&!K.hidden){K.hidden=true;}});
@@ -879,7 +886,7 @@ function droneToggle(){const B=$('bDrone');if(DRONE.on){DRONE.on=false;DRONE.g.g
   const g=ctx.createGain();g.gain.value=0;g.connect(ctx.destination);DRONE.g=g;const m=+tNote.value,f=440*Math.pow(2,(m-69)/12);DRONE.o=DRONE.h.map((a,i)=>{const o=ctx.createOscillator(),v=ctx.createGain();o.frequency.value=f*(i+1);v.gain.value=a;o.connect(v).connect(g);o.start();return o;});DRONE.m=m;g.gain.setTargetAtTime(DRONE.gain,ctx.currentTime,0.08);DRONE.on=true;B.setAttribute('aria-pressed','true');B.textContent='♪ '+noteName(m);}
 $('bDrone').onclick=droneToggle;tNote.addEventListener('change',()=>{if(!DRONE.on)return;if(!tNote.value){droneToggle();return;}droneSet(+tNote.value);$('bDrone').textContent='♪ '+noteName(+tNote.value);});
 document.addEventListener('keydown',e=>{if((e.key==='d'||e.key==='D')&&!e.metaKey&&!e.ctrlKey&&!e.altKey&&!/select|input|textarea/i.test(document.activeElement.tagName))droneToggle();});
-function updateHUD(wall){if(wall-hudT<0.1)return;hudT=wall;const f=viewFT;const v=f.voiced;const tgt=tNote.value?+tNote.value:0;sayTick(wall,f,tgt);
+function updateHUD(wall){if(wall-hudT<0.1)return;hudT=wall;const f=viewFT;const v=f.voiced;const tgt=tNote.value?+tNote.value:0;sayTick(wall,f,tgt);sayRecap(viewNow);
   $('mF0').textContent=v?f.f0.toFixed(1):'—';$('mF0').className='v';
   $('mNote').textContent=v?(tgt?`${noteName(f.midi)} · ${((f.midi-tgt)*100).toFixed(0)>0?'+':''}${((f.midi-tgt)*100).toFixed(0)} ¢`:noteName(f.midi)):'Hz';
   const set=(id,txt,c)=>{const e=$(id);e.textContent=txt;e.className='v'+(c?' '+c:'');};
