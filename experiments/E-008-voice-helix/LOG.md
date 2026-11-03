@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-03 · live vowel chip re-measured
+
+Built: `check/vowel-live-bench.mjs` runs the page's `spanVowel` on the live chip's 0.5 s window (ending at the middle, three quarters and end of each note) on VocalSet (CC BY 4.0, 1136 notes, 20 singers). With this morning's f0 terms: 83.0 ± 5.3 → 88.1 ± 3.9 %, 'sure' 90.0 → 92.8 % on 47 % of windows (table fitted on these singers: optimistic). The chip now says 'best guess, 7 in 8 right' (left-out-singer sure figure), was '5 in 6'. check.mjs checks the claim; Chrome, Firefox, WebKit iPhone. Next: noise part 3, or o/u.
+
 ## 2026-11-03 · vowels read better at every pitch
 
 Built: the sung-vowel table (`envVowel`, `check/vowel-fit.mjs`) adds each envelope level times log(f0/250), so the reader follows how a vowel's envelope shifts with pitch. VocalSet (CC BY 4.0, 2327 notes under 600 Hz, page dump, left-out singer): 78.4 ± 4.6 → 81.8 ± 4.0 %, paired +3.4 ± 1.6 points (14/20 singers better); o 63 → 71 %, u 74 → 75; 'sure' 87.5 % on 78 % of notes (was 85.9 on 73). Tried and dropped: formants added (80.6), envelope deltas (78.7). check.mjs: tilt still ignored at 450 Hz; Chrome, Firefox, WebKit iPhone. Live 0.5 s window not re-measured. Next: noise part 3 or live-window vowel bench.
@@ -41,8 +45,4 @@ Found: the next step only ever moved tuning, so a singer whose main habit is sco
 ## 2026-11-02 · note endings, heard held
 
 Found: spotless kept about two thirds of a sag at a note's end (its 250 ms median and the last voiced frame), so an A/B would not have let the singer hear the difference. Built: spotless holds the last 0.26 s of a long run at the pitch before it, and carries it 4 frames past the last voiced frame; the note-endings point in the summary names the note that moved furthest and offers "▶ yours, then held". `check/tailfix-bench.mjs` (page code, synthetic): -80 ¢ take -37.1 → spotless -3.3 ¢, -40: -19.1 → 0.3, +40: 17.0 → 1.1, level unchanged; picked note right way 30/30. check.mjs: picked note and held render; Chrome, Firefox, WebKit iPhone. No real-voice figure. Next: noise part 3.
-
-## 2026-11-02 · note starts, live in the Lane
-
-Built: `laneStart`: 0.45 s into a note the Lane says "landed right on the note" or "came in 60 ¢ under, then found it · ±8", so a scoop is named while the note still sounds (endings were named only after). `check/lane-start-bench.mjs` (page code, live frames, synthetic): level said 0/80, wrong way 0/480, straight ±80 ¢ said 80/80, 'landed' never on a moved start; vibrato starts said 50/240; first try (mean of the start, its own spread as ±) never said a straight scoop, replaced. check.mjs: scooped, level and too-early notes; Chrome, Firefox, WebKit iPhone. No real-voice figure. Next: noise part 3.
 
