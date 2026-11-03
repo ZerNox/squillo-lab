@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-03 · starts and endings across days
+
+Built: the long-note store also keeps each note's start and ending (|cents| from the note, as the Lane reads them), and the list adds "Today's N long notes cleaner starts / held better than your M from the last two weeks", mean with 95 % interval, 8 ¢ floor, same t rule. `check/lane-days-bench.mjs` (page laneStart/laneEnd, synthetic slides and falls 0/40/80 ¢, five voices): same level false change 0-5/400, wrong way 0; 0 vs 80 ¢ said 386/400 starts, 399/400 endings; 0 vs 40 ¢ 75 and 316/400 (the start reader sees a fraction of a 0.12 s slide). check.mjs: held better / level; Chrome, Firefox, WebKit iPhone. Next: noise part 3, or o/u vowels.
+
 ## 2026-11-03 · long notes across days
 
 Built: `laneDays`/`laneKeep`: every live long note's wobble is kept on the device (`helix.lanenotes.v1`, 400 newest, in my data's copy, merge and delete); the Lane's list opens with "Today's 6 long notes steadier than your 14 from the last two weeks: wobble 1.2 ¢ (1.0-1.4) vs 2.0 ¢ (…)", or level / less steady, said only beyond 15 % and both intervals (t on the smaller side), 3 notes a side. `check/lane-days-bench.mjs` (page code, live laneSteady on synthetic notes, five voices): same wobble false change 7-11/400 day pairs (a plain 1.96 gave 31-39, dropped), half the wobble 388-400/400, wrong way 0. Real voices vary more note to note: unmeasured. check.mjs: level/steadier/silent and the line; Chrome, Firefox, WebKit iPhone. Next: noise part 3, or o/u vowels.
@@ -41,7 +45,3 @@ Built: `laneVib`: when a note of 1 s or more stops, the Lane says "vibrato 5.6 H
 ## 2026-11-03 · next step for endings
 
 Built: `improveTake(…,'endings')` moves the last 0.26 s of each long note half way back to the note (fading tail carried 4 frames), the rest as sung; `nextKindOf` picks it when the summary names note endings, starts are not leading and tuning is under 20 ¢; 'Your next step' names it with ▶ yours, then next step on the note that moved most. `check/next-end-bench.mjs` (page code, synthetic 50 takes, 5 voices): -80 ¢ fall -36.8 → -25.5 ¢ (render alone -46.4), -40: -19.1 → -12.6, +40: 17.0 → 12.5, level unchanged; picked 10/10 at -80, 0 on level. Without the tail carry the render read back no change (-37.1), fixed. check.mjs: falling take reads -42 → -26 ¢, rule picks endings; Chrome, Firefox, WebKit iPhone. No real-voice figure. Next: noise part 3.
-
-## 2026-11-03 · next step for starts
-
-Found: the next step only ever moved tuning, so a singer whose main habit is scooping into notes heard a step that did not touch it. Built: `improveTake(…,'starts')` makes each scoop's rise half as deep (frames under the settled pitch in a run's first 0.3 s), the rest as sung; `nextKindOf` picks it when scoops are on 25 %+ of notes (not a slide style) and tuning is under 20 ¢; the summary's 'Your next step' names it with ▶ yours, then next step on a scooped note. `check/next-start-bench.mjs` (page code, synthetic 30 takes, 5 voices): 3 st scoops 0.50 → 0.00 scoops per note, render alone 0.50 [0.25-0.50], tuning 16.3 → 18.5 ¢; 1.8 st scoops are under the scan's line, read 0 before and after. check.mjs: a scooped take reads fewer scoops after the render, rule picks starts, not on clean or off-tune takes; Chrome, Firefox, WebKit iPhone. No real-voice figure; the readback is all-or-nothing at the 1.5 st line. Next: noise part 3.

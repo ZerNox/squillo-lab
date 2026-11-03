@@ -875,21 +875,25 @@ bSay.onclick=()=>setSay(!SAY.on);
 // vibrato, steadiness, swell) are read once as one sentence through the same live region, in or out of the Lane.
 // No new measurement: the lane* readers and their benches. check.mjs: recap once per note, not while it sounds.
 function noteRecap(hist,now,prev,dev){let k=hist.length-1;while(k>=0&&!(hist[k].voiced&&hist[k].ok!==false))k--;if(k<0)return null;const z=hist[k].t;if(now-z<0.3||now-z>4)return null;
-  const g=laneStart(hist,now),w=laneSteady(hist,now),p=[laneStartText(g),laneEndText(laneEnd(hist,now)),laneVibText(laneVib(hist,now)),w?laneSteadyText(w,prev||[],dev).s:'',laneSwellText(laneSwell(hist,now)).s].filter(Boolean);
+  const g=laneStart(hist,now),w=laneSteady(hist,now),en=laneEnd(hist,now),p=[laneStartText(g),laneEndText(en),laneVibText(laneVib(hist,now)),w?laneSteadyText(w,prev||[],dev).s:'',laneSwellText(laneSwell(hist,now)).s].filter(Boolean);
   if(!p.length)return null;let a=k;while(a>0&&hist[a-1].voiced&&hist[a-1].ok!==false&&z-hist[a-1].t<8)a--;const ms=hist.slice(a,k+1).map(h=>h.midi).sort((x,y)=>x-y);
-  return{t:z,s:'Last note: '+p.join('; ')+'.',n:noteName(ms[ms.length>>1]),d:z-hist[a].t,p,w,best:/steadiest|steadier than any/.test(p.join(' '))};}
+  return{t:z,s:'Last note: '+p.join('; ')+'.',n:noteName(ms[ms.length>>1]),d:z-hist[a].t,p,w,g,en,best:/steadiest|steadier than any/.test(p.join(' '))};}
 // Long notes this sitting: every recap also goes on a list beside the Lane (newest first, 8 kept), so a reading is still there after its 4 s line fades. Same readers, no new measurement.
-// Across days: each long note's wobble is kept on the device (LN_KEY, newest 400); today's against the earlier 14 days as a geometric mean
-// with a 95 % interval, 'steadier'/'less steady' only when the log means differ by 15 % and beyond both intervals combined (t, the smaller side's df), 3 notes a side at least. check/lane-days-bench.mjs.
+// Across days: each long note's wobble, start and ending (cents from the note, either side) are kept on the device (LN_KEY, newest 400); today's
+// against the earlier 14 days: wobble as a geometric mean, start and ending as a mean, each with a 95 % interval; better/worse only when the means
+// differ by a floor (15 % wobble, 8 ¢ starts and endings) and beyond both intervals combined (t, the smaller side's df), 3 notes a side. check/lane-days-bench.mjs.
 const LN_KEY='helix.lanenotes.v1',LN_MAX=400,LN_MIN=3;
-function laneDays(list,now){const day=new Date(now).toDateString(),T=[],E=[];for(const r of list){if(!Number.isFinite(r.wob)||r.wob<=0)continue;if(new Date(r.d).toDateString()===day)T.push(Math.log(r.wob));else if(now-r.d<14*864e5&&r.d<now)E.push(Math.log(r.wob));}
+const LN_K={wob:{lg:1,fl:Math.log(1.15),w:['steadier than','less steady than','level with'],u:'wobble'},st:{fl:8,w:['cleaner starts than','rougher starts than','starts level with'],u:'starts off by'},en:{fl:8,w:['held better than','fell more than','endings level with'],u:'endings off by'}};
+function laneDays(list,now,k='wob'){const K=LN_K[k],day=new Date(now).toDateString(),T=[],E=[];for(const r of list){const x=r[k];if(!Number.isFinite(x)||(K.lg&&x<=0))continue;const y=K.lg?Math.log(x):x;if(new Date(r.d).toDateString()===day)T.push(y);else if(now-r.d<14*864e5&&r.d<now)E.push(y);}
   const st=a=>{const m=a.reduce((x,y)=>x+y,0)/a.length,sd=a.length>1?Math.sqrt(a.reduce((x,y)=>x+(y-m)**2,0)/(a.length-1)):0;return {n:a.length,m,se:sd/Math.sqrt(a.length)};};
-  if(T.length<LN_MIN||E.length<LN_MIN)return {n:T.length,e:E.length,s:''};const t=st(T),e=st(E),dd=t.m-e.m,df=Math.min(t.n,e.n)-1,lim=Math.max(Math.log(1.15),(df<4?[0,12.7,4.3,3.18][df]:1.96+2.4/df)*Math.hypot(t.se,e.se)),f=x=>Math.exp(x).toFixed(1),pm=a=>`${f(a.m)} ¢ (${f(a.m-1.96*a.se)}-${f(a.m+1.96*a.se)})`;
-  const v=dd<-lim?'steadier than':dd>lim?'less steady than':'level with';return {n:t.n,e:e.n,v,s:`Today's ${t.n} long notes ${v} your ${e.n} from the last two weeks: wobble ${pm(t)} vs ${pm(e)}.`};}
-function laneKeep(r){if(!r.w)return;const l=dataRead(LN_KEY,'[]');l.push({d:Date.now(),wob:+r.w.wob.toFixed(2),n:r.n,len:+r.d.toFixed(1)});try{localStorage.setItem(LN_KEY,JSON.stringify(l.slice(-LN_MAX)));}catch(e){}}
+  if(T.length<LN_MIN||E.length<LN_MIN)return {n:T.length,e:E.length,s:''};const t=st(T),e=st(E),dd=t.m-e.m,df=Math.min(t.n,e.n)-1,lim=Math.max(K.fl,(df<4?[0,12.7,4.3,3.18][df]:1.96+2.4/df)*Math.hypot(t.se,e.se));
+  const f=x=>K.lg?Math.exp(x).toFixed(1):Math.max(0,x).toFixed(0),pm=a=>`${f(a.m)} ¢ (${f(a.m-1.96*a.se)}-${f(a.m+1.96*a.se)})`;
+  const v=dd<-lim?K.w[0]:dd>lim?K.w[1]:K.w[2];return {n:t.n,e:e.n,v,good:dd<-lim,s:`Today's ${t.n} long notes ${v} your ${e.n} from the last two weeks: ${K.u} ${pm(t)} vs ${pm(e)}.`};}
+function laneKeep(r){const q={d:Date.now(),n:r.n,len:+r.d.toFixed(1)};if(r.w)q.wob=+r.w.wob.toFixed(2);if(r.g)q.st=Math.round(Math.abs(r.g.c));if(r.en)q.en=Math.round(Math.abs(r.en.c));
+  if(q.wob==null&&q.st==null&&q.en==null)return;const l=dataRead(LN_KEY,'[]');l.push(q);try{localStorage.setItem(LN_KEY,JSON.stringify(l.slice(-LN_MAX)));}catch(e){}}
 const LOG8=[];function logRecap(r){if(!r||LOG8.some(q=>Math.abs(q.t-r.t)<0.05))return;LOG8.unshift(r);LOG8.length=Math.min(8,LOG8.length);laneKeep(r);const el=$('laneLog');if(!el)return;
-  const D=laneDays(dataRead(LN_KEY,'[]'),Date.now());
-  el.innerHTML=`<h2>Long notes this sitting</h2>${D.s?`<p class="days${D.v==='steadier than'?' best':''}">${D.s}</p>`:''}<ol>${LOG8.map(q=>`<li${q.best?' class="best"':''}><b>${q.n}</b> ${q.d.toFixed(1)} s · ${q.p.join('; ')}</li>`).join('')}</ol>`;}
+  const L=dataRead(LN_KEY,'[]'),now=Date.now(),D=['wob','st','en'].map(k=>laneDays(L,now,k)).filter(d=>d.s);
+  el.innerHTML=`<h2>Long notes this sitting</h2>${D.map(d=>`<p class="days${d.good?' best':''}">${d.s}</p>`).join('')}<ol>${LOG8.map(q=>`<li${q.best?' class="best"':''}><b>${q.n}</b> ${q.d.toFixed(1)} s · ${q.p.join('; ')}</li>`).join('')}</ol>`;}
 function sayRecap(now){const r=noteRecap(viewHist,now,LANE.stN,LANE.dev);logRecap(r);if(!SAY.on)return;if(r&&Math.abs(r.t-(SAY.recT??-9))>0.05){SAY.recT=r.t;sayEl.textContent=r.s;}}
 document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey||/select|input|textarea/i.test(document.activeElement.tagName))return;const K=$('keys');
   if(e.key==='n'||e.key==='N'){e.preventDefault();setSay(!SAY.on);}

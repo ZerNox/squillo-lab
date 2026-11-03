@@ -142,10 +142,10 @@ async function run([name, launch, ctxOpt, file]) {
     if (llog.n !== 1 || !/^C4 1\.5 s · .*vibrato 5\.[45] Hz/.test(llog.first) || llog.vis !== 'block') throw new Error('lane log: ' + JSON.stringify(llog));
     // Long notes across days: same wobble says level, half says steadier, under 3 notes a side says nothing; a recap with a steadiness reading is kept and the line shows.
     const ldays = await p.evaluate(() => { const now = Date.now(), E = [1.9, 2.1, 2.0, 2.2, 1.8].map((w, i) => ({ d: now - 2 * 864e5 - i * 6e4, wob: w })), T = w => [0, 1, 2, 3].map(i => ({ d: now - i * 6e4, wob: w * (1 + 0.05 * (i % 2)) }));
-      const lv = laneDays(E.concat(T(2)), now).v, st = laneDays(E.concat(T(1)), now).v, few = laneDays(E.concat(T(1).slice(0, 2)), now).s;
+      const lv = laneDays(E.concat(T(2)), now).v, st = laneDays(E.concat(T(1)), now).v, few = laneDays(E.concat(T(1).slice(0, 2)), now).s; const S = (a, b) => [a, a, b, b].map((c, i) => ({ d: now - (i < 2 ? 3 * 864e5 : 6e4) - i * 6e4, en: c })), held = laneDays(S(60, 5).concat(S(62, 4)), now, 'en'), flat = laneDays(S(30, 31).concat(S(32, 29)), now, 'en');
       localStorage.setItem(LN_KEY, JSON.stringify(E.concat(T(1).slice(0, 3)))); logRecap({ t: 500, s: 'x', n: 'A3', d: 1.4, p: ['steadiness 1.0 ¢ wobble · ±0.2'], w: { wob: 1.0, pm: 0.2 }, best: false });
-      const kept = JSON.parse(localStorage.getItem(LN_KEY)).length, line = (document.querySelector('#laneLog .days') || {}).textContent || ''; localStorage.removeItem(LN_KEY); return { lv, st, few, kept, line }; });
-    if (ldays.lv !== 'level with' || ldays.st !== 'steadier than' || ldays.few !== '' || ldays.kept !== 9 || !/^Today's 4 long notes steadier than your 5 from the last two weeks: wobble 1\.\d ¢/.test(ldays.line)) throw new Error('lane days: ' + JSON.stringify(ldays));
+      const kept = JSON.parse(localStorage.getItem(LN_KEY)).length, line = (document.querySelector('#laneLog .days') || {}).textContent || ''; localStorage.removeItem(LN_KEY); return { lv, st, few, kept, line, held: held.v + '|' + held.good, flat: flat.v }; });
+    if (ldays.lv !== 'level with' || ldays.st !== 'steadier than' || ldays.few !== '' || ldays.held !== 'held better than|true' || ldays.flat !== 'endings level with' || ldays.kept !== 9 || !/^Today's 4 long notes steadier than your 5 from the last two weeks: wobble 1\.\d ¢/.test(ldays.line)) throw new Error('lane days: ' + JSON.stringify(ldays));
     await p.screenshot({ path: join(out, `${name}-lanelog.png`) });
     await tap(p.locator('#vHelix'));
     if (touch) { await tap(p.getByRole('button', { name: 'Recording' })); await p.waitForTimeout(300); await p.setInputFiles('#file', file); }
