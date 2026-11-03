@@ -109,7 +109,7 @@ reference pool is a second toggle, `?rating=1`, experimental: see
 `rating/README.md` for why it is off. To analyse a song with music, remove the
 music first with `tools/separate-vocals.sh` (Demucs).
 
-Without looking: "say note" (N key) speaks the held note and its cents off
+Without looking: "say note" (N key) speaks the held note and its cents off With say note on, 0.3 s after a long note stops the Lane's lines for it (start, ending, vibrato, steadiness, swell) are read once as one sentence, "Last note: …", in or out of the Lane (`noteRecap`; no new measurement, the lane readers' figures below).
 
 Lane: a fifth view for reading while singing. The last 8 s as a flat line on a semitone grid, and the held note in big letters with cents and ± (`laneRead`: median of the last 0.4 s of the same note, on vibrato the mean of the whole cycles in the last 0.7 s, ± from how far they differ, 3 ¢ floor). `check/lane-bench.mjs`, page code, synthetic, 5 voices 110-660 Hz, offsets -60..45 ¢: straight median error 0.4 ¢, max 1.1, truth inside ± 100 %; vibrato ±0.5 st, 4.5-7 Hz, median 2.2 ¢, max 4.8, median ± 4, truth inside ± 97.1 %. Live frames only, no real-voice figure.
 

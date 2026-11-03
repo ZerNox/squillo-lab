@@ -132,6 +132,10 @@ async function run([name, launch, ctxOpt, file]) {
     const lsw = await p.evaluate(() => { const mk = D => { const h = []; for (let t = 0; t <= 1.5; t += 0.02) h.push({ t, voiced: true, ok: true, midi: 60, rms: 0.1 * 10 ** (D * (1 - Math.cos(2 * Math.PI * t / 1.5)) / 2 / 20) }); return h; };
       return { s: laneSwellText(laneSwell(mk(20), 1.7)), l: laneSwellText(laneSwell(mk(0), 1.7)).s, during: laneSwell(mk(20), 1.5), el: !!document.querySelector('#laneRead #laneSwell') }; });
     if (!/^swell 1\d dB ±\d, peak near the middle, a real messa di voce$/.test(lsw.s.s) || !lsw.s.real || !/^held level · 0 dB ±\d$/.test(lsw.l) || lsw.during !== null || !lsw.el) throw new Error('lane swell: ' + JSON.stringify(lsw));
+    // After-note recap: a 1.5 s vibrato note with a 20 dB swell is read as one sentence 0.3 s after it stops, not while it sounds or at 0.1 s.
+    const rcp = await p.evaluate(() => { const h = []; for (let t = 0; t <= 1.5; t += 0.02) h.push({ t, voiced: true, ok: true, midi: 60 + 0.5 * Math.sin(2 * Math.PI * 5.5 * t), rms: 0.1 * 10 ** (20 * (1 - Math.cos(2 * Math.PI * t / 1.5)) / 2 / 20) });
+      return { r: noteRecap(h, 1.9, [], null), during: noteRecap(h, 1.5, [], null), early: noteRecap(h, 1.6, [], null) }; });
+    if (!rcp.r || !/^Last note: .*vibrato 5\.[45] Hz.*; swell 1\d dB.*\.$/.test(rcp.r.s) || rcp.during !== null || rcp.early !== null) throw new Error('note recap: ' + JSON.stringify(rcp));
     await tap(p.locator('#vHelix'));
     if (touch) { await tap(p.getByRole('button', { name: 'Recording' })); await p.waitForTimeout(300); await p.setInputFiles('#file', file); }
     else { const [fc] = await Promise.all([p.waitForEvent('filechooser'), p.getByRole('button', { name: 'Recording' }).click()]); await fc.setFiles(file); }
