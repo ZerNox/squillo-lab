@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-03 · long notes this sitting
+
+Built: `logRecap`: every long note's after-note readings (start, ending, vibrato, steadiness, swell) also go on a "Long notes this sitting" list beside the Lane (below it on a phone), newest first, 8 kept, with note name and length, personal bests in green, readable by screen readers; the 4 s Lane lines no longer vanish for good. check.mjs: one line per note, shown in the Lane; Chrome, Firefox, WebKit iPhone. No new accuracy claim. Also tried (noise part 3): the take's note-edge trim run live with one hop of look-ahead (`check/live-noise-bench.mjs`, vocadito 40 clean): level 0.2 FA 8.3 → 7.5, RPA 94.0 → 93.6, OA 93.2 flat; 0.3 FA 6.9, RPA 92.9, OA 93.0: trades again, not shipped. Next: noise part 3 needs a non-level cue.
+
 ## 2026-11-03 · after-note recap, eyes free
 
 Built: `noteRecap`: with say note (N) on, 0.3 s after a long note stops, the live region reads "Last note: landed right on the note; held to the end; vibrato 5.6 Hz ±0.2 …; swell 19 dB …" once, in or out of the Lane, so a singer with eyes closed or a screen reader gets every after-note line the Lane shows (it was aria-hidden). check.mjs: recap after stop, none while sounding or at 0.1 s; Chrome, Firefox, WebKit iPhone. No new accuracy claim (the lane readers' benches). Risk: speech through speakers reaches the mic, as say note already did; headphones advised. Next: noise part 3.
@@ -41,8 +45,4 @@ Built: `laneStart`: 0.45 s into a note the Lane says "landed right on the note" 
 ## 2026-11-02 · warm-up for the described points
 
 Found: the warm-up chose steps only from the rated aspects (tuning, steadiness, starts), so a singer whose takes kept naming note endings, key drift, clarity or rhythm got no step for them. Built: a point named in at least 2 of the last 5 takes (or the only take) fills a free targeted slot: 'Hold to the end' (Titze & Verdolini Abbott 2012), 'Keep the key' (Howard 2007), 'Straw, then open' (Titze 2006), 'Clap, then sing' with a click guide (Repp 2005); the intro says how often it was named. check.mjs: seeded histories pick the right steps, none without names; Chrome, Firefox, WebKit iPhone. No accuracy claim (choice rule only). Next: noise part 3.
-
-## 2026-11-02 · note endings, live in the Lane
-
-Built: `laneEnd`: when a held note (0.5 s+) stops, the Lane names its ending for 4 s, "held to the end" or "fell 40 ¢ as you let go · ±12", so the singer hears about a sag on the very note, not only after the take. `check/lane-end-bench.mjs` (page code, live frames, synthetic): level said 0/40, wrong way 0/240, -80 ¢ said 27/40 (vibrato 7/20), reads about half the move. check.mjs: falling, level and still-sounding notes; Chrome, Firefox, WebKit iPhone. No real-voice figure. Next: noise part 3.
 

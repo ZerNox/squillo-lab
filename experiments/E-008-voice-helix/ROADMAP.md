@@ -83,12 +83,13 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Live swell: the Lane names each long note's swell in dB with ± and peak place, or 'held level' (synthetic: truth inside ± 138/150, peak place 90/90, messa claim 0 at 14 dB and under).
 - Live steadiness: the Lane names each long note's wobble and 'your steadiest' this sitting or across kept takes (synthetic: live = take within 0.2 ¢, false best 0/144, right 17/18).
 - Eyes-free recap: with say note on, each long note's Lane lines are read once as one sentence after it stops.
+- Long notes this sitting: the Lane's after-note lines kept as a list beside it (8 newest).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
 ## Next
 
-0. **Noise, part 3**: live false alarms (clean FA 8.8 % with live Viterbi; gates and a centred level cue only trade RPA for FA; talk-like noise slightly worse with it; HNR 0 dB breathy notes unread); take pitch in talk-like noise no gain, talk-like room reads high, the line says talk is not counted (steady noise reads right: pink 10 dB 10/10/11, hum 10 dB 9/9/10, 14 clips, 2026-11-01).
+0. **Noise, part 3**: live false alarms (clean FA 8.8 % with live Viterbi; gates and a centred level cue only trade RPA for FA; talk-like noise slightly worse with it; HNR 0 dB breathy notes unread); take pitch in talk-like noise no gain, talk-like room reads high, the line says talk is not counted; live note-edge level trim tried 2026-11-03, trades again (FA 8.3 → 7.5, RPA 94.0 → 93.6) (steady noise reads right: pink 10 dB 10/10/11, hum 10 dB 9/9/10, 14 clips, 2026-11-01).
 0. **Timing, part 3**: page finds 5 of the 7 clips both vocadito annotators pulse, 4 % false on random onsets; real truth is thin (annotators share only 7 of 40).
 0. **Key drift, part 2**: better real-voice agreement (vocadito SD 41 ¢ vs synthetic 16); local/global circular unwraps tried 2026-10-30, no gain (39-91 ¢): needs a different truth or note-level approach. `segNotes` input: SD 62 ¢, worse.
 0. **Vowels, part 3**: o/u still weakest (64/72 %, left-out singer); try other mics or languages if an open labelled set exists.

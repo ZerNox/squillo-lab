@@ -136,6 +136,11 @@ async function run([name, launch, ctxOpt, file]) {
     const rcp = await p.evaluate(() => { const h = []; for (let t = 0; t <= 1.5; t += 0.02) h.push({ t, voiced: true, ok: true, midi: 60 + 0.5 * Math.sin(2 * Math.PI * 5.5 * t), rms: 0.1 * 10 ** (20 * (1 - Math.cos(2 * Math.PI * t / 1.5)) / 2 / 20) });
       return { r: noteRecap(h, 1.9, [], null), during: noteRecap(h, 1.5, [], null), early: noteRecap(h, 1.6, [], null) }; });
     if (!rcp.r || !/^Last note: .*vibrato 5\.[45] Hz.*; swell 1\d dB.*\.$/.test(rcp.r.s) || rcp.during !== null || rcp.early !== null) throw new Error('note recap: ' + JSON.stringify(rcp));
+    // Long notes this sitting: the recap goes on the list beside the Lane once (same note twice is one line), with note name and length; visible in the Lane.
+    const llog = await p.evaluate(() => { const h = []; for (let t = 0; t <= 1.5; t += 0.02) h.push({ t: 100 + t, voiced: true, ok: true, midi: 60 + 0.5 * Math.sin(2 * Math.PI * 5.5 * t), rms: 0.1 }); const r = noteRecap(h, 101.9, [], null); logRecap(r); logRecap(noteRecap(h, 102.2, [], null));
+      const el = document.getElementById('laneLog'), li = el.querySelectorAll('li'); return { n: [...li].filter(x => x.textContent.startsWith('C4 1.5 s · ')).length, first: li[0] && li[0].textContent, vis: getComputedStyle(el).display }; });
+    if (llog.n !== 1 || !/^C4 1\.5 s · .*vibrato 5\.[45] Hz/.test(llog.first) || llog.vis !== 'block') throw new Error('lane log: ' + JSON.stringify(llog));
+    await p.screenshot({ path: join(out, `${name}-lanelog.png`) });
     await tap(p.locator('#vHelix'));
     if (touch) { await tap(p.getByRole('button', { name: 'Recording' })); await p.waitForTimeout(300); await p.setInputFiles('#file', file); }
     else { const [fc] = await Promise.all([p.waitForEvent('filechooser'), p.getByRole('button', { name: 'Recording' }).click()]); await fc.setFiles(file); }
