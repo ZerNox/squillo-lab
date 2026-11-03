@@ -234,6 +234,12 @@ async function run([name, launch, ctxOpt, file]) {
       const b = new AudioBuffer({ length: n, sampleRate: sr }); b.getChannelData(0).set(x); const A = await scanTake(b), B = await scanTake(improveTake(b, A.frames, 0.5, A.aspects.off, null, 'starts'));
       return { a: A.aspects.onsetRaw, b: B.aspects.onsetRaw, kind: nextKindOf(A.aspects), clean: nextKindOf({ onset: 0, notes: 9, inton: 10 }), off: nextKindOf({ onset: 0.5, notes: 9, inton: 30 }) }; });
     if (!(nn.nst.a >= 0.25 && nn.nst.b < nn.nst.a && nn.nst.kind === 'starts' && nn.nst.clean === 'tuning' && nn.nst.off === 'tuning')) throw new Error('next starts: ' + JSON.stringify(nn.nst));
+    // Next step for endings: a synthetic take whose long notes fall 80 ¢ over their last 0.2 s reads a smaller fall after the 'endings' render; the rule picks it.
+    nn.nen = await p.evaluate(async () => { const sr = 44100, nd = 0.9, K = 10, n = Math.round(K * nd * sr), x = new Float32Array(n); let ph = 0; const st = [0, 2, 4, 5, 7, 5, 4, 2, 0, 4];
+      for (let i = 0; i < n; i++) { const t = i / sr, N = Math.floor(t / nd), u = t - N * nd, L = nd - 0.1, fl = u > L - 0.2 ? -0.8 * (u - L + 0.2) / 0.2 : 0, f = 220 * 2 ** ((st[N] + fl) / 12); ph += 2 * Math.PI * f / sr; let v = 0; for (let h = 1; h <= 20 && h * f < 16000; h++) v += Math.sin(h * ph) / h ** 1.2; x[i] = 0.25 * v * Math.min(1, Math.max(0, Math.min(u, L - u)) / 0.02); }
+      const b = new AudioBuffer({ length: n, sampleRate: sr }); b.getChannelData(0).set(x); const A = await scanTake(b), B = await scanTake(improveTake(b, A.frames, 0.5, A.aspects.off, null, 'endings'));
+      return { a: A.aspects.tail && A.aspects.tail.cents, b: B.aspects.tail && B.aspects.tail.cents, kind: nextKindOf(A.aspects) }; });
+    if (!(nn.nen.a < -20 && nn.nen.b > nn.nen.a + 10 && nn.nen.kind === 'endings')) throw new Error('next endings: ' + JSON.stringify(nn.nen));
     nn.far = await p.evaluate(() => { const f = TAKE.far && TAKE.far.getChannelData(0), t = AU.play && (AU.ctx.currentTime - AU.play.t0) * AU.play.k; return { len: !!f && f.length === TAKE.buf.length, peak: f ? f.reduce((m, v) => Math.max(m, Math.abs(v)), 0) : 0, t, status: /^Far vision/.test(VERSION.far.status) && VERSION.far.status.length > 20 }; });
     await tap(p.locator('#bPlayFar')); await p.waitForTimeout(300);
     nn.far.ok = nn.far.len && nn.far.peak > 0.01 && nn.far.peak <= 1 && nn.far.status && await p.evaluate(t => AU.play && AU.play.which === 'far' && (AU.ctx.currentTime - AU.play.t0) * AU.play.k >= t, nn.far.t);

@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-03 · next step for endings
+
+Built: `improveTake(…,'endings')` moves the last 0.26 s of each long note half way back to the note (fading tail carried 4 frames), the rest as sung; `nextKindOf` picks it when the summary names note endings, starts are not leading and tuning is under 20 ¢; 'Your next step' names it with ▶ yours, then next step on the note that moved most. `check/next-end-bench.mjs` (page code, synthetic 50 takes, 5 voices): -80 ¢ fall -36.8 → -25.5 ¢ (render alone -46.4), -40: -19.1 → -12.6, +40: 17.0 → 12.5, level unchanged; picked 10/10 at -80, 0 on level. Without the tail carry the render read back no change (-37.1), fixed. check.mjs: falling take reads -42 → -26 ¢, rule picks endings; Chrome, Firefox, WebKit iPhone. No real-voice figure. Next: noise part 3.
+
 ## 2026-11-03 · next step for starts
 
 Found: the next step only ever moved tuning, so a singer whose main habit is scooping into notes heard a step that did not touch it. Built: `improveTake(…,'starts')` makes each scoop's rise half as deep (frames under the settled pitch in a run's first 0.3 s), the rest as sung; `nextKindOf` picks it when scoops are on 25 %+ of notes (not a slide style) and tuning is under 20 ¢; the summary's 'Your next step' names it with ▶ yours, then next step on a scooped note. `check/next-start-bench.mjs` (page code, synthetic 30 takes, 5 voices): 3 st scoops 0.50 → 0.00 scoops per note, render alone 0.50 [0.25-0.50], tuning 16.3 → 18.5 ¢; 1.8 st scoops are under the scan's line, read 0 before and after. check.mjs: a scooped take reads fewer scoops after the render, rule picks starts, not on clean or off-tune takes; Chrome, Firefox, WebKit iPhone. No real-voice figure; the readback is all-or-nothing at the 1.5 st line. Next: noise part 3.
@@ -37,8 +41,4 @@ Found: on iOS Safari a blob download opens a preview, not a saved file (named as
 ## 2026-11-02 · save audio
 
 Found: a singer could hear their take, next step, spotless and far vision only inside the page. Built: ⤓ save audio writes the version last played, at the chosen speed (WSOLA), as a 16-bit mono WAV made in the page, never uploaded. check.mjs: the saved file decodes back to the same length and sample rate as the playing version, named `voice-helix-<date>-<version>.wav`; Chrome, Firefox, WebKit. Register classifier inside a take considered and left: no falsetto-labelled clips on hand. iOS risk: Safari shows a download sheet for blob links rather than saving silently; not tried on a phone. Next: noise part 3, or register (falsetto vs chest) from VocalSet labels.
-
-## 2026-11-02 · same phrase, seen as well as heard
-
-Found: ▶ same phrase played the versions and gave numbers, but a singer could not see where they differ. Built: the found versions drawn over each other under the take: earlier dashed, today solid, in today's key by the matcher's half-step shift, each stretched to the same width, note names at the side, the sounding one bold with a playhead, a text alternative with median distance from today. Under the score line on a phone, so the first screen stays 177 px. check.mjs: a copy moved up 2 st returns shift -2 and lands on today's line (gap 0 st); Chrome, Firefox, WebKit. Linear stretch, so timing differences inside a phrase show as sideways offset; no new accuracy claim. iOS risk: canvas redraw per frame during playback, not measured on a phone. Next: noise part 3 or register transitions inside a take.
 

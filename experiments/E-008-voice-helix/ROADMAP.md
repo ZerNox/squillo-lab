@@ -78,6 +78,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Live note starts: the Lane says 'landed right on the note' or 'came in N ¢ under' 0.45 s into each note (synthetic level said 0/80, wrong way 0/480, ±80 ¢ straight 80/80).
 - Warm-up also targets note endings, key drift, clarity and rhythm when takes keep naming them (2 of the last 5).
 - Next step for starts: when scoops lead and tuning is near the trained median, the next step makes each scoop half as deep (synthetic 3 st: 0.50 → 0.00 scoops per note, render alone 0.50).
+- Next step for endings: when note endings are named, each long note's ending comes half way back (synthetic -80 ¢: -37 → -26 ¢, render alone -46).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
