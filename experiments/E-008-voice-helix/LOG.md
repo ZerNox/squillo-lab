@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-03 · steadiest on this device, live
+
+Built: the Lane's steadiness line also says "steadier than any long note in your N kept takes (best X ¢)" when a long note beats the steadiest long note of every kept take by more than 1 ¢ and its ± (the summary's personal-best rule, 2 kept takes at least), so a personal best is felt on the note itself. check.mjs: said with 3 takes, not with 1, not on a 4 ¢ note against a 4 ¢ best; Chrome, Firefox, WebKit iPhone. No new accuracy claim (wobble as the entry below). Next: noise part 3.
+
 ## 2026-11-03 · live steadiness in the Lane
 
 Built: `laneSteady`: when a note of 1 s or more stops, the Lane says "steadiness 1.3 ¢ wobble · ±0.5", and "your steadiest of N long notes" in green when it beats this sitting's best beyond 1 ¢ and both ±, so a singer working on steadiness feels progress note by note. `check/lane-steady-bench.mjs` (page code, live frames, synthetic 120 notes, 5 voices): wobble SD 0/4/8/16 ¢ reads 0.1/0.7/1.3/2.6 ¢ (vibrato 0.5/0.7/1.5/2.8), live = take within 0.2 ¢; 'steadiest' false 0/144, right 17/18. check.mjs: named, best, not best, silent while sounding; Chrome, Firefox, WebKit iPhone. No real-voice figure. Next: noise part 3.
@@ -41,8 +45,4 @@ Built: note endings (¢ off at the ends of long notes, either way) kept with eac
 ## 2026-11-02 · note endings
 
 Found: nothing read whether pitch sags (or lifts) as a long note is let go, a common habit the singer cannot hear in the moment. Built: `takeTail`: per note of 0.5 s or more, the last 0.18 s against the body, take mean ± 1.96 SE; the summary praises "held their pitch to the end" or names the sag with ± and an exercise (stop the air, not the note, over the drone; messa di voce; Titze & Verdolini Abbott 2012), saying a fall-off may be style. `check/tail-bench.mjs`: synthetic 0.2 s falls read about 0.46 of the move; -80 ¢ said 10/10, level 0/10 false and praised 10/10, wrong way 0/60; vocadito page vs hand f0 -2.7 ¢ (SD 9.7), says 3 of 20, hand 2, 0 opposite (8-note gate set on those clips). check.mjs: a falling and a held 10-note take; Chrome, Firefox, WebKit iPhone. Next: noise part 3, or note endings live and in the progress lines once real use shows it is said often enough.
-
-## 2026-11-02 · save audio on a phone: the share sheet
-
-Found: on iOS Safari a blob download opens a preview, not a saved file (named as a risk last run). Built: on a touch screen where `navigator.canShare({files})` holds, ⤓ hands the same WAV to the share sheet (Files, Voice Memos, a message); closing the sheet says "not saved", any other share error falls back to the download; desktops download as before. check.mjs, with share stubbed: the shared file decodes to the playing version's length, close and fallback paths; Chrome, Firefox, WebKit iPhone. iOS risk: the real share sheet is not reachable headless; the WAV is built synchronously inside the click so the gesture holds. Next: noise part 3, or register (falsetto vs chest) once labelled clips are on hand (none locally).
 

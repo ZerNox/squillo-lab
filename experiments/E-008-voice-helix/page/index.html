@@ -2045,8 +2045,10 @@ function laneSteady(hist,now){let k=hist.length-1;while(k>=0&&!(hist[k].voiced&&
   const a=v[v.length-1].t;if(z-a<PB_MIN)return null;const r=v.filter(h=>h.fit&&h.t>=a+0.1&&h.t<=z-0.1).reverse().map(h=>h.res);if(r.length<20)return null;
   const med=q=>q.slice().sort((x,y)=>x-y)[q.length>>1],B=[0,1,2,3].map(j=>med(r.slice(Math.floor(j*r.length/4),Math.floor((j+1)*r.length/4)))),mb=B.reduce((x,y)=>x+y,0)/4,sd=Math.sqrt(B.reduce((x,y)=>x+(y-mb)**2,0)/3);
   return {t:a,wob:med(r),pm:Math.max(0.5,1.96*sd/2)};}
-function laneSteadyText(e,prev){if(!e)return {s:'',best:false};const o=prev.filter(p=>p.t<e.t-0.05);let best=false,tail='';
+function laneSteadyText(e,prev,dev){if(!e)return {s:'',best:false};const o=prev.filter(p=>p.t<e.t-0.05);let best=false,tail='';
   if(o.length){const b=o.reduce((x,y)=>y.wob<x.wob?y:x);best=e.wob<b.wob-Math.max(PB_WOB,Math.hypot(e.pm,b.pm));tail=best?`, your steadiest of ${o.length+1} long notes`:'';}
+  // Against the steadiest long note of every kept take (as pbLines: 2 earlier takes at least), beyond PB_WOB and this note's ±.
+  if(dev&&dev.n>=2&&e.wob<dev.bw-Math.max(PB_WOB,e.pm)){best=true;tail=`, steadier than any long note in your ${dev.n} kept takes (best ${dev.bw.toFixed(1)} ¢)`;}
   return {s:`steadiness ${e.wob.toFixed(1)} ¢ wobble · ±${e.pm.toFixed(1)}${tail}`,best};}
 const LANE={mid:60,half:7,endT:0,startT:0,vibT:0,stT:0,stN:[],box:null,boxT:0},laneC=$('lane'),laneX=laneC.getContext('2d');
 function laneBox(wall){if(LANE.box&&wall-LANE.boxT<0.5)return LANE.box;LANE.boxT=wall;const t=$('top').getBoundingClientRect().bottom+8,tl=$('tl').getBoundingClientRect().top-8,H=innerHeight;LANE.box={x:0,y:Math.max(0,t),w:innerWidth,h:Math.max(140,(tl>t+140?Math.min(tl,H):H)-Math.max(0,t))};
@@ -2063,7 +2065,7 @@ function laneDraw(wall){if(!document.body.classList.contains('lane'))return;cons
   const e=laneEnd(viewHist,now),et=laneEndText(e),le=$('laneEnd');if(et){le.textContent=et;le.classList.toggle('fell',e.say);LANE.endT=now;}else if(now-LANE.endT>4||now<LANE.endT)le.textContent='';
   const g=laneStart(viewHist,now),gt=laneStartText(g),ls=$('laneStart');if(gt){ls.textContent=gt;ls.classList.toggle('fell',g.say);LANE.startT=now;}else if(now-LANE.startT>4||now<LANE.startT)ls.textContent='';
   const q=laneVibText(laneVib(viewHist,now)),lv=$('laneVib');if(q){lv.textContent=q;LANE.vibT=now;}else if(now-LANE.vibT>4||now<LANE.vibT)lv.textContent='';
-  const w=laneSteady(viewHist,now),ws=$('laneSteady');if(w){const T=laneSteadyText(w,LANE.stN);ws.textContent=T.s;ws.classList.toggle('best',T.best);LANE.stT=now;if(!LANE.stN.some(p=>Math.abs(p.t-w.t)<0.05)&&now-w.t>0.3){LANE.stN.push(w);if(LANE.stN.length>200)LANE.stN.shift();}}else if(now-LANE.stT>4||now<LANE.stT)ws.textContent='';}
+  const w=laneSteady(viewHist,now),ws=$('laneSteady');if(w){if(!LANE.dev||now<LANE.devT||now-LANE.devT>30){const H=loadHist().map(r=>Array.isArray(r.lb)?r.lb[0]:null).filter(Number.isFinite);LANE.dev={n:H.length,bw:H.length?Math.min(...H):Infinity};LANE.devT=now;}const T=laneSteadyText(w,LANE.stN,LANE.dev);ws.textContent=T.s;ws.classList.toggle('best',T.best);LANE.stT=now;if(!LANE.stN.some(p=>Math.abs(p.t-w.t)<0.05)&&now-w.t>0.3){LANE.stN.push(w);if(LANE.stN.length>200)LANE.stN.shift();}}else if(now-LANE.stT>4||now<LANE.stT)ws.textContent='';}
 window.addEventListener('resize',()=>LANE.box=null);
 function frame(){const wall=performance.now()/1000;const dt=Math.min(0.1,wall-lastWall);lastWall=wall;
   if(AU.demo)AU.demo.tick(AU.ctx.currentTime,dt);

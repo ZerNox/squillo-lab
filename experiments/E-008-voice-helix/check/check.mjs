@@ -126,8 +126,8 @@ async function run([name, launch, ctxOpt, file]) {
     // Live steadiness: a 1.5 s note's wobble (frames' fit residual) is named once it stops; after a 4 ¢ note a 1 ¢ one is 'your steadiest', a second 4 ¢ one is not.
     const lsd = await p.evaluate(() => { const mk = (r, t0) => { const h = []; for (let t = 0; t <= 1.5; t += 0.02) h.push({ t: t0 + t, voiced: true, ok: true, midi: 60, fit: true, res: r * (0.6 + 0.8 * ((t * 50) % 7) / 6) }); return h; };
       const w = laneSteady(mk(4, 0), 1.7), s = laneSteady(mk(1, 10), 11.7), w2 = laneSteady(mk(4, 10), 11.7);
-      return { w: laneSteadyText(w, []).s, s: laneSteadyText(s, [w]), w2: laneSteadyText(w2, [w]).best, during: laneSteady(mk(4, 0), 1.5), el: !!document.querySelector('#laneRead #laneSteady') }; });
-    if (!/^steadiness \d\.\d ¢ wobble · ±\d\.\d$/.test(lsd.w) || !lsd.s.best || !/your steadiest of 2 long notes$/.test(lsd.s.s) || lsd.w2 || lsd.during !== null || !lsd.el) throw new Error('lane steadiness: ' + JSON.stringify(lsd));
+      return { w: laneSteadyText(w, []).s, s: laneSteadyText(s, [w]), w2: laneSteadyText(w2, [w]).best, dv: laneSteadyText(s, [], { n: 3, bw: 4 }).s, dv1: laneSteadyText(s, [], { n: 1, bw: 4 }).best, dvN: laneSteadyText(w2, [], { n: 3, bw: 4 }).best, during: laneSteady(mk(4, 0), 1.5), el: !!document.querySelector('#laneRead #laneSteady') }; });
+    if (!/^steadiness \d\.\d ¢ wobble · ±\d\.\d$/.test(lsd.w) || !lsd.s.best || !/your steadiest of 2 long notes$/.test(lsd.s.s) || lsd.w2 || !/steadier than any long note in your 3 kept takes \(best 4\.0 ¢\)$/.test(lsd.dv) || lsd.dv1 || lsd.dvN || lsd.during !== null || !lsd.el) throw new Error('lane steadiness: ' + JSON.stringify(lsd));
     await tap(p.locator('#vHelix'));
     if (touch) { await tap(p.getByRole('button', { name: 'Recording' })); await p.waitForTimeout(300); await p.setInputFiles('#file', file); }
     else { const [fc] = await Promise.all([p.waitForEvent('filechooser'), p.getByRole('button', { name: 'Recording' }).click()]); await fc.setFiles(file); }
