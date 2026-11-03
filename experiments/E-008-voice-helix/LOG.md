@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-03 · vowels read better at every pitch
+
+Built: the sung-vowel table (`envVowel`, `check/vowel-fit.mjs`) adds each envelope level times log(f0/250), so the reader follows how a vowel's envelope shifts with pitch. VocalSet (CC BY 4.0, 2327 notes under 600 Hz, page dump, left-out singer): 78.4 ± 4.6 → 81.8 ± 4.0 %, paired +3.4 ± 1.6 points (14/20 singers better); o 63 → 71 %, u 74 → 75; 'sure' 87.5 % on 78 % of notes (was 85.9 on 73). Tried and dropped: formants added (80.6), envelope deltas (78.7). check.mjs: tilt still ignored at 450 Hz; Chrome, Firefox, WebKit iPhone. Live 0.5 s window not re-measured. Next: noise part 3 or live-window vowel bench.
+
 ## 2026-11-03 · long notes this sitting
 
 Built: `logRecap`: every long note's after-note readings (start, ending, vibrato, steadiness, swell) also go on a "Long notes this sitting" list beside the Lane (below it on a phone), newest first, 8 kept, with note name and length, personal bests in green, readable by screen readers; the 4 s Lane lines no longer vanish for good. check.mjs: one line per note, shown in the Lane; Chrome, Firefox, WebKit iPhone. No new accuracy claim. Also tried (noise part 3): the take's note-edge trim run live with one hop of look-ahead (`check/live-noise-bench.mjs`, vocadito 40 clean): level 0.2 FA 8.3 → 7.5, RPA 94.0 → 93.6, OA 93.2 flat; 0.3 FA 6.9, RPA 92.9, OA 93.0: trades again, not shipped. Next: noise part 3 needs a non-level cue.
@@ -41,8 +45,4 @@ Found: spotless kept about two thirds of a sag at a note's end (its 250 ms media
 ## 2026-11-02 · note starts, live in the Lane
 
 Built: `laneStart`: 0.45 s into a note the Lane says "landed right on the note" or "came in 60 ¢ under, then found it · ±8", so a scoop is named while the note still sounds (endings were named only after). `check/lane-start-bench.mjs` (page code, live frames, synthetic): level said 0/80, wrong way 0/480, straight ±80 ¢ said 80/80, 'landed' never on a moved start; vibrato starts said 50/240; first try (mean of the start, its own spread as ±) never said a straight scoop, replaced. check.mjs: scooped, level and too-early notes; Chrome, Firefox, WebKit iPhone. No real-voice figure. Next: noise part 3.
-
-## 2026-11-02 · warm-up for the described points
-
-Found: the warm-up chose steps only from the rated aspects (tuning, steadiness, starts), so a singer whose takes kept naming note endings, key drift, clarity or rhythm got no step for them. Built: a point named in at least 2 of the last 5 takes (or the only take) fills a free targeted slot: 'Hold to the end' (Titze & Verdolini Abbott 2012), 'Keep the key' (Howard 2007), 'Straw, then open' (Titze 2006), 'Clap, then sing' with a click guide (Repp 2005); the intro says how often it was named. check.mjs: seeded histories pick the right steps, none without names; Chrome, Firefox, WebKit iPhone. No accuracy claim (choice rule only). Next: noise part 3.
 
