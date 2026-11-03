@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-03 · live vibrato in the Lane
+
+Built: `laneVib`: when a note of 1 s or more stops, the Lane says "vibrato 5.6 Hz ±0.2 · 0.45 st wide, even" or "held straight, no vibrato" for 4 s, the take's estimator on the live frames, so a singer working on vibrato hears about each note as they sing, not only after the take. `check/lane-vib-bench.mjs` (page code, live frames, synthetic 120 notes, 5 voices): straight 40/40 straight, never vibrato; even vibrato rate max 0.04 Hz, width 0.03 st off, truth inside ± 37/40, even 40/40; ±30 % cycle jitter uneven 15/40. check.mjs: vibrato and straight notes; Chrome, Firefox, WebKit iPhone. No real-voice figure. Next: noise part 3.
+
 ## 2026-11-03 · next step for endings
 
 Built: `improveTake(…,'endings')` moves the last 0.26 s of each long note half way back to the note (fading tail carried 4 frames), the rest as sung; `nextKindOf` picks it when the summary names note endings, starts are not leading and tuning is under 20 ¢; 'Your next step' names it with ▶ yours, then next step on the note that moved most. `check/next-end-bench.mjs` (page code, synthetic 50 takes, 5 voices): -80 ¢ fall -36.8 → -25.5 ¢ (render alone -46.4), -40: -19.1 → -12.6, +40: 17.0 → 12.5, level unchanged; picked 10/10 at -80, 0 on level. Without the tail carry the render read back no change (-37.1), fixed. check.mjs: falling take reads -42 → -26 ¢, rule picks endings; Chrome, Firefox, WebKit iPhone. No real-voice figure. Next: noise part 3.

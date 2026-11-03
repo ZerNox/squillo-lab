@@ -119,6 +119,10 @@ async function run([name, launch, ctxOpt, file]) {
     const lst = await p.evaluate(() => { const mk = D => { const h = []; for (let t = 0; t <= 0.7; t += 0.01) h.push({ t, voiced: true, ok: true, midi: 60 + D / 100 * Math.max(0, 1 - t / 0.25) ** 2 }); return h; };
       return { u: laneStartText(laneStart(mk(-80), 0.7)), l: laneStartText(laneStart(mk(0), 0.7)), early: laneStart(mk(-80).filter(h => h.t <= 0.3), 0.3), el: !!document.querySelector('#laneRead #laneStart') }; });
     if (!/^came in \d+ ¢ under, then found it · ±\d+$/.test(lst.u) || lst.l !== 'landed right on the note' || lst.early !== null || !lst.el) throw new Error('lane note start: ' + JSON.stringify(lst));
+    // Live vibrato: a 1.5 s note at 5.5 Hz, ±0.5 st is named with its rate once it stops; a straight one 'held straight'.
+    const lvb = await p.evaluate(() => { const mk = w => { const h = []; for (let t = 0; t <= 1.5; t += 0.02) h.push({ t, voiced: true, ok: true, midi: 60 + w * Math.sin(2 * Math.PI * 5.5 * t) }); return h; };
+      return { v: laneVibText(laneVib(mk(0.5), 1.7)), s: laneVibText(laneVib(mk(0), 1.7)), el: !!document.querySelector('#laneRead #laneVib') }; });
+    if (!/^vibrato 5\.[45] Hz ±\d\.\d · 0\.\d\d st wide, even$/.test(lvb.v) || lvb.s !== 'held straight, no vibrato' || !lvb.el) throw new Error('lane vibrato: ' + JSON.stringify(lvb));
     await tap(p.locator('#vHelix'));
     if (touch) { await tap(p.getByRole('button', { name: 'Recording' })); await p.waitForTimeout(300); await p.setInputFiles('#file', file); }
     else { const [fc] = await Promise.all([p.waitForEvent('filechooser'), p.getByRole('button', { name: 'Recording' }).click()]); await fc.setFiles(file); }

@@ -79,6 +79,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Warm-up also targets note endings, key drift, clarity and rhythm when takes keep naming them (2 of the last 5).
 - Next step for starts: when scoops lead and tuning is near the trained median, the next step makes each scoop half as deep (synthetic 3 st: 0.50 → 0.00 scoops per note, render alone 0.50).
 - Next step for endings: when note endings are named, each long note's ending comes half way back (synthetic -80 ¢: -37 → -26 ¢, render alone -46).
+- Live vibrato: the Lane names each long note's rate, width and evenness, or 'held straight' (synthetic: straight 40/40, rate max 0.04 Hz off, even 40/40, jittered uneven 15/40).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
