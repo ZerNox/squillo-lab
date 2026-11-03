@@ -77,6 +77,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Hear the ending held: '▶ yours, then held' on the note that fell furthest; spotless now holds endings (synthetic -80 ¢ fall: take -37 → spotless -3 ¢).
 - Live note starts: the Lane says 'landed right on the note' or 'came in N ¢ under' 0.45 s into each note (synthetic level said 0/80, wrong way 0/480, ±80 ¢ straight 80/80).
 - Warm-up also targets note endings, key drift, clarity and rhythm when takes keep naming them (2 of the last 5).
+- Next step for starts: when scoops lead and tuning is near the trained median, the next step makes each scoop half as deep (synthetic 3 st: 0.50 → 0.00 scoops per note, render alone 0.50).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
@@ -95,5 +96,5 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 4. **Vibrato, part 3**: per-note truth if any exists (the 20-singer evenness reference is done).
 5. **Tone, part 2**: formant-corrected H1-H2 re-tested; a pressed cue only if openly licensed pressed-voice labels turn up.
 6. **Same phrase, part 3**: measure the matcher on real re-sung takes (an openly licensed set with repeated renditions of one melody) instead of the slowed-clip proxy.
-7. **Next step, part 2**: a scoop reading that survives a render, then 'clean starts' as a next step; a real-voice steadiness render above the 0.3 ¢ floor.
+7. **Next step, part 3**: clean starts on real voices (no scoop-labelled open set yet); a real-voice steadiness render above the 0.3 ¢ floor.
 8. **Sing the phrase, part 3**: a test on really re-sung phrases, fewer other melodies accepted (5/30), rhythm as a cue once real re-sung timing can be measured.
