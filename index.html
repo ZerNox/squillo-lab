@@ -214,7 +214,7 @@ button:focus-visible,select:focus-visible,input:focus-visible,#rail:focus-visibl
 #laneStart,#laneEnd,#laneVib,#laneSteady,#laneSwell{font-size:clamp(14px,2.6vw,18px);margin-top:6px;color:#a8b3bf}#laneStart:empty,#laneEnd:empty,#laneVib:empty,#laneSteady:empty,#laneSwell:empty{display:none}#laneSwell.best{color:#4fd8c4}#laneSteady.best{color:#4fd8c4}#laneStart.fell,#laneEnd.fell{color:#e0b070}
 body.lane #lane,body.lane #laneRead{display:block}
 body.lane #rail,body.lane #labels,body.lane #flaws,body.lane #advice{display:none}
-#laneLog{display:none;font:13px/1.4 var(--f-mono);color:#a8b3bf;max-width:620px}#laneLog h2{font-size:12px;margin:0 0 4px;color:var(--fg-3);font-weight:500;letter-spacing:.04em}#laneLog ol{margin:0;padding-left:0;list-style:none}#laneLog li{margin:0 0 5px}#laneLog b{color:var(--fg);font-weight:600}#laneLog li.best b{color:#4fd8c4}
+#laneLog{display:none;font:13px/1.4 var(--f-mono);color:#a8b3bf;max-width:620px}#laneLog h2{font-size:12px;margin:0 0 4px;color:var(--fg-3);font-weight:500;letter-spacing:.04em}#laneLog ol{margin:0;padding-left:0;list-style:none}#laneLog li{margin:0 0 5px}#laneLog b{color:var(--fg);font-weight:600}#laneLog li.best b{color:#4fd8c4}#laneLog .days{margin:0 0 8px;color:var(--fg)}#laneLog .days.best{color:#4fd8c4}
 body.lane #laneLog:not(:empty){display:block}
 @media (min-width:721px){body.lane #laneLog{position:fixed;right:max(20px,env(safe-area-inset-right,0px));top:340px;width:min(560px,calc(100vw - 700px));max-height:calc(100vh - 360px);overflow-y:auto}}
 @media (max-width:720px){body.lane #coach{margin-top:58vh}}
@@ -875,12 +875,21 @@ bSay.onclick=()=>setSay(!SAY.on);
 // vibrato, steadiness, swell) are read once as one sentence through the same live region, in or out of the Lane.
 // No new measurement: the lane* readers and their benches. check.mjs: recap once per note, not while it sounds.
 function noteRecap(hist,now,prev,dev){let k=hist.length-1;while(k>=0&&!(hist[k].voiced&&hist[k].ok!==false))k--;if(k<0)return null;const z=hist[k].t;if(now-z<0.3||now-z>4)return null;
-  const g=laneStart(hist,now),p=[laneStartText(g),laneEndText(laneEnd(hist,now)),laneVibText(laneVib(hist,now)),(()=>{const w=laneSteady(hist,now);return w?laneSteadyText(w,prev||[],dev).s:'';})(),laneSwellText(laneSwell(hist,now)).s].filter(Boolean);
+  const g=laneStart(hist,now),w=laneSteady(hist,now),p=[laneStartText(g),laneEndText(laneEnd(hist,now)),laneVibText(laneVib(hist,now)),w?laneSteadyText(w,prev||[],dev).s:'',laneSwellText(laneSwell(hist,now)).s].filter(Boolean);
   if(!p.length)return null;let a=k;while(a>0&&hist[a-1].voiced&&hist[a-1].ok!==false&&z-hist[a-1].t<8)a--;const ms=hist.slice(a,k+1).map(h=>h.midi).sort((x,y)=>x-y);
-  return{t:z,s:'Last note: '+p.join('; ')+'.',n:noteName(ms[ms.length>>1]),d:z-hist[a].t,p,best:/steadiest|steadier than any/.test(p.join(' '))};}
+  return{t:z,s:'Last note: '+p.join('; ')+'.',n:noteName(ms[ms.length>>1]),d:z-hist[a].t,p,w,best:/steadiest|steadier than any/.test(p.join(' '))};}
 // Long notes this sitting: every recap also goes on a list beside the Lane (newest first, 8 kept), so a reading is still there after its 4 s line fades. Same readers, no new measurement.
-const LOG8=[];function logRecap(r){if(!r||LOG8.some(q=>Math.abs(q.t-r.t)<0.05))return;LOG8.unshift(r);LOG8.length=Math.min(8,LOG8.length);const el=$('laneLog');if(!el)return;
-  el.innerHTML=`<h2>Long notes this sitting</h2><ol>${LOG8.map(q=>`<li${q.best?' class="best"':''}><b>${q.n}</b> ${q.d.toFixed(1)} s · ${q.p.join('; ')}</li>`).join('')}</ol>`;}
+// Across days: each long note's wobble is kept on the device (LN_KEY, newest 400); today's against the earlier 14 days as a geometric mean
+// with a 95 % interval, 'steadier'/'less steady' only when the log means differ by 15 % and beyond both intervals combined (t, the smaller side's df), 3 notes a side at least. check/lane-days-bench.mjs.
+const LN_KEY='helix.lanenotes.v1',LN_MAX=400,LN_MIN=3;
+function laneDays(list,now){const day=new Date(now).toDateString(),T=[],E=[];for(const r of list){if(!Number.isFinite(r.wob)||r.wob<=0)continue;if(new Date(r.d).toDateString()===day)T.push(Math.log(r.wob));else if(now-r.d<14*864e5&&r.d<now)E.push(Math.log(r.wob));}
+  const st=a=>{const m=a.reduce((x,y)=>x+y,0)/a.length,sd=a.length>1?Math.sqrt(a.reduce((x,y)=>x+(y-m)**2,0)/(a.length-1)):0;return {n:a.length,m,se:sd/Math.sqrt(a.length)};};
+  if(T.length<LN_MIN||E.length<LN_MIN)return {n:T.length,e:E.length,s:''};const t=st(T),e=st(E),dd=t.m-e.m,df=Math.min(t.n,e.n)-1,lim=Math.max(Math.log(1.15),(df<4?[0,12.7,4.3,3.18][df]:1.96+2.4/df)*Math.hypot(t.se,e.se)),f=x=>Math.exp(x).toFixed(1),pm=a=>`${f(a.m)} ¢ (${f(a.m-1.96*a.se)}-${f(a.m+1.96*a.se)})`;
+  const v=dd<-lim?'steadier than':dd>lim?'less steady than':'level with';return {n:t.n,e:e.n,v,s:`Today's ${t.n} long notes ${v} your ${e.n} from the last two weeks: wobble ${pm(t)} vs ${pm(e)}.`};}
+function laneKeep(r){if(!r.w)return;const l=dataRead(LN_KEY,'[]');l.push({d:Date.now(),wob:+r.w.wob.toFixed(2),n:r.n,len:+r.d.toFixed(1)});try{localStorage.setItem(LN_KEY,JSON.stringify(l.slice(-LN_MAX)));}catch(e){}}
+const LOG8=[];function logRecap(r){if(!r||LOG8.some(q=>Math.abs(q.t-r.t)<0.05))return;LOG8.unshift(r);LOG8.length=Math.min(8,LOG8.length);laneKeep(r);const el=$('laneLog');if(!el)return;
+  const D=laneDays(dataRead(LN_KEY,'[]'),Date.now());
+  el.innerHTML=`<h2>Long notes this sitting</h2>${D.s?`<p class="days${D.v==='steadier than'?' best':''}">${D.s}</p>`:''}<ol>${LOG8.map(q=>`<li${q.best?' class="best"':''}><b>${q.n}</b> ${q.d.toFixed(1)} s · ${q.p.join('; ')}</li>`).join('')}</ol>`;}
 function sayRecap(now){const r=noteRecap(viewHist,now,LANE.stN,LANE.dev);logRecap(r);if(!SAY.on)return;if(r&&Math.abs(r.t-(SAY.recT??-9))>0.05){SAY.recT=r.t;sayEl.textContent=r.s;}}
 document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey||/select|input|textarea/i.test(document.activeElement.tagName))return;const K=$('keys');
   if(e.key==='n'||e.key==='N'){e.preventDefault();setSay(!SAY.on);}
@@ -1821,7 +1830,7 @@ const MARK_KEY='helix.marks.v1',bMark=$('bMark');
 // My data: everything kept lives in this browser, and a browser may clear it (Safari after 7 days away unless the page is on the
 // home screen). A copy is a plain JSON file the singer holds; bringing it back merges by date, existing records win, nothing is lost
 // in either direction. Audio stays out of the copy. Imported text reaches innerHTML, so a record holding markup is refused.
-const SAVED_KEY='helix.saved.v1',DATA_KEYS=[[HIST_KEY,HIST_MAX],[RANGE_KEY,RF_MAX],[MATCH_KEY,60],[SWELL_KEY,60],[SIREN_KEY,60],[PHR_KEY,120]],DATA_APP='voice-helix';
+const SAVED_KEY='helix.saved.v1',DATA_KEYS=[[HIST_KEY,HIST_MAX],[RANGE_KEY,RF_MAX],[MATCH_KEY,60],[SWELL_KEY,60],[SIREN_KEY,60],[PHR_KEY,120],[LN_KEY,LN_MAX]],DATA_APP='voice-helix';
 const dataOk=r=>!!r&&typeof r==='object'&&!JSON.stringify(r).includes('<');
 function dataRead(k,e){try{return JSON.parse(localStorage.getItem(k)||e);}catch(x){return JSON.parse(e);}}
 function backupText(now){const data={[MARK_KEY]:dataRead(MARK_KEY,'{}')};for(const [k] of DATA_KEYS)data[k]=dataRead(k,'[]');return JSON.stringify({app:DATA_APP,v:1,saved:now,data});}
@@ -1833,7 +1842,7 @@ function restoreText(t){let o;try{o=JSON.parse(t);}catch(e){return null;}if(!o||
   try{for(const [k,v] of w)localStorage.setItem(k,JSON.stringify(v));}catch(e){return {n:0,takes:0,full:true};}return {n,takes};}
 function dataNudge(h){const s=+dataRead(SAVED_KEY,'0');if(h.length<5||(s&&Date.now()-s<14*864e5))return '';return `<p class="fine">${s?`Your last copy is ${Math.floor((Date.now()-s)/864e5)} days old`:'No copy of your progress yet'}: a browser can clear what it keeps. Save one under my data.</p>`;}
 function renderData(msg){const el=$('data'),h=loadHist(),s=+dataRead(SAVED_KEY,'0'),ex=DATA_KEYS.slice(1).reduce((a,[k])=>a+dataRead(k,'[]').length,0);el.hidden=false;
-  el.innerHTML=`<h2>My data</h2>${msg?`<p id="dataMsg">${msg}</p>`:''}<p>Kept in this browser only, sent nowhere: <b>${h.length}</b> take${h.length===1?'':'s'}, <b>${ex}</b> warm-up and range reading${ex===1?'':'s'}, <span id="dataAudio">and up to ${ADB.max} takes' audio</span>. ${s?`Last copy saved ${new Date(s).toLocaleDateString()}.`:'No copy saved yet.'}</p><p class="fine" id="dataPersist"></p><p class="fine" id="dataApp"></p>
+  el.innerHTML=`<h2>My data</h2>${msg?`<p id="dataMsg">${msg}</p>`:''}<p>Kept in this browser only, sent nowhere: <b>${h.length}</b> take${h.length===1?'':'s'}, <b>${ex}</b> warm-up, range and long-note reading${ex===1?'':'s'}, <span id="dataAudio">and up to ${ADB.max} takes' audio</span>. ${s?`Last copy saved ${new Date(s).toLocaleDateString()}.`:'No copy saved yet.'}</p><p class="fine" id="dataPersist"></p><p class="fine" id="dataApp"></p>
    <div class="row"><button class="btn" id="dSave">⤓ save a copy</button><button class="btn" id="dLoad">⤒ bring a copy back</button><button class="btn" id="dForget">delete everything</button></div><p class="fine">A copy is one small file of numbers and dates, no audio. Bringing it back adds what is missing and changes nothing you already have.</p>`;
   $('dSave').onclick=()=>{const now=Date.now(),a=document.createElement('a');a.href=URL.createObjectURL(new Blob([backupText(now)],{type:'application/json'}));a.download=`voice-helix-${new Date(now).toISOString().slice(0,10)}.json`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),60000);try{localStorage.setItem(SAVED_KEY,String(now));}catch(e){}keepAsked();renderData(`Copy saved as ${a.download}.`);};
   $('dLoad').onclick=()=>$('dataFile').click();
