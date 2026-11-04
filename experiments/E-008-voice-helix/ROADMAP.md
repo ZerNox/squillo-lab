@@ -84,7 +84,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Live steadiness: the Lane names each long note's wobble and 'your steadiest' this sitting or across kept takes (synthetic: live = take within 0.2 ¢, false best 0/144, right 17/18).
 - Eyes-free recap: with say note on, each long note's Lane lines are read once as one sentence after it stops.
 - Long notes this sitting: the Lane's after-note lines kept as a list beside it (8 newest).
-- Long notes across days: today's live long-note wobble vs the last two weeks, with intervals (synthetic false change 2-3 %, half the wobble 97-100 %); starts and endings too (false 0-1 %, 0 vs 80 ¢ 97-100 %); wobble by day drawn over 14 days with 95 % bars.
+- Long notes across days: today's live long-note wobble vs the last two weeks, with intervals (synthetic false change 2-3 %, half the wobble 97-100 %); starts and endings too (false 0-1 %, 0 vs 80 ¢ 97-100 %); wobble, starts and endings by day drawn over 14 days with 95 % bars.
 - Vowels, part 3a: envelope × log f0 terms in the vowel table (VocalSet left-out singer 78.4 → 81.8 %, o 63 → 71 %, sure 87.5 % on 78 %).; live 0.5 s window re-measured (83.0 → 88.1 %, chip "7 in 8 right").
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.

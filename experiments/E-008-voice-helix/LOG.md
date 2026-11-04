@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-04 · starts and endings by day
+
+Built: `laneTrend(list,now,k)` now reads starts and endings too (plain mean, interval floored at 0, linear axis); the Lane's list draws three 14-day charts (wobble, starts, endings), each with dots, 95 % bars and a screen-reader label. No new measurement (readings from lane-days-bench). check.mjs: a day without endings drops from that chart only. Chrome, Firefox, WebKit iPhone. Next: noise part 3, or o/u vowels.
+
 ## 2026-11-04 · long-note wobble by day
 
 Built: `laneTrend`/`laneTrendSvg`: the Lane's list opens with a 14-day chart of live long-note wobble, one dot per day with 3+ notes (geometric mean) and its 95 % bar (same t as laneDays), log axis, today in teal, read out by screen readers. No new measurement (readings from lane-days-bench). check.mjs: day buckets, intervals, no chart under 2 days; day-bucketed checks pinned to noon (a midnight run flaked WebKit once). Chrome, Firefox, WebKit iPhone. Next: noise part 3, or o/u vowels.
