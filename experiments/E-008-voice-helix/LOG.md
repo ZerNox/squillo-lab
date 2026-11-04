@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-04 · swells by day; a low-band cue tried
+
+Built: each live long note's swell width (`laneSwell`, dB) is kept with its wobble, start and ending; the Lane's list adds "Today's N long notes wider swells than / narrower than / level with your M from the last two weeks" (mean, 95 %, 3 dB floor, higher is better) and a fourth 14-day chart. `check/lane-days-bench.mjs` (page code, synthetic swells 0/8/16 dB, five voices): same-level false change 0/400, each step said 400/400, wrong way 0 (real note-to-note spread unmeasured). check.mjs: wider/level, kept width, dB chart; Chrome, Firefox, WebKit iPhone. Noise part 3 tried: a low-band energy share (below 1.5 kHz) gating live candidates left clean FA at 8.3 % (0.6) / 8.1 % (0.8) while RPA fell 94.0 → 93.3 / 91.2: the false alarms are not breaths or fricatives, not shipped. Next: o/u vowels, or noise part 3 at note edges.
+
 ## 2026-11-04 · starts and endings by day
 
 Built: `laneTrend(list,now,k)` now reads starts and endings too (plain mean, interval floored at 0, linear axis); the Lane's list draws three 14-day charts (wobble, starts, endings), each with dots, 95 % bars and a screen-reader label. No new measurement (readings from lane-days-bench). check.mjs: a day without endings drops from that chart only. Chrome, Firefox, WebKit iPhone. Next: noise part 3, or o/u vowels.
@@ -41,12 +45,4 @@ Built: `laneSwell`: when a note of 1 s or more stops, the Lane says "swell 19 dB
 ## 2026-11-03 · steadiest on this device, live
 
 Built: the Lane's steadiness line also says "steadier than any long note in your N kept takes (best X ¢)" when a long note beats the steadiest long note of every kept take by more than 1 ¢ and its ± (the summary's personal-best rule, 2 kept takes at least), so a personal best is felt on the note itself. check.mjs: said with 3 takes, not with 1, not on a 4 ¢ note against a 4 ¢ best; Chrome, Firefox, WebKit iPhone. No new accuracy claim (wobble as the entry below). Next: noise part 3.
-
-## 2026-11-03 · live steadiness in the Lane
-
-Built: `laneSteady`: when a note of 1 s or more stops, the Lane says "steadiness 1.3 ¢ wobble · ±0.5", and "your steadiest of N long notes" in green when it beats this sitting's best beyond 1 ¢ and both ±, so a singer working on steadiness feels progress note by note. `check/lane-steady-bench.mjs` (page code, live frames, synthetic 120 notes, 5 voices): wobble SD 0/4/8/16 ¢ reads 0.1/0.7/1.3/2.6 ¢ (vibrato 0.5/0.7/1.5/2.8), live = take within 0.2 ¢; 'steadiest' false 0/144, right 17/18. check.mjs: named, best, not best, silent while sounding; Chrome, Firefox, WebKit iPhone. No real-voice figure. Next: noise part 3.
-
-## 2026-11-03 · live vibrato in the Lane
-
-Built: `laneVib`: when a note of 1 s or more stops, the Lane says "vibrato 5.6 Hz ±0.2 · 0.45 st wide, even" or "held straight, no vibrato" for 4 s, the take's estimator on the live frames, so a singer working on vibrato hears about each note as they sing, not only after the take. `check/lane-vib-bench.mjs` (page code, live frames, synthetic 120 notes, 5 voices): straight 40/40 straight, never vibrato; even vibrato rate max 0.04 Hz, width 0.03 st off, truth inside ± 37/40, even 40/40; ±30 % cycle jitter uneven 15/40. check.mjs: vibrato and straight notes; Chrome, Firefox, WebKit iPhone. No real-voice figure. Next: noise part 3.
 

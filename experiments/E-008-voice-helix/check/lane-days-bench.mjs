@@ -2,6 +2,7 @@
 // worker's frames) from synthetic held notes at wobble SD 4, 8 and 16 ¢ over five voices; then days of 3-12 notes drawn from the pools:
 // today and earlier days at the same wobble (any 'steadier'/'less steady' is false) and today at half the earlier wobble (claim is right).
 // Starts and endings: notes that slide in from and fall away by 0, 40 or 80 ¢ (laneStart, laneEnd read 0.3 s after the stop), same day pairs.
+// Swell: notes swelling 0, 8 or 16 dB (laneSwell), same day pairs, higher counts as better.
 // Usage: node check/lane-days-bench.mjs http://localhost:<port>/
 import { chromium } from 'playwright';
 const b = await chromium.launch({ channel: 'chrome' }).catch(() => chromium.launch()), p = await b.newPage(); await p.goto(process.argv[2]); await p.waitForTimeout(1000);
@@ -30,6 +31,17 @@ const res = await p.evaluate(async () => { const sr = 48000; let seed = 11; cons
       if (D.v && !/level/.test(D.v)) { out.said++; if (D.good === (dt < de)) out.right++; else out.wrong++; } } return out; };
   const se = {}; for (const k of ['st', 'en']) { for (const D of [0, 40, 80]) { const v = P2[D].map(r => r[k]).filter(x => x != null).sort((x, y) => x - y); se[`${k} ${D} ¢ read ${v.length}/40, median`] = v[v.length >> 1]; }
     for (const [a, c] of [[0, 0], [40, 40], [80, 80], [0, 40], [40, 80], [0, 80], [80, 40]]) se[`${k} today ${a} vs earlier ${c}`] = run2(k, a, c); }
+  // Swell: notes that rise and fall by 0, 8 or 16 dB peaking mid-note (laneSwell, 0.3 s after the stop); higher counts as better.
+  const note3 = async (m, G) => { const dur = 1.2 + R(), start = 0.3, n = Math.round(sr * (start + dur + 0.6)), buf = mkBuf(n, sr), x = buf.getChannelData(0); let ph = 0, w = 0, w2 = 0; const a = Math.exp(-2 * Math.PI * 8 / sr);
+    for (let i = 0; i < n; i++) { const s = i / sr; w = a * w + (1 - a) * (R() * 2 - 1); w2 = a * w2 + (1 - a) * w; if (s < start || s > start + dur) { x[i] = 0.002 * (R() * 2 - 1); continue; } const u = s - start;
+      const mid = m + w2 * 4 / 100 * 160; ph += 2 * Math.PI * 440 * 2 ** ((mid - 69) / 12) / sr; let v = 0; for (let h = 1; h <= 8; h++) v += Math.sin(h * ph) / (h * h);
+      x[i] = 0.2 * 10 ** (-G * (1 - Math.sin(Math.PI * u / dur)) / 20) * Math.min(1, u / 0.03, (dur - u) / 0.03) * (v + 0.02 * (R() * 2 - 1)); }
+    const fs = await trackTake(buf), st = new Stats(); for (const f of fs) ingest(st, f, 'take'); const fr = st.rec.frames, z = start + dur, e = laneSwell(fr.filter(f => f.t <= z + 0.3), z + 0.3); return e ? +e.w.toFixed(1) : null; };
+  const P3 = {}; for (const G of [0, 8, 16]) { P3[G] = []; for (const m of [45, 52, 60, 69, 76]) for (let r = 0; r < 8; r++) { const q = await note3(m, G); if (q != null) P3[G].push(q); } }
+  for (const G of [0, 8, 16]) { const v = P3[G].slice().sort((x, y) => x - y); se[`sw ${G} dB read ${v.length}/40, median`] = v[v.length >> 1]; }
+  for (const [a, c] of [[0, 0], [8, 8], [16, 16], [8, 0], [16, 8], [16, 0], [0, 8]]) { const out = { said: 0, right: 0, wrong: 0, n: 0 }, dr = (G, n, d) => Array.from({ length: n }, () => ({ d, sw: P3[G][Math.floor(R() * P3[G].length)] }));
+    for (let j = 0; j < 400; j++) { const D = laneDays([...dr(c, 3 + Math.floor(R() * 20), now - (1 + Math.floor(R() * 12)) * 864e5), ...dr(a, 3 + Math.floor(R() * 10), now - 3600e3)], now, 'sw'); out.n++;
+      if (D.v && !/level/.test(D.v)) { out.said++; if (D.good === (a > c)) out.right++; else out.wrong++; } } se[`sw today ${a} vs earlier ${c} dB`] = out; }
   const pm = {}; for (const k in pool) { const s = pool[k].slice().sort((x, y) => x - y); pm[k] = [s.length, s[s.length >> 1], s[0], s[s.length - 1]]; }
   return { pm, same4: run(4, 4), same8: run(8, 8), same16: run(16, 16), half: run(8, 16), half2: run(4, 8), worse: run(16, 8), se }; });
 for (const [k, v] of Object.entries(res.pm)) console.log(`wobble SD ${k} ¢: ${v[0]} notes read, live wob median ${v[1].toFixed(1)} [${v[2].toFixed(1)}-${v[3].toFixed(1)}] ¢`);
