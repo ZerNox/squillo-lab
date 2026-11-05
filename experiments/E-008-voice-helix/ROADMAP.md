@@ -87,6 +87,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Long notes across days: today's live long-note wobble vs the last two weeks, with intervals (synthetic false change 2-3 %, half the wobble 97-100 %); starts and endings too (false 0-1 %, 0 vs 80 ¢ 97-100 %); swell width too (synthetic false 0/400, 8 dB steps 400/400); wobble, starts and endings by day drawn over 14 days with 95 % bars; vibrato rate and width too, described not rated (synthetic false 0/400, steps 400/400).
 - No WebGL: the 2D Lane, HUD, score and takes keep running (Firefox here lost WebGL 2026-11-05).
 - Vowels, part 3a: envelope × log f0 terms in the vowel table (VocalSet left-out singer 78.4 → 81.8 %, o 63 → 71 %, sure 87.5 % on 78 %).; live 0.5 s window re-measured (83.0 → 88.1 %, chip "7 in 8 right").
+- Range by week: the voice profile's 8-week chart of full and comfortable span; a new top or bottom named only a semitone or more past before.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 

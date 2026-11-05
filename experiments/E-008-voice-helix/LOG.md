@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-05 · range by week
+
+Built: `rangeWeeks`/`rangeWeeksSvg`: the voice profile draws the last 8 weeks, one bar per week for the full span held (takes and range finds) with the comfortable span inside, read out by screen readers; it says when the last two weeks' top or bottom held note moved a semitone or more past everything earlier (range finder 95 % within 1 st, range-bench), and never calls a quieter fortnight a shrink. No new measurement. check.mjs: up 3 st named, level and lower not, one week silent. Chrome, Firefox, WebKit iPhone. Next: o/u vowels, or noise part 3.
+
 ## 2026-11-05 · vibrato by day; no-WebGL fix
 
 Built: each live long note's vibrato rate and width (`laneVib`) is kept with the rest; the Lane's list adds "faster / slower vibrato" and "wider / narrower vibrato than your M from the last two weeks" (described, never marked better; floors 0.3 Hz, 20 %) and two more 14-day charts. `check/lane-days-bench.mjs` (page code, synthetic 5.0/5.8 Hz, 0.25/0.5 st, 5 % cycle jitter, five voices): read 5.00/5.79 Hz, 0.24/0.48 st; false change 0/400, steps 400/400, wrong way 0, no leak between rate and width (real cycle spread unmeasured). Firefox on this machine lost WebGL: the page threw and the frame loop never started, so the Lane, HUD and score were dead without WebGL; fixed (3D part skipped, 2D always runs). check.mjs: vibrato days. Chrome, Firefox (no WebGL), WebKit iPhone. Next: o/u vowels, or noise part 3.
@@ -41,8 +45,4 @@ Built: `logRecap`: every long note's after-note readings (start, ending, vibrato
 ## 2026-11-03 · after-note recap, eyes free
 
 Built: `noteRecap`: with say note (N) on, 0.3 s after a long note stops, the live region reads "Last note: landed right on the note; held to the end; vibrato 5.6 Hz ±0.2 …; swell 19 dB …" once, in or out of the Lane, so a singer with eyes closed or a screen reader gets every after-note line the Lane shows (it was aria-hidden). check.mjs: recap after stop, none while sounding or at 0.1 s; Chrome, Firefox, WebKit iPhone. No new accuracy claim (the lane readers' benches). Risk: speech through speakers reaches the mic, as say note already did; headphones advised. Next: noise part 3.
-
-## 2026-11-03 · live swell in the Lane
-
-Built: `laneSwell`: when a note of 1 s or more stops, the Lane says "swell 19 dB ±2, peak near the middle, a real messa di voce" or "held level", so a singer practising messa di voce hears the width and shape of each swell as they sing it. `check/lane-swell-bench.mjs` (page code, live frames, synthetic 150 notes, 5 voices): error mean within 0.9 dB (max 3.1), truth inside ± 138/150, peak place 90/90, live = take within 0.5 dB; 'messa di voce' 28/30 at 20 dB, 0 at 14 and under. The first ± (frame noise only) held 9/30 at 20 dB; 8 % of width added. check.mjs: swell and level; Chrome, Firefox, WebKit iPhone. No real-voice figure. Next: noise part 3.
 
