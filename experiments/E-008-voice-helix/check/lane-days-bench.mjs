@@ -3,6 +3,7 @@
 // today and earlier days at the same wobble (any 'steadier'/'less steady' is false) and today at half the earlier wobble (claim is right).
 // Starts and endings: notes that slide in from and fall away by 0, 40 or 80 ¢ (laneStart, laneEnd read 0.3 s after the stop), same day pairs.
 // Swell: notes swelling 0, 8 or 16 dB (laneSwell), same day pairs, higher counts as better.
+// Vibrato: rate 5.0/5.8 Hz, width 0.25/0.5 st, 5 % cycle jitter (laneVib), same day pairs; described, never better.
 // Usage: node check/lane-days-bench.mjs http://localhost:<port>/
 import { chromium } from 'playwright';
 const b = await chromium.launch({ channel: 'chrome' }).catch(() => chromium.launch()), p = await b.newPage(); await p.goto(process.argv[2]); await p.waitForTimeout(1000);
@@ -42,9 +43,20 @@ const res = await p.evaluate(async () => { const sr = 48000; let seed = 11; cons
   for (const [a, c] of [[0, 0], [8, 8], [16, 16], [8, 0], [16, 8], [16, 0], [0, 8]]) { const out = { said: 0, right: 0, wrong: 0, n: 0 }, dr = (G, n, d) => Array.from({ length: n }, () => ({ d, sw: P3[G][Math.floor(R() * P3[G].length)] }));
     for (let j = 0; j < 400; j++) { const D = laneDays([...dr(c, 3 + Math.floor(R() * 20), now - (1 + Math.floor(R() * 12)) * 864e5), ...dr(a, 3 + Math.floor(R() * 10), now - 3600e3)], now, 'sw'); out.n++;
       if (D.v && !/level/.test(D.v)) { out.said++; if (D.good === (a > c)) out.right++; else out.wrong++; } } se[`sw today ${a} vs earlier ${c} dB`] = out; }
+  // Vibrato: notes at rate 5.0/5.8 Hz and width 0.25/0.5 st (sine extent), rate and extent jittered 5 % per cycle (laneVib, 0.3 s after the stop); described, not rated.
+  const note4 = async (m, rt, ex) => { const dur = 1.6 + R(), start = 0.3, n = Math.round(sr * (start + dur + 0.6)), buf = mkBuf(n, sr), x = buf.getChannelData(0); let ph = 0, vp = 0, rr = rt, ee = ex, lastc = 0;
+    for (let i = 0; i < n; i++) { const s = i / sr; if (s < start || s > start + dur) { x[i] = 0.002 * (R() * 2 - 1); continue; } const u = s - start; vp += 2 * Math.PI * rr / sr; const c = Math.floor(vp / (2 * Math.PI)); if (c !== lastc) { lastc = c; rr = rt * (1 + 0.05 * (R() * 2 - 1)); ee = ex * (1 + 0.05 * (R() * 2 - 1)); }
+      const mid = m + ee * Math.sin(vp) * Math.min(1, u / 0.3); ph += 2 * Math.PI * 440 * 2 ** ((mid - 69) / 12) / sr; let v = 0; for (let h = 1; h <= 8; h++) v += Math.sin(h * ph) / (h * h); x[i] = 0.2 * Math.min(1, u / 0.03, (dur - u) / 0.03) * (v + 0.02 * (R() * 2 - 1)); }
+    const fs = await trackTake(buf), st = new Stats(); for (const f of fs) ingest(st, f, 'take'); const fr = st.rec.frames, z = start + dur, e = laneVib(fr.filter(f => f.t <= z + 0.3), z + 0.3); return e && e.rate ? { vr: e.rate, vx: e.ext } : null; };
+  const P4 = {}; for (const [rt, ex] of [[5, 0.25], [5.8, 0.25], [5, 0.5]]) { const kk = rt + '/' + ex; P4[kk] = []; for (const m of [45, 52, 60, 69, 76]) for (let r = 0; r < 8; r++) { const q = await note4(m, rt, ex); if (q) P4[kk].push(q); } }
+  for (const kk in P4) { const v = P4[kk], md = a => a.slice().sort((x, y) => x - y)[a.length >> 1]; se[`vib ${kk} read ${v.length}/40, median rate ${md(v.map(q => q.vr)).toFixed(2)} Hz, width ${md(v.map(q => q.vx)).toFixed(3)} st`] = ''; }
+  for (const [k, a, c] of [['vr', '5/0.25', '5/0.25'], ['vr', '5.8/0.25', '5/0.25'], ['vr', '5/0.25', '5.8/0.25'], ['vx', '5/0.25', '5/0.25'], ['vx', '5/0.5', '5/0.25'], ['vx', '5/0.25', '5/0.5'], ['vx', '5.8/0.25', '5/0.25'], ['vr', '5/0.5', '5/0.25']]) {
+    const out = { said: 0, right: 0, wrong: 0, n: 0 }, dr = (G, n, d) => Array.from({ length: n }, () => ({ d, [k]: P4[G][Math.floor(R() * P4[G].length)][k] })), hi = (G) => k === 'vr' ? +G.split('/')[0] : +G.split('/')[1];
+    for (let j = 0; j < 400; j++) { const D = laneDays([...dr(c, 3 + Math.floor(R() * 20), now - (1 + Math.floor(R() * 12)) * 864e5), ...dr(a, 3 + Math.floor(R() * 10), now - 3600e3)], now, k); out.n++;
+      if (D.v && !/level/.test(D.v)) { out.said++; if (/faster|wider/.test(D.v) === (hi(a) > hi(c))) out.right++; else out.wrong++; } } se[`${k} today ${a} vs earlier ${c}`] = out; }
   const pm = {}; for (const k in pool) { const s = pool[k].slice().sort((x, y) => x - y); pm[k] = [s.length, s[s.length >> 1], s[0], s[s.length - 1]]; }
   return { pm, same4: run(4, 4), same8: run(8, 8), same16: run(16, 16), half: run(8, 16), half2: run(4, 8), worse: run(16, 8), se }; });
 for (const [k, v] of Object.entries(res.pm)) console.log(`wobble SD ${k} ¢: ${v[0]} notes read, live wob median ${v[1].toFixed(1)} [${v[2].toFixed(1)}-${v[3].toFixed(1)}] ¢`);
 for (const k of ['same4', 'same8', 'same16', 'half', 'half2', 'worse']) { const r = res[k]; console.log(`${k}: change said ${r.said}/${r.n} (right way ${r.right}, wrong way ${r.wrong})`); }
-for (const [k, v] of Object.entries(res.se)) console.log(k + ': ' + (typeof v === 'object' ? `change said ${v.said}/${v.n} (right way ${v.right}, wrong way ${v.wrong})` : v));
+for (const [k, v] of Object.entries(res.se)) console.log(k + ': ' + (typeof v === 'object' && v ? `change said ${v.said}/${v.n} (right way ${v.right}, wrong way ${v.wrong})` : v));
 await b.close();

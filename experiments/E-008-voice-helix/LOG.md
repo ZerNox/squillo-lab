@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-05 · vibrato by day; no-WebGL fix
+
+Built: each live long note's vibrato rate and width (`laneVib`) is kept with the rest; the Lane's list adds "faster / slower vibrato" and "wider / narrower vibrato than your M from the last two weeks" (described, never marked better; floors 0.3 Hz, 20 %) and two more 14-day charts. `check/lane-days-bench.mjs` (page code, synthetic 5.0/5.8 Hz, 0.25/0.5 st, 5 % cycle jitter, five voices): read 5.00/5.79 Hz, 0.24/0.48 st; false change 0/400, steps 400/400, wrong way 0, no leak between rate and width (real cycle spread unmeasured). Firefox on this machine lost WebGL: the page threw and the frame loop never started, so the Lane, HUD and score were dead without WebGL; fixed (3D part skipped, 2D always runs). check.mjs: vibrato days. Chrome, Firefox (no WebGL), WebKit iPhone. Next: o/u vowels, or noise part 3.
+
 ## 2026-11-04 · swells by day; a low-band cue tried
 
 Built: each live long note's swell width (`laneSwell`, dB) is kept with its wobble, start and ending; the Lane's list adds "Today's N long notes wider swells than / narrower than / level with your M from the last two weeks" (mean, 95 %, 3 dB floor, higher is better) and a fourth 14-day chart. `check/lane-days-bench.mjs` (page code, synthetic swells 0/8/16 dB, five voices): same-level false change 0/400, each step said 400/400, wrong way 0 (real note-to-note spread unmeasured). check.mjs: wider/level, kept width, dB chart; Chrome, Firefox, WebKit iPhone. Noise part 3 tried: a low-band energy share (below 1.5 kHz) gating live candidates left clean FA at 8.3 % (0.6) / 8.1 % (0.8) while RPA fell 94.0 → 93.3 / 91.2: the false alarms are not breaths or fricatives, not shipped. Next: o/u vowels, or noise part 3 at note edges.
@@ -41,8 +45,4 @@ Built: `noteRecap`: with say note (N) on, 0.3 s after a long note stops, the liv
 ## 2026-11-03 · live swell in the Lane
 
 Built: `laneSwell`: when a note of 1 s or more stops, the Lane says "swell 19 dB ±2, peak near the middle, a real messa di voce" or "held level", so a singer practising messa di voce hears the width and shape of each swell as they sing it. `check/lane-swell-bench.mjs` (page code, live frames, synthetic 150 notes, 5 voices): error mean within 0.9 dB (max 3.1), truth inside ± 138/150, peak place 90/90, live = take within 0.5 dB; 'messa di voce' 28/30 at 20 dB, 0 at 14 and under. The first ± (frame noise only) held 9/30 at 20 dB; 8 % of width added. check.mjs: swell and level; Chrome, Firefox, WebKit iPhone. No real-voice figure. Next: noise part 3.
-
-## 2026-11-03 · steadiest on this device, live
-
-Built: the Lane's steadiness line also says "steadier than any long note in your N kept takes (best X ¢)" when a long note beats the steadiest long note of every kept take by more than 1 ¢ and its ± (the summary's personal-best rule, 2 kept takes at least), so a personal best is felt on the note itself. check.mjs: said with 3 takes, not with 1, not on a 4 ¢ note against a 4 ¢ best; Chrome, Firefox, WebKit iPhone. No new accuracy claim (wobble as the entry below). Next: noise part 3.
 

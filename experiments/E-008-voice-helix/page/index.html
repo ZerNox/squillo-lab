@@ -227,7 +227,7 @@ body.lane #laneLog:not(:empty){display:block}
 <div id="say" class="sr" aria-live="polite" aria-atomic="true"></div>
 <div id="keys" role="dialog" aria-label="Keyboard shortcuts" hidden><b>Keyboard</b><br><kbd>space</kbd> pause / resume<br><kbd>5</kbd> next step<br><kbd>D</kbd> drone on the target note<br><kbd>← →</kbd> previous / next note of the take<br><kbd>shift ← →</kbd> previous / next spot to work on, A/B with spotless<br><kbd>1 2 3 4</kbd> take, halfway, spotless, far vision, from the same moment<br><kbd>L</kbd> loop the phrase<br><kbd>P</kbd> sing the phrase, read note by note<br><kbd>M</kbd> mark this moment<br><kbd>N</kbd> say my note on / off (screen reader)<br><kbd>?</kbd> this list · <kbd>Esc</kbd> close</div>
 <div id="labels" aria-hidden="true"></div>
-<div id="nogl" hidden>This page needs WebGL2. Open it in a current Chrome, Edge, Firefox or Safari.</div>
+<div id="nogl" hidden>The 3D views need WebGL2, which this browser has turned off. The Lane, takes, summary and progress still work.</div>
 
 <div class="ui" id="top">
   <h1>Voice Helix<small>live voice analysis</small></h1>
@@ -694,7 +694,7 @@ async function setupCtx(){const ctx=new (window.AudioContext||window.webkitAudio
   catch(e){const sp=ctx.createScriptProcessor(1024,1,1);sp.onaudioprocess=ev=>{const b=new Float32Array(ev.inputBuffer.getChannelData(0));latCap(b.length);takeTap(b);dsp.post({type:'audio',buf:b},[b.buffer]);};sp.connect(AU.sink);AU.cap=sp;AU.capKind='scriptprocessor';}
   ctx.resume().catch(()=>{});return ctx;}
 function stopSource(){resetStats();AU.play=null;if(AU.clicks){try{AU.clicks.stop();}catch(e){}AU.clicks=null;}if(typeof playhead!=='undefined')playhead.style.left='0';if(AU.source){try{AU.source.disconnect();}catch(e){}if(AU.source.stop)try{AU.source.stop();}catch(e){}if(AU.source.mediaStream)AU.source.mediaStream.getTracks().forEach(t=>t.stop());AU.source=null;}if(AU.demo){AU.demo.stop();AU.demo=null;}AU.kind=null;{const l=document.getElementById('bLoopPh');if(l)l.setAttribute('aria-pressed','false');}if(dsp)dsp.post({type:'uncalib'});calibrating=false;}
-function writeColumn(col){terHead=(terHead+1)%TD.T;gl.bindTexture(gl.TEXTURE_2D,terTex);gl.texSubImage2D(gl.TEXTURE_2D,0,terHead,0,1,TD.F,gl.RED,gl.FLOAT,col);}
+function writeColumn(col){if(!gl)return;terHead=(terHead+1)%TD.T;gl.bindTexture(gl.TEXTURE_2D,terTex);gl.texSubImage2D(gl.TEXTURE_2D,0,terHead,0,1,TD.F,gl.RED,gl.FLOAT,col);}
 
 // ───────────────────────── demo voice synth ─────────────────────────
 const PRESETS={
@@ -803,7 +803,7 @@ document.addEventListener('keydown',e=>{if(e.code==='Space'&&!/select|input|butt
 scrubEl.addEventListener('input',()=>{if(!paused)setPaused(true);scrubT=+scrubEl.value;scrubbing=true;seek(scrubT);});
 scrubEl.addEventListener('change',()=>{scrubbing=false;});
 function frameIndexAt(t){const fr=LIVE.rec.frames;let lo=0,hi=fr.length-1;while(lo<hi){const mid=(lo+hi+1)>>1;if(fr[mid].t<=t)lo=mid;else hi=mid-1;}return lo;}
-function rebuildTerrainFromSession(endIdx){const T=TD.T,F=TD.F;const buf=new Float32Array(T*F);for(let i=0;i<T;i++){const idx=endIdx-(T-1)+i;const col=idx>=0?LIVE.rec.cols[idx]:null;if(col)for(let j=0;j<F;j++)buf[j*T+i]=col[j];}
+function rebuildTerrainFromSession(endIdx){if(!gl)return;const T=TD.T,F=TD.F;const buf=new Float32Array(T*F);for(let i=0;i<T;i++){const idx=endIdx-(T-1)+i;const col=idx>=0?LIVE.rec.cols[idx]:null;if(col)for(let j=0;j<F;j++)buf[j*T+i]=col[j];}
   gl.bindTexture(gl.TEXTURE_2D,terTex);gl.texSubImage2D(gl.TEXTURE_2D,0,0,0,T,F,gl.RED,gl.FLOAT,buf);terHead=T-1;}
 let viewHist=LIVE.HIST,viewFT=LIVE.ft,viewNow=0;
 function seek(t){if(!LIVE.rec.frames.length)return;const idx=frameIndexAt(t);const fr=LIVE.rec.frames;let s=idx;while(s>0&&fr[idx].t-fr[s-1].t<=MAXAGE)s--;viewHist=fr.slice(s,idx+1);viewFT=LIVE.rec.snaps[idx];viewNow=fr[idx].t;rebuildTerrainFromSession(idx);}
@@ -877,30 +877,32 @@ bSay.onclick=()=>setSay(!SAY.on);
 function noteRecap(hist,now,prev,dev){let k=hist.length-1;while(k>=0&&!(hist[k].voiced&&hist[k].ok!==false))k--;if(k<0)return null;const z=hist[k].t;if(now-z<0.3||now-z>4)return null;
   const g=laneStart(hist,now),w=laneSteady(hist,now),en=laneEnd(hist,now),sw=laneSwell(hist,now),p=[laneStartText(g),laneEndText(en),laneVibText(laneVib(hist,now)),w?laneSteadyText(w,prev||[],dev).s:'',laneSwellText(sw).s].filter(Boolean);
   if(!p.length)return null;let a=k;while(a>0&&hist[a-1].voiced&&hist[a-1].ok!==false&&z-hist[a-1].t<8)a--;const ms=hist.slice(a,k+1).map(h=>h.midi).sort((x,y)=>x-y);
-  return{t:z,s:'Last note: '+p.join('; ')+'.',n:noteName(ms[ms.length>>1]),d:z-hist[a].t,p,w,g,en,sw,best:/steadiest|steadier than any/.test(p.join(' '))};}
+  return{t:z,s:'Last note: '+p.join('; ')+'.',n:noteName(ms[ms.length>>1]),d:z-hist[a].t,p,w,g,en,sw,vb:laneVib(hist,now),best:/steadiest|steadier than any/.test(p.join(' '))};}
 // Long notes this sitting: every recap also goes on a list beside the Lane (newest first, 8 kept), so a reading is still there after its 4 s line fades. Same readers, no new measurement.
 // Across days: each long note's wobble, start, ending and swell (dB, laneSwell; higher counts as better, floor 3 dB) (cents from the note, either side) are kept on the device (LN_KEY, newest 400); today's
 // against the earlier 14 days: wobble as a geometric mean, start and ending as a mean, each with a 95 % interval; better/worse only when the means
 // differ by a floor (15 % wobble, 8 ¢ starts and endings) and beyond both intervals combined (t, the smaller side's df), 3 notes a side. check/lane-days-bench.mjs.
 const LN_KEY='helix.lanenotes.v1',LN_MAX=400,LN_MIN=3;
-const LN_K={wob:{lg:1,fl:Math.log(1.15),w:['steadier than','less steady than','level with'],u:'wobble'},st:{fl:8,w:['cleaner starts than','rougher starts than','starts level with'],u:'starts off by'},en:{fl:8,w:['held better than','fell more than','endings level with'],u:'endings off by'},sw:{fl:3,hi:1,un:'dB',w:['wider swells than','narrower swells than','swells level with'],u:'swell'}};
+const LN_K={wob:{lg:1,fl:Math.log(1.15),w:['steadier than','less steady than','level with'],u:'wobble'},st:{fl:8,w:['cleaner starts than','rougher starts than','starts level with'],u:'starts off by'},en:{fl:8,w:['held better than','fell more than','endings level with'],u:'endings off by'},sw:{fl:3,hi:1,un:'dB',w:['wider swells than','narrower swells than','swells level with'],u:'swell'},
+  vr:{fl:0.3,hi:1,ds:1,dp:1,un:'Hz',r:[3,9],w:['faster vibrato than','slower vibrato than','vibrato rate level with'],u:'vibrato'},vx:{lg:1,fl:Math.log(1.2),hi:1,ds:1,dp:2,un:'st',r:[0.05,3],w:['wider vibrato than','narrower vibrato than','vibrato width level with'],u:'vibrato width'}};
+// vr, vx (live laneVib rate and width): described, never better or worse (good stays false).
 function laneDays(list,now,k='wob'){const K=LN_K[k],day=new Date(now).toDateString(),T=[],E=[];for(const r of list){const x=r[k];if(!Number.isFinite(x)||(K.lg&&x<=0))continue;const y=K.lg?Math.log(x):x;if(new Date(r.d).toDateString()===day)T.push(y);else if(now-r.d<14*864e5&&r.d<now)E.push(y);}
   const st=a=>{const m=a.reduce((x,y)=>x+y,0)/a.length,sd=a.length>1?Math.sqrt(a.reduce((x,y)=>x+(y-m)**2,0)/(a.length-1)):0;return {n:a.length,m,se:sd/Math.sqrt(a.length)};};
   if(T.length<LN_MIN||E.length<LN_MIN)return {n:T.length,e:E.length,s:''};const t=st(T),e=st(E),dd=t.m-e.m,df=Math.min(t.n,e.n)-1,lim=Math.max(K.fl,(df<4?[0,12.7,4.3,3.18][df]:1.96+2.4/df)*Math.hypot(t.se,e.se));
-  const f=x=>K.lg?Math.exp(x).toFixed(1):Math.max(0,x).toFixed(0),pm=a=>`${f(a.m)} ${K.un||'¢'} (${f(a.m-1.96*a.se)}-${f(a.m+1.96*a.se)})`;
-  const sg=K.hi?-dd:dd,v=sg<-lim?K.w[0]:sg>lim?K.w[1]:K.w[2];return {n:t.n,e:e.n,v,good:sg<-lim,s:`Today's ${t.n} long notes ${v} your ${e.n} from the last two weeks: ${K.u} ${pm(t)} vs ${pm(e)}.`};}
-function laneKeep(r){const q={d:Date.now(),n:r.n,len:+r.d.toFixed(1)};if(r.w)q.wob=+r.w.wob.toFixed(2);if(r.g)q.st=Math.round(Math.abs(r.g.c));if(r.en)q.en=Math.round(Math.abs(r.en.c));if(r.sw)q.sw=+r.sw.w.toFixed(1);
-  if(q.wob==null&&q.st==null&&q.en==null&&q.sw==null)return;const l=dataRead(LN_KEY,'[]');l.push(q);try{localStorage.setItem(LN_KEY,JSON.stringify(l.slice(-LN_MAX)));}catch(e){}}
+  const f=x=>K.lg?Math.exp(x).toFixed(K.dp||1):Math.max(0,x).toFixed(K.dp||0),pm=a=>`${f(a.m)} ${K.un||'¢'} (${f(a.m-1.96*a.se)}-${f(a.m+1.96*a.se)})`;
+  const sg=K.hi?-dd:dd,v=sg<-lim?K.w[0]:sg>lim?K.w[1]:K.w[2];return {n:t.n,e:e.n,v,good:!K.ds&&sg<-lim,s:`Today's ${t.n} long notes ${v} your ${e.n} from the last two weeks: ${K.u} ${pm(t)} vs ${pm(e)}.`};}
+function laneKeep(r){const q={d:Date.now(),n:r.n,len:+r.d.toFixed(1)};if(r.w)q.wob=+r.w.wob.toFixed(2);if(r.g)q.st=Math.round(Math.abs(r.g.c));if(r.en)q.en=Math.round(Math.abs(r.en.c));if(r.sw)q.sw=+r.sw.w.toFixed(1);if(r.vb&&r.vb.rate){q.vr=+r.vb.rate.toFixed(2);q.vx=+r.vb.ext.toFixed(3);}
+  if(q.wob==null&&q.st==null&&q.en==null&&q.sw==null&&q.vr==null)return;const l=dataRead(LN_KEY,'[]');l.push(q);try{localStorage.setItem(LN_KEY,JSON.stringify(l.slice(-LN_MAX)));}catch(e){}}
 // Trend by day: each of the last 14 days with LN_MIN+ notes gets its wobble geometric mean (starts and endings: plain mean) and 95 % interval (same t as laneDays), drawn as dots and bars on a log axis; no new measurement.
 function laneTrend(list,now,k='wob'){const K=LN_K[k],B=new Map(),d0=new Date(now);d0.setHours(0,0,0,0);for(const r of list){const x=r[k];if(!Number.isFinite(x)||(K.lg&&x<=0))continue;const j=Math.round((d0-new Date(r.d).setHours(0,0,0,0))/864e5);if(j<0||j>13)continue;(B.get(j)||B.set(j,[]).get(j)).push(K.lg?Math.log(x):x);}
   const g=K.lg?Math.exp:x=>Math.max(0,x),o=[];for(const[j,a]of B){if(a.length<LN_MIN)continue;const n=a.length,m=a.reduce((x,y)=>x+y,0)/n,sd=Math.sqrt(a.reduce((x,y)=>x+(y-m)**2,0)/(n-1)),df=n-1,t=df<4?[0,12.7,4.3,3.18][df]:1.96+2.4/df,h=t*sd/Math.sqrt(n);o.push({k:j,n,m:g(m),lo:g(m-h),hi:g(m+h)});}return o.sort((a,b)=>b.k-a.k);}
-const LN_TT={wob:['Long-note wobble by day, lower is steadier','Wobble by day, 14 days, lower is steadier; bars 95 %.'],st:['Long-note starts by day, cents off on landing, lower is cleaner','Starts by day, ¢ off on landing, lower is cleaner; bars 95 %.'],en:['Long-note endings by day, cents moved as you let go, lower is held better','Endings by day, ¢ moved as you let go, lower is held better; bars 95 %.'],sw:['Long-note swell by day, decibels soft to loud within the note, higher is a wider messa di voce','Swell by day, dB soft to loud within a note, higher is wider; bars 95 %.']};
-function laneTrendSvg(T,k='wob'){if(T.length<2)return '';const lg=LN_K[k].lg,un=LN_K[k].un||'¢',W=300,H=64,tf=v=>lg?Math.log(Math.min(60,Math.max(0.2,v))):Math.min(200,Math.max(0,v)),lo=tf(Math.min(...T.map(d=>d.lo))),hi=tf(Math.max(...T.map(d=>d.hi))),r=Math.max(hi-lo,lg?0.4:4),x=j=>W-8-(j/13)*(W-48),y=v=>4+(H-8)*(1-(tf(v)-lo)/r);
-  const f=v=>lg?v.toFixed(1):v.toFixed(0),lab=T.map(d=>`${d.k?d.k+' days ago':'today'} ${f(d.m)} ${un} (${f(d.lo)}-${f(d.hi)}), ${d.n} notes`).join('; ');
+const LN_TT={wob:['Long-note wobble by day, lower is steadier','Wobble by day, 14 days, lower is steadier; bars 95 %.'],st:['Long-note starts by day, cents off on landing, lower is cleaner','Starts by day, ¢ off on landing, lower is cleaner; bars 95 %.'],en:['Long-note endings by day, cents moved as you let go, lower is held better','Endings by day, ¢ moved as you let go, lower is held better; bars 95 %.'],sw:['Long-note swell by day, decibels soft to loud within the note, higher is a wider messa di voce','Swell by day, dB soft to loud within a note, higher is wider; bars 95 %.'],vr:['Vibrato rate by day, hertz, described not rated','Vibrato rate by day, Hz, described not rated; bars 95 %.'],vx:['Vibrato width by day, semitones, described not rated','Vibrato width by day, st, described not rated; bars 95 %.']};
+function laneTrendSvg(T,k='wob'){if(T.length<2)return '';const lg=LN_K[k].lg,un=LN_K[k].un||'¢',[c0,c1]=LN_K[k].r||(lg?[0.2,60]:[0,200]),dp=LN_K[k].dp,W=300,H=64,tf=v=>lg?Math.log(Math.min(c1,Math.max(c0,v))):Math.min(c1,Math.max(c0,v)),lo=tf(Math.min(...T.map(d=>d.lo))),hi=tf(Math.max(...T.map(d=>d.hi))),r=Math.max(hi-lo,lg?0.4:dp?0.4:4),x=j=>W-8-(j/13)*(W-48),y=v=>4+(H-8)*(1-(tf(v)-lo)/r);
+  const f=v=>v.toFixed(dp||(lg?1:0)),lab=T.map(d=>`${d.k?d.k+' days ago':'today'} ${f(d.m)} ${un} (${f(d.lo)}-${f(d.hi)}), ${d.n} notes`).join('; ');
   return `<svg class="trend" data-k="${k}" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${LN_TT[k][0]}: ${lab}.">${[lo+r,lo].map((v,i)=>`<text x="0" y="${i?H-2:10}" font-size="9" fill="#6b7785">${f(lg?Math.exp(v):v)} ${un}</text>`).join('')}<path d="M${T.map(d=>x(d.k).toFixed(1)+' '+y(d.m).toFixed(1)).join('L')}" fill="none" stroke="#6b7785" stroke-width="1"/>${T.map(d=>`<line x1="${x(d.k).toFixed(1)}" x2="${x(d.k).toFixed(1)}" y1="${y(d.hi).toFixed(1)}" y2="${y(d.lo).toFixed(1)}" stroke="#4fd8c4" stroke-opacity=".45" stroke-width="3"/><circle cx="${x(d.k).toFixed(1)}" cy="${y(d.m).toFixed(1)}" r="3" fill="${d.k?'#a8b3bf':'#4fd8c4'}"/>`).join('')}</svg><p class="tcap">${LN_TT[k][1]}</p>`;}
 const LOG8=[];function logRecap(r){if(!r||LOG8.some(q=>Math.abs(q.t-r.t)<0.05))return;LOG8.unshift(r);LOG8.length=Math.min(8,LOG8.length);laneKeep(r);const el=$('laneLog');if(!el)return;
-  const L=dataRead(LN_KEY,'[]'),now=Date.now(),D=['wob','st','en','sw'].map(k=>laneDays(L,now,k)).filter(d=>d.s);
-  el.innerHTML=`<h2>Long notes this sitting</h2>${['wob','st','en','sw'].map(k=>laneTrendSvg(laneTrend(L,now,k),k)).join('')}${D.map(d=>`<p class="days${d.good?' best':''}">${d.s}</p>`).join('')}<ol>${LOG8.map(q=>`<li${q.best?' class="best"':''}><b>${q.n}</b> ${q.d.toFixed(1)} s · ${q.p.join('; ')}</li>`).join('')}</ol>`;}
+  const L=dataRead(LN_KEY,'[]'),now=Date.now(),D=['wob','st','en','sw','vr','vx'].map(k=>laneDays(L,now,k)).filter(d=>d.s);
+  el.innerHTML=`<h2>Long notes this sitting</h2>${['wob','st','en','sw','vr','vx'].map(k=>laneTrendSvg(laneTrend(L,now,k),k)).join('')}${D.map(d=>`<p class="days${d.good?' best':''}">${d.s}</p>`).join('')}<ol>${LOG8.map(q=>`<li${q.best?' class="best"':''}><b>${q.n}</b> ${q.d.toFixed(1)} s · ${q.p.join('; ')}</li>`).join('')}</ol>`;}
 function sayRecap(now){const r=noteRecap(viewHist,now,LANE.stN,LANE.dev);logRecap(r);if(!SAY.on)return;if(r&&Math.abs(r.t-(SAY.recT??-9))>0.05){SAY.recT=r.t;sayEl.textContent=r.s;}}
 document.addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey||/select|input|textarea/i.test(document.activeElement.tagName))return;const K=$('keys');
   if(e.key==='n'||e.key==='N'){e.preventDefault();setSay(!SAY.on);}
@@ -958,7 +960,7 @@ function updateTract(hist,f,now){if(f.voiced&&f.Fs[0]){tubeF[0]=lerp(tubeF[0],f.
 let noiseFloor=0;
 function updateComb(f){if(f.voiced){const P_=[],C_=[];for(let k=1;k<=14;k++){const fr=f.f0*k;if(fr>TD.fmax)break;const z=ZX[2]+zOfFreq(fr),x=ZX[0]+TD.size[0]+0.12;P_.push(x,ZX[1],z,x,ZX[1]+0.35,z);C_.push(...C.copper,0.9,...C.copper,0.1);}comb.set(new Float32Array(P_),null,new Float32Array(C_),P_.length/3);}else comb.count=0;
   const col=LIVE.rec.cols.length?LIVE.rec.cols[paused?frameIndexAt(viewNow):LIVE.rec.cols.length-1]:null;if(col){const srt=Array.from(col).sort((a,b)=>a-b);noiseFloor=lerp(noiseFloor,srt[Math.floor(TD.F*0.25)],0.1);}}
-function drawTerrain(view,proj){gl.useProgram(PT.p);gl.uniformMatrix4fv(PT.u.uProj,false,proj);gl.uniformMatrix4fv(PT.u.uView,false,view);gl.uniform1i(PT.u.uHead,terHead);gl.uniform2i(PT.u.uDim,TD.T,TD.F);gl.uniform3fv(PT.u.uOrigin,ZX);gl.uniform3fv(PT.u.uSize,TD.size);gl.uniform1f(PT.u.uFloor,noiseFloor);gl.uniform3fv(PT.u.uFog,C.fog);
+function drawTerrain(view,proj){if(!gl)return;gl.useProgram(PT.p);gl.uniformMatrix4fv(PT.u.uProj,false,proj);gl.uniformMatrix4fv(PT.u.uView,false,view);gl.uniform1i(PT.u.uHead,terHead);gl.uniform2i(PT.u.uDim,TD.T,TD.F);gl.uniform3fv(PT.u.uOrigin,ZX);gl.uniform3fv(PT.u.uSize,TD.size);gl.uniform1f(PT.u.uFloor,noiseFloor);gl.uniform3fv(PT.u.uFog,C.fog);
   gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,terTex);gl.uniform1i(PT.u.uH,0);gl.bindVertexArray(terVAO);gl.drawElements(gl.TRIANGLES,terIdxCount,gl.UNSIGNED_INT,0);gl.bindVertexArray(null);}
 
 // iOS runs audio only for a context created and resumed inside a tap, before any await; prime on every
@@ -2119,7 +2121,7 @@ function frame(){const wall=performance.now()/1000;const dt=Math.min(0.1,wall-la
   coachTick();
   if(!paused){viewHist=LIVE.HIST;viewFT=LIVE.ft;viewNow=LIVE.at;}
   latFrame();updateHUD(wall);renderScore(false);
-  const g=cam.goal,k=1-Math.exp(-dt*3.2);for(let i=0;i<3;i++)cam.target[i]=lerp(cam.target[i],g.target[i],k);cam.dist=lerp(cam.dist,g.dist*cam.dDist,k);cam.theta=lerp(cam.theta,g.theta+cam.dTheta,k);cam.phi=lerp(cam.phi,clamp(g.phi+cam.dPhi,0.2,1.5),k);
+  if(gl){const g=cam.goal,k=1-Math.exp(-dt*3.2);for(let i=0;i<3;i++)cam.target[i]=lerp(cam.target[i],g.target[i],k);cam.dist=lerp(cam.dist,g.dist*cam.dDist,k);cam.theta=lerp(cam.theta,g.theta+cam.dTheta,k);cam.phi=lerp(cam.phi,clamp(g.phi+cam.dPhi,0.2,1.5),k);
   const eye=[cam.target[0]+cam.dist*Math.sin(cam.phi)*Math.sin(cam.theta),cam.target[1]+cam.dist*Math.cos(cam.phi),cam.target[2]+cam.dist*Math.sin(cam.phi)*Math.cos(cam.theta)];
   resize();const w=canvas.width,h=canvas.height;gl.viewport(0,0,w,h);
   const proj=M4.perspective(0.75,w/h,0.1,120),view=M4.lookAt(eye,cam.target,[0,1,0]);
@@ -2129,11 +2131,12 @@ function frame(){const wall=performance.now()/1000;const dt=Math.min(0.1,wall-la
   gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
   helixFrame.draw(view,proj);chart.draw(view,proj);comb.draw(view,proj);trail.draw(view,proj);marker.draw(view,proj);helixGhost.draw(view,proj);
   gl.depthMask(false);helixRibbon.draw(view,proj);ghostTube.draw(view,proj);nasalPort.draw(view,proj);tube.draw(view,proj);gl.depthMask(true);
-  projectLabels(M4.mul(proj,view),canvas.clientWidth,canvas.clientHeight);laneDraw(wall);
+  projectLabels(M4.mul(proj,view),canvas.clientWidth,canvas.clientHeight);}laneDraw(wall);
   requestAnimationFrame(frame);}
 if(gl){P=prog(SH_V,SH_F);PT=prog(TER_V,TER_F);buildStatic();setupLabels();
-  const hash=location.hash.replace('#','');if(VIEWS[hash])setView(hash,true);
-  requestAnimationFrame(frame);}
+  const hash=location.hash.replace('#','');if(VIEWS[hash])setView(hash,true);}
+// Without WebGL the 3D views stay blank (#nogl says so) but the loop still runs the HUD, score line and Lane.
+requestAnimationFrame(frame);
 </script>
 
 </body>
