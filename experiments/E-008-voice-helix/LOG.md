@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-06 · hear your steadiest, then this
+
+Built: `LBEST`/`keepBest`/`bestBtn`: when a live long note is logged with lower wobble than any before it this sitting, its clip is copied out of the 30 s ring (memory only, never stored); every other note on the Lane's list gets "▶ steadiest, then this": the steadiest note, a 0.4 s gap, then this one, wobbles named in the label. No new measurement (Lane steadiness: live = take within 0.2 ¢). check.mjs: best kept and replaced by a steadier one, button on the others only, both clips play at full length. Chrome, Firefox, WebKit iPhone. iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
+
 ## 2026-11-06 · hear a live long note tuned
 
 Built: each live long note on the Lane's list now shows how far its frame median sat from the nearest semitone; at 15 ¢ or more it gets "▶ then tuned": the note from the 30 s in-memory ring, then the same samples at 2^(-c/1200) speed, moved onto the note (length changes under 3 %). Same pitch frames as the Lane (synthetic straight max 1.1 ¢, vibrato 4.8 ¢); the frame median itself not separately benchmarked. check.mjs: 40 ¢ sharp gets the button and label, 5 ¢ does not, playback rate exact. Chrome, Firefox, WebKit iPhone. iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
@@ -45,8 +49,4 @@ Built: `laneTrend(list,now,k)` now reads starts and endings too (plain mean, int
 ## 2026-11-04 · long-note wobble by day
 
 Built: `laneTrend`/`laneTrendSvg`: the Lane's list opens with a 14-day chart of live long-note wobble, one dot per day with 3+ notes (geometric mean) and its 95 % bar (same t as laneDays), log axis, today in teal, read out by screen readers. No new measurement (readings from lane-days-bench). check.mjs: day buckets, intervals, no chart under 2 days; day-bucketed checks pinned to noon (a midnight run flaked WebKit once). Chrome, Firefox, WebKit iPhone. Next: noise part 3, or o/u vowels.
-
-## 2026-11-03 · starts and endings across days
-
-Built: the long-note store also keeps each note's start and ending (|cents| from the note, as the Lane reads them), and the list adds "Today's N long notes cleaner starts / held better than your M from the last two weeks", mean with 95 % interval, 8 ¢ floor, same t rule. `check/lane-days-bench.mjs` (page laneStart/laneEnd, synthetic slides and falls 0/40/80 ¢, five voices): same level false change 0-5/400, wrong way 0; 0 vs 80 ¢ said 386/400 starts, 399/400 endings; 0 vs 40 ¢ 75 and 316/400 (the start reader sees a fraction of a 0.12 s slide). check.mjs: held better / level; Chrome, Firefox, WebKit iPhone. Next: noise part 3, or o/u vowels.
 
