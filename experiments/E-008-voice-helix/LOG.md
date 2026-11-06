@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-06 · hear the sitting in order
+
+Built: `hearAll`: with two or more live long notes still in the 30 s ring, the Lane's list shows "▶ all in order", which plays them oldest first, 0.4 s apart, so a singer hears how the sitting went; recaps heard back are kept off the list as before. Memory only. No new measurement. check.mjs: button shown, three clips queued at their full lengths in order. Chrome, Firefox, WebKit iPhone. iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
+
 ## 2026-11-06 · hear your steadiest, then this
 
 Built: `LBEST`/`keepBest`/`bestBtn`: when a live long note is logged with lower wobble than any before it this sitting, its clip is copied out of the 30 s ring (memory only, never stored); every other note on the Lane's list gets "▶ steadiest, then this": the steadiest note, a 0.4 s gap, then this one, wobbles named in the label. No new measurement (Lane steadiness: live = take within 0.2 ¢). check.mjs: best kept and replaced by a steadier one, button on the others only, both clips play at full length. Chrome, Firefox, WebKit iPhone. iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
@@ -45,8 +49,4 @@ Built: each live long note's swell width (`laneSwell`, dB) is kept with its wobb
 ## 2026-11-04 · starts and endings by day
 
 Built: `laneTrend(list,now,k)` now reads starts and endings too (plain mean, interval floored at 0, linear axis); the Lane's list draws three 14-day charts (wobble, starts, endings), each with dots, 95 % bars and a screen-reader label. No new measurement (readings from lane-days-bench). check.mjs: a day without endings drops from that chart only. Chrome, Firefox, WebKit iPhone. Next: noise part 3, or o/u vowels.
-
-## 2026-11-04 · long-note wobble by day
-
-Built: `laneTrend`/`laneTrendSvg`: the Lane's list opens with a 14-day chart of live long-note wobble, one dot per day with 3+ notes (geometric mean) and its 95 % bar (same t as laneDays), log axis, today in teal, read out by screen readers. No new measurement (readings from lane-days-bench). check.mjs: day buckets, intervals, no chart under 2 days; day-bucketed checks pinned to noon (a midnight run flaked WebKit once). Chrome, Firefox, WebKit iPhone. Next: noise part 3, or o/u vowels.
 
