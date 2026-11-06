@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-06 · live singing keeps the streak
+
+Built: `streakInfo` counts a day with live long notes in the Lane as a day sung, so singing without recording keeps the streak; the line adds "N long notes held live" (minutes shown apart, never added to kept-take minutes) and now also heads the Lane's long-note list. No new measurement. check.mjs: lane-only days make a 4-day streak, take minutes unchanged. Chrome, Firefox, WebKit iPhone. Next: o/u vowels, or noise part 3.
+
 ## 2026-11-06 · warm-up from live long notes
 
 Built: `warmLane`: the warm-up also reads the Lane's kept long notes; when the newest day with long notes (last 7 days) was less steady, started or ended further off than the singer's earlier two weeks (laneDays, same floors and intervals), it adds messa di voce, clean starts or hold to the end, says why, and works with no takes at all. `check/lane-days-bench.mjs` (page code, synthetic, 400 trials each): step added falsely 3/400 when all three level; wobble doubled 393/400 all right aspect; endings 80 vs 40 ¢ 362/400, 355 right aspect. check.mjs: added, level silent, no-takes text. Chrome, Firefox, WebKit iPhone. Next: o/u vowels, or noise part 3.
