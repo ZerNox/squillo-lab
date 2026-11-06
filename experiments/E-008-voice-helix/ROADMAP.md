@@ -89,6 +89,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Vowels, part 3a: envelope × log f0 terms in the vowel table (VocalSet left-out singer 78.4 → 81.8 %, o 63 → 71 %, sure 87.5 % on 78 %).; live 0.5 s window re-measured (83.0 → 88.1 %, chip "7 in 8 right").
 - Warm-up from live long notes: a worse wobble, start or ending on the newest Lane day adds its step (synthetic false 3/400, wobble ×2 393/400, endings 355/400).
 - Live singing keeps the streak: Lane days count as days sung; long notes held live shown beside kept minutes. Milestones for live long notes (10 to 5000), lifetime count kept apart from the 400-note list.
+- Steadiest by note: the Lane's list names the steadiest and least steady note of two weeks, beyond an extreme-widened interval (synthetic false 3/400, ×2 named 360/400).
 - Range by week: the voice profile's 8-week chart of full and comfortable span; a new top or bottom named only a semitone or more past before.
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.

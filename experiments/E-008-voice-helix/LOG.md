@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-06 · steadiest by note
+
+Built: `laneByNote`: the Lane's list adds "By note, last two weeks: steadiest on C4 … least steady on E4 …", each note against the others pooled, with ± and an interval widened for picking an extreme. `check/lane-days-bench.mjs` (page code, synthetic live wobbles, 400 trials): false name 3/400 when alike; one note ×2 wobble named 360/400, ×½ 385/400. check.mjs: one note silent, alike silent, C4 named. Chrome, Firefox, WebKit iPhone. Next: o/u vowels, or noise part 3.
+
 ## 2026-11-06 · live long-note milestones
 
 Built: a lifetime count of live long notes (`laneCount`, `helix.lanecount.v1`; the kept list stops at 400) with milestones at 10, 50, 100, 250, 500, 1000, 2500, 5000: the streak line says "N long notes held live (milestone: M), next: K", and the Lane's list announces "Milestone: your Mth long note held live" (status region) when one is crossed. The count travels in the my-data copy (restore keeps the larger) and is wiped with everything. No new measurement. check.mjs: 9 → 10 crosses once, 11 not, count 11 in backup and line. Chrome, Firefox, WebKit iPhone. Next: o/u vowels, or noise part 3.
@@ -45,8 +49,4 @@ Built: `laneDays`/`laneKeep`: every live long note's wobble is kept on the devic
 ## 2026-11-03 · live vowel chip re-measured
 
 Built: `check/vowel-live-bench.mjs` runs the page's `spanVowel` on the live chip's 0.5 s window (ending at the middle, three quarters and end of each note) on VocalSet (CC BY 4.0, 1136 notes, 20 singers). With this morning's f0 terms: 83.0 ± 5.3 → 88.1 ± 3.9 %, 'sure' 90.0 → 92.8 % on 47 % of windows (table fitted on these singers: optimistic). The chip now says 'best guess, 7 in 8 right' (left-out-singer sure figure), was '5 in 6'. check.mjs checks the claim; Chrome, Firefox, WebKit iPhone. Next: noise part 3, or o/u.
-
-## 2026-11-03 · vowels read better at every pitch
-
-Built: the sung-vowel table (`envVowel`, `check/vowel-fit.mjs`) adds each envelope level times log(f0/250), so the reader follows how a vowel's envelope shifts with pitch. VocalSet (CC BY 4.0, 2327 notes under 600 Hz, page dump, left-out singer): 78.4 ± 4.6 → 81.8 ± 4.0 %, paired +3.4 ± 1.6 points (14/20 singers better); o 63 → 71 %, u 74 → 75; 'sure' 87.5 % on 78 % of notes (was 85.9 on 73). Tried and dropped: formants added (80.6), envelope deltas (78.7). check.mjs: tilt still ignored at 450 Hz; Chrome, Firefox, WebKit iPhone. Live 0.5 s window not re-measured. Next: noise part 3 or live-window vowel bench.
 

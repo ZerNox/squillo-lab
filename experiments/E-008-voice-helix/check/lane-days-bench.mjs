@@ -59,6 +59,11 @@ const res = await p.evaluate(async () => { const sr = 48000; let seed = 11; cons
   // starts and endings drawn independently; then wobble 16 ¢ (step 'wob' right), then 80 ¢ endings (step 'en' right). Newest day yesterday, warm-up today.
   const pk = a => a[Math.floor(R() * a.length)], wn = (w, D, n, d, De = D) => Array.from({ length: n }, () => ({ d, wob: pk(pool[w]), st: pk(P2[D]).st, en: pk(P2[De]).en }));
   const wrun = (wt, dt, want, et = dt) => { const o = { n: 0, step: 0, right: 0 }; for (let j = 0; j < 400; j++) { const L = [...wn(8, 40, 3 + Math.floor(R() * 20), now - (2 + Math.floor(R() * 11)) * 864e5), ...wn(wt, dt, 3 + Math.floor(R() * 10), now - 864e5 - 3600e3, et)], g = warmLane(L, now); o.n++; if (g) { o.step++; if (g.k === want) o.right++; } } return o; };
+  // By note (laneByNote): 2-5 note names, 3-12 notes each over 14 days, all at wobble 8 ¢ (any name is false), then one note at 16 ¢ (least steady right) or 4 ¢ (steadiest right).
+  const NN = ['A3', 'C4', 'E4', 'G4', 'B4'], brun = (odd) => { const o = { n: 0, said: 0, right: 0, wrong: 0 }; for (let j = 0; j < 400; j++) { const k = 2 + Math.floor(R() * 4), L = [];
+      for (let i = 0; i < k; i++) { const w = i === 0 && odd ? odd : 8; for (let r = 3 + Math.floor(R() * 10); r--;) L.push({ d: now - Math.floor(R() * 13) * 864e5 - 3600e3, n: NN[i], wob: pk(pool[w]) }); }
+      const q = laneByNote(L, now); o.n++; const want = odd ? (odd < 8 ? 'lo' : 'hi') : ''; for (const s of ['lo', 'hi']) if (q[s]) { o.said++; if (s === want && q[s] === 'A3') o.right++; else o.wrong++; } } return o; };
+  se['by note all 8 ¢'] = brun(0); se['by note one at 16 ¢'] = brun(16); se['by note one at 4 ¢'] = brun(4);
   se['warm-up level'] = wrun(8, 40, null); se['warm-up wobble doubled'] = wrun(16, 40, 'wob'); se['warm-up endings 80 vs 40'] = wrun(8, 40, 'en', 80);
   return { pm, same4: run(4, 4), same8: run(8, 8), same16: run(16, 16), half: run(8, 16), half2: run(4, 8), worse: run(16, 8), se }; });
 for (const [k, v] of Object.entries(res.pm)) console.log(`wobble SD ${k} ¢: ${v[0]} notes read, live wob median ${v[1].toFixed(1)} [${v[2].toFixed(1)}-${v[3].toFixed(1)}] ¢`);
