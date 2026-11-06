@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-06 · live long-note milestones
+
+Built: a lifetime count of live long notes (`laneCount`, `helix.lanecount.v1`; the kept list stops at 400) with milestones at 10, 50, 100, 250, 500, 1000, 2500, 5000: the streak line says "N long notes held live (milestone: M), next: K", and the Lane's list announces "Milestone: your Mth long note held live" (status region) when one is crossed. The count travels in the my-data copy (restore keeps the larger) and is wiped with everything. No new measurement. check.mjs: 9 → 10 crosses once, 11 not, count 11 in backup and line. Chrome, Firefox, WebKit iPhone. Next: o/u vowels, or noise part 3.
+
 ## 2026-11-06 · live singing keeps the streak
 
 Built: `streakInfo` counts a day with live long notes in the Lane as a day sung, so singing without recording keeps the streak; the line adds "N long notes held live" (minutes shown apart, never added to kept-take minutes) and now also heads the Lane's long-note list. No new measurement. check.mjs: lane-only days make a 4-day streak, take minutes unchanged. Chrome, Firefox, WebKit iPhone. Next: o/u vowels, or noise part 3.
@@ -45,8 +49,4 @@ Built: `check/vowel-live-bench.mjs` runs the page's `spanVowel` on the live chip
 ## 2026-11-03 · vowels read better at every pitch
 
 Built: the sung-vowel table (`envVowel`, `check/vowel-fit.mjs`) adds each envelope level times log(f0/250), so the reader follows how a vowel's envelope shifts with pitch. VocalSet (CC BY 4.0, 2327 notes under 600 Hz, page dump, left-out singer): 78.4 ± 4.6 → 81.8 ± 4.0 %, paired +3.4 ± 1.6 points (14/20 singers better); o 63 → 71 %, u 74 → 75; 'sure' 87.5 % on 78 % of notes (was 85.9 on 73). Tried and dropped: formants added (80.6), envelope deltas (78.7). check.mjs: tilt still ignored at 450 Hz; Chrome, Firefox, WebKit iPhone. Live 0.5 s window not re-measured. Next: noise part 3 or live-window vowel bench.
-
-## 2026-11-03 · long notes this sitting
-
-Built: `logRecap`: every long note's after-note readings (start, ending, vibrato, steadiness, swell) also go on a "Long notes this sitting" list beside the Lane (below it on a phone), newest first, 8 kept, with note name and length, personal bests in green, readable by screen readers; the 4 s Lane lines no longer vanish for good. check.mjs: one line per note, shown in the Lane; Chrome, Firefox, WebKit iPhone. No new accuracy claim. Also tried (noise part 3): the take's note-edge trim run live with one hop of look-ahead (`check/live-noise-bench.mjs`, vocadito 40 clean): level 0.2 FA 8.3 → 7.5, RPA 94.0 → 93.6, OA 93.2 flat; 0.3 FA 6.9, RPA 92.9, OA 93.0: trades again, not shipped. Next: noise part 3 needs a non-level cue.
 
