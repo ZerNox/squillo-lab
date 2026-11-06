@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-06 · keep a live long note
+
+Built: `saveLive`: each live long note on the Lane's list gets ⤓, which saves that note from the 30 s in-memory ring as a 16-bit WAV on the device (share sheet on phones, download elsewhere); nothing is kept unless the singer saves it. No new measurement. check.mjs: button shown, WAV exactly 44 + 2 bytes per sample of the clip. Chrome, Firefox, WebKit iPhone. iOS risk: navigator.share with a file needs the click's activation (called synchronously in it). Next: o/u vowels, or noise part 3.
+
 ## 2026-11-06 · hear a live long note slowly
 
 Built: each live long note on the Lane's list gets "▶ ½×": the note from the 30 s in-memory ring at half speed, pitch kept (the take's WSOLA slow-down), so a singer hears how a start or ending moved. Memory only. No new measurement (WSOLA pitch kept within 0.7 ¢ median, check.mjs). check.mjs: button shown, output exactly twice the clip. Chrome, Firefox, WebKit iPhone. iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
@@ -45,8 +49,4 @@ Built: `rangeWeeks`/`rangeWeeksSvg`: the voice profile draws the last 8 weeks, o
 ## 2026-11-05 · vibrato by day; no-WebGL fix
 
 Built: each live long note's vibrato rate and width (`laneVib`) is kept with the rest; the Lane's list adds "faster / slower vibrato" and "wider / narrower vibrato than your M from the last two weeks" (described, never marked better; floors 0.3 Hz, 20 %) and two more 14-day charts. `check/lane-days-bench.mjs` (page code, synthetic 5.0/5.8 Hz, 0.25/0.5 st, 5 % cycle jitter, five voices): read 5.00/5.79 Hz, 0.24/0.48 st; false change 0/400, steps 400/400, wrong way 0, no leak between rate and width (real cycle spread unmeasured). Firefox on this machine lost WebGL: the page threw and the frame loop never started, so the Lane, HUD and score were dead without WebGL; fixed (3D part skipped, 2D always runs). check.mjs: vibrato days. Chrome, Firefox (no WebGL), WebKit iPhone. Next: o/u vowels, or noise part 3.
-
-## 2026-11-04 · swells by day; a low-band cue tried
-
-Built: each live long note's swell width (`laneSwell`, dB) is kept with its wobble, start and ending; the Lane's list adds "Today's N long notes wider swells than / narrower than / level with your M from the last two weeks" (mean, 95 %, 3 dB floor, higher is better) and a fourth 14-day chart. `check/lane-days-bench.mjs` (page code, synthetic swells 0/8/16 dB, five voices): same-level false change 0/400, each step said 400/400, wrong way 0 (real note-to-note spread unmeasured). check.mjs: wider/level, kept width, dB chart; Chrome, Firefox, WebKit iPhone. Noise part 3 tried: a low-band energy share (below 1.5 kHz) gating live candidates left clean FA at 8.3 % (0.6) / 8.1 % (0.8) while RPA fell 94.0 → 93.3 / 91.2: the false alarms are not breaths or fricatives, not shipped. Next: o/u vowels, or noise part 3 at note edges.
 
