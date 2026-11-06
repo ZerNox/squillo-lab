@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-06 · hear a live long note slowly
+
+Built: each live long note on the Lane's list gets "▶ ½×": the note from the 30 s in-memory ring at half speed, pitch kept (the take's WSOLA slow-down), so a singer hears how a start or ending moved. Memory only. No new measurement (WSOLA pitch kept within 0.7 ¢ median, check.mjs). check.mjs: button shown, output exactly twice the clip. Chrome, Firefox, WebKit iPhone. iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
+
 ## 2026-11-06 · hear the sitting in order
 
 Built: `hearAll`: with two or more live long notes still in the 30 s ring, the Lane's list shows "▶ all in order", which plays them oldest first, 0.4 s apart, so a singer hears how the sitting went; recaps heard back are kept off the list as before. Memory only. No new measurement. check.mjs: button shown, three clips queued at their full lengths in order. Chrome, Firefox, WebKit iPhone. iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
@@ -45,8 +49,4 @@ Built: each live long note's vibrato rate and width (`laneVib`) is kept with the
 ## 2026-11-04 · swells by day; a low-band cue tried
 
 Built: each live long note's swell width (`laneSwell`, dB) is kept with its wobble, start and ending; the Lane's list adds "Today's N long notes wider swells than / narrower than / level with your M from the last two weeks" (mean, 95 %, 3 dB floor, higher is better) and a fourth 14-day chart. `check/lane-days-bench.mjs` (page code, synthetic swells 0/8/16 dB, five voices): same-level false change 0/400, each step said 400/400, wrong way 0 (real note-to-note spread unmeasured). check.mjs: wider/level, kept width, dB chart; Chrome, Firefox, WebKit iPhone. Noise part 3 tried: a low-band energy share (below 1.5 kHz) gating live candidates left clean FA at 8.3 % (0.6) / 8.1 % (0.8) while RPA fell 94.0 → 93.3 / 91.2: the false alarms are not breaths or fricatives, not shipped. Next: o/u vowels, or noise part 3 at note edges.
-
-## 2026-11-04 · starts and endings by day
-
-Built: `laneTrend(list,now,k)` now reads starts and endings too (plain mean, interval floored at 0, linear axis); the Lane's list draws three 14-day charts (wobble, starts, endings), each with dots, 95 % bars and a screen-reader label. No new measurement (readings from lane-days-bench). check.mjs: a day without endings drops from that chart only. Chrome, Firefox, WebKit iPhone. Next: noise part 3, or o/u vowels.
 
