@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-06 · warm-up from live long notes
+
+Built: `warmLane`: the warm-up also reads the Lane's kept long notes; when the newest day with long notes (last 7 days) was less steady, started or ended further off than the singer's earlier two weeks (laneDays, same floors and intervals), it adds messa di voce, clean starts or hold to the end, says why, and works with no takes at all. `check/lane-days-bench.mjs` (page code, synthetic, 400 trials each): step added falsely 3/400 when all three level; wobble doubled 393/400 all right aspect; endings 80 vs 40 ¢ 362/400, 355 right aspect. check.mjs: added, level silent, no-takes text. Chrome, Firefox, WebKit iPhone. Next: o/u vowels, or noise part 3.
+
 ## 2026-11-05 · range by week
 
 Built: `rangeWeeks`/`rangeWeeksSvg`: the voice profile draws the last 8 weeks, one bar per week for the full span held (takes and range finds) with the comfortable span inside, read out by screen readers; it says when the last two weeks' top or bottom held note moved a semitone or more past everything earlier (range finder 95 % within 1 st, range-bench), and never calls a quieter fortnight a shrink. No new measurement. check.mjs: up 3 st named, level and lower not, one week silent. Chrome, Firefox, WebKit iPhone. Next: o/u vowels, or noise part 3.
@@ -41,8 +45,4 @@ Built: the sung-vowel table (`envVowel`, `check/vowel-fit.mjs`) adds each envelo
 ## 2026-11-03 · long notes this sitting
 
 Built: `logRecap`: every long note's after-note readings (start, ending, vibrato, steadiness, swell) also go on a "Long notes this sitting" list beside the Lane (below it on a phone), newest first, 8 kept, with note name and length, personal bests in green, readable by screen readers; the 4 s Lane lines no longer vanish for good. check.mjs: one line per note, shown in the Lane; Chrome, Firefox, WebKit iPhone. No new accuracy claim. Also tried (noise part 3): the take's note-edge trim run live with one hop of look-ahead (`check/live-noise-bench.mjs`, vocadito 40 clean): level 0.2 FA 8.3 → 7.5, RPA 94.0 → 93.6, OA 93.2 flat; 0.3 FA 6.9, RPA 92.9, OA 93.0: trades again, not shipped. Next: noise part 3 needs a non-level cue.
-
-## 2026-11-03 · after-note recap, eyes free
-
-Built: `noteRecap`: with say note (N) on, 0.3 s after a long note stops, the live region reads "Last note: landed right on the note; held to the end; vibrato 5.6 Hz ±0.2 …; swell 19 dB …" once, in or out of the Lane, so a singer with eyes closed or a screen reader gets every after-note line the Lane shows (it was aria-hidden). check.mjs: recap after stop, none while sounding or at 0.1 s; Chrome, Firefox, WebKit iPhone. No new accuracy claim (the lane readers' benches). Risk: speech through speakers reaches the mic, as say note already did; headphones advised. Next: noise part 3.
 

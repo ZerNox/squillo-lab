@@ -1468,14 +1468,21 @@ const WARM_STEP={
 // The described points (clarity, endings, key drift, rhythm) are not rated against a trained median: a step is chosen
 // when the summary named the point in at least 2 of the last 5 takes (or the only take), filling a slot the rated gaps leave.
 const WARM_DESC=['clar','tsag','kdrift','rhythm'];
-function planWarmup(h){const r=h.slice(-HIST_WIN),lo=r.filter(x=>x.hi>x.lo),M=k=>{const v=r.map(x=>x[k]).filter(Number.isFinite);return v.length?v.reduce((a,b)=>a+b,0)/v.length:null;};
+// Live long notes (the Lane, LN_KEY) also steer it: the newest day with long notes in the last 7 is read against its earlier 14 days (laneDays,
+// same floors and intervals: synthetic false change 0-3 %); a worse wobble, start or ending adds that one step (messa di voce, clean starts, hold to the end) if not already in.
+const WARM_LANE={wob:'stab',st:'onset',en:'tsag'},WARM_LANE_N={wob:'long-note steadiness',st:'note starts',en:'note endings'};
+function warmLane(L,now){const ds=L.filter(r=>r.d<=now&&now-r.d<7*864e5).map(r=>r.d);if(!ds.length)return null;const t=Math.max(...ds);
+  for(const k of ['wob','st','en']){const d=laneDays(L,t,k);if(d.v===LN_K[k].w[1])return {k,step:WARM_LANE[k],why:`${WARM_LANE_N[k]} (live: ${d.v} your earlier two weeks on ${new Date(t).toDateString()===new Date(now).toDateString()?'today':new Date(t).toLocaleDateString(undefined,{weekday:'long'})}, ${d.n} vs ${d.e} notes)`};}return null;}
+function planWarmup(h,L=[],now=Date.now()){const r=h.slice(-HIST_WIN),lo=r.filter(x=>x.hi>x.lo),M=k=>{const v=r.map(x=>x[k]).filter(Number.isFinite);return v.length?v.reduce((a,b)=>a+b,0)/v.length:null;};
   let low=57,high=64;if(lo.length){low=Math.round(lo.reduce((a,x)=>a+x.lo,0)/lo.length);high=Math.max(low+4,Math.round(lo.reduce((a,x)=>a+x.hi,0)/lo.length));}
   const gap=RATED.map(x=>{const m=M(x.k);return m===null?null:{x,m,v:(x.lower?TRAINED_MED[x.k]-m:m-TRAINED_MED[x.k])/(x.tol*3)};}).filter(Boolean).sort((a,b)=>a.v-b.v);
   const pick=gap.filter(g=>g.v<-0.34).slice(0,2),fr=r.filter(x=>Array.isArray(x.f)),need=Math.min(2,fr.length);
   const desc=need?WARM_DESC.map(k=>({k,c:fr.filter(x=>x.f.includes(k)).length,l:fr.map(x=>x.f.includes(k)).lastIndexOf(true)})).filter(o=>o.c>=need).sort((p,q)=>q.c-p.c||q.l-p.l).slice(0,2-pick.length):[];
   if(r.length&&!pick.length&&!desc.length&&gap.length)pick.push(gap[0]);
   const why=[...pick.map(g=>`${g.x.name} (${g.m.toFixed(g.x.dec)} ${g.x.unit}; median trained singer ${TRAINED_MED[g.x.k]})`),...desc.map(o=>`${aspectOf(o.k).name} (named in ${o.c} of your last ${fr.length} take${fr.length>1?'s':''})`)];
-  return {n:r.length,low,high,why,steps:[WARM_STEP.start,...pick.map(g=>WARM_STEP[g.x.k]),...desc.map(o=>WARM_STEP[o.k]),...(r.length?[]:[WARM_STEP.inton,WARM_STEP.stab]),WARM_STEP.end]};}
+  const mid=[...pick.map(g=>WARM_STEP[g.x.k]),...desc.map(o=>WARM_STEP[o.k]),...(r.length?[]:[WARM_STEP.inton,WARM_STEP.stab])],ln=warmLane(L,now);
+  if(ln&&!mid.includes(WARM_STEP[ln.step])){mid.push(WARM_STEP[ln.step]);why.push(ln.why);}
+  return {n:r.length,low,high,why,lane:ln&&ln.k,steps:[WARM_STEP.start,...mid,WARM_STEP.end]};}
 const nn=m=>NOTE[(m%12+12)%12]+(Math.floor(m/12)-1);
 const warmNotes=W=>[0,2,4,2,0].map(d=>Math.min(W.high,W.low+Math.round((W.high-W.low)/4)+d));
 // Guide tones: a soft sine with two overtones, scheduled on the take's audio context (created in the click).
@@ -1490,7 +1497,7 @@ function warmTone(ctx,st,W){const t0=ctx.currentTime+0.05,g=ctx.createGain(),o=c
 const WARM={plan:null,i:0,osc:null,timer:0};
 function renderWarm(){const W=WARM.plan,el=$('warmup');if(!W){el.hidden=true;return;}el.hidden=false;const st=W.steps[WARM.i],last=WARM.i===W.steps.length-1;
   el.innerHTML=`<h2>Warm-up · step ${WARM.i+1} of ${W.steps.length} · about ${Math.round(W.steps.reduce((a,s)=>a+s.sec,0)/60)} min</h2>`+
-   (WARM.i===0?`<p>${W.n?`Chosen from your last ${W.n} take${W.n>1?'s':''} on this device${W.why.length?`: most to gain in ${W.why.join(' and ')}.`:'.'}`:'No takes on this device yet: a general routine. Record a take and the next warm-up targets what it needs.'} Guide tones ${nn(W.low)}–${nn(W.high)}.</p>`:'')+
+   (WARM.i===0?`<p>${W.n?`Chosen from your last ${W.n} take${W.n>1?'s':''} on this device${W.why.length?`: most to gain in ${W.why.join(' and ')}.`:'.'}`:(W.why.length?`No takes on this device yet; your live long notes say there is most to gain in ${W.why.join(' and ')}.`:'No takes on this device yet: a general routine. Record a take and the next warm-up targets what it needs.')} Guide tones ${nn(W.low)}–${nn(W.high)}.</p>`:'')+
    `<p><b>${st.name}</b> · ${st.sec} s<br>${st.txt}<br><cite>${WARM_SRC[st.src]}</cite></p>`+
    `<div class="row"><button class="btn" id="wTone">▶ guide tone</button>${st.tone==='steps'?'<button class="btn" id="wMatch" title="Hear each tone, sing it, and read how close you landed">♪ match and measure</button>':''}${st===WARM_STEP.end?'<button class="btn" id="wSiren" title="Sing one siren and read its span and any register jump">♪ siren and measure</button>':''}${st.src==='mdv'?'<button class="btn" id="wSwell" title="Sing one swell and read its width and how still the pitch stayed">♪ swell and measure</button>':''}<span id="wLeft">${st.sec} s</span>${last?'':'<button class="btn" id="wNext">next step →</button>'}<button class="btn" id="wDone">${last?'done':'stop'}</button></div>`+(st.tone==='steps'?'<div id="matchBox"></div>':'')+(st.src==='mdv'?'<div id="swellBox"></div>':'')+(st===WARM_STEP.end?'<div id="sirenBox"></div>':'');
   clearInterval(WARM.timer);let left=st.sec;WARM.timer=setInterval(()=>{left--;const e=$('wLeft');if(e)e.textContent=left>0?`${left} s`:'time: move on when ready';if(left<=0)clearInterval(WARM.timer);},1000);
@@ -1498,7 +1505,7 @@ function renderWarm(){const W=WARM.plan,el=$('warmup');if(!W){el.hidden=true;ret
   if($('wMatch'))$('wMatch').onclick=()=>matchGo(W);renderMatch();if($('wSwell'))$('wSwell').onclick=()=>swellGo(W);SWELL.stop=true;SWELL.now=null;if($('wSiren'))$('wSiren').onclick=()=>sirenGo();SIREN.stop=true;SIREN.now=null;
   if(!last)$('wNext').onclick=()=>{MATCH.stop=true;SWELL.stop=true;WARM.i++;renderWarm();$('wTone').onclick();};
   $('wDone').onclick=()=>{MATCH.stop=true;SWELL.stop=true;SIREN.stop=true;WARM.plan=null;clearInterval(WARM.timer);if(WARM.osc)try{WARM.osc.stop();}catch(e){}renderWarm();};}
-$('bWarm').onclick=()=>{WARM.plan=planWarmup(loadHist());WARM.i=0;renderWarm();$('wTone').onclick();$('warmup').scrollIntoView({block:'nearest'});};
+$('bWarm').onclick=()=>{WARM.plan=planWarmup(loadHist(),dataRead(LN_KEY,'[]'));WARM.i=0;renderWarm();$('wTone').onclick();$('warmup').scrollIntoView({block:'nearest'});};
 // Voice profile from the takes kept on this device. Comfortable range: median over takes of each take's
 // 10th and 90th percentile note (± the spread between takes, 1.96 SE); full range: lowest and highest held
 // note in any take. Voice type is a guess from the comfortable range's centre alone (typical tessitura
