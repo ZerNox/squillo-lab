@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-06 · hear a live long note tuned
+
+Built: each live long note on the Lane's list now shows how far its frame median sat from the nearest semitone; at 15 ¢ or more it gets "▶ then tuned": the note from the 30 s in-memory ring, then the same samples at 2^(-c/1200) speed, moved onto the note (length changes under 3 %). Same pitch frames as the Lane (synthetic straight max 1.1 ¢, vibrato 4.8 ¢); the frame median itself not separately benchmarked. check.mjs: 40 ¢ sharp gets the button and label, 5 ¢ does not, playback rate exact. Chrome, Firefox, WebKit iPhone. iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
+
 ## 2026-11-06 · hear a live long note again
 
 Built: `liveTap`/`liveClip`/`hearLive`: the last 30 s of microphone audio kept in memory only; each long note on the Lane's list gets ▶ that replays that note (0.15 s padding), "gone" once overwritten; recaps heard back while it plays are kept off the list so the speaker cannot add fake notes. No new measurement. check.mjs: synthetic ring, clip ends within 2 samples, muted recap dropped, gone after 32 s. Chrome, Firefox, WebKit iPhone. iOS risk: playback during a live mic stream uses the same AudioContext (resumed in the click); echo cancellation may duck it. Next: o/u vowels, or noise part 3.
@@ -45,8 +49,4 @@ Built: `laneTrend`/`laneTrendSvg`: the Lane's list opens with a 14-day chart of 
 ## 2026-11-03 · starts and endings across days
 
 Built: the long-note store also keeps each note's start and ending (|cents| from the note, as the Lane reads them), and the list adds "Today's N long notes cleaner starts / held better than your M from the last two weeks", mean with 95 % interval, 8 ¢ floor, same t rule. `check/lane-days-bench.mjs` (page laneStart/laneEnd, synthetic slides and falls 0/40/80 ¢, five voices): same level false change 0-5/400, wrong way 0; 0 vs 80 ¢ said 386/400 starts, 399/400 endings; 0 vs 40 ¢ 75 and 316/400 (the start reader sees a fraction of a 0.12 s slide). check.mjs: held better / level; Chrome, Firefox, WebKit iPhone. Next: noise part 3, or o/u vowels.
-
-## 2026-11-03 · long notes across days
-
-Built: `laneDays`/`laneKeep`: every live long note's wobble is kept on the device (`helix.lanenotes.v1`, 400 newest, in my data's copy, merge and delete); the Lane's list opens with "Today's 6 long notes steadier than your 14 from the last two weeks: wobble 1.2 ¢ (1.0-1.4) vs 2.0 ¢ (…)", or level / less steady, said only beyond 15 % and both intervals (t on the smaller side), 3 notes a side. `check/lane-days-bench.mjs` (page code, live laneSteady on synthetic notes, five voices): same wobble false change 7-11/400 day pairs (a plain 1.96 gave 31-39, dropped), half the wobble 388-400/400, wrong way 0. Real voices vary more note to note: unmeasured. check.mjs: level/steadier/silent and the line; Chrome, Firefox, WebKit iPhone. Next: noise part 3, or o/u vowels.
 
