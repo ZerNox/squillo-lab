@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-07 · hear a straight live note with vibrato
+
+Built: `vibRamp`/`vibBtn`: a live long note (1.4 s+) the Lane called "held straight" gets "▶ with vibrato": the note from the 30 s ring, then the same samples with a rate curve adding the far vision's vibrato (5.8 Hz, ±0.45 st, faded in 0.3 s into the note and out before the ending), so a singer who holds straight hears where vibrato could take their own voice. Memory only. Measured: a straight synthetic A3 rendered offline, pitch read every 10 ms and given to `vibPiece` (the take's estimator): 5.80-5.81 Hz, 0.416-0.423 st for 5.8 / 0.45 asked (Chrome, Firefox, WebKit iPhone); before: no vibrato. Proxy only (pure tone, no real voice). iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
+
 ## 2026-11-07 · hear a live long note held level
 
 Built: `laneDrift`/`levelRamp`: a live long note that wanders 15 ¢ or more in its middle (0.2 s mean of its frames against its median, so vibrato mostly averages out) gets "▶ then level" on the Lane's list: the note from the 30 s ring, then the same samples with the rate curve that holds the middle level. Start, ending and vibrato are kept. Memory only. Measured: a synthetic 2 s A3 with 5 Hz ±20 ¢ vibrato and a 40 ¢ sag in the middle, rendered offline and read back by zero crossings over 0.4 s: the middle sits 37 → 5.3 ¢ from its start and end (Chrome, Firefox, WebKit iPhone). This is a proxy only: one sag shape, no real voice. check.mjs: the button shows only on the wandering note. iOS risk as before (playback during mic stream). Next: o/u vowels (needs VocalSet fetched), or noise part 3.
