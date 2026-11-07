@@ -46,7 +46,3 @@ Built: each live long note on the Lane's list now shows how far its frame median
 
 Built: `liveTap`/`liveClip`/`hearLive`: the last 30 s of microphone audio kept in memory only; each long note on the Lane's list gets ▶ that replays that note (0.15 s padding), "gone" once overwritten; recaps heard back while it plays are kept off the list so the speaker cannot add fake notes. No new measurement. check.mjs: synthetic ring, clip ends within 2 samples, muted recap dropped, gone after 32 s. Chrome, Firefox, WebKit iPhone. iOS risk: playback during a live mic stream uses the same AudioContext (resumed in the click); echo cancellation may duck it. Next: o/u vowels, or noise part 3.
 
-## 2026-11-06 · steadiest by note
-
-Built: `laneByNote`: the Lane's list adds "By note, last two weeks: steadiest on C4 … least steady on E4 …", each note against the others pooled, with ± and an interval widened for picking an extreme. `check/lane-days-bench.mjs` (page code, synthetic live wobbles, 400 trials): false name 3/400 when alike; one note ×2 wobble named 360/400, ×½ 385/400. check.mjs: one note silent, alike silent, C4 named. Chrome, Firefox, WebKit iPhone. Next: o/u vowels, or noise part 3.
-
