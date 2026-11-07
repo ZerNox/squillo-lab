@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-07 · hear a live long note as the far vision
+
+Built: `farParts`/`farRamp`/`farNoteBtn`: a live long note (1.4 s+) with two or more of: off the semitone, came in under/over, ending fell/rose, held straight, held level (one of the last two needed) gets "▶ far vision" on the Lane's list: the note, then the same samples in one rate curve (tuning × start × ending × the far vision's 5.8 Hz ±0.45 st vibrato, phase in output time) plus the 9 dB swell gain. Memory only. Measured: synthetic straight, level A3 30 ¢ sharp rendered offline: median 29 → 5.4 ¢, vibPiece 5.82 Hz, 0.43 st, swell 0.0 → 9.0 dB (Chrome, Firefox, WebKit iPhone). Proxy only (pure tone). iOS risk as before (playback during mic stream). Next: o/u vowels (needs VocalSet fetched), or noise part 3.
+
 ## 2026-11-07 · hear a thin live vibrato widened
 
 Built: `laneNarrow` now also takes vibrato thinner than ±0.25 st (rate found): "▶ wider vibrato" on the Lane's list replays the note, then the same samples with each swing scaled up to the far vision's ±0.45 st by the same rate curve. Memory only. Measured: synthetic 5.5 Hz ±0.15 st A3 rendered offline, `vibPiece` read-back 0.149 → 0.450-0.453 st, 5.54 Hz (Chrome, Firefox, WebKit iPhone). Proxy only (pure tone). iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
