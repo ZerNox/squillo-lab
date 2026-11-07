@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-07 · hear a level live note with a swell
+
+Built: `swellRamp`/`swellBtn`: a live long note (1.4 s+) the Lane read as "held level" (swell + its ± under 6 dB) gets "▶ with a swell": the note from the 30 s ring, then the same samples with a gain curve rising 9 dB from its ends to its middle (raised sine in dB), so a singer hears their own note as a messa di voce. Memory only. Measured: a level synthetic A3 rendered offline, level read in 20 ms frames (5-95 %): 0.17 → 9.0 dB, peak at 0.56 of the note (Chrome, Firefox, WebKit iPhone). Proxy only (pure tone; a real swell also brightens the tone, which a gain curve does not). iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
+
 ## 2026-11-07 · hear a straight live note with vibrato
 
 Built: `vibRamp`/`vibBtn`: a live long note (1.4 s+) the Lane called "held straight" gets "▶ with vibrato": the note from the 30 s ring, then the same samples with a rate curve adding the far vision's vibrato (5.8 Hz, ±0.45 st, faded in 0.3 s into the note and out before the ending), so a singer who holds straight hears where vibrato could take their own voice. Memory only. Measured: a straight synthetic A3 rendered offline, pitch read every 10 ms and given to `vibPiece` (the take's estimator): 5.80-5.81 Hz, 0.416-0.423 st for 5.8 / 0.45 asked (Chrome, Firefox, WebKit iPhone); before: no vibrato. Proxy only (pure tone, no real voice). iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
@@ -41,8 +45,4 @@ Built: `LBEST`/`keepBest`/`bestBtn`: when a live long note is logged with lower 
 ## 2026-11-06 · hear a live long note tuned
 
 Built: each live long note on the Lane's list now shows how far its frame median sat from the nearest semitone; at 15 ¢ or more it gets "▶ then tuned": the note from the 30 s in-memory ring, then the same samples at 2^(-c/1200) speed, moved onto the note (length changes under 3 %). Same pitch frames as the Lane (synthetic straight max 1.1 ¢, vibrato 4.8 ¢); the frame median itself not separately benchmarked. check.mjs: 40 ¢ sharp gets the button and label, 5 ¢ does not, playback rate exact. Chrome, Firefox, WebKit iPhone. iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
-
-## 2026-11-06 · hear a live long note again
-
-Built: `liveTap`/`liveClip`/`hearLive`: the last 30 s of microphone audio kept in memory only; each long note on the Lane's list gets ▶ that replays that note (0.15 s padding), "gone" once overwritten; recaps heard back while it plays are kept off the list so the speaker cannot add fake notes. No new measurement. check.mjs: synthetic ring, clip ends within 2 samples, muted recap dropped, gone after 32 s. Chrome, Firefox, WebKit iPhone. iOS risk: playback during a live mic stream uses the same AudioContext (resumed in the click); echo cancellation may duck it. Next: o/u vowels, or noise part 3.
 
