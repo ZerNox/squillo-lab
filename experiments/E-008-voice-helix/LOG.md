@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-07 · hear a thin live vibrato widened
+
+Built: `laneNarrow` now also takes vibrato thinner than ±0.25 st (rate found): "▶ wider vibrato" on the Lane's list replays the note, then the same samples with each swing scaled up to the far vision's ±0.45 st by the same rate curve. Memory only. Measured: synthetic 5.5 Hz ±0.15 st A3 rendered offline, `vibPiece` read-back 0.149 → 0.450-0.453 st, 5.54 Hz (Chrome, Firefox, WebKit iPhone). Proxy only (pure tone). iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
+
 ## 2026-11-07 · hear a wide live vibrato narrowed
 
 Built: `laneNarrow`/`narrowBtn`: a live long note (1.4 s+) with vibrato wider than ±0.6 st gets "▶ narrower vibrato" on the Lane's list: the note from the 30 s ring, then the same samples with a rate curve (via `levelRamp`) scaling each 0.02 s swing about its 0.2 s mean to the far vision's ±0.45 st. Memory only. Measured: synthetic 5.5 Hz ±1.0 st A3 rendered offline, `vibPiece` read-back 0.975 → 0.413-0.416 st, 5.53 Hz (Chrome, Firefox, WebKit iPhone). Proxy only (pure tone; frames assumed aligned with the ring, tracker latency untested). iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
