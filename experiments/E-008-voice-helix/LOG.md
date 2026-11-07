@@ -42,14 +42,3 @@ Built: `liveTap`/`liveClip`/`hearLive`: the last 30 s of microphone audio kept i
 
 Built: `laneByNote`: the Lane's list adds "By note, last two weeks: steadiest on C4 … least steady on E4 …", each note against the others pooled, with ± and an interval widened for picking an extreme. `check/lane-days-bench.mjs` (page code, synthetic live wobbles, 400 trials): false name 3/400 when alike; one note ×2 wobble named 360/400, ×½ 385/400. check.mjs: one note silent, alike silent, C4 named. Chrome, Firefox, WebKit iPhone. Next: o/u vowels, or noise part 3.
 
-## 2026-11-06 · live long-note milestones
-
-Built: a lifetime count of live long notes (`laneCount`, `helix.lanecount.v1`; the kept list stops at 400) with milestones at 10, 50, 100, 250, 500, 1000, 2500, 5000: the streak line says "N long notes held live (milestone: M), next: K", and the Lane's list announces "Milestone: your Mth long note held live" (status region) when one is crossed. The count travels in the my-data copy (restore keeps the larger) and is wiped with everything. No new measurement. check.mjs: 9 → 10 crosses once, 11 not, count 11 in backup and line. Chrome, Firefox, WebKit iPhone. Next: o/u vowels, or noise part 3.
-
-## 2026-11-06 · live singing keeps the streak
-
-Built: `streakInfo` counts a day with live long notes in the Lane as a day sung, so singing without recording keeps the streak; the line adds "N long notes held live" (minutes shown apart, never added to kept-take minutes) and now also heads the Lane's long-note list. No new measurement. check.mjs: lane-only days make a 4-day streak, take minutes unchanged. Chrome, Firefox, WebKit iPhone. Next: o/u vowels, or noise part 3.
-
-## 2026-11-06 · warm-up from live long notes
-
-Built: `warmLane`: the warm-up also reads the Lane's kept long notes; when the newest day with long notes (last 7 days) was less steady, started or ended further off than the singer's earlier two weeks (laneDays, same floors and intervals), it adds messa di voce, clean starts or hold to the end, says why, and works with no takes at all. `check/lane-days-bench.mjs` (page code, synthetic, 400 trials each): step added falsely 3/400 when all three level; wobble doubled 393/400 all right aspect; endings 80 vs 40 ¢ 362/400, 355 right aspect. check.mjs: added, level silent, no-takes text. Chrome, Firefox, WebKit iPhone. Next: o/u vowels, or noise part 3.
