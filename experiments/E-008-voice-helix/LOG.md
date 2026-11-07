@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-07 · hear a live long note all fixed
+
+Built: `fixParts`/`fixRamp`: a live long note with two or more of: 15 ¢+ off the semitone, a start the Lane said came in under/over, an ending it said fell/rose, gets "▶ all fixed" on the Lane's list: the note from the 30 s ring, then the same samples in one rate curve (tuning factor throughout, times the landRamp start and holdRamp ending shapes, timed at the tuned rate), so the singer hears the whole note as it could be, in their own voice. Memory only. Measured: a synthetic A3 note 30 ¢ sharp, coming in and ending 80 ¢ below its body (-50 ¢ from A3), rendered offline and read back by zero crossings: start 0.0, body 0.0, ending -2.0 ¢ (Chrome, WebKit iPhone) / -2.2 ¢ (Firefox) from A3; proxy only (one shape, no real voice). check.mjs: button only on the note with 2+ faults. iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
+
 ## 2026-11-07 · hear a live long note landed
 
 Built: `landRamp`: a live long note whose start the Lane said came in under or over gets "▶ then landed" on the Lane's list: the note from the 30 s ring, then the same samples at 2^(-c/1200) rate through the first 0.25 s, easing back to 1 by 0.4 s, so the start sits on the note. Memory only. Measured: a synthetic 220 Hz note starting 80 ¢ under for 0.1 s, rendered offline through `landRamp` and read back by zero crossings, starts +0.1 ¢ (Chrome, WebKit) / -0.3 ¢ (Firefox) from the body; proxy only (one scoop shape, no real voice). check.mjs: button only on the scooped note. iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
