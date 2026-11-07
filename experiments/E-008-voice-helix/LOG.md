@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-07 · hear a live long note held to the end
+
+Built: `holdRamp`: a live long note whose ending the Lane named as falling or rising gets "▶ then held" on the Lane's list: the note from the 30 s ring, then the same samples with the playback rate ramped by -c ¢ over its last 0.45 s, so the ending is lifted back to the body's pitch. Memory only. Measured: a synthetic 220 Hz note falling 80 ¢ in its last 0.18 s, rendered offline through `holdRamp` and read back by zero crossings, ends -1.4 ¢ (Chrome, WebKit) / -1.2 ¢ (Firefox) from the body; proxy only (one fall shape, no real-voice check). check.mjs: button only on the fallen note; MUTE now leaves OfflineAudioContext alone. iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
+
 ## 2026-11-06 · keep a live long note
 
 Built: `saveLive`: each live long note on the Lane's list gets ⤓, which saves that note from the 30 s in-memory ring as a 16-bit WAV on the device (share sheet on phones, download elsewhere); nothing is kept unless the singer saves it. No new measurement. check.mjs: button shown, WAV exactly 44 + 2 bytes per sample of the clip. Chrome, Firefox, WebKit iPhone. iOS risk: navigator.share with a file needs the click's activation (called synchronously in it). Next: o/u vowels, or noise part 3.
@@ -45,8 +49,4 @@ Built: `warmLane`: the warm-up also reads the Lane's kept long notes; when the n
 ## 2026-11-05 · range by week
 
 Built: `rangeWeeks`/`rangeWeeksSvg`: the voice profile draws the last 8 weeks, one bar per week for the full span held (takes and range finds) with the comfortable span inside, read out by screen readers; it says when the last two weeks' top or bottom held note moved a semitone or more past everything earlier (range finder 95 % within 1 st, range-bench), and never calls a quieter fortnight a shrink. No new measurement. check.mjs: up 3 st named, level and lower not, one week silent. Chrome, Firefox, WebKit iPhone. Next: o/u vowels, or noise part 3.
-
-## 2026-11-05 · vibrato by day; no-WebGL fix
-
-Built: each live long note's vibrato rate and width (`laneVib`) is kept with the rest; the Lane's list adds "faster / slower vibrato" and "wider / narrower vibrato than your M from the last two weeks" (described, never marked better; floors 0.3 Hz, 20 %) and two more 14-day charts. `check/lane-days-bench.mjs` (page code, synthetic 5.0/5.8 Hz, 0.25/0.5 st, 5 % cycle jitter, five voices): read 5.00/5.79 Hz, 0.24/0.48 st; false change 0/400, steps 400/400, wrong way 0, no leak between rate and width (real cycle spread unmeasured). Firefox on this machine lost WebGL: the page threw and the frame loop never started, so the Lane, HUD and score were dead without WebGL; fixed (3D part skipped, 2D always runs). check.mjs: vibrato days. Chrome, Firefox (no WebGL), WebKit iPhone. Next: o/u vowels, or noise part 3.
 
