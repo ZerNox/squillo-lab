@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-07 · hear a wide live vibrato narrowed
+
+Built: `laneNarrow`/`narrowBtn`: a live long note (1.4 s+) with vibrato wider than ±0.6 st gets "▶ narrower vibrato" on the Lane's list: the note from the 30 s ring, then the same samples with a rate curve (via `levelRamp`) scaling each 0.02 s swing about its 0.2 s mean to the far vision's ±0.45 st. Memory only. Measured: synthetic 5.5 Hz ±1.0 st A3 rendered offline, `vibPiece` read-back 0.975 → 0.413-0.416 st, 5.53 Hz (Chrome, Firefox, WebKit iPhone). Proxy only (pure tone; frames assumed aligned with the ring, tracker latency untested). iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
+
 ## 2026-11-07 · hear a level live note with a swell
 
 Built: `swellRamp`/`swellBtn`: a live long note (1.4 s+) the Lane read as "held level" (swell + its ± under 6 dB) gets "▶ with a swell": the note from the 30 s ring, then the same samples with a gain curve rising 9 dB from its ends to its middle (raised sine in dB), so a singer hears their own note as a messa di voce. Memory only. Measured: a level synthetic A3 rendered offline, level read in 20 ms frames (5-95 %): 0.17 → 9.0 dB, peak at 0.56 of the note (Chrome, Firefox, WebKit iPhone). Proxy only (pure tone; a real swell also brightens the tone, which a gain curve does not). iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
@@ -25,24 +29,3 @@ Built: `landRamp`: a live long note whose start the Lane said came in under or o
 ## 2026-11-07 · hear a live long note held to the end
 
 Built: `holdRamp`: a live long note whose ending the Lane named as falling or rising gets "▶ then held" on the Lane's list: the note from the 30 s ring, then the same samples with the playback rate ramped by -c ¢ over its last 0.45 s, so the ending is lifted back to the body's pitch. Memory only. Measured: a synthetic 220 Hz note falling 80 ¢ in its last 0.18 s, rendered offline through `holdRamp` and read back by zero crossings, ends -1.4 ¢ (Chrome, WebKit) / -1.2 ¢ (Firefox) from the body; proxy only (one fall shape, no real-voice check). check.mjs: button only on the fallen note; MUTE now leaves OfflineAudioContext alone. iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
-
-## 2026-11-06 · keep a live long note
-
-Built: `saveLive`: each live long note on the Lane's list gets ⤓, which saves that note from the 30 s in-memory ring as a 16-bit WAV on the device (share sheet on phones, download elsewhere); nothing is kept unless the singer saves it. No new measurement. check.mjs: button shown, WAV exactly 44 + 2 bytes per sample of the clip. Chrome, Firefox, WebKit iPhone. iOS risk: navigator.share with a file needs the click's activation (called synchronously in it). Next: o/u vowels, or noise part 3.
-
-## 2026-11-06 · hear a live long note slowly
-
-Built: each live long note on the Lane's list gets "▶ ½×": the note from the 30 s in-memory ring at half speed, pitch kept (the take's WSOLA slow-down), so a singer hears how a start or ending moved. Memory only. No new measurement (WSOLA pitch kept within 0.7 ¢ median, check.mjs). check.mjs: button shown, output exactly twice the clip. Chrome, Firefox, WebKit iPhone. iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
-
-## 2026-11-06 · hear the sitting in order
-
-Built: `hearAll`: with two or more live long notes still in the 30 s ring, the Lane's list shows "▶ all in order", which plays them oldest first, 0.4 s apart, so a singer hears how the sitting went; recaps heard back are kept off the list as before. Memory only. No new measurement. check.mjs: button shown, three clips queued at their full lengths in order. Chrome, Firefox, WebKit iPhone. iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
-
-## 2026-11-06 · hear your steadiest, then this
-
-Built: `LBEST`/`keepBest`/`bestBtn`: when a live long note is logged with lower wobble than any before it this sitting, its clip is copied out of the 30 s ring (memory only, never stored); every other note on the Lane's list gets "▶ steadiest, then this": the steadiest note, a 0.4 s gap, then this one, wobbles named in the label. No new measurement (Lane steadiness: live = take within 0.2 ¢). check.mjs: best kept and replaced by a steadier one, button on the others only, both clips play at full length. Chrome, Firefox, WebKit iPhone. iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
-
-## 2026-11-06 · hear a live long note tuned
-
-Built: each live long note on the Lane's list now shows how far its frame median sat from the nearest semitone; at 15 ¢ or more it gets "▶ then tuned": the note from the 30 s in-memory ring, then the same samples at 2^(-c/1200) speed, moved onto the note (length changes under 3 %). Same pitch frames as the Lane (synthetic straight max 1.1 ¢, vibrato 4.8 ¢); the frame median itself not separately benchmarked. check.mjs: 40 ¢ sharp gets the button and label, 5 ¢ does not, playback rate exact. Chrome, Firefox, WebKit iPhone. iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
-
