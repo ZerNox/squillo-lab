@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-08 · eyes-free: the sitting's try-by-try line spoken
+
+Built: `recapSay`: with say note on, the after-note recap also reads "Getting better this sitting, try by try: G4 steadier…" once, whenever that line changes. A singer with eyes closed or on a screen reader hears what is improving across repeated notes. Same Bonferroni test, no new measurement. Also tried: f0-banded vowel tables (cut 250-350 Hz): 83-84 %, 400-600 Hz 63-65 %, no gain, not shipped. Next: u and 400-600 Hz vowels, or a finer-hop edge search.
+
 ## 2026-11-08 · vowels: o read right 72 → 80 %
 
 Built: `envVowel` now also weighs each envelope level by log(f0/250)², and the note's LPC F1 and F2 (re-fitted table, `check/vowel-fit.mjs`). A singer on "oh" sees the vowel chip, note-by-note line and 'vowels heard' get it right more often, and the chip is sure more often. Measured (VocalSet 20 singers, 2431 notes, page dump, left-out singer): 81.8 ± 4.1 → 84.0 ± 4.2 %, paired +2.3 ± 2.0, 14/20 better; o 72 → 80, u 75 → 76; sure 87.7 % on 84 % of notes (was 78 %); live 0.5 s window 88.1 → 89.7 %, sure on 47 → 51 %. Next: u and 400-600 Hz (66 %), or a finer-hop edge search.
@@ -41,8 +45,4 @@ Built: `farParts`/`farRamp`/`farNoteBtn`: a live long note (1.4 s+) with two or 
 ## 2026-11-07 · hear a thin live vibrato widened
 
 Built: `laneNarrow` now also takes vibrato thinner than ±0.25 st (rate found): "▶ wider vibrato" on the Lane's list replays the note, then the same samples with each swing scaled up to the far vision's ±0.45 st by the same rate curve. Memory only. Measured: synthetic 5.5 Hz ±0.15 st A3 rendered offline, `vibPiece` read-back 0.149 → 0.450-0.453 st, 5.54 Hz (Chrome, Firefox, WebKit iPhone). Proxy only (pure tone). iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
-
-## 2026-11-07 · hear a wide live vibrato narrowed
-
-Built: `laneNarrow`/`narrowBtn`: a live long note (1.4 s+) with vibrato wider than ±0.6 st gets "▶ narrower vibrato" on the Lane's list: the note from the 30 s ring, then the same samples with a rate curve (via `levelRamp`) scaling each 0.02 s swing about its 0.2 s mean to the far vision's ±0.45 st. Memory only. Measured: synthetic 5.5 Hz ±1.0 st A3 rendered offline, `vibPiece` read-back 0.975 → 0.413-0.416 st, 5.53 Hz (Chrome, Firefox, WebKit iPhone). Proxy only (pure tone; frames assumed aligned with the ring, tracker latency untested). iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
 
