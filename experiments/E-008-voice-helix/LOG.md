@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-08 · the vowel of each live long note
+
+Built: the Lane's list now says which vowel each long note (0.5 s or more) was sung on, "G4 1.2 s on “ah”", only when `envVowel` is sure over the whole note. A singer working on one vowel sees which notes were heard as it. Number used: whole notes on the live footing 87.6 ± 3.9 % (README, VocalSet). Also tried for u/o (page dump, left-out singer, base 84.0): ridge 0.01 84.2, F1/F2 × log f0 82.8-83.1, cubic f0 term 83.3-83.8: no gain, not shipped; the LDA looks saturated on these features. check.mjs asserts the label and that short notes get none. Next: a different vowel feature (cepstral envelope), or a finer-hop edge search.
+
 ## 2026-11-08 · phone: the Lane's list readable over the Lane
 
 Built: on phones the Lane is fixed full-screen and its list of long notes scrolled over it, so text ran through the big note readout and the pitch line (seen on the iPhone screenshot). The list now sits on its own opaque panel above the readout. A singer scrolling the list on an iPhone reads it cleanly. No new measurement; check.mjs asserts panel order and opacity on touch. Chrome failed once on an element screenshot detached mid-render (unrelated, passed on rerun). Next: u and 400-600 Hz vowels, or a finer-hop edge search.
@@ -45,8 +49,4 @@ Built: `LFIRST`/`firstBtn`/`firstVs`: the first long note of each pitch this sit
 ## 2026-11-08 · hear a live long note as the next step
 
 Built: `nextParts`/`nextNoteBtn`: a live long note whose tuning, start or ending was named gets "▶ next step" on the Lane's list: the note, then the same samples with each part moved half way to the note (`farRamp` with the parts halved, nothing added), so the reachable step sits beside the far vision. Memory only. Measured: synthetic A3 30 ¢ sharp, coming in 80 ¢ under, rendered offline: body 30 → 15.0 ¢, start -80 → -40.1 ¢ from the body (Chrome, Firefox, WebKit iPhone). Proxy only (pure tone). iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
-
-## 2026-11-07 · hear a live long note as the far vision
-
-Built: `farParts`/`farRamp`/`farNoteBtn`: a live long note (1.4 s+) with two or more of: off the semitone, came in under/over, ending fell/rose, held straight, held level (one of the last two needed) gets "▶ far vision" on the Lane's list: the note, then the same samples in one rate curve (tuning × start × ending × the far vision's 5.8 Hz ±0.45 st vibrato, phase in output time) plus the 9 dB swell gain. Memory only. Measured: synthetic straight, level A3 30 ¢ sharp rendered offline: median 29 → 5.4 ¢, vibPiece 5.82 Hz, 0.43 st, swell 0.0 → 9.0 dB (Chrome, Firefox, WebKit iPhone). Proxy only (pure tone). iOS risk as before (playback during mic stream). Next: o/u vowels (needs VocalSet fetched), or noise part 3.
 
