@@ -25,4 +25,13 @@ const tu = await p.evaluate(() => { let s = 17; const rnd = () => (s = (s * 1680
     const c = { steadier: 0, 'less steady': 0, level: 0 }; for (let r = 0; r < 400; r++) { const c0 = zero ? 0 : 8 + 32 * rnd(), T = [];
       for (let i = 0; i < n; i++) { const tru = c0 * (1 - drop * i / (n - 1)), pm = 1 + 5 * rnd(); T.push({ t: i, wob: Math.abs(tru + gs() * pm / 1.96 + sc * gs()), pm }); }
       c[triesTrend(T).w]++; } rows.push(`tuning ${n} tries  ${name.padEnd(15)} closer ${c.steadier}/400  further ${c['less steady']}/400  level ${c.level}/400`); } return rows; });
+const fw = await p.evaluate(() => { let s = 19; const rnd = () => (s = (s * 16807) % 2147483647) / 2147483647, gs = () => Math.sqrt(-2 * Math.log(rnd())) * Math.cos(2 * Math.PI * rnd());
+  const Ms = [[LTRY, 0.5, 2.5, 4, 10, 1.5], [LTRYT, 1, 5, 8, 32, 3], [LTRYS, 6, 9, 10, 50, 6], [LTRYE, 6, 9, 10, 70, 6]], rows = [];
+  for (const n of [4, 6]) for (const [name, sc, drop] of [['all level', 0, 0], ['all level+scatter', 1, 0], ['G4 wobble halved', 0, 0.5]]) { let any = 0, up = 0;
+    for (let r = 0; r < 400; r++) { for (const [M] of Ms) for (const k in M) delete M[k];
+      for (const note of ['G4', 'A4', 'C5']) Ms.forEach(([M, p0, pr, c0, cr, h], mi) => { const base = c0 + cr * rnd(), T = M[note] = []; for (let i = 0; i < n; i++) { const pm = p0 + pr * rnd(), tru = base * (1 - (note === 'G4' && mi === 0 ? drop : 0) * i / (n - 1)); T.push({ t: i, wob: Math.abs(tru + gs() * pm / 1.96 + sc * h * gs()), pm }); } });
+      const L = sittingTries(); if (L) any++; if (/^.{0,80}Getting better[^.]*G4 steadier/.test(L.replace(/<[^>]+>/g, ''))) up++; }
+    rows.push(`sitting 3 notes x 4 aspects, ${n} tries  ${name.padEnd(18)} any claim ${any}/400  'G4 steadier' ${up}/400`); }
+  for (const [M] of Ms) for (const k in M) delete M[k]; return rows; });
+console.log(fw.join('\n'));
 console.log(out.join('\n')); console.log(tu.join('\n')); console.log(st.join('\n')); console.log(en.join('\n')); await b.close();

@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-08 · this sitting, try by try, in one line
+
+Built: `sittingTries`/`olsTrend`: above the Lane's list, "Getting better this sitting, try by try: G4 steadier, cleaner starts · A4 closer to the note" (or "Slipping: …"), from every pitch with 4+ tries. A singer sees at a glance what is improving across all the notes they repeat. Per-note tests over 12 cells falsely claimed something in 31 % of level sittings; fixed with an unweighted t line (± as residual floor) and a Bonferroni factor. Measured (`check/tries-bench.mjs`, 3 notes × 4 aspects, 400 sittings): all level 0/400, hidden spread 4-18/400, halved wobble named 23/400 (4 tries), 161/400 (6). Next: o/u vowels, or a finer-hop edge search.
+
 ## 2026-11-08 · tuning of one note, try by try
 
 Built: `LTRYT`: each live long note now also keeps a ± on its tuning (spread of four quarter medians, floor 1 ¢), and the Lane's list shows "tuning of G4: 40 · 28 · 15 · 4 ¢ off the note, closer try by try (−Δ ± e)" with the same weighted trend. A singer working on one note's pitch sees it come in within a sitting; wobble, starts, endings and tuning all read try by try. Measured (`check/tries-bench.mjs`, synthetic, ± 1-6 ¢, hidden spread 3 ¢): level said 2-10 %, in tune 1-3/400, wrong way 0/400, halved 34-89 %. Next: o/u vowels, or a finer-hop edge search.
@@ -41,8 +45,4 @@ Built: `laneNarrow`/`narrowBtn`: a live long note (1.4 s+) with vibrato wider th
 ## 2026-11-07 · hear a level live note with a swell
 
 Built: `swellRamp`/`swellBtn`: a live long note (1.4 s+) the Lane read as "held level" (swell + its ± under 6 dB) gets "▶ with a swell": the note from the 30 s ring, then the same samples with a gain curve rising 9 dB from its ends to its middle (raised sine in dB), so a singer hears their own note as a messa di voce. Memory only. Measured: a level synthetic A3 rendered offline, level read in 20 ms frames (5-95 %): 0.17 → 9.0 dB, peak at 0.56 of the note (Chrome, Firefox, WebKit iPhone). Proxy only (pure tone; a real swell also brightens the tone, which a gain curve does not). iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
-
-## 2026-11-07 · hear a straight live note with vibrato
-
-Built: `vibRamp`/`vibBtn`: a live long note (1.4 s+) the Lane called "held straight" gets "▶ with vibrato": the note from the 30 s ring, then the same samples with a rate curve adding the far vision's vibrato (5.8 Hz, ±0.45 st, faded in 0.3 s into the note and out before the ending), so a singer who holds straight hears where vibrato could take their own voice. Memory only. Measured: a straight synthetic A3 rendered offline, pitch read every 10 ms and given to `vibPiece` (the take's estimator): 5.80-5.81 Hz, 0.416-0.423 st for 5.8 / 0.45 asked (Chrome, Firefox, WebKit iPhone); before: no vibrato. Proxy only (pure tone, no real voice). iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
 
