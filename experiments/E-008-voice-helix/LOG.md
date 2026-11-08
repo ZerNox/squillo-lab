@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-08 · hear a live long note as the next step
+
+Built: `nextParts`/`nextNoteBtn`: a live long note whose tuning, start or ending was named gets "▶ next step" on the Lane's list: the note, then the same samples with each part moved half way to the note (`farRamp` with the parts halved, nothing added), so the reachable step sits beside the far vision. Memory only. Measured: synthetic A3 30 ¢ sharp, coming in 80 ¢ under, rendered offline: body 30 → 15.0 ¢, start -80 → -40.1 ¢ from the body (Chrome, Firefox, WebKit iPhone). Proxy only (pure tone). iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
+
 ## 2026-11-07 · hear a live long note as the far vision
 
 Built: `farParts`/`farRamp`/`farNoteBtn`: a live long note (1.4 s+) with two or more of: off the semitone, came in under/over, ending fell/rose, held straight, held level (one of the last two needed) gets "▶ far vision" on the Lane's list: the note, then the same samples in one rate curve (tuning × start × ending × the far vision's 5.8 Hz ±0.45 st vibrato, phase in output time) plus the 9 dB swell gain. Memory only. Measured: synthetic straight, level A3 30 ¢ sharp rendered offline: median 29 → 5.4 ¢, vibPiece 5.82 Hz, 0.43 st, swell 0.0 → 9.0 dB (Chrome, Firefox, WebKit iPhone). Proxy only (pure tone). iOS risk as before (playback during mic stream). Next: o/u vowels (needs VocalSet fetched), or noise part 3.
