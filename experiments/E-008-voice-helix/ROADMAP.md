@@ -93,6 +93,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Hear it again: ▶ on each live long note replays it from a 30 s in-memory mic ring (never stored); '▶ then tuned' on notes 15 ¢ or more off. '▶ steadiest, then this' A/Bs any note against the sitting's steadiest. '▶ all in order' plays the sitting's kept notes oldest first. '▶ ½×' plays a note at half speed, pitch kept. '▶ then held' replays a note whose ending fell or rose with it lifted back (synthetic -80 → -1.4 ¢). '▶ then landed' replays a note that came in under or over with its start moved onto the note. '▶ all fixed' does tuning, start and ending at once (synthetic: 0.0 / 0.0 / -2.0 ¢). ⤓ saves a note as a WAV on the device. '▶ then level' holds a mid-note wander level. '▶ with vibrato' adds the far vision's vibrato to a note held straight; '▶ narrower/wider vibrato' scales a swing past ±0.6 or under ±0.25 st to ±0.45; '▶ far vision' does every part that applies at once (synthetic 29 → 5.4 ¢, 5.82 Hz 0.43 st, 9 dB swell) (2026-11-07).
 - Range by week: the voice profile's 8-week chart of full and comfortable span; a new top or bottom named only a semitone or more past before.
 - Live next step: '▶ next step' on a Lane note moves tuning, start, ending half way (synthetic 30 → 15 ¢, start -80 → -40 ¢).
+- First try, then this: a later try of the same note on the Lane A/Bs against the sitting's first, steadier only beyond both ± (2026-11-08).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
