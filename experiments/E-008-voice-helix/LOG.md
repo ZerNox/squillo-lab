@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-08 · starts of one note, try by try
+
+Built: `LTRYS`/`triesOne`: the Lane's list also shows a pitch's starts this sitting, "starts of G4: 60 · 40 · 20 · 5 ¢ off, cleaner try by try (−Δ ± e)", same weighted trend on |¢ off| with the start's ±. A singer working on clean onsets sees them settle within a sitting. Measured (`check/tries-bench.mjs`, synthetic, ± 6-15 ¢): level said 3-9 %, on-the-note starts 0-1/400, wrong way ≤ 1/400, halved 23-51 %. Next: o/u vowels, or a finer-hop edge search.
+
 ## 2026-11-08 · tries of one note, and an interior gate measured
 
 Built: `LTRY`/`triesTrend`/`triesLine`: every live long note's wobble ± kept per pitch this sitting (numbers, memory); from the third try the newest reads "tries of G4: 9.0 · 6.1 · 3.2 ¢", from the fourth "steadier/less steady try by try (−Δ ± e ¢)" or "level across N tries" (weighted line, t interval when scatter exceeds the ±). A singer repeating one note sees whether it settles over the sitting. Measured (`check/tries-bench.mjs`, synthetic 400 per row): level falsely called 16-29/400 at 4-6 tries, wrong way ≤ 1/400, halved found 61-84 %. Depth tried first: take-pitch false alarms on vocadito (re-downloaded, baseline RPA 97.3, FA 13.1, OA 94.0): 60 % of FAs are inside voiced runs in 60-400 ms truth gaps; interior level-dip trims (run median, local max, plus YIN dip) all trade, best OA 94.7 at RPA 96.5; not shipped. Next: o/u vowels, or a finer-hop edge/onset search.
@@ -37,8 +41,4 @@ Built: `vibRamp`/`vibBtn`: a live long note (1.4 s+) the Lane called "held strai
 ## 2026-11-07 · hear a live long note held level
 
 Built: `laneDrift`/`levelRamp`: a live long note that wanders 15 ¢ or more in its middle (0.2 s mean of its frames against its median, so vibrato mostly averages out) gets "▶ then level" on the Lane's list: the note from the 30 s ring, then the same samples with the rate curve that holds the middle level. Start, ending and vibrato are kept. Memory only. Measured: a synthetic 2 s A3 with 5 Hz ±20 ¢ vibrato and a 40 ¢ sag in the middle, rendered offline and read back by zero crossings over 0.4 s: the middle sits 37 → 5.3 ¢ from its start and end (Chrome, Firefox, WebKit iPhone). This is a proxy only: one sag shape, no real voice. check.mjs: the button shows only on the wandering note. iOS risk as before (playback during mic stream). Next: o/u vowels (needs VocalSet fetched), or noise part 3.
-
-## 2026-11-07 · hear a live long note all fixed
-
-Built: `fixParts`/`fixRamp`: a live long note with two or more of: 15 ¢+ off the semitone, a start the Lane said came in under/over, an ending it said fell/rose, gets "▶ all fixed" on the Lane's list: the note from the 30 s ring, then the same samples in one rate curve (tuning factor throughout, times the landRamp start and holdRamp ending shapes, timed at the tuned rate), so the singer hears the whole note as it could be, in their own voice. Memory only. Measured: a synthetic A3 note 30 ¢ sharp, coming in and ending 80 ¢ below its body (-50 ¢ from A3), rendered offline and read back by zero crossings: start 0.0, body 0.0, ending -2.0 ¢ (Chrome, WebKit iPhone) / -2.2 ¢ (Firefox) from A3; proxy only (one shape, no real voice). check.mjs: button only on the note with 2+ faults. iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
 
