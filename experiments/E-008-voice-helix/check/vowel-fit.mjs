@@ -1,4 +1,4 @@
-// Fits the sung-vowel table (VOWEL_LDA in page/index.html): LDA on the note's harmonic envelope with its tilt removed (so a mic's slope cannot move it) plus each level times log(f0/250) (the envelope moves with pitch) and f0.
+// Fits the sung-vowel table (VOWEL_LDA in page/index.html): LDA on the note's harmonic envelope with its tilt removed (so a mic's slope cannot move it) plus each level times log(f0/250) and its square (the envelope moves with pitch), f0, and the LPC formants F1, F2 (since 2026-11-08).
 // Input: the note list from check/vowel-dump.mjs. Reports leave-one-singer-out accuracy (± 1.96 SE over singers), 'sure' margins and the table.
 // Usage: node check/vowel-fit.mjs notes.json
 import {readFileSync} from 'fs';
@@ -11,7 +11,7 @@ function fit(tr,f,ridge){const d=f(tr[0]).length,mu={},W=Array.from({length:d},(
 const cls=(m,y)=>V.map(v=>[m.w[v].reduce((s,c,j)=>s+c*(y[j]-m.mu[v][j]/2),0),v]).sort((a,b)=>b[0]-a[0]);
 
 const xs=Array.from({length:14},(_,j)=>j-6.5),sxx=xs.reduce((s,x)=>s+x*x,0),det=e=>{const b=e.reduce((s,y,j)=>s+y*xs[j],0)/sxx;return e.map((y,j)=>y-b*xs[j]);};
-const f=x=>{const d=det(x.env),l=L(x.f0/250);return [...d,...d.map(v=>v*l),20*L(x.f0)];},R=[];
+const f=x=>{const d=det(x.env),l=L(x.f0/250);return [...d,...d.map(v=>v*l),...d.map(v=>v*l*l),20*L(x.f0),20*L(x.F1),20*L(x.F2)];},R=[];
 for(const w of who){const m=fit(N.filter(x=>x.who!==w),f,0.03);for(const x of N.filter(x=>x.who===w)){const r=cls(m,f(x));R.push({who:w,t:x.t,f0:x.f0,p:r[0][1],d:r[0][0]-r[1][0]});}}
 const pc=a=>{const u=who.map(w=>a.filter(x=>x.who===w)).filter(g=>g.length).map(g=>g.filter(x=>x.p===x.t).length/g.length),me=u.reduce((s,x)=>s+x,0)/u.length,sd=Math.sqrt(u.reduce((s,x)=>s+(x-me)**2,0)/(u.length-1));return `${(100*me).toFixed(1)} ± ${(196*sd/Math.sqrt(u.length)).toFixed(1)}`;};
 console.log('left-out singer',pc(R),V.map(v=>v+' '+pc(R.filter(x=>x.t===v))).join(', '));

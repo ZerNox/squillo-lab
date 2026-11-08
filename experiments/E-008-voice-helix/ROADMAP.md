@@ -86,7 +86,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Long notes this sitting: the Lane's after-note lines kept as a list beside it (8 newest).
 - Long notes across days: today's live long-note wobble vs the last two weeks, with intervals (synthetic false change 2-3 %, half the wobble 97-100 %); starts and endings too (false 0-1 %, 0 vs 80 ¢ 97-100 %); swell width too (synthetic false 0/400, 8 dB steps 400/400); wobble, starts and endings by day drawn over 14 days with 95 % bars; vibrato rate and width too, described not rated (synthetic false 0/400, steps 400/400).
 - No WebGL: the 2D Lane, HUD, score and takes keep running (Firefox here lost WebGL 2026-11-05).
-- Vowels, part 3a: envelope × log f0 terms in the vowel table (VocalSet left-out singer 78.4 → 81.8 %, o 63 → 71 %, sure 87.5 % on 78 %).; live 0.5 s window re-measured (83.0 → 88.1 %, chip "7 in 8 right").
+- Vowels, part 3a: envelope × log f0 terms in the vowel table (VocalSet left-out singer 78.4 → 81.8 %, o 63 → 71 %); 3b: × log f0 squared plus LPC F1, F2 (81.8 → 84.0 %, o 72 → 80 %, sure 87.7 % on 84 %; 2026-11-08); live 0.5 s window re-measured (83.0 → 88.1 %, chip "7 in 8 right").
 - Warm-up from live long notes: a worse wobble, start or ending on the newest Lane day adds its step (synthetic false 3/400, wobble ×2 393/400, endings 355/400).
 - Live singing keeps the streak: Lane days count as days sung; long notes held live shown beside kept minutes. Milestones for live long notes (10 to 5000), lifetime count kept apart from the 400-note list.
 - Steadiest by note: the Lane's list names the steadiest and least steady note of two weeks, beyond an extreme-widened interval (synthetic false 3/400, ×2 named 360/400).
@@ -103,7 +103,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 0. **Noise, part 3**: live false alarms (clean FA 8.8 % with live Viterbi; gates and a centred level cue only trade RPA for FA; talk-like noise slightly worse with it; HNR 0 dB breathy notes unread); take pitch in talk-like noise no gain, talk-like room reads high, the line says talk is not counted; live note-edge level trim tried 2026-11-03, trades again (FA 8.3 → 7.5, RPA 94.0 → 93.6); a low-band (<1.5 kHz) energy share gate 2026-11-04 left FA flat (8.3 → 8.1) and cost RPA (→ 91.2): not breaths/fricatives; interior level dips 2026-11-08 (run median or ±140 ms local max, with or without a YIN-dip gate) trade too: best OA 94.0 → 94.7 for RPA 97.3 → 96.5, not shipped (60 % of take FAs sit inside runs, in 60-400 ms truth gaps) (steady noise reads right: pink 10 dB 10/10/11, hum 10 dB 9/9/10, 14 clips, 2026-11-01).
 0. **Timing, part 3**: page finds 5 of the 7 clips both vocadito annotators pulse, 4 % false on random onsets; real truth is thin (annotators share only 7 of 40).
 0. **Key drift, part 2**: better real-voice agreement (vocadito SD 41 ¢ vs synthetic 16); local/global circular unwraps tried 2026-10-30, no gain (39-91 ¢): needs a different truth or note-level approach. `segNotes` input: SD 62 ¢, worse.
-0. **Vowels, part 3**: o/u still weakest (71/75 % after the f0 terms, left-out singer); try other mics or languages if an open labelled set exists.
+0. **Vowels, part 3**: u now weakest (76 %, o 80 % after F1/F2, left-out singer; 400-600 Hz 66 %); try other mics or languages if an open labelled set exists.
 1. **Rating with ground truth**: human-judged takes across styles from openly
    licensed sources only, then a rating that ranks them correctly (see
    `rating/README.md`).

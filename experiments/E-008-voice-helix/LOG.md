@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-08 · vowels: o read right 72 → 80 %
+
+Built: `envVowel` now also weighs each envelope level by log(f0/250)², and the note's LPC F1 and F2 (re-fitted table, `check/vowel-fit.mjs`). A singer on "oh" sees the vowel chip, note-by-note line and 'vowels heard' get it right more often, and the chip is sure more often. Measured (VocalSet 20 singers, 2431 notes, page dump, left-out singer): 81.8 ± 4.1 → 84.0 ± 4.2 %, paired +2.3 ± 2.0, 14/20 better; o 72 → 80, u 75 → 76; sure 87.7 % on 84 % of notes (was 78 %); live 0.5 s window 88.1 → 89.7 %, sure on 47 → 51 %. Next: u and 400-600 Hz (66 %), or a finer-hop edge search.
+
 ## 2026-11-08 · this sitting, try by try, in one line
 
 Built: `sittingTries`/`olsTrend`: above the Lane's list, "Getting better this sitting, try by try: G4 steadier, cleaner starts · A4 closer to the note" (or "Slipping: …"), from every pitch with 4+ tries. A singer sees at a glance what is improving across all the notes they repeat. Per-note tests over 12 cells falsely claimed something in 31 % of level sittings; fixed with an unweighted t line (± as residual floor) and a Bonferroni factor. Measured (`check/tries-bench.mjs`, 3 notes × 4 aspects, 400 sittings): all level 0/400, hidden spread 4-18/400, halved wobble named 23/400 (4 tries), 161/400 (6). Next: o/u vowels, or a finer-hop edge search.
@@ -41,8 +45,4 @@ Built: `laneNarrow` now also takes vibrato thinner than ±0.25 st (rate found): 
 ## 2026-11-07 · hear a wide live vibrato narrowed
 
 Built: `laneNarrow`/`narrowBtn`: a live long note (1.4 s+) with vibrato wider than ±0.6 st gets "▶ narrower vibrato" on the Lane's list: the note from the 30 s ring, then the same samples with a rate curve (via `levelRamp`) scaling each 0.02 s swing about its 0.2 s mean to the far vision's ±0.45 st. Memory only. Measured: synthetic 5.5 Hz ±1.0 st A3 rendered offline, `vibPiece` read-back 0.975 → 0.413-0.416 st, 5.53 Hz (Chrome, Firefox, WebKit iPhone). Proxy only (pure tone; frames assumed aligned with the ring, tracker latency untested). iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
-
-## 2026-11-07 · hear a level live note with a swell
-
-Built: `swellRamp`/`swellBtn`: a live long note (1.4 s+) the Lane read as "held level" (swell + its ± under 6 dB) gets "▶ with a swell": the note from the 30 s ring, then the same samples with a gain curve rising 9 dB from its ends to its middle (raised sine in dB), so a singer hears their own note as a messa di voce. Memory only. Measured: a level synthetic A3 rendered offline, level read in 20 ms frames (5-95 %): 0.17 → 9.0 dB, peak at 0.56 of the note (Chrome, Firefox, WebKit iPhone). Proxy only (pure tone; a real swell also brightens the tone, which a gain curve does not). iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
 
