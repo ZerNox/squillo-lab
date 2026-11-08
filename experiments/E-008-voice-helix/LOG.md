@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-08 · endings of one note, try by try
+
+Built: `LTRYE`: the Lane's list also shows a pitch's endings this sitting, "endings of G4: 70 · 50 · 25 · 5 ¢ moved, held better try by try (−Δ ± e)", same weighted trend on |¢ moved as you let go| with the ending's ±. A singer working on holding to the end sees it settle within a sitting; tuning steadiness, starts and endings now all read try by try. Measured (`check/tries-bench.mjs`, synthetic, ± 6-15 ¢): level said 2-8 %, held endings 1/400, wrong way ≤ 1/400, halved 32-71 %. Next: o/u vowels, or a finer-hop edge search.
+
 ## 2026-11-08 · starts of one note, try by try
 
 Built: `LTRYS`/`triesOne`: the Lane's list also shows a pitch's starts this sitting, "starts of G4: 60 · 40 · 20 · 5 ¢ off, cleaner try by try (−Δ ± e)", same weighted trend on |¢ off| with the start's ±. A singer working on clean onsets sees them settle within a sitting. Measured (`check/tries-bench.mjs`, synthetic, ± 6-15 ¢): level said 3-9 %, on-the-note starts 0-1/400, wrong way ≤ 1/400, halved 23-51 %. Next: o/u vowels, or a finer-hop edge search.
