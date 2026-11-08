@@ -300,6 +300,9 @@ async function run([name, launch, ctxOpt, file]) {
     if (ltr.ks !== '5,2,0' || !ltr.ok || ltr.one !== '' || ltr.dots !== 3 || ltr.kinds !== 'wob3,st3,en2' || !/^Long-note starts by day.*today 1\d ¢/.test(ltr.sl) || !/^Long-note wobble by day.*today 1\.\d ¢/.test(ltr.lab)) throw new Error('lane trend: ' + JSON.stringify(ltr));
     await p.locator('#laneLog').screenshot({ path: join(out, `${name}-lanetrend.png`) });
     await p.screenshot({ path: join(out, `${name}-lanelog.png`) });
+    // Phone: the list scrolls over the fixed Lane; it sits on its own opaque panel above the note readout, so text never mixes with the pitch line.
+    if (touch) { const ov = await p.evaluate(() => { const L = getComputedStyle(document.getElementById('laneLog')), R = getComputedStyle(document.getElementById('laneRead')), bg = L.backgroundColor.match(/[\d.]+/g).map(Number);
+      return { z: +L.zIndex > (+R.zIndex || 0), a: bg.length > 3 ? bg[3] : 1 }; }); if (!ov.z || ov.a < 0.9) throw new Error('lane log over lane: ' + JSON.stringify(ov)); }
     await tap(p.locator('#vHelix'));
     if (touch) { await tap(p.getByRole('button', { name: 'Recording' })); await p.waitForTimeout(300); await p.setInputFiles('#file', file); }
     else { const [fc] = await Promise.all([p.waitForEvent('filechooser'), p.getByRole('button', { name: 'Recording' }).click()]); await fc.setFiles(file); }

@@ -216,6 +216,7 @@ body.lane #lane,body.lane #laneRead{display:block}
 body.lane #rail,body.lane #labels,body.lane #flaws,body.lane #advice{display:none}
 #laneLog{display:none;font:13px/1.4 var(--f-mono);color:#a8b3bf;max-width:620px}#laneLog h2{font-size:12px;margin:0 0 4px;color:var(--fg-3);font-weight:500;letter-spacing:.04em}#laneLog ol{margin:0;padding-left:0;list-style:none}#laneLog li{margin:0 0 5px}#laneLog b{color:var(--fg);font-weight:600}#laneLog li.best b{color:#4fd8c4}#laneLog .days{margin:0 0 8px;color:var(--fg)}#laneLog .days.best{color:#4fd8c4}#laneLog .trend{display:block;max-width:100%;height:auto}#laneLog .tcap{margin:0 0 8px;font-size:11px;color:var(--fg-3)}
 body.lane #laneLog:not(:empty){display:block}
+@media (max-width:720px){body.lane #laneLog{position:relative;z-index:3;background:#080b10f5;padding:10px 12px;margin:0 -8px;border-radius:10px;box-shadow:0 0 0 1px #1c2530}}
 #laneLog .hearln{font:inherit;background:none;border:1px solid #3a4652;color:var(--fg);border-radius:6px;padding:0 6px;min-width:28px;min-height:24px;cursor:pointer}#laneLog .hearln:disabled{opacity:.6}#laneLog .firstvs,#laneLog .triesln{color:var(--mut,#9aa7b3);font-size:.85em}
 @media (min-width:721px){body.lane #laneLog{position:fixed;right:max(20px,env(safe-area-inset-right,0px));top:340px;width:min(560px,calc(100vw - 700px));max-height:calc(100vh - 360px);overflow-y:auto}}
 @media (max-width:720px){body.lane #coach{margin-top:58vh}}

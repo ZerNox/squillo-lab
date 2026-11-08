@@ -95,6 +95,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Live next step: '▶ next step' on a Lane note moves tuning, start, ending half way (synthetic 30 → 15 ¢, start -80 → -40 ¢).
 - First try, then this: a later try of the same note on the Lane A/Bs against the sitting's first, steadier only beyond both ± (2026-11-08).
 - Tries of one note: from the third try the Lane's list shows the series; from the fourth a weighted trend, steadier only beyond its t interval (synthetic level said 4-7 %, wrong way ≤ 1/400); starts too (level said 3-9 %); endings too (level said 2-8 %); tuning too (level said 2-10 %, wrong way 0/400); one line gathers what got better or slipped across notes, Bonferroni-corrected (synthetic sittings: false any claim 0-4.5 %); say note reads that line once when it changes; each note it names as better gets '▶ first, then latest'.
+- Phone: the Lane's list sits on an opaque panel over the fixed Lane (was text over the pitch line, 2026-11-08).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
