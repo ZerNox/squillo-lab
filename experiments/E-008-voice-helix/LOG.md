@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-08 · hear what got better this sitting
+
+Built: each note the 'Getting better this sitting' line names gets '▶ G4: first, then latest', playing the sitting's first try and then the newest one still in the 30 s ring. A singer told that G4 got steadier can now hear the change. No new measurement (same Bonferroni line). check.mjs asserts the button on a steadier sitting and none on a level one. Next: u and 400-600 Hz vowels, or a finer-hop edge search.
+
 ## 2026-11-08 · eyes-free: the sitting's try-by-try line spoken
 
 Built: `recapSay`: with say note on, the after-note recap also reads "Getting better this sitting, try by try: G4 steadier…" once, whenever that line changes. A singer with eyes closed or on a screen reader hears what is improving across repeated notes. Same Bonferroni test, no new measurement. Also tried: f0-banded vowel tables (cut 250-350 Hz): 83-84 %, 400-600 Hz 63-65 %, no gain, not shipped. Next: u and 400-600 Hz vowels, or a finer-hop edge search.
