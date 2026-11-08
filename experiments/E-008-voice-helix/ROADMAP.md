@@ -94,12 +94,13 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Range by week: the voice profile's 8-week chart of full and comfortable span; a new top or bottom named only a semitone or more past before.
 - Live next step: '▶ next step' on a Lane note moves tuning, start, ending half way (synthetic 30 → 15 ¢, start -80 → -40 ¢).
 - First try, then this: a later try of the same note on the Lane A/Bs against the sitting's first, steadier only beyond both ± (2026-11-08).
+- Tries of one note: from the third try the Lane's list shows the series; from the fourth a weighted trend, steadier only beyond its t interval (synthetic level said 4-7 %, wrong way ≤ 1/400).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 
 ## Next
 
-0. **Noise, part 3**: live false alarms (clean FA 8.8 % with live Viterbi; gates and a centred level cue only trade RPA for FA; talk-like noise slightly worse with it; HNR 0 dB breathy notes unread); take pitch in talk-like noise no gain, talk-like room reads high, the line says talk is not counted; live note-edge level trim tried 2026-11-03, trades again (FA 8.3 → 7.5, RPA 94.0 → 93.6); a low-band (<1.5 kHz) energy share gate 2026-11-04 left FA flat (8.3 → 8.1) and cost RPA (→ 91.2): not breaths/fricatives (steady noise reads right: pink 10 dB 10/10/11, hum 10 dB 9/9/10, 14 clips, 2026-11-01).
+0. **Noise, part 3**: live false alarms (clean FA 8.8 % with live Viterbi; gates and a centred level cue only trade RPA for FA; talk-like noise slightly worse with it; HNR 0 dB breathy notes unread); take pitch in talk-like noise no gain, talk-like room reads high, the line says talk is not counted; live note-edge level trim tried 2026-11-03, trades again (FA 8.3 → 7.5, RPA 94.0 → 93.6); a low-band (<1.5 kHz) energy share gate 2026-11-04 left FA flat (8.3 → 8.1) and cost RPA (→ 91.2): not breaths/fricatives; interior level dips 2026-11-08 (run median or ±140 ms local max, with or without a YIN-dip gate) trade too: best OA 94.0 → 94.7 for RPA 97.3 → 96.5, not shipped (60 % of take FAs sit inside runs, in 60-400 ms truth gaps) (steady noise reads right: pink 10 dB 10/10/11, hum 10 dB 9/9/10, 14 clips, 2026-11-01).
 0. **Timing, part 3**: page finds 5 of the 7 clips both vocadito annotators pulse, 4 % false on random onsets; real truth is thin (annotators share only 7 of 40).
 0. **Key drift, part 2**: better real-voice agreement (vocadito SD 41 ¢ vs synthetic 16); local/global circular unwraps tried 2026-10-30, no gain (39-91 ¢): needs a different truth or note-level approach. `segNotes` input: SD 62 ¢, worse.
 0. **Vowels, part 3**: o/u still weakest (71/75 % after the f0 terms, left-out singer); try other mics or languages if an open labelled set exists.
