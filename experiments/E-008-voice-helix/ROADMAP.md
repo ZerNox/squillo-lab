@@ -99,6 +99,7 @@ run-sized increment; reorder freely and say why in `LOG.md`.
 - Lane's list names each long note's vowel when sure (whole notes 87.6 ± 3.9 %, VocalSet).
 - By vowel: the Lane's list names the steadiest or least steady vowel of two weeks (synthetic false 7/400, 2× named 238/400); the warm-up adds a sustained-vowel step on it, measured in place with vowels and measure, kept across days and charted over the last ten tries); the roughest-start vowel adds a clean-starts step on it (2026-11-09).
 - Phone: the Lane's list sits on an opaque panel over the fixed Lane (was text over the pitch line, 2026-11-08).
+- Warm-up steps on the progress panel: each measured step's last 12 tries charted, newest 3 vs the 5 before (2026-11-09).
 - Hosting from main via `voice-helix-publish.yml`; `check/check.mjs` for
   Chrome, Firefox and WebKit iPhone.
 

@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-09 · warm-up steps on the progress panel
+
+Built: under the progress lines, 'Warm-up, measured steps': pitch match, swell stillness, weak-vowel drift, vowel starts and siren span, each a small chart of the last 12 tries with ± bars and 'last 3 vs the 5 before: better / worse / level within the noise' (± in quadrature, claim only beyond both). A singer sees whether the daily warm-up is moving anything without opening each step. No new measurement. check.mjs: seeded falling match reads better, flat vowel drift level, single siren try no row. Next: a different track (vibrato or tone depth).
+
 ## 2026-11-09 · starts step: chart over the last tries
 
 Built: under the '♪ starts and measure' result, a small chart of how far starts on that vowel were off over the last 10 tries, today last (dot ± bar, that try's "ah" as a tick; aria-label lists the numbers). A singer sees whether their scoop into "ee" is shrinking across days at a glance. No new measurement (same ± as the line). check.mjs: no chart after one try, two dots after two. Next: the starts and vowel trends on the progress lines.
@@ -45,12 +49,3 @@ Built: the Lane's list now says which vowel each long note (0.5 s or more) was s
 ## 2026-11-08 · phone: the Lane's list readable over the Lane
 
 Built: on phones the Lane is fixed full-screen and its list of long notes scrolled over it, so text ran through the big note readout and the pitch line (seen on the iPhone screenshot). The list now sits on its own opaque panel above the readout. A singer scrolling the list on an iPhone reads it cleanly. No new measurement; check.mjs asserts panel order and opacity on touch. Chrome failed once on an element screenshot detached mid-render (unrelated, passed on rerun). Next: u and 400-600 Hz vowels, or a finer-hop edge search.
-
-## 2026-11-08 · hear what got better this sitting
-
-Built: each note the 'Getting better this sitting' line names gets '▶ G4: first, then latest', playing the sitting's first try and then the newest one still in the 30 s ring. A singer told that G4 got steadier can now hear the change. No new measurement (same Bonferroni line). check.mjs asserts the button on a steadier sitting and none on a level one. Next: u and 400-600 Hz vowels, or a finer-hop edge search.
-
-## 2026-11-08 · eyes-free: the sitting's try-by-try line spoken
-
-Built: `recapSay`: with say note on, the after-note recap also reads "Getting better this sitting, try by try: G4 steadier…" once, whenever that line changes. A singer with eyes closed or on a screen reader hears what is improving across repeated notes. Same Bonferroni test, no new measurement. Also tried: f0-banded vowel tables (cut 250-350 Hz): 83-84 %, 400-600 Hz 63-65 %, no gain, not shipped. Next: u and 400-600 Hz vowels, or a finer-hop edge search.
-
