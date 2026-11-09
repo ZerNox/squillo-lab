@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-09 · vowel step kept across days
+
+Built: each '♪ vowels and measure' result is kept on the device (`helix.vowm.v1`, in my data's save/restore/delete), and the line now adds "Steadier / Less steady / As steady as your last N times on “ee”" (mean ± of up to 5 earlier tries on the same vowel, change named only beyond both ±, the swell step's rule). A singer sees whether their weak vowel is getting steadier day to day. check.mjs runs the synthetic step twice: second read "as steady", 2 kept. Next: per-vowel starts/endings, or the vowel trend on the progress lines.
+
 ## 2026-11-09 · warm-up: vowels and measure
 
 Built: the sustained-vowel step gets '♪ vowels and measure': 15 s at a guide note, "ah" / the least steady vowel / "ah", 5 s each. The page reads each part's drift (SD of 0.5 s pitch means, ± 95 %), says whether the vowel was less steady than the "ah" on either side (only when the gap is larger than both ± combined), and whether it was heard as that vowel (`spanVowel` when sure, 87.6 % on whole notes). A singer gets their weakest vowel's steadiness measured against their own "ah" in the same minute. Synthetic check (all three browsers): a middle part wobbling ±30 ¢ at 0.6 Hz reads 20 ± 12 ¢ against 0 ¢ for "ah", and is named. Next: keep vowel-step results across days, like the swell step.
