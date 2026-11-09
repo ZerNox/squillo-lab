@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-09 · vowel step: drift over the last tries
+
+Built: under the '♪ vowels and measure' result, a small chart of drift on that vowel over the last 10 tries, today last (dot ± bar, "ah" of each try as a tick; aria-label lists the numbers). A singer sees their weak vowel's steadiness trend at a glance, not only "steadier than last time". No new measurement (same drift ± as the line). check.mjs: no chart after one try, two dots after two. Next: per-vowel starts/endings.
+
 ## 2026-11-09 · vowel step kept across days
 
 Built: each '♪ vowels and measure' result is kept on the device (`helix.vowm.v1`, in my data's save/restore/delete), and the line now adds "Steadier / Less steady / As steady as your last N times on “ee”" (mean ± of up to 5 earlier tries on the same vowel, change named only beyond both ±, the swell step's rule). A singer sees whether their weak vowel is getting steadier day to day. check.mjs runs the synthetic step twice: second read "as steady", 2 kept. Next: per-vowel starts/endings, or the vowel trend on the progress lines.
@@ -49,8 +53,4 @@ Built: `LTRYT`: each live long note now also keeps a ± on its tuning (spread of
 ## 2026-11-08 · endings of one note, try by try
 
 Built: `LTRYE`: the Lane's list also shows a pitch's endings this sitting, "endings of G4: 70 · 50 · 25 · 5 ¢ moved, held better try by try (−Δ ± e)", same weighted trend on |¢ moved as you let go| with the ending's ±. A singer working on holding to the end sees it settle within a sitting; tuning steadiness, starts and endings now all read try by try. Measured (`check/tries-bench.mjs`, synthetic, ± 6-15 ¢): level said 2-8 %, held endings 1/400, wrong way ≤ 1/400, halved 32-71 %. Next: o/u vowels, or a finer-hop edge search.
-
-## 2026-11-08 · starts of one note, try by try
-
-Built: `LTRYS`/`triesOne`: the Lane's list also shows a pitch's starts this sitting, "starts of G4: 60 · 40 · 20 · 5 ¢ off, cleaner try by try (−Δ ± e)", same weighted trend on |¢ off| with the start's ±. A singer working on clean onsets sees them settle within a sitting. Measured (`check/tries-bench.mjs`, synthetic, ± 6-15 ¢): level said 3-9 %, on-the-note starts 0-1/400, wrong way ≤ 1/400, halved 23-51 %. Next: o/u vowels, or a finer-hop edge search.
 
