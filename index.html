@@ -1556,7 +1556,19 @@ function weekLines(h,now){const W7=7*864e5,a=h.filter(r=>r.d>now-W7&&r.d<=now),b
 function weekLine(h){const W=weekLines(h,Date.now());if(!W||!W.out.length)return '';const f=(s,x)=>`${s.m.toFixed(x.dec)} ± ${s.ci.toFixed(x.dec)}`;
   const good=W.out.filter(o=>o.v==='better');
   return `<p class="week"><b>This week vs last week</b> (${W.na} takes vs ${W.nb}): ${good.length?`${good.map(o=>o.x.name).join(', ')} better than last week beyond the noise. `:''}${W.out.map(o=>`${o.x.name} ${f(o.A,o.x)} vs ${f(o.B,o.x)} ${o.x.unit}, ${o.v==='level'?'level within the noise':o.v}`).join(' · ')}</p>`;}
-function renderProgress(){const h=loadHist();if(!h.length)return '';
+// Warm-up by day: each measured warm-up step kept on the device (pitch match, swell, vowel, starts, siren), drawn over its last 12 tries with ± bars.
+// The mean of the newest 3 is set against the mean of up to 5 before them, ± combined in quadrature; better or worse only beyond both together.
+const WU_ROWS=[[()=>MATCH_KEY,'Pitch match','¢ off',r=>r.off,r=>r.e,1],[()=>SWELL_KEY,'Swell pitch stillness','¢',r=>r.sd,r=>r.sde,1],[()=>VOWM_KEY,'Weak-vowel drift','¢',r=>r.sd,r=>r.sde,1],[()=>STM_KEY,'Vowel starts','¢ off',r=>r.m,r=>r.e,1],[()=>SIREN_KEY,'Siren span','st',r=>r.hi-r.lo,()=>null,0]];
+function wuTrend(v,e,lower){const n=v.length;if(n<4)return null;const k=Math.min(3,n-1),A=v.slice(-k),B=v.slice(Math.max(0,n-k-5),n-k),ea=e.slice(-k),eb=e.slice(Math.max(0,n-k-5),n-k),mean=a=>a.reduce((x,y)=>x+y,0)/a.length;
+  const se=(a,es)=>es.every(Number.isFinite)?Math.sqrt(es.reduce((x,y)=>x+y*y,0))/es.length:a.length>1?1.96*Math.sqrt(a.reduce((x,y)=>x+(y-mean(a))**2,0)/(a.length-1))/Math.sqrt(a.length):2;
+  const a={m:mean(A),e:se(A,ea),n:A.length},b={m:mean(B),e:se(B,eb),n:B.length},d=a.m-b.m;return {a,b,v:Math.abs(d)<=Math.hypot(a.e,b.e)?'level':(lower?d<0:d>0)?'better':'worse'};}
+function warmupLines(){let o='';for(const [K,name,unit,fv,fe,lower] of WU_ROWS){const r=dataRead(K(),'[]').filter(q=>q&&Number.isFinite(q.d)&&Number.isFinite(fv(q)));if(r.length<2)continue;
+  const p=r.slice(-12),v=p.map(fv),e=p.map(q=>{const x=fe(q);return Number.isFinite(x)?x:0;}),W=160,H=30,top=Math.max(...v.map((x,i)=>x+e[i]),1),bot=Math.min(0,...v),X=i=>(6+i*(W-12)/(p.length-1)).toFixed(1),Y=x=>(H-3-(H-6)*(x-bot)/(top-bot||1)).toFixed(1);
+  const g=p.map((q,i)=>(e[i]?`<line x1="${X(i)}" x2="${X(i)}" y1="${Y(v[i]+e[i])}" y2="${Y(Math.max(bot,v[i]-e[i]))}" stroke="currentColor" opacity=".35"/>`:'')+`<circle cx="${X(i)}" cy="${Y(v[i])}" r="2.5" fill="currentColor"/>`).join('');
+  const T=wuTrend(r.map(fv),r.map(q=>fe(q)),lower),f=x=>x.toFixed(0);
+  o+=`<tr class="wu"><td>${name}</td><td><svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${name}, last ${p.length} tries, newest last: ${v.map(f).join(', ')} ${unit}">${g}</svg></td><td>${f(v[v.length-1])} ${unit}${T?`<br><em>last ${T.a.n} ${f(T.a.m)} ± ${f(T.a.e)} vs before ${f(T.b.m)} ± ${f(T.b.e)}: ${T.v==='level'?'level within the noise':T.v}</em>`:''}</td></tr>`;}
+  return o?`<h3>Warm-up, measured steps</h3><table class="prog" id="wuProg">${o}</table><p class="fine">Dots: each try, newest last, with its ± bar. Lower is better but for siren span (wider is better). Better or worse only when the newest 3 and the 5 before differ beyond both ± together.</p>`:'';}
+function renderProgress(){const h=loadHist();if(!h.length)return warmupLines();
   const W=220,H=36,n=h.length,X=i=>(n>1?4+i/(n-1)*(W-8):W/2).toFixed(1);
   let o=`<h2>Progress · ${n} take${n>1?'s':''} on this device</h2><table class="prog">`;
   for(const x of PROG){const v=h.map(r=>r[x.k]).filter(Number.isFinite);if(!v.length||v.length<h.length&&v.length<2)continue;const n=v.length,X=i=>(n>1?4+i/(n-1)*(W-8):W/2).toFixed(1);const S=v.map((_,i)=>slide(v,i));
@@ -1566,7 +1578,7 @@ function renderProgress(){const h=loadHist();if(!h.length)return '';
     const last=S[n-1],tr=trend(x,v);
     o+=`<tr><td>${x.name}</td><td><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="${x.name}: ${n} takes, now ${last.m.toFixed(x.dec)}${last.ci!==null?` ± ${last.ci.toFixed(x.dec)}`:''}"><polygon class="bd" points="${band}"/><polyline class="sl" vector-effect="non-scaling-stroke" points="${S.map((s,i)=>`${X(i)},${Y(s.m)}`).join(' ')}"/>${v.map((q,i)=>`<circle cx="${X(i)}" cy="${Y(q)}" r="1.8"/>`).join('')}</svg></td>`+
       `<td>${last.m.toFixed(x.dec)}${last.ci!==null?` ± ${last.ci.toFixed(x.dec)}`:''} ${x.unit}${tr?`<br><em>${tr}</em>`:''}</td></tr>`;}
-  return o+`</table>${weekLine(h)}${streakLine(h)}<p class="fine">Dots: each take. Line: mean of your last ${HIST_WIN} takes; band: its 95 % interval. Up is better on every line but tone colour (up is brighter) and swell (up is more swell within a long note): styles, neither better nor worse. Kept only in this browser. <button class="btn" id="openData">my data</button></p>${dataNudge(h)}`;}
+  return o+`</table>${warmupLines()}${weekLine(h)}${streakLine(h)}<p class="fine">Dots: each take. Line: mean of your last ${HIST_WIN} takes; band: its 95 % interval. Up is better on every line but tone colour (up is brighter) and swell (up is more swell within a long note): styles, neither better nor worse. Kept only in this browser. <button class="btn" id="openData">my data</button></p>${dataNudge(h)}`;}
 // Warm-up: a five-minute routine for today, chosen from the takes kept on this device. Each aspect's mean
 // over the last 5 takes is set against the median trained singer (as in "to work on"); the one or two
 // furthest behind get a targeted step between a semi-occluded warm-up and a siren. Guide tones sit in the
