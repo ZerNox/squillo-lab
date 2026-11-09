@@ -1582,6 +1582,7 @@ const WARM_STEP={
  clar:{name:'Straw, then open',sec:60,src:'sovt',txt:'Glide with the tone through a drinking straw, then at once without it, keeping the same easy, buzzy feel. The aim is a clear tone with no extra air.',tone:'glide'},
  tsag:{name:'Hold to the end',sec:60,src:'end',txt:'Sing a long “oo” on the tone for 5 s and stop it by stopping the air, not by letting go of the note. The last moment should sit exactly where the middle did.',tone:'hold'},
  kdrift:{name:'Keep the key',sec:60,src:'drift',txt:'Hear the tone, sing a short phrase you know starting on it, then play the tone again: is your last note still in the same key as the tone?',tone:'hold'},
+ vow:{name:'Sustained vowel',sec:60,src:'end',txt:'Hold the tone for 6 s on “ah”, then on your least steady vowel “%v”, then “ah” again, keeping the pitch line just as straight on both. Shape the vowel without moving the jaw or throat more than you need.',tone:'hold'},
  rhythm:{name:'Clap, then sing',sec:60,src:'pulse',txt:'Clap with the clicks while you speak the words of a phrase, then sing them to the same claps. Let the clap lead, not the breath.',tone:'pulse'}};
 // The described points (clarity, endings, key drift, rhythm) are not rated against a trained median: a step is chosen
 // when the summary named the point in at least 2 of the last 5 takes (or the only take), filling a slot the rated gaps leave.
@@ -1600,7 +1601,9 @@ function planWarmup(h,L=[],now=Date.now()){const r=h.slice(-HIST_WIN),lo=r.filte
   const why=[...pick.map(g=>`${g.x.name} (${g.m.toFixed(g.x.dec)} ${g.x.unit}; median trained singer ${TRAINED_MED[g.x.k]})`),...desc.map(o=>`${aspectOf(o.k).name} (named in ${o.c} of your last ${fr.length} take${fr.length>1?'s':''})`)];
   const mid=[...pick.map(g=>WARM_STEP[g.x.k]),...desc.map(o=>WARM_STEP[o.k]),...(r.length?[]:[WARM_STEP.inton,WARM_STEP.stab])],ln=warmLane(L,now);
   if(ln&&!mid.includes(WARM_STEP[ln.step])){mid.push(WARM_STEP[ln.step]);why.push(ln.why);}
-  return {n:r.length,low,high,why,lane:ln&&ln.k,steps:[WARM_STEP.start,...mid,WARM_STEP.end]};}
+  // The least steady vowel of two weeks (laneByNote on the kept vowel, synthetic false 7/400) adds a sustained-vowel step on it.
+  const bv=laneByNote(L,now,'vow');if(bv.hi){mid.push({...WARM_STEP.vow,txt:WARM_STEP.vow.txt.replace('%v',VLBL[bv.hi])});why.push(`steadiness on “${VLBL[bv.hi]}” (live: your least steady vowel of the last two weeks)`);}
+  return {n:r.length,low,high,why,lane:ln&&ln.k,vow:bv.hi||'',steps:[WARM_STEP.start,...mid,WARM_STEP.end]};}
 const nn=m=>NOTE[(m%12+12)%12]+(Math.floor(m/12)-1);
 const warmNotes=W=>[0,2,4,2,0].map(d=>Math.min(W.high,W.low+Math.round((W.high-W.low)/4)+d));
 // Guide tones: a soft sine with two overtones, scheduled on the take's audio context (created in the click).
