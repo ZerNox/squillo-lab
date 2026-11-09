@@ -1976,7 +1976,8 @@ async function swellGo(W){if(SWELL.busy)return;const ensure=AU.kind!=='mic';if(A
 // Vowels and measure, on the sustained-vowel step: 15 s, "ah" 0-5 s, the weak vowel 5-10 s, "ah" 10-15 s. Each part's
 // steadiness is the SD of 0.5 s pitch means from 1 to 4.5 s into it (as swellRead; ± 95 % chi approximation); the vowel
 // is "less/more steady" only when the gap to the two ahs' mean exceeds both ± combined. Vowel heard via spanVowel when sure.
-const VOWM_S=15,VOWM={busy:false,stop:false,now:null};
+const VOWM_KEY='helix.vowm.v1',VOWM_S=15,VOWM={busy:false,stop:false,now:null,h:[]};
+function loadVowm(){try{const h=JSON.parse(localStorage.getItem(VOWM_KEY)||'[]');return Array.isArray(h)?h:[];}catch(e){return [];}}
 async function vowRead(buf){const fs=await trackTake(buf);viterbiF0(fs);trimEdges(fs,buf);const S=new Stats();for(const f of fs)ingest(S,f,'take');const all=S.rec.frames,fr=all.filter(f=>f.voiced&&f.ok);
   const P=[0,1,2].map(j=>{const a=j*5+1,b=j*5+4.5,B=[];for(const f of fr)if(f.t>=a&&f.t<b)(B[Math.floor((f.t-a)/0.5)]??=[]).push(f.midi*100);const m=B.filter(q=>q&&q.length>=8).map(q=>q.reduce((x,y)=>x+y,0)/q.length),k=m.length;if(k<4)return null;
     const mu=m.reduce((x,y)=>x+y,0)/k,sd=Math.sqrt(m.reduce((x,y)=>x+(y-mu)**2,0)/(k-1)),V=spanVowel(all,a,b);return {sd,sde:1.96*sd/Math.sqrt(2*(k-1))+0.5,midi:mu/100,v:V&&V.sure?V.v:null};});
@@ -1984,7 +1985,9 @@ async function vowRead(buf){const fs=await trackTake(buf);viterbiF0(fs);trimEdge
 function vowLine(P,vw){const n=`“${VLBL[vw]||vw}”`,ah=(P[0].sd+P[2].sd)/2,ae=Math.hypot(P[0].sde,P[2].sde)/2,d=P[1].sd-ah,lim=Math.hypot(P[1].sde,ae),f=x=>x.toFixed(0);
   let o=`<b>${n}: ${f(P[1].sd)} ± ${f(P[1].sde)} ¢</b> of drift, “ah” either side ${f(ah)} ± ${f(ae)} ¢, around ${nn(Math.round(P[1].midi))}. `;
   o+=d>lim?`${n} is less steady than “ah” here: keep the breath flowing the same as you change the vowel.`:d<-lim?`${n} was steadier than your “ah”: the vowel is not what moves the pitch today.`:`${n} held as still as “ah”: well done.`;
-  const h=P.map(p=>p.v);if(h[1]&&h[1]!==vw)o+=` The middle part was heard as “${VLBL[h[1]]}”, not ${n}: shape it a little more.`;else if(h[1]===vw)o+=` Heard as ${n}.`;return o;}
+  const h=P.map(p=>p.v);if(h[1]&&h[1]!==vw)o+=` The middle part was heard as “${VLBL[h[1]]}”, not ${n}: shape it a little more.`;else if(h[1]===vw)o+=` Heard as ${n}.`;
+  const p=(VOWM.h||[]).filter(q=>q.vw===vw).slice(-5);if(p.length){const m=p.reduce((x,y)=>x+y.sd,0)/p.length,me=Math.sqrt(p.reduce((x,y)=>x+y.sde*y.sde,0))/p.length,g=m-P[1].sd,k=p.length>1?`last ${p.length} times on ${n}`:`last time on ${n}`;o+=Math.abs(g)>P[1].sde+me?` ${g>0?'Steadier':'Less steady'} than your ${k} (${f(m)} ± ${f(me)} ¢).`:` As steady as your ${k} (${f(m)} ± ${f(me)} ¢).`;}
+  return o;}
 function renderVow(msg){const el=$('vowBox');if(!el)return;el.innerHTML=(msg?`<p class="fine" role="status">${msg}</p>`:'')+(VOWM.now?`<p role="status">${vowLine(VOWM.now,WARM.plan&&WARM.plan.vow||'i')}</p>`:'');}
 async function vowGo(W){if(VOWM.busy)return;const ensure=AU.kind!=='mic';if(AU.ctx)AU.ctx.resume();VOWM.busy=true;VOWM.stop=false;VOWM.now=null;if(WARM.osc)try{WARM.osc.stop();}catch(e){}const m=Math.round((W.low+W.high)/2),vn=VLBL[W.vow]||W.vow;
   try{if(ensure){renderVow('Starting the microphone: stay quiet for 2 seconds…');await useMic();for(let i=0;i<60&&calibrating;i++)await new Promise(r=>setTimeout(r,100));if(AU.kind!=='mic'){renderVow('The microphone is needed: '+statusEl.textContent);return;}}
@@ -1992,7 +1995,7 @@ async function vowGo(W){if(VOWM.busy)return;const ensure=AU.kind!=='mic';if(AU.c
     renderVow(`Listen: ${nn(m)}…`);await new Promise(r=>setTimeout(r,1750));if(VOWM.stop)return;
     DRILL.rec=[];for(const [i,w] of ['ah',vn,'ah'].entries()){renderVow(`Now “${w}” on one breath or three, ${nn(m)} (${i+1} of 3, 5 s).`);await new Promise(r=>setTimeout(r,VOWM_S*1000/3));if(VOWM.stop)return;}
     const ch=DRILL.rec;DRILL.rec=null;const N=ch.reduce((x,y)=>x+y.length,0),buf=mkBuf(Math.max(1,N),AU.sr),x=buf.getChannelData(0);let c=0;for(const q of ch){x.set(q,c);c+=q.length;}
-    renderVow('Reading…');const r=N>=12*AU.sr?await vowRead(buf):null;if(!r){renderVow('Not every part was held: hold each vowel the full 5 s.');return;}VOWM.now=r;renderVow();}
+    renderVow('Reading…');const r=N>=12*AU.sr?await vowRead(buf):null;if(!r){renderVow('Not every part was held: hold each vowel the full 5 s.');return;}VOWM.h=loadVowm();VOWM.now=r;renderVow();const vw=W.vow||'i',keep=VOWM.h.concat({d:Date.now(),vw,sd:r[1].sd,sde:r[1].sde,ah:(r[0].sd+r[2].sd)/2});try{localStorage.setItem(VOWM_KEY,JSON.stringify(keep.slice(-60)));}catch(e){}}
   finally{VOWM.busy=false;DRILL.rec=null;if(ensure&&AU.kind==='mic')stopSource();}}
 // Siren and measure, the warm-up's last step: one 12 s siren. Low and high from the p2 and p98 of held pitch, register breaks from registerBreaks, gaps of 150 ms or more counted as drop-outs. check/siren-bench.mjs.
 const SIREN_KEY='helix.siren.v1',SIREN_S=12,SIREN={busy:false,stop:false,now:null,h:[]};
@@ -2015,7 +2018,7 @@ const MARK_KEY='helix.marks.v1',bMark=$('bMark');
 // My data: everything kept lives in this browser, and a browser may clear it (Safari after 7 days away unless the page is on the
 // home screen). A copy is a plain JSON file the singer holds; bringing it back merges by date, existing records win, nothing is lost
 // in either direction. Audio stays out of the copy. Imported text reaches innerHTML, so a record holding markup is refused.
-const SAVED_KEY='helix.saved.v1',DATA_KEYS=[[HIST_KEY,HIST_MAX],[RANGE_KEY,RF_MAX],[MATCH_KEY,60],[SWELL_KEY,60],[SIREN_KEY,60],[PHR_KEY,120],[LN_KEY,LN_MAX]],DATA_APP='voice-helix';
+const SAVED_KEY='helix.saved.v1',DATA_KEYS=[[HIST_KEY,HIST_MAX],[RANGE_KEY,RF_MAX],[MATCH_KEY,60],[SWELL_KEY,60],[VOWM_KEY,60],[SIREN_KEY,60],[PHR_KEY,120],[LN_KEY,LN_MAX]],DATA_APP='voice-helix';
 const dataOk=r=>!!r&&typeof r==='object'&&!JSON.stringify(r).includes('<');
 function dataRead(k,e){try{return JSON.parse(localStorage.getItem(k)||e);}catch(x){return JSON.parse(e);}}
 function backupText(now){const data={[MARK_KEY]:dataRead(MARK_KEY,'{}')};for(const [k] of DATA_KEYS)data[k]=dataRead(k,'[]');data[LNC_KEY]=laneCount();return JSON.stringify({app:DATA_APP,v:1,saved:now,data});}
