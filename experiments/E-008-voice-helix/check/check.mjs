@@ -472,6 +472,10 @@ async function run([name, launch, ctxOpt, file]) {
     r.warmVow = await p.evaluate(() => { const now = Date.now(), mk = (vow, ws) => ws.map((w, i) => ({ d: now - (i + 1) * 864e5, n: 'A3', vow, wob: w })), base = { inton: 10, stab: 2, onset: 0, clar: 30, lo: 55, hi: 64, f: [] };
       const P = planWarmup([base], [...mk('a', [3, 3.2, 2.9, 3.1]), ...mk('o', [3.1, 2.8, 3, 3.3]), ...mk('i', [9, 9.5, 8.6, 9.2])]), Q = planWarmup([base], [...mk('a', [3, 3.2, 2.9, 3.1]), ...mk('o', [3.1, 2.8, 3, 3.3])]);
       const st = P.steps.find(s => s.name === 'Sustained vowel'); return { vow: P.vow, txt: !!st && /“ee”/.test(st.txt) && /“ee”/.test(P.why.join()), none: Q.vow === '' && !Q.steps.some(s => s.name === 'Sustained vowel') }; });
+    r.warmVst = await p.evaluate(() => { const now = Date.now(), mk = (vow, xs) => xs.map((st, i) => ({ d: now - (i + 1) * 864e5, n: 'A3', vow, st })), base = { inton: 10, stab: 2, onset: 0, clar: 30, lo: 55, hi: 64, f: [] };
+      const P = planWarmup([base], [...mk('a', [10, 12, 9, 11]), ...mk('o', [11, 10, 12, 9]), ...mk('i', [60, 65, 62, 68])]), Q = planWarmup([base], [...mk('a', [10, 12, 9, 11]), ...mk('o', [11, 10, 12, 9])]);
+      const st = P.steps.find(s => s.name === 'Clean starts on a vowel'); return { vst: P.vst, txt: !!st && /“ee”/.test(st.txt) && /starts on “ee”/.test(P.why.join()), none: Q.vst === '' && !Q.steps.some(s => s.name === 'Clean starts on a vowel') }; });
+    if (r.warmVst.vst !== 'i' || !r.warmVst.txt || !r.warmVst.none) throw new Error('warm-up vowel starts: ' + JSON.stringify(r.warmVst));
     if (r.warmVow.vow !== 'i' || !r.warmVow.txt || !r.warmVow.none) throw new Error('warm-up vowel: ' + JSON.stringify(r.warmVow));
     if (!r.warmLane.add || !r.warmLane.level || !r.warmLane.empty) throw new Error('warm-up lane: ' + JSON.stringify(r.warmLane));
     if (r.warmDesc.steps !== 'Lip trill or straw glides|Hold to the end|Clap, then sing|Siren' || !r.warmDesc.why || r.warmDesc.one !== 'Lip trill or straw glides|Keep the key|Siren' || r.warmDesc.none) throw new Error('warm-up described: ' + JSON.stringify(r.warmDesc));

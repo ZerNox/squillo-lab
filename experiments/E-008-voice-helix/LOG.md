@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-09 · warm-up: clean starts on the roughest-start vowel
+
+Built: when the Lane's by-vowel starts line names a roughest-start vowel, the warm-up adds 'Clean starts on a vowel' (five starts on it, five on “ah”; pitch-matching source) with the reason shown, and its match-and-measure tones. A singer who scoops into “ee” gets a daily minute on exactly that. Same test, no new measurement (synthetic false 5/400 starts). check.mjs asserts the step and its absence when starts are alike. Next: read the vowel-start step back per vowel, like the vowel step.
+
 ## 2026-11-09 · starts and endings by vowel
 
 Built: the Lane's list adds "By vowel, starts / endings, last two weeks: roughest starts on “ee”: …" with the by-vowel test (floor 8 ¢). A singer sees which vowel they scoop into or let fall off. Measured (`check/lane-days-bench.mjs`, page reads of synthetic slides, 12.4 % labels wrong): all alike, a claim 5/400 starts, 0/400 endings; one vowel at 2× slide named 98/400 starts, 175/400 endings. check.mjs asserts the starts line. Next: a warm-up onset step on the roughest-start vowel.
@@ -49,8 +53,4 @@ Built: `envVowel` now also weighs each envelope level by log(f0/250)², and the 
 ## 2026-11-08 · this sitting, try by try, in one line
 
 Built: `sittingTries`/`olsTrend`: above the Lane's list, "Getting better this sitting, try by try: G4 steadier, cleaner starts · A4 closer to the note" (or "Slipping: …"), from every pitch with 4+ tries. A singer sees at a glance what is improving across all the notes they repeat. Per-note tests over 12 cells falsely claimed something in 31 % of level sittings; fixed with an unweighted t line (± as residual floor) and a Bonferroni factor. Measured (`check/tries-bench.mjs`, 3 notes × 4 aspects, 400 sittings): all level 0/400, hidden spread 4-18/400, halved wobble named 23/400 (4 tries), 161/400 (6). Next: o/u vowels, or a finer-hop edge search.
-
-## 2026-11-08 · tuning of one note, try by try
-
-Built: `LTRYT`: each live long note now also keeps a ± on its tuning (spread of four quarter medians, floor 1 ¢), and the Lane's list shows "tuning of G4: 40 · 28 · 15 · 4 ¢ off the note, closer try by try (−Δ ± e)" with the same weighted trend. A singer working on one note's pitch sees it come in within a sitting; wobble, starts, endings and tuning all read try by try. Measured (`check/tries-bench.mjs`, synthetic, ± 1-6 ¢, hidden spread 3 ¢): level said 2-10 %, in tune 1-3/400, wrong way 0/400, halved 34-89 %. Next: o/u vowels, or a finer-hop edge search.
 
