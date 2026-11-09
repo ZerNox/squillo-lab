@@ -67,6 +67,11 @@ const res = await p.evaluate(async () => { const sr = 48000; let seed = 11; cons
   const VV = [...'aeiou'], vrun = (odd) => { const o = { n: 0, said: 0, right: 0, wrong: 0 }; for (let j = 0; j < 400; j++) { const k = 2 + Math.floor(R() * 4), L = [];
       for (let i = 0; i < k; i++) { const w = i === 0 && odd ? odd : 8; for (let r = 3 + Math.floor(R() * 10); r--;) { let v = i; if (R() < 0.124) v = (i + 1 + Math.floor(R() * (k - 1))) % k; L.push({ d: now - Math.floor(R() * 13) * 864e5 - 3600e3, n: 'A3', vow: VV[v], wob: pk(pool[w]) }); } }
       const q = laneByNote(L, now, 'vow'); o.n++; const want = odd ? (odd < 8 ? 'lo' : 'hi') : ''; for (const s of ['lo', 'hi']) if (q[s]) { o.said++; if (s === want && q[s] === 'a') o.right++; else o.wrong++; } } return o; };
+  // By vowel, starts and endings: the same, values from the page's reads of 40 ¢ slides, one vowel at 80 ¢ (roughest right).
+  const srun = (mk, odd) => { const o = { n: 0, said: 0, right: 0, wrong: 0 }; for (let j = 0; j < 400; j++) { const k = 2 + Math.floor(R() * 4), L = [];
+      for (let i = 0; i < k; i++) { const D = i === 0 && odd ? odd : 40; for (let r = 3 + Math.floor(R() * 10); r--;) { let v = i; if (R() < 0.124) v = (i + 1 + Math.floor(R() * (k - 1))) % k; L.push({ d: now - Math.floor(R() * 13) * 864e5 - 3600e3, n: 'A3', vow: VV[v], [mk]: pk(P2[D])[mk] }); } }
+      const q = laneByNote(L, now, 'vow', mk); o.n++; const want = odd ? 'hi' : ''; for (const s of ['lo', 'hi']) if (q[s]) { o.said++; if (s === want && q[s] === 'a') o.right++; else o.wrong++; } } return o; };
+  for (const mk of ['st', 'en']) { se[`by vowel ${mk} all 40 ¢`] = srun(mk, 0); se[`by vowel ${mk} one at 80 ¢`] = srun(mk, 80); }
   se['by vowel all 8 ¢'] = vrun(0); se['by vowel one at 16 ¢'] = vrun(16); se['by vowel one at 4 ¢'] = vrun(4);
   se['by note all 8 ¢'] = brun(0); se['by note one at 16 ¢'] = brun(16); se['by note one at 4 ¢'] = brun(4);
   se['warm-up level'] = wrun(8, 40, null); se['warm-up wobble doubled'] = wrun(16, 40, 'wob'); se['warm-up endings 80 vs 40'] = wrun(8, 40, 'en', 80);

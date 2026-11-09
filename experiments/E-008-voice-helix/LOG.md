@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-09 · starts and endings by vowel
+
+Built: the Lane's list adds "By vowel, starts / endings, last two weeks: roughest starts on “ee”: …" with the by-vowel test (floor 8 ¢). A singer sees which vowel they scoop into or let fall off. Measured (`check/lane-days-bench.mjs`, page reads of synthetic slides, 12.4 % labels wrong): all alike, a claim 5/400 starts, 0/400 endings; one vowel at 2× slide named 98/400 starts, 175/400 endings. check.mjs asserts the starts line. Next: a warm-up onset step on the roughest-start vowel.
+
 ## 2026-11-09 · vowel step: drift over the last tries
 
 Built: under the '♪ vowels and measure' result, a small chart of drift on that vowel over the last 10 tries, today last (dot ± bar, "ah" of each try as a tick; aria-label lists the numbers). A singer sees their weak vowel's steadiness trend at a glance, not only "steadier than last time". No new measurement (same drift ± as the line). check.mjs: no chart after one try, two dots after two. Next: per-vowel starts/endings.
@@ -49,8 +53,4 @@ Built: `sittingTries`/`olsTrend`: above the Lane's list, "Getting better this si
 ## 2026-11-08 · tuning of one note, try by try
 
 Built: `LTRYT`: each live long note now also keeps a ± on its tuning (spread of four quarter medians, floor 1 ¢), and the Lane's list shows "tuning of G4: 40 · 28 · 15 · 4 ¢ off the note, closer try by try (−Δ ± e)" with the same weighted trend. A singer working on one note's pitch sees it come in within a sitting; wobble, starts, endings and tuning all read try by try. Measured (`check/tries-bench.mjs`, synthetic, ± 1-6 ¢, hidden spread 3 ¢): level said 2-10 %, in tune 1-3/400, wrong way 0/400, halved 34-89 %. Next: o/u vowels, or a finer-hop edge search.
-
-## 2026-11-08 · endings of one note, try by try
-
-Built: `LTRYE`: the Lane's list also shows a pitch's endings this sitting, "endings of G4: 70 · 50 · 25 · 5 ¢ moved, held better try by try (−Δ ± e)", same weighted trend on |¢ moved as you let go| with the ending's ±. A singer working on holding to the end sees it settle within a sitting; tuning steadiness, starts and endings now all read try by try. Measured (`check/tries-bench.mjs`, synthetic, ± 6-15 ¢): level said 2-8 %, held endings 1/400, wrong way ≤ 1/400, halved 32-71 %. Next: o/u vowels, or a finer-hop edge search.
 
