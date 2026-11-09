@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-09 · warm-up: vowels and measure
+
+Built: the sustained-vowel step gets '♪ vowels and measure': 15 s at a guide note, "ah" / the least steady vowel / "ah", 5 s each. The page reads each part's drift (SD of 0.5 s pitch means, ± 95 %), says whether the vowel was less steady than the "ah" on either side (only when the gap is larger than both ± combined), and whether it was heard as that vowel (`spanVowel` when sure, 87.6 % on whole notes). A singer gets their weakest vowel's steadiness measured against their own "ah" in the same minute. Synthetic check (all three browsers): a middle part wobbling ±30 ¢ at 0.6 Hz reads 20 ± 12 ¢ against 0 ¢ for "ah", and is named. Next: keep vowel-step results across days, like the swell step.
+
 ## 2026-11-09 · warm-up: a sustained-vowel step on the least steady vowel
 
 Built: when the Lane's two-week by-vowel line names a least steady vowel, the warm-up adds 'Sustained vowel' (ah, that vowel, ah; Titze & Verdolini Abbott 2012) with the reason shown. A singer whose "ee" wobbles gets a daily minute on it. Same test, no new measurement (synthetic false 7/400). check.mjs asserts the step and its absence when vowels are alike. Next: per-vowel starts/endings, or the vowel step read back like the swell step.
@@ -45,8 +49,4 @@ Built: `LTRYE`: the Lane's list also shows a pitch's endings this sitting, "endi
 ## 2026-11-08 · starts of one note, try by try
 
 Built: `LTRYS`/`triesOne`: the Lane's list also shows a pitch's starts this sitting, "starts of G4: 60 · 40 · 20 · 5 ¢ off, cleaner try by try (−Δ ± e)", same weighted trend on |¢ off| with the start's ±. A singer working on clean onsets sees them settle within a sitting. Measured (`check/tries-bench.mjs`, synthetic, ± 6-15 ¢): level said 3-9 %, on-the-note starts 0-1/400, wrong way ≤ 1/400, halved 23-51 %. Next: o/u vowels, or a finer-hop edge search.
-
-## 2026-11-08 · tries of one note, and an interior gate measured
-
-Built: `LTRY`/`triesTrend`/`triesLine`: every live long note's wobble ± kept per pitch this sitting (numbers, memory); from the third try the newest reads "tries of G4: 9.0 · 6.1 · 3.2 ¢", from the fourth "steadier/less steady try by try (−Δ ± e ¢)" or "level across N tries" (weighted line, t interval when scatter exceeds the ±). A singer repeating one note sees whether it settles over the sitting. Measured (`check/tries-bench.mjs`, synthetic 400 per row): level falsely called 16-29/400 at 4-6 tries, wrong way ≤ 1/400, halved found 61-84 %. Depth tried first: take-pitch false alarms on vocadito (re-downloaded, baseline RPA 97.3, FA 13.1, OA 94.0): 60 % of FAs are inside voiced runs in 60-400 ms truth gaps; interior level-dip trims (run median, local max, plus YIN dip) all trade, best OA 94.7 at RPA 96.5; not shipped. Next: o/u vowels, or a finer-hop edge/onset search.
 
