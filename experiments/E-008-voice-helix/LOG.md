@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-09 · steadiest and least steady vowel, two weeks
+
+Built: each live long note now keeps its vowel (when sure), and the Lane's list adds "By vowel, last two weeks: least steady on “ee”: 9.1 ¢ (…) vs 3.0 ¢" with the same extreme-widened test as the by-note line. A singer sees which vowel to give their steadiness work. Measured (`check/lane-days-bench.mjs`, synthetic live wobble, labels 12.4 % wrong as on VocalSet whole notes): all vowels alike, a claim 7/400; one vowel at 2× wobble named 238/400. check.mjs asserts the line and the stored vowel. Next: per-vowel starts/endings, or a warm-up vowel step from it.
+
 ## 2026-11-08 · the vowel of each live long note
 
 Built: the Lane's list now says which vowel each long note (0.5 s or more) was sung on, "G4 1.2 s on “ah”", only when `envVowel` is sure over the whole note. A singer working on one vowel sees which notes were heard as it. Number used: whole notes on the live footing 87.6 ± 3.9 % (README, VocalSet). Also tried for u/o (page dump, left-out singer, base 84.0): ridge 0.01 84.2, F1/F2 × log f0 82.8-83.1, cubic f0 term 83.3-83.8: no gain, not shipped; the LDA looks saturated on these features. check.mjs asserts the label and that short notes get none. Next: a different vowel feature (cepstral envelope), or a finer-hop edge search.
@@ -45,8 +49,4 @@ Built: `LTRY`/`triesTrend`/`triesLine`: every live long note's wobble ± kept pe
 ## 2026-11-08 · first try, then this
 
 Built: `LFIRST`/`firstBtn`/`firstVs`: the first long note of each pitch this sitting is copied from the 30 s ring (memory only); each later try of that note gets "▶ first try, then this" (A/B through the steadiest player) and a line "steadier / less steady than your first G4", said only when the wobble difference is beyond both notes' ± combined, else "level with your first". A singer repeating one note hears and reads whether it is getting steadier within the sitting. Measured: check.mjs synthetic wobbles 9 → 3 ± 1 ¢ said steadier, 9 → 8.5 level, A/B plays both clips in full (Chrome, Firefox, WebKit iPhone). No new estimator (the Lane's wobble ±). iOS risk as before. Next: o/u vowels, or noise part 3.
-
-## 2026-11-08 · hear a live long note as the next step
-
-Built: `nextParts`/`nextNoteBtn`: a live long note whose tuning, start or ending was named gets "▶ next step" on the Lane's list: the note, then the same samples with each part moved half way to the note (`farRamp` with the parts halved, nothing added), so the reachable step sits beside the far vision. Memory only. Measured: synthetic A3 30 ¢ sharp, coming in 80 ¢ under, rendered offline: body 30 → 15.0 ¢, start -80 → -40.1 ¢ from the body (Chrome, Firefox, WebKit iPhone). Proxy only (pure tone). iOS risk as before (playback during mic stream). Next: o/u vowels, or noise part 3.
 

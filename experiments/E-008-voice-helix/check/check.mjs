@@ -155,6 +155,12 @@ async function run([name, launch, ctxOpt, file]) {
       localStorage.setItem(LN_KEY, JSON.stringify(A.concat(E, C))); logRecap({ t: 520, s: 'x', n: 'A3', d: 1.4, p: ['steadiness 8.0 ¢ wobble · ±1'], w: { wob: 8, pm: 1 }, best: false });
       const line = (document.querySelector('#laneLog .bynote') || {}).textContent || ''; localStorage.removeItem(LN_KEY); return { one, same, lo: q.lo, hi: q.hi, line }; });
     if (lbn.one !== '' || lbn.same !== '' || lbn.lo !== 'C4' || !/^By note, last two weeks: steadiest on C4: wobble 2\.0 ¢/.test(lbn.line)) throw new Error('lane by note: ' + JSON.stringify(lbn));
+    // By vowel: “ee” clearly less steady is named on its own line; the vowel is kept with each stored note.
+    const lbv = await p.evaluate(() => { const now = new Date().setHours(12, 0, 0, 0), mk = (vow, ws) => ws.map((w, i) => ({ d: now - (i + 1) * 864e5, n: 'A3', vow, wob: w }));
+      const L = mk('a', [3, 3.2, 2.9, 3.1]).concat(mk('o', [3.1, 2.8, 3, 3.3]), mk('i', [9, 9.5, 8.6, 9.2])); localStorage.setItem(LN_KEY, JSON.stringify(L));
+      logRecap({ t: 530, s: 'x', n: 'A3', d: 1.4, vow: 'i', p: ['steadiness 9.0 ¢ wobble · ±1'], w: { wob: 9, pm: 1 }, best: false });
+      const kept = JSON.parse(localStorage.getItem(LN_KEY)).pop().vow, line = (document.querySelector('#laneLog .byvow') || {}).textContent || ''; localStorage.removeItem(LN_KEY); return { kept, line, none: laneByNote(L.slice(0, 8), now, 'vow').s }; });
+    if (lbv.kept !== 'i' || lbv.none !== '' || !/^By vowel, last two weeks: least steady on “ee”: 9\.\d ¢/.test(lbv.line)) throw new Error('lane by vowel: ' + JSON.stringify(lbv));
     // Hear it again: mic audio kept 30 s in memory; a recapped note's ▶ cuts its own samples (padded 0.15 s), 'gone' once overwritten; notes heard back while ▶ plays are kept off the list.
     const lhr = await p.evaluate(() => { const k0 = AU.kind, sr0 = AU.sr, at0 = LIVE.at; AU.kind = 'mic'; AU.sr = 48000; LRING.b = null; LRING.mute = -1; const blk = n0 => { const b = new Float32Array(480); for (let i = 0; i < 480; i++) b[i] = (n0 + i) / 2e6; return b; };
       for (let j = 0; j < 1000; j++) liveTap(blk(j * 480)); LIVE.at = 10; LOG8.length = 0; logRecap({ t: 9, s: 'x', n: 'C4', d: 2, c: 40, p: ['held to the end'], best: false }); const q = LOG8[0], x = liveClip(q), first = Math.round(x[0] * 2e6), last = Math.round(x[x.length - 1] * 2e6);

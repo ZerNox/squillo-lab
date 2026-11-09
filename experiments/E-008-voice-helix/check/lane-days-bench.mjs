@@ -63,6 +63,11 @@ const res = await p.evaluate(async () => { const sr = 48000; let seed = 11; cons
   const NN = ['A3', 'C4', 'E4', 'G4', 'B4'], brun = (odd) => { const o = { n: 0, said: 0, right: 0, wrong: 0 }; for (let j = 0; j < 400; j++) { const k = 2 + Math.floor(R() * 4), L = [];
       for (let i = 0; i < k; i++) { const w = i === 0 && odd ? odd : 8; for (let r = 3 + Math.floor(R() * 10); r--;) L.push({ d: now - Math.floor(R() * 13) * 864e5 - 3600e3, n: NN[i], wob: pk(pool[w]) }); }
       const q = laneByNote(L, now); o.n++; const want = odd ? (odd < 8 ? 'lo' : 'hi') : ''; for (const s of ['lo', 'hi']) if (q[s]) { o.said++; if (s === want && q[s] === 'A3') o.right++; else o.wrong++; } } return o; };
+  // By vowel: same test keyed on the vowel; 2-5 vowels, each note's label wrong 12 % of the time (the 87.6 % whole-note rate), wrong label drawn from the others.
+  const VV = [...'aeiou'], vrun = (odd) => { const o = { n: 0, said: 0, right: 0, wrong: 0 }; for (let j = 0; j < 400; j++) { const k = 2 + Math.floor(R() * 4), L = [];
+      for (let i = 0; i < k; i++) { const w = i === 0 && odd ? odd : 8; for (let r = 3 + Math.floor(R() * 10); r--;) { let v = i; if (R() < 0.124) v = (i + 1 + Math.floor(R() * (k - 1))) % k; L.push({ d: now - Math.floor(R() * 13) * 864e5 - 3600e3, n: 'A3', vow: VV[v], wob: pk(pool[w]) }); } }
+      const q = laneByNote(L, now, 'vow'); o.n++; const want = odd ? (odd < 8 ? 'lo' : 'hi') : ''; for (const s of ['lo', 'hi']) if (q[s]) { o.said++; if (s === want && q[s] === 'a') o.right++; else o.wrong++; } } return o; };
+  se['by vowel all 8 ¢'] = vrun(0); se['by vowel one at 16 ¢'] = vrun(16); se['by vowel one at 4 ¢'] = vrun(4);
   se['by note all 8 ¢'] = brun(0); se['by note one at 16 ¢'] = brun(16); se['by note one at 4 ¢'] = brun(4);
   se['warm-up level'] = wrun(8, 40, null); se['warm-up wobble doubled'] = wrun(16, 40, 'wob'); se['warm-up endings 80 vs 40'] = wrun(8, 40, 'en', 80);
   return { pm, same4: run(4, 4), same8: run(8, 8), same16: run(16, 16), half: run(8, 16), half2: run(4, 8), worse: run(16, 8), se }; });
