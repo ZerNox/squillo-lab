@@ -1583,6 +1583,7 @@ const WARM_STEP={
  tsag:{name:'Hold to the end',sec:60,src:'end',txt:'Sing a long “oo” on the tone for 5 s and stop it by stopping the air, not by letting go of the note. The last moment should sit exactly where the middle did.',tone:'hold'},
  kdrift:{name:'Keep the key',sec:60,src:'drift',txt:'Hear the tone, sing a short phrase you know starting on it, then play the tone again: is your last note still in the same key as the tone?',tone:'hold'},
  vow:{name:'Sustained vowel',sec:60,src:'end',vm:1,txt:'Hold the tone for 6 s on “ah”, then on your least steady vowel “%v”, then “ah” again, keeping the pitch line just as straight on both. Shape the vowel without moving the jaw or throat more than you need.',tone:'hold'},
+ vonset:{name:'Clean starts on a vowel',sec:60,src:'pm',txt:'Hear the tone, then start right on it on your roughest-start vowel “%v” with a light, easy onset (a silent “h” before it if it helps), no slide up from below. Five starts, then five on “ah” to compare.',tone:'steps'},
  rhythm:{name:'Clap, then sing',sec:60,src:'pulse',txt:'Clap with the clicks while you speak the words of a phrase, then sing them to the same claps. Let the clap lead, not the breath.',tone:'pulse'}};
 // The described points (clarity, endings, key drift, rhythm) are not rated against a trained median: a step is chosen
 // when the summary named the point in at least 2 of the last 5 takes (or the only take), filling a slot the rated gaps leave.
@@ -1603,7 +1604,9 @@ function planWarmup(h,L=[],now=Date.now()){const r=h.slice(-HIST_WIN),lo=r.filte
   if(ln&&!mid.includes(WARM_STEP[ln.step])){mid.push(WARM_STEP[ln.step]);why.push(ln.why);}
   // The least steady vowel of two weeks (laneByNote on the kept vowel, synthetic false 7/400) adds a sustained-vowel step on it.
   const bv=laneByNote(L,now,'vow');if(bv.hi){mid.push({...WARM_STEP.vow,txt:WARM_STEP.vow.txt.replace('%v',VLBL[bv.hi])});why.push(`steadiness on “${VLBL[bv.hi]}” (live: your least steady vowel of the last two weeks)`);}
-  return {n:r.length,low,high,why,lane:ln&&ln.k,vow:bv.hi||'',steps:[WARM_STEP.start,...mid,WARM_STEP.end]};}
+  // The roughest-start vowel of two weeks (same test on starts, synthetic false 5/400) adds clean starts on it.
+  const bs=laneByNote(L,now,'vow','st');if(bs.hi){mid.push({...WARM_STEP.vonset,txt:WARM_STEP.vonset.txt.replace('%v',VLBL[bs.hi])});why.push(`note starts on “${VLBL[bs.hi]}” (live: your roughest-start vowel of the last two weeks)`);}
+  return {n:r.length,low,high,why,lane:ln&&ln.k,vow:bv.hi||'',vst:bs.hi||'',steps:[WARM_STEP.start,...mid,WARM_STEP.end]};}
 const nn=m=>NOTE[(m%12+12)%12]+(Math.floor(m/12)-1);
 const warmNotes=W=>[0,2,4,2,0].map(d=>Math.min(W.high,W.low+Math.round((W.high-W.low)/4)+d));
 // Guide tones: a soft sine with two overtones, scheduled on the take's audio context (created in the click).
