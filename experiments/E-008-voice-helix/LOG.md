@@ -4,7 +4,7 @@ Newest first. Date, what was built, what a singer can now do, numbers, next.
 
 ## 2026-11-10 · key from a recording
 
-Built: the voice profile's 'Key for a song' gets '♪ from a recording': pick a sung or hummed recording of the melody, the page reads it on the device (take pitch, note segmentation), fills lowest and highest (semitones held 0.25 s or more in total, so a stray note does not set the span) and suggests the key. A singer no longer has to know the melody's notes to get a key that suits them. check.mjs: synthetic G3-D5 melody with a 0.1 s stray A5 reads G3-D5, down 7 to C. Not measured on real songs. Next: span read on VocalSet/vocadito melodies against their hand f0, or tone depth.
+Built: the voice profile's 'Key for a song' gets '♪ from a recording': pick a sung or hummed recording of the melody, the page reads it on the device (take pitch, note segmentation), fills lowest and highest (semitones held 0.25 s or more in total, so a stray note does not set the span) and suggests the key. A singer no longer has to know the melody's notes to get a key that suits them. check.mjs: synthetic G3-D5 melody with a 0.1 s stray A5 reads G3-D5, down 7 to C. Real voices (vocadito 40, vs annotator A1's notes): lowest and highest exact 80 ± 12 % each (second annotator 83, 80), key shift exact 70 ± 14 %, within one 83 % (annotators 88, 95). Next: tone depth, or a sturdier shift (median of the held notes).
 
 ## 2026-11-10 · vibrato and measure
 
