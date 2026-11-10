@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-10 · vibrato and measure
+
+Built: an 'Even vibrato' warm-up step, added when the Lane's live long notes of two weeks (5+ with vibrato) have a median rate outside 4.5-7 Hz or width outside ±0.25-0.6 st; ▶ guide tone plays a 5.8 Hz ±0.45 st model to sing along with (King & Horii 1993); '♪ vibrato and measure' holds 8 s and reads rate ±, width and evenness with the page's `vibPiece`, kept (`helix.vibm.v1`), compared to the last 5 only beyond both ±, charted on the progress panel. A singer with a fast, tight bleat gets a daily minute on it and sees it move. check.mjs: synthetic 5.5 Hz ±0.45 st read within 0.15 Hz / 0.06 st, 'even', second try 'as even'; Lane at 7.8 Hz adds the step, 5.8 Hz does not. Next: tone depth (formant-corrected H1-H2) or the noise FA track.
+
 ## 2026-11-09 · warm-up steps on the progress panel
 
 Built: under the progress lines, 'Warm-up, measured steps': pitch match, swell stillness, weak-vowel drift, vowel starts and siren span, each a small chart of the last 12 tries with ± bars and 'last 3 vs the 5 before: better / worse / level within the noise' (± in quadrature, claim only beyond both). A singer sees whether the daily warm-up is moving anything without opening each step. No new measurement. check.mjs: seeded falling match reads better, flat vowel drift level, single siren try no row. Next: a different track (vibrato or tone depth).
@@ -46,6 +50,3 @@ Built: each live long note now keeps its vowel (when sure), and the Lane's list 
 
 Built: the Lane's list now says which vowel each long note (0.5 s or more) was sung on, "G4 1.2 s on “ah”", only when `envVowel` is sure over the whole note. A singer working on one vowel sees which notes were heard as it. Number used: whole notes on the live footing 87.6 ± 3.9 % (README, VocalSet). Also tried for u/o (page dump, left-out singer, base 84.0): ridge 0.01 84.2, F1/F2 × log f0 82.8-83.1, cubic f0 term 83.3-83.8: no gain, not shipped; the LDA looks saturated on these features. check.mjs asserts the label and that short notes get none. Next: a different vowel feature (cepstral envelope), or a finer-hop edge search.
 
-## 2026-11-08 · phone: the Lane's list readable over the Lane
-
-Built: on phones the Lane is fixed full-screen and its list of long notes scrolled over it, so text ran through the big note readout and the pitch line (seen on the iPhone screenshot). The list now sits on its own opaque panel above the readout. A singer scrolling the list on an iPhone reads it cleanly. No new measurement; check.mjs asserts panel order and opacity on touch. Chrome failed once on an element screenshot detached mid-render (unrelated, passed on rerun). Next: u and 400-600 Hz vowels, or a finer-hop edge search.
