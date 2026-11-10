@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-10 · key from a recording
+
+Built: the voice profile's 'Key for a song' gets '♪ from a recording': pick a sung or hummed recording of the melody, the page reads it on the device (take pitch, note segmentation), fills lowest and highest (semitones held 0.25 s or more in total, so a stray note does not set the span) and suggests the key. A singer no longer has to know the melody's notes to get a key that suits them. check.mjs: synthetic G3-D5 melody with a 0.1 s stray A5 reads G3-D5, down 7 to C. Not measured on real songs. Next: span read on VocalSet/vocadito melodies against their hand f0, or tone depth.
+
 ## 2026-11-10 · vibrato and measure
 
 Built: an 'Even vibrato' warm-up step, added when the Lane's live long notes of two weeks (5+ with vibrato) have a median rate outside 4.5-7 Hz or width outside ±0.25-0.6 st; ▶ guide tone plays a 5.8 Hz ±0.45 st model to sing along with (King & Horii 1993); '♪ vibrato and measure' holds 8 s and reads rate ±, width and evenness with the page's `vibPiece`, kept (`helix.vibm.v1`), compared to the last 5 only beyond both ±, charted on the progress panel. A singer with a fast, tight bleat gets a daily minute on it and sees it move. check.mjs: synthetic 5.5 Hz ±0.45 st read within 0.15 Hz / 0.06 st, 'even', second try 'as even'; Lane at 7.8 Hz adds the step, 5.8 Hz does not. Next: tone depth (formant-corrected H1-H2) or the noise FA track.
@@ -45,8 +49,4 @@ Built: when the Lane's two-week by-vowel line names a least steady vowel, the wa
 ## 2026-11-09 · steadiest and least steady vowel, two weeks
 
 Built: each live long note now keeps its vowel (when sure), and the Lane's list adds "By vowel, last two weeks: least steady on “ee”: 9.1 ¢ (…) vs 3.0 ¢" with the same extreme-widened test as the by-note line. A singer sees which vowel to give their steadiness work. Measured (`check/lane-days-bench.mjs`, synthetic live wobble, labels 12.4 % wrong as on VocalSet whole notes): all vowels alike, a claim 7/400; one vowel at 2× wobble named 238/400. check.mjs asserts the line and the stored vowel. Next: per-vowel starts/endings, or a warm-up vowel step from it.
-
-## 2026-11-08 · the vowel of each live long note
-
-Built: the Lane's list now says which vowel each long note (0.5 s or more) was sung on, "G4 1.2 s on “ah”", only when `envVowel` is sure over the whole note. A singer working on one vowel sees which notes were heard as it. Number used: whole notes on the live footing 87.6 ± 3.9 % (README, VocalSet). Also tried for u/o (page dump, left-out singer, base 84.0): ridge 0.01 84.2, F1/F2 × log f0 82.8-83.1, cubic f0 term 83.3-83.8: no gain, not shipped; the LDA looks saturated on these features. check.mjs asserts the label and that short notes get none. Next: a different vowel feature (cepstral envelope), or a finer-hop edge search.
 
