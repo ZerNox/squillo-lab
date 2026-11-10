@@ -2,6 +2,10 @@
 
 Newest first. Date, what was built, what a singer can now do, numbers, next.
 
+## 2026-11-10 · key from a recording: octave errors no longer set the span
+
+Built: `songSpan` keeps only the cluster of held semitones with the most time (a gap over 8 semitones splits), so a run of octave-up or octave-down pitch errors no longer stretches the span. A singer's suggested key from a recording now matches the hand annotation as often as two annotators match each other. Measured (`check/span-song-bench.mjs`, vocadito 40, vs A1): lowest exact 80 → 83 ± 12 %, highest 80 → 88 ± 10 %, shift exact 70 → 85 ± 11 %, within one 83 → 98 ± 5 % (annotators 88, 95); gap swept 4/6/8 on the same clips (6, 8 tie), so slightly optimistic. check.mjs: a 0.6 s octave-error D6 added to the synthetic melody, still G3-D5. Next: tone depth (formant-corrected H1-H2).
+
 ## 2026-11-10 · key from a recording
 
 Built: the voice profile's 'Key for a song' gets '♪ from a recording': pick a sung or hummed recording of the melody, the page reads it on the device (take pitch, note segmentation), fills lowest and highest (semitones held 0.25 s or more in total, so a stray note does not set the span) and suggests the key. A singer no longer has to know the melody's notes to get a key that suits them. check.mjs: synthetic G3-D5 melody with a 0.1 s stray A5 reads G3-D5, down 7 to C. Real voices (vocadito 40, vs annotator A1's notes): lowest and highest exact 80 ± 12 % each (second annotator 83, 80), key shift exact 70 ± 14 %, within one 83 % (annotators 88, 95). Next: tone depth, or a sturdier shift (median of the held notes).
@@ -45,8 +49,4 @@ Built: the sustained-vowel step gets '♪ vowels and measure': 15 s at a guide n
 ## 2026-11-09 · warm-up: a sustained-vowel step on the least steady vowel
 
 Built: when the Lane's two-week by-vowel line names a least steady vowel, the warm-up adds 'Sustained vowel' (ah, that vowel, ah; Titze & Verdolini Abbott 2012) with the reason shown. A singer whose "ee" wobbles gets a daily minute on it. Same test, no new measurement (synthetic false 7/400). check.mjs asserts the step and its absence when vowels are alike. Next: per-vowel starts/endings, or the vowel step read back like the swell step.
-
-## 2026-11-09 · steadiest and least steady vowel, two weeks
-
-Built: each live long note now keeps its vowel (when sure), and the Lane's list adds "By vowel, last two weeks: least steady on “ee”: 9.1 ¢ (…) vs 3.0 ¢" with the same extreme-widened test as the by-note line. A singer sees which vowel to give their steadiness work. Measured (`check/lane-days-bench.mjs`, synthetic live wobble, labels 12.4 % wrong as on VocalSet whole notes): all vowels alike, a claim 7/400; one vowel at 2× wobble named 238/400. check.mjs asserts the line and the stored vowel. Next: per-vowel starts/endings, or a warm-up vowel step from it.
 

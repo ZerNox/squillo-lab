@@ -1701,9 +1701,11 @@ function renderProfile(msg){const el=$('profile'),P=voiceProfile(loadHist());el.
     catch(err){$('pRecOut').textContent='Could not read that file in this browser.';}};}
 // Song span from a recording (read on the device, not kept): the page's take path, then the lowest and highest
 // semitone with at least SPAN_MIN s held in total, so one stray or slid-into note does not set the range (check.mjs synthetic melodies).
-const SPAN_MIN=0.25;
+const SPAN_MIN=0.25,SPAN_GAP=8;
 async function songSpan(buf){const fs=await trackTake(buf);viterbiF0(fs);trimEdges(fs,buf);const st=new Stats();for(const m of fs)ingest(st,m,'take');const N=segNotes(st.rec.frames);
   const T=new Map();for(const n of N){const k=Math.round(n.med),d=n.t1-n.t0;T.set(k,(T.get(k)||0)+d);}const ks=[...T].filter(x=>x[1]>=SPAN_MIN).map(x=>x[0]).sort((a,b)=>a-b);
+  let C=[],c=[];for(const k of ks){if(c.length&&k-c[c.length-1]>SPAN_GAP){C.push(c);c=[];}c.push(k);}if(c.length)C.push(c);
+  const w=c=>c.reduce((s,k)=>s+T.get(k),0);const K=C.reduce((a,b)=>w(b)>w(a)?b:a,[]);ks.length=0;ks.push(...K);
   return ks.length>=2?{lo:ks[0],hi:ks[ks.length-1],n:N.length}:null;}
 $('bProf').onclick=()=>{const el=$('profile');if(!el.hidden){el.hidden=true;return;}renderProfile();el.scrollIntoView({block:'nearest'});};
 // Guided range finder: three short steps sung into the mic (slide down to the lowest note and hold it, slide up to
